@@ -24,6 +24,7 @@
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E7000EE45DDE00C37E21 /* RootViewController.m */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
+		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
 		A2E7C6F80F2EE49B00AB3084 /* GearCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2E7C6F70F2EE49B00AB3084 /* GearCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		A284E7000EE45DDE00C37E21 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A2AAAF0B0F28386300945F6E /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
+		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		A2E7C6F70F2EE49B00AB3084 /* GearCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GearCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
 				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
 				A2E7C6F70F2EE49B00AB3084 /* GearCell.xib */,
@@ -217,6 +220,7 @@
 				A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2E7C6F80F2EE49B00AB3084 /* GearCell.xib in Resources */,
+				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brad Sokol";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

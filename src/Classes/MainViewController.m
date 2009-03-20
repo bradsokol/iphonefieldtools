@@ -31,6 +31,7 @@
 #define HYPERFOCAL_SEGMENT_INDEX	0
 #define NEAR_SEGMENT_INDEX			1
 #define FAR_SEGMENT_INDEX			2
+#define NEAR_FAR_SEGMENT_INDEX		3
 
 float minimumDistanceToSubject = 0.25f;	// metres
 float maximumDistanceToSubject = 25.0f;	// metres
@@ -254,6 +255,10 @@ const float METRES_TO_FEET = 3.280839895f;
 		case FAR_SEGMENT_INDEX:
 			distance = [self calculateFarLimit];
 			break;
+			
+		case NEAR_FAR_SEGMENT_INDEX:
+			distance = 0.0;
+			break;
 	}
 	return distance;
 }
@@ -316,7 +321,17 @@ const float METRES_TO_FEET = 3.280839895f;
 // Update the computed distance (hyperfocal, near or far limit as selected)
 - (void)updateResult
 {
-	[result setText:[self formatDistance:[self calculateResult]]];
+	if ([distanceType selectedSegmentIndex] == NEAR_FAR_SEGMENT_INDEX)
+	{
+		NSString* near = [self formatDistance:[self calculateNearLimit]];
+		NSString* far = [self formatDistance:[self calculateFarLimit]];
+		
+		[result setText:[NSString stringWithFormat:@"%@ to %@", near, far]];
+	}
+	else
+	{
+		[result setText:[self formatDistance:[self calculateResult]]];
+	}
 }
 
 - (void)updateDistanceSliderLimits

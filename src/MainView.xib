@@ -65,7 +65,6 @@
 						</object>
 						<int key="IBUITextAlignment">2</int>
 						<bool key="IBUIClearsOnBeginEditing">YES</bool>
-						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">1.700000e+01</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
 					</object>
@@ -77,16 +76,18 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBSegmentControlStyle">2</int>
-						<int key="IBNumberOfSegments">3</int>
+						<int key="IBNumberOfSegments">4</int>
 						<int key="IBSelectedSegmentIndex">0</int>
 						<object class="NSArray" key="IBSegmentTitles">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>Hyper</string>
 							<string>Near</string>
 							<string>Far</string>
+							<string>Near+Far</string>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentWidths">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<real value="0.000000e+00"/>
 							<real value="0.000000e+00"/>
 							<real value="0.000000e+00"/>
 							<real value="0.000000e+00"/>
@@ -96,9 +97,11 @@
 							<boolean value="YES" id="5"/>
 							<reference ref="5"/>
 							<reference ref="5"/>
+							<reference ref="5"/>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentContentOffsets">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
@@ -106,6 +109,7 @@
 						<object class="NSMutableArray" key="IBSegmentImages">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSNull" id="4"/>
+							<reference ref="4"/>
 							<reference ref="4"/>
 							<reference ref="4"/>
 						</object>
@@ -663,7 +667,7 @@
 					<string>MainViewController</string>
 					<string>UIResponder</string>
 					<string>MainView</string>
-					<string>{{1301, 183}, {320, 480}}</string>
+					<string>{{277, 587}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
