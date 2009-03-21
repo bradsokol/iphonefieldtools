@@ -47,6 +47,7 @@ const float METRES_TO_FEET = 3.280839895f;
 - (float)calculateNearLimit;
 - (float)calculateResult;
 - (void)cocDidChange;
+- (void)customizeSliderAppearance:(UISlider*)slider;
 - (NSString*)formatDistance:(CGFloat)distance;
 - (void)gearButtonWasPressed;
 - (void)initApertures;
@@ -133,6 +134,10 @@ const float METRES_TO_FEET = 3.280839895f;
 	
 	// Set limits on sliders
 	[self updateDistanceSliderLimits];
+
+	[self customizeSliderAppearance:focalLengthSlider];
+	[self customizeSliderAppearance:apertureSlider];
+	[self customizeSliderAppearance:subjectDistanceSlider];
 	
 	[self updateAperture];
 	[self updateFocalLength];
@@ -345,6 +350,24 @@ const float METRES_TO_FEET = 3.280839895f;
 {
 	[subjectDistanceText setText:[self formatDistance:[self subjectDistance]]];
 	[self updateResult];
+}
+
+#pragma mark Helpers
+
+- (void)customizeSliderAppearance:(UISlider*)slider
+{
+	static UIImage* sliderTrack;
+	static UIImage* sliderThumb;
+	if (nil == sliderTrack)
+	{
+		sliderTrack = [[UIImage imageNamed:@"sliderTrack.png"]
+					   stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0];
+		sliderThumb = [UIImage imageNamed:@"sliderThumb.png"];
+	}
+	
+	[slider setMinimumTrackImage:sliderTrack forState:UIControlStateNormal];
+	[slider setMaximumTrackImage:sliderTrack forState:UIControlStateNormal];
+	[slider setThumbImage:sliderThumb forState:UIControlStateNormal];
 }
 
 // Initialise a table of f-number values
