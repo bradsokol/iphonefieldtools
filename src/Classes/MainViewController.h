@@ -21,6 +21,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ResultView;
+
 @interface MainViewController : UIViewController 
 {
 	IBOutlet UISlider* apertureSlider;
@@ -34,6 +36,7 @@
 	IBOutlet UILabel* subjectDistanceText;
 	IBOutlet UILabel* subjectDistanceMinimum;
 	IBOutlet UILabel* subjectDistanceMaximum;
+	IBOutlet ResultView* resultView;
 	
 	int apertureIndex;
 	float circleOfLeastConfusion;

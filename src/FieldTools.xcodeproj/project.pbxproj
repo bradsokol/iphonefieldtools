@@ -27,6 +27,7 @@
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B372F60F75587100774532 /* sliderThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372F50F75587100774532 /* sliderThumb.png */; };
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
+		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
 		A2E7C6F80F2EE49B00AB3084 /* GearCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2E7C6F70F2EE49B00AB3084 /* GearCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,8 @@
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
 		A2B372F50F75587100774532 /* sliderThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumb.png; sourceTree = "<group>"; };
 		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
+		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
 		A2E7C6F70F2EE49B00AB3084 /* GearCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GearCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +100,8 @@
 				A24EF5EB0ECA9415001A7B46 /* MainView.m */,
 				28C286DF0D94DF7D0034E888 /* MainViewController.h */,
 				28C286E00D94DF7D0034E888 /* MainViewController.m */,
+				A2C70FE70F7562AF00484E24 /* ResultView.h */,
+				A2C70FE80F7562AF00484E24 /* ResultView.m */,
 				A284E6FF0EE45DDE00C37E21 /* RootViewController.h */,
 				A284E7000EE45DDE00C37E21 /* RootViewController.m */,
 			);
@@ -256,6 +261,7 @@
 				A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */,
 				A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */,
 				A2AAAF0C0F28386300945F6E /* Camera.m in Sources */,
+				A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
