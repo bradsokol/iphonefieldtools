@@ -22,6 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class DistanceFormatter;
+
 @interface ResultView : UIView 
 {
 	IBOutlet UITextField* largeText;
@@ -29,6 +31,7 @@
 	IBOutlet UILabel* rightNumber;
 	
 	bool displayRange;
+	DistanceFormatter* distanceFormatter;
 	bool firstDraw;
 	CGFloat farDistance;
 	CGFloat nearDistance;

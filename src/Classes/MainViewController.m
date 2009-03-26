@@ -21,6 +21,7 @@
 
 #import "MainViewController.h"
 
+#import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "MainView.h"
 #import "ResultView.h"
@@ -37,9 +38,6 @@
 float minimumDistanceToSubject = 0.25f;	// metres
 float maximumDistanceToSubject = 25.0f;	// metres
 
-// Constant for converting  from metres to feet
-const float METRES_TO_FEET = 3.280839895f;
-
 // Private methods
 @interface MainViewController(Private)
 
@@ -49,7 +47,6 @@ const float METRES_TO_FEET = 3.280839895f;
 - (float)calculateResult;
 - (void)cocDidChange;
 - (void)customizeSliderAppearance:(UISlider*)slider;
-- (NSString*)formatDistance:(CGFloat)distance;
 - (void)gearButtonWasPressed;
 - (void)initApertures;
 - (void)readDefaultCircleOfLeastConfusion;
@@ -114,6 +111,8 @@ const float METRES_TO_FEET = 3.280839895f;
 	[self setFocalLength:[defaults floatForKey:FTFocalLengthKey]];
 	[self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
 	[self readDefaultCircleOfLeastConfusion];
+	
+	distanceFormatter = [[DistanceFormatter alloc] init];
 	
     return self;
 }
@@ -335,14 +334,14 @@ const float METRES_TO_FEET = 3.280839895f;
 
 - (void)updateDistanceSliderLimits
 {
-	[subjectDistanceMinimum setText:[self formatDistance:minimumDistanceToSubject]];
-	[subjectDistanceMaximum setText:[self formatDistance:maximumDistanceToSubject]];
+	[subjectDistanceMinimum setText:[distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:minimumDistanceToSubject]]];
+	[subjectDistanceMaximum setText:[distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:maximumDistanceToSubject]]];
 }
 
 // Update the distance to subject display
 - (void)updateSubjectDistance
 {
-	[subjectDistanceText setText:[self formatDistance:[self subjectDistance]]];
+	[subjectDistanceText setText:[distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:[self subjectDistance]]]];
 	[self updateResult];
 }
 
@@ -410,29 +409,6 @@ const float METRES_TO_FEET = 3.280839895f;
 	apertureIndex = 18;
 }
 
-// Convert distance if necessary than format decimals and units
-- (NSString*)formatDistance:(CGFloat)distance
-{
-	BOOL metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-	NSString* units;
-	if (metric)
-	{
-		units = NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres");
-	}
-	else
-	{
-		distance *= METRES_TO_FEET;
-		units = NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet");
-	}
-	
-	if (distance < 0)
-	{
-		return NSLocalizedString(@"INFINITY", "Infinity");
-	}
-	
-	return [NSString stringWithFormat:@"%.1f %@", distance, units];
-}
-
 - (void)readDefaultCircleOfLeastConfusion
 {
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
@@ -444,6 +420,7 @@ const float METRES_TO_FEET = 3.280839895f;
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[distanceFormatter release];
 
     [super dealloc];
 }

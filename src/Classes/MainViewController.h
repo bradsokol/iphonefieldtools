@@ -21,6 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class DistanceFormatter;
 @class ResultView;
 
 @interface MainViewController : UIViewController 
@@ -37,6 +38,7 @@
 	IBOutlet UILabel* subjectDistanceMaximum;
 	IBOutlet ResultView* resultView;
 	
+	DistanceFormatter* distanceFormatter;
 	int apertureIndex;
 	float circleOfLeastConfusion;
 	float focalLength;
