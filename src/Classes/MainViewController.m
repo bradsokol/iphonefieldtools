@@ -23,6 +23,7 @@
 
 #import "FieldToolsAppDelegate.h"
 #import "MainView.h"
+#import "ResultView.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -126,11 +127,6 @@ const float METRES_TO_FEET = 3.280839895f;
 	[apertureSlider setValue:apertureIndex];
 	[focalLengthSlider setValue:[self focalLength]];
 	[subjectDistanceSlider setValue:[self subjectDistance]];
-	
-	// Adjust the height of the text display to show larger font
-	CGRect rect = [result frame];
-	rect.size.height *= 1.75f;
-	[result setFrame:rect];
 	
 	// Set limits on sliders
 	[self updateDistanceSliderLimits];
@@ -328,14 +324,12 @@ const float METRES_TO_FEET = 3.280839895f;
 {
 	if ([distanceType selectedSegmentIndex] == NEAR_FAR_SEGMENT_INDEX)
 	{
-		NSString* near = [self formatDistance:[self calculateNearLimit]];
-		NSString* far = [self formatDistance:[self calculateFarLimit]];
-		
-		[result setText:[NSString stringWithFormat:@"%@ to %@", near, far]];
+		[resultView setResultNear:[self calculateNearLimit]
+							  far:[self calculateFarLimit]];
 	}
 	else
 	{
-		[result setText:[self formatDistance:[self calculateResult]]];
+		[resultView setResult:[self calculateResult]];
 	}
 }
 

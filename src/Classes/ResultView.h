@@ -24,7 +24,17 @@
 
 @interface ResultView : UIView 
 {
-
+	IBOutlet UITextField* largeText;
+	IBOutlet UILabel* leftNumber;
+	IBOutlet UILabel* rightNumber;
+	
+	bool displayRange;
+	bool firstDraw;
+	CGFloat farDistance;
+	CGFloat nearDistance;
 }
+
+- (void)setResult:(CGFloat)distance;
+- (void)setResultNear:(CGFloat)nearDistance far:(CGFloat)farDistance;
 
 @end

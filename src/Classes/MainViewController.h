@@ -30,7 +30,6 @@
 	IBOutlet UISegmentedControl* distanceType;
 	IBOutlet UISlider* focalLengthSlider;
 	IBOutlet UILabel* focalLengthText;
-	IBOutlet UITextField* result;
 	IBOutlet UISlider* subjectDistanceSlider;
 	IBOutlet UILabel* subjectDistanceLabel;
 	IBOutlet UILabel* subjectDistanceText;

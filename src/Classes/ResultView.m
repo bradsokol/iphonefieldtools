@@ -22,36 +22,94 @@
 
 #import "ResultView.h"
 
-const static float CORNER_RADIUS = 8.0;
+#import "UserDefaults.h"
+
+// Constant for converting  from metres to feet
+const static float METRES_TO_FEET = 3.280839895f;
+
+@interface ResultView (Private)
+
+- (NSString*)formatDistance:(CGFloat)distance;
+
+@end
 
 @implementation ResultView
 
-- (id)initWithFrame:(CGRect)frame 
+- (id)initWithCoder:(NSCoder*)decoder
 {
-    if (nil == [super initWithFrame:frame]) 
+	if (nil == [super initWithCoder:decoder])
 	{
 		return nil;
-    }
+	}
+	
+	firstDraw = YES;
 	
     return self;
 }
 
 - (void)drawRect:(CGRect)rect 
 {
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetRGBFillColor(context, 255.0, 255.0, 255.0, 1.0);
-	CGContextSetRGBStrokeColor(context, 255.0, 255.0, 255.0, 1.0);
+	if (firstDraw)
+	{
+		// Adjust the height of the text display to show larger font
+		CGRect r = [largeText frame];
+		r.size.height *= 1.75f;
+		[largeText setFrame:r];
+
+		firstDraw = NO;
+	}
 	
-	CGContextBeginPath(context);
-	CGContextAddArc(context, CORNER_RADIUS, CORNER_RADIUS, CORNER_RADIUS, M_PI, 1.5 * M_PI, 0);
-	CGContextAddLineToPoint(context, rect.size.width - CORNER_RADIUS, 0.0);
-	CGContextAddArc(context, rect.size.width - CORNER_RADIUS, CORNER_RADIUS, CORNER_RADIUS, 1.5 * M_PI, 0.0, 0);
-	CGContextAddLineToPoint(context, rect.size.width, rect.size.height - CORNER_RADIUS);
-	CGContextAddArc(context, rect.size.width - CORNER_RADIUS, rect.size.height - CORNER_RADIUS, CORNER_RADIUS, 0.0, 0.5 * M_PI, 0);
-	CGContextAddLineToPoint(context, CORNER_RADIUS, rect.size.height);
-	CGContextAddArc(context, CORNER_RADIUS, rect.size.height - CORNER_RADIUS, CORNER_RADIUS, 0.5 * M_PI, M_PI, 0);
-	CGContextClosePath(context);
-	CGContextFillPath(context);
+	if (displayRange)
+	{
+		leftNumber.hidden = NO;
+		rightNumber.hidden = NO;
+		largeText.text = @"";
+	}
+	else
+	{
+		leftNumber.hidden = YES;
+		rightNumber.hidden = YES;
+		
+		largeText.text = [self formatDistance:nearDistance];
+	}
+}
+
+// Convert distance if necessary than format decimals and units
+- (NSString*)formatDistance:(CGFloat)distance
+{
+	BOOL metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
+	NSString* units;
+	if (metric)
+	{
+		units = NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres");
+	}
+	else
+	{
+		distance *= METRES_TO_FEET;
+		units = NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet");
+	}
+	
+	if (distance < 0)
+	{
+		return NSLocalizedString(@"INFINITY", "Infinity");
+	}
+	
+	return [NSString stringWithFormat:@"%.1f %@", distance, units];
+}
+
+- (void)setResult:(CGFloat)distance
+{
+	displayRange = NO;
+	nearDistance = distance;
+	[self setNeedsDisplay];
+}
+
+- (void)setResultNear:(CGFloat)near far:(CGFloat)far
+{
+	displayRange = YES;
+	nearDistance = near;
+	farDistance = far;
+	[self setNeedsDisplay];
 }
 
 - (void)dealloc 
