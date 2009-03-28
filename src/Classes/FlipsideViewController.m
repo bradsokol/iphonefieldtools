@@ -210,6 +210,12 @@ const NSInteger UNITS_COUNT = 2;
 	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:[self rowForDefaultCamera] 
 												   inSection:[indexPath section]];
 	
+	if ([oldIndexPath row] == [indexPath row])
+	{
+		// User selected the currently selected camera - take no action
+		return;
+	}
+	
 	UITableViewCell* newCell = [tableView cellForRowAtIndexPath:indexPath];
 	if ([newCell accessoryType] == UITableViewCellAccessoryNone)
 	{
@@ -234,6 +240,12 @@ const NSInteger UNITS_COUNT = 2;
 {
 	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:[self rowForDefaultUnits] 
 												   inSection:[indexPath section]];
+	
+	if ([oldIndexPath row] == [indexPath row])
+	{
+		// User selected the currently selected units - take no action
+		return;
+	}
 	
 	UITableViewCell* newCell = [tableView cellForRowAtIndexPath:indexPath];
 	if ([newCell accessoryType] == UITableViewCellAccessoryNone)
