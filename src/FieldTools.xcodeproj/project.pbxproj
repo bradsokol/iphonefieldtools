@@ -15,6 +15,7 @@
 		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
+		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A236A7FD0ECFA5FB00BCC285 /* GearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A236A7FC0ECFA5FB00BCC285 /* GearCell.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
@@ -46,6 +47,7 @@
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		A236A7FB0ECFA5FB00BCC285 /* GearCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GearCell.h; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		A2B372C60F754E8F00774532 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
 				A2B372F50F75587100774532 /* sliderThumb.png */,
 				A2B372C80F754EA700774532 /* sliderTrack.png */,
 			);
@@ -247,6 +250,7 @@
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
 				A2B372C90F754EA700774532 /* sliderTrack.png in Resources */,
 				A2B372F60F75587100774532 /* sliderThumb.png in Resources */,
+				A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

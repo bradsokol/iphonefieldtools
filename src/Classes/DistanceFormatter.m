@@ -48,6 +48,13 @@ const static float METRES_TO_FEET = 3.280839895f;
 // Convert distance if necessary than format decimals and units
 - (NSString*)formatDistance:(CGFloat)distance
 {
+	if (distance < 0)
+	{
+		// Return infinity symbol
+		return @"∞";
+		//		return NSLocalizedString(@"INFINITY", "Infinity");
+	}
+	
 	BOOL metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
 	NSString* units;
 	if (metric)
@@ -58,11 +65,6 @@ const static float METRES_TO_FEET = 3.280839895f;
 	{
 		distance *= METRES_TO_FEET;
 		units = NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet");
-	}
-	
-	if (distance < 0)
-	{
-		return NSLocalizedString(@"INFINITY", "Infinity");
 	}
 	
 	return [NSString stringWithFormat:@"%.1f %@", distance, units];

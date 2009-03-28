@@ -25,9 +25,10 @@
 #import "DistanceFormatter.h"
 #import "UserDefaults.h"
 
+static const float FONT_SIZE = 28.0;
+
 @interface ResultView (Private)
 
-- (NSString*)formatDistance:(CGFloat)distance;
 - (void)hideNumberLabels:(bool)hide;
 
 @end
@@ -58,6 +59,18 @@
 		[largeText setFrame:r];
 
 		firstDraw = NO;
+		
+		CGRect frame = leftNumber.frame;
+		frame.origin.y = 0.5 * rect.size.height;
+		leftNumber.frame = frame;
+		[leftNumber setFont:[[leftNumber font] fontWithSize:FONT_SIZE]];
+//		leftNumber.backgroundColor = [UIColor redColor];
+		
+		frame = rightNumber.frame;
+		frame.origin.y = 0.5 * rect.size.height;
+		rightNumber.frame = frame;
+		[rightNumber setFont:[[rightNumber font] fontWithSize:FONT_SIZE]];
+//		rightNumber.backgroundColor = [UIColor redColor];
 	}
 	
 	if (displayRange)
@@ -99,6 +112,7 @@
 	leftNumber.hidden = hide;
 	rightNumber.hidden = hide;
 	difference.hidden = hide;
+	distanceArrows.hidden = hide;
 }
 
 - (void)dealloc 

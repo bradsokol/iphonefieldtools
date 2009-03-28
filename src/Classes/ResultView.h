@@ -30,6 +30,7 @@
 	IBOutlet UILabel* leftNumber;
 	IBOutlet UILabel* rightNumber;
 	IBOutlet UILabel* difference;
+	IBOutlet UIImageView* distanceArrows;
 	
 	bool displayRange;
 	DistanceFormatter* distanceFormatter;
