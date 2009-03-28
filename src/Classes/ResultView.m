@@ -28,6 +28,7 @@
 @interface ResultView (Private)
 
 - (NSString*)formatDistance:(CGFloat)distance;
+- (void)hideNumberLabels:(bool)hide;
 
 @end
 
@@ -50,7 +51,8 @@
 {
 	if (firstDraw)
 	{
-		// Adjust the height of the text display to show larger font
+		// Adjust the height of the text display to show larger font.
+		// For some reason this does not work in viewDidLoad.
 		CGRect r = [largeText frame];
 		r.size.height *= 1.75f;
 		[largeText setFrame:r];
@@ -60,14 +62,16 @@
 	
 	if (displayRange)
 	{
-		leftNumber.hidden = NO;
-		rightNumber.hidden = NO;
+		[self hideNumberLabels:NO];
 		largeText.text = @"";
+		
+		leftNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
+		rightNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
+		difference.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
 	}
 	else
 	{
-		leftNumber.hidden = YES;
-		rightNumber.hidden = YES;
+		[self hideNumberLabels:YES];
 		
 		largeText.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 	}
@@ -85,7 +89,16 @@
 	displayRange = YES;
 	nearDistance = near;
 	farDistance = far;
+	distanceDifference = far - near;
+	
 	[self setNeedsDisplay];
+}
+
+- (void)hideNumberLabels:(bool)hide
+{
+	leftNumber.hidden = hide;
+	rightNumber.hidden = hide;
+	difference.hidden = hide;
 }
 
 - (void)dealloc 

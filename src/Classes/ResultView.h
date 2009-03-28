@@ -29,12 +29,14 @@
 	IBOutlet UITextField* largeText;
 	IBOutlet UILabel* leftNumber;
 	IBOutlet UILabel* rightNumber;
+	IBOutlet UILabel* difference;
 	
 	bool displayRange;
 	DistanceFormatter* distanceFormatter;
 	bool firstDraw;
 	CGFloat farDistance;
 	CGFloat nearDistance;
+	CGFloat distanceDifference;
 }
 
 - (void)setResult:(CGFloat)distance;
