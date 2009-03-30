@@ -330,7 +330,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9EC50F38-76F7-4E3A-A460-4CC1D6788026";
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
 		};
@@ -361,7 +361,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9EC50F38-76F7-4E3A-A460-4CC1D6788026";
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
 		};
@@ -376,7 +376,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9EC50F38-76F7-4E3A-A460-4CC1D6788026";
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
 		};
