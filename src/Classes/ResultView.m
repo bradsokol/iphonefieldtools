@@ -73,6 +73,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 		leftNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 		rightNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
 		difference.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
+		
+		difference.hidden = distanceDifference <= 0;
 	}
 	else
 	{
