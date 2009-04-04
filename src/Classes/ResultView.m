@@ -25,10 +25,15 @@
 #import "DistanceFormatter.h"
 #import "UserDefaults.h"
 
+static const float DIFFERENCE_FONT_SIZE = 17.0;
 static const float FONT_SIZE = 28.0;
+static const float INFINITY_FONT_SIZE = 32.0;
+static const float SMALL_FONT_SIZE = 24.0;
 
 @interface ResultView (Private)
 
+- (void)adjustFonts;
+- (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
 
 @end
@@ -52,25 +57,10 @@ static const float FONT_SIZE = 28.0;
 {
 	if (firstDraw)
 	{
-		// Adjust the height of the text display to show larger font.
 		// For some reason this does not work in viewDidLoad.
-		CGRect r = [largeText frame];
-		r.size.height *= 1.75f;
-		[largeText setFrame:r];
-
+		[self configureControls];
+		
 		firstDraw = NO;
-		
-		CGRect frame = leftNumber.frame;
-		frame.origin.y = 0.5 * rect.size.height;
-		leftNumber.frame = frame;
-		[leftNumber setFont:[[leftNumber font] fontWithSize:FONT_SIZE]];
-//		leftNumber.backgroundColor = [UIColor redColor];
-		
-		frame = rightNumber.frame;
-		frame.origin.y = 0.5 * rect.size.height;
-		rightNumber.frame = frame;
-		[rightNumber setFont:[[rightNumber font] fontWithSize:FONT_SIZE]];
-//		rightNumber.backgroundColor = [UIColor redColor];
 	}
 	
 	if (displayRange)
@@ -78,6 +68,8 @@ static const float FONT_SIZE = 28.0;
 		[self hideNumberLabels:NO];
 		largeText.text = @"";
 		
+		[self adjustFonts];
+
 		leftNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 		rightNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
 		difference.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
@@ -105,6 +97,44 @@ static const float FONT_SIZE = 28.0;
 	distanceDifference = far - near;
 	
 	[self setNeedsDisplay];
+}
+
+- (void)configureControls
+{
+	CGRect rect = [self bounds];
+	
+	// Adjust the height of the text display to show larger font.
+	CGRect r = [largeText frame];
+	r.size.height *= 1.75f;
+	[largeText setFrame:r];
+	
+	CGRect frame = leftNumber.frame;
+	frame.origin.y = 0.5 * rect.size.height;
+	leftNumber.frame = frame;
+	leftNumber.backgroundColor = [UIColor redColor];
+	
+	frame = rightNumber.frame;
+	frame.origin.y = 0.5 * rect.size.height;
+	rightNumber.frame = frame;
+	rightNumber.backgroundColor = [UIColor redColor];
+}
+
+- (void)adjustFonts 
+{
+	float leftFontSize = FONT_SIZE;
+	float rightFontSize = FONT_SIZE;
+	float differenceFontSize = DIFFERENCE_FONT_SIZE;
+	if (nearDistance >= 100.0 || farDistance >= 100.0)
+	{
+		leftFontSize = rightFontSize = SMALL_FONT_SIZE;
+	}
+	else if (farDistance <= 0.0)
+	{
+		rightFontSize = differenceFontSize = INFINITY_FONT_SIZE;
+	}
+	[leftNumber setFont:[[leftNumber font] fontWithSize:leftFontSize]];
+	[rightNumber setFont:[[rightNumber font] fontWithSize:rightFontSize]];
+	[difference setFont:[[difference font] fontWithSize:differenceFontSize]];
 }
 
 - (void)hideNumberLabels:(bool)hide
