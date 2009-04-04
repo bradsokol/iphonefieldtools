@@ -32,7 +32,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 
 @interface ResultView (Private)
 
-- (void)adjustFonts;
+- (void)adjustFontsForNearFarDisplay;
 - (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
 
@@ -68,7 +68,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 		[self hideNumberLabels:NO];
 		largeText.text = @"";
 		
-		[self adjustFonts];
+		[self adjustFontsForNearFarDisplay];
 
 		leftNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 		rightNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
@@ -112,16 +112,18 @@ static const float SMALL_FONT_SIZE = 24.0;
 	
 	CGRect frame = leftNumber.frame;
 	frame.origin.y = 0.5 * rect.size.height;
+	frame.size.height *= 1.25;
 	leftNumber.frame = frame;
-	leftNumber.backgroundColor = [UIColor redColor];
+//	leftNumber.backgroundColor = [UIColor redColor];
 	
 	frame = rightNumber.frame;
 	frame.origin.y = 0.5 * rect.size.height;
+	frame.size.height *= 1.25;
 	rightNumber.frame = frame;
-	rightNumber.backgroundColor = [UIColor redColor];
+//	rightNumber.backgroundColor = [UIColor redColor];
 }
 
-- (void)adjustFonts 
+- (void)adjustFontsForNearFarDisplay 
 {
 	float leftFontSize = FONT_SIZE;
 	float rightFontSize = FONT_SIZE;
