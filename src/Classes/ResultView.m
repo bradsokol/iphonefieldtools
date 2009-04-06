@@ -33,6 +33,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 @interface ResultView (Private)
 
 - (void)adjustFontsForNearFarDisplay;
+- (void)adjustNumberDisplay:(UILabel*)label inRect:(CGRect)rect;
 - (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
 
@@ -40,6 +41,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 
 @implementation ResultView
 
+// Initializer used when loading from a NIB. If the view is created
+// in other ways, other initializers will need to be implemented.
 - (id)initWithCoder:(NSCoder*)decoder
 {
 	if (nil == [super initWithCoder:decoder])
@@ -65,6 +68,10 @@ static const float SMALL_FONT_SIZE = 24.0;
 	
 	if (displayRange)
 	{
+		// Displaying two values and the difference. Show the UILabels
+		// and put an empty string in the UITextView. This keeps it visible
+		// with its rounded corners, and we just use it as a background. The
+		// effect is a UITextView displaying three values and the image.
 		[self hideNumberLabels:NO];
 		largeText.text = @"";
 		
@@ -74,16 +81,19 @@ static const float SMALL_FONT_SIZE = 24.0;
 		rightNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
 		difference.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
 		
+		// Hide the difference if infinity (i.e. less than zero)
 		difference.hidden = distanceDifference <= 0;
 	}
 	else
 	{
+		// Displaying a single value in the UITextField. Hide everything else
 		[self hideNumberLabels:YES];
 		
 		largeText.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 	}
 }
 
+// Call this method to display a single value.
 - (void)setResult:(CGFloat)distance
 {
 	displayRange = NO;
@@ -91,6 +101,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 	[self setNeedsDisplay];
 }
 
+// Call this method to display two values and the difference.
 - (void)setResultNear:(CGFloat)near far:(CGFloat)far
 {
 	displayRange = YES;
@@ -101,6 +112,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 	[self setNeedsDisplay];
 }
 
+// One-time configuration of the various controls.
 - (void)configureControls
 {
 	CGRect rect = [self bounds];
@@ -109,20 +121,21 @@ static const float SMALL_FONT_SIZE = 24.0;
 	CGRect r = [largeText frame];
 	r.size.height *= 1.75f;
 	[largeText setFrame:r];
-	
-	CGRect frame = leftNumber.frame;
-	frame.origin.y = 0.5 * rect.size.height;
-	frame.size.height *= 1.25;
-	leftNumber.frame = frame;
-//	leftNumber.backgroundColor = [UIColor redColor];
-	
-	frame = rightNumber.frame;
-	frame.origin.y = 0.5 * rect.size.height;
-	frame.size.height *= 1.25;
-	rightNumber.frame = frame;
-//	rightNumber.backgroundColor = [UIColor redColor];
+
+	[self adjustNumberDisplay:leftNumber inRect:rect];
+	[self adjustNumberDisplay:rightNumber inRect:rect];
 }
 
+// Adjust the size of the frame of UILabel.
+- (void)adjustNumberDisplay:(UILabel*)label inRect:(CGRect)rect
+{
+	CGRect frame = label.frame;
+	frame.origin.y = 0.5 * rect.size.height;
+	frame.size.height *= 1.25;
+	label.frame = frame;
+}
+
+// Adjust fonts as appropriate for the values being displayed.
 - (void)adjustFontsForNearFarDisplay 
 {
 	float leftFontSize = FONT_SIZE;
@@ -130,17 +143,21 @@ static const float SMALL_FONT_SIZE = 24.0;
 	float differenceFontSize = DIFFERENCE_FONT_SIZE;
 	if (nearDistance >= 100.0 || farDistance >= 100.0)
 	{
+		// Slightly smaller font for larger values.
 		leftFontSize = rightFontSize = SMALL_FONT_SIZE;
 	}
 	else if (farDistance <= 0.0)
 	{
+		// Slightly larger font for the infinity symbol
 		rightFontSize = differenceFontSize = INFINITY_FONT_SIZE;
 	}
+	
 	[leftNumber setFont:[[leftNumber font] fontWithSize:leftFontSize]];
 	[rightNumber setFont:[[rightNumber font] fontWithSize:rightFontSize]];
 	[difference setFont:[[difference font] fontWithSize:differenceFontSize]];
 }
 
+// Helper to show or hide the two value with difference elements.
 - (void)hideNumberLabels:(bool)hide
 {
 	leftNumber.hidden = hide;

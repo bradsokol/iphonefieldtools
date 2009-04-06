@@ -52,7 +52,6 @@ const static float METRES_TO_FEET = 3.280839895f;
 	{
 		// Return infinity symbol
 		return @"∞";
-		//		return NSLocalizedString(@"INFINITY", "Infinity");
 	}
 	
 	BOOL metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
