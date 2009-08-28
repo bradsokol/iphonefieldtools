@@ -30,6 +30,7 @@
 	MainViewController *mainViewController;
 	FlipsideViewController *flipsideViewController;
 	UINavigationBar* flipsideNavigationBar;
+	UINavigationController* navigationController;
 }
 
 @property (nonatomic, retain) UIButton *infoButton;

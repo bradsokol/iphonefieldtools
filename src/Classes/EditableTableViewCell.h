@@ -13,34 +13,23 @@
 // limitations under the License.
 
 //
-//  Camera.h
+//  EditableTableViewCell.h
 //  FieldTools
 //
-//  Created by Brad on 2009/01/21.
+//  Created by Brad on 2009/07/02.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-@class CoC;
+#import <UIKit/UIKit.h>
 
-@interface Camera : NSObject 
+@interface EditableTableViewCell : UITableViewCell 
 {
-	int identifier;
-	NSString* description;
-	CoC* coc;
+	UITextField* textField;
+	UILabel*		label;
 }
 
-+ (void)delete:(Camera*)camera;
-+ (int)count;
-+ (NSArray*)findAll;
-
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
-
-- (NSDictionary*) asDictionary;
-- (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
-- (void)save;
-
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
-@property(nonatomic) int identifier;
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate;
+- (void)setLabel:(NSString*)s;
+- (void)setText:(NSString*)s;
 
 @end

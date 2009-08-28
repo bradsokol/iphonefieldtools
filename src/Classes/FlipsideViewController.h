@@ -21,16 +21,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class FlipsideTableViewDataSource;
+@class FlipsideTableViewDelegate;
 @class RootViewController;
 
 @interface FlipsideViewController : UITableViewController 
 {
-	IBOutlet UISegmentedControl* units;
-	
+	FlipsideTableViewDataSource* tableViewDataSource;
+	FlipsideTableViewDelegate* tableViewDelegate;
 	RootViewController* rootViewController;
 	UINavigationController* navigationController;
 }
 
+@property(nonatomic, retain) FlipsideTableViewDataSource* tableViewDataSource;
+@property(nonatomic, retain) FlipsideTableViewDelegate* tableViewDelegate;
 @property(nonatomic, retain) RootViewController* rootViewController;
 @property(nonatomic, retain) UINavigationController* navigationController;
 

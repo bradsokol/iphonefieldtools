@@ -13,34 +13,27 @@
 // limitations under the License.
 
 //
-//  Camera.h
+//  CoC.h
 //  FieldTools
 //
-//  Created by Brad on 2009/01/21.
+//  Created by Brad on 2009/08/25.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-@class CoC;
+#import <Foundation/Foundation.h>
 
-@interface Camera : NSObject 
+@interface CoC : NSObject 
 {
-	int identifier;
+	float value;
 	NSString* description;
-	CoC* coc;
 }
 
-+ (void)delete:(Camera*)camera;
-+ (int)count;
-+ (NSArray*)findAll;
+- (id)initWithValue:(float)value description:(NSString*)description;
 
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
++ (NSDictionary*)cocPresets;
++ (CoC*)findFromPresets:(NSString*)cocDescription;
 
-- (NSDictionary*) asDictionary;
-- (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
-- (void)save;
-
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
-@property(nonatomic) int identifier;
+@property (readonly, retain, nonatomic) NSString* description;
+@property (readonly, assign) float value;
 
 @end

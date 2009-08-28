@@ -13,16 +13,20 @@
 // limitations under the License.
 
 //
-//  FlipsideView.h
+//  FlipsideTableViewDelegate.h
 //  FieldTools
 //
-//  Created by Brad on 2008/11/29.
+//  Created by Brad on 2009/05/21.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface FlipsideView : UIView 
+@interface FlipsideTableViewDelegate : NSObject <UITableViewDelegate>
 {
+	bool editing;
 }
+
+@property (assign, getter=isEditing) bool editing;
 
 @end

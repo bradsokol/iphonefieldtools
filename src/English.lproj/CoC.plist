@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Canon APS-C</key>
+	<real>0.019</real>
+	<key>Nikon DX</key>
+	<real>0.02</real>
+	<key>Olympus 4:3</key>
+	<real>0.015</real>
+	<key>Pentax DSLR</key>
+	<real>0.02</real>
+	<key>Sony DSLR</key>
+	<real>0.02</real>
+	<key>35 mm</key>
+	<real>0.03</real>
+	<key>4x5 format</key>
+	<real>0.15</real>
+	<key>6x6 format</key>
+	<real>0.06</real>
+</dict>
+</plist>

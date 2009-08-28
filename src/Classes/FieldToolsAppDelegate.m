@@ -20,11 +20,16 @@
 //
 
 #import "FieldToolsAppDelegate.h"
+
+#import "Camera.h"
+#import "Coc.h"
 #import "RootViewController.h"
 
 #import "UserDefaults.h"
 
 // Keys for user defaults
+NSString* const FTDefaultsVersion = @"DefaultsVersion";
+
 NSString* const FTApertureIndex = @"ApertureIndex";
 NSString* const FTCameraCount = @"CameraCount";
 NSString* const FTCameraIndex = @"CameraIndex";
@@ -32,6 +37,8 @@ NSString* const FTDistanceTypeKey = @"DistanceType";
 NSString* const FTFocalLengthKey = @"FocalLength";
 NSString* const FTMetricKey = @"Metric";
 NSString* const FTSubjectDistanceKey = @"SubjectDistance";
+
+NSString* const FTMigratedFrom10Key = @"MigratedFrom10";
 
 // Keys for user defaults (future functionality)
 /*
@@ -47,7 +54,7 @@ NSString* const FTMaximumFocalLengthKey = @"MaximumFocalLength";
 
 // Defaults for preferences
 int DefaultApertureIndex = 18;
-int DefaultCameraIndex = 4;
+NSString* const DefaultCoC = @"Nikon DX";
 int DefaultDistanceType = 0; // Hyperfocal
 float DefaultFocalLength = 24.0f;
 bool DefaultMetric = NO;
@@ -56,12 +63,18 @@ float DefaultSubjectDistance = 2.5f;
 // Defaults for preferences (future functionality)
 /*
 float DefaultFStop = 8.0;
-float DefaultCoC = 0.02;
 float DefaultMaximumFStop = 2.8;
 float DefaultMinimumFStop = 32.0;
 float DefaultMinimumFocalLength = 10.0;
 float DefaultMaximumFocalLength = 100.0;
  */
+
+@interface FieldToolsAppDelegate (Private)
+
++ (void)migrateDefaults:(NSMutableDictionary*)defaultValues;
++ (void)setupDefaultValues;
+
+@end
 
 @implementation FieldToolsAppDelegate
 
@@ -70,8 +83,47 @@ float DefaultMaximumFocalLength = 100.0;
 
 + (void)initialize
 {
-	// Setup initial values for preferences
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
+
+	[FieldToolsAppDelegate setupDefaultValues];
+
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application 
+{
+	[window addSubview:[rootViewController view]];
+    [window makeKeyAndVisible];
+}
+
++ (void)setupDefaultValues
+{
+	bool migratedFrom10 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom10Key];
+	NSLog(@"Previously migrated from 1.0: %s", migratedFrom10 ? "YES" : "NO");
+
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
+	
+	if (!migratedFrom10)
+	{
+		NSLog(@"Migrating defaults");
+		[FieldToolsAppDelegate migrateDefaults:defaultValues];
+	}
+	else if ([Camera count] == 0)
+	{
+		CoC* coc = [CoC findFromPresets:DefaultCoC];
+		Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
+														 coc:coc
+												  identifier:0];
+		[camera save];
+	}
+	
+	[defaultValues setObject:[NSNumber numberWithInt:1]
+					  forKey:FTCameraCount];
+	[defaultValues setObject:[NSNumber numberWithInt:0]
+					  forKey:FTCameraIndex];
+	
+	// Setup initial values for preferences
 	
 	[defaultValues setObject:[NSNumber numberWithFloat:DefaultFocalLength]
 					  forKey:FTFocalLengthKey];
@@ -85,17 +137,32 @@ float DefaultMaximumFocalLength = 100.0;
 					  forKey:FTDistanceTypeKey];
 	[defaultValues setObject:[NSNumber numberWithBool:DefaultMetric]
 					  forKey:FTMetricKey];
-	
-	[defaultValues setObject:[NSNumber numberWithInt:DefaultCameraIndex]
-					  forKey:FTCameraIndex];
+
+	// Add default version to make migration easier for subsequent versions
+	[defaultValues setObject:[NSNumber numberWithInt:DEFAULTS_VERSION]
+					  forKey:FTDefaultsVersion];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application 
++ (void)migrateDefaults:(NSMutableDictionary*)defaultValues
 {
-    [window addSubview:[rootViewController view]];
-    [window makeKeyAndVisible];
+	// Convert camera index to a COC value
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	NSString* key = [NSString stringWithFormat:@"CAMERA_COC_%d", index];
+
+	NSString* descriptionKey = [NSString stringWithFormat:@"CAMERA_DESCRIPTION_%d", index];
+	NSString* description = NSLocalizedString(descriptionKey, "CoCDescription");
+	CoC* coc = [[CoC alloc] initWithValue:[NSLocalizedString(key, "CoC") floatValue]
+							  description:description];
+	
+	Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
+													 coc:coc
+											  identifier:0];
+	[camera save];
+	
+	// Remove obsolete keys
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTCameraIndex];
 }
 
 - (void)dealloc 

@@ -21,6 +21,8 @@
 
 #import "MainViewController.h"
 
+#import "Camera.h"
+#import "CoC.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "MainView.h"
@@ -411,10 +413,11 @@ float maximumDistanceToSubject = 25.0f;	// metres
 
 - (void)readDefaultCircleOfLeastConfusion
 {
-	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	NSString* key = [NSString stringWithFormat:@"CAMERA_COC_%d", index];
-	NSString* cocAsString = NSLocalizedString(key, "CoC");
-	[self setCircleOfLeastConfusion:[cocAsString floatValue]];
+	Camera* camera = [Camera initFromSelectedInDefaults];
+	
+	[self setCircleOfLeastConfusion:[[camera coc] value]];
+	
+	[camera release];
 }
 
 - (void)dealloc 

@@ -13,37 +13,19 @@
 // limitations under the License.
 
 //
-//  FlipsideView.m
+//  FlipsideNonEditingTableViewDelegate.h
 //  FieldTools
 //
-//  Created by Brad on 2008/11/29.
+//  Created by Brad on 2009/05/21.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-#import "FlipsideView.h"
+#import <Foundation/Foundation.h>
 
-@implementation FlipsideView
+#import "FlipsideTableViewDelegate.h"
 
-- (id)initWithFrame:(CGRect)frame 
+@interface FlipsideNonEditingTableViewDelegate : FlipsideTableViewDelegate
 {
-    if ((self = [super initWithFrame:frame]) == nil) 
-	{
-		// Parent initialization failed
-		return nil;
-    }
-
-	// Initialization code
-	
-    return self;
-}
-
-- (void)drawRect:(CGRect)rect 
-{
-    // Drawing code
-}
-
-- (void)dealloc 
-{
-    [super dealloc];
 }
 
 @end

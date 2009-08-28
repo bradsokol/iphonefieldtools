@@ -13,34 +13,24 @@
 // limitations under the License.
 
 //
-//  Camera.h
+//  CameraViewTableDataSource.h
 //  FieldTools
 //
-//  Created by Brad on 2009/01/21.
+//  Created by Brad on 2009/06/10.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-@class CoC;
+#import <Foundation/Foundation.h>
 
-@interface Camera : NSObject 
+@class Camera;
+
+@interface CameraViewTableDataSource : NSObject <UITableViewDataSource>
 {
-	int identifier;
-	NSString* description;
-	CoC* coc;
+	Camera* camera;
+	UIViewController* controller;
 }
 
-+ (void)delete:(Camera*)camera;
-+ (int)count;
-+ (NSArray*)findAll;
-
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
-
-- (NSDictionary*) asDictionary;
-- (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
-- (void)save;
-
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
-@property(nonatomic) int identifier;
+@property(nonatomic, retain) Camera* camera;
+@property(nonatomic, retain) UIViewController* controller;
 
 @end

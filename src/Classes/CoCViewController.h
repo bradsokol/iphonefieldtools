@@ -13,34 +13,28 @@
 // limitations under the License.
 
 //
-//  Camera.h
+//  CoCViewController.h
 //  FieldTools
 //
-//  Created by Brad on 2009/01/21.
+//  Created by Brad on 2009/08/23.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-@class CoC;
+#import <UIKit/UIKit.h>
 
-@interface Camera : NSObject 
+@class Camera;
+@class CoCViewTableDataSource;
+
+@interface CoCViewController : UITableViewController <UITableViewDelegate>
 {
-	int identifier;
-	NSString* description;
-	CoC* coc;
+	CoCViewTableDataSource* tableViewDataSource;
+	UIBarButtonItem* saveButton;
+	Camera* camera;
+	Camera* cameraWorkingCopy;
 }
 
-+ (void)delete:(Camera*)camera;
-+ (int)count;
-+ (NSArray*)findAll;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
 
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
-
-- (NSDictionary*) asDictionary;
-- (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
-- (void)save;
-
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
-@property(nonatomic) int identifier;
+@property(nonatomic, retain) CoCViewTableDataSource* tableViewDataSource;
 
 @end

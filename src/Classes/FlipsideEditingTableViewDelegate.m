@@ -13,34 +13,15 @@
 // limitations under the License.
 
 //
-//  Camera.h
+//  FlipsideEditingTableViewDelegate.m
 //  FieldTools
 //
-//  Created by Brad on 2009/01/21.
+//  Created by Brad on 2009/05/21.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-@class CoC;
+#import "FlipsideEditingTableViewDelegate.h"
 
-@interface Camera : NSObject 
-{
-	int identifier;
-	NSString* description;
-	CoC* coc;
-}
-
-+ (void)delete:(Camera*)camera;
-+ (int)count;
-+ (NSArray*)findAll;
-
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
-
-- (NSDictionary*) asDictionary;
-- (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
-- (void)save;
-
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
-@property(nonatomic) int identifier;
+@implementation FlipsideEditingTableViewDelegate
 
 @end

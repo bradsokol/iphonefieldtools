@@ -13,22 +13,31 @@
 // limitations under the License.
 
 //
-//  GearCell.h
+//  FlipsideTableViewDataSource.h
 //  FieldTools
 //
-//  Created by Brad on 2008/11/15.
+//  Created by Brad on 2009/05/28.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-// Table view cell customized for displaying camera and circle of confusion value.
-@interface GearCell : UITableViewCell 
+extern const NSInteger SECTION_COUNT;
+extern const NSInteger UNITS_COUNT;
+
+// Enumerate sections in UITable
+extern const NSInteger CAMERAS_SECTION;
+extern const NSInteger UNITS_SECTION;
+
+// Enumerate rows in units section of table
+extern const NSInteger FEET_ROW;
+extern const NSInteger METRES_ROW;
+
+@interface FlipsideTableViewDataSource : NSObject <UITableViewDataSource>
 {
-	IBOutlet UILabel* type;
-	IBOutlet UILabel* name;
+	BOOL editing;
 }
 
-@property (readonly, retain) UILabel* name;
-@property (readonly, retain) UILabel* type;
+@property(nonatomic, getter=isEditing) BOOL editing;
 
 @end

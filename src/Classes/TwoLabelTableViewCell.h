@@ -13,34 +13,22 @@
 // limitations under the License.
 
 //
-//  Camera.h
+//  TwoLabelTableViewCell.h
 //  FieldTools
 //
-//  Created by Brad on 2009/01/21.
+//  Created by Brad on 2009/07/21.
+//  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-@class CoC;
+#import <UIKit/UIKit.h>
 
-@interface Camera : NSObject 
+@interface TwoLabelTableViewCell : UITableViewCell
 {
-	int identifier;
-	NSString* description;
-	CoC* coc;
+	UILabel*		label;
+	UILabel*		text;
 }
 
-+ (void)delete:(Camera*)camera;
-+ (int)count;
-+ (NSArray*)findAll;
-
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
-
-- (NSDictionary*) asDictionary;
-- (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
-- (void)save;
-
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
-@property(nonatomic) int identifier;
+- (void)setLabel:(NSString*)label;
+- (void)setText:(NSString*)text;
 
 @end

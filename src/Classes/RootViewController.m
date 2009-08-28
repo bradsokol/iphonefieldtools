@@ -48,22 +48,14 @@
 	FlipsideViewController *viewController = 
 		[[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
 	[self setFlipsideViewController:viewController];
-	[viewController release];
-
-	UINavigationBar *aNavigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
-	aNavigationBar.barStyle = UIBarStyleBlackOpaque;
-	[self setFlipsideNavigationBar:aNavigationBar];
-	[aNavigationBar release];
+	[viewController setRootViewController:self];
 	
-	UIBarButtonItem *doneButtonItem = 
-		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
-													  target:self 
-													  action:@selector(toggleView)];
-	UINavigationItem* navigationItem = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"FIELD_TOOLS_TITLE", "Field tools title")];
-	[navigationItem setRightBarButtonItem:doneButtonItem];
-	[flipsideNavigationBar pushNavigationItem:navigationItem animated:NO];
-	[navigationItem release];
-	[doneButtonItem release];
+	navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	[viewController setNavigationController:navigationController];
+	[viewController release];
+	UINavigationItem* navigationItem = [[[navigationController navigationBar] items] objectAtIndex:0];
+	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
+	[[navigationController navigationBar] setBarStyle:UIBarStyleBlackOpaque];
 }
 
 // This method is called when the info or Done button is pressed.
@@ -76,40 +68,34 @@
 	}
 	
 	UIView* mainView = [mainViewController view];
-	UIView* flipsideView = [flipsideViewController view];
+	UIWindow* window = [[self view] window];
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:1];
 	[UIView setAnimationTransition:([mainView superview] ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft) 
-						   forView:[self view]
+						   forView:window
 							 cache:YES];
 	
 	if ([mainView superview] != nil) 
 	{
 		// Switch to flipside view
 		
-		[flipsideViewController viewWillAppear:YES];
+		[navigationController.topViewController viewWillAppear:YES];
 		[mainViewController viewWillDisappear:YES];
 		[mainView removeFromSuperview];
         [infoButton removeFromSuperview];
-		[[self view] addSubview:flipsideView ];
-		[[self view] insertSubview:flipsideNavigationBar 
-					  aboveSubview:flipsideView];
-		[mainViewController viewDidDisappear:YES];
-		[flipsideViewController viewDidAppear:YES];
+		[window addSubview:[navigationController view]];
 	}
 	else
 	{
 		// Switch to main view
 		
 		[mainViewController viewWillAppear:YES];
-		[flipsideViewController viewWillDisappear:YES];
-		[flipsideView removeFromSuperview];
+		[navigationController.topViewController viewWillDisappear:YES];
+		[[navigationController view] removeFromSuperview];
 		[[self view] addSubview:mainView];
 		[[self view] insertSubview:infoButton 
 					  aboveSubview:[mainViewController view]];
-		[flipsideViewController viewDidDisappear:YES];
-		[mainViewController viewDidAppear:YES];
 	}
 	[UIView commitAnimations];
 }

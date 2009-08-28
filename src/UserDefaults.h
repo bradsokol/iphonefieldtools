@@ -20,8 +20,13 @@
  *
  */
 
+#define DEFAULTS_VERSION 2
+
 // Keys for user defaults
+extern NSString* const FTDefaultsVersion;
+
 extern NSString* const FTApertureIndex;
+extern NSString* const FTCameraCount;
 extern NSString* const FTCameraIndex;
 extern NSString* const FTDistanceTypeKey;
 extern NSString* const FTFocalLengthKey;
@@ -30,7 +35,6 @@ extern NSString* const FTSubjectDistanceKey;
 
 // Keys for user defaults (future functionality)
 /*
-extern NSString* const FTCameraCount;
 extern NSString* const FTCameraDescriptionRoot;
 extern NSString* const FTCameraCoCRoot;
 extern NSString* const FTFStopKey;
