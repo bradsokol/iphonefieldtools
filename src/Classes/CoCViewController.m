@@ -31,6 +31,8 @@
 @interface CoCViewController (Private)
 
 - (void)cancelWasSelected;
+- (void)didSelectCoCPresetAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView;
+- (void)didSelectCustomCoCInTableView:(UITableView *)tableView;
 - (NSString*)keyForRow:(int)row;
 - (int)rowForSelectedCoC;
 - (void)saveWasSelected;
@@ -119,6 +121,21 @@
 	[tableView deselectRowAtIndexPath:indexPath
 							 animated:YES];
 
+	if ([indexPath row] < [[CoC cocPresets] count])
+	{
+		[self didSelectCoCPresetAtIndexPath:indexPath inTableView:tableView];
+	}
+	else
+	{
+		[self didSelectCustomCoCInTableView:tableView];
+	}
+}
+
+#pragma mark Helper methods
+
+- (void) didSelectCoCPresetAtIndexPath:(NSIndexPath *)indexPath
+						   inTableView:(UITableView *)tableView  
+{
 	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:[self rowForSelectedCoC] 
 												   inSection:[indexPath section]];
 	
@@ -142,7 +159,7 @@
 		[cameraWorkingCopy setCoc:coc];
 		
 		[[NSNotificationCenter defaultCenter] 
-			postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
+		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
 	}
 	
 	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
@@ -152,7 +169,9 @@
 	}
 }
 
-#pragma mark Helper methods
+- (void)didSelectCustomCoCInTableView:(UITableView *)tableView
+{
+}
 
 - (NSString*)keyForRow:(int)row
 {

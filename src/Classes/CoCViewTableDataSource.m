@@ -29,6 +29,8 @@
 
 static const int NUM_SECTIONS = 1;
 
+int cocPresetsCount = 0;
+
 @implementation CoCViewTableDataSource
 
 @synthesize camera;
@@ -41,6 +43,11 @@ static const int NUM_SECTIONS = 1;
 		return nil;
 	}
 	
+	if (cocPresetsCount == 0)
+	{
+		cocPresetsCount = [[CoC cocPresets] count];
+	}
+	
 	return self;
 }
 
@@ -51,7 +58,8 @@ static const int NUM_SECTIONS = 1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	return [[CoC cocPresets] count];
+	// Return one extra row for the custom setting
+	return [[CoC cocPresets] count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,15 +72,23 @@ static const int NUM_SECTIONS = 1;
 		cell = [[[TwoLabelTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
     }
     
-	NSArray* keys = [[CoC cocPresets] allKeys];
-	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-	NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
-	[cell setText:[NSString stringWithFormat:@"%.3f", [[[CoC cocPresets] objectForKey:key] floatValue]]];
-    [cell setLabel:key];
-	
-	if ([key compare:[[camera coc] description]] == 0)
+	if ([indexPath row] < cocPresetsCount)
 	{
-		[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		NSArray* keys = [[CoC cocPresets] allKeys];
+		NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+		NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
+		[cell setText:[NSString stringWithFormat:@"%.3f", [[[CoC cocPresets] objectForKey:key] floatValue]]];
+		[cell setLabel:key];
+		
+		if ([key compare:[[camera coc] description]] == 0)
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		}
+	}
+	else
+	{
+		[cell setLabel:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")];
+		[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
 	}
 	
     return cell;
