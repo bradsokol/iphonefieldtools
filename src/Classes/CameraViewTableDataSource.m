@@ -106,7 +106,7 @@ static const int NUM_SECTIONS = 1;
 											reuseIdentifier:CellIdentifier];
 	}
 	[cell setLabel:NSLocalizedString(@"COC_TITLE", "CoC")];
-	[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+	[cell setText:[[camera coc] description]];
 	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
