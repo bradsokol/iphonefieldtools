@@ -24,6 +24,7 @@
 
 #import "Camera.h"
 #import "CoC.h"
+#import "Lens.h"
 #import "Notifications.h"
 #import "UserDefaults.h"
 
@@ -35,6 +36,7 @@ extern const NSInteger METRES_ROW;
 // Enumerate sections in UITable
 // TODO: Can this be DRYer?
 extern const NSInteger CAMERAS_SECTION;
+extern const NSInteger LENSES_SECTION;
 extern const NSInteger UNITS_SECTION;
 
 // Private methods
@@ -66,6 +68,16 @@ extern const NSInteger UNITS_SECTION;
 			{
 				return UITableViewCellAccessoryCheckmark;
 			}
+		}
+	}
+	else if ([indexPath section] == LENSES_SECTION)
+	{
+		if ([self isEditing])
+		{
+			return UITableViewCellAccessoryDisclosureIndicator;
+		}
+		else
+		{
 		}
 	}
 	else if ([indexPath section] == UNITS_SECTION)
@@ -122,7 +134,7 @@ extern const NSInteger UNITS_SECTION;
 	{
 		return UITableViewCellEditingStyleNone;
 	}
-	else
+	else if ([indexPath section] == CAMERAS_SECTION)
 	{
 		int cameraCount = [Camera count];
 		if ([indexPath row] < cameraCount)
@@ -133,6 +145,21 @@ extern const NSInteger UNITS_SECTION;
 		else
 		{
 			// This is the 'add' row
+			return UITableViewCellEditingStyleInsert;
+		}
+	}
+	else
+	{
+		// Lenses section
+		int lensCount = [Lens count];
+		if ([indexPath row] < lensCount)
+		{
+			// This is a lens row - allow delete if more than one lens (must have at least one)
+			return lensCount > 1 ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+		}
+		else
+		{
+			// This is the add row
 			return UITableViewCellEditingStyleInsert;
 		}
 	}

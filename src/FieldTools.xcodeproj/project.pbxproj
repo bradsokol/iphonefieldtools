@@ -25,6 +25,7 @@
 		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24EF5EC0ECA9415001A7B46 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A24EF5EB0ECA9415001A7B46 /* MainView.m */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
+		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
@@ -74,6 +75,8 @@
 		A24EF5EB0ECA9415001A7B46 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
 		A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewTableDataSource.m; sourceTree = "<group>"; };
+		A25BDF3210479BFE00B22B2B /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lens.h; sourceTree = "<group>"; };
+		A25BDF3310479BFE00B22B2B /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lens.m; sourceTree = "<group>"; };
 		A261F8C70FDCCA3600C907AD /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		A261F8C80FDCCA3600C907AD /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		A261F8CE0FDCCAAA00C907AD /* CameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraView.xib; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				A2AAAF0B0F28386300945F6E /* Camera.m */,
 				A2E357951044DBDD003C449D /* CoC.h */,
 				A2E357961044DBDD003C449D /* CoC.m */,
+				A25BDF3210479BFE00B22B2B /* Lens.h */,
+				A25BDF3310479BFE00B22B2B /* Lens.m */,
 			);
 			name = Model;
 			path = ..;
@@ -366,6 +371,7 @@
 				A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */,
 				A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */,
 				A2E357971044DBDD003C449D /* CoC.m in Sources */,
+				A25BDF3410479BFE00B22B2B /* Lens.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

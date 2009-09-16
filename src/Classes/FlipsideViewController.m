@@ -26,6 +26,7 @@
 #import "CoCViewController.h"
 #import "FlipsideTableViewDataSource.h"
 #import "FieldToolsAppDelegate.h"
+#import "Lens.h"
 #import "Notifications.h"
 #import "UserDefaults.h"
 
@@ -91,31 +92,56 @@
 	[tableViewDataSource setEditing:editing];
 	
 	int cameraCount = [Camera count];
+	int lensCount = [Lens count];
 	UITableView* tableView = (UITableView*) [self view];
-	NSMutableArray* indexPaths = [[NSMutableArray alloc] initWithCapacity:1];
-	NSIndexPath* path = [NSIndexPath indexPathForRow:cameraCount inSection:CAMERAS_SECTION];
-	[indexPaths addObject:path];
 	[tableView beginUpdates];
 	if (editing)
 	{
 		[[self navigationItem] setRightBarButtonItem:nil];
+
+		NSMutableArray* indexPaths = [[NSMutableArray alloc] initWithCapacity:2];
+		NSIndexPath* path = [NSIndexPath indexPathForRow:cameraCount 
+											   inSection:CAMERAS_SECTION];
+		[indexPaths addObject:path];
 		
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
+		
+		[path release];
+		path = [NSIndexPath indexPathForRow:lensCount 
+								  inSection:LENSES_SECTION];
+		[indexPaths replaceObjectAtIndex:0
+							  withObject:path];
+		[tableView insertRowsAtIndexPaths:indexPaths
+						 withRowAnimation:UITableViewRowAnimationTop];
+		[path release];
+		[indexPaths release];
 	}
 	else
 	{
-		[[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-																								   target:rootViewController
-																								   action:@selector(toggleView)]];
+		[[self navigationItem] 
+		 setRightBarButtonItem:[[UIBarButtonItem alloc] 
+								initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+								target:rootViewController
+								action:@selector(toggleView)]];
+		
+		NSMutableArray* indexPaths = [[NSMutableArray alloc] initWithCapacity:2];
+		NSIndexPath* path = [NSIndexPath indexPathForRow:cameraCount 
+											   inSection:CAMERAS_SECTION];
 		
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
+		
+		[path release];
+		path = [NSIndexPath indexPathForRow:lensCount
+								  inSection:LENSES_SECTION];
+		[tableView deleteRowsAtIndexPaths:indexPaths
+						 withRowAnimation:UITableViewRowAnimationTop];
+		
+		[path release];
+		[indexPaths release];
 	}
 	[tableView endUpdates];
-	
-	[path release];
-	[indexPaths release];
 }
 
 #pragma mark Events

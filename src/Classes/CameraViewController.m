@@ -32,6 +32,7 @@
 
 - (void)cancelWasSelected;
 - (void)cocChanged:(NSNotification*)notification;
+- (void)enableSaveButtonForCamera:(Camera*)camera;
 - (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc;
 - (void)saveWasSelected;
 
@@ -77,7 +78,7 @@
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
-	[self enableSaveButtonForNameLength:[[camera description] length] coc:0.1];  // TODO: Use actual CoC
+	[self enableSaveButtonForCamera:camera];
 	
 	[self setTitle:NSLocalizedString(@"CAMERA_VIEW_TITLE", "Camera view")];
 
@@ -125,6 +126,11 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)enableSaveButtonForCamera:(Camera*)aCamera
+{
+	[self enableSaveButtonForNameLength:[[aCamera description] length] coc:[[[aCamera coc] value] floatValue]];
+}
+
 - (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc
 {
 	[saveButton setEnabled:nameLength > 0 && coc > 0.0];
@@ -138,7 +144,7 @@
 	// Enable the save button if text was entered
 	int currentLength = [[textField text] length];
 	int newLength = currentLength + [string length] - range.length;
-	[self enableSaveButtonForNameLength:newLength coc:0.1];  // TODO: Use actual CoC
+	[self enableSaveButtonForNameLength:newLength coc:[[[cameraWorkingCopy coc] value] floatValue]];
 
 	return YES;
 }

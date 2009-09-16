@@ -23,15 +23,17 @@
 #import "FlipsideTableViewDataSource.h"
 
 #import "Camera.h"
+#import "Lens.h"
 #import "Notifications.h"
 #import "UserDefaults.h"
 
-const NSInteger SECTION_COUNT = 2;
+const NSInteger SECTION_COUNT = 3;
 const NSInteger UNITS_COUNT = 2;
 
 // Enumerate sections in UITable
-const NSInteger CAMERAS_SECTION = 0;
-const NSInteger UNITS_SECTION = 1;
+const NSInteger LENSES_SECTION = 0;
+const NSInteger CAMERAS_SECTION = 1;
+const NSInteger UNITS_SECTION = 2;
 
 // Enumerate rows in units section of table
 const NSInteger FEET_ROW = 0;
@@ -43,6 +45,7 @@ static NSString *CellIdentifier = @"Cell";
 @interface FlipsideTableViewDataSource (Private)
 
 - (UITableViewCell*) cellForCameraRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
+- (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
 - (UITableViewCell*) cellForUnitsRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*)tableView;
 - (UITableViewCell*) standardCellForTableView:(UITableView*)tableView;
 
@@ -68,6 +71,10 @@ static NSString *CellIdentifier = @"Cell";
 	{
 		return [Camera count] + adjustment;
 	}
+	else if (section == LENSES_SECTION)
+	{
+		return [Lens count] + adjustment;
+	}
 	else
 	{
 		return UNITS_COUNT;
@@ -86,6 +93,11 @@ static NSString *CellIdentifier = @"Cell";
 	else if ([indexPath section] == CAMERAS_SECTION)
 	{
 		cell = [self cellForCameraRowAtIndexPath:indexPath inTableView:tableView];
+	}
+	else
+	{
+		// Lenses section
+		cell = [self cellForLensRowAtIndexPath:indexPath inTableView:tableView];
 	}
 	
     return cell;
@@ -150,6 +162,25 @@ static NSString *CellIdentifier = @"Cell";
 		Camera* camera = [Camera initFromDefaultsForIndex:[indexPath row]];
 		[cell setText:[camera description]];
 		[camera release];
+	}
+	
+	return cell;
+}
+
+- (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
+{
+	int lensCount = [Lens count];
+	bool nonLensRow = [indexPath row] >= lensCount;
+	
+	UITableViewCell *cell = [self standardCellForTableView:tableView];
+	
+	if (nonLensRow)
+	{
+		[cell setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
+	}
+	else
+	{
+		[cell setText:[NSString stringWithFormat:@"Lens row %d", [indexPath row]]];
 	}
 	
 	return cell;

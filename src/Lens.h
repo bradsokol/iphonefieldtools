@@ -13,32 +13,19 @@
 // limitations under the License.
 
 //
-//  FlipsideTableViewDataSource.h
+//  Lens.h
 //  FieldTools
 //
-//  Created by Brad on 2009/05/28.
+//  Created by Brad on 2009/08/27.
 //  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-extern const NSInteger SECTION_COUNT;
-extern const NSInteger UNITS_COUNT;
-
-// Enumerate sections in UITable
-extern const NSInteger CAMERAS_SECTION;
-extern const NSInteger LENSES_SECTION;
-extern const NSInteger UNITS_SECTION;
-
-// Enumerate rows in units section of table
-extern const NSInteger FEET_ROW;
-extern const NSInteger METRES_ROW;
-
-@interface FlipsideTableViewDataSource : NSObject <UITableViewDataSource>
+@interface Lens : NSObject 
 {
-	BOOL editing;
 }
 
-@property(nonatomic, getter=isEditing) BOOL editing;
++ (int)count;
 
 @end
