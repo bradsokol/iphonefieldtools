@@ -40,6 +40,11 @@
 	[viewController release];
 	
 	[[self view] insertSubview:[mainViewController view] belowSubview:infoButton];
+	
+	CGRect newInfoButtonRect = CGRectMake(infoButton.frame.origin.x-25, 
+										  infoButton.frame.origin.y-25, infoButton.frame.size.width+50, 
+										  infoButton.frame.size.height+50);
+	[infoButton setFrame:newInfoButtonRect];	
 }
 
 // Helper method to load the flipside view and controller
