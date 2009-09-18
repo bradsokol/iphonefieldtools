@@ -103,7 +103,7 @@ extern const NSInteger UNITS_SECTION;
 	{
 		if ([self isEditing])
 		{
-			Camera* camera = [Camera initFromDefaultsForIndex:[indexPath row]];
+			Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
 			if (nil == camera)
 			{
 				// Nil means not found. This happens when user touches the 'Add camera' row
@@ -111,11 +111,17 @@ extern const NSInteger UNITS_SECTION;
 				CoC* coc = [CoC findFromPresets:NSLocalizedString(@"DEFAULT_COC", "35 mm")];
 				camera = [[Camera alloc] initWithDescription:@"" coc:coc identifier:[Camera count]];
 			}
+			else
+			{
+				[camera retain];
+			}
 			
 			[[NSNotificationCenter defaultCenter] 
 				postNotification:
 					[NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
 												  object:camera]];
+			
+			[camera release];
 		}
 		else
 		{

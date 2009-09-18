@@ -116,6 +116,7 @@ float DefaultMaximumFocalLength = 100.0;
 														 coc:coc
 												  identifier:0];
 		[camera save];
+		[camera release];
 	}
 	
 	[defaultValues setObject:[NSNumber numberWithInt:1]
@@ -160,6 +161,8 @@ float DefaultMaximumFocalLength = 100.0;
 													 coc:coc
 											  identifier:0];
 	[camera save];
+	[camera release];
+	[coc release];
 	
 	// Remove obsolete keys
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTCameraIndex];

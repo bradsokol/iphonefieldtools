@@ -413,11 +413,9 @@ float maximumDistanceToSubject = 25.0f;	// metres
 
 - (void)readDefaultCircleOfLeastConfusion
 {
-	Camera* camera = [Camera initFromSelectedInDefaults];
+	Camera* camera = [Camera findSelectedInDefaults];
 	
 	[self setCircleOfLeastConfusion:[[camera coc] value]];
-	
-	[camera release];
 }
 
 - (void)dealloc 

@@ -84,9 +84,9 @@ static const int NUM_SECTIONS = 1;
 	(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
 	if (nil == cell)
 	{
-		cell = [[EditableTableViewCell alloc] initWithFrame:CGRectZero
+		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
 											reuseIdentifier:EditableCellIdentifier
-												   delegate:[self controller]];
+												   delegate:[self controller]] autorelease];
 	}
 	[cell setLabel:NSLocalizedString(@"CAMERA_NAME_TITLE", "Camera")];
 	[cell setText:[camera description]];
@@ -102,8 +102,8 @@ static const int NUM_SECTIONS = 1;
 		(TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (nil == cell)
 	{
-		cell = [[TwoLabelTableViewCell alloc] initWithFrame:CGRectZero
-											reuseIdentifier:CellIdentifier];
+		cell = [[[TwoLabelTableViewCell alloc] initWithFrame:CGRectZero
+											reuseIdentifier:CellIdentifier] autorelease];
 	}
 	[cell setLabel:NSLocalizedString(@"COC_TITLE", "CoC")];
 	[cell setText:[[camera coc] description]];

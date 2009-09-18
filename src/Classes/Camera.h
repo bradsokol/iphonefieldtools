@@ -32,8 +32,8 @@
 + (int)count;
 + (NSArray*)findAll;
 
-+ (Camera*)initFromDefaultsForIndex:(int)index;
-+ (Camera*)initFromSelectedInDefaults;
++ (Camera*)findFromDefaultsForIndex:(int)index;
++ (Camera*)findSelectedInDefaults;
 
 - (NSDictionary*) asDictionary;
 - (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;

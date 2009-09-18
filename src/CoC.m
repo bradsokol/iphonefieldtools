@@ -68,7 +68,7 @@ static NSDictionary* cocPresets;
 	}
 	
 	float value = [[cocPresets objectForKey:cocDescription] floatValue];
-	return [[CoC alloc] initWithValue:value description:cocDescription];
+	return [[[CoC alloc] initWithValue:value description:cocDescription] autorelease];
 }
 
 - (void)dealloc

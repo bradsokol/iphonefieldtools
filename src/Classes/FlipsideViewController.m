@@ -74,9 +74,12 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
 	[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-	[[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-																							  target:rootViewController
-																							  action:@selector(toggleView)]];
+	UIBarButtonItem* rightBarButtonItem = 
+		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+													  target:rootViewController
+													  action:@selector(toggleView)];
+	[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
+	[rightBarButtonItem release];
 	
 	[self setTableViewDelegate:(FlipsideTableViewDelegate*) [[self tableView] delegate]];
 	[self setTableViewDataSource: [[self tableView] dataSource]];
@@ -107,38 +110,41 @@
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		[path release];
 		path = [NSIndexPath indexPathForRow:lensCount 
 								  inSection:LENSES_SECTION];
 		[indexPaths replaceObjectAtIndex:0
 							  withObject:path];
 		[tableView insertRowsAtIndexPaths:indexPaths
 						 withRowAnimation:UITableViewRowAnimationTop];
-		[path release];
 		[indexPaths release];
 	}
 	else
 	{
-		[[self navigationItem] 
-		 setRightBarButtonItem:[[UIBarButtonItem alloc] 
-								initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-								target:rootViewController
-								action:@selector(toggleView)]];
+		UIBarButtonItem* rightBarButtonItem = 
+			[[UIBarButtonItem alloc] 
+			 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+			 target:rootViewController
+			 action:@selector(toggleView)];
+		
+		[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
+		[rightBarButtonItem release];
 		
 		NSMutableArray* indexPaths = [[NSMutableArray alloc] initWithCapacity:2];
 		NSIndexPath* path = [NSIndexPath indexPathForRow:cameraCount 
 											   inSection:CAMERAS_SECTION];
+		[indexPaths addObject:path];
 		
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		[path release];
 		path = [NSIndexPath indexPathForRow:lensCount
 								  inSection:LENSES_SECTION];
+		[indexPaths replaceObjectAtIndex:0
+							  withObject:path];
+		
 		[tableView deleteRowsAtIndexPaths:indexPaths
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		[path release];
 		[indexPaths release];
 	}
 	[tableView endUpdates];
@@ -158,6 +164,7 @@
 											   bundle:nil
 											forCamera:(Camera*)[notification object]];
 	[[self navigationController] pushViewController:viewController animated:YES];
+	[viewController release];
 }
 
 - (void)editCoC:(NSNotification*)notification
@@ -167,6 +174,7 @@
 										bundle:nil
 									 forCamera:(Camera*)[notification object]];
 	[[self navigationController] pushViewController:viewController animated:YES];
+	[viewController release];
 }
 
 - (void)cameraWasEdited:(NSNotification*)notification

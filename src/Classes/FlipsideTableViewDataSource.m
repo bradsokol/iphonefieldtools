@@ -125,9 +125,8 @@ static NSString *CellIdentifier = @"Cell";
 			 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
 		}
 		
-		Camera* camera = [Camera initFromDefaultsForIndex:[indexPath row]];
+		Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
 		[Camera delete:camera];
-		[camera release];
 		
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 						 withRowAnimation:UITableViewRowAnimationFade];
@@ -136,7 +135,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if (editingStyle == UITableViewCellEditingStyleInsert)
 	{
-		Camera* camera = [Camera initFromDefaultsForIndex:[indexPath row]];
+		Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
 		[[NSNotificationCenter defaultCenter] postNotification:
 			[NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
 										  object:camera]];
@@ -159,9 +158,8 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else
 	{
-		Camera* camera = [Camera initFromDefaultsForIndex:[indexPath row]];
+		Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
 		[cell setText:[camera description]];
-		[camera release];
 	}
 	
 	return cell;

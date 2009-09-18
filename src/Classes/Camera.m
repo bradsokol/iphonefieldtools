@@ -53,13 +53,13 @@ static NSString* CameraNameKey = @"Name";
 	return self;
 }
 
-+ (Camera*)initFromSelectedInDefaults
++ (Camera*)findSelectedInDefaults
 {
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	return [Camera initFromDefaultsForIndex:index];
+	return [Camera findFromDefaultsForIndex:index];
 }
 
-+ (Camera*)initFromDefaultsForIndex:(int)index
++ (Camera*)findFromDefaultsForIndex:(int)index
 {
 	int cameraCount = [Camera count];
 	if (index >= cameraCount)
@@ -73,9 +73,10 @@ static NSString* CameraNameKey = @"Name";
 	NSString* description = (NSString*) [dict objectForKey:CameraCoCKey];
 	CoC* coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
 							  description:description];
-	Camera* camera = [[Camera alloc] initWithDescription:[dict objectForKey:CameraNameKey]																		
+	Camera* camera = [[[Camera alloc] initWithDescription:[dict objectForKey:CameraNameKey]																		
 													 coc:coc
-											  identifier:index];	
+											  identifier:index] autorelease];	
+	[coc release];
 	
 	return camera;
 }
@@ -83,10 +84,10 @@ static NSString* CameraNameKey = @"Name";
 + (NSArray*)findAll
 {
 	int cameraCount = [Camera count];
-	NSMutableArray* cameras = [[NSMutableArray alloc] initWithCapacity:cameraCount];
+	NSMutableArray* cameras = [[[NSMutableArray alloc] initWithCapacity:cameraCount] autorelease];
 	for (int i = 0; i < cameraCount; ++i)
 	{
-		Camera* camera = [Camera initFromDefaultsForIndex:i];
+		Camera* camera = [Camera findFromDefaultsForIndex:i];
 		[cameras addObject:camera];
 	}
 		
@@ -130,7 +131,7 @@ static NSString* CameraNameKey = @"Name";
 	// Delete cameras in prefs higher than this one. 
 	while (id < cameraCount - 1)
 	{
-		camera = [Camera initFromDefaultsForIndex:id + 1];
+		camera = [Camera findFromDefaultsForIndex:id + 1];
 		[defaults setObject:[camera asDictionary] forKey:[NSString stringWithFormat:CameraKeyFormat, [camera identifier] - 1]];
 		
 		++id;

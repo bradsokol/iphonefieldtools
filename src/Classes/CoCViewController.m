@@ -157,6 +157,7 @@
 		CoC* coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
 								  description:description];
 		[cameraWorkingCopy setCoc:coc];
+		[coc release];
 		
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
