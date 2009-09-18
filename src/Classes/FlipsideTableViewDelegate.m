@@ -53,45 +53,6 @@ extern const NSInteger UNITS_SECTION;
 
 @synthesize editing;
 
-- (UITableViewCellAccessoryType) tableView:(UITableView*)tableView accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath
-{
-	if ([indexPath section] == CAMERAS_SECTION)
-	{
-		if ([self isEditing])
-		{
-			return UITableViewCellAccessoryDisclosureIndicator;
-		}
-		else
-		{
-			NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-			if ([indexPath row] == index)
-			{
-				return UITableViewCellAccessoryCheckmark;
-			}
-		}
-	}
-	else if ([indexPath section] == LENSES_SECTION)
-	{
-		if ([self isEditing])
-		{
-			return UITableViewCellAccessoryDisclosureIndicator;
-		}
-		else
-		{
-		}
-	}
-	else if ([indexPath section] == UNITS_SECTION)
-	{
-		bool metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-		if ((metric && [indexPath row] == METRES_ROW) || (!metric && [indexPath row] == FEET_ROW))
-		{
-			return UITableViewCellAccessoryCheckmark;
-		}
-	}
-	
-	return UITableViewCellAccessoryNone;
-}
-
 // Forward handling of row selection to appropriate helper method
 // depending on whether a units or camera row was selected.
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
