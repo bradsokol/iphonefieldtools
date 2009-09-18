@@ -154,12 +154,12 @@ static NSString *CellIdentifier = @"Cell";
 	
 	if (nonCameraRow)
 	{
-		[cell setText:NSLocalizedString(@"ADD_CAMERA", "Add camera")];
+		[[cell textLabel] setText:NSLocalizedString(@"ADD_CAMERA", "Add camera")];
 	}
 	else
 	{
 		Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
-		[cell setText:[camera description]];
+		[[cell textLabel] setText:[camera description]];
 	}
 	
 	return cell;
@@ -174,11 +174,11 @@ static NSString *CellIdentifier = @"Cell";
 	
 	if (nonLensRow)
 	{
-		[cell setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
+		[[cell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
 	}
 	else
 	{
-		[cell setText:[NSString stringWithFormat:@"Lens row %d", [indexPath row]]];
+		[[cell textLabel] setText:[NSString stringWithFormat:@"Lens row %d", [indexPath row]]];
 	}
 	
 	return cell;
@@ -189,7 +189,7 @@ static NSString *CellIdentifier = @"Cell";
 {
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
 	
-	[cell setText:[indexPath row] == FEET_ROW ? NSLocalizedString(@"FEET", "Feet") : 
+	[[cell textLabel] setText:[indexPath row] == FEET_ROW ? NSLocalizedString(@"FEET", "Feet") : 
 	 NSLocalizedString(@"METRES", "Metres")];
 
 	return cell;
@@ -203,7 +203,8 @@ static NSString *CellIdentifier = @"Cell";
 		cell = [[[UITableViewCell alloc]
 				 initWithFrame:CGRectZero
 				 reuseIdentifier:CellIdentifier] autorelease];
-		[cell setHidesAccessoryWhenEditing:NO];
+		
+		[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	}
 	return cell;
 }

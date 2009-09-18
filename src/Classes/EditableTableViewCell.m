@@ -33,7 +33,8 @@
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate
 {
-    if ([super initWithFrame:frame reuseIdentifier:reuseIdentifier] == nil)
+	//	if ([super initWithFrame:aRect reuseIdentifier:identifier] == nil) // TODO: delete once tested
+	if ([super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] == nil)
 	{
 		return nil;
     }
