@@ -24,6 +24,7 @@
 
 #import "Camera.h"
 #import "CameraViewTableDataSource.h"
+#import "CoC.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -128,7 +129,7 @@
 
 - (void)enableSaveButtonForCamera:(Camera*)aCamera
 {
-	[self enableSaveButtonForNameLength:[[aCamera description] length] coc:[[[aCamera coc] value] floatValue]];
+	[self enableSaveButtonForNameLength:[[aCamera description] length] coc:[[aCamera coc] value]];
 }
 
 - (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc
@@ -144,7 +145,7 @@
 	// Enable the save button if text was entered
 	int currentLength = [[textField text] length];
 	int newLength = currentLength + [string length] - range.length;
-	[self enableSaveButtonForNameLength:newLength coc:[[[cameraWorkingCopy coc] value] floatValue]];
+	[self enableSaveButtonForNameLength:newLength coc:[[cameraWorkingCopy coc] value]];
 
 	return YES;
 }
