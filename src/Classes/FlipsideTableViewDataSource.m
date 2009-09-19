@@ -233,6 +233,8 @@ static NSString *CellIdentifier = @"Cell";
 	
 	[[cell textLabel] setText:[indexPath row] == FEET_ROW ? NSLocalizedString(@"FEET", "Feet") : 
 	 NSLocalizedString(@"METRES", "Metres")];
+	
+	[cell setAccessoryType:[self accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath]];
 
 	return cell;
 }
