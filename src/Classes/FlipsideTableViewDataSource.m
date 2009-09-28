@@ -23,6 +23,7 @@
 #import "FlipsideTableViewDataSource.h"
 
 #import "Camera.h"
+#import "CoC.h"
 #import "Lens.h"
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -134,10 +135,17 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if (editingStyle == UITableViewCellEditingStyleInsert)
 	{
-		Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
-		[[NSNotificationCenter defaultCenter] postNotification:
-			[NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
-										  object:camera]];
+		// This only happens when the insert editing control ('+' button on the left side)
+		// is tapped, which means add a new camera or lens
+		if ([indexPath section] == CAMERAS_SECTION)
+		{
+			CoC* coc = [CoC findFromPresets:NSLocalizedString(@"DEFAULT_COC", "35 mm")];
+			Camera* camera = [[Camera alloc] initWithDescription:@"" coc:coc identifier:[Camera count]];
+			
+			[[NSNotificationCenter defaultCenter] postNotification:
+			 [NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
+										   object:camera]];
+		}
 	}
 }
 
