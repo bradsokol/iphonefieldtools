@@ -131,8 +131,6 @@ static NSString *CellIdentifier = @"Cell";
 		
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 						 withRowAnimation:UITableViewRowAnimationFade];
-		
-		[tableView reloadData];
 	}
 	else if (editingStyle == UITableViewCellEditingStyleInsert)
 	{
@@ -247,8 +245,6 @@ static NSString *CellIdentifier = @"Cell";
 		cell = [[[UITableViewCell alloc]
 				 initWithFrame:CGRectZero
 				 reuseIdentifier:CellIdentifier] autorelease];
-		
-		[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	}
 	return cell;
 }
