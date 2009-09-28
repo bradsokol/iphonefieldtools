@@ -75,8 +75,8 @@
 		A24EF5EB0ECA9415001A7B46 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
 		A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewTableDataSource.m; sourceTree = "<group>"; };
-		A25BDF3210479BFE00B22B2B /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lens.h; sourceTree = "<group>"; };
-		A25BDF3310479BFE00B22B2B /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lens.m; sourceTree = "<group>"; };
+		A25BDF3210479BFE00B22B2B /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lens.h; path = Classes/Lens.h; sourceTree = "<group>"; };
+		A25BDF3310479BFE00B22B2B /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lens.m; path = Classes/Lens.m; sourceTree = "<group>"; };
 		A261F8C70FDCCA3600C907AD /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		A261F8C80FDCCA3600C907AD /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		A261F8CE0FDCCAAA00C907AD /* CameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraView.xib; sourceTree = "<group>"; };
@@ -105,8 +105,8 @@
 		A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2D64AA00FCF855B00E337D9 /* FlipsideTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDataSource.h; sourceTree = "<group>"; };
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
-		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoC.h; sourceTree = "<group>"; };
-		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoC.m; sourceTree = "<group>"; };
+		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
+		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoC.m; path = Classes/CoC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
