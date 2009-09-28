@@ -24,8 +24,34 @@
 
 @interface Lens : NSObject 
 {
+	int identifier;
+	NSString* description;
+	float minimumAperture;
+	float maximumAperture;
+	int minimumFocalLength;
+	int maximumFocalLength;
 }
 
 + (int)count;
+
+- (id)initWithDescription:(NSString*)aDescription 
+		  minimumAperture:(float)aMinimumAperture
+		  maximumAperture:(float)aMaximumAperture
+	   minimumFocalLength:(int)aMinimumFocalLength
+	   maximumFocalLength:(int)aMaximumFocalLength
+			   identifier:(int)anIdentifier;
+
+- (NSDictionary*)asDictionary;
+
+- (bool)isZoom;
+
+- (void)save;
+
+@property(nonatomic, retain) NSString* description;
+@property(nonatomic) int identifier;
+@property(nonatomic) float maximumAperture;
+@property(nonatomic) float minimumAperture;
+@property(nonatomic) int maximumFocalLength;
+@property(nonatomic) int minimumFocalLength;
 
 @end

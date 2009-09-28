@@ -22,13 +22,113 @@
 
 #import "Lens.h"
 
+#import "UserDefaults.h"
+
+static NSString* LensKeyFormat = @"Lens%d";
+static NSString* LensNameKey = @"Name";
+static NSString* MaximumApertureKey = @"MaximumAperture";
+static NSString* MinimumApertureKey = @"MinimumAperture";
+static NSString* MaximumFocalLengthKey = @"MaximumFocalLength";
+static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 
 @implementation Lens
 
+@synthesize description;
+@synthesize identifier;
+@synthesize maximumAperture;
+@synthesize minimumAperture;
+@synthesize maximumFocalLength;
+@synthesize minimumFocalLength;
+
+- (id)initWithDescription:(NSString*)aDescription 
+		  minimumAperture:(float)aMinimumAperture
+		  maximumAperture:(float)aMaximumAperture
+	   minimumFocalLength:(int)aMinimumFocalLength
+	   maximumFocalLength:(int)aMaximumFocalLength
+			   identifier:(int)anIdentifier
+{
+	if (nil == [super init])
+	{
+		return nil;
+	}
+	
+	[self setIdentifier:anIdentifier];
+	[self setDescription:aDescription];
+	
+	// Minimum aperture is larger values, maximum is smaller
+	if (aMinimumAperture < aMaximumAperture)
+	{
+		// Inverse from what the caller gave us
+		[self setMinimumAperture:aMaximumAperture];
+		[self setMaximumAperture:aMinimumAperture];
+	}
+	else
+	{
+		[self setMinimumAperture:aMinimumAperture];
+		[self setMaximumAperture:aMaximumAperture];
+	}
+	if (aMinimumFocalLength > aMaximumFocalLength)
+	{
+		// Revers what the user gave us
+		[self setMinimumFocalLength:aMaximumFocalLength];
+		[self setMaximumFocalLength:aMinimumFocalLength];
+	}
+	else
+	{
+		[self setMinimumFocalLength:aMinimumFocalLength];
+		[self setMaximumFocalLength:aMaximumFocalLength];
+	}
+	
+	return self;
+}
+
+- (void)save
+{
+	NSUserDefaults* defaultValues = [NSUserDefaults standardUserDefaults];
+	[defaultValues setObject:[self asDictionary]
+					  forKey:[NSString stringWithFormat:LensKeyFormat, [self identifier]]];
+	
+	int lensCount = [Lens count];
+	if ([self identifier] > lensCount - 1)
+	{
+		// This is a new lens
+		[[NSUserDefaults standardUserDefaults] setInteger:lensCount + 1
+												   forKey:FTLensCount];
+	}
+}
+
 + (int)count
 {
-	// TODO: Add real implementation
-	return 1;
+	return [[NSUserDefaults standardUserDefaults] integerForKey:FTLensCount];
+}
+
+- (bool)isZoom
+{
+	return minimumFocalLength < maximumFocalLength;
+}
+
+- (NSDictionary*)asDictionary
+{
+	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:5];
+	[dict setObject:[self description]
+			 forKey:LensNameKey];
+	[dict setObject:[NSNumber numberWithFloat:maximumAperture]
+			 forKey:MaximumApertureKey];
+	[dict setObject:[NSNumber numberWithFloat:minimumAperture]
+			 forKey:MinimumApertureKey];
+	[dict setObject:[NSNumber numberWithInt:maximumFocalLength]
+			 forKey:MaximumFocalLengthKey];
+	[dict setObject:[NSNumber numberWithInt:minimumFocalLength]
+			 forKey:MinimumFocalLengthKey];
+	
+	return dict;
+}
+
+- (void)dealloc
+{
+	[description release];
+	
+	[super dealloc];
 }
 
 @end

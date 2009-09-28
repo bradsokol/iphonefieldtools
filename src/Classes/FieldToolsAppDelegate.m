@@ -23,6 +23,7 @@
 
 #import "Camera.h"
 #import "Coc.h"
+#import "Lens.h"
 #import "RootViewController.h"
 
 #import "UserDefaults.h"
@@ -35,6 +36,7 @@ NSString* const FTCameraCount = @"CameraCount";
 NSString* const FTCameraIndex = @"CameraIndex";
 NSString* const FTDistanceTypeKey = @"DistanceType";
 NSString* const FTFocalLengthKey = @"FocalLength";
+NSString* const FTLensCount = @"LensCount";
 NSString* const FTMetricKey = @"Metric";
 NSString* const FTSubjectDistanceKey = @"SubjectDistance";
 
@@ -163,6 +165,16 @@ float DefaultMaximumFocalLength = 100.0;
 	[camera save];
 	[camera release];
 	[coc release];
+	
+	// Create an initial lens using the limits of the sliders from V1.0
+	Lens* lens = [[Lens alloc] initWithDescription:NSLocalizedString(@"DEFAULT_LENS_NAME", "Default lens")
+								   minimumAperture:32.0
+								   maximumAperture:1.4
+								minimumFocalLength:10
+								maximumFocalLength:200
+										identifier:0];
+	[lens save];
+	[lens release];
 	
 	// Remove obsolete keys
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTCameraIndex];

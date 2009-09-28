@@ -30,6 +30,7 @@ extern NSString* const FTCameraCount;
 extern NSString* const FTCameraIndex;
 extern NSString* const FTDistanceTypeKey;
 extern NSString* const FTFocalLengthKey;
+extern NSString* const FTLensCount;
 extern NSString* const FTMetricKey;
 extern NSString* const FTSubjectDistanceKey;
 
