@@ -32,6 +32,8 @@
 	int maximumFocalLength;
 }
 
++ (Lens*)findFromDefaultsForIndex:(int)index;
+
 + (int)count;
 
 - (id)initWithDescription:(NSString*)aDescription 

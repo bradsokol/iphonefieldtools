@@ -97,6 +97,27 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	}
 }
 
++ (Lens*)findFromDefaultsForIndex:(int)index
+{
+	int lensCount = [Lens count];
+	if (index >= lensCount)
+	{
+		return nil;
+	}
+	
+	NSString* key = [NSString stringWithFormat:LensKeyFormat, index];
+	NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+	
+	Lens* lens = [[[Lens alloc] initWithDescription:[dict objectForKey:LensNameKey]
+									minimumAperture:[(NSNumber*)[dict objectForKey:MinimumApertureKey] floatValue]
+									maximumAperture:[(NSNumber*)[dict objectForKey:MaximumApertureKey] floatValue]
+								 minimumFocalLength:[(NSNumber*)[dict objectForKey:MinimumFocalLengthKey] intValue]
+								 maximumFocalLength:[(NSNumber*)[dict objectForKey:MaximumFocalLengthKey] intValue]
+										 identifier:index] autorelease];
+	
+	return lens;
+}
+
 + (int)count
 {
 	return [[NSUserDefaults standardUserDefaults] integerForKey:FTLensCount];

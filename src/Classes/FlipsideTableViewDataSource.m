@@ -199,6 +199,11 @@ static NSString *CellIdentifier = @"Cell";
 		}
 		else
 		{
+			NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+			if ([indexPath row] == index)
+			{
+				return UITableViewCellAccessoryCheckmark;
+			}
 		}
 	}
 	else if ([indexPath section] == UNITS_SECTION)
@@ -226,8 +231,11 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else
 	{
-		[[cell textLabel] setText:[NSString stringWithFormat:@"Lens row %d", [indexPath row]]];
+		Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
+		[[cell textLabel] setText:[lens description]];
 	}
+	
+	[cell setAccessoryType:[self accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath]];
 	
 	return cell;
 }

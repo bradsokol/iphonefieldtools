@@ -37,6 +37,7 @@ NSString* const FTCameraIndex = @"CameraIndex";
 NSString* const FTDistanceTypeKey = @"DistanceType";
 NSString* const FTFocalLengthKey = @"FocalLength";
 NSString* const FTLensCount = @"LensCount";
+NSString* const FTLensIndex = @"LensIndex";
 NSString* const FTMetricKey = @"Metric";
 NSString* const FTSubjectDistanceKey = @"SubjectDistance";
 
