@@ -27,6 +27,7 @@
 #import "FlipsideTableViewDataSource.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
+#import "LensViewController.h"
 #import "Notifications.h"
 #import "UserDefaults.h"
 
@@ -35,6 +36,7 @@
 -(void)adjustAccessoriesInSection:(int)section inSelectedRow:(int)row inTableView:(UITableView*) tableView editing:(BOOL)editing;
 -(void)editCamera:(NSNotification*)notification;
 -(void)editCoC:(NSNotification*)notification;
+-(void)editLens:(NSNotification*)notification;
 
 @end
 
@@ -59,6 +61,10 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(editCoC:)
 												 name:COC_SELECTED_FOR_EDIT_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(editLens:)
+												 name:LENS_SELECTED_FOR_EDIT_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(cameraWasEdited:)
@@ -184,6 +190,16 @@
 	[[CoCViewController alloc] initWithNibName:@"CoCView" 
 										bundle:nil
 									 forCamera:(Camera*)[notification object]];
+	[[self navigationController] pushViewController:viewController animated:YES];
+	[viewController release];
+}
+
+- (void)editLens:(NSNotification*)notification
+{
+	UIViewController* viewController = 
+	[[LensViewController alloc] initWithNibName:@"LensView" 
+										 bundle:nil
+									    forLens:(Lens*)[notification object]];
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }

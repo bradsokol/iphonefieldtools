@@ -145,6 +145,8 @@ static NSString *CellIdentifier = @"Cell";
 			[[NSNotificationCenter defaultCenter] postNotification:
 			 [NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
 										   object:camera]];
+			
+			[camera release];
 		}
 	}
 }

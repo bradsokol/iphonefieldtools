@@ -23,6 +23,7 @@
 #define CAMERA_SELECTED_FOR_EDIT_NOTIFICATION	@"CameraSelectedForEdit"
 #define COC_CHANGED_NOTIFICATION				@"CoCChanged"
 #define COC_SELECTED_FOR_EDIT_NOTIFICATION	    @"CoCSelectedForEdit"
+#define LENS_SELECTED_FOR_EDIT_NOTIFICATION		@"LensSelectedForEdit"
 #define UNITS_CHANGED_NOTIFICATION				@"UnitsChanged"
 #define CAMERA_WAS_EDITED_NOTIFICATION			@"CameraWasEdited"
 #define SAVING_NOTIFICATION						@"Saving"

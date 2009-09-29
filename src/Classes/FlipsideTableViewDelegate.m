@@ -89,6 +89,39 @@ extern const NSInteger UNITS_SECTION;
 			[self didSelectCameraInTableView:tableView atIndexPath:indexPath];
 		}
 	}
+	else if ([indexPath section] == LENSES_SECTION)
+	{
+		if ([self isEditing])
+		{
+			Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
+			if (nil == lens)
+			{
+				// Nil means not found. This happens when user touches the 'Add lens' row
+				// which is the last one.
+				lens = [[Lens alloc] initWithDescription:@""
+										 minimumAperture:32.0
+										 maximumAperture:1.4
+									  minimumFocalLength:50
+									  maximumFocalLength:50
+											  identifier:[Lens count]];
+			}
+			else
+			{
+				[lens retain];
+			}
+			
+			[[NSNotificationCenter defaultCenter] 
+			 postNotification:
+			 [NSNotification notificationWithName:LENS_SELECTED_FOR_EDIT_NOTIFICATION 
+										   object:lens]];
+			
+			[lens release];
+		}
+		else
+		{
+			
+		}
+	}
 	else
 	{
 		[self didSelectUnitsInTableView:tableView atIndexPath:indexPath];
