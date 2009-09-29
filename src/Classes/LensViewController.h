@@ -28,6 +28,10 @@
 @interface LensViewController : UITableViewController 
 {
 	LensViewTableDataSource* tableViewDataSource;
+	Lens* lens;
+	Lens* lensWorkingCopy;
+
+	UIBarButtonItem* saveButton;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens;

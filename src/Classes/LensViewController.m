@@ -22,6 +22,15 @@
 
 #import "LensViewController.h"
 
+#import "Lens.h"
+
+@interface LensViewController (Private)
+
+- (void)cancelWasSelected;
+- (void)saveWasSelected;
+
+@end
+
 @implementation LensViewController
 
 @synthesize tableViewDataSource;
@@ -33,28 +42,62 @@
    					     forLens:nil];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)aLens
 {
 	if (nil == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
 		return nil;
 	}
+
+	lens = aLens;
+	[lens retain];
+	
+	lensWorkingCopy = [[Lens alloc] initWithDescription:[lens description]
+										minimumAperture:[lens minimumAperture]
+										maximumAperture:[lens maximumAperture]
+									 minimumFocalLength:[lens minimumFocalLength]
+									 maximumFocalLength:[lens maximumFocalLength]
+											 identifier:[lens identifier]];
+	
+	UIBarButtonItem* cancelButton = 
+	[[[UIBarButtonItem alloc] 
+	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
+	  target:self
+	  action:@selector(cancelWasSelected)] autorelease];
+	saveButton = 
+	[[UIBarButtonItem alloc] 
+	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
+	 target:self
+	 action:@selector(saveWasSelected)];
+	[saveButton setEnabled:NO];
+	
+	[[self navigationItem] setLeftBarButtonItem:cancelButton];
+	[[self navigationItem] setRightBarButtonItem:saveButton];
+//	[self enableSaveButtonForCamera:camera];
 	
 	[self setTitle:NSLocalizedString(@"LENS_VIEW_TITLE", "Lens view")];
 	
 	return self;
 }
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style 
+- (void)cancelWasSelected
 {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) 
-	{
-    }
-    return self;
+	[[self navigationController] popViewControllerAnimated:YES];
 }
-*/
+
+- (void)saveWasSelected
+{
+//	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
+//														object:self];
+//	
+//	[camera setDescription:[cameraWorkingCopy description]];
+//	[camera setCoc:[cameraWorkingCopy coc]];
+//	
+//	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CAMERA_WAS_EDITED_NOTIFICATION
+//																						 object:camera]];
+	
+	[[self navigationController] popViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad 
 {
@@ -63,8 +106,8 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
 	[self setTableViewDataSource: (LensViewTableDataSource*)[[self tableView] dataSource]];
-//	[[self tableViewDataSource] setCamera:cameraWorkingCopy];
-//	[[self tableViewDataSource] setController:self];
+	[[self tableViewDataSource] setLens:lensWorkingCopy];
+	[[self tableViewDataSource] setController:self];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -156,6 +199,10 @@
 
 - (void)dealloc 
 {
+//	[saveButton release];
+	[lens release];
+	[lensWorkingCopy release];
+
     [super dealloc];
 }
 

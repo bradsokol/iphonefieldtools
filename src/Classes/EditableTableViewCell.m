@@ -27,7 +27,7 @@
 @implementation EditableTableViewCell
 
 #define LEFT_COLUMN_OFFSET		10
-#define LEFT_COLUMN_WIDTH		200
+#define LEFT_COLUMN_WIDTH		225
 
 #define UPPER_ROW_TOP			0
 
@@ -102,6 +102,11 @@
 - (void)saving:(NSNotification*)notification
 {
 	[textField resignFirstResponder];
+}
+
+- (void)setTextAlignment:(UITextAlignment)alignment
+{
+	[textField setTextAlignment:alignment];
 }
 
 - (void)dealloc 

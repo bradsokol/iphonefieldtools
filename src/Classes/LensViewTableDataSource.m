@@ -22,31 +22,89 @@
 
 #import "LensViewTableDataSource.h"
 
+#import "EditableTableViewCell.h"
+#import "Lens.h"
+
+static const int SECTION_COUNT = 1;
+static const int ROW_COUNT = 5;
+
+@interface LensViewTableDataSource (Private)
+
+- (NSString*)formatAperture:(float)value;
+
+@end
+
 @implementation LensViewTableDataSource
+
+@synthesize lens;
+@synthesize controller;
 
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-    return 1;
+    return SECTION_COUNT;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	return 2;
+	return ROW_COUNT;
 }
 
-// Customize the appearance of table view cells. Cells for the units and
-// camera sections are formatted differently and handled by helper methods.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    static NSString *MyIdentifier = @"LensCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) 
+	static NSString* EditableCellIdentifier = @"EditableCell";
+	
+	EditableTableViewCell* cell = 
+		(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
+	if (nil == cell)
 	{
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
-    }
-    return cell;
+		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
+											 reuseIdentifier:EditableCellIdentifier
+													delegate:[self controller]] autorelease];
+	}
+	
+	if (0 == [indexPath row])
+	{
+		[cell setLabel:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
+		[cell setText:[lens description]];
+	}
+	else
+	{
+		NSString* key = [NSString stringWithFormat:@"LENS_EDIT_%d", [indexPath row] - 1];
+		[cell setLabel:NSLocalizedString(key, "Lens attribute label")];
+		[cell setTextAlignment:UITextAlignmentRight];
+		
+		switch ([indexPath row])
+		{
+			case 1:
+				[cell setText:[NSString stringWithFormat:[self formatAperture:[lens maximumAperture]], [lens maximumAperture]]];
+				break;
+			case 2:
+				[cell setText:[NSString stringWithFormat:[self formatAperture:[lens minimumAperture]], [lens minimumAperture]]];
+				break;
+			case 3:
+				[cell setText:[NSString stringWithFormat:@"%d", [lens minimumFocalLength]]];
+				break;
+			case 4:
+				[cell setText:[NSString stringWithFormat:@"%d", [lens maximumFocalLength]]];
+				break;
+		}
+	}
+	
+	return cell;
+}
+
+- (NSString*)formatAperture:(float)value
+{
+	if (floor(value + 0.9) == floor(value))
+	{
+		return @"%.0f";
+	}
+	else
+	{
+		return @"%.1f";
+	}
 }
 
 @end

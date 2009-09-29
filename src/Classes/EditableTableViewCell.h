@@ -31,5 +31,6 @@
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate;
 - (void)setLabel:(NSString*)s;
 - (void)setText:(NSString*)s;
+- (void)setTextAlignment:(UITextAlignment)alignment;
 
 @end

@@ -22,9 +22,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class Lens;
+
 @interface LensViewTableDataSource : NSObject <UITableViewDataSource>
 {
-
+	Lens* lens;
+	UIViewController* controller;
 }
+
+@property(nonatomic, retain) Lens* lens;
+@property(nonatomic, retain) UIViewController* controller;
 
 @end
