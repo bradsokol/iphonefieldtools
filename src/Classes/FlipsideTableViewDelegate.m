@@ -39,6 +39,8 @@ extern const NSInteger CAMERAS_SECTION;
 extern const NSInteger LENSES_SECTION;
 extern const NSInteger UNITS_SECTION;
 
+static const float SectionHeaderHeight = 44.0;
+
 // Private methods
 @interface FlipsideTableViewDelegate (Private)
 
@@ -163,6 +165,36 @@ extern const NSInteger UNITS_SECTION;
 			return UITableViewCellEditingStyleInsert;
 		}
 	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return SectionHeaderHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
+	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];
+	[label setTextColor:[UIColor whiteColor]];
+	[label setBackgroundColor:[UIColor blackColor]];
+	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
+	
+	if (LENSES_SECTION == section)
+	{
+		[label setText:NSLocalizedString(@"LENSES_SECTION_TITLE", "LENSES")];
+	}
+	else if (CAMERAS_SECTION == section)
+	{
+		[label setText:NSLocalizedString(@"CAMERAS_SECTION_TITLE", "CAMERAS")];
+	}
+	else
+	{
+		[label setText:NSLocalizedString(@"UNITS_SECTION_TITLE", "UNITS")];
+	}
+	
+	[headerView addSubview:label];
+	return headerView;
 }
 
 #pragma mark Helper Methods
