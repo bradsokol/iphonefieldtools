@@ -25,7 +25,7 @@
 @class Lens;
 @class LensViewTableDataSource;
 
-@interface LensViewController : UITableViewController 
+@interface LensViewController : UITableViewController <UITableViewDelegate>
 {
 	LensViewTableDataSource* tableViewDataSource;
 	Lens* lens;

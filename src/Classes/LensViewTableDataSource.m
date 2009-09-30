@@ -25,12 +25,15 @@
 #import "EditableTableViewCell.h"
 #import "Lens.h"
 
-static const int SECTION_COUNT = 1;
-static const int ROW_COUNT = 5;
+static const int SECTION_COUNT = 3;
+static const int TITLE_SECTION = 0;
+static const int APERTURE_SECTION = 1;
+static const int FOCAL_LENGTH_SECTION = 2;
+
 
 @interface LensViewTableDataSource (Private)
 
-- (NSString*)formatAperture:(float)value;
+- (NSString*)formatForAperture:(float)value;
 
 @end
 
@@ -48,7 +51,7 @@ static const int ROW_COUNT = 5;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	return ROW_COUNT;
+	return section == TITLE_SECTION ? 1 : section == APERTURE_SECTION ? 2 : 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -64,38 +67,34 @@ static const int ROW_COUNT = 5;
 													delegate:[self controller]] autorelease];
 	}
 	
-	if (0 == [indexPath row])
+	if (TITLE_SECTION == [indexPath section])
 	{
 		[cell setLabel:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
 		[cell setText:[lens description]];
 	}
-	else
+	else 
 	{
-		NSString* key = [NSString stringWithFormat:@"LENS_EDIT_%d", [indexPath row] - 1];
+		int index = [indexPath row] + ([indexPath section] - 1) * 2;
+		NSString* key = [NSString stringWithFormat:@"LENS_EDIT_%d", index];
 		[cell setLabel:NSLocalizedString(key, "Lens attribute label")];
 		[cell setTextAlignment:UITextAlignmentRight];
-		
-		switch ([indexPath row])
+
+		if (APERTURE_SECTION == [indexPath section])
 		{
-			case 1:
-				[cell setText:[NSString stringWithFormat:[self formatAperture:[lens maximumAperture]], [lens maximumAperture]]];
-				break;
-			case 2:
-				[cell setText:[NSString stringWithFormat:[self formatAperture:[lens minimumAperture]], [lens minimumAperture]]];
-				break;
-			case 3:
-				[cell setText:[NSString stringWithFormat:@"%d", [lens minimumFocalLength]]];
-				break;
-			case 4:
-				[cell setText:[NSString stringWithFormat:@"%d", [lens maximumFocalLength]]];
-				break;
+			float apertureValue = [indexPath row] == 0 ? [lens maximumAperture] : [lens minimumAperture];
+			[cell setText:[NSString stringWithFormat:[self formatForAperture:apertureValue], apertureValue]];
+		}
+		else
+		{
+			int focalLength = [indexPath row] == 0 ? [lens minimumFocalLength] : [lens maximumFocalLength];
+			[cell setText:[NSString stringWithFormat:@"%d", focalLength]];
 		}
 	}
 	
 	return cell;
 }
 
-- (NSString*)formatAperture:(float)value
+- (NSString*)formatForAperture:(float)value
 {
 	if (floor(value + 0.9) == floor(value))
 	{
