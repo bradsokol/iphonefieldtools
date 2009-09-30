@@ -121,11 +121,11 @@ static const float SectionHeaderHeight = 44.0;
 	
 	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
 	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];
-	label.textColor = [UIColor whiteColor];
-	label.backgroundColor = [UIColor blackColor];
-	label.text = section == APERTURE_SECTION ? NSLocalizedString(@"LENS_VIEW_APERTURE_SECTION_TITLE", "LENS_VIEW_APERTURE_SECTION_TITLE") :
-		NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE");
-	label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+	[label setTextColor:[UIColor whiteColor]];
+	[label setBackgroundColor:[UIColor blackColor]];
+	[label setText:section == APERTURE_SECTION ? NSLocalizedString(@"LENS_VIEW_APERTURE_SECTION_TITLE", "LENS_VIEW_APERTURE_SECTION_TITLE") :
+		NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE")];
+	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
 	
 	[headerView addSubview:label];
 	return headerView;
