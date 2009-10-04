@@ -32,6 +32,7 @@
 	NSNumber* maximumFocalLength;
 }
 
++ (void)delete:(Lens*)lens;
 + (Lens*)findFromDefaultsForIndex:(int)index;
 
 + (int)count;

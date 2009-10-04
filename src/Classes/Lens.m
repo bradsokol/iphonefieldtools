@@ -97,6 +97,36 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	}
 }
 
++ (void)delete:(Lens*)lens
+{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	int id = [lens identifier];
+	int lensCount = [Lens count];
+	
+	// Safety check - never delete the last lens
+	if (lensCount == 1)
+	{
+		NSLog(@"Can't delete the last lens in Lens:delete");
+		return;
+	}
+	
+	// Delete lens in prefs higher than this one. 
+	while (id < lensCount - 1)
+	{
+		lens = [Lens findFromDefaultsForIndex:id + 1];
+		[defaults setObject:[lens asDictionary] 
+					 forKey:[NSString stringWithFormat:LensKeyFormat, [lens identifier] - 1]];
+		
+		++id;
+	}
+	
+	// Delete the last lens
+	--lensCount;
+	[defaults removeObjectForKey:[NSString stringWithFormat:LensKeyFormat, id]];
+	[defaults setInteger:lensCount forKey:FTLensCount];
+}
+
 + (Lens*)findFromDefaultsForIndex:(int)index
 {
 	int lensCount = [Lens count];
