@@ -36,6 +36,11 @@ static const int ROW_MASK = 0x0f;
 static const int SECTION_MASK = 0xf0;
 static const int SECTION_SHIFT = 4;
 
+static const float APERTURE_LOWER_LIMIT = 0.0;
+static const float APERTURE_UPPER_LIMIT = 100.0;
+static const float FOCAL_LENGTH_LOWER_LIMIT = 0.0;
+static const float FOCAL_LENGTH_UPPER_LIMIT = 2000.0;
+
 static const float SectionHeaderHeight = 44.0;
 
 @interface LensViewController (Private)
@@ -192,15 +197,17 @@ static const float SectionHeaderHeight = 44.0;
 		return NO;
 	}
 	
-	// TODO: Use constants for limits and a number formatter to localize them
-	
 	NSNumber* maximumAperture = [lensWorkingCopy maximumAperture];
 	NSNumber* minimumAperture = [lensWorkingCopy minimumAperture];
-	if (nil == maximumAperture || [maximumAperture floatValue] <= 0.0 || [maximumAperture floatValue] >= 100.0 ||
-		nil == minimumAperture || [minimumAperture floatValue] <= 0.0 || [minimumAperture floatValue] >= 100.0)
+	if (nil == maximumAperture || nil == minimumAperture || 
+		[maximumAperture floatValue] <= APERTURE_LOWER_LIMIT || [maximumAperture floatValue] >= APERTURE_UPPER_LIMIT ||
+		[minimumAperture floatValue] <= APERTURE_LOWER_LIMIT || [minimumAperture floatValue] >= APERTURE_UPPER_LIMIT)
 	{
+		NSString* message = [NSString stringWithFormat:NSLocalizedString(@"LENS_ERROR_BAD_APERTURE", "LENS_ERROR_BAD_APERTURE"),
+							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:APERTURE_LOWER_LIMIT]],
+							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:APERTURE_UPPER_LIMIT]]];
 		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
-														message:NSLocalizedString(@"LENS_ERROR_BAD_APERTURE", "LENS_ERROR_BAD_APERTURE")
+														message:message
 													   delegate:nil
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
@@ -212,11 +219,15 @@ static const float SectionHeaderHeight = 44.0;
 	
 	NSNumber* minimumFocalLength = [lensWorkingCopy minimumFocalLength];
 	NSNumber* maximumFocalLength = [lensWorkingCopy maximumFocalLength];
-	if (nil == minimumFocalLength || [minimumFocalLength floatValue] <= 0.0 || [minimumFocalLength floatValue] >= 2000.0 ||
-		nil == maximumFocalLength || [maximumFocalLength floatValue] <= 0.0 || [maximumFocalLength floatValue] >= 2000.0)
+	if (nil == minimumFocalLength || nil == maximumFocalLength || 
+		[minimumFocalLength floatValue] <= FOCAL_LENGTH_LOWER_LIMIT || [minimumFocalLength floatValue] >= FOCAL_LENGTH_UPPER_LIMIT ||
+		[maximumFocalLength floatValue] <= FOCAL_LENGTH_LOWER_LIMIT || [maximumFocalLength floatValue] >= FOCAL_LENGTH_UPPER_LIMIT)
 	{
+		NSString* message = [NSString stringWithFormat:NSLocalizedString(@"LENS_ERROR_BAD_FOCAL_LENGTH", "LENS_ERROR_BAD_FOCAL_LENGTH"),
+							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:FOCAL_LENGTH_LOWER_LIMIT]],
+							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:FOCAL_LENGTH_UPPER_LIMIT]]];
 		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
-														message:NSLocalizedString(@"LENS_ERROR_BAD_FOCAL_LENGTH", "LENS_ERROR_BAD_FOCAL_LENGTH")
+														message:message
 													   delegate:nil
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
