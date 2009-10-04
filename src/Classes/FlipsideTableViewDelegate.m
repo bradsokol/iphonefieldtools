@@ -101,10 +101,10 @@ static const float SectionHeaderHeight = 44.0;
 				// Nil means not found. This happens when user touches the 'Add lens' row
 				// which is the last one.
 				lens = [[Lens alloc] initWithDescription:@""
-										 minimumAperture:32.0
-										 maximumAperture:1.4
-									  minimumFocalLength:50
-									  maximumFocalLength:50
+										 minimumAperture:[NSNumber numberWithFloat:32.0]
+										 maximumAperture:[NSNumber numberWithFloat:1.4]
+									  minimumFocalLength:[NSNumber numberWithInt:50]
+									  maximumFocalLength:[NSNumber numberWithInt:50] 
 											  identifier:[Lens count]];
 			}
 			else

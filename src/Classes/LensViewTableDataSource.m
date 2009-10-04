@@ -30,13 +30,6 @@ static const int TITLE_SECTION = 0;
 static const int APERTURE_SECTION = 1;
 static const int FOCAL_LENGTH_SECTION = 2;
 
-
-@interface LensViewTableDataSource (Private)
-
-- (NSString*)formatForAperture:(float)value;
-
-@end
-
 @implementation LensViewTableDataSource
 
 @synthesize lens;
@@ -57,15 +50,36 @@ static const int FOCAL_LENGTH_SECTION = 2;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 	static NSString* EditableCellIdentifier = @"EditableCell";
+	static NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
+
+	int tag = ([indexPath section] << 4) | [indexPath row];
+		
+	NSString* identifier;
+	UIKeyboardType keyboardType;
+	if (TITLE_SECTION == [indexPath section])
+	{
+		identifier = EditableCellIdentifier;
+		keyboardType = UIKeyboardTypeDefault;
+	}
+	else
+	{
+		identifier = EditableNumericCellIdentifier;
+		keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+	}
 	
 	EditableTableViewCell* cell = 
-		(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
+		(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (nil == cell)
 	{
 		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
-											 reuseIdentifier:EditableCellIdentifier
-													delegate:[self controller]] autorelease];
+											 reuseIdentifier:identifier
+													delegate:[self controller]
+												keyboardType:keyboardType] autorelease];
 	}
+	
+	// Tag the cell with section and row so that the delegate can handle data
+	[cell setTag:tag];
+	NSLog(@"Tag for cell %08x is %04x", cell, [cell tag]);
 	
 	if (TITLE_SECTION == [indexPath section])
 	{
@@ -81,29 +95,17 @@ static const int FOCAL_LENGTH_SECTION = 2;
 
 		if (APERTURE_SECTION == [indexPath section])
 		{
-			float apertureValue = [indexPath row] == 0 ? [lens maximumAperture] : [lens minimumAperture];
-			[cell setText:[NSString stringWithFormat:[self formatForAperture:apertureValue], apertureValue]];
+			NSNumber* apertureValue = [indexPath row] == 0 ? [lens maximumAperture] : [lens minimumAperture];
+			[cell setText:[apertureValue description]];
 		}
 		else
 		{
-			int focalLength = [indexPath row] == 0 ? [lens minimumFocalLength] : [lens maximumFocalLength];
-			[cell setText:[NSString stringWithFormat:@"%d", focalLength]];
+			NSNumber* focalLength = [indexPath row] == 0 ? [lens minimumFocalLength] : [lens maximumFocalLength];
+			[cell setText:[focalLength description]];
 		}
 	}
 	
 	return cell;
-}
-
-- (NSString*)formatForAperture:(float)value
-{
-	if (floor(value + 0.9) == floor(value))
-	{
-		return @"%.0f";
-	}
-	else
-	{
-		return @"%.1f";
-	}
 }
 
 @end

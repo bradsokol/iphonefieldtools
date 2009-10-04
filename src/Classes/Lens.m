@@ -41,10 +41,10 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 @synthesize minimumFocalLength;
 
 - (id)initWithDescription:(NSString*)aDescription 
-		  minimumAperture:(float)aMinimumAperture
-		  maximumAperture:(float)aMaximumAperture
-	   minimumFocalLength:(int)aMinimumFocalLength
-	   maximumFocalLength:(int)aMaximumFocalLength
+		  minimumAperture:(NSNumber*)aMinimumAperture
+		  maximumAperture:(NSNumber*)aMaximumAperture
+	   minimumFocalLength:(NSNumber*)aMinimumFocalLength
+	   maximumFocalLength:(NSNumber*)aMaximumFocalLength
 			   identifier:(int)anIdentifier
 {
 	if (nil == [super init])
@@ -56,7 +56,7 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	[self setDescription:aDescription];
 	
 	// Minimum aperture is larger values, maximum is smaller
-	if (aMinimumAperture < aMaximumAperture)
+	if ([aMinimumAperture compare:aMaximumAperture] == NSOrderedAscending)
 	{
 		// Inverse from what the caller gave us
 		[self setMinimumAperture:aMaximumAperture];
@@ -67,7 +67,7 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 		[self setMinimumAperture:aMinimumAperture];
 		[self setMaximumAperture:aMaximumAperture];
 	}
-	if (aMinimumFocalLength > aMaximumFocalLength)
+	if ([aMinimumFocalLength compare:aMaximumFocalLength] == NSOrderedDescending)
 	{
 		// Revers what the user gave us
 		[self setMinimumFocalLength:aMaximumFocalLength];
@@ -109,10 +109,10 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:key];
 	
 	Lens* lens = [[[Lens alloc] initWithDescription:[dict objectForKey:LensNameKey]
-									minimumAperture:[(NSNumber*)[dict objectForKey:MinimumApertureKey] floatValue]
-									maximumAperture:[(NSNumber*)[dict objectForKey:MaximumApertureKey] floatValue]
-								 minimumFocalLength:[(NSNumber*)[dict objectForKey:MinimumFocalLengthKey] intValue]
-								 maximumFocalLength:[(NSNumber*)[dict objectForKey:MaximumFocalLengthKey] intValue]
+									minimumAperture:(NSNumber*)[dict objectForKey:MinimumApertureKey]
+									maximumAperture:(NSNumber*)[dict objectForKey:MaximumApertureKey]
+								 minimumFocalLength:(NSNumber*)[dict objectForKey:MinimumFocalLengthKey]
+								 maximumFocalLength:(NSNumber*)[dict objectForKey:MaximumFocalLengthKey]
 										 identifier:index] autorelease];
 	
 	return lens;
@@ -133,13 +133,13 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:5];
 	[dict setObject:[self description]
 			 forKey:LensNameKey];
-	[dict setObject:[NSNumber numberWithFloat:maximumAperture]
+	[dict setObject:maximumAperture
 			 forKey:MaximumApertureKey];
-	[dict setObject:[NSNumber numberWithFloat:minimumAperture]
+	[dict setObject:minimumAperture
 			 forKey:MinimumApertureKey];
-	[dict setObject:[NSNumber numberWithInt:maximumFocalLength]
+	[dict setObject:maximumFocalLength
 			 forKey:MaximumFocalLengthKey];
-	[dict setObject:[NSNumber numberWithInt:minimumFocalLength]
+	[dict setObject:minimumFocalLength
 			 forKey:MinimumFocalLengthKey];
 	
 	return dict;

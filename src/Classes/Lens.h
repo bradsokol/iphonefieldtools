@@ -26,10 +26,10 @@
 {
 	int identifier;
 	NSString* description;
-	float minimumAperture;
-	float maximumAperture;
-	int minimumFocalLength;
-	int maximumFocalLength;
+	NSNumber* minimumAperture;
+	NSNumber* maximumAperture;
+	NSNumber* minimumFocalLength;
+	NSNumber* maximumFocalLength;
 }
 
 + (Lens*)findFromDefaultsForIndex:(int)index;
@@ -37,10 +37,10 @@
 + (int)count;
 
 - (id)initWithDescription:(NSString*)aDescription 
-		  minimumAperture:(float)aMinimumAperture
-		  maximumAperture:(float)aMaximumAperture
-	   minimumFocalLength:(int)aMinimumFocalLength
-	   maximumFocalLength:(int)aMaximumFocalLength
+		  minimumAperture:(NSNumber*)aMinimumAperture
+		  maximumAperture:(NSNumber*)aMaximumAperture
+	   minimumFocalLength:(NSNumber*)aMinimumFocalLength
+	   maximumFocalLength:(NSNumber*)aMaximumFocalLength
 			   identifier:(int)anIdentifier;
 
 - (NSDictionary*)asDictionary;
@@ -51,9 +51,9 @@
 
 @property(nonatomic, retain) NSString* description;
 @property(nonatomic) int identifier;
-@property(nonatomic) float maximumAperture;
-@property(nonatomic) float minimumAperture;
-@property(nonatomic) int maximumFocalLength;
-@property(nonatomic) int minimumFocalLength;
+@property(nonatomic, retain) NSNumber* maximumAperture;
+@property(nonatomic, retain) NSNumber* minimumAperture;
+@property(nonatomic, retain) NSNumber* maximumFocalLength;
+@property(nonatomic, retain) NSNumber* minimumFocalLength;
 
 @end

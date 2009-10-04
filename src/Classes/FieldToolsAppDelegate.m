@@ -169,10 +169,10 @@ float DefaultMaximumFocalLength = 100.0;
 	
 	// Create an initial lens using the limits of the sliders from V1.0
 	Lens* lens = [[Lens alloc] initWithDescription:NSLocalizedString(@"DEFAULT_LENS_NAME", "Default lens")
-								   minimumAperture:32.0
-								   maximumAperture:1.4
-								minimumFocalLength:10
-								maximumFocalLength:200
+								   minimumAperture:[NSNumber numberWithFloat:32.0]
+								   maximumAperture:[NSNumber numberWithFloat:1.4]
+								minimumFocalLength:[NSNumber numberWithInt:10]
+								maximumFocalLength:[NSNumber numberWithInt:200]
 										identifier:0];
 	[lens save];
 	[lens release];

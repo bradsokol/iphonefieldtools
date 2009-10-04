@@ -22,17 +22,27 @@
 
 #import "LensViewController.h"
 
+#import "EditableTableViewCell.h"
 #import "Lens.h"
 #import "LensViewTableDataSource.h"
 
+#import "Notifications.h"
+
 static const int TITLE_SECTION = 0;
 static const int APERTURE_SECTION = 1;
+static const int FOCAL_LENGTH_SECTION = 2;
+
+static const int ROW_MASK = 0x0f;
+static const int SECTION_MASK = 0xf0;
+static const int SECTION_SHIFT = 4;
 
 static const float SectionHeaderHeight = 44.0;
 
 @interface LensViewController (Private)
 
 - (void)cancelWasSelected;
+- (NSString*)cellTextForRow:(int)row inSection:(int)section;
+- (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
 
 @end
@@ -75,13 +85,13 @@ static const float SectionHeaderHeight = 44.0;
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
 	 action:@selector(saveWasSelected)];
-	[saveButton setEnabled:NO];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
-//	[self enableSaveButtonForCamera:camera];
 	
 	[self setTitle:NSLocalizedString(@"LENS_VIEW_TITLE", "Lens view")];
+
+	numberFormatter = [[NSNumberFormatter alloc] init];
 	
 	return self;
 }
@@ -93,14 +103,24 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)saveWasSelected
 {
-//	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
-//														object:self];
-//	
-//	[camera setDescription:[cameraWorkingCopy description]];
-//	[camera setCoc:[cameraWorkingCopy coc]];
-//	
-//	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CAMERA_WAS_EDITED_NOTIFICATION
-//																						 object:camera]];
+	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
+														object:self];
+	
+	if ([self validateAndLoadInput])
+	{
+		[lens setDescription:[lensWorkingCopy description]];
+		[lens setMinimumAperture:[lensWorkingCopy minimumAperture]];
+		[lens setMaximumAperture:[lensWorkingCopy maximumAperture]];
+		[lens setMinimumFocalLength:[lensWorkingCopy minimumFocalLength]];
+		[lens setMaximumFocalLength:[lensWorkingCopy maximumFocalLength]];
+
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:LENS_WAS_EDITED_NOTIFICATION
+																							 object:lens]];
+	}
+	else
+	{
+		return;
+	}
 	
 	[[self navigationController] popViewControllerAnimated:YES];
 }
@@ -148,11 +168,121 @@ static const float SectionHeaderHeight = 44.0;
     [super didReceiveMemoryWarning];
 }
 
+- (NSString*)cellTextForRow:(int)row inSection:(int)section
+{
+	UITableView* tableView = (UITableView*)[self view];
+	EditableTableViewCell* cell = 
+		(EditableTableViewCell*) [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+	return [cell text];
+}
+
+- (BOOL)validateAndLoadInput
+{
+	NSString* description = [lensWorkingCopy description];
+	if (description == nil || [description length] == 0)
+	{
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
+														message:NSLocalizedString(@"LENS_ERROR_MISSING_NAME", "LENS_ERROR_MISSING_NAME")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+		return NO;
+	}
+	
+	// TODO: Use constants for limits and a number formatter to localize them
+	
+	NSNumber* maximumAperture = [lensWorkingCopy maximumAperture];
+	NSNumber* minimumAperture = [lensWorkingCopy minimumAperture];
+	if (nil == maximumAperture || [maximumAperture floatValue] <= 0.0 || [maximumAperture floatValue] >= 100.0 ||
+		nil == minimumAperture || [minimumAperture floatValue] <= 0.0 || [minimumAperture floatValue] >= 100.0)
+	{
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
+														message:NSLocalizedString(@"LENS_ERROR_BAD_APERTURE", "LENS_ERROR_BAD_APERTURE")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+		return NO;
+	}
+	
+	NSNumber* minimumFocalLength = [lensWorkingCopy minimumFocalLength];
+	NSNumber* maximumFocalLength = [lensWorkingCopy maximumFocalLength];
+	if (nil == minimumFocalLength || [minimumFocalLength floatValue] <= 0.0 || [minimumFocalLength floatValue] >= 2000.0 ||
+		nil == maximumFocalLength || [maximumFocalLength floatValue] <= 0.0 || [maximumFocalLength floatValue] >= 2000.0)
+	{
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
+														message:NSLocalizedString(@"LENS_ERROR_BAD_FOCAL_LENGTH", "LENS_ERROR_BAD_FOCAL_LENGTH")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+		return NO;
+	}
+	
+	return YES;
+}
+
+// UITextViewDelegate methods
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	// The super view of the text field is the cell. The cell's tag identifies
+	// which field. Bits 4-7 are the section
+	NSInteger tag = [[textField superview] tag];
+	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
+	int row = tag & ROW_MASK;
+	NSLog(@"Text field did end editing for section %d row %d for cell %08x", section, row, [textField superview]);
+	
+	if (TITLE_SECTION == section)
+	{
+		[lensWorkingCopy setDescription:[textField text]];
+		NSLog(@"Set description to %@", [lensWorkingCopy description]);
+	}
+	else
+	{
+		if (APERTURE_SECTION == section)
+		{
+			if (row == 0)
+			{
+				[lensWorkingCopy setMaximumAperture:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set maximum aperture to %@", [lensWorkingCopy maximumAperture]);
+			}
+			else 
+			{
+				[lensWorkingCopy setMinimumAperture:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set minimum aperture to %@", [lensWorkingCopy minimumAperture]);
+			}
+
+		}
+		else
+		{
+			if (row == 0)
+			{
+				[lensWorkingCopy setMinimumFocalLength:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set minimum focal length to %@", [lensWorkingCopy minimumFocalLength]);
+			}
+			else
+			{
+				[lensWorkingCopy setMaximumFocalLength:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set maximum focal length to %@", [lensWorkingCopy maximumFocalLength]);
+			}
+		}
+	}
+}
+
 - (void)dealloc 
 {
 	[saveButton release];
 	[lens release];
 	[lensWorkingCopy release];
+	[numberFormatter release];
 
     [super dealloc];
 }

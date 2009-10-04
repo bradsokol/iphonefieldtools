@@ -25,13 +25,15 @@
 @class Lens;
 @class LensViewTableDataSource;
 
-@interface LensViewController : UITableViewController <UITableViewDelegate>
+@interface LensViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
 {
 	LensViewTableDataSource* tableViewDataSource;
 	Lens* lens;
 	Lens* lensWorkingCopy;
 
 	UIBarButtonItem* saveButton;
+	
+	NSNumberFormatter* numberFormatter;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens;

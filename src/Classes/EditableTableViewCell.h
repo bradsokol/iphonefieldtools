@@ -29,7 +29,9 @@
 }
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate;
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType;
 - (void)setLabel:(NSString*)s;
+- (NSString*)text;
 - (void)setText:(NSString*)s;
 - (void)setTextAlignment:(UITextAlignment)alignment;
 

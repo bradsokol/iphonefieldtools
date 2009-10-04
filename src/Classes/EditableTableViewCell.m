@@ -33,6 +33,11 @@
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate
 {
+	return [self initWithFrame:frame reuseIdentifier:reuseIdentifier delegate:delegate keyboardType:UIKeyboardTypeDefault];
+}
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType
+{
 	//	if ([super initWithFrame:aRect reuseIdentifier:identifier] == nil) // TODO: delete once tested
 	if ([super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] == nil)
 	{
@@ -50,6 +55,7 @@
 	[[self contentView] addSubview:label];
 	
 	textField = [[UITextField alloc] initWithFrame:CGRectZero];
+	[textField setKeyboardType:aKeyboardType];
 	[textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 	[textField setFont:[UIFont systemFontOfSize:[UIFont labelFontSize]]];
 	[textField setTextColor:[UIColor darkGrayColor]];
@@ -73,7 +79,6 @@
 	
 	CGFloat rowHeight = [(UITableView*)[self superview] rowHeight] - 4.0;
 	
-	// In this example we will never be editing, but this illustrates the appropriate pattern
     CGRect frame = CGRectMake(contentRect.origin.x + LEFT_COLUMN_OFFSET, UPPER_ROW_TOP, LEFT_COLUMN_WIDTH, rowHeight);
 	[label setFrame:frame];
 	
@@ -94,6 +99,11 @@
 	[label setText:s];
 }
 
+- (NSString*)text
+{
+	return [textField text];
+}
+
 - (void)setText:(NSString*)s
 {
 	[textField setText:s];
@@ -101,7 +111,10 @@
 
 - (void)saving:(NSNotification*)notification
 {
-	[textField resignFirstResponder];
+	if ([textField isFirstResponder])
+	{
+		[textField resignFirstResponder];
+	}
 }
 
 - (void)setTextAlignment:(UITextAlignment)alignment

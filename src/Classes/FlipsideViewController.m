@@ -70,6 +70,10 @@
 											 selector:@selector(cameraWasEdited:)
 												 name:CAMERA_WAS_EDITED_NOTIFICATION
 											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(lensWasEdited:)
+												 name:LENS_WAS_EDITED_NOTIFICATION
+											   object:nil];
 	
 	return self;
 }
@@ -212,6 +216,17 @@
 	
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
+	
+	[tableView reloadData];
+}
+
+- (void)lensWasEdited:(NSNotification*)notification
+{
+	UITableView* tableView = (UITableView*) [self view];
+	Lens* lens = (Lens*)[notification object];
+	[lens save];
+
+	// TODO: Post notification when lens selection or details of selected lens were changed.
 	
 	[tableView reloadData];
 }
