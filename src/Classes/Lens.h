@@ -33,6 +33,7 @@
 }
 
 + (void)delete:(Lens*)lens;
++ (Lens*)findSelectedInDefaults;
 + (Lens*)findFromDefaultsForIndex:(int)index;
 
 + (int)count;

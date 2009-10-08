@@ -45,8 +45,10 @@ static const float SectionHeaderHeight = 44.0;
 @interface FlipsideTableViewDelegate (Private)
 
 - (void)didSelectCameraInTableView:(UITableView*) tableView atIndexPath:(NSIndexPath*)indexPath;
+- (void)didSelectLensInTableView:(UITableView*) tableView atIndexPath:(NSIndexPath*)indexPath;
 - (void)didSelectUnitsInTableView:(UITableView*) tableView atIndexPath:(NSIndexPath*)indexPath;
 - (NSInteger)rowForDefaultCamera;
+- (NSInteger)rowForDefaultLens;
 - (NSInteger)rowForDefaultUnits;
 
 @end
@@ -121,7 +123,7 @@ static const float SectionHeaderHeight = 44.0;
 		}
 		else
 		{
-			
+			[self didSelectLensInTableView:tableView atIndexPath:indexPath];
 		}
 	}
 	else
@@ -230,6 +232,38 @@ static const float SectionHeaderHeight = 44.0;
 	}
 }
 
+// Handles selection of a row in the lenses section of the table view
+- (void)didSelectLensInTableView:(UITableView*) tableView atIndexPath:(NSIndexPath*)indexPath
+{
+	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:[self rowForDefaultLens] 
+												   inSection:[indexPath section]];
+	
+	if ([oldIndexPath row] == [indexPath row])
+	{
+		// User selected the currently selected lens - take no action
+		return;
+	}
+	
+	UITableViewCell* newCell = [tableView cellForRowAtIndexPath:indexPath];
+	if ([newCell accessoryType] == UITableViewCellAccessoryNone)
+	{
+		// Selected row is not the current lens so change the selection
+		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		
+		[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row]
+												   forKey:FTLensIndex];
+		Lens* lens = [Lens findSelectedInDefaults];
+		[[NSNotificationCenter defaultCenter] 
+		 postNotification:[NSNotification notificationWithName:LENS_CHANGED_NOTIFICATION object:lens]];
+	}
+	
+	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
+	{
+		[oldCell setAccessoryType:UITableViewCellAccessoryNone];
+	}
+}
+
 // Handles select of a row in the units section of the table view
 - (void)didSelectUnitsInTableView:(UITableView*) tableView atIndexPath:(NSIndexPath*)indexPath
 {
@@ -265,6 +299,13 @@ static const float SectionHeaderHeight = 44.0;
 - (NSInteger)rowForDefaultCamera
 {
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	return index;
+}
+
+// Returns the row index for the current default lens
+- (NSInteger)rowForDefaultLens
+{
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	return index;
 }
 

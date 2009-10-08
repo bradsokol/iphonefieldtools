@@ -127,6 +127,12 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	[defaults setInteger:lensCount forKey:FTLensCount];
 }
 
++ (Lens*)findSelectedInDefaults
+{
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	return [Lens findFromDefaultsForIndex:index];
+}
+
 + (Lens*)findFromDefaultsForIndex:(int)index
 {
 	int lensCount = [Lens count];

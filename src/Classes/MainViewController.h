@@ -28,14 +28,22 @@
 {
 	IBOutlet UISlider* apertureSlider;
 	IBOutlet UILabel* apertureText;
+	IBOutlet UILabel* apertureMinimum;
+	IBOutlet UILabel* apertureMaximum;
+	
 	IBOutlet UISegmentedControl* distanceType;
+	
 	IBOutlet UISlider* focalLengthSlider;
 	IBOutlet UILabel* focalLengthText;
+	IBOutlet UILabel* focalLengthMinimum;
+	IBOutlet UILabel* focalLengthMaximum;
+	
 	IBOutlet UISlider* subjectDistanceSlider;
 	IBOutlet UILabel* subjectDistanceLabel;
 	IBOutlet UILabel* subjectDistanceText;
 	IBOutlet UILabel* subjectDistanceMinimum;
 	IBOutlet UILabel* subjectDistanceMaximum;
+	
 	IBOutlet ResultView* resultView;
 	
 	DistanceFormatter* distanceFormatter;

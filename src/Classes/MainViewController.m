@@ -25,6 +25,7 @@
 #import "CoC.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
+#import "Lens.h"
 #import "MainView.h"
 #import "ResultView.h"
 
@@ -50,7 +51,10 @@ float maximumDistanceToSubject = 25.0f;	// metres
 - (void)cocDidChange;
 - (void)customizeSliderAppearance:(UISlider*)slider;
 - (void)gearButtonWasPressed;
+- (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
+- (void)lensDidChange:(NSNotification*)notification;
+- (void)lensDidChangeWithLens:(Lens*)lens;
 - (void)readDefaultCircleOfLeastConfusion;
 - (void)unitsButtonWasPressed;
 - (void)unitsDidChange;
@@ -104,6 +108,10 @@ float maximumDistanceToSubject = 25.0f;	// metres
 											 selector:@selector(cocDidChange)
 												 name:COC_CHANGED_NOTIFICATION
 											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(lensDidChange:)
+												 name:LENS_CHANGED_NOTIFICATION
+											   object:nil];
 	
 	[self initApertures];
 
@@ -130,6 +138,8 @@ float maximumDistanceToSubject = 25.0f;	// metres
 	[subjectDistanceSlider setValue:[self subjectDistance]];
 	
 	// Set limits on sliders
+	Lens* lens = [Lens findSelectedInDefaults];
+	[self lensDidChangeWithLens:lens];
 	[self updateDistanceSliderLimits];
 
 	[self customizeSliderAppearance:focalLengthSlider];
@@ -225,6 +235,35 @@ float maximumDistanceToSubject = 25.0f;	// metres
 	[self updateDistanceSliderLimits];
 	[self updateSubjectDistance];
 	[self updateResult];
+}
+
+- (void)lensDidChange:(NSNotification*)notification
+{
+	Lens* lens = (Lens*)[notification object];
+	[self lensDidChangeWithLens:lens];
+}
+
+- (void)lensDidChangeWithLens:(Lens*)lens
+{
+	[apertureMinimum setText:[NSString stringWithFormat:@"f/%@", [[lens minimumAperture] description]]];
+	[apertureMaximum setText:[NSString stringWithFormat:@"f/%@", [[lens maximumAperture] description]]];
+	int minimumIndex = [self indexNearestToAperture:[[lens minimumAperture] floatValue]];
+	int maximumIndex = [self indexNearestToAperture:[[lens maximumAperture] floatValue]];
+	[apertureSlider setMaximumValue:minimumIndex];
+	[apertureSlider setMinimumValue:maximumIndex];
+	
+	[focalLengthMinimum setText:[NSString stringWithFormat:@"%@ mm", [[lens minimumFocalLength] description]]];
+	[focalLengthMaximum setText:[NSString stringWithFormat:@"%@ mm", [[lens maximumFocalLength] description]]];
+	[focalLengthSlider setMinimumValue:[[lens minimumFocalLength] floatValue]];
+	[focalLengthSlider setMaximumValue:[[lens maximumFocalLength] floatValue]];
+	
+	// Reset the sliders with the current values. If outside the range, 
+	// the slider will set to minimum or maximum. Setting the slider
+	// value won't trigger the value changed action so we have to force it.
+	[apertureSlider setValue:apertureIndex];
+	[self apertureDidChange:nil];
+	[focalLengthSlider setValue:focalLength];
+	[self focalLengthDidChange:nil];
 }
 
 #pragma mark Calculations
@@ -407,8 +446,24 @@ float maximumDistanceToSubject = 25.0f;	// metres
 	[apertures addObject:[NSNumber numberWithFloat:72.0]];		// index: 35
 	[apertures addObject:[NSNumber numberWithFloat:81.0]];
 	[apertures addObject:[NSNumber numberWithFloat:91.0]];
+	[apertures addObject:[NSNumber numberWithFloat:100.0]];
 	
 	apertureIndex = 18;
+}
+
+- (int)indexNearestToAperture:(float)aperture
+{
+	// Assumes aperture value is between 1 and 100
+	int index;
+	for (index = 0; index < [apertures count] - 1; ++index)
+	{
+		if (aperture <= [[apertures objectAtIndex:index] floatValue])
+		{
+			break;
+		}
+	}
+	
+	return index;
 }
 
 - (void)readDefaultCircleOfLeastConfusion

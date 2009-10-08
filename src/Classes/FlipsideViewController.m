@@ -225,8 +225,13 @@
 	UITableView* tableView = (UITableView*) [self view];
 	Lens* lens = (Lens*)[notification object];
 	[lens save];
-
-	// TODO: Post notification when lens selection or details of selected lens were changed.
+	
+	int selectedLens = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	if ([lens identifier] == selectedLens)
+	{
+		[[NSNotificationCenter defaultCenter]
+		 postNotification:[NSNotification notificationWithName:LENS_CHANGED_NOTIFICATION object:lens]];
+	}
 	
 	[tableView reloadData];
 }
