@@ -264,6 +264,11 @@ float maximumDistanceToSubject = 25.0f;	// metres
 	[self apertureDidChange:nil];
 	[focalLengthSlider setValue:focalLength];
 	[self focalLengthDidChange:nil];
+	
+	bool isPrime = ![lens isZoom];
+	[focalLengthSlider setHidden:isPrime];
+	[focalLengthMaximum setHidden:isPrime];
+	[focalLengthMinimum setHidden:isPrime];
 }
 
 #pragma mark Calculations
