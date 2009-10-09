@@ -26,6 +26,7 @@
 
 @interface MainViewController : UIViewController 
 {
+	IBOutlet UILabel* apertureLabel;
 	IBOutlet UISlider* apertureSlider;
 	IBOutlet UILabel* apertureText;
 	IBOutlet UILabel* apertureMinimum;

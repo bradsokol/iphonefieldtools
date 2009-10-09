@@ -653,6 +653,14 @@
 					</object>
 					<int key="connectionID">87</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">apertureLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="987233671"/>
+					</object>
+					<int key="connectionID">88</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -900,7 +908,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">87</int>
+			<int key="maxID">88</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -937,6 +945,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>apertureLabel</string>
 							<string>apertureMaximum</string>
 							<string>apertureMinimum</string>
 							<string>apertureSlider</string>
@@ -955,6 +964,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UISlider</string>

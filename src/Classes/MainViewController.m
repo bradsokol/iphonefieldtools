@@ -38,8 +38,14 @@
 #define FAR_SEGMENT_INDEX			2
 #define NEAR_FAR_SEGMENT_INDEX		3
 
-float minimumDistanceToSubject = 0.25f;	// metres
-float maximumDistanceToSubject = 25.0f;	// metres
+static float minimumDistanceToSubject = 0.25f;	// metres
+static float maximumDistanceToSubject = 25.0f;	// metres
+
+// Amount to move controls up and down when hiding focal length
+// slider for prime lenses.
+static float controlYDelta = 44.0f;
+
+static BOOL previousLensWasZoom = YES;
 
 // Private methods
 @interface MainViewController(Private)
@@ -55,6 +61,7 @@ float maximumDistanceToSubject = 25.0f;	// metres
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
 - (void)lensDidChangeWithLens:(Lens*)lens;
+- (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
 - (void)unitsButtonWasPressed;
 - (void)unitsDidChange;
@@ -265,10 +272,29 @@ float maximumDistanceToSubject = 25.0f;	// metres
 	[focalLengthSlider setValue:focalLength];
 	[self focalLengthDidChange:nil];
 	
-	bool isPrime = ![lens isZoom];
+	BOOL isPrime = ![lens isZoom];
 	[focalLengthSlider setHidden:isPrime];
 	[focalLengthMaximum setHidden:isPrime];
 	[focalLengthMinimum setHidden:isPrime];
+
+	if (previousLensWasZoom && isPrime || !previousLensWasZoom && !isPrime)
+	{
+		CGFloat delta;
+		delta = isPrime ? -controlYDelta : controlYDelta;
+
+		[self moveControl:apertureLabel byYDelta:delta];
+		[self moveControl:apertureText byYDelta:delta];
+		[self moveControl:apertureSlider byYDelta:delta];
+		[self moveControl:apertureMinimum byYDelta:delta];
+		[self moveControl:apertureMaximum byYDelta:delta];
+		
+		[self moveControl:subjectDistanceLabel byYDelta:delta];
+		[self moveControl:subjectDistanceText byYDelta:delta];
+		[self moveControl:subjectDistanceSlider byYDelta:delta];
+		[self moveControl:subjectDistanceMinimum byYDelta:delta];
+		[self moveControl:subjectDistanceMaximum byYDelta:delta];
+	}
+	previousLensWasZoom = !isPrime;
 }
 
 #pragma mark Calculations
@@ -469,6 +495,16 @@ float maximumDistanceToSubject = 25.0f;	// metres
 	}
 	
 	return index;
+}
+
+- (void) moveControl:(UIView*)view byYDelta:(CGFloat)delta
+{
+	CGFloat x, y, width, height;
+	x = [view frame].origin.x;
+	y = [view frame].origin.y;
+	width = [view frame].size.width;
+	height = [view frame].size.height;
+	[view setFrame:CGRectMake(x, y + delta, width, height)];
 }
 
 - (void)readDefaultCircleOfLeastConfusion
