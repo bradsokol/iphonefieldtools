@@ -136,6 +136,14 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+	[tableView deselectRowAtIndexPath:indexPath
+							 animated:YES];
+	
+	if ([indexPath section] != TYPE_SECTION)
+	{
+		return;
+	}
+	
 	// Force the keyboard to hide by finding the first responder and asking it to resign.
 	UIWindow* keyWindow = [[UIApplication sharedApplication] keyWindow];
 	if (keyWindow)
@@ -144,9 +152,6 @@ static const float SectionHeaderHeight = 44.0;
 		[firstResponder resignFirstResponder];
 	}
 	
-	[tableView deselectRowAtIndexPath:indexPath
-							 animated:YES];
-
 	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:lensIsZoom ? ZOOM_ROW : PRIME_ROW
 												   inSection:[indexPath section]];
 	

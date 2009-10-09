@@ -120,6 +120,7 @@
 		NSString* text = [indexPath row] == PRIME_ROW ? NSLocalizedString(@"LENS_TYPE_PRIME", "LENS_TYPE_PRIME") :
 			NSLocalizedString(@"LENS_TYPE_ZOOM", "LENS_TYPE_ZOOM");
 		[[cell textLabel] setText:text];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 		
 		if ([indexPath row] == PRIME_ROW && !lensIsZoom ||
 			[indexPath row] == ZOOM_ROW && lensIsZoom)
@@ -134,6 +135,8 @@
 	else
 	{
 		EditableTableViewCell* editableCell = (EditableTableViewCell*)cell;
+		[editableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
 		if (TITLE_SECTION == [indexPath section])
 		{
 			[editableCell setLabel:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
