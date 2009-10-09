@@ -136,14 +136,6 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath
-							 animated:YES];
-	
-	if ([indexPath section] != TYPE_SECTION)
-	{
-		return;
-	}
-	
 	// Force the keyboard to hide by finding the first responder and asking it to resign.
 	UIWindow* keyWindow = [[UIApplication sharedApplication] keyWindow];
 	if (keyWindow)
@@ -151,6 +143,22 @@ static const float SectionHeaderHeight = 44.0;
 		UIView* firstResponder = [keyWindow performSelector:@selector(firstResponder)];
 		[firstResponder resignFirstResponder];
 	}
+	
+	// ALl cells except the type section have a UITextField. If the cell is touched 
+	// anywhere, not just in the text field, make the text field the first responder.
+	if ([indexPath section] != TYPE_SECTION)
+	{
+		EditableTableViewCell* editableCell = 
+			(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+		[[editableCell textField] becomeFirstResponder];
+		
+		return;
+	}
+	
+	// From this point on we're handling only the type section cells.
+	
+	[tableView deselectRowAtIndexPath:indexPath
+							 animated:YES];
 	
 	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:lensIsZoom ? ZOOM_ROW : PRIME_ROW
 												   inSection:[indexPath section]];

@@ -24,12 +24,14 @@
 
 #import "Notifications.h"
 
-@implementation EditableTableViewCell
-
 #define LEFT_COLUMN_OFFSET		10
 #define LEFT_COLUMN_WIDTH		225
 
 #define UPPER_ROW_TOP			0
+
+@implementation EditableTableViewCell
+
+@synthesize textField;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate
 {
