@@ -38,7 +38,6 @@
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType
 {
-	//	if ([super initWithFrame:aRect reuseIdentifier:identifier] == nil) // TODO: delete once tested
 	if ([super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] == nil)
 	{
 		return nil;
@@ -124,10 +123,13 @@
 
 - (void)dealloc 
 {
-	[[NSNotificationCenter defaultCenter] removeObject:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
-	[textField release];
-	[label release];
+	NSLog(@"Release text field %p cell tag %d",textField, [self tag]);
+	[textField release]; 
+	textField = nil;
+	[label release]; 
+	label = nil;
 	
     [super dealloc];
 }

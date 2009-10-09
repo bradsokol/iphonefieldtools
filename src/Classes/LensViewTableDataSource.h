@@ -27,10 +27,14 @@
 @interface LensViewTableDataSource : NSObject <UITableViewDataSource>
 {
 	Lens* lens;
+	bool lensIsZoom;
 	UIViewController* controller;
 }
 
-@property(nonatomic, retain) Lens* lens;
+- (Lens*)lens;
+- (void)setLens:(Lens*)aLens;
+
+@property(nonatomic) bool lensIsZoom;
 @property(nonatomic, retain) UIViewController* controller;
 
 @end

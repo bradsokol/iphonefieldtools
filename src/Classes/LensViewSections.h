@@ -13,32 +13,19 @@
 // limitations under the License.
 
 //
-//  LensViewController.h
+//  LensViewSections.h
 //  FieldTools
 //
-//  Created by Brad on 2009/09/28.
+//  Created by Brad on 2009/10/07.
 //  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#define SECTION_COUNT			4
 
-@class Lens;
-@class LensViewTableDataSource;
+#define TITLE_SECTION			0
+#define TYPE_SECTION			1
+#define APERTURE_SECTION		3
+#define FOCAL_LENGTH_SECTION	2
 
-@interface LensViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
-{
-	LensViewTableDataSource* tableViewDataSource;
-	Lens* lens;
-	Lens* lensWorkingCopy;
-	bool lensIsZoom;
-
-	UIBarButtonItem* saveButton;
-	
-	NSNumberFormatter* numberFormatter;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens;
-
-@property(nonatomic, retain) LensViewTableDataSource* tableViewDataSource;
-
-@end
+#define PRIME_ROW				0
+#define ZOOM_ROW				1

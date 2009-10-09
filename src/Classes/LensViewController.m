@@ -26,11 +26,8 @@
 #import "Lens.h"
 #import "LensViewTableDataSource.h"
 
+#import "LensViewSections.h"
 #import "Notifications.h"
-
-static const int TITLE_SECTION = 0;
-static const int APERTURE_SECTION = 1;
-static const int FOCAL_LENGTH_SECTION = 2;
 
 static const int ROW_MASK = 0x0f;
 static const int SECTION_MASK = 0xf0;
@@ -71,7 +68,11 @@ static const float SectionHeaderHeight = 44.0;
 	}
 
 	lens = aLens;
-	[lens retain];
+	if (nil != lens)
+	{
+		[lens retain];
+		lensIsZoom = [lens isZoom];
+	}
 	
 	lensWorkingCopy = [[Lens alloc] initWithDescription:[lens description]
 										minimumAperture:[lens minimumAperture]
@@ -118,20 +119,63 @@ static const float SectionHeaderHeight = 44.0;
 		[lens setMaximumAperture:[lensWorkingCopy maximumAperture]];
 		[lens setMinimumFocalLength:[lensWorkingCopy minimumFocalLength]];
 		[lens setMaximumFocalLength:[lensWorkingCopy maximumFocalLength]];
+		
+		if (!lensIsZoom)
+		{
+			[lens setMaximumFocalLength:[lens minimumFocalLength]];
+		}
 
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:LENS_WAS_EDITED_NOTIFICATION
 																							 object:lens]];
+		
+		[[self navigationController] popViewControllerAnimated:YES];
 	}
-	else
-	{
-		return;
-	}
-	
-	[[self navigationController] popViewControllerAnimated:YES];
 }
 
 #pragma mark "UITableViewDelegateMethods
 
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+	// Force the keyboard to hide by finding the first responder and asking it to resign.
+	UIWindow* keyWindow = [[UIApplication sharedApplication] keyWindow];
+	if (keyWindow)
+	{
+		UIView* firstResponder = [keyWindow performSelector:@selector(firstResponder)];
+		[firstResponder resignFirstResponder];
+	}
+	
+	[tableView deselectRowAtIndexPath:indexPath
+							 animated:YES];
+
+	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:lensIsZoom ? ZOOM_ROW : PRIME_ROW
+												   inSection:[indexPath section]];
+	
+	if ([oldIndexPath row] == [indexPath row])
+	{
+		// User selected the currently selected lens type - take no action
+		return;
+	}
+	
+	UITableViewCell* newCell = [tableView cellForRowAtIndexPath:indexPath];
+	if ([newCell accessoryType] == UITableViewCellAccessoryNone)
+	{
+		// Selected row is not the current type so change the selection
+		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		
+		lensIsZoom = !lensIsZoom;
+		[tableViewDataSource setLensIsZoom:lensIsZoom];
+		
+		[tableView reloadSections:[NSIndexSet indexSetWithIndex:FOCAL_LENGTH_SECTION]
+				 withRowAnimation:UITableViewRowAnimationNone];
+	}
+	
+	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
+	{
+		[oldCell setAccessoryType:UITableViewCellAccessoryNone];
+	}
+}
+	
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
 	return section == TITLE_SECTION ? 0 : SectionHeaderHeight;
@@ -144,12 +188,24 @@ static const float SectionHeaderHeight = 44.0;
 		return nil;
 	}
 	
+	NSString* headerText = nil;
+	switch (section)
+	{
+		case APERTURE_SECTION:
+			headerText = NSLocalizedString(@"LENS_VIEW_APERTURE_SECTION_TITLE", "LENS_VIEW_APERTURE_SECTION_TITLE");
+			break;
+		case FOCAL_LENGTH_SECTION:
+			headerText = NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE");
+			break;
+		case TYPE_SECTION:
+			headerText = NSLocalizedString(@"LENS_VIEW_TYPE_SECTION_TITLE", "LENS_VIEW_TYPE_SECTION_TITLE");
+			break;
+	}
 	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
 	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];
 	[label setTextColor:[UIColor whiteColor]];
 	[label setBackgroundColor:[UIColor blackColor]];
-	[label setText:section == APERTURE_SECTION ? NSLocalizedString(@"LENS_VIEW_APERTURE_SECTION_TITLE", "LENS_VIEW_APERTURE_SECTION_TITLE") :
-		NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE")];
+	[label setText:headerText];
 	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
 	
 	[headerView addSubview:label];
@@ -245,7 +301,7 @@ static const float SectionHeaderHeight = 44.0;
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	// The super view of the text field is the cell. The cell's tag identifies
-	// which field. Bits 4-7 are the section
+	// which field. Bits 4-7 are the section, bits 0-3 the row.
 	NSInteger tag = [[textField superview] tag];
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
@@ -272,7 +328,7 @@ static const float SectionHeaderHeight = 44.0;
 			}
 
 		}
-		else
+		else if (FOCAL_LENGTH_SECTION == section)
 		{
 			if (row == 0)
 			{

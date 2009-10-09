@@ -65,6 +65,7 @@
 		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
+		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -284,6 +285,7 @@
 			children = (
 				A2B95FA410715FB80057A70E /* LensViewController.h */,
 				A2B95FA510715FB80057A70E /* LensViewController.m */,
+				A2116B03107D98E5009EE360 /* LensViewSections.h */,
 				A2B95FAB107161BA0057A70E /* LensViewTableDataSource.h */,
 				A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */,
 			);

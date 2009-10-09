@@ -25,15 +25,26 @@
 #import "EditableTableViewCell.h"
 #import "Lens.h"
 
-static const int SECTION_COUNT = 3;
-static const int TITLE_SECTION = 0;
-static const int APERTURE_SECTION = 1;
-static const int FOCAL_LENGTH_SECTION = 2;
+#import "LensViewSections.h"
 
 @implementation LensViewTableDataSource
 
-@synthesize lens;
+@synthesize lensIsZoom;
 @synthesize controller;
+
+- (Lens*)lens
+{
+	return lens;
+}
+
+- (void)setLens:(Lens*)aLens
+{
+	[lens release];
+	[aLens retain];
+	lens = aLens;
+	
+	lensIsZoom = [lens isZoom];
+}
 
 #pragma mark UITableViewDataSource methods
 
@@ -44,22 +55,38 @@ static const int FOCAL_LENGTH_SECTION = 2;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-	return section == TITLE_SECTION ? 1 : section == APERTURE_SECTION ? 2 : 2;
+	if (TITLE_SECTION == section)
+	{
+		return 1;
+	}
+	else if (FOCAL_LENGTH_SECTION == section)
+	{
+		NSLog(@"Rows in focal length section: %d",lensIsZoom ? 2 : 1);
+		return lensIsZoom ? 2 : 1;
+	}
+	else
+	{
+		return 2;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+	static NSString* CellIdentifier = @"Cell";
 	static NSString* EditableCellIdentifier = @"EditableCell";
 	static NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 
 	int tag = ([indexPath section] << 4) | [indexPath row];
 		
 	NSString* identifier;
-	UIKeyboardType keyboardType;
+	UIKeyboardType keyboardType = UIKeyboardTypeDefault;
 	if (TITLE_SECTION == [indexPath section])
 	{
 		identifier = EditableCellIdentifier;
-		keyboardType = UIKeyboardTypeDefault;
+	}
+	else if (TYPE_SECTION == [indexPath section])
+	{
+		identifier = CellIdentifier;
 	}
 	else
 	{
@@ -67,41 +94,77 @@ static const int FOCAL_LENGTH_SECTION = 2;
 		keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 	}
 	
-	EditableTableViewCell* cell = 
-		(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:identifier];
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (nil == cell)
 	{
-		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
-											 reuseIdentifier:identifier
-													delegate:[self controller]
-												keyboardType:keyboardType] autorelease];
+		if (TYPE_SECTION == [indexPath section])
+		{
+			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
+										   reuseIdentifier:identifier] autorelease];
+		}
+		else
+		{
+			cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
+												 reuseIdentifier:identifier
+														delegate:[self controller]
+													keyboardType:keyboardType] autorelease];
+		}
 	}
 	
 	// Tag the cell with section and row so that the delegate can handle data
 	[cell setTag:tag];
 	NSLog(@"Tag for cell %08x is %04x", cell, [cell tag]);
 	
-	if (TITLE_SECTION == [indexPath section])
+	if (TYPE_SECTION == [indexPath section])
 	{
-		[cell setLabel:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
-		[cell setText:[lens description]];
-	}
-	else 
-	{
-		int index = [indexPath row] + ([indexPath section] - 1) * 2;
-		NSString* key = [NSString stringWithFormat:@"LENS_EDIT_%d", index];
-		[cell setLabel:NSLocalizedString(key, "Lens attribute label")];
-		[cell setTextAlignment:UITextAlignmentRight];
-
-		if (APERTURE_SECTION == [indexPath section])
+		NSString* text = [indexPath row] == PRIME_ROW ? NSLocalizedString(@"LENS_TYPE_PRIME", "LENS_TYPE_PRIME") :
+			NSLocalizedString(@"LENS_TYPE_ZOOM", "LENS_TYPE_ZOOM");
+		[[cell textLabel] setText:text];
+		
+		if ([indexPath row] == PRIME_ROW && !lensIsZoom ||
+			[indexPath row] == ZOOM_ROW && lensIsZoom)
 		{
-			NSNumber* apertureValue = [indexPath row] == 0 ? [lens maximumAperture] : [lens minimumAperture];
-			[cell setText:[apertureValue description]];
+			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		}
 		else
 		{
-			NSNumber* focalLength = [indexPath row] == 0 ? [lens minimumFocalLength] : [lens maximumFocalLength];
-			[cell setText:[focalLength description]];
+			[cell setAccessoryType:UITableViewCellAccessoryNone];
+		}
+	}
+	else
+	{
+		EditableTableViewCell* editableCell = (EditableTableViewCell*)cell;
+		if (TITLE_SECTION == [indexPath section])
+		{
+			[editableCell setLabel:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
+			[editableCell setText:[lens description]];
+		}
+		else 
+		{
+			NSString* key = nil;
+			if (lensIsZoom || [indexPath section] != FOCAL_LENGTH_SECTION)
+			{
+				int index = [indexPath row] + ([indexPath section] - 2) * 2;
+				key = [NSString stringWithFormat:@"LENS_EDIT_%d", index];
+			}
+			else
+			{
+				key = @"LENS_EDIT_FOCAL_LENGTH";
+			}
+
+			[editableCell setLabel:NSLocalizedString(key, "Lens attribute label")];
+			[editableCell setTextAlignment:UITextAlignmentRight];
+			
+			if (APERTURE_SECTION == [indexPath section])
+			{
+				NSNumber* apertureValue = [indexPath row] == 0 ? [lens maximumAperture] : [lens minimumAperture];
+				[editableCell setText:[apertureValue description]];
+			}
+			else
+			{
+				NSNumber* focalLength = [indexPath row] == 0 ? [lens minimumFocalLength] : [lens maximumFocalLength];
+				[editableCell setText:[focalLength description]];
+			}
 		}
 	}
 	

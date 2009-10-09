@@ -161,7 +161,7 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 
 - (bool)isZoom
 {
-	return minimumFocalLength < maximumFocalLength;
+	return [minimumFocalLength compare:maximumFocalLength] == NSOrderedAscending;
 }
 
 - (NSDictionary*)asDictionary
