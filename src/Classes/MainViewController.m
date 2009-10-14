@@ -267,9 +267,9 @@ static BOOL previousLensWasZoom = YES;
 	// Reset the sliders with the current values. If outside the range, 
 	// the slider will set to minimum or maximum. Setting the slider
 	// value won't trigger the value changed action so we have to force it.
-	[apertureSlider setValue:apertureIndex];
+	[apertureSlider setValue:apertureIndex animated:YES];
 	[self apertureDidChange:nil];
-	[focalLengthSlider setValue:focalLength];
+	[focalLengthSlider setValue:focalLength animated:YES];
 	[self focalLengthDidChange:nil];
 	
 	BOOL isPrime = ![lens isZoom];
