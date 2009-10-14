@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="68"/>
+			<integer value="70"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -75,10 +75,6 @@
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="170077848">
 							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">Settings</string>
-							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="719664156">
-								<string key="IBUITitle">Done</string>
-								<int key="IBUIStyle">2</int>
-							</object>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034664634"/>
 					</object>
@@ -163,7 +159,6 @@
 						<reference key="object" ref="170077848"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="719664156"/>
 						</object>
 						<reference key="parent" ref="941656590"/>
 					</object>
@@ -171,11 +166,6 @@
 						<int key="objectID">71</int>
 						<reference key="object" ref="141457947"/>
 						<reference key="parent" ref="941656590"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">77</int>
-						<reference key="object" ref="719664156"/>
-						<reference key="parent" ref="170077848"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">78</int>
@@ -201,7 +191,6 @@
 					<string>69.IBPluginDependency</string>
 					<string>70.IBPluginDependency</string>
 					<string>71.IBPluginDependency</string>
-					<string>77.IBPluginDependency</string>
 					<string>78.CustomClassName</string>
 					<string>78.IBPluginDependency</string>
 					<string>80.CustomClassName</string>
@@ -212,7 +201,6 @@
 					<string>FlipsideViewController</string>
 					<string>UIResponder</string>
 					<string>{{0, 665}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
