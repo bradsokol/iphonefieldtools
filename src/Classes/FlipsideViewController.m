@@ -33,7 +33,6 @@
 
 @interface FlipsideViewController (Private)
 
--(void)adjustAccessoriesInSection:(int)section inSelectedRow:(int)row inTableView:(UITableView*) tableView editing:(BOOL)editing;
 -(void)editCamera:(NSNotification*)notification;
 -(void)editCoC:(NSNotification*)notification;
 -(void)editLens:(NSNotification*)notification;
@@ -161,14 +160,6 @@
 		[indexPaths release];
 	}
 	[tableView endUpdates];
-	
-	NSInteger row = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	[self adjustAccessoriesInSection:CAMERAS_SECTION 
-					   inSelectedRow:row 
-						 inTableView:tableView
-							 editing:editing];
-	
-	// TODO: Same as above but for lenses
 }
 
 #pragma mark Events
@@ -234,26 +225,6 @@
 	}
 	
 	[tableView reloadData];
-}
-
-- (void)adjustAccessoriesInSection:(int)section inSelectedRow:(int)row inTableView:(UITableView*) tableView editing:(BOOL)editing 
-{
-	int limit = editing ? [Camera count] + 1 : [Camera count];
-	for (int i = 0; i < limit; ++i)
-	{
-		NSIndexPath* path = [NSIndexPath indexPathForRow:i
-											   inSection:section];
-		UITableViewCell* cell = [tableView cellForRowAtIndexPath:path];
-		if (editing)
-		{
-			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-		}
-		else
-		{
-			[cell setAccessoryType:(i == row) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
-		}
-	}
-	
 }
 
 - (void)dealloc 

@@ -45,7 +45,6 @@ static NSString *CellIdentifier = @"Cell";
 // Private methods
 @interface FlipsideTableViewDataSource (Private)
 
-- (UITableViewCellAccessoryType) accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath;
 - (UITableViewCell*) cellForCameraRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
 - (UITableViewCell*) cellForUnitsRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*)tableView;
@@ -163,53 +162,13 @@ static NSString *CellIdentifier = @"Cell";
 		[[cell textLabel] setText:[camera description]];
 	}
 	
-	[cell setAccessoryType:[self accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath]];
+	// If this is the selected camera, add a check mark
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
+	
+	[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
-}
-							
--(UITableViewCellAccessoryType) accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath
-{
-	if ([indexPath section] == CAMERAS_SECTION)
-	{
-		if ([self isEditing])
-		{
-			return UITableViewCellAccessoryDisclosureIndicator;
-		}
-		else
-		{
-			NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-			if ([indexPath row] == index)
-			{
-				return UITableViewCellAccessoryCheckmark;
-			}
-		}
-	}
-	else if ([indexPath section] == LENSES_SECTION)
-	{
-		if ([self isEditing])
-		{
-			return UITableViewCellAccessoryDisclosureIndicator;
-		}
-		else
-		{
-			NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-			if ([indexPath row] == index)
-			{
-				return UITableViewCellAccessoryCheckmark;
-			}
-		}
-	}
-	else if ([indexPath section] == UNITS_SECTION)
-	{
-		bool metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-		if ((metric && [indexPath row] == METRES_ROW) || (!metric && [indexPath row] == FEET_ROW))
-		{
-			return UITableViewCellAccessoryCheckmark;
-		}
-	}
-	
-	return UITableViewCellAccessoryNone;
 }
 							
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
@@ -229,7 +188,11 @@ static NSString *CellIdentifier = @"Cell";
 		[[cell textLabel] setText:[lens description]];
 	}
 	
-	[cell setAccessoryType:[self accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath]];
+	// If this is the selected lens, add a check mark
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
+	
+	[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
 }
@@ -241,8 +204,16 @@ static NSString *CellIdentifier = @"Cell";
 	
 	[[cell textLabel] setText:[indexPath row] == FEET_ROW ? NSLocalizedString(@"FEET", "Feet") : 
 	 NSLocalizedString(@"METRES", "Metres")];
-	
-	[cell setAccessoryType:[self accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath]];
+
+	bool metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
+	if ((metric && [indexPath row] == METRES_ROW) || (!metric && [indexPath row] == FEET_ROW))
+	{
+		[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+	}
+	else
+	{
+		[cell setAccessoryType:UITableViewCellAccessoryNone];
+	}
 
 	return cell;
 }
