@@ -174,6 +174,30 @@ static const float SectionHeaderHeight = 44.0;
 	return SectionHeaderHeight;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
+	   toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+	// Don't allow a row to be dragged out of it's section or to the bottom of it's section.
+	int max = [sourceIndexPath section] == CAMERAS_SECTION ? [Camera count] - 1 : [Lens count] - 1;
+	if ([proposedDestinationIndexPath section] != [sourceIndexPath section])
+	{
+		// Suggest the first row in 'home' section if proposed section is above, or row above 'Add...' 
+		// if proposed section is below.
+		return [NSIndexPath indexPathForRow:[proposedDestinationIndexPath section] < [sourceIndexPath section] ? 0 : max
+								  inSection:[sourceIndexPath section]];
+	}
+	else if ([proposedDestinationIndexPath row] > max)
+	{
+		// Trying to replace the 'Add...' row at the bottom of the section. Not allowed. Suggest the
+		// row above.
+		return [NSIndexPath indexPathForRow:max 
+								  inSection:[proposedDestinationIndexPath section]];
+	}
+	
+	// Allow the move as is
+	return proposedDestinationIndexPath;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];

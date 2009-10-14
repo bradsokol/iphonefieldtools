@@ -156,6 +156,34 @@ static NSString *CellIdentifier = @"Cell";
 	}
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if ([indexPath section] == UNITS_SECTION)
+	{
+		return NO;
+	}
+	else if ([indexPath section] == CAMERAS_SECTION)
+	{
+		return [indexPath row] < [Camera count] ? YES : NO;
+	}
+	else
+	{
+		return [indexPath row] < [Lens count] ? YES : NO;
+	}
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+	if ([fromIndexPath section] == CAMERAS_SECTION)
+	{
+		// Camera moved
+	}
+	else
+	{
+		// Lens moved
+	}
+}
+
 #pragma mark Helper methods
 
 // Format table cell for rows in the cameras section of the table view.
