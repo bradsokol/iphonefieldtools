@@ -139,6 +139,20 @@ static NSString *CellIdentifier = @"Cell";
 			
 			[camera release];
 		}
+		else if ([indexPath section] == LENSES_SECTION)
+		{
+			Lens* lens = [[Lens alloc] initWithDescription:@""
+										   minimumAperture:[NSNumber numberWithFloat:32.0]
+										   maximumAperture:[NSNumber numberWithFloat:1.4]
+										minimumFocalLength:[NSNumber numberWithInt:50]
+										maximumFocalLength:[NSNumber numberWithInt:50] 
+												identifier:[Lens count]];
+			
+			[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:LENS_SELECTED_FOR_EDIT_NOTIFICATION
+																								 object:lens]];
+			
+			[lens release];
+		}
 	}
 }
 
