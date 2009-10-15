@@ -35,6 +35,7 @@
 + (void)delete:(Lens*)lens;
 + (Lens*)findSelectedInDefaults;
 + (Lens*)findFromDefaultsForIndex:(int)index;
++ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex;
 
 + (int)count;
 

@@ -94,6 +94,57 @@ static NSString* CameraNameKey = @"Name";
 	return cameras;
 }
 
++ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex
+{
+	Camera* theCamera = [Camera findFromDefaultsForIndex:fromIndex];
+	[theCamera setIdentifier:toIndex];
+	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	
+	if (fromIndex < toIndex)
+	{
+		// Moving camera down the list
+		for (int i = fromIndex + 1; i <= toIndex; ++i)
+		{
+			Camera* camera = [Camera findFromDefaultsForIndex:i];
+			[camera setIdentifier:i - 1];
+			[camera save];
+		}
+
+		// Adjust the index of the selected camera if necessary
+		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
+		{
+			if (--selectedIndex < 0)
+			{
+				selectedIndex = [Camera count] - 1;
+			}
+			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
+													   forKey:FTCameraIndex];
+		}
+	}
+	else
+	{
+		// Moving camera up the list
+		for (int i = fromIndex - 1; i >= toIndex; --i)
+		{
+			Camera* camera = [Camera findFromDefaultsForIndex:i];
+			[camera setIdentifier:i + 1];
+			[camera save];
+		}
+		
+		// Adjust the index of the selected camera if necessary
+		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
+		{
+			if (++selectedIndex == [Camera count])
+			{
+				selectedIndex = 0;
+			}
+			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
+													   forKey:FTCameraIndex];
+		}
+	}
+	[theCamera save];
+}
+
 - (void)save
 {
 	NSUserDefaults* defaultValues = [NSUserDefaults standardUserDefaults];

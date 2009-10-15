@@ -154,6 +154,57 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	return lens;
 }
 
++ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex
+{
+	Lens* theLens = [Lens findFromDefaultsForIndex:fromIndex];
+	[theLens setIdentifier:toIndex];
+	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	
+	if (fromIndex < toIndex)
+	{
+		// Moving lens down the list
+		for (int i = fromIndex + 1; i <= toIndex; ++i)
+		{
+			Lens* lens = [Lens findFromDefaultsForIndex:i];
+			[lens setIdentifier:i - 1];
+			[lens save];
+		}
+		
+		// Adjust the index of the selected lens if necessary
+		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
+		{
+			if (--selectedIndex < 0)
+			{
+				selectedIndex = [Lens count] - 1;
+			}
+			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
+													   forKey:FTLensIndex];
+		}
+	}
+	else
+	{
+		// Moving lens up the list
+		for (int i = fromIndex - 1; i >= toIndex; --i)
+		{
+			Lens* lens = [Lens findFromDefaultsForIndex:i];
+			[lens setIdentifier:i + 1];
+			[lens save];
+		}
+		
+		// Adjust the index of the selected lens if necessary
+		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
+		{
+			if (++selectedIndex == [Lens count])
+			{
+				selectedIndex = 0;
+			}
+			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
+													   forKey:FTLensIndex];
+		}
+	}
+	[theLens save];
+}
+
 + (int)count
 {
 	return [[NSUserDefaults standardUserDefaults] integerForKey:FTLensCount];

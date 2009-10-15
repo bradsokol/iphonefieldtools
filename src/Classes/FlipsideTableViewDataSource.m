@@ -177,10 +177,14 @@ static NSString *CellIdentifier = @"Cell";
 	if ([fromIndexPath section] == CAMERAS_SECTION)
 	{
 		// Camera moved
+		[Camera moveFromIndex:[fromIndexPath row]
+					  toIndex:[toIndexPath row]];
 	}
 	else
 	{
 		// Lens moved
+		[Lens moveFromIndex:[fromIndexPath row]
+					toIndex:[toIndexPath row]];
 	}
 }
 

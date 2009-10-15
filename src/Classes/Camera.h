@@ -31,6 +31,7 @@
 + (void)delete:(Camera*)camera;
 + (int)count;
 + (NSArray*)findAll;
++ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex;
 
 + (Camera*)findFromDefaultsForIndex:(int)index;
 + (Camera*)findSelectedInDefaults;
