@@ -48,8 +48,8 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell*) cellForCameraRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
 - (UITableViewCell*) cellForUnitsRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*)tableView;
-- (void)deleteCameraAtIndexPath: (NSIndexPath *) indexPath;
-- (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath;
+- (void)deleteCameraAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView;
+- (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView;
 - (UITableViewCell*) standardCellForTableView:(UITableView*)tableView;
 
 @end
@@ -113,12 +113,11 @@ static NSString *CellIdentifier = @"Cell";
 	{
 		if ([indexPath section] == CAMERAS_SECTION)
 		{
-			[self deleteCameraAtIndexPath:indexPath];
-
+			[self deleteCameraAtIndexPath:indexPath inTableView:tableView];
 		}
 		else
 		{
-			[self deleteLensAtIndexPath:indexPath];
+			[self deleteLensAtIndexPath:indexPath inTableView:tableView];
 		}
 		
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -276,7 +275,7 @@ static NSString *CellIdentifier = @"Cell";
 	return cell;
 }
 
-- (void)deleteCameraAtIndexPath: (NSIndexPath *) indexPath  
+- (void)deleteCameraAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView
 {
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex] == [indexPath row])
 	{
@@ -284,7 +283,7 @@ static NSString *CellIdentifier = @"Cell";
 		int newSelection = [indexPath row] - 1;
 		if (newSelection < 0)
 		{
-			newSelection = 0;
+			newSelection = 1;
 		}
 		
 		[[NSUserDefaults standardUserDefaults] setInteger:newSelection 
@@ -292,13 +291,18 @@ static NSString *CellIdentifier = @"Cell";
 		
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
+		
+		NSIndexPath* newSelectedPath = [NSIndexPath indexPathForRow:newSelection
+														  inSection:[indexPath section]];
+		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newSelectedPath]
+						 withRowAnimation:UITableViewRowAnimationNone];
 	}
 	
 	Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
 	[Camera delete:camera];
 }
 
-- (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath  
+- (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView
 {
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex] == [indexPath row])
 	{
@@ -306,14 +310,16 @@ static NSString *CellIdentifier = @"Cell";
 		int newSelection = [indexPath row] - 1;
 		if (newSelection < 0)
 		{
-			newSelection = 0;
+			newSelection = 1;
 		}
 		
 		[[NSUserDefaults standardUserDefaults] setInteger:newSelection 
 												   forKey:FTLensIndex];
 		
-//		[[NSNotificationCenter defaultCenter] 
-//		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
+		NSIndexPath* newSelectedPath = [NSIndexPath indexPathForRow:newSelection
+														  inSection:[indexPath section]];
+		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newSelectedPath]
+						 withRowAnimation:UITableViewRowAnimationNone];
 	}
 	
 	Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
