@@ -119,9 +119,6 @@ static NSString *CellIdentifier = @"Cell";
 		{
 			[self deleteLensAtIndexPath:indexPath inTableView:tableView];
 		}
-		
-		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-						 withRowAnimation:UITableViewRowAnimationFade];
 	}
 	else if (editingStyle == UITableViewCellEditingStyleInsert)
 	{
@@ -277,42 +274,54 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)deleteCameraAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView
 {
+	Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
+	[Camera delete:camera];
+	
+	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+					 withRowAnimation:UITableViewRowAnimationFade];
+	
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex] == [indexPath row])
 	{
 		// Camera being deleted is the currently selected one. Choose the one above.
 		int newSelection = [indexPath row] - 1;
 		if (newSelection < 0)
 		{
-			newSelection = 1;
+			// Deleting the first one so the one below becomes the new selection
+			newSelection = 0;
 		}
 		
-		[[NSUserDefaults standardUserDefaults] setInteger:newSelection 
+		[[NSUserDefaults standardUserDefaults] setInteger:newSelection
 												   forKey:FTCameraIndex];
-		
-		[[NSNotificationCenter defaultCenter] 
-		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
 		
 		NSIndexPath* newSelectedPath = [NSIndexPath indexPathForRow:newSelection
 														  inSection:[indexPath section]];
 		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newSelectedPath]
 						 withRowAnimation:UITableViewRowAnimationNone];
+		
+		[[NSNotificationCenter defaultCenter] 
+		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
 	}
-	
-	Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
-	[Camera delete:camera];
 }
 
 - (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView
 {
+	Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
+	[Lens delete:lens];
+
+	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+					 withRowAnimation:UITableViewRowAnimationFade];
+
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex] == [indexPath row])
 	{
 		// Lens being deleted is the currently selected one. Choose the one above.
 		int newSelection = [indexPath row] - 1;
 		if (newSelection < 0)
 		{
-			newSelection = 1;
+			// Deleting the first one so the one below becomes the new selection
+			newSelection = 0;
 		}
 		
+		// Must adjust which row is the new default as the table has not been updated yet
 		[[NSUserDefaults standardUserDefaults] setInteger:newSelection 
 												   forKey:FTLensIndex];
 		
@@ -320,10 +329,10 @@ static NSString *CellIdentifier = @"Cell";
 														  inSection:[indexPath section]];
 		[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newSelectedPath]
 						 withRowAnimation:UITableViewRowAnimationNone];
+
+		[[NSUserDefaults standardUserDefaults] setInteger:newSelection
+												   forKey:FTLensIndex];
 	}
-	
-	Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
-	[Lens delete:lens];
 }
 
 @end
