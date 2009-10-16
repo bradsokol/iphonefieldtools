@@ -31,8 +31,8 @@
 
 - (id)initWithFrame:(CGRect)aRect reuseIdentifier:(NSString *)identifier
 {
-//	if ([super initWithFrame:aRect reuseIdentifier:identifier] == nil) // TODO: delete once tested
-	if ([super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] == nil)
+	self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+	if (nil == self)
 	{
 		return nil;
 	}

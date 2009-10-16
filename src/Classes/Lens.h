@@ -32,19 +32,20 @@
 	NSNumber* maximumFocalLength;
 }
 
-+ (void)delete:(Lens*)lens;
-+ (Lens*)findSelectedInDefaults;
-+ (Lens*)findFromDefaultsForIndex:(int)index;
-+ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex;
-
-+ (int)count;
-
+// The designated initializer
 - (id)initWithDescription:(NSString*)aDescription 
 		  minimumAperture:(NSNumber*)aMinimumAperture
 		  maximumAperture:(NSNumber*)aMaximumAperture
 	   minimumFocalLength:(NSNumber*)aMinimumFocalLength
 	   maximumFocalLength:(NSNumber*)aMaximumFocalLength
 			   identifier:(int)anIdentifier;
+
++ (void)delete:(Lens*)lens;
++ (Lens*)findSelectedInDefaults;
++ (Lens*)findFromDefaultsForIndex:(int)index;
++ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex;
+
++ (int)count;
 
 - (NSDictionary*)asDictionary;
 

@@ -28,6 +28,7 @@
 	NSString* description;
 }
 
+// The designated initializer
 - (id)initWithValue:(float)value description:(NSString*)description;
 
 + (NSDictionary*)cocPresets;

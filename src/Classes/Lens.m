@@ -40,6 +40,7 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 @synthesize maximumFocalLength;
 @synthesize minimumFocalLength;
 
+// The designated initializer
 - (id)initWithDescription:(NSString*)aDescription 
 		  minimumAperture:(NSNumber*)aMinimumAperture
 		  maximumAperture:(NSNumber*)aMaximumAperture
@@ -47,7 +48,8 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	   maximumFocalLength:(NSNumber*)aMaximumFocalLength
 			   identifier:(int)anIdentifier
 {
-	if (nil == [super init])
+	self = [super init];
+	if (nil == self)
 	{
 		return nil;
 	}

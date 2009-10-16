@@ -44,12 +44,7 @@ static const int NUM_SECTIONS = 1;
 
 - (id)init
 {
-	if ([super init] == nil)
-	{
-		return nil;
-	}
-	
-	return self;
+	return [super init];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 

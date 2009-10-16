@@ -34,9 +34,11 @@ static NSString* CameraNameKey = @"Name";
 @synthesize description;
 @synthesize identifier;
 
+// The designated initializer
 - (id)initWithDescription:(NSString*)aDescription coc:(CoC*)aCoc identifier:(int)anIdentifier
 {
-	if ([super init] == nil)
+	self = [super init];
+	if (nil == self)
 	{
 		return nil;
 	}

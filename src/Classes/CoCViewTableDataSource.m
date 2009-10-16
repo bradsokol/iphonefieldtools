@@ -38,7 +38,8 @@ int cocPresetsCount = 0;
 
 - (id)init
 {
-	if (nil == [super init])
+	self = [super init];
+	if (nil == self)
 	{
 		return nil;
 	}

@@ -32,7 +32,8 @@ static NSDictionary* cocPresets;
 // Designated initializer
 - (id)initWithValue:(float)aValue description:(NSString*)aDescription
 {
-	if (nil == [super init])
+	self = [super init];
+	if (nil == self)
 	{
 		return nil;
 	}

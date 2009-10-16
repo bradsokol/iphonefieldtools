@@ -36,8 +36,10 @@
 + (Camera*)findFromDefaultsForIndex:(int)index;
 + (Camera*)findSelectedInDefaults;
 
-- (NSDictionary*) asDictionary;
+// The designated initializer
 - (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
+
+- (NSDictionary*) asDictionary;
 - (void)save;
 
 @property(nonatomic, retain) NSString* description;

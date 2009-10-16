@@ -37,6 +37,7 @@
 	NSNumberFormatter* numberFormatter;
 }
 
+// The designated initializer
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens;
 
 @property(nonatomic, retain) LensViewTableDataSource* tableViewDataSource;

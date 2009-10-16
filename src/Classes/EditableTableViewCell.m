@@ -38,9 +38,11 @@
 	return [self initWithFrame:frame reuseIdentifier:reuseIdentifier delegate:delegate keyboardType:UIKeyboardTypeDefault];
 }
 
+// The designated initializer
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType
 {
-	if ([super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] == nil)
+	self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+	if (nil == self)
 	{
 		return nil;
     }

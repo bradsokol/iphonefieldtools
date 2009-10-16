@@ -53,7 +53,8 @@
 // The designated initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
 {
-    if (self != [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) 
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (nil == self) 
     {
 		return nil;
     }

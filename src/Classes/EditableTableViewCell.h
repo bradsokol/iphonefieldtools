@@ -28,8 +28,9 @@
 	UILabel*		label;
 }
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate;
+// The designated initializer
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType;
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate;
 - (void)setLabel:(NSString*)s;
 - (NSString*)text;
 - (void)setText:(NSString*)s;

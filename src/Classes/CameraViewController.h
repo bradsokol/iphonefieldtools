@@ -33,6 +33,7 @@
 	Camera* cameraWorkingCopy;
 }
 
+// The designated initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
 
 @property(nonatomic, retain) CameraViewTableDataSource* tableViewDataSource;

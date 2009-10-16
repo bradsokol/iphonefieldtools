@@ -45,7 +45,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 // in other ways, other initializers will need to be implemented.
 - (id)initWithCoder:(NSCoder*)decoder
 {
-	if (nil == [super initWithCoder:decoder])
+	self = [super initWithCoder:decoder];
+	if (nil == self)
 	{
 		return nil;
 	}

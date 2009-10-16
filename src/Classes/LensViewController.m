@@ -60,9 +60,11 @@ static const float SectionHeaderHeight = 44.0;
    					     forLens:nil];
 }
 
+// The designated initializer
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)aLens
 {
-	if (nil == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (nil == self)
 	{
 		return nil;
 	}
