@@ -214,9 +214,6 @@ static const float SectionHeaderHeight = 44.0;
 		case FOCAL_LENGTH_SECTION:
 			headerText = NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE");
 			break;
-		case TYPE_SECTION:
-			headerText = NSLocalizedString(@"LENS_VIEW_TYPE_SECTION_TITLE", "LENS_VIEW_TYPE_SECTION_TITLE");
-			break;
 	}
 	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
 	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];

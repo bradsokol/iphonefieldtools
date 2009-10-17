@@ -20,12 +20,12 @@
 //  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-#define SECTION_COUNT			4
+#define SECTION_COUNT			3
 
 #define TITLE_SECTION			0
-#define TYPE_SECTION			1
-#define APERTURE_SECTION		3
-#define FOCAL_LENGTH_SECTION	2
+#define TYPE_SECTION			0
+#define APERTURE_SECTION		2
+#define FOCAL_LENGTH_SECTION	1
 
-#define PRIME_ROW				0
-#define ZOOM_ROW				1
+#define PRIME_ROW				1
+#define ZOOM_ROW				2

@@ -57,7 +57,7 @@
 {
 	if (TITLE_SECTION == section)
 	{
-		return 1;
+		return 3;
 	}
 	else if (FOCAL_LENGTH_SECTION == section)
 	{
@@ -82,11 +82,14 @@
 	UIKeyboardType keyboardType = UIKeyboardTypeDefault;
 	if (TITLE_SECTION == [indexPath section])
 	{
-		identifier = EditableCellIdentifier;
-	}
-	else if (TYPE_SECTION == [indexPath section])
-	{
-		identifier = CellIdentifier;
+		if (0 == [indexPath row])
+		{
+			identifier = EditableCellIdentifier;
+		}
+		else
+		{
+			identifier = CellIdentifier;
+		}
 	}
 	else
 	{
@@ -97,7 +100,7 @@
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (nil == cell)
 	{
-		if (TYPE_SECTION == [indexPath section])
+		if (TYPE_SECTION == [indexPath section] && [indexPath row] > 0)
 		{
 			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
 										   reuseIdentifier:identifier] autorelease];
@@ -115,7 +118,7 @@
 	[cell setTag:tag];
 	NSLog(@"Tag for cell %08x is %04x", cell, [cell tag]);
 	
-	if (TYPE_SECTION == [indexPath section])
+	if (TYPE_SECTION == [indexPath section] && [indexPath row] > 0)
 	{
 		NSString* text = [indexPath row] == PRIME_ROW ? NSLocalizedString(@"LENS_TYPE_PRIME", "LENS_TYPE_PRIME") :
 			NSLocalizedString(@"LENS_TYPE_ZOOM", "LENS_TYPE_ZOOM");
@@ -147,7 +150,7 @@
 			NSString* key = nil;
 			if (lensIsZoom || [indexPath section] != FOCAL_LENGTH_SECTION)
 			{
-				int index = [indexPath row] + ([indexPath section] - 2) * 2;
+				int index = [indexPath row] + ([indexPath section] - 1) * 2;
 				key = [NSString stringWithFormat:@"LENS_EDIT_%d", index];
 			}
 			else
