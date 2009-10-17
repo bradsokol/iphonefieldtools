@@ -84,12 +84,7 @@ static const float SectionHeaderHeight = 44.0;
 		lensIsZoom = [[self lens] isZoom];
 	}
 	
-	[self setLensWorking:[[[Lens alloc] initWithDescription:[[self lens] description]
-										minimumAperture:[[self lens] minimumAperture]
-										maximumAperture:[[self lens] maximumAperture]
-									 minimumFocalLength:[[self lens] minimumFocalLength]
-									 maximumFocalLength:[[self lens] maximumFocalLength]
-											 identifier:[[self lens] identifier]] autorelease]];
+	[self setLensWorking:[[[self lens] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 

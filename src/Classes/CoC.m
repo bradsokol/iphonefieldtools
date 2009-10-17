@@ -52,6 +52,13 @@ static NSDictionary* cocPresets;
 	return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	id result = [[[self class] allocWithZone:zone] initWithValue:[self value]
+													 description:[self description]];
+	return result;
+}
+
 + (NSDictionary*)cocPresets
 {
 	if (nil == cocPresets)

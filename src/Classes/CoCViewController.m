@@ -67,10 +67,7 @@
     }
 	
 	[self setCamera:aCamera];
-	
-	[self setCameraWorking:[[[Camera alloc] initWithDescription:[[self camera] description]
-														coc:[[self camera] coc]
-												 identifier:[[self camera] identifier]] autorelease]];
+	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 

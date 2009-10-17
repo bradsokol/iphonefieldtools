@@ -39,6 +39,8 @@
 // The designated initializer
 - (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
 
+- (id)copyWithZone:(NSZone *)zone;
+
 - (NSDictionary*) asDictionary;
 - (void)save;
 

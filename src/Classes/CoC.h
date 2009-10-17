@@ -31,6 +31,8 @@
 // The designated initializer
 - (id)initWithValue:(float)value description:(NSString*)description;
 
+- (id)copyWithZone:(NSZone *)zone;
+
 + (NSDictionary*)cocPresets;
 + (CoC*)findFromPresets:(NSString*)cocDescription;
 

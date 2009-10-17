@@ -52,6 +52,15 @@ static NSString* CameraNameKey = @"Name";
 	return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	id result = [[[self class] allocWithZone:zone] initWithDescription:[self description]
+																   coc:[[[self coc] copy] autorelease]
+															identifier:[self identifier]];
+	
+	return result;
+}
+
 + (Camera*)findSelectedInDefaults
 {
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];

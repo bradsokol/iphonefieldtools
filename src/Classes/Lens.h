@@ -40,6 +40,8 @@
 	   maximumFocalLength:(NSNumber*)aMaximumFocalLength
 			   identifier:(int)anIdentifier;
 
+- (id)copyWithZone:(NSZone *)zone;
+
 + (void)delete:(Lens*)lens;
 + (Lens*)findSelectedInDefaults;
 + (Lens*)findFromDefaultsForIndex:(int)index;

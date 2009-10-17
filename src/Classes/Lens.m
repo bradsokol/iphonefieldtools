@@ -84,6 +84,17 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	id result = [[[self class] allocWithZone:zone] initWithDescription:[self description]
+													   minimumAperture:[self minimumAperture]
+													   maximumAperture:[self maximumAperture]
+													minimumFocalLength:[self minimumFocalLength]
+													maximumFocalLength:[self maximumFocalLength]
+															identifier:[self identifier]];
+	return result;
+}
+
 - (void)save
 {
 	NSUserDefaults* defaultValues = [NSUserDefaults standardUserDefaults];
