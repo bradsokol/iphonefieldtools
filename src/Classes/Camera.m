@@ -43,12 +43,9 @@ static NSString* CameraNameKey = @"Name";
 		return nil;
 	}
 
-	description = aDescription;
-	[description retain];
-	
-	coc = aCoc;
-	[coc retain];
-	identifier = anIdentifier;
+	[self setDescription:aDescription];
+	[self setCoc:aCoc];
+	[self setIdentifier:anIdentifier];
 	
 	NSLog(@"Camera init: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
 	
@@ -209,8 +206,8 @@ static NSString* CameraNameKey = @"Name";
 
 - (void)dealloc
 {
-	[coc release];
-	[description release];
+	[self setCoc:nil];
+	[self setDescription:nil];
 	
 	[super dealloc];
 }

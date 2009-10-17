@@ -174,4 +174,11 @@
 	return cell;
 }
 
+- (void)dealloc
+{
+	[self setLens:nil];
+	
+	[super dealloc];
+}
+
 @end

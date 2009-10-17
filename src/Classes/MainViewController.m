@@ -48,7 +48,7 @@ static float controlYDelta = 44.0f;
 static BOOL previousLensWasZoom = YES;
 
 // Private methods
-@interface MainViewController(Private)
+@interface MainViewController()
 
 - (float)calculateFarLimit;
 - (float)calculateHyperfocalDistance;
@@ -56,14 +56,12 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateResult;
 - (void)cocDidChange;
 - (void)customizeSliderAppearance:(UISlider*)slider;
-- (void)gearButtonWasPressed;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
 - (void)lensDidChangeWithLens:(Lens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
-- (void)unitsButtonWasPressed;
 - (void)unitsDidChange;
 - (void)updateAperture;
 - (void)updateFocalLength;
@@ -71,13 +69,18 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateDistanceSliderLimits;
 - (void)updateSubjectDistance;
 
+@property(nonatomic) int apertureIndex;
+@property(nonatomic, retain) DistanceFormatter* distanceFormatter;
+
 @end
 
 @implementation MainViewController
 
 #pragma mark Accessors
 
+@synthesize apertureIndex;
 @synthesize circleOfLeastConfusion;
+@synthesize distanceFormatter;
 @synthesize subjectDistance;
 
 // Convert aperture index to an aperture which is set of values
@@ -125,12 +128,12 @@ static BOOL previousLensWasZoom = YES;
 
 	// Reading initial values from defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	apertureIndex = [defaults integerForKey:FTApertureIndex];
+	[self setApertureIndex:[defaults integerForKey:FTApertureIndex]];
 	[self setFocalLength:[defaults floatForKey:FTFocalLengthKey]];
 	[self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
 	[self readDefaultCircleOfLeastConfusion];
 	
-	distanceFormatter = [[DistanceFormatter alloc] init];
+	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
 	
     return self;
 }
@@ -141,7 +144,7 @@ static BOOL previousLensWasZoom = YES;
 	
 	// Set initial values in to controls
 	[distanceType setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceTypeKey]];
-	[apertureSlider setValue:apertureIndex];
+	[apertureSlider setValue:[self apertureIndex]];
 	[focalLengthSlider setValue:[self focalLength]];
 	[subjectDistanceSlider setValue:[self subjectDistance]];
 	
@@ -167,9 +170,9 @@ static BOOL previousLensWasZoom = YES;
 - (void)apertureDidChange:(id)sender
 {
 	// Round slider value to nearest integer value to get index in to array
-	apertureIndex = [apertureSlider value] + 0.5f;
+	[self setApertureIndex:[apertureSlider value] + 0.5f];
 	
-	[[NSUserDefaults standardUserDefaults] setInteger:apertureIndex
+	[[NSUserDefaults standardUserDefaults] setInteger:[self apertureIndex]
 											   forKey:FTApertureIndex];
 	
 	[self updateAperture];
@@ -270,7 +273,7 @@ static BOOL previousLensWasZoom = YES;
 	// value won't trigger the value changed action so we have to force it.
 	[apertureSlider setValue:apertureIndex animated:YES];
 	[self apertureDidChange:nil];
-	[focalLengthSlider setValue:focalLength animated:YES];
+	[focalLengthSlider setValue:[self focalLength] animated:YES];
 	[self focalLengthDidChange:nil];
 	
 	BOOL isPrime = ![lens isZoom];
@@ -342,16 +345,14 @@ static BOOL previousLensWasZoom = YES;
 	float h = [self calculateHyperfocalDistance];
 	float s = [subjectDistanceSlider value];
 	
-	return ((h * s) / (h - (s - focalLength / 1000.0f)));
+	return ((h * s) / (h - (s - [self focalLength] / 1000.0f)));
 }
 
 // H = (f^2) / (Nc) + f
 - (float)calculateHyperfocalDistance
 {
-//	return ((focalLength * focalLength) / 
-//			([self aperture] * circleOfLeastConfusion) + focalLength) / 1000.0f;
-	return ((focalLength * focalLength) / 
-			([self aperture] * circleOfLeastConfusion)) / 1000.0f;
+	return (([self focalLength] * [self focalLength]) / 
+			([self aperture] * [self circleOfLeastConfusion])) / 1000.0f;
 }
 
 // Dn = ((Hs)/(H + (s - f)))
@@ -360,7 +361,7 @@ static BOOL previousLensWasZoom = YES;
 	float h = [self calculateHyperfocalDistance];
 	float s = [subjectDistanceSlider value];
 	
-	return ((h * s) / (h + (s - focalLength / 1000.0f)));
+	return ((h * s) / (h + (s - [self focalLength] / 1000.0f)));
 }
 
 #pragma mark Updaters
@@ -369,7 +370,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateAperture
 {
 	NSString* formatted = [NSString stringWithFormat:@"f/%.1f", 
-						   [[apertures objectAtIndex:apertureIndex] floatValue]];
+						   [[apertures objectAtIndex:[self apertureIndex]] floatValue]];
 	
 	// Trim '.0' from the formatted string as convention is that this is not
 	// included in an f-number
@@ -407,14 +408,14 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateDistanceSliderLimits
 {
-	[subjectDistanceMinimum setText:[distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:minimumDistanceToSubject]]];
-	[subjectDistanceMaximum setText:[distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:maximumDistanceToSubject]]];
+	[subjectDistanceMinimum setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:minimumDistanceToSubject]]];
+	[subjectDistanceMaximum setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:maximumDistanceToSubject]]];
 }
 
 // Update the distance to subject display
 - (void)updateSubjectDistance
 {
-	[subjectDistanceText setText:[distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:[self subjectDistance]]]];
+	[subjectDistanceText setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:[self subjectDistance]]]];
 	[self updateResult];
 }
 
@@ -518,7 +519,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[distanceFormatter release];
+	[self setDistanceFormatter:nil];
 
     [super dealloc];
 }

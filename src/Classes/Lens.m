@@ -214,7 +214,7 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 
 - (bool)isZoom
 {
-	return [minimumFocalLength compare:maximumFocalLength] == NSOrderedAscending;
+	return [[self minimumFocalLength] compare:[self maximumFocalLength]] == NSOrderedAscending;
 }
 
 - (NSDictionary*)asDictionary
@@ -222,13 +222,13 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:5];
 	[dict setObject:[self description]
 			 forKey:LensNameKey];
-	[dict setObject:maximumAperture
+	[dict setObject:[self maximumAperture]
 			 forKey:MaximumApertureKey];
-	[dict setObject:minimumAperture
+	[dict setObject:[self minimumAperture]
 			 forKey:MinimumApertureKey];
-	[dict setObject:maximumFocalLength
+	[dict setObject:[self maximumFocalLength]
 			 forKey:MaximumFocalLengthKey];
-	[dict setObject:minimumFocalLength
+	[dict setObject:[self minimumFocalLength]
 			 forKey:MinimumFocalLengthKey];
 	
 	return dict;
@@ -236,7 +236,7 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 
 - (void)dealloc
 {
-	[description release];
+	[self setDescription:nil];
 	
 	[super dealloc];
 }

@@ -28,7 +28,7 @@
 
 #import "Notifications.h"
 
-@interface CoCViewController (Private)
+@interface CoCViewController ()
 
 - (void)cancelWasSelected;
 - (void)didSelectCoCPresetAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView;
@@ -37,10 +37,17 @@
 - (int)rowForSelectedCoC;
 - (void)saveWasSelected;
 
+@property(nonatomic, retain) Camera* camera;
+@property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, retain) UIBarButtonItem* saveButton;
+
 @end
 
 @implementation CoCViewController
 
+@synthesize camera;
+@synthesize cameraWorking;
+@synthesize saveButton;
 @synthesize tableViewDataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -59,23 +66,21 @@
 		return nil;
     }
 	
-	camera = aCamera;
-	[camera retain];
+	[self setCamera:aCamera];
 	
-	cameraWorkingCopy = [[Camera alloc] initWithDescription:[camera description]
-														coc:[camera coc]
-												 identifier:[camera identifier]];
+	[self setCameraWorking:[[[Camera alloc] initWithDescription:[[self camera] description]
+														coc:[[self camera] coc]
+												 identifier:[[self camera] identifier]] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
 	  action:@selector(cancelWasSelected)] autorelease];
-	saveButton = 
-	[[UIBarButtonItem alloc] 
+	[self setSaveButton:[[[UIBarButtonItem alloc] 
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
-	 action:@selector(saveWasSelected)];
+	 action:@selector(saveWasSelected)] autorelease]];
 	[saveButton setEnabled:NO];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
@@ -93,7 +98,7 @@
 
 - (void)saveWasSelected
 {
-	[camera setCoc:[cameraWorkingCopy coc]];
+	[[self camera] setCoc:[[self cameraWorking] coc]];
 	
 	[[self navigationController] popViewControllerAnimated:YES];
 }
@@ -105,7 +110,7 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
 	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:camera];
+	[[self tableViewDataSource] setCamera:[self camera]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -157,7 +162,7 @@
 		NSString* description = [self keyForRow:[indexPath row]];
 		CoC* coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
 								  description:description];
-		[cameraWorkingCopy setCoc:coc];
+		[[self cameraWorking] setCoc:coc];
 		[coc release];
 		
 		[[NSNotificationCenter defaultCenter] 
@@ -188,7 +193,7 @@
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	for (int i = 0; i < [sortedKeys count]; ++i)
 	{
-		if ([[[cameraWorkingCopy coc] description] compare:[sortedKeys objectAtIndex:i]] == 0)
+		if ([[[[self cameraWorking] coc] description] compare:[sortedKeys objectAtIndex:i]] == 0)
 		{
 			return i;
 		}
@@ -198,9 +203,9 @@
 
 - (void)dealloc 
 {
-	[saveButton release];
-	[camera release];
-	[cameraWorkingCopy release];
+	[self setSaveButton:nil];
+	[self setCamera:nil];
+	[self setCameraWorking:nil];
 	
     [super dealloc];
 }

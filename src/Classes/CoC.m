@@ -24,6 +24,14 @@
 
 static NSDictionary* cocPresets;
 
+@interface CoC ()
+
+// This will make write access private
+@property (retain, nonatomic) NSString* description;
+@property (assign) float value;
+
+@end
+
 @implementation CoC
 
 @synthesize description;
@@ -38,9 +46,8 @@ static NSDictionary* cocPresets;
 		return nil;
 	}
 	
-	value = aValue;
-	description = aDescription;
-	[description retain];
+	[self setDescription:aDescription];
+	[self setValue:aValue];
 	
 	return self;
 }
@@ -74,7 +81,7 @@ static NSDictionary* cocPresets;
 
 - (void)dealloc
 {
-	[description release];
+	[self setDescription:nil];
 	
 	[super dealloc];
 }

@@ -81,7 +81,7 @@ int cocPresetsCount = 0;
 		[cell setText:[NSString stringWithFormat:@"%.3f", [[[CoC cocPresets] objectForKey:key] floatValue]]];
 		[cell setLabel:key];
 		
-		if ([key compare:[[camera coc] description]] == 0)
+		if ([key compare:[[[self camera] coc] description]] == 0)
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		}

@@ -183,8 +183,9 @@ float DefaultMaximumFocalLength = 100.0;
 
 - (void)dealloc 
 {
-    [rootViewController release];
-    [window release];
+    [self setRootViewController:nil];
+    [self setWindow:nil];
+	
     [super dealloc];
 }
 

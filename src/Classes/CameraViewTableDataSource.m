@@ -30,7 +30,7 @@
 static const int CAMERA_NAME_ROW = 0;
 static const int NUM_SECTIONS = 1;
 
-@interface CameraViewTableDataSource (Private)
+@interface CameraViewTableDataSource ()
 
 - (UITableViewCell*) cellForCameraNameRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *) tableView;
 - (UITableViewCell*) cellForCoCRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *) tableView;
@@ -84,7 +84,7 @@ static const int NUM_SECTIONS = 1;
 												   delegate:[self controller]] autorelease];
 	}
 	[cell setLabel:NSLocalizedString(@"CAMERA_NAME_TITLE", "Camera")];
-	[cell setText:[camera description]];
+	[cell setText:[[self camera] description]];
 	
 	return cell;
 }
@@ -101,7 +101,7 @@ static const int NUM_SECTIONS = 1;
 											reuseIdentifier:CellIdentifier] autorelease];
 	}
 	[cell setLabel:NSLocalizedString(@"COC_TITLE", "CoC")];
-	[cell setText:[[camera coc] description]];
+	[cell setText:[[[self camera] coc] description]];
 	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
@@ -109,7 +109,7 @@ static const int NUM_SECTIONS = 1;
 
 - (void)dealloc
 {
-	[camera release];
+	[self setCamera:nil];
 	
 	[super dealloc];
 }

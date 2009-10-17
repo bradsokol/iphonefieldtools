@@ -25,10 +25,17 @@
 #import "FlipsideViewController.h"
 #import "MainViewController.h"
 
+@interface RootViewController ()
+
+@property(nonatomic, retain) UINavigationController* navigationController;
+
+@end
+
 @implementation RootViewController
 
 @synthesize infoButton;
 @synthesize mainViewController;
+@synthesize navigationController;
 @synthesize flipsideNavigationBar;
 @synthesize flipsideViewController;
 
@@ -41,10 +48,10 @@
 	
 	[[self view] insertSubview:[mainViewController view] belowSubview:infoButton];
 	
-	CGRect newInfoButtonRect = CGRectMake(infoButton.frame.origin.x-25, 
-										  infoButton.frame.origin.y-25, infoButton.frame.size.width+50, 
-										  infoButton.frame.size.height+50);
-	[infoButton setFrame:newInfoButtonRect];	
+	CGRect newInfoButtonRect = CGRectMake([self infoButton].frame.origin.x-25, 
+										  [self infoButton].frame.origin.y-25, [self infoButton].frame.size.width+50, 
+										  [self infoButton].frame.size.height+50);
+	[[self infoButton] setFrame:newInfoButtonRect];	
 }
 
 // Helper method to load the flipside view and controller
@@ -55,24 +62,24 @@
 	[self setFlipsideViewController:viewController];
 	[viewController setRootViewController:self];
 	
-	navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-	[viewController setNavigationController:navigationController];
+	[self setNavigationController:[[[UINavigationController alloc] initWithRootViewController:viewController] autorelease]];
+	[viewController setNavigationController:[self navigationController]];
 	[viewController release];
-	UINavigationItem* navigationItem = [[[navigationController navigationBar] items] objectAtIndex:0];
+	UINavigationItem* navigationItem = [[[[self navigationController] navigationBar] items] objectAtIndex:0];
 	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
-	[[navigationController navigationBar] setBarStyle:UIBarStyleBlackOpaque];
+	[[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlackOpaque];
 }
 
 // This method is called when the info or Done button is pressed.
 // It flips the displayed view from the main view to the flipside view and vice-versa.
 - (IBAction)toggleView 
 {	
-	if (flipsideViewController == nil) 
+	if ([self flipsideViewController] == nil) 
 	{
 		[self loadFlipsideViewController];
 	}
 	
-	UIView* mainView = [mainViewController view];
+	UIView* mainView = [[self mainViewController] view];
 	UIWindow* window = [[self view] window];
 	
 	[UIView beginAnimations:nil context:NULL];
@@ -85,22 +92,22 @@
 	{
 		// Switch to flipside view
 		
-		[navigationController.topViewController viewWillAppear:YES];
-		[mainViewController viewWillDisappear:YES];
+		[[self navigationController].topViewController viewWillAppear:YES];
+		[[self mainViewController] viewWillDisappear:YES];
 		[mainView removeFromSuperview];
-        [infoButton removeFromSuperview];
-		[window addSubview:[navigationController view]];
+        [[self infoButton] removeFromSuperview];
+		[window addSubview:[[self navigationController] view]];
 	}
 	else
 	{
 		// Switch to main view
 		
-		[mainViewController viewWillAppear:YES];
-		[navigationController.topViewController viewWillDisappear:YES];
-		[[navigationController view] removeFromSuperview];
+		[[self mainViewController] viewWillAppear:YES];
+		[[self navigationController].topViewController viewWillDisappear:YES];
+		[[[self navigationController] view] removeFromSuperview];
 		[[self view] addSubview:mainView];
-		[[self view] insertSubview:infoButton 
-					  aboveSubview:[mainViewController view]];
+		[[self view] insertSubview:[self infoButton] 
+					  aboveSubview:[[self mainViewController] view]];
 	}
 	[UIView commitAnimations];
 }
@@ -112,10 +119,11 @@
 
 - (void)dealloc 
 {
-	[infoButton release];
-	[flipsideNavigationBar release];
-	[mainViewController release];
-	[flipsideViewController release];
+	[self setInfoButton:nil];
+	[self setFlipsideNavigationBar:nil];
+	[self setMainViewController:nil];
+	[self setFlipsideViewController:nil];
+	
 	[super dealloc];
 }
 

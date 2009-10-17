@@ -139,18 +139,13 @@
 				A2D6241910424A2200B2F055 /* CoC View */,
 				A24FF4970FE0C2570073BC03 /* Flipside View */,
 				A2B95FA310715F6A0057A70E /* Lens View */,
+				A23CFF29108A5FC400A41662 /* Main View */,
 				A2AAAECD0F2831D400945F6E /* Model */,
 				A2A0D30710156E4000A34735 /* Table View Cells */,
 				A20D30610F7B333900A744C3 /* DistanceFormatter.h */,
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
 				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
-				A24EF5EA0ECA9415001A7B46 /* MainView.h */,
-				A24EF5EB0ECA9415001A7B46 /* MainView.m */,
-				28C286DF0D94DF7D0034E888 /* MainViewController.h */,
-				28C286E00D94DF7D0034E888 /* MainViewController.m */,
-				A2C70FE70F7562AF00484E24 /* ResultView.h */,
-				A2C70FE80F7562AF00484E24 /* ResultView.m */,
 				A284E6FF0EE45DDE00C37E21 /* RootViewController.h */,
 				A284E7000EE45DDE00C37E21 /* RootViewController.m */,
 			);
@@ -215,6 +210,19 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A23CFF29108A5FC400A41662 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				A24EF5EA0ECA9415001A7B46 /* MainView.h */,
+				A24EF5EB0ECA9415001A7B46 /* MainView.m */,
+				28C286DF0D94DF7D0034E888 /* MainViewController.h */,
+				28C286E00D94DF7D0034E888 /* MainViewController.m */,
+				A2C70FE70F7562AF00484E24 /* ResultView.h */,
+				A2C70FE80F7562AF00484E24 /* ResultView.m */,
+			);
+			name = "Main View";
 			sourceTree = "<group>";
 		};
 		A24FF4970FE0C2570073BC03 /* Flipside View */ = {

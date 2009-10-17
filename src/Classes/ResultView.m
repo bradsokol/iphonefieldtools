@@ -30,16 +30,20 @@ static const float FONT_SIZE = 28.0;
 static const float INFINITY_FONT_SIZE = 32.0;
 static const float SMALL_FONT_SIZE = 24.0;
 
-@interface ResultView (Private)
+@interface ResultView ()
 
 - (void)adjustFontsForNearFarDisplay;
 - (void)adjustNumberDisplay:(UILabel*)label inRect:(CGRect)rect;
 - (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
 
+@property(nonatomic, retain) DistanceFormatter* distanceFormatter;
+
 @end
 
 @implementation ResultView
+
+@synthesize distanceFormatter;
 
 // Initializer used when loading from a NIB. If the view is created
 // in other ways, other initializers will need to be implemented.
@@ -51,7 +55,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 		return nil;
 	}
 	
-	distanceFormatter = [[DistanceFormatter alloc] init];
+	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
 	firstDraw = YES;
 	
     return self;
@@ -78,9 +82,9 @@ static const float SMALL_FONT_SIZE = 24.0;
 		
 		[self adjustFontsForNearFarDisplay];
 
-		leftNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
-		rightNumber.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
-		difference.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
+		leftNumber.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
+		rightNumber.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
+		difference.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
 		
 		// Hide the difference if infinity (i.e. less than zero)
 		difference.hidden = distanceDifference <= 0;
@@ -90,7 +94,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 		// Displaying a single value in the UITextField. Hide everything else
 		[self hideNumberLabels:YES];
 		
-		largeText.text = [distanceFormatter stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
+		largeText.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 	}
 }
 
@@ -169,7 +173,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 
 - (void)dealloc 
 {
-	[distanceFormatter release];
+	[self setDistanceFormatter:nil];
 	
     [super dealloc];
 }

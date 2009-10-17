@@ -29,7 +29,7 @@
 #import "Notifications.h"
 #import "UserDefaults.h"
 
-@interface CameraViewController (Private)
+@interface CameraViewController ()
 
 - (void)cancelWasSelected;
 - (void)cocChanged:(NSNotification*)notification;
@@ -37,10 +37,17 @@
 - (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc;
 - (void)saveWasSelected;
 
+@property(nonatomic, retain) Camera* camera;
+@property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, retain) UIBarButtonItem* saveButton;
+
 @end
 
 @implementation CameraViewController
 
+@synthesize camera;
+@synthesize cameraWorking;
+@synthesize saveButton;
 @synthesize tableViewDataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
@@ -59,28 +66,28 @@
 		return nil;
     }
 	
-	camera = aCamera;
-	[camera retain];
+	[self setCamera:aCamera];
 	
-	cameraWorkingCopy = [[Camera alloc] initWithDescription:[camera description]
-														coc:[camera coc]
-												 identifier:[camera identifier]];
+	[self setCameraWorking:[[[Camera alloc] 
+								initWithDescription:[[self camera] description]
+								coc:[[self camera] coc]
+								identifier:[[self camera] identifier]] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 		[[[UIBarButtonItem alloc] 
 		  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 							   target:self
 							   action:@selector(cancelWasSelected)] autorelease];
-	saveButton = 
-		[[UIBarButtonItem alloc] 
+	[self setSaveButton: 
+		[[[UIBarButtonItem alloc] 
 		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 							  target:self
-							  action:@selector(saveWasSelected)];
-	[saveButton setEnabled:NO];
+							  action:@selector(saveWasSelected)] autorelease]];
+	[[self saveButton] setEnabled:NO];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
-	[[self navigationItem] setRightBarButtonItem:saveButton];
-	[self enableSaveButtonForCamera:camera];
+	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
+	[self enableSaveButtonForCamera:[self camera]];
 	
 	[self setTitle:NSLocalizedString(@"CAMERA_VIEW_TITLE", "Camera view")];
 
@@ -102,11 +109,11 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
 														object:self];
 	
-	[camera setDescription:[cameraWorkingCopy description]];
-	[camera setCoc:[cameraWorkingCopy coc]];
+	[[self camera] setDescription:[[self cameraWorking] description]];
+	[[self camera] setCoc:[[self cameraWorking] coc]];
 	
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CAMERA_WAS_EDITED_NOTIFICATION
-																						 object:camera]];
+																						 object:[self camera]]];
 	
 	[[self navigationController] popViewControllerAnimated:YES];
 }
@@ -119,7 +126,7 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 
 	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:cameraWorkingCopy];
+	[[self tableViewDataSource] setCamera:[self cameraWorking]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -135,7 +142,7 @@
 
 - (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc
 {
-	[saveButton setEnabled:nameLength > 0 && coc > 0.0];
+	[[self saveButton] setEnabled:nameLength > 0 && coc > 0.0];
 }
 
 #pragma mark UITextFieldDelegate methods
@@ -146,14 +153,14 @@
 	// Enable the save button if text was entered
 	int currentLength = [[textField text] length];
 	int newLength = currentLength + [string length] - range.length;
-	[self enableSaveButtonForNameLength:newLength coc:[[cameraWorkingCopy coc] value]];
+	[self enableSaveButtonForNameLength:newLength coc:[[[self cameraWorking] coc] value]];
 
 	return YES;
 }
 	 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	[cameraWorkingCopy setDescription:[textField text]];
+	[[self cameraWorking] setDescription:[textField text]];
 }
 
 #pragma mark UITableViewDelegate methods
@@ -166,23 +173,20 @@
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:
 	 [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
-								   object:cameraWorkingCopy]];
+								   object:[self cameraWorking]]];
 }
 
 - (void)cocChanged:(NSNotification*)notification
 {
 	UITableView* tableView = (UITableView*) [self view];
-//	Camera* camera = (Camera*)[notification object];
-//	[camera save];
-//	
 	[tableView reloadData];
 }
 
 - (void)dealloc 
 {
-	[saveButton release];
-	[camera release];
-	[cameraWorkingCopy release];
+	[self setSaveButton:nil];
+	[self setCamera:nil];
+	[self setCameraWorking:nil];
 	
     [super dealloc];
 }

@@ -29,7 +29,7 @@
 {
 	LensViewTableDataSource* tableViewDataSource;
 	Lens* lens;
-	Lens* lensWorkingCopy;
+	Lens* lensWorking;
 	bool lensIsZoom;
 
 	UIBarButtonItem* saveButton;

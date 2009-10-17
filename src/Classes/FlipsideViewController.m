@@ -103,8 +103,8 @@
 {
 	[super setEditing:editing animated:animated];
 	
-	[tableViewDelegate setEditing:editing];
-	[tableViewDataSource setEditing:editing];
+	[[self tableViewDelegate] setEditing:editing];
+	[[self tableViewDataSource] setEditing:editing];
 	
 	int cameraCount = [Camera count];
 	int lensCount = [Lens count];
@@ -233,8 +233,10 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObject:self];
 	
-	[navigationController release];
-	[rootViewController release];
+	[self setNavigationController:nil];
+	[self setRootViewController:nil];
+	[self setTableViewDataSource:nil];
+	[self setTableViewDelegate:nil];
 	
     [super dealloc];
 }

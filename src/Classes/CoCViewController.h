@@ -30,7 +30,7 @@
 	CoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
 	Camera* camera;
-	Camera* cameraWorkingCopy;
+	Camera* cameraWorking;
 }
 
 // The designated initializer.

@@ -31,6 +31,8 @@
 }
 
 @property(nonatomic, retain) Camera* camera;
-@property(nonatomic, retain) UIViewController* controller;
+
+// Weak reference to avoid a retain cycle
+@property(nonatomic, assign) UIViewController* controller;
 
 @end
