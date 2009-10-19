@@ -27,6 +27,10 @@
 
 #import "LensViewSections.h"
 
+NSString* CellIdentifier = @"Cell";
+NSString* EditableCellIdentifier = @"EditableCell";
+NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
+
 @implementation LensViewTableDataSource
 
 @synthesize lensIsZoom;
@@ -72,10 +76,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	static NSString* CellIdentifier = @"Cell";
-	static NSString* EditableCellIdentifier = @"EditableCell";
-	static NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
-
 	int tag = ([indexPath section] << 4) | [indexPath row];
 		
 	NSString* identifier;

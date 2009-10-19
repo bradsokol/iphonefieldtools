@@ -140,13 +140,12 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	// Force the keyboard to hide by finding the first responder and asking it to resign.
-	UIWindow* keyWindow = [[UIApplication sharedApplication] keyWindow];
-	if (keyWindow)
-	{
-		UIView* firstResponder = [keyWindow performSelector:@selector(firstResponder)];
-		[firstResponder resignFirstResponder];
-	}
+	// Force the keyboard to hide by asking editable cells to resign as first responder
+	EditableTableViewCell* cell = (EditableTableViewCell*)[tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
+	[[cell textField] resignFirstResponder];
+	cell = (EditableTableViewCell*)[tableView dequeueReusableCellWithIdentifier:EditableNumericCellIdentifier];
+	[[cell textField] resignFirstResponder];
+	
 	
 	// ALl cells except the type section have a UITextField. If the cell is touched 
 	// anywhere, not just in the text field, make the text field the first responder.
