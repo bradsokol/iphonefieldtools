@@ -22,17 +22,25 @@
 
 #import "CustomCoCViewController.h"
 
+#import "CustomCoCViewTableDataSource.h"
+
+#import "Notifications.h"
+
 @interface CustomCoCViewController ()
 
 - (void)cancelWasSelected;
 - (void)saveWasSelected;
 
+@property(nonatomic, assign) float coc;
+@property(nonatomic, retain) NSNumberFormatter* numberFormatter;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
 
 @end
 
 @implementation CustomCoCViewController
 
+@synthesize coc;
+@synthesize numberFormatter;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
 
@@ -62,12 +70,13 @@
 						  initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 						  target:self
 						  action:@selector(saveWasSelected)] autorelease]];
-	[saveButton setEnabled:NO];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
 	
 	[self setTitle:NSLocalizedString(@"CUSTOM_COC_VIEW_TITLE", "CoC view")];
+
+	[self setNumberFormatter:[[[NSNumberFormatter alloc] init] autorelease]];
     
 	return self;
 }
@@ -78,9 +87,8 @@
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
-//	[self setTableViewDataSource: [[self tableView] dataSource]];
-//	[[self tableViewDataSource] setCamera:[self camera]];
-//	[[self tableViewDataSource] setController:self];
+	[self setTableViewDataSource: [[self tableView] dataSource]];
+	[[self tableViewDataSource] setController:self];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -96,43 +104,36 @@
 
 - (void)saveWasSelected
 {
-//	[[self camera] setCoc:[[self cameraWorking] coc]];
-	
-	[[self navigationController] popViewControllerAnimated:YES];
-}
+	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
+														object:self];
 
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
-{
-    return 1;
-}
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
-{
-    return 0;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) 
+	if (coc <= 0.0 || coc >= 1.0)
 	{
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Set up the cell...
-	
-    return cell;
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"COC_VALIDATION_ERROR", "COC_VALIDATION_ERROR")
+														message:NSLocalizedString(@"COC_ERROR_OUT_OF_RANGE", "COC_ERROR_OUT_OF_RANGE")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	else
+	{
+		NSLog(@"Custom CoC value is %f", coc);
+		[[self navigationController] popViewControllerAnimated:YES];
+	}
+}
+
+#pragma mark UITextViewDelegate methods
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	coc = [[numberFormatter numberFromString:[textField text]] floatValue];
 }
 
 - (void)dealloc 
 {
+	[self setNumberFormatter:nil];
 	[self setSaveButton:nil];
 	
     [super dealloc];

@@ -309,7 +309,7 @@ static const float SectionHeaderHeight = 44.0;
 	return YES;
 }
 
-// UITextViewDelegate methods
+#pragma mark UITextViewDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {

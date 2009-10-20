@@ -34,6 +34,7 @@
 		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
+		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
@@ -98,6 +99,8 @@
 		A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCoCView.xib; sourceTree = "<group>"; };
 		A28D8A02108D5F2B00C77FEA /* CustomCoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewController.h; sourceTree = "<group>"; };
 		A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewController.m; sourceTree = "<group>"; };
+		A28D8A47108D67F000C77FEA /* CustomCoCViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewTableDataSource.h; sourceTree = "<group>"; };
+		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 			children = (
 				A28D8A02108D5F2B00C77FEA /* CustomCoCViewController.h */,
 				A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */,
+				A28D8A47108D67F000C77FEA /* CustomCoCViewTableDataSource.h */,
+				A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */,
 			);
 			name = "Custom CoC View";
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				A2B95FA610715FB80057A70E /* LensViewController.m in Sources */,
 				A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */,
 				A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */,
+				A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

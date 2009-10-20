@@ -13,30 +13,21 @@
 // limitations under the License.
 
 //
-//  CustomCoCViewController.h
+//  CustomCoCViewTableDataSource.h
 //  FieldTools
 //
 //  Created by Brad on 2009/10/19.
 //  Copyright 2009 Brad Sokol. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class CustomCoCViewTableDataSource;
-
-@interface CustomCoCViewController : UITableViewController <UITextFieldDelegate>
+@interface CustomCoCViewTableDataSource : NSObject <UITableViewDataSource>
 {
-	CustomCoCViewTableDataSource* tableViewDataSource;
-	UIBarButtonItem* saveButton;
-	
-	NSNumberFormatter* numberFormatter;
-	
-	float coc;
+	UIViewController* controller;
 }
 
-// The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
-
-@property(nonatomic, retain) CustomCoCViewTableDataSource* tableViewDataSource;
+// Weak reference to prevent retain cycles.
+@property(nonatomic, assign) UIViewController* controller;
 
 @end
