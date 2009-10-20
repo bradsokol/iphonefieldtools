@@ -24,6 +24,7 @@
 #import "Camera.h"
 #import "CameraViewController.h"
 #import "CoCViewController.h"
+#import "CustomCoCViewController.h"
 #import "FlipsideTableViewDataSource.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
@@ -35,6 +36,7 @@
 
 -(void)editCamera:(NSNotification*)notification;
 -(void)editCoC:(NSNotification*)notification;
+-(void)editCustomCoC:(NSNotification*)notification;
 -(void)editLens:(NSNotification*)notification;
 
 @end
@@ -62,6 +64,10 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(editCoC:)
 												 name:COC_SELECTED_FOR_EDIT_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(editCustomCoC:)
+												 name:CUSTOM_COC_SELECTED_FOR_EDIT_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(editLens:)
@@ -187,6 +193,15 @@
 	[[CoCViewController alloc] initWithNibName:@"CoCView" 
 										bundle:nil
 									 forCamera:(Camera*)[notification object]];
+	[[self navigationController] pushViewController:viewController animated:YES];
+	[viewController release];
+}
+
+- (void)editCustomCoC:(NSNotification*)notification
+{
+	UIViewController* viewController = 
+	[[CustomCoCViewController alloc] initWithNibName:@"CustomCoCView" 
+											  bundle:nil];
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }

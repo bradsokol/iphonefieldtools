@@ -175,6 +175,10 @@
 
 - (void)didSelectCustomCoCInTableView:(UITableView *)tableView
 {
+	[[NSNotificationCenter defaultCenter] 
+	 postNotification:
+	 [NSNotification notificationWithName:CUSTOM_COC_SELECTED_FOR_EDIT_NOTIFICATION 
+								   object:nil]];
 }
 
 - (NSString*)keyForRow:(int)row
