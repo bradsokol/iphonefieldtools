@@ -31,6 +31,7 @@
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E7000EE45DDE00C37E21 /* RootViewController.m */; };
+		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
@@ -91,6 +92,7 @@
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		A284E6FF0EE45DDE00C37E21 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		A284E7000EE45DDE00C37E21 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				A261F8CE0FDCCAAA00C907AD /* CameraView.xib */,
 				A22C2451104387A1005BC94C /* CoC.plist */,
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
+				A28D89E2108D5A6D00C77FEA /* Default.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
 				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
@@ -373,6 +376,7 @@
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
+				A28D89E3108D5A6D00C77FEA /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
