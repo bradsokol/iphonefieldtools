@@ -27,7 +27,7 @@
 @class Camera;
 @class CustomCoCViewTableDataSource;
 
-@interface CustomCoCViewController : UITableViewController <UITextFieldDelegate>
+@interface CustomCoCViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
 {
 	CustomCoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;

@@ -25,6 +25,7 @@
 #import "Camera.h"
 #import "CoC.h"
 #import "CustomCoCViewTableDataSource.h"
+#import "EditableTableViewCell.h"
 
 #import "Notifications.h"
 
@@ -141,6 +142,19 @@
 	}
 }
 
+#pragma mark UITableViewDelegateMethods
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath
+							 animated:YES];
+
+	// If the cell is touched anywhere, not just in the text field, make the text field the first responder.
+	EditableTableViewCell* editableCell = 
+		(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+	[[editableCell textField] becomeFirstResponder];
+}
+	
 #pragma mark UITextViewDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

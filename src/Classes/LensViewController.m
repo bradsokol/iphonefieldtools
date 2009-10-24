@@ -136,7 +136,7 @@ static const float SectionHeaderHeight = 44.0;
 	}
 }
 
-#pragma mark "UITableViewDelegateMethods
+#pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
