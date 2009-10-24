@@ -25,6 +25,7 @@
 #import "Camera.h"
 #import "CoC.h"
 #import "CoCViewTableDataSource.h"
+#import "EditableTableViewCell.h"
 
 #import "Notifications.h"
 
@@ -172,10 +173,10 @@
 	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
 	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
 	{
-		if ([oldIndexPath row] > [[CoC cocPresets] count])
+		if ([oldIndexPath row] == [[CoC cocPresets] count])
 		{
 			[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:oldIndexPath]
-							 withRowAnimation:UITableViewRowAnimationNone];
+							 withRowAnimation:UITableViewRowAnimationFade];
 		}
 		else
 		{

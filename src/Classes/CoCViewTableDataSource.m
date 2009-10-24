@@ -107,6 +107,7 @@ int cocPresetsCount = 0;
 		else 
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			[cell setText:@""];
 		}
 		[cell setLabel:customLabel];
 	}
