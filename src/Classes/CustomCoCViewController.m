@@ -32,6 +32,7 @@
 @interface CustomCoCViewController ()
 
 - (void)cancelWasSelected;
+- (void)makeTextFieldFirstResponder;
 - (void)saveWasSelected;
 
 @property(nonatomic, retain) Camera* camera;
@@ -126,6 +127,8 @@
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
+		
+		[self makeTextFieldFirstResponder];
 	}
 	else
 	{
@@ -142,6 +145,17 @@
 	}
 }
 
+- (void)makeTextFieldFirstResponder
+{
+	UITableView* tableView = (UITableView*)[self view];
+	NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+	
+	EditableTableViewCell* editableCell = 
+		(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+	[[editableCell textField] becomeFirstResponder];
+	
+}
+
 #pragma mark UITableViewDelegateMethods
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
@@ -150,9 +164,7 @@
 							 animated:YES];
 
 	// If the cell is touched anywhere, not just in the text field, make the text field the first responder.
-	EditableTableViewCell* editableCell = 
-		(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-	[[editableCell textField] becomeFirstResponder];
+	[self makeTextFieldFirstResponder];
 }
 	
 #pragma mark UITextViewDelegate methods
