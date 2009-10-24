@@ -78,9 +78,24 @@ static NSString* CameraNameKey = @"Name";
 	NSString* key = [NSString stringWithFormat:CameraKeyFormat, index];
 	NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:key];
 	
+	NSString* customLabel = NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM");
 	NSString* description = (NSString*) [dict objectForKey:CameraCoCKey];
-	CoC* coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
-							  description:description];
+	CoC* coc = nil;
+	if ([description length] > [customLabel length] &&
+		[description compare:customLabel
+					 options:NSLiteralSearch
+					   range:NSMakeRange(0, [customLabel length])] == NSOrderedSame)
+	{
+		NSString* valueAsString = [description substringFromIndex:[customLabel length]];
+		float value = [valueAsString floatValue];
+		coc = [[CoC alloc] initWithValue:value
+							 description:customLabel];
+	}
+	else
+	{
+		coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
+							 description:description];
+	}
 	Camera* camera = [[[Camera alloc] initWithDescription:[dict objectForKey:CameraNameKey]																		
 													 coc:coc
 											  identifier:index] autorelease];	
@@ -166,6 +181,8 @@ static NSString* CameraNameKey = @"Name";
 		[[NSUserDefaults standardUserDefaults] setInteger:cameraCount + 1
 												   forKey:FTCameraCount];
 	}
+	
+	NSLog(@"Camera save: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
 }
 
 + (int)count
@@ -207,8 +224,17 @@ static NSString* CameraNameKey = @"Name";
 	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:2];
 	[dict setObject:[self description]
 			forKey:CameraNameKey];
-	[dict setObject:[coc description]
-			 forKey:CameraCoCKey];
+	
+	if ([[coc description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
+	{
+		[dict setObject:[NSString stringWithFormat:@"%@%.3f", [coc description], [coc value]]
+				 forKey:CameraCoCKey];
+	}
+	else
+	{
+		[dict setObject:[coc description]
+				 forKey:CameraCoCKey];
+	}
 	
 	return dict;
 }

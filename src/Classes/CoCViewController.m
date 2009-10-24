@@ -31,6 +31,7 @@
 @interface CoCViewController ()
 
 - (void)cancelWasSelected;
+- (void)customCoCSpecified:(NSNotification*)notification;
 - (void)didSelectCoCPresetAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView;
 - (void)didSelectCustomCoCInTableView:(UITableView *)tableView;
 - (NSString*)keyForRow:(int)row;
@@ -78,12 +79,16 @@
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
 	 action:@selector(saveWasSelected)] autorelease]];
-	[saveButton setEnabled:NO];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
 	
 	[self setTitle:NSLocalizedString(@"COC_VIEW_TITLE", "CoC view")];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(customCoCSpecified:)
+												 name:CUSTOM_COC_NOTIFICATION
+											   object:nil];
     
 	return self;
 }
@@ -107,7 +112,7 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
 	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:[self camera]];
+	[[self tableViewDataSource] setCamera:[self cameraWorking]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -148,8 +153,6 @@
 		return;
 	}
 	
-	[saveButton setEnabled:YES];
-	
 	UITableViewCell* newCell = [tableView cellForRowAtIndexPath:indexPath];
 	if ([newCell accessoryType] == UITableViewCellAccessoryNone)
 	{
@@ -169,7 +172,15 @@
 	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
 	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
 	{
-		[oldCell setAccessoryType:UITableViewCellAccessoryNone];
+		if ([oldIndexPath row] > [[CoC cocPresets] count])
+		{
+			[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:oldIndexPath]
+							 withRowAnimation:UITableViewRowAnimationNone];
+		}
+		else
+		{
+			[oldCell setAccessoryType:UITableViewCellAccessoryNone];
+		}
 	}
 }
 
@@ -178,7 +189,7 @@
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:
 	 [NSNotification notificationWithName:CUSTOM_COC_SELECTED_FOR_EDIT_NOTIFICATION 
-								   object:nil]];
+								   object:[self cameraWorking]]];
 }
 
 - (NSString*)keyForRow:(int)row
@@ -190,6 +201,12 @@
 
 - (int)rowForSelectedCoC
 {
+	// Check if custom CoC
+	if ([[[cameraWorking coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
+	{
+		return [[CoC cocPresets] count];
+	}
+	
 	NSArray* keys = [[CoC cocPresets] allKeys];
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	for (int i = 0; i < [sortedKeys count]; ++i)
@@ -202,8 +219,18 @@
 	return -1;
 }
 
+- (void)customCoCSpecified:(NSNotification*)notification
+{
+	// Camera already has the custom CoC. We just need to update the UI.
+	UITableView* tableView = (UITableView*)[self view];
+	
+	[tableView reloadData];
+}
+
 - (void)dealloc 
 {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
 	[self setSaveButton:nil];
 	[self setCamera:nil];
 	[self setCameraWorking:nil];

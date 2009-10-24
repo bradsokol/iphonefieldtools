@@ -25,6 +25,7 @@
 #import "Camera.h"
 #import "CameraViewTableDataSource.h"
 #import "CoC.h"
+#import "EditableTableViewCell.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -33,8 +34,6 @@
 
 - (void)cancelWasSelected;
 - (void)cocChanged:(NSNotification*)notification;
-- (void)enableSaveButtonForCamera:(Camera*)camera;
-- (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc;
 - (void)saveWasSelected;
 
 @property(nonatomic, retain) Camera* camera;
@@ -80,11 +79,9 @@
 		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 							  target:self
 							  action:@selector(saveWasSelected)] autorelease]];
-	[[self saveButton] setEnabled:NO];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
-	[self enableSaveButtonForCamera:[self camera]];
 	
 	[self setTitle:NSLocalizedString(@"CAMERA_VIEW_TITLE", "Camera view")];
 
@@ -103,16 +100,44 @@
 
 - (void)saveWasSelected
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
-														object:self];
+	UITableView* tableView = (UITableView*)[self view];
+	EditableTableViewCell* cell = 
+	 (EditableTableViewCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+	[[cell textField] resignFirstResponder];
 	
-	[[self camera] setDescription:[[self cameraWorking] description]];
-	[[self camera] setCoc:[[self cameraWorking] coc]];
+	NSString* message = nil;
+	if ([cameraWorking description] == nil || [[cameraWorking description] length] == 0)
+	{
+		message = NSLocalizedString(@"CAMERA_ERROR_MISSING_NAME", "CAMERA_ERROR_MISSING_NAME");
+	}
+	else if ([[cameraWorking coc] value] <= 0.0)
+	{
+		message = NSLocalizedString(@"CAMERA_ERROR_INVALID_COC", "CAMERA_ERROR_INVALID_COC");
+	}
 	
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CAMERA_WAS_EDITED_NOTIFICATION
-																						 object:[self camera]]];
-	
-	[[self navigationController] popViewControllerAnimated:YES];
+	if (message == nil)
+	{
+		[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
+															object:self];
+		
+		[[self camera] setDescription:[[self cameraWorking] description]];
+		[[self camera] setCoc:[[self cameraWorking] coc]];
+		
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CAMERA_WAS_EDITED_NOTIFICATION
+																							 object:[self camera]]];
+		
+		[[self navigationController] popViewControllerAnimated:YES];
+	}
+	else
+	{
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CAMERA_DATA_VALIDATION_ERROR", "CAMERA_DATA_VALIDATION_ERROR")
+														message:message
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -129,31 +154,10 @@
 
 - (void)didReceiveMemoryWarning 
 {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)enableSaveButtonForCamera:(Camera*)aCamera
-{
-	[self enableSaveButtonForNameLength:[[aCamera description] length] coc:[[aCamera coc] value]];
-}
-
-- (void)enableSaveButtonForNameLength:(int)nameLength coc:(float)coc
-{
-	[[self saveButton] setEnabled:nameLength > 0 && coc > 0.0];
+	[super didReceiveMemoryWarning];
 }
 
 #pragma mark UITextFieldDelegate methods
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range 
-													   replacementString:(NSString *)string
-{
-	// Enable the save button if text was entered
-	int currentLength = [[textField text] length];
-	int newLength = currentLength + [string length] - range.length;
-	[self enableSaveButtonForNameLength:newLength coc:[[[self cameraWorking] coc] value]];
-
-	return YES;
-}
 	 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {

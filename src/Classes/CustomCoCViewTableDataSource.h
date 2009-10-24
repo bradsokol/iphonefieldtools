@@ -22,10 +22,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class Camera;
+
 @interface CustomCoCViewTableDataSource : NSObject <UITableViewDataSource>
 {
+	Camera* camera;
 	UIViewController* controller;
 }
+
+@property(nonatomic, retain) Camera* camera;
 
 // Weak reference to prevent retain cycles.
 @property(nonatomic, assign) UIViewController* controller;

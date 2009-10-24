@@ -63,8 +63,8 @@ int cocPresetsCount = 0;
 	return [[CoC cocPresets] count] + 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
     static NSString *CellIdentifier = @"Cell";
     
     TwoLabelTableViewCell* cell = (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -75,6 +75,7 @@ int cocPresetsCount = 0;
     
 	if ([indexPath row] < cocPresetsCount)
 	{
+		// This is one of the rows for the preset CoC values
 		NSArray* keys = [[CoC cocPresets] allKeys];
 		NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 		NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
@@ -85,11 +86,29 @@ int cocPresetsCount = 0;
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		}
+		else 
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryNone];
+		}
 	}
 	else
 	{
-		[cell setLabel:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")];
-		[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+		// This is the custom CoC row
+		
+		// See if custom CoC is configured. 
+		NSString* customLabel = NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM");
+		NSString* cocDescription = [[[self camera] coc] description];
+		
+		if ([cocDescription compare:customLabel] == NSOrderedSame)
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+			[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+		}
+		else 
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+		}
+		[cell setLabel:customLabel];
 	}
 	
     return cell;

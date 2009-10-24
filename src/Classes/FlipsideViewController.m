@@ -199,9 +199,11 @@
 
 - (void)editCustomCoC:(NSNotification*)notification
 {
+	Camera* camera = (Camera*)[notification object];
 	UIViewController* viewController = 
-	[[CustomCoCViewController alloc] initWithNibName:@"CustomCoCView" 
-											  bundle:nil];
+		[[CustomCoCViewController alloc] initWithNibName:@"CustomCoCView" 
+												  bundle:nil
+											   forCamera:camera];
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }

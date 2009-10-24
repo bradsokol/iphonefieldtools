@@ -22,10 +22,13 @@
 
 #import "CustomCoCViewTableDataSource.h"
 
+#import "Camera.h"
+#import "CoC.h"
 #import "EditableTableViewCell.h"
 
 @implementation CustomCoCViewTableDataSource
 
+@synthesize camera;
 @synthesize controller;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -55,6 +58,13 @@
 	}
 	
 	[cell setLabel:NSLocalizedString(@"COC", "COC")];
+	
+	if ([[[camera coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
+	{
+		[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+	}
+	
+	[[cell textField] becomeFirstResponder];
 	
 	return cell;
 }

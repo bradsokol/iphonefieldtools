@@ -22,6 +22,8 @@
 
 #import "CustomCoCViewController.h"
 
+#import "Camera.h"
+#import "CoC.h"
 #import "CustomCoCViewTableDataSource.h"
 
 #import "Notifications.h"
@@ -31,6 +33,8 @@
 - (void)cancelWasSelected;
 - (void)saveWasSelected;
 
+@property(nonatomic, retain) Camera* camera;
+@property(nonatomic, retain) Camera* cameraWorking;
 @property(nonatomic, assign) float coc;
 @property(nonatomic, retain) NSNumberFormatter* numberFormatter;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
@@ -39,27 +43,31 @@
 
 @implementation CustomCoCViewController
 
+@synthesize camera;
+@synthesize cameraWorking;
 @synthesize coc;
 @synthesize numberFormatter;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
-//{
-//	return [self initWithNibName:nibNameOrNil
-//						  bundle:nibBundleOrNil
-//					   forCamera:nil];
-//}
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+{
+	return [self initWithNibName:nibNameOrNil
+						  bundle:nibBundleOrNil
+					   forCamera:nil];
+}
 
 // The designated initializer.
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 
     {
 		return nil;
     }
+	
+	[self setCamera:aCamera];
+	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 
@@ -88,6 +96,7 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
 	[self setTableViewDataSource: [[self tableView] dataSource]];
+	[[self tableViewDataSource] setCamera:[self camera]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -119,7 +128,15 @@
 	}
 	else
 	{
-		NSLog(@"Custom CoC value is %f", coc);
+		CoC* customCoc = [[CoC alloc] initWithValue:coc
+										description:CUSTOM_COC_KEY];
+		[[self camera] setCoc:customCoc];
+		
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CUSTOM_COC_NOTIFICATION 
+																							 object:customCoc]];
+		
+		[customCoc release];
+
 		[[self navigationController] popViewControllerAnimated:YES];
 	}
 }
@@ -133,6 +150,8 @@
 
 - (void)dealloc 
 {
+	[self setCamera:nil];
+	[self setCameraWorking:nil];
 	[self setNumberFormatter:nil];
 	[self setSaveButton:nil];
 	
