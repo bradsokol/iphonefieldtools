@@ -52,7 +52,7 @@
 	text.opaque = NO;
 	text.textColor = [UIColor grayColor];
 	text.highlightedTextColor = [UIColor whiteColor];
-	text.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
+	text.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2.0];
 	text.textAlignment = UITextAlignmentRight;
 	[self.contentView addSubview:text];
 	
@@ -70,7 +70,7 @@
     CGRect frame = CGRectMake(contentRect.origin.x + LEFT_COLUMN_OFFSET, UPPER_ROW_TOP, LEFT_COLUMN_WIDTH, rowHeight);
 	label.frame = frame;
 	
-	frame = CGRectMake(contentRect.origin.x + 65.0 + LEFT_COLUMN_OFFSET, UPPER_ROW_TOP, LEFT_COLUMN_WIDTH, rowHeight);
+	frame = CGRectMake(contentRect.origin.x + 65.0 + LEFT_COLUMN_OFFSET, UPPER_ROW_TOP + 1.0, LEFT_COLUMN_WIDTH, rowHeight);
 	text.frame = frame;
 }
 
