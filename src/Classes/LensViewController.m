@@ -422,6 +422,7 @@ static const float SectionHeaderHeight = 44.0;
 	[self setLens:nil];
 	[self setLensWorking:nil];
 	[self setNumberFormatter:nil];
+	[self setTableViewDataSource:nil];
 
     [super dealloc];
 }

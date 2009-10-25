@@ -235,6 +235,7 @@
 	[self setSaveButton:nil];
 	[self setCamera:nil];
 	[self setCameraWorking:nil];
+	[self setTableViewDataSource:nil];
 	
     [super dealloc];
 }

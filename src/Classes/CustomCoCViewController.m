@@ -180,6 +180,7 @@
 	[self setCameraWorking:nil];
 	[self setNumberFormatter:nil];
 	[self setSaveButton:nil];
+	[self setTableViewDataSource:nil];
 	
     [super dealloc];
 }

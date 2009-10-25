@@ -115,4 +115,11 @@ int cocPresetsCount = 0;
     return cell;
 }
 
+- (void)dealloc
+{
+	[self setCamera:nil];
+	
+	[super dealloc];
+}
+
 @end
