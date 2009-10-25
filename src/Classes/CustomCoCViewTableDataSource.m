@@ -54,7 +54,8 @@
 		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
 											 reuseIdentifier:EditableCellIdentifier
 													delegate:[self controller]
-												keyboardType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
+												keyboardType:UIKeyboardTypeNumbersAndPunctuation
+											   returnKeyType:UIReturnKeyDefault] autorelease];
 	}
 	
 	[cell setLabel:NSLocalizedString(@"COC", "COC")];

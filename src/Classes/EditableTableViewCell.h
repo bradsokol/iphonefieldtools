@@ -22,14 +22,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditableTableViewCell : UITableViewCell 
+@interface EditableTableViewCell : UITableViewCell
 {
 	UITextField* textField;
 	UILabel*		label;
 }
 
 // The designated initializer
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType;
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType returnKeyType:(UIReturnKeyType)returnKeyType;
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate;
 - (void)setLabel:(NSString*)s;
 - (NSString*)text;

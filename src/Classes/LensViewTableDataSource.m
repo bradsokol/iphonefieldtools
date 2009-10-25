@@ -110,7 +110,8 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 			cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
 												 reuseIdentifier:identifier
 														delegate:[self controller]
-													keyboardType:keyboardType] autorelease];
+													keyboardType:keyboardType
+												   returnKeyType:UIReturnKeyNext] autorelease];
 		}
 	}
 	

@@ -35,11 +35,19 @@
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate
 {
-	return [self initWithFrame:frame reuseIdentifier:reuseIdentifier delegate:delegate keyboardType:UIKeyboardTypeDefault];
+	return [self initWithFrame:frame 
+			   reuseIdentifier:reuseIdentifier 
+					  delegate:delegate 
+				  keyboardType:UIKeyboardTypeDefault 
+				 returnKeyType:UIReturnKeyDefault];
 }
 
 // The designated initializer
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier delegate:(id)delegate keyboardType:(UIKeyboardType)aKeyboardType
+- (id)initWithFrame:(CGRect)frame 
+	reuseIdentifier:(NSString *)reuseIdentifier 
+		   delegate:(id)delegate
+	   keyboardType:(UIKeyboardType)aKeyboardType
+	  returnKeyType:(UIReturnKeyType)returnKeyType
 {
 	self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
 	if (nil == self)
@@ -63,6 +71,7 @@
 	[textField setFont:[UIFont systemFontOfSize:[UIFont labelFontSize]]];
 	[textField setTextColor:[UIColor darkGrayColor]];
 	[textField setDelegate:delegate];
+	[textField setReturnKeyType:returnKeyType];
 	
 	[self addSubview:textField];
 

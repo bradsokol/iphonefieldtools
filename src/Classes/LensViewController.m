@@ -44,6 +44,7 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)cancelWasSelected;
 - (NSString*)cellTextForRow:(int)row inSection:(int)section;
+- (NSIndexPath*) nextCellForTag:(int)tag;
 - (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
 
@@ -309,6 +310,42 @@ static const float SectionHeaderHeight = 44.0;
 	return YES;
 }
 
+- (NSIndexPath*) nextCellForTag:(int)tag
+{
+	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
+	int row = tag & ROW_MASK;
+	
+	if (section == TITLE_SECTION)
+	{
+		return [NSIndexPath indexPathForRow:0 inSection:section + 1];
+	}
+	else if (section == FOCAL_LENGTH_SECTION)
+	{
+		if (row == 0 && lensIsZoom)
+		{
+			return [NSIndexPath indexPathForRow:1 inSection:section];
+		}
+		else
+		{
+			return [NSIndexPath indexPathForRow:0 inSection:section + 1];
+		}
+	}
+	else
+	{
+		// Aperture section
+		if (row == 0)
+		{
+			return [NSIndexPath indexPathForRow:1 inSection:section];
+		}
+		else
+		{
+			return nil;
+		}
+	}
+
+	return nil;
+}
+
 #pragma mark UITextViewDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -355,6 +392,27 @@ static const float SectionHeaderHeight = 44.0;
 			}
 		}
 	}
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	NSIndexPath* nextCellPath = [self nextCellForTag:[[textField superview] tag]];
+	if (nil == nextCellPath)
+	{
+		return YES;
+	}
+	
+	NSLog(@"Next cell is section %d row %d", [nextCellPath section], [nextCellPath row]);
+	[textField resignFirstResponder];
+	
+	UITableView* tableView = (UITableView*)[self view];
+	[tableView scrollToRowAtIndexPath:nextCellPath
+					 atScrollPosition:UITableViewScrollPositionBottom
+							 animated:YES];
+	EditableTableViewCell* nextCell = (EditableTableViewCell*)[tableView cellForRowAtIndexPath:nextCellPath];
+	[[nextCell textField] becomeFirstResponder];
+	
+	return NO;
 }
 
 - (void)dealloc 
