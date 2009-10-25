@@ -111,7 +111,7 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 												 reuseIdentifier:identifier
 														delegate:[self controller]
 													keyboardType:keyboardType
-												   returnKeyType:UIReturnKeyNext] autorelease];
+												   returnKeyType:UIReturnKeyDefault] autorelease];
 		}
 	}
 	

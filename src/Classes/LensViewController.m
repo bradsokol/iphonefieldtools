@@ -148,9 +148,10 @@ static const float SectionHeaderHeight = 44.0;
 	[[cell textField] resignFirstResponder];
 	
 	
-	// ALl cells except the type section have a UITextField. If the cell is touched 
+	// All cells except the last two of the type section have a UITextField. If the cell is touched 
 	// anywhere, not just in the text field, make the text field the first responder.
-	if ([indexPath section] != TYPE_SECTION)
+	if ([indexPath section] != TYPE_SECTION ||
+		[indexPath section] == TYPE_SECTION && [indexPath row] == 0)
 	{
 		EditableTableViewCell* editableCell = 
 			(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
