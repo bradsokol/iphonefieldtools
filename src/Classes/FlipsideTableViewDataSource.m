@@ -274,13 +274,14 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)deleteCameraAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView
 {
+	int currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
 	Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
 	[Camera delete:camera];
 	
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 					 withRowAnimation:UITableViewRowAnimationFade];
 	
-	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex] == [indexPath row])
+	if ([indexPath row] == currentSelection)
 	{
 		// Camera being deleted is the currently selected one. Choose the one above.
 		int newSelection = [indexPath row] - 1;
@@ -301,17 +302,24 @@ static NSString *CellIdentifier = @"Cell";
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
 	}
+	else if ([indexPath row] < currentSelection)
+	{
+		// Deleting camera above so adjust current selection
+		[[NSUserDefaults standardUserDefaults] setInteger:currentSelection - 1
+												   forKey:FTCameraIndex];
+	}
 }
 
 - (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView
 {
+	int currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
 	[Lens delete:lens];
 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 					 withRowAnimation:UITableViewRowAnimationFade];
 
-	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex] == [indexPath row])
+	if ([indexPath row] == currentSelection)
 	{
 		// Lens being deleted is the currently selected one. Choose the one above.
 		int newSelection = [indexPath row] - 1;
@@ -331,6 +339,12 @@ static NSString *CellIdentifier = @"Cell";
 						 withRowAnimation:UITableViewRowAnimationNone];
 
 		[[NSUserDefaults standardUserDefaults] setInteger:newSelection
+												   forKey:FTLensIndex];
+	}
+	else if ([indexPath row] < currentSelection)
+	{
+		// Deleting lens above so adjust current selection
+		[[NSUserDefaults standardUserDefaults] setInteger:currentSelection - 1
 												   forKey:FTLensIndex];
 	}
 }
