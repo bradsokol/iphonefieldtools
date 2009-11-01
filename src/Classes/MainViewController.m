@@ -39,7 +39,7 @@
 #define NEAR_FAR_SEGMENT_INDEX		3
 
 static float minimumDistanceToSubject = 0.25f;	// metres
-static float maximumDistanceToSubject = 50.0f;	// metres
+static float maximumDistanceToSubject = 25.0f;	// metres
 
 // Amount to move controls up and down when hiding focal length
 // slider for prime lenses.
