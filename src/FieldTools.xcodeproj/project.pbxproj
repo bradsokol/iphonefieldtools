@@ -478,14 +478,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Field Tools";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FB2BE959-8ADC-4F5A-B8DC-C63B57EACC13";
 			};
 			name = Release;
 		};
@@ -499,7 +497,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -516,7 +513,6 @@
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Field Tools";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FB2BE959-8ADC-4F5A-B8DC-C63B57EACC13";
 			};
 			name = Distribution;
 		};
@@ -545,7 +541,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
