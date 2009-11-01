@@ -27,5 +27,6 @@
 #define APERTURE_SECTION		2
 #define FOCAL_LENGTH_SECTION	1
 
-#define PRIME_ROW				1
-#define ZOOM_ROW				2
+#define PRIME_ROW				0
+#define ZOOM_ROW				1
+#define LENS_TITLE_ROW			2

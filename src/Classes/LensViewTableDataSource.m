@@ -82,7 +82,7 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 	UIKeyboardType keyboardType = UIKeyboardTypeDefault;
 	if (TITLE_SECTION == [indexPath section])
 	{
-		if (0 == [indexPath row])
+		if (LENS_TITLE_ROW == [indexPath row])
 		{
 			identifier = EditableCellIdentifier;
 		}
@@ -100,7 +100,7 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (nil == cell)
 	{
-		if (TYPE_SECTION == [indexPath section] && [indexPath row] > 0)
+		if (TYPE_SECTION == [indexPath section] && [indexPath row] != LENS_TITLE_ROW)
 		{
 			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
 										   reuseIdentifier:identifier] autorelease];
@@ -119,7 +119,7 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 	[cell setTag:tag];
 	NSLog(@"Tag for cell %08x is %04x", cell, [cell tag]);
 	
-	if (TYPE_SECTION == [indexPath section] && [indexPath row] > 0)
+	if (TYPE_SECTION == [indexPath section] && [indexPath row] != LENS_TITLE_ROW)
 	{
 		NSString* text = [indexPath row] == PRIME_ROW ? NSLocalizedString(@"LENS_TYPE_PRIME", "LENS_TYPE_PRIME") :
 			NSLocalizedString(@"LENS_TYPE_ZOOM", "LENS_TYPE_ZOOM");

@@ -151,7 +151,7 @@ static const float SectionHeaderHeight = 44.0;
 	// All cells except the last two of the type section have a UITextField. If the cell is touched 
 	// anywhere, not just in the text field, make the text field the first responder.
 	if ([indexPath section] != TYPE_SECTION ||
-		[indexPath section] == TYPE_SECTION && [indexPath row] == 0)
+		[indexPath section] == TYPE_SECTION && [indexPath row] == LENS_TITLE_ROW)
 	{
 		EditableTableViewCell* editableCell = 
 			(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
@@ -201,7 +201,7 @@ static const float SectionHeaderHeight = 44.0;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	if (section == 0)
+	if (section == TITLE_SECTION)
 	{
 		return nil;
 	}
