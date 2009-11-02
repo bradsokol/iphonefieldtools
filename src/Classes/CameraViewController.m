@@ -136,7 +136,7 @@
 	{
 		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CAMERA_DATA_VALIDATION_ERROR", "CAMERA_DATA_VALIDATION_ERROR")
 														message:message
-													   delegate:nil
+													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
@@ -179,6 +179,18 @@
 	 postNotification:
 	 [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
 								   object:[self cameraWorking]]];
+}
+
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	// The alert view is displayed only if the camera name was not specified.
+	// Help the user by making the camera name text field the first responder.
+	UITableView* tableView = (UITableView*)[self view];
+	EditableTableViewCell* cell = 
+		(EditableTableViewCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+	[[cell textField] becomeFirstResponder];
 }
 
 - (void)cocChanged:(NSNotification*)notification

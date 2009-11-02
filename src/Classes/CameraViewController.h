@@ -25,7 +25,7 @@
 @class Camera;
 @class CameraViewTableDataSource;
 
-@interface CameraViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
+@interface CameraViewController : UITableViewController <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 {
 	CameraViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
