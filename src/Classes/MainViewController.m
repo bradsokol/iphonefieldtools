@@ -39,7 +39,7 @@
 #define NEAR_FAR_SEGMENT_INDEX		3
 
 static float minimumDistanceToSubject = 0.25f;	// metres
-static float maximumDistanceToSubject = 25.0f;	// metres
+static float maximumDistanceToSubject = 80.0f;	// metres
 
 // Amount to move controls up and down when hiding focal length
 // slider for prime lenses.
@@ -56,6 +56,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateResult;
 - (void)cocDidChange;
 - (void)customizeSliderAppearance:(UISlider*)slider;
+- (float)distanceForSliderValue:(float)value;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
@@ -224,7 +225,10 @@ static BOOL previousLensWasZoom = YES;
 // Distance to subject slider was changed
 - (void)subjectDistanceDidChange:(id)sender
 {
-	[self setSubjectDistance:[subjectDistanceSlider value]];
+	// Subject distance is a non-linear scale. This allows a wide range of settings
+	// with finer grained control over near distances and coarser grained over
+	// longer distances.
+	[self setSubjectDistance:[self distanceForSliderValue:[subjectDistanceSlider value]]];
 	
 	[[NSUserDefaults standardUserDefaults] setFloat:[self subjectDistance]
 											 forKey:FTSubjectDistanceKey];
@@ -514,6 +518,22 @@ static BOOL previousLensWasZoom = YES;
 	Camera* camera = [Camera findSelectedInDefaults];
 	
 	[self setCircleOfLeastConfusion:[[camera coc] value]];
+}
+
+- (float)distanceForSliderValue:(float)value
+{
+	if (value <= 12.5f)
+	{
+		return value;
+	}
+	else if (value <= 18.75f)
+	{
+		return value * 2.0f - 12.0f;
+	}
+	else
+	{
+		return value * 8.0f - 120.0f;
+	}
 }
 
 - (void)dealloc 
