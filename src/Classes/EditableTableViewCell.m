@@ -29,6 +29,11 @@
 
 #define UPPER_ROW_TOP			0
 
+#define TEXT_X		104
+#define TEXT_Y		6
+#define TEXT_WIDTH	196
+#define TEXT_HEIGHT	31
+
 @implementation EditableTableViewCell
 
 @synthesize textField;
@@ -94,7 +99,7 @@
     CGRect frame = CGRectMake(contentRect.origin.x + LEFT_COLUMN_OFFSET, UPPER_ROW_TOP, LEFT_COLUMN_WIDTH, rowHeight);
 	[label setFrame:frame];
 	
-	frame = CGRectMake(contentRect.origin.x + 65.0 + LEFT_COLUMN_OFFSET, UPPER_ROW_TOP + 2.0, LEFT_COLUMN_WIDTH, rowHeight);
+	frame = CGRectMake(TEXT_X, TEXT_Y, TEXT_WIDTH, TEXT_HEIGHT);
 	[textField setFrame:frame];
 }
 	
