@@ -71,6 +71,7 @@
 	[[self contentView] addSubview:label];
 	
 	textField = [[UITextField alloc] initWithFrame:CGRectZero];
+	[textField setBackgroundColor:[UIColor clearColor]];
 	[textField setKeyboardType:aKeyboardType];
 	[textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 	[textField setFont:[UIFont systemFontOfSize:[UIFont labelFontSize]]];
