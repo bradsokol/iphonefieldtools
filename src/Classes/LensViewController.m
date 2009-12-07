@@ -22,12 +22,13 @@
 
 #import "LensViewController.h"
 
-#import "EditableTableViewCell.h"
 #import "Lens.h"
 #import "LensViewTableDataSource.h"
 
 #import "LensViewSections.h"
 #import "Notifications.h"
+
+static const int TEXT_FIELD_TAG = 99;
 
 static const int ROW_MASK = 0x0f;
 static const int SECTION_MASK = 0xf0;
@@ -43,8 +44,10 @@ static const float SectionHeaderHeight = 44.0;
 @interface LensViewController ()
 
 - (void)cancelWasSelected;
+- (UITableViewCell*)cellForView:(UIView*)view;
 - (NSString*)cellTextForRow:(int)row inSection:(int)section;
 - (NSIndexPath*) nextCellForTag:(int)tag;
+- (void)resignAllFirstResponders;
 - (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
 
@@ -58,7 +61,22 @@ static const float SectionHeaderHeight = 44.0;
 @implementation LensViewController
 
 @synthesize lens;
+@synthesize lensNameField;
+@synthesize lensNameCell;
+@synthesize lensNameLabel;
 @synthesize lensWorking;
+@synthesize maximumApertureField;
+@synthesize maximumApertureCell;
+@synthesize maximumApertureLabel;
+@synthesize minimumApertureField;
+@synthesize minimumApertureCell;
+@synthesize minimumApertureLabel;
+@synthesize maximumFocalLengthField;
+@synthesize maximumFocalLengthCell;
+@synthesize maximumFocalLengthLabel;
+@synthesize minimumFocalLengthField;
+@synthesize minimumFocalLengthCell;
+@synthesize minimumFocalLengthLabel;
 @synthesize numberFormatter;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
@@ -114,6 +132,8 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)saveWasSelected
 {
+	[self resignAllFirstResponders];
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
 														object:self];
 	
@@ -137,25 +157,54 @@ static const float SectionHeaderHeight = 44.0;
 	}
 }
 
+- (void) resignAllFirstResponders 
+{
+	// Force the keyboard to hide by asking editable cells to resign as first responder
+	[[self lensNameField] resignFirstResponder];
+	[[self minimumApertureField] resignFirstResponder];
+	[[self maximumApertureField] resignFirstResponder];
+	[[self minimumFocalLengthField] resignFirstResponder];
+	[[self maximumFocalLengthField] resignFirstResponder];
+	
+}
+
+- (UITableViewCell*)cellForView:(UIView*)view
+{
+	if (view == nil)
+	{
+		return nil;
+	}
+	
+	for (;;)
+	{
+		if ([view isKindOfClass:[UITableViewCell class]])
+		{
+			return (UITableViewCell*)view;
+		}
+		
+		view = [view superview];
+		if (view == nil)
+		{
+			return nil;
+		}
+	}
+}
+
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	// Force the keyboard to hide by asking editable cells to resign as first responder
-	EditableTableViewCell* cell = (EditableTableViewCell*)[tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
-	[[cell textField] resignFirstResponder];
-	cell = (EditableTableViewCell*)[tableView dequeueReusableCellWithIdentifier:EditableNumericCellIdentifier];
-	[[cell textField] resignFirstResponder];
-	
-	
-	// All cells except the last two of the type section have a UITextField. If the cell is touched 
+	[self resignAllFirstResponders];
+
+	// All cells except the first two of the type section have a UITextField. If the cell is touched 
 	// anywhere, not just in the text field, make the text field the first responder.
 	if ([indexPath section] != TYPE_SECTION ||
 		[indexPath section] == TYPE_SECTION && [indexPath row] == LENS_TITLE_ROW)
 	{
-		EditableTableViewCell* editableCell = 
-			(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-		[[editableCell textField] becomeFirstResponder];
+		UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+		UITextField* textField = (UITextField*)[cell viewWithTag:TEXT_FIELD_TAG];
+		NSAssert(textField != nil, @"No text field found");
+		[textField becomeFirstResponder];
 		
 		return;
 	}
@@ -182,9 +231,13 @@ static const float SectionHeaderHeight = 44.0;
 		
 		lensIsZoom = !lensIsZoom;
 		[tableViewDataSource setLensIsZoom:lensIsZoom];
-		
-		[tableView reloadSections:[NSIndexSet indexSetWithIndex:FOCAL_LENGTH_SECTION]
-				 withRowAnimation:UITableViewRowAnimationNone];
+
+		// We should use reloadSections but when used, the inserted or deleted
+		// row vanishes after briefly being displayed. reloadData does not
+		// have that issue.
+		[tableView reloadData];
+//		[tableView reloadSections:[NSIndexSet indexSetWithIndex:FOCAL_LENGTH_SECTION]
+//				 withRowAnimation:UITableViewRowAnimationNone];
 	}
 	
 	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
@@ -247,9 +300,11 @@ static const float SectionHeaderHeight = 44.0;
 - (NSString*)cellTextForRow:(int)row inSection:(int)section
 {
 	UITableView* tableView = (UITableView*)[self view];
-	EditableTableViewCell* cell = 
-		(EditableTableViewCell*) [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
-	return [cell text];
+	UITableViewCell* cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+	UITextField* textField = (UITextField*)[cell viewWithTag:TEXT_FIELD_TAG];
+	NSAssert(textField != nil, @"No text field found");
+	
+	return [textField text];
 }
 
 - (BOOL)validateAndLoadInput
@@ -347,16 +402,17 @@ static const float SectionHeaderHeight = 44.0;
 	return nil;
 }
 
-#pragma mark UITextViewDelegate methods
+#pragma mark UITextFieldDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	// The super view of the text field is the cell. The cell's tag identifies
 	// which field. Bits 4-7 are the section, bits 0-3 the row.
-	NSInteger tag = [[textField superview] tag];
+	UITableViewCell* cell = [self cellForView:textField];
+	NSInteger tag = [cell tag];
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
-	NSLog(@"Text field did end editing for section %d row %d for cell %08x", section, row, [textField superview]);
+	NSLog(@"Text field %08x did end editing for section %d row %d for cell %08x", textField, section, row, cell);
 	
 	if (TITLE_SECTION == section)
 	{
@@ -397,7 +453,8 @@ static const float SectionHeaderHeight = 44.0;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	NSIndexPath* nextCellPath = [self nextCellForTag:[[textField superview] tag]];
+	UITableViewCell* cell = [self cellForView:textField];
+	NSIndexPath* nextCellPath = [self nextCellForTag:[cell tag]];
 	if (nil == nextCellPath)
 	{
 		return YES;
@@ -410,8 +467,11 @@ static const float SectionHeaderHeight = 44.0;
 	[tableView scrollToRowAtIndexPath:nextCellPath
 					 atScrollPosition:UITableViewScrollPositionBottom
 							 animated:YES];
-	EditableTableViewCell* nextCell = (EditableTableViewCell*)[tableView cellForRowAtIndexPath:nextCellPath];
-	[[nextCell textField] becomeFirstResponder];
+	UITableViewCell* nextCell = [tableView cellForRowAtIndexPath:nextCellPath];
+	UITextField* nextTextField = (UITextField*)[nextCell viewWithTag:TEXT_FIELD_TAG];
+	NSAssert(nextTextField != nil, @"No text field found");
+	
+	[nextTextField becomeFirstResponder];
 	
 	return NO;
 }

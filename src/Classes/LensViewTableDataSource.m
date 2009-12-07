@@ -22,14 +22,12 @@
 
 #import "LensViewTableDataSource.h"
 
-#import "EditableTableViewCell.h"
 #import "Lens.h"
+#import "LensViewController.h"
 
 #import "LensViewSections.h"
 
 NSString* CellIdentifier = @"Cell";
-NSString* EditableCellIdentifier = @"EditableCell";
-NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 
 @implementation LensViewTableDataSource
 
@@ -77,41 +75,35 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 	int tag = ([indexPath section] << 4) | [indexPath row];
+	LensViewController* lensViewController = (LensViewController*) [self controller];
 		
-	NSString* identifier;
-	UIKeyboardType keyboardType = UIKeyboardTypeDefault;
+	UITableViewCell* cell;
+
 	if (TITLE_SECTION == [indexPath section])
 	{
 		if (LENS_TITLE_ROW == [indexPath row])
 		{
-			identifier = EditableCellIdentifier;
+			cell = [lensViewController lensNameCell];
 		}
 		else
 		{
-			identifier = CellIdentifier;
+			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			if (nil == cell)
+			{
+				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
+											   reuseIdentifier:CellIdentifier] autorelease];
+			}
 		}
 	}
 	else
 	{
-		identifier = EditableNumericCellIdentifier;
-		keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-	}
-	
-	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-	if (nil == cell)
-	{
-		if (TYPE_SECTION == [indexPath section] && [indexPath row] != LENS_TITLE_ROW)
+		if (APERTURE_SECTION == [indexPath section])
 		{
-			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
-										   reuseIdentifier:identifier] autorelease];
+			cell = (0 == [indexPath row]) ? [lensViewController maximumApertureCell] : [lensViewController minimumApertureCell];
 		}
 		else
 		{
-			cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
-												 reuseIdentifier:identifier
-														delegate:[self controller]
-													keyboardType:keyboardType
-												   returnKeyType:UIReturnKeyDefault] autorelease];
+			cell = (0 == [indexPath row]) ? [lensViewController minimumFocalLengthCell] : [lensViewController maximumFocalLengthCell];
 		}
 	}
 	
@@ -138,13 +130,12 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 	}
 	else
 	{
-		EditableTableViewCell* editableCell = (EditableTableViewCell*)cell;
-		[editableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
 		if (TITLE_SECTION == [indexPath section])
 		{
-			[editableCell setLabel:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
-			[editableCell setText:[lens description]];
+			[[lensViewController lensNameLabel] setText:NSLocalizedString(@"LENS_NAME_TITLE", "Name")];
+			[[lensViewController lensNameField] setText:[lens description]];
 		}
 		else 
 		{
@@ -158,19 +149,32 @@ NSString* EditableNumericCellIdentifier = @"EditableNumericCell";
 			{
 				key = @"LENS_EDIT_FOCAL_LENGTH";
 			}
-
-			[editableCell setLabel:NSLocalizedString(key, "Lens attribute label")];
-			[editableCell setTextAlignment:UITextAlignmentRight];
 			
 			if (APERTURE_SECTION == [indexPath section])
 			{
-				NSNumber* apertureValue = [indexPath row] == 0 ? [lens maximumAperture] : [lens minimumAperture];
-				[editableCell setText:[apertureValue description]];
+				if ([indexPath row] == 0)
+				{
+					[[lensViewController maximumApertureLabel] setText:NSLocalizedString(key, "Lens attribute label")];
+					[[lensViewController maximumApertureField] setText:[[lens maximumAperture] description]];
+				}
+				else
+				{
+					[[lensViewController minimumApertureLabel] setText:NSLocalizedString(key, "Lens attribute label")];
+					[[lensViewController minimumApertureField] setText:[[lens minimumAperture] description]];
+				}
 			}
 			else
 			{
-				NSNumber* focalLength = [indexPath row] == 0 ? [lens minimumFocalLength] : [lens maximumFocalLength];
-				[editableCell setText:[focalLength description]];
+				if ([indexPath row] == 0)
+				{
+					[[lensViewController minimumFocalLengthLabel] setText:NSLocalizedString(key, "Lens attribute label")];
+					[[lensViewController minimumFocalLengthField] setText:[[lens minimumFocalLength] description]];
+				}
+				else
+				{
+					[[lensViewController maximumFocalLengthLabel] setText:NSLocalizedString(key, "Lens attribute label")];
+					[[lensViewController maximumFocalLengthField] setText:[[lens maximumFocalLength] description]];
+				}
 			}
 		}
 	}

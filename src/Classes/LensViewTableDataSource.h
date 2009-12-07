@@ -23,8 +23,6 @@
 #import <Foundation/Foundation.h>
 
 extern NSString* CellIdentifier;
-extern NSString* EditableCellIdentifier;
-extern NSString* EditableNumericCellIdentifier;
 
 @class Lens;
 
