@@ -120,9 +120,6 @@
 	
 	if (message == nil)
 	{
-		[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
-															object:self];
-		
 		[[self camera] setDescription:[[self cameraWorking] description]];
 		[[self camera] setCoc:[[self cameraWorking] coc]];
 		

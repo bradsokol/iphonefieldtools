@@ -25,7 +25,6 @@
 #import "Camera.h"
 #import "CoC.h"
 #import "CustomCoCViewTableDataSource.h"
-#import "EditableTableViewCell.h"
 
 #import "Notifications.h"
 
@@ -48,6 +47,9 @@
 @synthesize camera;
 @synthesize cameraWorking;
 @synthesize coc;
+@synthesize cocValueCell;
+@synthesize cocValueField;
+@synthesize cocValueLabel;
 @synthesize numberFormatter;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
@@ -115,8 +117,7 @@
 
 - (void)saveWasSelected
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
-														object:self];
+	[[self cocValueField] resignFirstResponder];
 
 	if (coc <= 0.0 || coc >= 1.0)
 	{
@@ -147,13 +148,7 @@
 
 - (void)makeTextFieldFirstResponder
 {
-	UITableView* tableView = (UITableView*)[self view];
-	NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-	
-	EditableTableViewCell* editableCell = 
-		(EditableTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-	[[editableCell textField] becomeFirstResponder];
-	
+	[[self cocValueField] becomeFirstResponder];
 }
 
 #pragma mark UITableViewDelegateMethods

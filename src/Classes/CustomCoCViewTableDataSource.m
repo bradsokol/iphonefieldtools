@@ -24,7 +24,7 @@
 
 #import "Camera.h"
 #import "CoC.h"
-#import "EditableTableViewCell.h"
+#import "CustomCoCViewController.h"
 
 @implementation CustomCoCViewTableDataSource
 
@@ -45,27 +45,17 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	static NSString* EditableCellIdentifier = @"EditableCell";
+	CustomCoCViewController* customCoCViewController = (CustomCoCViewController*) [self controller];
+	UITableViewCell* cell = [customCoCViewController cocValueCell];
 	
-	EditableTableViewCell* cell = 
-		(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
-	if (nil == cell)
-	{
-		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
-											 reuseIdentifier:EditableCellIdentifier
-													delegate:[self controller]
-												keyboardType:UIKeyboardTypeNumbersAndPunctuation
-											   returnKeyType:UIReturnKeyDefault] autorelease];
-	}
-	
-	[cell setLabel:NSLocalizedString(@"COC", "COC")];
+	[[customCoCViewController cocValueLabel] setText:NSLocalizedString(@"COC", "COC")];
 	
 	if ([[[camera coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
-		[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+		[[customCoCViewController cocValueField] setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
 	}
 	
-	[[cell textField] becomeFirstResponder];
+	[[customCoCViewController cocValueField] becomeFirstResponder];
 	
 	return cell;
 }

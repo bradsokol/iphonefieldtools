@@ -25,7 +25,6 @@
 #import "Camera.h"
 #import "CoC.h"
 #import "CoCViewTableDataSource.h"
-#import "EditableTableViewCell.h"
 
 #import "Notifications.h"
 

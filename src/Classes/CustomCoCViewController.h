@@ -29,6 +29,10 @@
 
 @interface CustomCoCViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
 {
+	IBOutlet UITableViewCell* cocValueCell;
+	IBOutlet UITextField* cocValueField;
+	IBOutlet UILabel* cocValueLabel;
+
 	CustomCoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
 	
@@ -44,5 +48,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
 
 @property(nonatomic, retain) CustomCoCViewTableDataSource* tableViewDataSource;
+@property(nonatomic, retain, readonly) UITableViewCell* cocValueCell;
+@property(nonatomic, retain, readonly) UITextField* cocValueField;
+@property(nonatomic, retain, readonly) UILabel* cocValueLabel;
 
 @end

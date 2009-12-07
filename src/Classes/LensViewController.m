@@ -134,9 +134,6 @@ static const float SectionHeaderHeight = 44.0;
 {
 	[self resignAllFirstResponders];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:SAVING_NOTIFICATION
-														object:self];
-	
 	if ([self validateAndLoadInput])
 	{
 		[[self lens] setDescription:[[self lensWorking] description]];
