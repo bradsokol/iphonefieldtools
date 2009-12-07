@@ -23,8 +23,8 @@
 #import "CameraViewTableDataSource.h"
 
 #import "Camera.h"
+#import "CameraViewController.h"
 #import "CoC.h"
-#import "EditableTableViewCell.h"
 #import "TwoLabelTableViewCell.h"
 
 static const int CAMERA_NAME_ROW = 0;
@@ -73,20 +73,11 @@ static const int NUM_SECTIONS = 1;
 
 - (UITableViewCell*) cellForCameraNameRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *) tableView
 {
-	static NSString* EditableCellIdentifier = @"EditableCell";
-
-	EditableTableViewCell* cell = 
-	(EditableTableViewCell*) [tableView dequeueReusableCellWithIdentifier:EditableCellIdentifier];
-	if (nil == cell)
-	{
-		cell = [[[EditableTableViewCell alloc] initWithFrame:CGRectZero
-											reuseIdentifier:EditableCellIdentifier
-												   delegate:[self controller]] autorelease];
-	}
-	[cell setLabel:NSLocalizedString(@"CAMERA_NAME_TITLE", "Camera")];
-	[cell setText:[[self camera] description]];
+	CameraViewController* cameraViewController = (CameraViewController*)[self controller];
+	[[cameraViewController cameraNameLabel] setText:NSLocalizedString(@"CAMERA_NAME_TITLE", "Camera")];
+	[[cameraViewController cameraNameField] setText:[[self camera] description]];
 	
-	return cell;
+	return [cameraViewController cameraNameCell];
 }
 
 - (UITableViewCell*) cellForCoCRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *) tableView

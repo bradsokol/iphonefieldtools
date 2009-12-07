@@ -25,7 +25,6 @@
 #import "Camera.h"
 #import "CameraViewTableDataSource.h"
 #import "CoC.h"
-#import "EditableTableViewCell.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -45,6 +44,9 @@
 @implementation CameraViewController
 
 @synthesize camera;
+@synthesize cameraNameField;
+@synthesize cameraNameCell;
+@synthesize cameraNameLabel;
 @synthesize cameraWorking;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
@@ -104,10 +106,7 @@
 
 - (void)saveWasSelected
 {
-	UITableView* tableView = (UITableView*)[self view];
-	EditableTableViewCell* cell = 
-	 (EditableTableViewCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-	[[cell textField] resignFirstResponder];
+	[[self cameraNameField] resignFirstResponder];
 	
 	NSString* message = nil;
 	if ([cameraWorking description] == nil || [[cameraWorking description] length] == 0)
@@ -187,10 +186,7 @@
 {
 	// The alert view is displayed only if the camera name was not specified.
 	// Help the user by making the camera name text field the first responder.
-	UITableView* tableView = (UITableView*)[self view];
-	EditableTableViewCell* cell = 
-		(EditableTableViewCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-	[[cell textField] becomeFirstResponder];
+	[[self cameraNameField] becomeFirstResponder];
 }
 
 - (void)cocChanged:(NSNotification*)notification

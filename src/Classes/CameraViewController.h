@@ -27,6 +27,10 @@
 
 @interface CameraViewController : UITableViewController <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 {
+	IBOutlet UITableViewCell* cameraNameCell;
+	IBOutlet UITextField* cameraNameField;
+	IBOutlet UILabel* cameraNameLabel;
+
 	CameraViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
 	Camera* camera;
@@ -37,5 +41,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
 
 @property(nonatomic, retain) CameraViewTableDataSource* tableViewDataSource;
+@property(nonatomic, retain, readonly) UITableViewCell* cameraNameCell;
+@property(nonatomic, retain, readonly) UITextField* cameraNameField;
+@property(nonatomic, retain, readonly) UILabel* cameraNameLabel;
 
 @end
