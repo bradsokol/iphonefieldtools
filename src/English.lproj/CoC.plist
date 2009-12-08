@@ -15,8 +15,10 @@
 	<key>35 mm</key>
 	<real>0.03</real>
 	<key>4x5 format</key>
-	<real>0.15</real>
+	<real>0.1</real>
 	<key>6x6 format</key>
-	<real>0.06</real>
+	<real>0.045</real>
+	<key>Sony A850, A900</key>
+	<real>0.03</real>
 </dict>
 </plist>

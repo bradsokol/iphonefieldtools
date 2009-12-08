@@ -1,3 +1,18 @@
+Version 2.0
+December 7, 2009
+
+New features, enhancements:
+  * New 'Near+Far' view shows near and far limits as well as the total depth of 
+    field.
+  * Settings completely re-organized allowing selection from multiple cameras 
+    and lenses with a minimum number of touches.
+  * Configure multiple cameras using pre-set or custom CoC values.
+  * Configure multiple zoom or prime lenses including aperture and focal 
+    length values.
+  * Sliders on calculator screen use settings from selected lens for more 
+    accurate adjustments.
+  * Increased sensitivity of the 'i' button to make it more responsive.
+
 Version 1.0
 February 22, 2009
 
