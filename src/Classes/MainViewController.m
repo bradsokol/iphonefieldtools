@@ -23,6 +23,7 @@
 
 #import "Camera.h"
 #import "CoC.h"
+#import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
@@ -307,17 +308,6 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Calculations
 
-// Calculations are from Wikipedia: http://en.wikipedia.org/wiki/Hyperfocal_distance
-// and http://en.wikipedia.org/wiki/Depth_of_field#Depth_of_field_formulas
-//
-// The following variables are used in the calculations:
-//
-// H - Hyperfocal distance in metres
-// f - Focal length in millimetres
-// c - circle of confusion
-// N - f-number
-// s - distance to subject in metres
-
 // Calculates result for selected distance. Result is in metres.
 - (float)calculateResult
 {
@@ -343,29 +333,27 @@ static BOOL previousLensWasZoom = YES;
 	return distance;
 }
 
-// Df = ((Hs)/(H - (s - f)))
 - (float)calculateFarLimit
 {
-	float h = [self calculateHyperfocalDistance];
-	float s = [subjectDistanceSlider value];
-	
-	return ((h * s) / (h - (s - [self focalLength] / 1000.0f)));
+	return [DepthOfFieldCalculator calculateFarLimitForAperture:[self aperture]
+													focalLength:[self focalLength]
+											  circleOfConfusion:[self circleOfLeastConfusion]
+												subjectDistance:[subjectDistanceSlider value]];
 }
 
-// H = (f^2) / (Nc) + f
 - (float)calculateHyperfocalDistance
 {
-	return (([self focalLength] * [self focalLength]) / 
-			([self aperture] * [self circleOfLeastConfusion])) / 1000.0f;
+	return [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:[self aperture]
+															  focalLength:[self focalLength]
+														circleOfConfusion:[self circleOfLeastConfusion]];
 }
 
-// Dn = ((Hs)/(H + (s - f)))
 - (float)calculateNearLimit
 {
-	float h = [self calculateHyperfocalDistance];
-	float s = [subjectDistanceSlider value];
-	
-	return ((h * s) / (h + (s - [self focalLength] / 1000.0f)));
+	return [DepthOfFieldCalculator calculateNearLimitForAperture:[self aperture]
+													 focalLength:[self focalLength]
+											   circleOfConfusion:[self circleOfLeastConfusion]
+												 subjectDistance:[subjectDistanceSlider value]];
 }
 
 #pragma mark Updaters
