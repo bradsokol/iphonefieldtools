@@ -18,6 +18,8 @@
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
+		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
+		A21DCDB610EE81E400139D93 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCDB510EE81E400139D93 /* DepthOfFieldCalculatorTests.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -53,6 +55,16 @@
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A21DCD8510EE7D7800139D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* FieldTools */;
+			remoteInfo = FieldTools;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldToolsAppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +85,9 @@
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
+		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ModelTests.octest; path = "build/Debug-iphonesimulator/ModelTests.octest"; sourceTree = "<group>"; };
+		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
+		A21DCDB510EE81E400139D93 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -142,6 +157,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A21DCD7B10EE7D0300139D93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -155,6 +177,7 @@
 				A2B95FA310715F6A0057A70E /* Lens View */,
 				A23CFF29108A5FC400A41662 /* Main View */,
 				A2AAAECD0F2831D400945F6E /* Model */,
+				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
 				A2A0D30710156E4000A34735 /* Table View Cells */,
 				A20D30610F7B333900A744C3 /* DistanceFormatter.h */,
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
@@ -170,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Field Tools.app */,
+				A21DCD7E10EE7D0300139D93 /* ModelTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,6 +206,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -226,6 +251,14 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A21DCDAB10EE7F9E00139D93 /* Model Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A21DCDB510EE81E400139D93 /* DepthOfFieldCalculatorTests.m */,
+			);
+			name = "Model Tests";
 			sourceTree = "<group>";
 		};
 		A23CFF29108A5FC400A41662 /* Main View */ = {
@@ -296,10 +329,10 @@
 			children = (
 				A2AAAF0A0F28386300945F6E /* Camera.h */,
 				A2AAAF0B0F28386300945F6E /* Camera.m */,
-				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
-				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
 				A2E357951044DBDD003C449D /* CoC.h */,
 				A2E357961044DBDD003C449D /* CoC.m */,
+				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
+				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
 				A25BDF3210479BFE00B22B2B /* Lens.h */,
 				A25BDF3310479BFE00B22B2B /* Lens.m */,
 			);
@@ -360,6 +393,25 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Field Tools.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A21DCD7D10EE7D0300139D93 /* ModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A21DCD8410EE7D0300139D93 /* Build configuration list for PBXNativeTarget "ModelTests" */;
+			buildPhases = (
+				A21DCD7910EE7D0300139D93 /* Resources */,
+				A21DCD7A10EE7D0300139D93 /* Sources */,
+				A21DCD7B10EE7D0300139D93 /* Frameworks */,
+				A21DCD7C10EE7D0300139D93 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A21DCD8610EE7D7800139D93 /* PBXTargetDependency */,
+			);
+			name = ModelTests;
+			productName = ModelTests;
+			productReference = A21DCD7E10EE7D0300139D93 /* ModelTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -380,6 +432,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* FieldTools */,
+				A21DCD7D10EE7D0300139D93 /* ModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -407,7 +460,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A21DCD7910EE7D0300139D93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A21DCD7C10EE7D0300139D93 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -443,7 +519,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A21DCD7A10EE7D0300139D93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */,
+				A21DCDB610EE81E400139D93 /* DepthOfFieldCalculatorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A21DCD8610EE7D7800139D93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* FieldTools */;
+			targetProxy = A21DCD8510EE7D7800139D93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A22C2451104387A1005BC94C /* CoC.plist */ = {
@@ -522,6 +615,87 @@
 			};
 			name = Distribution;
 		};
+		A21DCD8110EE7D0300139D93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "ModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ModelTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A21DCD8210EE7D0300139D93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "ModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ModelTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		A21DCD8310EE7D0300139D93 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "ModelTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ModelTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -560,6 +734,16 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				A20C8E7A0F4A913F00B73E79 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A21DCD8410EE7D0300139D93 /* Build configuration list for PBXNativeTarget "ModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A21DCD8110EE7D0300139D93 /* Debug */,
+				A21DCD8210EE7D0300139D93 /* Release */,
+				A21DCD8310EE7D0300139D93 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
