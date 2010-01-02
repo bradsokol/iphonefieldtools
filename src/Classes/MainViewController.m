@@ -49,7 +49,7 @@ static float controlYDelta = 44.0f;
 static BOOL previousLensWasZoom = YES;
 
 // Private methods
-@interface MainViewController()
+@interface MainViewController ()
 
 - (float)calculateFarLimit;
 - (float)calculateHyperfocalDistance;
@@ -64,6 +64,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)lensDidChangeWithLens:(Lens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
+- (float)sliderValueForDistance:(float)distance;
 - (void)unitsDidChange;
 - (void)updateAperture;
 - (void)updateFocalLength;
@@ -148,7 +149,7 @@ static BOOL previousLensWasZoom = YES;
 	[distanceType setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceTypeKey]];
 	[apertureSlider setValue:[self apertureIndex]];
 	[focalLengthSlider setValue:[self focalLength]];
-	[subjectDistanceSlider setValue:[self subjectDistance]];
+	[subjectDistanceSlider setValue:[self sliderValueForDistance:[self subjectDistance]]];
 	
 	// Set limits on sliders
 	Lens* lens = [Lens findSelectedInDefaults];
@@ -521,6 +522,22 @@ static BOOL previousLensWasZoom = YES;
 	else
 	{
 		return value * 8.0f - 120.0f;
+	}
+}
+
+- (float)sliderValueForDistance:(float)distance
+{
+	if (distance <= 12.5f)
+	{
+		return distance;
+	}
+	else if (distance <= 25.5)
+	{
+		return (distance + 12.0f) / 2.0f;
+	}
+	else
+	{
+		return (distance + 120.0f) / 8.0f;
 	}
 }
 

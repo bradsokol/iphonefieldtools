@@ -3,6 +3,7 @@ January 1, 2010
 
 Fixes:
   * Bug 2924786 - The near and far depth of field limits are off for long subject distances.
+  * Bug 2924792 - Distance slider thumb set incorrectly when starting app.
   
 Version 2.0
 December 7, 2009
