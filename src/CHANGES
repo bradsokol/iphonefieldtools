@@ -1,3 +1,9 @@
+Version 2.0.1
+January 1, 2010
+
+Fixes:
+  * Bug 2924786 - The near and far depth of field limits are off for long subject distances.
+  
 Version 2.0
 December 7, 2009
 
