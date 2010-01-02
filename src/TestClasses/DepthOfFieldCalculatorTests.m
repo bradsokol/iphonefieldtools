@@ -787,7 +787,7 @@
 
 - (void)testNearDistanceCalculations
 {
-	float accuracy = 0.0009f;
+	float accuracy = 0.09f;
 	float expected, result, focalLength, subjectDistance;
 	
 	// ***********************

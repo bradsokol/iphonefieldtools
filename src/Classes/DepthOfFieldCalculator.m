@@ -42,7 +42,9 @@
 {
 	float h = [self calculateHyperfocalDistanceForAperture:aperture focalLength:(float)focalLength circleOfConfusion:(float)coc];
 	
-	return ((h * subjectDistance) / (h - (subjectDistance - focalLength / 1000.0f)));
+	float result = ((h * subjectDistance) / (h - subjectDistance));
+	
+	return result;
 }
 
 // Caculate hyperfocal distance using formula:
@@ -64,7 +66,7 @@
 {
 	float h = [self calculateHyperfocalDistanceForAperture:aperture focalLength:(float)focalLength circleOfConfusion:(float)coc];
 	
-	return ((h * subjectDistance) / (h + (subjectDistance - focalLength / 1000.0f)));
+	return ((h * subjectDistance) / (h + subjectDistance));
 }
 
 @end

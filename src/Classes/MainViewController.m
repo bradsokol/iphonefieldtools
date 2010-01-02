@@ -338,7 +338,7 @@ static BOOL previousLensWasZoom = YES;
 	return [DepthOfFieldCalculator calculateFarLimitForAperture:[self aperture]
 													focalLength:[self focalLength]
 											  circleOfConfusion:[self circleOfLeastConfusion]
-												subjectDistance:[subjectDistanceSlider value]];
+												subjectDistance:[self distanceForSliderValue:[subjectDistanceSlider value]]];
 }
 
 - (float)calculateHyperfocalDistance
@@ -353,7 +353,7 @@ static BOOL previousLensWasZoom = YES;
 	return [DepthOfFieldCalculator calculateNearLimitForAperture:[self aperture]
 													 focalLength:[self focalLength]
 											   circleOfConfusion:[self circleOfLeastConfusion]
-												 subjectDistance:[subjectDistanceSlider value]];
+												 subjectDistance:[self distanceForSliderValue:[subjectDistanceSlider value]]];
 }
 
 #pragma mark Updaters
