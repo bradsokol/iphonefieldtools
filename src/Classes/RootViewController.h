@@ -24,15 +24,18 @@
 @class MainViewController;
 @class FlipsideViewController;
 
-@interface RootViewController : UIViewController {
-	
+@interface RootViewController : UIViewController 
+{
+	IBOutlet UIButton *cameraAndLensDescription;
 	IBOutlet UIButton *infoButton;
+	
 	MainViewController *mainViewController;
 	FlipsideViewController *flipsideViewController;
 	UINavigationBar* flipsideNavigationBar;
 	UINavigationController* navigationController;
 }
 
+@property (nonatomic, retain) UIButton* cameraAndLensDescription;
 @property (nonatomic, retain) UIButton *infoButton;
 @property (nonatomic, retain) MainViewController *mainViewController;
 @property (nonatomic, retain) UINavigationBar* flipsideNavigationBar;

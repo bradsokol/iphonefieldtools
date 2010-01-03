@@ -21,11 +21,15 @@
 
 #import "RootViewController.h"
 
+#import "Camera.h"
 #import "FieldToolsAppDelegate.h"
 #import "FlipsideViewController.h"
+#import "Lens.h"
 #import "MainViewController.h"
 
 @interface RootViewController ()
+
+- (void)updateCameraAndLensDescription;
 
 @property(nonatomic, retain) UINavigationController* navigationController;
 
@@ -33,6 +37,7 @@
 
 @implementation RootViewController
 
+@synthesize cameraAndLensDescription;
 @synthesize infoButton;
 @synthesize mainViewController;
 @synthesize navigationController;
@@ -52,6 +57,10 @@
 										  [self infoButton].frame.origin.y-25, [self infoButton].frame.size.width+50, 
 										  [self infoButton].frame.size.height+50);
 	[[self infoButton] setFrame:newInfoButtonRect];	
+	
+	[[self view] insertSubview:[mainViewController view] belowSubview:cameraAndLensDescription];
+
+	[self updateCameraAndLensDescription];
 }
 
 // Helper method to load the flipside view and controller
@@ -96,6 +105,7 @@
 		[[self mainViewController] viewWillDisappear:YES];
 		[mainView removeFromSuperview];
         [[self infoButton] removeFromSuperview];
+		[[self cameraAndLensDescription] removeFromSuperview];
 		[window addSubview:[[self navigationController] view]];
 	}
 	else
@@ -108,8 +118,19 @@
 		[[self view] addSubview:mainView];
 		[[self view] insertSubview:[self infoButton] 
 					  aboveSubview:[[self mainViewController] view]];
+		[[self view] insertSubview:[self cameraAndLensDescription]
+					  aboveSubview:[[self mainViewController] view]];
+		
+		[self updateCameraAndLensDescription];
 	}
 	[UIView commitAnimations];
+}
+
+- (void)updateCameraAndLensDescription
+{
+	NSString* title = [NSString stringWithFormat:@"%@ - %@",
+					   [Camera findSelectedInDefaults], [Lens findSelectedInDefaults]];
+	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -119,6 +140,7 @@
 
 - (void)dealloc 
 {
+	[self setCameraAndLensDescription:nil];
 	[self setInfoButton:nil];
 	[self setFlipsideNavigationBar:nil];
 	[self setMainViewController:nil];
