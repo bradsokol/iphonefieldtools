@@ -55,18 +55,30 @@ const static float METRES_TO_FEET = 3.280839895f;
 	}
 	
 	BOOL metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-	NSString* units;
 	if (metric)
 	{
-		units = NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres");
+		return [NSString stringWithFormat:@"%.1f %@", distance, 
+				NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
 	}
 	else
 	{
 		distance *= METRES_TO_FEET;
-		units = NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet");
+		float feet = floorf(distance);
+		float inches = rintf(12.0f * (distance - feet));
+		
+		if (feet == 0.0f)
+		{
+			return [NSString stringWithFormat:@"%.0f\"", inches];
+		} 
+		else if (inches == 0.0f)
+		{
+			return [NSString stringWithFormat:@"%.0f'", feet];
+		}
+		else
+		{
+			return [NSString stringWithFormat:@"%.0f' %.0f\"", feet, inches];
+		}
 	}
-	
-	return [NSString stringWithFormat:@"%.1f %@", distance, units];
 }
 
 @end
