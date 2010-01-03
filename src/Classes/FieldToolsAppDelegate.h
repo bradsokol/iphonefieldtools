@@ -25,8 +25,8 @@
 
 @interface FieldToolsAppDelegate : NSObject <UIApplicationDelegate> 
 {
-    UIWindow *window;
-    RootViewController *rootViewController;
+    IBOutlet UIWindow *window;
+    IBOutlet RootViewController *rootViewController;
 }
 
 @property (nonatomic, retain) UIWindow *window;
