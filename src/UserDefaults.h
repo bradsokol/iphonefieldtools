@@ -20,7 +20,8 @@
  *
  */
 
-#define DEFAULTS_VERSION 2
+#define DEFAULTS_BASE_VERSION 2
+//#define DEFAULTS_VERSION	  3
 
 // Keys for user defaults
 extern NSString* const FTDefaultsVersion;
@@ -29,20 +30,18 @@ extern NSString* const FTApertureIndex;
 extern NSString* const FTCameraCount;
 extern NSString* const FTCameraIndex;
 extern NSString* const FTDistanceTypeKey;
+extern NSString* const FTDistanceUnitsKey;
 extern NSString* const FTFocalLengthKey;
 extern NSString* const FTLensCount;
 extern NSString* const FTLensIndex;
-extern NSString* const FTMetricKey;
 extern NSString* const FTSubjectDistanceKey;
 
-// Keys for user defaults (future functionality)
-/*
-extern NSString* const FTCameraDescriptionRoot;
-extern NSString* const FTCameraCoCRoot;
-extern NSString* const FTFStopKey;
-extern NSString* const FTCoCKey;
-extern NSString* const FTMinimumFStopKey;
-extern NSString* const FTMaximumFStopKey;
-extern NSString* const FTMinimumFocalLengthKey;
-extern NSString* const FTMaximumFocalLengthKey;
-*/
+// Deprecated
+extern NSString* const FTMetricKey;				// Use FTUnitsKey
+
+typedef enum _DistanceUnits
+{
+	DistanceUnitsFeet,
+	DistanceUnitsFeetAndInches,
+	DistanceUnitsMeters
+} DistanceUnits;

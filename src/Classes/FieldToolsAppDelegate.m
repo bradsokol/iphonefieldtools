@@ -35,6 +35,7 @@ NSString* const FTApertureIndex = @"ApertureIndex";
 NSString* const FTCameraCount = @"CameraCount";
 NSString* const FTCameraIndex = @"CameraIndex";
 NSString* const FTDistanceTypeKey = @"DistanceType";
+NSString* const FTDistanceUnitsKey = @"DistanceUnits";
 NSString* const FTFocalLengthKey = @"FocalLength";
 NSString* const FTLensCount = @"LensCount";
 NSString* const FTLensIndex = @"LensIndex";
@@ -42,18 +43,7 @@ NSString* const FTMetricKey = @"Metric";
 NSString* const FTSubjectDistanceKey = @"SubjectDistance";
 
 NSString* const FTMigratedFrom10Key = @"MigratedFrom10";
-
-// Keys for user defaults (future functionality)
-/*
- NSString* const FTCameraDescriptionRoot = @"CameraDescription";
- NSString* const FTCameraCoCRoot = @"CameraCoc";
-NSString* const FTFStopKey = @"FStop";
-NSString* const FTCoCKey = @"CoC";
-NSString* const FTMinimumFStopKey = @"MinimumFStop";
-NSString* const FTMaximumFStopKey = @"MaximumFStop";
-NSString* const FTMinimumFocalLengthKey = @"MinimumFocalLength";
-NSString* const FTMaximumFocalLengthKey = @"MaximumFocalLength";
-*/
+NSString* const FTMigratedFrom20Key = @"MigratedFrom20";
 
 // Defaults for preferences
 int DefaultApertureIndex = 18;
@@ -63,18 +53,10 @@ float DefaultFocalLength = 24.0f;
 bool DefaultMetric = NO;
 float DefaultSubjectDistance = 2.5f;
 
-// Defaults for preferences (future functionality)
-/*
-float DefaultFStop = 8.0;
-float DefaultMaximumFStop = 2.8;
-float DefaultMinimumFStop = 32.0;
-float DefaultMinimumFocalLength = 10.0;
-float DefaultMaximumFocalLength = 100.0;
- */
+@interface FieldToolsAppDelegate ()
 
-@interface FieldToolsAppDelegate (Private)
-
-+ (void)migrateDefaults:(NSMutableDictionary*)defaultValues;
++ (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues;
++ (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues;
 + (void)setupDefaultValues;
 
 @end
@@ -88,10 +70,13 @@ float DefaultMaximumFocalLength = 100.0;
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
 
 	[FieldToolsAppDelegate setupDefaultValues];
 
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
@@ -104,22 +89,30 @@ float DefaultMaximumFocalLength = 100.0;
 {
 	bool migratedFrom10 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom10Key];
 	NSLog(@"Previously migrated from 1.0: %s", migratedFrom10 ? "YES" : "NO");
+	bool migratedFrom20 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom20Key];
+	NSLog(@"Previously migrated from 2.0: %s", migratedFrom20 ? "YES" : "NO");
 
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
 	
-	if (!migratedFrom10)
+	if (!migratedFrom20)
 	{
-		NSLog(@"Migrating defaults");
-		[FieldToolsAppDelegate migrateDefaults:defaultValues];
-	}
-	else if ([Camera count] == 0)
-	{
-		CoC* coc = [CoC findFromPresets:DefaultCoC];
-		Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
-														 coc:coc
-												  identifier:0];
-		[camera save];
-		[camera release];
+		if (!migratedFrom10)
+		{
+			NSLog(@"Migrating defaults from 1.0 to 2.0");
+			[FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
+		}
+		else if ([Camera count] == 0)
+		{
+			CoC* coc = [CoC findFromPresets:DefaultCoC];
+			Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
+															 coc:coc
+													  identifier:0];
+			[camera save];
+			[camera release];
+		}
+		
+		NSLog(@"Migrating defaults from 2.0 to 2.1");
+		[FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
 	}
 	
 	[defaultValues setObject:[NSNumber numberWithInt:1]
@@ -139,17 +132,17 @@ float DefaultMaximumFocalLength = 100.0;
 	
 	[defaultValues setObject:[NSNumber numberWithInt:DefaultDistanceType] 
 					  forKey:FTDistanceTypeKey];
-	[defaultValues setObject:[NSNumber numberWithBool:DefaultMetric]
-					  forKey:FTMetricKey];
+	[defaultValues setObject:[NSNumber numberWithInt:DistanceUnitsFeetAndInches]
+					  forKey:FTDistanceUnitsKey];
 
 	// Add default version to make migration easier for subsequent versions
-	[defaultValues setObject:[NSNumber numberWithInt:DEFAULTS_VERSION]
+	[defaultValues setObject:[NSNumber numberWithInt:DEFAULTS_BASE_VERSION]
 					  forKey:FTDefaultsVersion];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
-+ (void)migrateDefaults:(NSMutableDictionary*)defaultValues
++ (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues
 {
 	// Convert camera index to a COC value
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
@@ -179,6 +172,16 @@ float DefaultMaximumFocalLength = 100.0;
 	
 	// Remove obsolete keys
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTCameraIndex];
+}
+
++ (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues
+{
+	bool metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:metric ? DistanceUnitsMeters : DistanceUnitsFeet]
+											  forKey:FTDistanceUnitsKey];
+	
+	// Remove obsolete keys
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTMetricKey];
 }
 
 - (void)dealloc 
