@@ -54,31 +54,41 @@ const static float METRES_TO_FEET = 3.280839895f;
 		return @"∞";
 	}
 	
-	BOOL metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-	if (metric)
+	DistanceUnits distanceUnits = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+	switch (distanceUnits)
 	{
-		return [NSString stringWithFormat:@"%.1f %@", distance, 
-				NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+		case DistanceUnitsFeet:
+			return [NSString stringWithFormat:@"%.1f %@", distance * METRES_TO_FEET, 
+					NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet")];
+			break;
+			
+		case DistanceUnitsFeetAndInches:
+			distance *= METRES_TO_FEET;
+			float feet = floorf(distance);
+			float inches = rintf(12.0f * (distance - feet));
+			
+			if (feet == 0.0f)
+			{
+				return [NSString stringWithFormat:@"%.0f\"", inches];
+			} 
+			else if (inches == 0.0f)
+			{
+				return [NSString stringWithFormat:@"%.0f'", feet];
+			}
+			else
+			{
+				return [NSString stringWithFormat:@"%.0f' %.0f\"", feet, inches];
+			}
+			break;
+			
+		case DistanceUnitsMeters:
+			return [NSString stringWithFormat:@"%.1f %@", distance, 
+					NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+			break;
 	}
-	else
-	{
-		distance *= METRES_TO_FEET;
-		float feet = floorf(distance);
-		float inches = rintf(12.0f * (distance - feet));
-		
-		if (feet == 0.0f)
-		{
-			return [NSString stringWithFormat:@"%.0f\"", inches];
-		} 
-		else if (inches == 0.0f)
-		{
-			return [NSString stringWithFormat:@"%.0f'", feet];
-		}
-		else
-		{
-			return [NSString stringWithFormat:@"%.0f' %.0f\"", feet, inches];
-		}
-	}
+	
+	// We should never get here. This is here to satisfy a compiler warning.
+	return @"FORMATTING ERROR";
 }
 
 @end

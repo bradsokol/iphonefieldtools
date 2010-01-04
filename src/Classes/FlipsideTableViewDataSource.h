@@ -30,10 +30,6 @@ extern const NSInteger CAMERAS_SECTION;
 extern const NSInteger LENSES_SECTION;
 extern const NSInteger UNITS_SECTION;
 
-// Enumerate rows in units section of table
-extern const NSInteger FEET_ROW;
-extern const NSInteger METRES_ROW;
-
 @interface FlipsideTableViewDataSource : NSObject <UITableViewDataSource>
 {
 	BOOL editing;

@@ -29,16 +29,12 @@
 #import "UserDefaults.h"
 
 const NSInteger SECTION_COUNT = 3;
-const NSInteger UNITS_COUNT = 2;
+const NSInteger UNITS_COUNT = 3;
 
 // Enumerate sections in UITable
 const NSInteger LENSES_SECTION = 0;
 const NSInteger CAMERAS_SECTION = 1;
 const NSInteger UNITS_SECTION = 2;
-
-// Enumerate rows in units section of table
-const NSInteger FEET_ROW = 0;
-const NSInteger METRES_ROW = 1;
 
 static NSString *CellIdentifier = @"Cell";
 
@@ -244,11 +240,23 @@ static NSString *CellIdentifier = @"Cell";
 {
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
 	
-	[[cell textLabel] setText:[indexPath row] == FEET_ROW ? NSLocalizedString(@"FEET", "Feet") : 
-	 NSLocalizedString(@"METRES", "Metres")];
+	switch ([indexPath row])
+	{
+		case DistanceUnitsFeet:
+			[[cell textLabel] setText:@"Feet"];
+			break;
+			
+		case DistanceUnitsFeetAndInches:
+			[[cell textLabel] setText:@"Feet and inches"];
+			break;
+			
+		case DistanceUnitsMeters:
+			[[cell textLabel] setText:@"Meters"];
+			break;
+	}
 
-	bool metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-	if ((metric && [indexPath row] == METRES_ROW) || (!metric && [indexPath row] == FEET_ROW))
+	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+	if ([indexPath row] == units)
 	{
 		[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 	}

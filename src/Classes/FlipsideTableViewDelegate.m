@@ -28,11 +28,6 @@
 #import "Notifications.h"
 #import "UserDefaults.h"
 
-// Enumerate rows in units section of table
-// TODO: Can this be DRYer?
-extern const NSInteger FEET_ROW;
-extern const NSInteger METRES_ROW;
-
 // Enumerate sections in UITable
 // TODO: Can this be DRYer?
 extern const NSInteger CAMERAS_SECTION;
@@ -306,8 +301,8 @@ static const float SectionHeaderHeight = 44.0;
 		// Selectedrow is not the current units so change the selection
 		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		
-		[[NSUserDefaults standardUserDefaults] setBool:[indexPath row] == METRES_ROW
-												forKey:FTMetricKey];
+		[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row]
+												   forKey:FTDistanceUnitsKey];
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:UNITS_CHANGED_NOTIFICATION object:nil]];
 	}
@@ -336,8 +331,7 @@ static const float SectionHeaderHeight = 44.0;
 // Returns the row index for the current units
 - (NSInteger)rowForDefaultUnits
 {
-	bool metric = [[NSUserDefaults standardUserDefaults] boolForKey:FTMetricKey];
-	return metric ? METRES_ROW : FEET_ROW;
+	return [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 }
 
 @end
