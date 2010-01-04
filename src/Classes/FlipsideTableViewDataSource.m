@@ -243,15 +243,15 @@ static NSString *CellIdentifier = @"Cell";
 	switch ([indexPath row])
 	{
 		case DistanceUnitsFeet:
-			[[cell textLabel] setText:@"Feet"];
+			[[cell textLabel] setText:NSLocalizedString(@"FEET", "FEET")];
 			break;
 			
 		case DistanceUnitsFeetAndInches:
-			[[cell textLabel] setText:@"Feet and inches"];
+			[[cell textLabel] setText:NSLocalizedString(@"FEET_AND_INCHES", "FEET_AND_INCHES")];
 			break;
 			
 		case DistanceUnitsMeters:
-			[[cell textLabel] setText:@"Meters"];
+			[[cell textLabel] setText:NSLocalizedString(@"METRES", "METRES")];
 			break;
 	}
 
