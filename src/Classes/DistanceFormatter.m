@@ -27,13 +27,36 @@
 // Constant for converting  from metres to feet
 const static float METRES_TO_FEET = 3.280839895f;
 
-@interface DistanceFormatter (Private)
+@interface DistanceFormatter ()
 
 - (NSString*)formatDistance:(CGFloat)distance;
+
+@property(nonatomic,getter=isTesting) BOOL testing;
 
 @end
 
 @implementation DistanceFormatter
+
+@synthesize distanceUnits;
+@synthesize testing;
+
+- (id)init
+{
+	return [self initForTest:NO];
+}
+
+- (id)initForTest:(BOOL)test
+{
+	if (nil == (self = [super init]))
+	{
+		return nil;
+	}
+	
+	[self setTesting:test];
+	[self setDistanceUnits:DistanceUnitsMeters];
+	
+	return self;
+}
 
 - (NSString*)stringForObjectValue:(id)anObject
 {
@@ -54,8 +77,9 @@ const static float METRES_TO_FEET = 3.280839895f;
 		return @"∞";
 	}
 	
-	DistanceUnits distanceUnits = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
-	switch (distanceUnits)
+	DistanceUnits units = [self isTesting] ? [self distanceUnits] :
+		[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+	switch (units)
 	{
 		case DistanceUnitsFeet:
 			return [NSString stringWithFormat:@"%.1f %@", distance * METRES_TO_FEET, 

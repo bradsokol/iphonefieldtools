@@ -28,8 +28,19 @@
 
 #import <Foundation/Foundation.h>
 
+#import "UserDefaults.h"
+
 @interface DistanceFormatter : NSFormatter 
 {
+	BOOL testing;
+	
+	// For testing only
+	DistanceUnits distanceUnits;
 }
+
+- (id)init;
+- (id)initForTest:(BOOL)test;
+
+@property(nonatomic) DistanceUnits distanceUnits;
 
 @end
