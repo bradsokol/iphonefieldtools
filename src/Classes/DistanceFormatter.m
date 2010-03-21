@@ -91,6 +91,12 @@ const static float METRES_TO_FEET = 3.280839895f;
 			float feet = floorf(distance);
 			float inches = rintf(12.0f * (distance - feet));
 			
+			if (inches == 12.0f)
+			{
+				feet += 1.0f;
+				inches = 0.0f;
+			}
+			
 			if (feet == 0.0f)
 			{
 				return [NSString stringWithFormat:@"%.0f\"", inches];

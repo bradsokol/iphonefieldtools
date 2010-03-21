@@ -51,7 +51,14 @@
 	[formatter setDistanceUnits:DistanceUnitsMeters];
 	NSString* expected = @"2.1 m";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.1f]];
-	NSLog(@"Main bundle path: %@", [[NSBundle mainBundle] bundlePath]);
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+}
+
+- (void)testFeetAndInchesRounding
+{
+	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
+	NSString* expected = @"7'";
+	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.13333344f]];
 	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
