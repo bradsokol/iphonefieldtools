@@ -19,7 +19,6 @@
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
-		A21DCDB610EE81E400139D93 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCDB510EE81E400139D93 /* DepthOfFieldCalculatorTests.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -31,6 +30,12 @@
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
+		A265A28810F6EA9F00678796 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
+		A265A28D10F6EDDC00678796 /* DistanceFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */; };
+		A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */; };
+		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
+		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
+		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E7000EE45DDE00C37E21 /* RootViewController.m */; };
@@ -55,6 +60,16 @@
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A265A25210F6E53100678796 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = FieldTools;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldToolsAppDelegate.h; sourceTree = "<group>"; };
@@ -77,7 +92,6 @@
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
 		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
-		A21DCDB510EE81E400139D93 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
@@ -97,6 +111,10 @@
 		A261F8C70FDCCA3600C907AD /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		A261F8C80FDCCA3600C907AD /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		A261F8CE0FDCCAAA00C907AD /* CameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraView.xib; sourceTree = "<group>"; };
+		A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistanceFormatterTests.m; path = TestClasses/DistanceFormatterTests.m; sourceTree = SOURCE_ROOT; };
+		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
+		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
+		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 		A2811FD30ECE8DB100A7FB7A /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
@@ -198,7 +216,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				A21DCF5810EF06D700139D93 /* Documentation */,
-				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -208,8 +225,10 @@
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				A2811F630ECE706300A7FB7A /* UserDefaults.h */,
+				A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */,
 				A2811FD30ECE8DB100A7FB7A /* Notifications.h */,
+				A2811F630ECE706300A7FB7A /* UserDefaults.h */,
+				A265A29910F6F00B00678796 /* UserDefaults.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -231,6 +250,7 @@
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				2899E55F0DE3E45000AC0155 /* MainView.xib */,
+				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -248,7 +268,8 @@
 		A21DCDAB10EE7F9E00139D93 /* Model Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A21DCDB510EE81E400139D93 /* DepthOfFieldCalculatorTests.m */,
+				A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */,
+				A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */,
 			);
 			name = "Model Tests";
 			sourceTree = "<group>";
@@ -405,6 +426,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A265A25310F6E53100678796 /* PBXTargetDependency */,
 			);
 			name = ModelTests;
 			productName = ModelTests;
@@ -463,6 +485,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +538,7 @@
 				A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */,
 				A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */,
 				A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */,
+				A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,11 +547,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */,
-				A21DCDB610EE81E400139D93 /* DepthOfFieldCalculatorTests.m in Sources */,
+				A265A28810F6EA9F00678796 /* DistanceFormatter.m in Sources */,
+				A265A28D10F6EDDC00678796 /* DistanceFormatterTests.m in Sources */,
+				A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */,
+				A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A265A25310F6E53100678796 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* FieldTools */;
+			targetProxy = A265A25210F6E53100678796 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A22C2451104387A1005BC94C /* CoC.plist */ = {
@@ -619,6 +654,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
 				INFOPLIST_FILE = "ModelTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -646,6 +683,8 @@
 				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
 				INFOPLIST_FILE = "ModelTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -672,6 +711,8 @@
 				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
 				INFOPLIST_FILE = "ModelTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",

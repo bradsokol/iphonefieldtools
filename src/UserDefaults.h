@@ -36,6 +36,9 @@ extern NSString* const FTLensCount;
 extern NSString* const FTLensIndex;
 extern NSString* const FTSubjectDistanceKey;
 
+extern NSString* const FTMigratedFrom10Key;
+extern NSString* const FTMigratedFrom20Key;
+
 // Deprecated
 extern NSString* const FTMetricKey;				// Use FTUnitsKey
 

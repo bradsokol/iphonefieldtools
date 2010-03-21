@@ -28,23 +28,6 @@
 
 #import "UserDefaults.h"
 
-// Keys for user defaults
-NSString* const FTDefaultsVersion = @"DefaultsVersion";
-
-NSString* const FTApertureIndex = @"ApertureIndex";
-NSString* const FTCameraCount = @"CameraCount";
-NSString* const FTCameraIndex = @"CameraIndex";
-NSString* const FTDistanceTypeKey = @"DistanceType";
-NSString* const FTDistanceUnitsKey = @"DistanceUnits";
-NSString* const FTFocalLengthKey = @"FocalLength";
-NSString* const FTLensCount = @"LensCount";
-NSString* const FTLensIndex = @"LensIndex";
-NSString* const FTMetricKey = @"Metric";
-NSString* const FTSubjectDistanceKey = @"SubjectDistance";
-
-NSString* const FTMigratedFrom10Key = @"MigratedFrom10";
-NSString* const FTMigratedFrom20Key = @"MigratedFrom20";
-
 // Defaults for preferences
 int DefaultApertureIndex = 18;
 NSString* const DefaultCoC = @"Nikon DX";
