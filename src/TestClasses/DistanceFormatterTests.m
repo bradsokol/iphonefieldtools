@@ -35,7 +35,6 @@
 - (void)setUp
 {
 	formatter = [[DistanceFormatter alloc] initForTest:YES];
-	printf("*************** %s\n", getwd(NULL));
 }
 
 - (void)testWholeMetres
@@ -59,6 +58,39 @@
 	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
 	NSString* expected = @"7'";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.13333344f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+}
+
+// Test that 15", 15.25", 15.5" and 15.75" are displays as 15", 15 1/4", 15 1/2" and 15 3/4" respectively. 
+- (void)testFractionalInches
+{
+	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
+	NSString* expected = @"1'";
+	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.3048f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+
+	expected = @"1' 3\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.381f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+	expected = @"1' 3¼\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.38735f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+	expected = @"1' 3½\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.3937f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+	expected = @"1' 3¾\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.40005f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+}
+
+- (void)testZeroInchesWithFraction
+{
+	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
+	NSString* expected = @"3' ¼\"";
+	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.92f]];
 	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 

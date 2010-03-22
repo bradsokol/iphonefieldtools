@@ -30,6 +30,7 @@ const static float METRES_TO_FEET = 3.280839895f;
 @interface DistanceFormatter ()
 
 - (NSString*)formatDistance:(CGFloat)distance;
+- (NSString*)formatInches:(CGFloat)inches;
 
 @property(nonatomic,getter=isTesting) BOOL testing;
 
@@ -90,24 +91,25 @@ const static float METRES_TO_FEET = 3.280839895f;
 			distance *= METRES_TO_FEET;
 			float feet = floorf(distance);
 			float inches = rintf(12.0f * (distance - feet));
+			inches = 12.0f * (distance - feet) + 0.125f;
 			
-			if (inches == 12.0f)
+			if (inches >= 12.0f)
 			{
 				feet += 1.0f;
-				inches = 0.0f;
+				inches -= 12.0f;
 			}
 			
 			if (feet == 0.0f)
 			{
-				return [NSString stringWithFormat:@"%.0f\"", inches];
+				return [self formatInches:inches];
 			} 
-			else if (inches == 0.0f)
+			else if (inches <= 0.125f)
 			{
 				return [NSString stringWithFormat:@"%.0f'", feet];
 			}
 			else
 			{
-				return [NSString stringWithFormat:@"%.0f' %.0f\"", feet, inches];
+				return [NSString stringWithFormat:@"%.0f' %@", feet, [self formatInches:inches]];
 			}
 			break;
 			
@@ -119,6 +121,32 @@ const static float METRES_TO_FEET = 3.280839895f;
 	
 	// We should never get here. This is here to satisfy a compiler warning.
 	return @"FORMATTING ERROR";
+}
+
+- (NSString*)formatInches:(CGFloat)inches
+{
+	int quarters = inches / 0.25f;
+	NSString* fraction = @"";
+	switch (quarters % 4)
+	{
+		case 1:
+			fraction = @"¼";
+			break;
+		case 2:
+			fraction = @"½";
+			break;
+		case 3:
+			fraction = @"¾";
+			break;
+	}
+	if (floorf(inches) < 0.5)
+	{
+		return [NSString stringWithFormat:@"%@\"", fraction];
+	}
+	else
+	{
+		return [NSString stringWithFormat:@"%.0f%@\"", floorf(inches), fraction];
+	}
 }
 
 @end
