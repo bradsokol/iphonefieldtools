@@ -30,6 +30,9 @@
 
 #import "UserDefaults.h"
 
+const extern float METRES_TO_FEET;
+const extern float METRES_TO_QUARTER_INCHES;
+
 @interface DistanceFormatter : NSFormatter 
 {
 	BOOL testing;

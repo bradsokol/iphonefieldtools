@@ -110,9 +110,22 @@ static const float SMALL_FONT_SIZE = 24.0;
 - (void)setResultNear:(CGFloat)near far:(CGFloat)far
 {
 	displayRange = YES;
-	nearDistance = near;
-	farDistance = far;
-	distanceDifference = far - near;
+	
+	if ([distanceFormatter distanceUnits] == DistanceUnitsFeetAndInches)
+	{
+		// When formatting feet and inches, values will be rounded to the nearest quarter inch.
+		// Must adjust near and far to nearest quarter inch so that distance difference 
+		// calculation will be correct after rounding.
+		nearDistance = rintf((near * METRES_TO_QUARTER_INCHES) + 0.5) / METRES_TO_QUARTER_INCHES;
+		farDistance = rintf((far * METRES_TO_QUARTER_INCHES) + 0.5) / METRES_TO_QUARTER_INCHES;
+	}
+	else
+	{
+		nearDistance = near;
+		farDistance = far;
+	}
+	
+	distanceDifference = farDistance - nearDistance;
 	
 	[self setNeedsDisplay];
 }

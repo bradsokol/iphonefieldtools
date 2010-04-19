@@ -25,7 +25,8 @@
 #import "UserDefaults.h"
 
 // Constant for converting  from metres to feet
-const static float METRES_TO_FEET = 3.280839895f;
+const float METRES_TO_FEET = 3.280839895f;
+const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 
 @interface DistanceFormatter ()
 
