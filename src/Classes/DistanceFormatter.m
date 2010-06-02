@@ -22,6 +22,7 @@
 
 #import "DistanceFormatter.h"
 
+#import "DistanceRange.h"
 #import "UserDefaults.h"
 
 // Constant for converting  from metres to feet
@@ -31,6 +32,7 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 @interface DistanceFormatter ()
 
 - (NSString*)formatDistance:(CGFloat)distance;
+- (NSString*)formatDistancesForRange:(DistanceRange*)distanceRange;
 - (NSString*)formatInches:(CGFloat)inches;
 
 @property(nonatomic,getter=isTesting) BOOL testing;
@@ -62,12 +64,16 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 
 - (NSString*)stringForObjectValue:(id)anObject
 {
-	if (![anObject isKindOfClass:[NSNumber class]])
+	if ([anObject isKindOfClass:[DistanceRange class]])
 	{
-		return nil;
+		return [self formatDistancesForRange:anObject];
+	}
+	else if ([anObject isKindOfClass:[NSNumber class]])
+	{
+		return [self formatDistance:[anObject floatValue]];
 	}
 	
-	return [self formatDistance:[anObject floatValue]];
+	return nil;
 }
 
 // Convert distance if necessary than format decimals and units
@@ -122,6 +128,14 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 	
 	// We should never get here. This is here to satisfy a compiler warning.
 	return @"FORMATTING ERROR";
+}
+
+- (NSString*)formatDistancesForRange:(DistanceRange*)distanceRange
+{
+	return [NSString stringWithFormat:@"%@\t%@\t%@", 
+			[self formatDistance:[distanceRange nearDistance]],
+			[self formatDistance:[distanceRange farDistance] - [distanceRange nearDistance]],
+			[self formatDistance:[distanceRange farDistance]]];
 }
 
 - (NSString*)formatInches:(CGFloat)inches
