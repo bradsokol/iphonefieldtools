@@ -84,6 +84,18 @@
 	expected = @"1' 3¾\"";
 	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.40005f]];
 	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+	expected = @"5' 4¾\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:1.647651f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+	expected = @"2' 11¾\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.910386f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+	expected = @"8' 4¾\"";
+	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.558037f]];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
 - (void)testZeroInchesWithFraction
