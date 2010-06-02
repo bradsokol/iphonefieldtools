@@ -114,6 +114,11 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 			{
 				return [NSString stringWithFormat:@"%.0f'", feet];
 			}
+			else if (inches > 11.875f)
+			{
+				feet += 1.0f;
+				return [NSString stringWithFormat:@"%.0f'", feet];
+			}
 			else
 			{
 				return [NSString stringWithFormat:@"%.0f' %@", feet, [self formatInches:inches]];
