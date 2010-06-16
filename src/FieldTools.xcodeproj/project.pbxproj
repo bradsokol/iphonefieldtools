@@ -38,6 +38,12 @@
 		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
+		A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
+		A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
+		A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
+		A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
+		A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */; };
+		A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E7000EE45DDE00C37E21 /* RootViewController.m */; };
@@ -119,6 +125,13 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
+		A28082DF11BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardMetricSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardMetricSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
+		A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardImperialSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardImperialSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 		A2811FD30ECE8DB100A7FB7A /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
@@ -291,6 +304,7 @@
 		A23CFF29108A5FC400A41662 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				A28082F411BBFC240057669F /* Subject Distance Slider Policies */,
 				A24EF5EA0ECA9415001A7B46 /* MainView.h */,
 				A24EF5EB0ECA9415001A7B46 /* MainView.m */,
 				28C286DF0D94DF7D0034E888 /* MainViewController.h */,
@@ -327,6 +341,20 @@
 				A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */,
 			);
 			name = "Camera View";
+			sourceTree = "<group>";
+		};
+		A28082F411BBFC240057669F /* Subject Distance Slider Policies */ = {
+			isa = PBXGroup;
+			children = (
+				A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */,
+				A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */,
+				A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */,
+				A28082DF11BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.h */,
+				A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */,
+				A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */,
+				A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */,
+			);
+			name = "Subject Distance Slider Policies";
 			sourceTree = "<group>";
 		};
 		A28D8A05108D5F4200C77FEA /* Custom CoC View */ = {
@@ -546,6 +574,9 @@
 				A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */,
 				A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */,
 				A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
+				A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */,
+				A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
+				A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +590,9 @@
 				A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */,
 				A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */,
 				A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
+				A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */,
+				A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
+				A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

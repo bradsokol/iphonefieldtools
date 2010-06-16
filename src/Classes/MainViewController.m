@@ -29,6 +29,8 @@
 #import "Lens.h"
 #import "MainView.h"
 #import "ResultView.h"
+#import "StandardImperialSubjectDistanceSliderPolicy.h"
+#import "StandardMetricSubjectDistanceSliderPolicy.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -38,9 +40,6 @@
 #define NEAR_SEGMENT_INDEX			1
 #define FAR_SEGMENT_INDEX			2
 #define NEAR_FAR_SEGMENT_INDEX		3
-
-static float minimumDistanceToSubject = 0.25f;	// metres
-static float maximumDistanceToSubject = 80.0f;	// metres
 
 // Amount to move controls up and down when hiding focal length
 // slider for prime lenses.
@@ -57,23 +56,23 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateResult;
 - (void)cocDidChange;
 - (void)customizeSliderAppearance:(UISlider*)slider;
-- (float)distanceForSliderValue:(float)value;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
 - (void)lensDidChangeWithLens:(Lens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
-- (float)sliderValueForDistance:(float)distance;
 - (void)unitsDidChange;
 - (void)updateAperture;
 - (void)updateFocalLength;
 - (void)updateResult;
-- (void)updateDistanceSliderLimits;
+- (void)updateSubjectDistanceSliderLimits;
+- (void)updateSubjectDistanceSliderPolicy;
 - (void)updateSubjectDistance;
 
 @property(nonatomic) int apertureIndex;
 @property(nonatomic, retain) DistanceFormatter* distanceFormatter;
+@property(nonatomic, retain) id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
 
 @end
 
@@ -85,6 +84,7 @@ static BOOL previousLensWasZoom = YES;
 @synthesize circleOfLeastConfusion;
 @synthesize distanceFormatter;
 @synthesize subjectDistance;
+@synthesize subjectDistanceSliderPolicy;
 
 // Convert aperture index to an aperture which is set of values
 // with a non-deterministic patter.
@@ -145,16 +145,18 @@ static BOOL previousLensWasZoom = YES;
 {
     [super viewDidLoad];
 	
+	[self updateSubjectDistanceSliderPolicy];
+	
 	// Set initial values in to controls
 	[distanceType setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceTypeKey]];
 	[apertureSlider setValue:[self apertureIndex]];
 	[focalLengthSlider setValue:[self focalLength]];
-	[subjectDistanceSlider setValue:[self sliderValueForDistance:[self subjectDistance]]];
+	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]];
 	
 	// Set limits on sliders
 	Lens* lens = [Lens findSelectedInDefaults];
 	[self lensDidChangeWithLens:lens];
-	[self updateDistanceSliderLimits];
+	[self updateSubjectDistanceSliderLimits];
 
 	[self customizeSliderAppearance:focalLengthSlider];
 	[self customizeSliderAppearance:apertureSlider];
@@ -230,7 +232,9 @@ static BOOL previousLensWasZoom = YES;
 	// Subject distance is a non-linear scale. This allows a wide range of settings
 	// with finer grained control over near distances and coarser grained over
 	// longer distances.
-	[self setSubjectDistance:[self distanceForSliderValue:[subjectDistanceSlider value]]];
+	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
+	NSLog(@"Slider value: %f", [subjectDistanceSlider value]);
+	NSLog(@"Distance for slider value: %f", [[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]);
 	
 	[[NSUserDefaults standardUserDefaults] setFloat:[self subjectDistance]
 											 forKey:FTSubjectDistanceKey];
@@ -249,7 +253,8 @@ static BOOL previousLensWasZoom = YES;
 // Notification that units changed. Need to re-display results.
 - (void)unitsDidChange
 {
-	[self updateDistanceSliderLimits];
+	[self updateSubjectDistanceSliderPolicy];
+	[self updateSubjectDistanceSliderLimits];
 	[self updateSubjectDistance];
 	[self updateResult];
 }
@@ -339,7 +344,7 @@ static BOOL previousLensWasZoom = YES;
 	return [DepthOfFieldCalculator calculateFarLimitForAperture:[self aperture]
 													focalLength:[self focalLength]
 											  circleOfConfusion:[self circleOfLeastConfusion]
-												subjectDistance:[self distanceForSliderValue:[subjectDistanceSlider value]]];
+												subjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
 }
 
 - (float)calculateHyperfocalDistance
@@ -354,7 +359,7 @@ static BOOL previousLensWasZoom = YES;
 	return [DepthOfFieldCalculator calculateNearLimitForAperture:[self aperture]
 													 focalLength:[self focalLength]
 											   circleOfConfusion:[self circleOfLeastConfusion]
-												 subjectDistance:[self distanceForSliderValue:[subjectDistanceSlider value]]];
+												 subjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
 }
 
 #pragma mark Updaters
@@ -399,10 +404,23 @@ static BOOL previousLensWasZoom = YES;
 	}
 }
 
-- (void)updateDistanceSliderLimits
+- (void)updateSubjectDistanceSliderLimits
 {
-	[subjectDistanceMinimum setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:minimumDistanceToSubject]]];
-	[subjectDistanceMaximum setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:maximumDistanceToSubject]]];
+	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
+
+	float minimum = [policy minimumDistanceToSubject];
+	float maximum = [policy maximumDistanceToSubject];
+
+	[subjectDistanceMinimum setText:[[self distanceFormatter] 
+									 stringForObjectValue:[NSNumber numberWithFloat:minimum]]];
+	[subjectDistanceMaximum setText:[[self distanceFormatter] 
+									 stringForObjectValue:[NSNumber numberWithFloat:maximum]]];
+	
+	minimum = [policy sliderMinimum];
+	maximum = [policy sliderMaximum];
+	
+	[subjectDistanceSlider setMinimumValue:minimum];
+	[subjectDistanceSlider setMaximumValue:maximum];
 }
 
 // Update the distance to subject display
@@ -509,42 +527,26 @@ static BOOL previousLensWasZoom = YES;
 	[self setCircleOfLeastConfusion:[[camera coc] value]];
 }
 
-- (float)distanceForSliderValue:(float)value
+- (void)updateSubjectDistanceSliderPolicy
 {
-	if (value <= 12.5f)
+	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+	if (DistanceUnitsMeters == units)
 	{
-		return value;
+		[self setSubjectDistanceSliderPolicy:[[StandardMetricSubjectDistanceSliderPolicy alloc] init]];
 	}
-	else if (value <= 18.75f)
+	else 
 	{
-		return value * 2.0f - 12.0f;
+		[self setSubjectDistanceSliderPolicy:[[StandardImperialSubjectDistanceSliderPolicy alloc] init]];
 	}
-	else
-	{
-		return value * 8.0f - 120.0f;
-	}
-}
 
-- (float)sliderValueForDistance:(float)distance
-{
-	if (distance <= 12.5f)
-	{
-		return distance;
-	}
-	else if (distance <= 25.5)
-	{
-		return (distance + 12.0f) / 2.0f;
-	}
-	else
-	{
-		return (distance + 120.0f) / 8.0f;
-	}
 }
 
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self setDistanceFormatter:nil];
+	
+	[self setSubjectDistanceSliderPolicy:nil];
 
     [super dealloc];
 }

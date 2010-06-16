@@ -21,6 +21,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SubjectDistanceSliderPolicy.h"
+
 @class DistanceFormatter;
 @class ResultView;
 
@@ -54,6 +56,8 @@
 	float subjectDistance;
 	
 	NSMutableArray* apertures;
+	
+	id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
 }
 
 - (void)apertureDidChange:(id)sender;
