@@ -4,6 +4,7 @@ Version 2.1
 New features:
   * Display selected camera and lens in the main view.
   * Add option to display distance as feet and inches as well as decimal feet.
+  * Slider limits round numbers as per the selected units.
 
 Version 2.0.1
 January 1, 2010

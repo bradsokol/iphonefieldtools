@@ -156,6 +156,11 @@ static const float SectionHeaderHeight = 44.0;
 			// This is a lens row - allow delete if more than one lens (must have at least one)
 			return lensCount > 1 ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
 		}
+		else if ([indexPath row] == lensCount)
+		{
+			// Macro row
+			return UITableViewCellEditingStyleNone;
+		}
 		else
 		{
 			// This is the add row

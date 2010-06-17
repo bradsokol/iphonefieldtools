@@ -66,6 +66,8 @@
 		A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
+		A2FDC0D411C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */; };
+		A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,8 @@
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
 		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoC.m; path = Classes/CoC.m; sourceTree = "<group>"; };
+		A2FDC0D211C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,13 +350,15 @@
 		A28082F411BBFC240057669F /* Subject Distance Slider Policies */ = {
 			isa = PBXGroup;
 			children = (
-				A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */,
-				A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */,
-				A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */,
-				A28082DF11BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.h */,
-				A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */,
+				A2FDC0D211C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.h */,
+				A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */,
 				A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */,
 				A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */,
+				A28082DF11BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.h */,
+				A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */,
+				A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */,
+				A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */,
+				A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */,
 			);
 			name = "Subject Distance Slider Policies";
 			sourceTree = "<group>";
@@ -577,6 +583,7 @@
 				A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */,
 				A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
+				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +600,7 @@
 				A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */,
 				A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
+				A2FDC0D411C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -130,7 +130,7 @@
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		path = [NSIndexPath indexPathForRow:lensCount 
+		path = [NSIndexPath indexPathForRow:lensCount + 1
 								  inSection:LENSES_SECTION];
 		[indexPaths replaceObjectAtIndex:0
 							  withObject:path];
@@ -157,7 +157,7 @@
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		path = [NSIndexPath indexPathForRow:lensCount
+		path = [NSIndexPath indexPathForRow:lensCount + 1
 								  inSection:LENSES_SECTION];
 		[indexPaths replaceObjectAtIndex:0
 							  withObject:path];

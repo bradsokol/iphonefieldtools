@@ -72,7 +72,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if (section == LENSES_SECTION)
 	{
-		return [Lens count] + adjustment;
+		return [Lens count] + adjustment + 1;
 	}
 	else
 	{
@@ -212,13 +212,19 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
 {
 	int lensCount = [Lens count];
-	bool nonLensRow = [indexPath row] >= lensCount;
+	bool macroRow = [indexPath row] == lensCount;
+	bool nonLensRow = [indexPath row] >= lensCount + 1;
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
 	
 	if (nonLensRow)
 	{
 		[[cell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
+	}
+	else if (macroRow)
+	{
+		[[cell textLabel] setText:NSLocalizedString(@"MACRO", "MACRO")];
+		[cell setAccessoryView:[[UISwitch alloc] init]];
 	}
 	else
 	{
@@ -230,7 +236,10 @@ static NSString *CellIdentifier = @"Cell";
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
 	
-	[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+	if (!macroRow)
+	{
+		[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+	}
 	
 	return cell;
 }
