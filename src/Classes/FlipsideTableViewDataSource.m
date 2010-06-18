@@ -39,7 +39,7 @@ const NSInteger UNITS_SECTION = 2;
 static NSString *CellIdentifier = @"Cell";
 
 // Private methods
-@interface FlipsideTableViewDataSource (Private)
+@interface FlipsideTableViewDataSource ()
 
 - (UITableViewCell*) cellForCameraRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView;
@@ -224,7 +224,16 @@ static NSString *CellIdentifier = @"Cell";
 	else if (macroRow)
 	{
 		[[cell textLabel] setText:NSLocalizedString(@"MACRO", "MACRO")];
-		[cell setAccessoryView:[[UISwitch alloc] init]];
+		
+		if (nil == macroModeSwitch)
+		{
+			macroModeSwitch = [[UISwitch alloc] init];
+			[macroModeSwitch addTarget:self
+								action:@selector(macroModeDidChange:)
+					  forControlEvents:UIControlEventValueChanged];
+		}
+		[macroModeSwitch setOn:[[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey]];
+		[cell setAccessoryView:macroModeSwitch];
 	}
 	else
 	{
@@ -364,6 +373,19 @@ static NSString *CellIdentifier = @"Cell";
 		[[NSUserDefaults standardUserDefaults] setInteger:currentSelection - 1
 												   forKey:FTLensIndex];
 	}
+}
+
+- (void)macroModeDidChange:(UISwitch*)sender
+{
+	[[NSNotificationCenter defaultCenter] 
+	 postNotification:[NSNotification notificationWithName:MACRO_MODE_CHANGED_NOTIFICATION object:nil]];
+}
+
+- (void)dealloc
+{
+	[macroModeSwitch release];
+	
+	[super dealloc];
 }
 
 @end

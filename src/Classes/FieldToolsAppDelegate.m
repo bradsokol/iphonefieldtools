@@ -117,6 +117,9 @@ float DefaultSubjectDistance = 2.5f;
 					  forKey:FTDistanceTypeKey];
 	[defaultValues setObject:[NSNumber numberWithInt:DistanceUnitsFeetAndInches]
 					  forKey:FTDistanceUnitsKey];
+	
+	[defaultValues setObject:[NSNumber numberWithBool:false]
+					  forKey:FTMacroModeKey];
 
 	// Add default version to make migration easier for subsequent versions
 	[defaultValues setObject:[NSNumber numberWithInt:DEFAULTS_BASE_VERSION]

@@ -33,7 +33,11 @@ extern const NSInteger UNITS_SECTION;
 @interface FlipsideTableViewDataSource : NSObject <UITableViewDataSource>
 {
 	BOOL editing;
+
+	UISwitch* macroModeSwitch;
 }
+
+- (void)macroModeDidChange:(UISwitch*)sender;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
 

@@ -60,6 +60,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
 - (void)lensDidChangeWithLens:(Lens*)lens;
+- (void)macroModeDidChange:(NSNotification*)notification;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
 - (void)unitsDidChange;
@@ -125,6 +126,10 @@ static BOOL previousLensWasZoom = YES;
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(lensDidChange:)
 												 name:LENS_CHANGED_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(macroModeDidChange:)
+												 name:MACRO_MODE_CHANGED_NOTIFICATION
 											   object:nil];
 	
 	[self initApertures];
@@ -310,6 +315,13 @@ static BOOL previousLensWasZoom = YES;
 		[self moveControl:subjectDistanceMaximum byYDelta:delta];
 	}
 	previousLensWasZoom = !isPrime;
+}
+
+- (void)macroModeDidChange:(NSNotification*)notification;
+{
+	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
+											  forKey:FTMacroModeKey];
 }
 
 #pragma mark Calculations

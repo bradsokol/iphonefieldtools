@@ -35,6 +35,7 @@ extern NSString* const FTFocalLengthKey;
 extern NSString* const FTLensCount;
 extern NSString* const FTLensIndex;
 extern NSString* const FTSubjectDistanceKey;
+extern NSString* const FTMacroModeKey;
 
 extern NSString* const FTMigratedFrom10Key;
 extern NSString* const FTMigratedFrom20Key;
