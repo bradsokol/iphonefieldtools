@@ -27,6 +27,8 @@
 #import "Lens.h"
 #import "MainViewController.h"
 
+#import "UserDefaults.h"
+
 @interface RootViewController ()
 
 - (void)updateCameraAndLensDescription;
@@ -128,8 +130,12 @@
 
 - (void)updateCameraAndLensDescription
 {
-	NSString* title = [NSString stringWithFormat:@"%@ - %@",
-					   [Camera findSelectedInDefaults], [Lens findSelectedInDefaults]];
+	bool macroMode = [[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
+	NSString* title = macroMode ?
+		[NSString stringWithFormat:@"%@ - %@ - %@", 
+		 [Camera findSelectedInDefaults], [Lens findSelectedInDefaults], NSLocalizedString(@"MACRO", "MACRO")] :
+		[NSString stringWithFormat:@"%@ - %@", 
+		 [Camera findSelectedInDefaults], [Lens findSelectedInDefaults]];
 	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
 }
 
