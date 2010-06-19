@@ -97,8 +97,7 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 		case DistanceUnitsFeetAndInches:
 			distance *= METRES_TO_FEET;
 			float feet = floorf(distance);
-			float inches = rintf(12.0f * (distance - feet));
-			inches = 12.0f * (distance - feet) + 0.125f;
+			float inches = 12.0f * (distance - feet) + 0.125f;
 			
 			if (inches >= 12.0f)
 			{
