@@ -672,7 +672,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Distribution;
 		};
@@ -789,7 +789,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -803,7 +803,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
