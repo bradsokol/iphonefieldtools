@@ -26,7 +26,6 @@
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
-		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24EF5EC0ECA9415001A7B46 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A24EF5EB0ECA9415001A7B46 /* MainView.m */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
@@ -52,6 +51,8 @@
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
+		A2A716541243F87F007E2289 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716521243F87F007E2289 /* FieldTools.png */; };
+		A2A716551243F87F007E2289 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716531243F87F007E2289 /* FieldTools@2x.png */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B372F60F75587100774532 /* sliderThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372F50F75587100774532 /* sliderThumb.png */; };
@@ -113,7 +114,6 @@
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
 		A24EF5EA0ECA9415001A7B46 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		A24EF5EB0ECA9415001A7B46 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
@@ -149,6 +149,8 @@
 		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
+		A2A716521243F87F007E2289 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
+		A2A716531243F87F007E2289 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A2AAAF0B0F28386300945F6E /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
@@ -266,8 +268,9 @@
 				A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */,
 				A28D89E2108D5A6D00C77FEA /* Default.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
+				A2A716521243F87F007E2289 /* FieldTools.png */,
+				A2A716531243F87F007E2289 /* FieldTools@2x.png */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
-				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				A2B95F9E10715EDF0057A70E /* LensView.xib */,
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
@@ -507,7 +510,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* MainView.xib in Resources */,
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
-				A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
 				A2B372C90F754EA700774532 /* sliderTrack.png in Resources */,
@@ -519,6 +521,8 @@
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
 				A28D89E3108D5A6D00C77FEA /* Default.png in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
+				A2A716541243F87F007E2289 /* FieldTools.png in Resources */,
+				A2A716551243F87F007E2289 /* FieldTools@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
