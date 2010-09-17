@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
+		A27E41B21224A0C50060CDB2 /* test.js in Sources */ = {isa = PBXBuildFile; fileRef = A27E41B11224A0C50060CDB2 /* test.js */; };
 		A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
 		A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
 		A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
@@ -127,6 +128,7 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -345,6 +348,14 @@
 				A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */,
 			);
 			name = "Camera View";
+			sourceTree = "<group>";
+		};
+		A27E41AF1224A07B0060CDB2 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				A27E41B11224A0C50060CDB2 /* test.js */,
+			);
+			path = IntegrationTests;
 			sourceTree = "<group>";
 		};
 		A28082F411BBFC240057669F /* Subject Distance Slider Policies */ = {
@@ -479,7 +490,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -584,6 +595,7 @@
 				A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
+				A27E41B21224A0C50060CDB2 /* test.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +682,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos3.2;
@@ -786,6 +800,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
@@ -801,6 +816,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos3.2;
