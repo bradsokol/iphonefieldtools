@@ -53,9 +53,9 @@
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2A716541243F87F007E2289 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716521243F87F007E2289 /* FieldTools.png */; };
 		A2A716551243F87F007E2289 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716531243F87F007E2289 /* FieldTools@2x.png */; };
+		A2A716E21244125F007E2289 /* sliderTrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716E11244125F007E2289 /* sliderTrack@2x.png */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
-		A2B372F60F75587100774532 /* sliderThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372F50F75587100774532 /* sliderThumb.png */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
@@ -151,10 +151,10 @@
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2A716521243F87F007E2289 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
 		A2A716531243F87F007E2289 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
+		A2A716E11244125F007E2289 /* sliderTrack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderTrack@2x.png"; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A2AAAF0B0F28386300945F6E /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
-		A2B372F50F75587100774532 /* sliderThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumb.png; sourceTree = "<group>"; };
 		A2B95F9E10715EDF0057A70E /* LensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensView.xib; sourceTree = "<group>"; };
 		A2B95FA410715FB80057A70E /* LensViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewController.h; sourceTree = "<group>"; };
 		A2B95FA510715FB80057A70E /* LensViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewController.m; sourceTree = "<group>"; };
@@ -407,8 +407,8 @@
 		A2B372C60F754E8F00774532 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A2A716E11244125F007E2289 /* sliderTrack@2x.png */,
 				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
-				A2B372F50F75587100774532 /* sliderThumb.png */,
 				A2B372C80F754EA700774532 /* sliderTrack.png */,
 			);
 			path = images;
@@ -513,7 +513,6 @@
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
 				A2B372C90F754EA700774532 /* sliderTrack.png in Resources */,
-				A2B372F60F75587100774532 /* sliderThumb.png in Resources */,
 				A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */,
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
@@ -523,6 +522,7 @@
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
 				A2A716541243F87F007E2289 /* FieldTools.png in Resources */,
 				A2A716551243F87F007E2289 /* FieldTools@2x.png in Resources */,
+				A2A716E21244125F007E2289 /* sliderTrack@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

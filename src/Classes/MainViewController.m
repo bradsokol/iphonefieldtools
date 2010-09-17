@@ -447,17 +447,14 @@ static BOOL previousLensWasZoom = YES;
 - (void)customizeSliderAppearance:(UISlider*)slider
 {
 	static UIImage* sliderTrack;
-	static UIImage* sliderThumb;
 	if (nil == sliderTrack)
 	{
 		sliderTrack = [[UIImage imageNamed:@"sliderTrack.png"]
 					   stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0];
-		sliderThumb = [UIImage imageNamed:@"sliderThumb.png"];
 	}
 	
 	[slider setMinimumTrackImage:sliderTrack forState:UIControlStateNormal];
 	[slider setMaximumTrackImage:sliderTrack forState:UIControlStateNormal];
-	[slider setThumbImage:sliderThumb forState:UIControlStateNormal];
 }
 
 // Initialise a table of f-number values
