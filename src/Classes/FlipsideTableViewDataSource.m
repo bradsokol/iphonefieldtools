@@ -216,6 +216,7 @@ static NSString *CellIdentifier = @"Cell";
 	bool addLensRow = [indexPath row] == lensCount + 1;
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
+	[cell setAccessoryView:nil];
 	
 	if (addLensRow)
 	{
