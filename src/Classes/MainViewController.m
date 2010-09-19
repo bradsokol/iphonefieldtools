@@ -27,6 +27,8 @@
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
+#import "MacroImperialSubjectDistanceSliderPolicy.h"
+#import "MacroMetricSubjectDistanceSliderPolicy.h"
 #import "MainView.h"
 #import "ResultView.h"
 #import "StandardImperialSubjectDistanceSliderPolicy.h"
@@ -322,6 +324,29 @@ static BOOL previousLensWasZoom = YES;
 	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
 											  forKey:FTMacroModeKey];
+
+	[self updateSubjectDistanceSliderPolicy];
+	
+	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
+	bool updateResult;
+	if ([self subjectDistance] < [policy minimumDistanceToSubject])
+	{
+		[self setSubjectDistance:[policy minimumDistanceToSubject]];
+		updateResult = YES;
+	}
+	else if ([self subjectDistance] > [policy maximumDistanceToSubject])
+	{
+		[self setSubjectDistance:[policy maximumDistanceToSubject]];
+		updateResult = YES;
+	}
+
+	[self updateSubjectDistanceSliderLimits];
+	[self updateSubjectDistance];
+	[subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]];
+	if (updateResult)
+	{
+		[self updateResult];
+	}
 }
 
 #pragma mark Calculations
@@ -539,15 +564,30 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistanceSliderPolicy
 {
 	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
-	if (DistanceUnitsMeters == units)
+	bool macroMode = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
+	
+	if (macroMode)
 	{
-		[self setSubjectDistanceSliderPolicy:[[StandardMetricSubjectDistanceSliderPolicy alloc] init]];
+		if (DistanceUnitsMeters == units)
+		{
+			[self setSubjectDistanceSliderPolicy:[[MacroMetricSubjectDistanceSliderPolicy alloc] init]];
+		}
+		else
+		{
+			[self setSubjectDistanceSliderPolicy:[[MacroImperialSubjectDistanceSliderPolicy alloc] init]];
+		}
 	}
-	else 
+	else
 	{
-		[self setSubjectDistanceSliderPolicy:[[StandardImperialSubjectDistanceSliderPolicy alloc] init]];
+		if (DistanceUnitsMeters == units)
+		{
+			[self setSubjectDistanceSliderPolicy:[[StandardMetricSubjectDistanceSliderPolicy alloc] init]];
+		}
+		else 
+		{
+			[self setSubjectDistanceSliderPolicy:[[StandardImperialSubjectDistanceSliderPolicy alloc] init]];
+		}
 	}
-
 }
 
 - (void)dealloc 

@@ -101,6 +101,20 @@
 	
 }
 
+- (void)testRangesSmallDistance
+{
+	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
+	
+	DistanceRange* distanceRange = [[DistanceRange alloc] init];
+	[distanceRange setNearDistance:1.647651f];
+	[distanceRange setFarDistance:2.558037f];
+	
+	NSString* expected = @"5' 4¾\"\t3'\t8' 4¾\"";
+	NSString* result = [formatter stringForObjectValue:distanceRange];
+	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	
+}
+
 - (void)testZeroInchesWithFraction
 {
 	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];

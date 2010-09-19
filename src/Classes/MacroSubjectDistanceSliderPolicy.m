@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2010 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -72,12 +72,12 @@
 
 - (float)distanceForSliderValue:(float)value
 {
-	return value / 5.0f;
+	return value;
 }
 
 - (float)sliderValueForDistance:(float)distance
 {
-	return distance * 5.0f;
+	return distance;
 }
 
 @end

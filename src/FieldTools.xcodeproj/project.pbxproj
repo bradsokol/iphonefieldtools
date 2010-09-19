@@ -15,6 +15,10 @@
 		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
+		887D0A6311D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */; };
+		887D0A6411D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */; };
+		887D0A6911D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */; };
+		887D0A6A11D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */; };
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
@@ -96,6 +100,10 @@
 		28C286DF0D94DF7D0034E888 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		887D0A6111D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroImperialSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroImperialSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
+		887D0A6711D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroMetricSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroMetricSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
@@ -358,6 +366,10 @@
 		A28082F411BBFC240057669F /* Subject Distance Slider Policies */ = {
 			isa = PBXGroup;
 			children = (
+				887D0A6111D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.h */,
+				887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */,
+				887D0A6711D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.h */,
+				887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */,
 				A2FDC0D211C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.h */,
 				A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */,
 				A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */,
@@ -597,6 +609,8 @@
 				A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
+				887D0A6311D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
+				887D0A6911D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +628,8 @@
 				A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2FDC0D411C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
+				887D0A6411D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
+				887D0A6A11D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

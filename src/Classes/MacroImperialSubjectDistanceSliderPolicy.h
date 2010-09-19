@@ -13,18 +13,18 @@
 // limitations under the License.
 
 //
-//  MacroSubjectDistanceSliderPolicy.h
+//  MacroImperialSubjectDistanceSliderPolicy.h
 //  FieldTools
 //
-//  Created by Brad on 2010/06/16.
+//  Created by Brad Sokol on 2010/06/25.
 //  Copyright 2010 Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "SubjectDistanceSliderPolicy.h"
+#import "MacroSubjectDistanceSliderPolicy.h"
 
-@interface MacroSubjectDistanceSliderPolicy : NSObject <SubjectDistanceSliderPolicy>
+@interface MacroImperialSubjectDistanceSliderPolicy : MacroSubjectDistanceSliderPolicy 
 {
 
 }
