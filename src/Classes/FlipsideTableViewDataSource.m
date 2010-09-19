@@ -213,11 +213,11 @@ static NSString *CellIdentifier = @"Cell";
 {
 	int lensCount = [Lens count];
 	bool macroRow = [indexPath row] == lensCount;
-	bool nonLensRow = [indexPath row] >= lensCount + 1;
+	bool addLensRow = [indexPath row] == lensCount + 1;
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
 	
-	if (nonLensRow)
+	if (addLensRow)
 	{
 		[[cell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
 	}
@@ -245,10 +245,7 @@ static NSString *CellIdentifier = @"Cell";
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
 	
-	if (!macroRow)
-	{
-		[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	}
+	[cell setEditingAccessoryType:macroRow ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
 }
