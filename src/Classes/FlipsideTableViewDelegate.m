@@ -52,6 +52,21 @@ static const float SectionHeaderHeight = 44.0;
 
 @synthesize editing;
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if ([self isEditing])
+	{
+		// If editing, don't allow selection of units row or the macro row in the lens selection
+		if ([indexPath section] == UNITS_SECTION ||
+			[indexPath section] == LENSES_SECTION && [indexPath row] == [Lens count])
+		{
+			return nil;
+		}
+	}
+
+	return indexPath;
+}
+
 // Forward handling of row selection to appropriate helper method
 // depending on whether a units or camera row was selected.
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
@@ -95,8 +110,10 @@ static const float SectionHeaderHeight = 44.0;
 			Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
 			if (nil == lens)
 			{
-				// Nil means not found. This happens when user touches the 'Add lens' row
-				// which is the last one.
+				// Nil means not found. This happens when user touches the 'Macro' or'Add lens' rows
+				// which are the last two.
+				
+				// If the macro row,
 				lens = [[Lens alloc] initWithDescription:@""
 										 minimumAperture:[NSNumber numberWithFloat:32.0]
 										 maximumAperture:[NSNumber numberWithFloat:1.4]
