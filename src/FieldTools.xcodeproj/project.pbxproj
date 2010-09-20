@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,10 +15,6 @@
 		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
-		887D0A6311D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */; };
-		887D0A6411D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */; };
-		887D0A6911D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */; };
-		887D0A6A11D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */; };
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
@@ -30,6 +26,7 @@
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
+		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24EF5EC0ECA9415001A7B46 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A24EF5EB0ECA9415001A7B46 /* MainView.m */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
@@ -55,11 +52,6 @@
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
-		A2A716541243F87F007E2289 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716521243F87F007E2289 /* FieldTools.png */; };
-		A2A716551243F87F007E2289 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716531243F87F007E2289 /* FieldTools@2x.png */; };
-		A2A716E21244125F007E2289 /* sliderTrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A716E11244125F007E2289 /* sliderTrack@2x.png */; };
-		A2A7170512442341007E2289 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A7170412442341007E2289 /* Default@2x.png */; };
-		A2A7171812452742007E2289 /* distanceArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2A7171712452742007E2289 /* distanceArrows@2x.png */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
@@ -67,9 +59,9 @@
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
 		A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */; };
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
-		A2C6C8C4124668DB00663B52 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C6C8C1124668DB00663B52 /* FieldTools-Small.png */; };
-		A2C6C8C5124668DB00663B52 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C6C8C2124668DB00663B52 /* FieldTools-Small@2x.png */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
+		A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D458D71246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m */; };
+		A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D458D91246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m */; };
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
 		A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */; };
@@ -102,10 +94,6 @@
 		28C286DF0D94DF7D0034E888 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		887D0A6111D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroImperialSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroImperialSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
-		887D0A6711D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroMetricSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroMetricSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
@@ -126,6 +114,7 @@
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
 		A24EF5EA0ECA9415001A7B46 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		A24EF5EB0ECA9415001A7B46 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
@@ -139,6 +128,7 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
@@ -161,11 +151,6 @@
 		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
-		A2A716521243F87F007E2289 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
-		A2A716531243F87F007E2289 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
-		A2A716E11244125F007E2289 /* sliderTrack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderTrack@2x.png"; sourceTree = "<group>"; };
-		A2A7170412442341007E2289 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		A2A7171712452742007E2289 /* distanceArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distanceArrows@2x.png"; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A2AAAF0B0F28386300945F6E /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
@@ -177,10 +162,12 @@
 		A2BCB98D0FFDA823004F26EA /* EditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableTableViewCell.h; sourceTree = "<group>"; };
 		A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
 		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		A2C6C8C1124668DB00663B52 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small.png"; sourceTree = "<group>"; };
-		A2C6C8C2124668DB00663B52 /* FieldTools-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small@2x.png"; sourceTree = "<group>"; };
 		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
+		A2D458D61246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroImperialSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A2D458D71246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroImperialSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
+		A2D458D81246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroMetricSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A2D458D91246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroMetricSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		A2D62409104248DA00B2F055 /* CoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoCView.xib; sourceTree = "<group>"; };
 		A2D6241A10424A5600B2F055 /* CoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewController.h; sourceTree = "<group>"; };
 		A2D6241B10424A5600B2F055 /* CoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewController.m; sourceTree = "<group>"; };
@@ -252,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
+				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -283,13 +271,9 @@
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
 				A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */,
 				A28D89E2108D5A6D00C77FEA /* Default.png */,
-				A2A7170412442341007E2289 /* Default@2x.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
-				A2A716521243F87F007E2289 /* FieldTools.png */,
-				A2A716531243F87F007E2289 /* FieldTools@2x.png */,
-				A2C6C8C1124668DB00663B52 /* FieldTools-Small.png */,
-				A2C6C8C2124668DB00663B52 /* FieldTools-Small@2x.png */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
+				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				A2B95F9E10715EDF0057A70E /* LensView.xib */,
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
@@ -369,13 +353,21 @@
 			name = "Camera View";
 			sourceTree = "<group>";
 		};
+		A27E41AF1224A07B0060CDB2 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				A27E41B11224A0C50060CDB2 /* test.js */,
+			);
+			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
 		A28082F411BBFC240057669F /* Subject Distance Slider Policies */ = {
 			isa = PBXGroup;
 			children = (
-				887D0A6111D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.h */,
-				887D0A6211D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m */,
-				887D0A6711D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.h */,
-				887D0A6811D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m */,
+				A2D458D61246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.h */,
+				A2D458D71246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m */,
+				A2D458D81246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.h */,
+				A2D458D91246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m */,
 				A2FDC0D211C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.h */,
 				A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */,
 				A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */,
@@ -430,9 +422,7 @@
 		A2B372C60F754E8F00774532 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				A2A716E11244125F007E2289 /* sliderTrack@2x.png */,
 				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
-				A2A7171712452742007E2289 /* distanceArrows@2x.png */,
 				A2B372C80F754EA700774532 /* sliderTrack.png */,
 			);
 			path = images;
@@ -506,7 +496,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -534,6 +524,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* MainView.xib in Resources */,
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
+				A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
 				A2B372C90F754EA700774532 /* sliderTrack.png in Resources */,
@@ -544,13 +535,6 @@
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
 				A28D89E3108D5A6D00C77FEA /* Default.png in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
-				A2A716541243F87F007E2289 /* FieldTools.png in Resources */,
-				A2A716551243F87F007E2289 /* FieldTools@2x.png in Resources */,
-				A2A716E21244125F007E2289 /* sliderTrack@2x.png in Resources */,
-				A2A7170512442341007E2289 /* Default@2x.png in Resources */,
-				A2A7171812452742007E2289 /* distanceArrows@2x.png in Resources */,
-				A2C6C8C4124668DB00663B52 /* FieldTools-Small.png in Resources */,
-				A2C6C8C5124668DB00663B52 /* FieldTools-Small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,8 +601,8 @@
 				A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
-				887D0A6311D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
-				887D0A6911D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
+				A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
+				A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,8 +620,6 @@
 				A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2FDC0D411C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
-				887D0A6411D4F49B003EFDBD /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
-				887D0A6A11D4F5E2003EFDBD /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +664,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = "Field Tools";
 			};
 			name = Debug;
@@ -696,7 +677,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = "Field Tools";
 			};
 			name = Release;
@@ -709,6 +689,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos4.1;
@@ -726,7 +708,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = "Field Tools";
 			};
 			name = Distribution;
@@ -826,6 +807,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
@@ -841,6 +823,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos4.1;
