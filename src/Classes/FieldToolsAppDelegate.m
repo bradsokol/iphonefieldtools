@@ -38,6 +38,8 @@ float DefaultSubjectDistance = 2.5f;
 
 @interface FieldToolsAppDelegate ()
 
+- (void)saveDefaults;
+
 + (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues;
 + (void)setupDefaultValues;
@@ -62,11 +64,26 @@ float DefaultSubjectDistance = 2.5f;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
 }
 
+# pragma mark "UIApplicationDelegate methods"
+
+// Called only on iOS 4.0 and later
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+	[self saveDefaults];
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
 	[window addSubview:[rootViewController view]];
     [window makeKeyAndVisible];
 }
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	[self saveDefaults];
+}
+
+#pragma mark "Helper methods"
 
 + (void)setupDefaultValues
 {
@@ -168,6 +185,11 @@ float DefaultSubjectDistance = 2.5f;
 	
 	// Remove obsolete keys
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTMetricKey];
+}
+
+- (void)saveDefaults
+{
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)dealloc 
