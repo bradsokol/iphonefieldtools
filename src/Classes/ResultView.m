@@ -16,6 +16,20 @@
 //  ResultView.m
 //  FieldTools
 //
+//  The result view displays either a single value in a UITextField, or
+//  a range - minimum distance, maximum distance and distance between.
+//
+//  The range is displayed with three UILabels and a UIImageView (for the 
+//  arrows) overtop of an empty UITextField which serves as a background.
+//  Single values are displayed in a second UIImageView. The unneeded 
+//  controls are hidden to swap between one type of display and another.
+//
+//  Previous versions used a single UIImageView and set the text to an
+//  empty string when showing a range. With iOS 4.0, this stopped working.
+//  When swapping between range view and single value view, the single value
+//  would take as long as a minute to appear. Using two UIImageViews 
+//  eliminates this delay.
+//
 //  Created by Brad on 2009/03/19.
 //  Copyright 2009 Brad Sokol. All rights reserved.
 //
@@ -68,6 +82,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 		// For some reason this does not work in viewDidLoad.
 		[self configureControls];
 		
+		[self sendSubviewToBack:background];
+		
 		firstDraw = NO;
 	}
 	
@@ -78,7 +94,6 @@ static const float SMALL_FONT_SIZE = 24.0;
 		// with its rounded corners, and we just use it as a background. The
 		// effect is a UITextView displaying three values and the image.
 		[self hideNumberLabels:NO];
-		largeText.text = @"";
 		
 		[self adjustFontsForNearFarDisplay];
 
@@ -139,6 +154,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 	CGRect r = [largeText frame];
 	r.size.height *= 1.75f;
 	[largeText setFrame:r];
+	[background setFrame:r];
 
 	[self adjustNumberDisplay:leftNumber inRect:rect];
 	[self adjustNumberDisplay:rightNumber inRect:rect];
@@ -178,6 +194,9 @@ static const float SMALL_FONT_SIZE = 24.0;
 // Helper to show or hide the two value with difference elements.
 - (void)hideNumberLabels:(bool)hide
 {
+	largeText.hidden = !hide;
+	
+	background.hidden = hide;
 	leftNumber.hidden = hide;
 	rightNumber.hidden = hide;
 	difference.hidden = hide;

@@ -44,6 +44,8 @@
 @interface ResultView : UIView 
 {
 	IBOutlet UITextField* largeText;
+
+	IBOutlet UITextField* background;
 	IBOutlet UILabel* leftNumber;
 	IBOutlet UILabel* rightNumber;
 	IBOutlet UILabel* difference;
