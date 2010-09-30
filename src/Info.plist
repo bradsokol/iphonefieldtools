@@ -9,7 +9,14 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>FieldTools</string>
+	<string>FieldTools.png</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>FieldTools.png</string>
+		<string>FieldTools@2x.png</string>
+		<string>FieldTools-Small.png</string>
+		<string>FieldTools-Small@2x.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>net.sourceforge.iphonefieldtools</string>
 	<key>CFBundleInfoDictionaryVersion</key>
