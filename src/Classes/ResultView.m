@@ -126,7 +126,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 {
 	displayRange = YES;
 	
-	if ([distanceFormatter distanceUnits] == DistanceUnitsFeetAndInches)
+	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey] == DistanceUnitsFeetAndInches)
 	{
 		// When formatting feet and inches, values will be rounded to the nearest quarter inch.
 		// Must adjust near and far to nearest quarter inch so that distance difference 
