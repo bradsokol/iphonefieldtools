@@ -22,8 +22,6 @@
 
 #import "MacroDistanceFormatter.h"
 
-const float METRES_TO_CENTIMETRES = 100.0f;
-
 @implementation MacroDistanceFormatter
 
 - (CGFloat)convertDistance:(CGFloat)distance toUnits:(DistanceUnits)units

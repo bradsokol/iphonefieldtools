@@ -137,13 +137,13 @@ static const float SMALL_FONT_SIZE = 24.0;
 	{
 		if ([defaults integerForKey:FTMacroModeKey] == 0)
 		{
-			nearDistance = rintf((near * 10.0f) + 0.5) / 10.0f;
-			farDistance = rintf((far * 10.0f) + 0.5) / 10.0f;
+			nearDistance = rintf((near * METRES_TO_DECIMETRES) + 0.5) / METRES_TO_DECIMETRES;
+			farDistance = rintf((far * METRES_TO_DECIMETRES) + 0.5) / METRES_TO_DECIMETRES;
 		}
 		else
 		{
-			nearDistance = rintf((near * 100.0f) + 0.5) / 100.0f;
-			farDistance = rintf((far * 100.0f) + 0.5) / 100.0f;
+			nearDistance = rintf((near * METRES_TO_CENTIMETRES) + 0.5) / METRES_TO_CENTIMETRES;
+			farDistance = rintf((far * METRES_TO_CENTIMETRES) + 0.5) / METRES_TO_CENTIMETRES;
 		}
 	}
 	
