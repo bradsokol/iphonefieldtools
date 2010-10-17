@@ -124,7 +124,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 {
 	displayRange = YES;
 	
-	if ([[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey] == DistanceUnitsFeetAndInches)
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	if ([defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsFeetAndInches)
 	{
 		// When formatting feet and inches, values will be rounded to the nearest quarter inch.
 		// Must adjust near and far to nearest quarter inch so that distance difference 
@@ -134,8 +135,16 @@ static const float SMALL_FONT_SIZE = 24.0;
 	}
 	else
 	{
-		nearDistance = near;
-		farDistance = far;
+		if ([defaults integerForKey:FTMacroModeKey] == 0)
+		{
+			nearDistance = rintf((near * 10.0f) + 0.5) / 10.0f;
+			farDistance = rintf((far * 10.0f) + 0.5) / 10.0f;
+		}
+		else
+		{
+			nearDistance = rintf((near * 100.0f) + 0.5) / 100.0f;
+			farDistance = rintf((far * 100.0f) + 0.5) / 100.0f;
+		}
 	}
 	
 	distanceDifference = farDistance - nearDistance;
