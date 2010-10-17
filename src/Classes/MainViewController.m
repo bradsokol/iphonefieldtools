@@ -27,6 +27,7 @@
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
+#import "MacroDistanceFormatter.h"
 #import "MacroImperialSubjectDistanceSliderPolicy.h"
 #import "MacroMetricSubjectDistanceSliderPolicy.h"
 #import "MainView.h"
@@ -67,6 +68,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)readDefaultCircleOfLeastConfusion;
 - (void)unitsDidChange;
 - (void)updateAperture;
+- (void) updateDistanceFormatter;
 - (void)updateFocalLength;
 - (void)updateResult;
 - (void)updateSubjectDistanceSliderLimits;
@@ -143,14 +145,14 @@ static BOOL previousLensWasZoom = YES;
 	[self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
 	[self readDefaultCircleOfLeastConfusion];
 	
-	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
-	
     return self;
 }
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	
+	[self updateDistanceFormatter];
 	
 	[self updateSubjectDistanceSliderPolicy];
 	
@@ -317,11 +319,26 @@ static BOOL previousLensWasZoom = YES;
 	previousLensWasZoom = !isPrime;
 }
 
+- (void) updateDistanceFormatter 
+{
+  if ([[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey])
+	{
+		[self setDistanceFormatter:[[[MacroDistanceFormatter alloc] init] autorelease]];
+	}
+	else
+	{
+		[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
+	}
+	[resultView setDistanceFormatter:[self distanceFormatter]];
+}
+
 - (void)macroModeDidChange:(NSNotification*)notification;
 {
 	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
 											  forKey:FTMacroModeKey];
+	
+	[self updateDistanceFormatter];
 
 	[self updateSubjectDistanceSliderPolicy];
 	

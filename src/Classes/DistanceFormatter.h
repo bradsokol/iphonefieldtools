@@ -44,6 +44,9 @@ const extern float METRES_TO_QUARTER_INCHES;
 - (id)init;
 - (id)initForTest:(BOOL)test;
 
+- (NSString*)formatStringForFeet;
+- (NSString*)formatStringForMetric;
+
 @property(nonatomic) DistanceUnits distanceUnits;
 
 @end

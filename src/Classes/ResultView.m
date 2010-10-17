@@ -51,8 +51,6 @@ static const float SMALL_FONT_SIZE = 24.0;
 - (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
 
-@property(nonatomic, retain) DistanceFormatter* distanceFormatter;
-
 @end
 
 @implementation ResultView

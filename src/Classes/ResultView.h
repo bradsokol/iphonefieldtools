@@ -62,4 +62,6 @@
 - (void)setResult:(CGFloat)distance;
 - (void)setResultNear:(CGFloat)nearDistance far:(CGFloat)farDistance;
 
+@property (nonatomic, retain) DistanceFormatter* distanceFormatter;
+
 @end

@@ -58,6 +58,7 @@
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
+		A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */; };
 		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
@@ -163,6 +164,8 @@
 		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
+		A2A45C46126B75EB00423D79 /* MacroDistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDistanceFormatter.h; sourceTree = "<group>"; };
+		A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroDistanceFormatter.m; sourceTree = "<group>"; };
 		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A2AAAF0B0F28386300945F6E /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */,
 				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
+				A2A45C46126B75EB00423D79 /* MacroDistanceFormatter.h */,
+				A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */,
 				A284E6FF0EE45DDE00C37E21 /* RootViewController.h */,
 				A284E7000EE45DDE00C37E21 /* RootViewController.m */,
 			);
@@ -635,6 +640,7 @@
 				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
 				A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
+				A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
