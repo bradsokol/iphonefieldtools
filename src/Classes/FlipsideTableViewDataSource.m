@@ -268,7 +268,7 @@ static NSString *CellIdentifier = @"Cell";
 			break;
 			
 		case DistanceUnitsMeters:
-			[[cell textLabel] setText:NSLocalizedString(@"METRES", "METRES")];
+			[[cell textLabel] setText:NSLocalizedString(@"METRIC", "METRIC")];
 			break;
 	}
 

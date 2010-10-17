@@ -87,16 +87,21 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 	
 	DistanceUnits units = [self isTesting] ? [self distanceUnits] :
 		[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+	
+	distance = [self convertDistance:distance toUnits:units];
+
+	float feet = 0.0f;
+	float inches = 0.0f;
+	
 	switch (units)
 	{
 		case DistanceUnitsFeet:
-			return [NSString stringWithFormat:[self formatStringForFeet], distance * METRES_TO_FEET];
+			return [NSString stringWithFormat:[self formatStringForFeet], distance];
 			break;
 			
 		case DistanceUnitsFeetAndInches:
-			distance *= METRES_TO_FEET;
-			float feet = floorf(distance);
-			float inches = 12.0f * (distance - feet) + 0.125f;
+			feet = floorf(distance);
+			inches = 12.0f * (distance - feet) + 0.125f;
 			
 			if (inches >= 12.0f)
 			{
@@ -163,6 +168,18 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 	else
 	{
 		return [NSString stringWithFormat:@"%.0f%@\"", floorf(inches), fraction];
+	}
+}
+
+- (CGFloat)convertDistance:(CGFloat)distance toUnits:(DistanceUnits)units
+{
+	if (units == DistanceUnitsMeters)
+	{
+		return distance;
+	}
+	else
+	{
+		return distance * METRES_TO_FEET;
 	}
 }
 

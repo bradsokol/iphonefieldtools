@@ -22,7 +22,21 @@
 
 #import "MacroDistanceFormatter.h"
 
+const float METRES_TO_CENTIMETRES = 100.0f;
+
 @implementation MacroDistanceFormatter
+
+- (CGFloat)convertDistance:(CGFloat)distance toUnits:(DistanceUnits)units
+{
+	if (units == DistanceUnitsMeters)
+	{
+		return distance * METRES_TO_CENTIMETRES;
+	}
+	else
+	{
+		return [super convertDistance:distance toUnits:units];
+	}
+}
 
 - (NSString*)formatStringForFeet
 {
@@ -32,8 +46,8 @@
 
 - (NSString*)formatStringForMetric
 {
-	return [NSString stringWithFormat:@"%%.2f %@",
-			NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+	return [NSString stringWithFormat:@"%%.1f %@",
+			NSLocalizedString(@"CENTIMETRES_ABBREVIATION", "Abbreviation for centimetres")];
 }
 
 @end
