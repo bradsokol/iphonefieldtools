@@ -240,8 +240,6 @@ static BOOL previousLensWasZoom = YES;
 	// with finer grained control over near distances and coarser grained over
 	// longer distances.
 	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
-	NSLog(@"Slider value: %f", [subjectDistanceSlider value]);
-	NSLog(@"Distance for slider value: %f", [[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]);
 	
 	[[NSUserDefaults standardUserDefaults] setFloat:[self subjectDistance]
 											 forKey:FTSubjectDistanceKey];
@@ -342,7 +340,14 @@ static BOOL previousLensWasZoom = YES;
 
 	[self updateSubjectDistanceSliderLimits];
 	[self updateSubjectDistance];
+	
+	// Setting the value isn't enough on its own to move the thumb. It stays put (bug in UIKit?).
+	// Setting it zero then to the actual value seems to be necessary to cause the thumb
+	// to move to the correct location.
+	[subjectDistanceSlider setValue:0];
+	[subjectDistanceSlider setValue:1000];
 	[subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]];
+	
 	if (updateResult)
 	{
 		[self updateResult];
