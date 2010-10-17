@@ -90,8 +90,7 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 	switch (units)
 	{
 		case DistanceUnitsFeet:
-			return [NSString stringWithFormat:[self formatStringForFeet], distance * METRES_TO_FEET, 
-					NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet")];
+			return [NSString stringWithFormat:[self formatStringForFeet], distance * METRES_TO_FEET];
 			break;
 			
 		case DistanceUnitsFeetAndInches:
@@ -125,8 +124,7 @@ const float METRES_TO_QUARTER_INCHES = 157.48031496f;
 			break;
 			
 		case DistanceUnitsMeters:
-			return [NSString stringWithFormat:[self formatStringForMetric], distance, 
-					NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+			return [NSString stringWithFormat:[self formatStringForMetric], distance];
 			break;
 	}
 	
