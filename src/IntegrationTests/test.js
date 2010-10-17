@@ -1,5 +1,10 @@
-//UIALogger.logStart("Starting Test");
-//  var view = UIATarget.localTarget().frontMostApp().mainWindow().elements()[2];
+UIALogger.logStart("Starting Test");
+UIATarget.logElementTree();
+UIATarget.localTarget().delay(5);
+var app = UIATarget.localTarget().frontMostApp();
+var mainWindow = app.mainWindow();
+var rootView = mainWindow.elements[1];
+UIALogger.logPass("Done!");
 //  var textfields = view.textFields();
 //  if (textfields.length != 2) {
 //	  UIALogger.logFail("Wrong number of text fields");

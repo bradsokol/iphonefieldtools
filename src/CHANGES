@@ -1,11 +1,11 @@
 Version 2.1
 ??, 2010
 
-New features:
+New features, enhancements:
   * Display selected camera and lens in the main view.
   * Add option to display distance as feet and inches as well as decimal feet.
   * Slider limits round numbers as per the selected units.
-  * Macro setting to give finer control over subject distance setting.
+  * Macro lens setting to give finer control over subject distance setting.
 
 Version 2.0.2
 September 26, 2010
