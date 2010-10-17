@@ -277,6 +277,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2A45BF7126B379900423D79 /* icons */,
 				A2B372C60F754E8F00774532 /* images */,
 				A261F8CE0FDCCAAA00C907AD /* CameraView.xib */,
 				A22C2451104387A1005BC94C /* CoC.plist */,
@@ -286,10 +287,6 @@
 				A200F9D31254190F006689F9 /* Default@2x.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
-				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
-				A200F9D61254190F006689F9 /* FieldTools@2x.png */,
-				A200F9D41254190F006689F9 /* FieldTools-Small.png */,
-				A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				A2B95F9E10715EDF0057A70E /* LensView.xib */,
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
@@ -417,6 +414,17 @@
 				A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */,
 			);
 			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		A2A45BF7126B379900423D79 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
+				A200F9D61254190F006689F9 /* FieldTools@2x.png */,
+				A200F9D41254190F006689F9 /* FieldTools-Small.png */,
+				A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */,
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 		A2AAAECD0F2831D400945F6E /* Model */ = {
