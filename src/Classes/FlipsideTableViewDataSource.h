@@ -22,6 +22,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class FlipsideViewController;
+
 extern const NSInteger SECTION_COUNT;
 extern const NSInteger UNITS_COUNT;
 
@@ -35,10 +37,11 @@ extern const NSInteger UNITS_SECTION;
 	BOOL editing;
 
 	UISwitch* macroModeSwitch;
+	
+	FlipsideViewController* controller;
 }
 
-- (void)macroModeDidChange:(UISwitch*)sender;
-
 @property(nonatomic, getter=isEditing) BOOL editing;
+@property(nonatomic, assign) FlipsideViewController* controller;
 
 @end

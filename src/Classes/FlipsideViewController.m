@@ -101,6 +101,7 @@
 	
 	[self setTableViewDelegate:(FlipsideTableViewDelegate*) [[self tableView] delegate]];
 	[self setTableViewDataSource: [[self tableView] dataSource]];
+	[[self tableViewDataSource] setController:self];
 	
 	[[self tableView] setAllowsSelectionDuringEditing:YES];
 }
@@ -244,6 +245,12 @@
 	}
 	
 	[tableView reloadData];
+}
+
+- (void)macroModeDidChange:(UISwitch*)sender
+{
+	[[NSNotificationCenter defaultCenter] 
+	 postNotification:[NSNotification notificationWithName:MACRO_MODE_CHANGED_NOTIFICATION object:nil]];
 }
 
 - (void)dealloc 

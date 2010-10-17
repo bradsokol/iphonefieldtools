@@ -52,6 +52,7 @@ static NSString *CellIdentifier = @"Cell";
 
 @implementation FlipsideTableViewDataSource
 
+@synthesize controller;
 @synthesize editing;
 
 #pragma mark UITableViewDataSource methods
@@ -229,7 +230,7 @@ static NSString *CellIdentifier = @"Cell";
 		if (nil == macroModeSwitch)
 		{
 			macroModeSwitch = [[UISwitch alloc] init];
-			[macroModeSwitch addTarget:self
+			[macroModeSwitch addTarget:[self controller]
 								action:@selector(macroModeDidChange:)
 					  forControlEvents:UIControlEventValueChanged];
 		}
@@ -371,12 +372,6 @@ static NSString *CellIdentifier = @"Cell";
 		[[NSUserDefaults standardUserDefaults] setInteger:currentSelection - 1
 												   forKey:FTLensIndex];
 	}
-}
-
-- (void)macroModeDidChange:(UISwitch*)sender
-{
-	[[NSNotificationCenter defaultCenter] 
-	 postNotification:[NSNotification notificationWithName:MACRO_MODE_CHANGED_NOTIFICATION object:nil]];
 }
 
 - (void)dealloc
