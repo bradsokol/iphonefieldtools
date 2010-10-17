@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="89"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -839,31 +839,37 @@
 						<int key="objectID">38</int>
 						<reference key="object" ref="348322784"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Subject Distance Slider</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">39</int>
 						<reference key="object" ref="267190126"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Aperture Slider</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">40</int>
 						<reference key="object" ref="149748761"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Focal Length Value</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
 						<reference key="object" ref="141640355"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Aperture Value</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">42</int>
 						<reference key="object" ref="7362584"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Focal Length Slider</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
 						<reference key="object" ref="1031440144"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Subject Distance Value</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
@@ -884,31 +890,37 @@
 						<int key="objectID">60</int>
 						<reference key="object" ref="22343553"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Minimum Focal Length</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">61</int>
 						<reference key="object" ref="603598438"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Maximum Focal Length</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">62</int>
 						<reference key="object" ref="36796207"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Minimum Aperture</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">63</int>
 						<reference key="object" ref="703314232"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Maximum Aperture</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">64</int>
 						<reference key="object" ref="646633066"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Minimum Subject Distance</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">65</int>
 						<reference key="object" ref="142571130"/>
 						<reference key="parent" ref="883825266"/>
+						<string key="objectName">Maximum Subject Distance</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">70</int>
