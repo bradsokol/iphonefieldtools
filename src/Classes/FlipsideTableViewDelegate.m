@@ -56,14 +56,19 @@ static const float SectionHeaderHeight = 44.0;
 {
 	if ([self isEditing])
 	{
-		// If editing, don't allow selection of units row or the macro row in the lens selection
-		if ([indexPath section] == UNITS_SECTION ||
-			[indexPath section] == LENSES_SECTION && [indexPath row] == [Lens count])
+		// If editing, don't allow selection of units row
+		if ([indexPath section] == UNITS_SECTION)
 		{
 			return nil;
 		}
 	}
 
+	// Don't allow selection of the macro button row in the lens section.
+	if ([indexPath section] == LENSES_SECTION && [indexPath row] == [Lens count])
+	{
+		return nil;
+	}
+	
 	return indexPath;
 }
 
@@ -279,9 +284,10 @@ static const float SectionHeaderHeight = 44.0;
 	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:[self rowForDefaultLens] 
 												   inSection:[indexPath section]];
 	
-	if ([oldIndexPath row] == [indexPath row])
+	if ([oldIndexPath row] == [indexPath row] ||
+		[indexPath row] == [Lens count])
 	{
-		// User selected the currently selected lens - take no action
+		// User selected the currently selected lens or the macro button row - take no action
 		return;
 	}
 	
