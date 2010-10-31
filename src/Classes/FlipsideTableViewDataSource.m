@@ -236,6 +236,7 @@ static NSString *CellIdentifier = @"Cell";
 		}
 		[macroModeSwitch setOn:[[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey]];
 		[cell setAccessoryView:macroModeSwitch];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	}
 	else
 	{
@@ -281,6 +282,8 @@ static NSString *CellIdentifier = @"Cell";
 	{
 		[cell setAccessoryType:UITableViewCellAccessoryNone];
 	}
+	
+	[cell setSelectionStyle:[self isEditing] ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleBlue];
 
 	return cell;
 }

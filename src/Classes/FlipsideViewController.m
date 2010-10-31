@@ -168,6 +168,11 @@
 		
 		[indexPaths release];
 	}
+	
+	// Force the units section to reload so the selection style can be set appropriately.
+	[tableView reloadSections:[NSIndexSet indexSetWithIndex:UNITS_SECTION]
+			 withRowAnimation:UITableViewRowAnimationNone];
+	
 	[tableView endUpdates];
 }
 
