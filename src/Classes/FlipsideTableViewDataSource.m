@@ -283,6 +283,7 @@ static NSString *CellIdentifier = @"Cell";
 		[cell setAccessoryType:UITableViewCellAccessoryNone];
 	}
 	
+	[cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 	[cell setSelectionStyle:[self isEditing] ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleBlue];
 
 	return cell;
