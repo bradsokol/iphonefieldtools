@@ -99,6 +99,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 		rightNumber.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
 		difference.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
 		
+		NSLog(@"drawRect near: %@ far: %@ difference: %@", leftNumber.text, rightNumber.text, difference.text);
+		
 		// Hide the difference if infinity (i.e. less than zero)
 		difference.hidden = distanceDifference <= 0;
 	}
@@ -122,9 +124,15 @@ static const float SMALL_FONT_SIZE = 24.0;
 // Call this method to display two values and the difference.
 - (void)setResultNear:(CGFloat)near far:(CGFloat)far
 {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+
+#ifdef DEBUG
+	float factor = [defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsMeters ? 1.0f : 3.280839895f;
+	NSLog(@"setResult: near: %f far: %f", near * factor, far * factor);
+#endif
+	
 	displayRange = YES;
 	
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	if ([defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsFeetAndInches)
 	{
 		// When formatting feet and inches, values will be rounded to the nearest quarter inch.
@@ -148,6 +156,11 @@ static const float SMALL_FONT_SIZE = 24.0;
 	}
 	
 	distanceDifference = farDistance - nearDistance;
+
+#ifdef DEBUG
+	NSLog(@"setResult nearDistance: %f farDistance: %f difference: %f", 
+		  nearDistance * factor, farDistance * factor, distanceDifference * factor);
+#endif
 	
 	[self setNeedsDisplay];
 }
