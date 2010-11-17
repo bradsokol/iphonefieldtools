@@ -103,7 +103,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			
 		case DistanceUnitsFeetAndInches:
 			feet = floorf(distance);
-			inches = 12.0f * (distance - feet) + 0.125f;
+			inches = floorf((12.0f * (distance - feet) + 0.125f) * 100.0f) / 100.0f;
 			
 			if (inches >= 12.0f)
 			{
