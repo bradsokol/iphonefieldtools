@@ -343,7 +343,7 @@ static BOOL previousLensWasZoom = YES;
 	[self updateSubjectDistanceSliderPolicy];
 	
 	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
-	bool updateResult;
+	bool updateResult = NO;
 	if ([self subjectDistance] < [policy minimumDistanceToSubject])
 	{
 		[self setSubjectDistance:[policy minimumDistanceToSubject]];
