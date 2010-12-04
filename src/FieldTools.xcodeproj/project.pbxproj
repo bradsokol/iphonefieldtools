@@ -731,7 +731,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Distribution;
 		};
@@ -850,7 +850,7 @@
 				OTHER_CFLAGS = "-DDEBUG=1";
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Debug;
 		};
@@ -866,7 +866,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Release;
 		};
