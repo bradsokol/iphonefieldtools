@@ -28,11 +28,22 @@ static NSString* CameraKeyFormat = @"Camera%d";
 static NSString* CameraCoCKey = @"CoC";
 static NSString* CameraNameKey = @"Name";
 
+static NSString* KeyDescription = @"CameraDescription";
+static NSString* KeyCoc = @"CameraCoC";
+
 @implementation Camera
 
 @synthesize coc;
 @synthesize description;
 @synthesize identifier;
+
+- (id)initWithCoder:(NSCoder*)decoder
+{
+	description = [[decoder decodeObjectForKey:KeyDescription] retain];
+	coc = [[decoder decodeObjectForKey:KeyCoc] retain];
+	
+	return self;
+}
 
 // The designated initializer
 - (id)initWithDescription:(NSString*)aDescription coc:(CoC*)aCoc identifier:(int)anIdentifier
@@ -50,6 +61,12 @@ static NSString* CameraNameKey = @"Name";
 	NSLog(@"Camera init: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
 	
 	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+	[coder encodeObject:description forKey:KeyDescription];
+	[coder encodeObject:coc forKey:KeyCoc];
 }
 
 - (id)copyWithZone:(NSZone *)zone

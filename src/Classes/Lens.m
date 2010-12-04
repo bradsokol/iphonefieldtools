@@ -31,6 +31,12 @@ static NSString* MinimumApertureKey = @"MinimumAperture";
 static NSString* MaximumFocalLengthKey = @"MaximumFocalLength";
 static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 
+static NSString* KeyDescription = @"LensDescription";
+static NSString* KeyMinimumAperture = @"LensMinimumAperture";
+static NSString* KeyMaximumAperture = @"LensMaximumAperture";
+static NSString* KeyMinimumFocalLength = @"LensMinimumFocalLength";
+static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
+
 @implementation Lens
 
 @synthesize description;
@@ -39,6 +45,17 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 @synthesize minimumAperture;
 @synthesize maximumFocalLength;
 @synthesize minimumFocalLength;
+
+- (id)initWithCoder:(NSCoder*)decoder
+{
+	description = [[decoder decodeObjectForKey:KeyDescription] retain];
+	minimumAperture = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMinimumAperture]];
+	maximumAperture = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMaximumAperture]];
+	minimumFocalLength = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMinimumFocalLength]];
+	maximumFocalLength = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMaximumFocalLength]];
+
+	return self;
+}
 
 // The designated initializer
 - (id)initWithDescription:(NSString*)aDescription 
@@ -93,6 +110,15 @@ static NSString* MinimumFocalLengthKey = @"MinimumFocalLength";
 													maximumFocalLength:[self maximumFocalLength]
 															identifier:[self identifier]];
 	return result;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+	[coder encodeObject:description forKey:KeyDescription];
+	[coder encodeFloat:[minimumAperture floatValue] forKey:KeyMinimumAperture];
+	[coder encodeFloat:[maximumAperture floatValue] forKey:KeyMaximumAperture];
+	[coder encodeFloat:[minimumFocalLength floatValue] forKey:KeyMinimumFocalLength];
+	[coder encodeFloat:[maximumFocalLength floatValue] forKey:KeyMaximumFocalLength];
 }
 
 - (void)save

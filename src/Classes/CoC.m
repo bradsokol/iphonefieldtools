@@ -24,6 +24,9 @@
 
 static NSDictionary* cocPresets;
 
+static NSString* KeyDescription = @"Description";
+static NSString* KeyValue = @"Value";
+
 @interface CoC ()
 
 // This will make write access private
@@ -36,6 +39,14 @@ static NSDictionary* cocPresets;
 
 @synthesize description;
 @synthesize value;
+
+- (id)initWithCoder:(NSCoder*)decoder
+{
+	value = [decoder decodeFloatForKey:KeyValue];
+	description = [[decoder decodeObjectForKey:KeyDescription] retain];
+	
+	return self;
+}
 
 // Designated initializer
 - (id)initWithValue:(float)aValue description:(NSString*)aDescription
@@ -57,6 +68,12 @@ static NSDictionary* cocPresets;
 	id result = [[[self class] allocWithZone:zone] initWithValue:[self value]
 													 description:[self description]];
 	return result;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+	[coder encodeFloat:value forKey:KeyValue];
+	[coder encodeObject:description forKey:KeyDescription];
 }
 
 + (NSDictionary*)cocPresets

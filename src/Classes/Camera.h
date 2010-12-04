@@ -21,7 +21,7 @@
 
 @class CoC;
 
-@interface Camera : NSObject 
+@interface Camera : NSObject <NSCoding>
 {
 	int identifier;
 	NSString* description;

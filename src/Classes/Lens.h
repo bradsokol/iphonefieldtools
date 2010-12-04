@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Lens : NSObject 
+@interface Lens : NSObject <NSCoding> 
 {
 	int identifier;
 	NSString* description;

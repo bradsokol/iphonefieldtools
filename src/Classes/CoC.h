@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CoC : NSObject 
+@interface CoC : NSObject <NSCoding>
 {
 	float value;
 	NSString* description;
