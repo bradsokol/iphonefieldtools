@@ -29,6 +29,8 @@
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
 		A22F4A920FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */; };
+		A237E63F12AAF4F00089862B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63C12AAF4F00089862B /* Camera.m */; };
+		A237E64012AAF4F00089862B /* CameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63E12AAF4F00089862B /* CameraBag.m */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
@@ -59,7 +61,6 @@
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */; };
-		A2AAAF0C0F28386300945F6E /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAAF0B0F28386300945F6E /* Camera.m */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
@@ -124,6 +125,10 @@
 		A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideNonEditingTableViewDelegate.m; sourceTree = "<group>"; };
 		A22F4A900FC65793003A5E26 /* FlipsideEditingTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideEditingTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideEditingTableViewDelegate.m; sourceTree = "<group>"; };
+		A237E63B12AAF4F00089862B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
+		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
+		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
+		A237E63E12AAF4F00089862B /* CameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraBag.m; path = Classes/CameraBag.m; sourceTree = "<group>"; };
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -166,8 +171,6 @@
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2A45C46126B75EB00423D79 /* MacroDistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDistanceFormatter.h; sourceTree = "<group>"; };
 		A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroDistanceFormatter.m; sourceTree = "<group>"; };
-		A2AAAF0A0F28386300945F6E /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
-		A2AAAF0B0F28386300945F6E /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
 		A2B95F9E10715EDF0057A70E /* LensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensView.xib; sourceTree = "<group>"; };
 		A2B95FA410715FB80057A70E /* LensViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewController.h; sourceTree = "<group>"; };
@@ -435,8 +438,10 @@
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A2AAAF0A0F28386300945F6E /* Camera.h */,
-				A2AAAF0B0F28386300945F6E /* Camera.m */,
+				A237E63B12AAF4F00089862B /* Camera.h */,
+				A237E63C12AAF4F00089862B /* Camera.m */,
+				A237E63D12AAF4F00089862B /* CameraBag.h */,
+				A237E63E12AAF4F00089862B /* CameraBag.m */,
 				A2E357951044DBDD003C449D /* CoC.h */,
 				A2E357961044DBDD003C449D /* CoC.m */,
 				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
@@ -612,7 +617,6 @@
 				A24EF5EC0ECA9415001A7B46 /* MainView.m in Sources */,
 				A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */,
 				A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */,
-				A2AAAF0C0F28386300945F6E /* Camera.m in Sources */,
 				A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */,
 				A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */,
 				A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */,
@@ -641,6 +645,8 @@
 				A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */,
+				A237E63F12AAF4F00089862B /* Camera.m in Sources */,
+				A237E64012AAF4F00089862B /* CameraBag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
