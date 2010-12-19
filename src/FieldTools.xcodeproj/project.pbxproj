@@ -738,6 +738,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos4.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
 		};
@@ -857,6 +858,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos4.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -873,6 +875,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos4.2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
