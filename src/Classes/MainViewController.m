@@ -22,6 +22,7 @@
 #import "MainViewController.h"
 
 #import "Camera.h"
+#import "CameraBag.h"
 #import "CoC.h"
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
@@ -163,7 +164,7 @@ static BOOL previousLensWasZoom = YES;
 	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]];
 	
 	// Set limits on sliders
-	Lens* lens = [Lens findSelectedInDefaults];
+	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
 	[self lensDidChangeWithLens:lens];
 	[self updateSubjectDistanceSliderLimits];
 

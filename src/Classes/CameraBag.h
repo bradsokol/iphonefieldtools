@@ -31,7 +31,14 @@
 	NSMutableArray* lenses;
 }
 
-+ (CameraBag*)default;
++ (id)initSharedCameraBagFromArchive:(NSString*)archiveFile;
++ (CameraBag*)sharedCameraBag;
+
+- (void)deleteLens:(Lens*)lens;
+- (Lens*)findSelectedLens;
+- (Lens*)findLensForIndex:(int)index;
+- (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex;
+- (int)lensCount;
 
 - (void)addCamera:(Camera*)camera;
 - (void)addLens:(Lens*)lens;

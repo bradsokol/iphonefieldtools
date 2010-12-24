@@ -29,7 +29,7 @@
 
 #import "UserDefaults.h"
 
-static NSString* CameraBagArchivePath;
+static NSString* sharedCameraBagArchivePath;
 
 // Defaults for preferences
 int DefaultApertureIndex = 18;
@@ -55,10 +55,22 @@ float DefaultSubjectDistance = 2.5f;
 @synthesize window;
 @synthesize rootViewController;
 
-+ (void)initialize
+- (void)awakeFromNib
 {
-	CameraBagArchivePath = [[NSString stringWithFormat:@"%@/Library/Default.camerabag",
-							NSHomeDirectory()] retain];	
+	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Library/Default.camerabag",
+								   NSHomeDirectory()] retain];
+
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
+	
+	[FieldToolsAppDelegate setupDefaultValues];
+	
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
+
+	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 }
 
 # pragma mark "UIApplicationDelegate methods"
@@ -71,16 +83,6 @@ float DefaultSubjectDistance = 2.5f;
 
 - (void)applicationDidFinishLaunching:(UIApplication*)application
 {
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
-	
-	[FieldToolsAppDelegate setupDefaultValues];
-	
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
-
 	[window addSubview:[rootViewController view]];
     [window makeKeyAndVisible];
 }
@@ -99,7 +101,7 @@ float DefaultSubjectDistance = 2.5f;
 	bool migratedFrom20 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom20Key];
 	NSLog(@"Previously migrated from 2.0: %s", migratedFrom20 ? "YES" : "NO");
 	
-	bool migratedFrom21 = [[NSFileManager defaultManager] fileExistsAtPath:CameraBagArchivePath];
+	bool migratedFrom21 = [[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath];
 	NSLog(@"Previously migrated from 2.1: %s", migratedFrom21 ? "YES" : "NO");
 
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
@@ -206,7 +208,7 @@ float DefaultSubjectDistance = 2.5f;
 + (void)migrateDefaultsFrom21:(NSMutableDictionary*)defaultValues
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	CameraBag* cameraBag = [CameraBag default];
+	CameraBag* cameraBag = [[CameraBag alloc] init];
 	
 	int count = [defaults integerForKey:FTCameraCount];
 	for (int i = 0; i < count; ++i)
@@ -224,8 +226,10 @@ float DefaultSubjectDistance = 2.5f;
 		[cameraBag addLens:lens];
 	}
 	
-	if ([NSKeyedArchiver archiveRootObject:cameraBag toFile:CameraBagArchivePath])
+	if ([NSKeyedArchiver archiveRootObject:cameraBag toFile:sharedCameraBagArchivePath])
 	{
+		[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
+		
 		// Remove obsolete keys
 	}
 	else

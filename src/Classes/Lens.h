@@ -42,10 +42,10 @@
 
 - (id)copyWithZone:(NSZone *)zone;
 
-+ (void)delete:(Lens*)lens;
-+ (Lens*)findSelectedInDefaults;
-+ (Lens*)findFromDefaultsForIndex:(int)index;
-+ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex;
++ (void)delete:(Lens*)lens __attribute__((deprecated));
++ (Lens*)findSelectedInDefaults __attribute__((deprecated));
++ (Lens*)findFromDefaultsForIndex:(int)index __attribute__((deprecated));
++ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex __attribute__((deprecated));
 
 + (int)count;
 

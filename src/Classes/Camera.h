@@ -33,8 +33,8 @@
 + (NSArray*)findAll;
 + (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex;
 
-+ (Camera*)findFromDefaultsForIndex:(int)index;
-+ (Camera*)findSelectedInDefaults;
++ (Camera*)findFromDefaultsForIndex:(int)index __attribute__((deprecated));
++ (Camera*)findSelectedInDefaults __attribute__((deprecated));
 
 // The designated initializer
 - (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;

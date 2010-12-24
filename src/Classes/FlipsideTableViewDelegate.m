@@ -23,6 +23,7 @@
 #import "FlipsideTableViewDelegate.h"
 
 #import "Camera.h"
+#import "CameraBag.h"
 #import "CoC.h"
 #import "Lens.h"
 #import "Notifications.h"
@@ -64,7 +65,7 @@ static const float SectionHeaderHeight = 44.0;
 	}
 
 	// Don't allow selection of the macro button row in the lens section.
-	if ([indexPath section] == LENSES_SECTION && [indexPath row] == [Lens count])
+	if ([indexPath section] == LENSES_SECTION && [indexPath row] == [[CameraBag sharedCameraBag] lensCount])
 	{
 		return nil;
 	}
@@ -112,7 +113,7 @@ static const float SectionHeaderHeight = 44.0;
 	{
 		if ([self isEditing])
 		{
-			Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
+			Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
 			if (nil == lens)
 			{
 				// Nil means not found. This happens when user touches the 'Macro' or'Add lens' rows
@@ -124,7 +125,7 @@ static const float SectionHeaderHeight = 44.0;
 										 maximumAperture:[NSNumber numberWithFloat:1.4]
 									  minimumFocalLength:[NSNumber numberWithInt:50]
 									  maximumFocalLength:[NSNumber numberWithInt:50] 
-											  identifier:[Lens count]];
+											  identifier:[[CameraBag sharedCameraBag] lensCount]];
 			}
 			else
 			{
@@ -172,7 +173,7 @@ static const float SectionHeaderHeight = 44.0;
 	else
 	{
 		// Lenses section
-		int lensCount = [Lens count];
+		int lensCount = [[CameraBag sharedCameraBag] lensCount];
 		if ([indexPath row] < lensCount)
 		{
 			// This is a lens row - allow delete if more than one lens (must have at least one)
@@ -200,7 +201,7 @@ static const float SectionHeaderHeight = 44.0;
 	   toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
 	// Don't allow a row to be dragged out of it's section or to the bottom of it's section.
-	int max = [sourceIndexPath section] == CAMERAS_SECTION ? [Camera count] - 1 : [Lens count] - 1;
+	int max = [sourceIndexPath section] == CAMERAS_SECTION ? [Camera count] - 1 : [[CameraBag sharedCameraBag] lensCount] - 1;
 	if ([proposedDestinationIndexPath section] != [sourceIndexPath section])
 	{
 		// Suggest the first row in 'home' section if proposed section is above, or row above 'Add...' 
@@ -285,7 +286,7 @@ static const float SectionHeaderHeight = 44.0;
 												   inSection:[indexPath section]];
 	
 	if ([oldIndexPath row] == [indexPath row] ||
-		[indexPath row] == [Lens count])
+		[indexPath row] == [[CameraBag sharedCameraBag] lensCount])
 	{
 		// User selected the currently selected lens or the macro button row - take no action
 		return;
@@ -299,7 +300,7 @@ static const float SectionHeaderHeight = 44.0;
 		
 		[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row]
 												   forKey:FTLensIndex];
-		Lens* lens = [Lens findSelectedInDefaults];
+		Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:LENS_CHANGED_NOTIFICATION object:lens]];
 	}

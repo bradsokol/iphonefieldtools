@@ -23,6 +23,7 @@
 #import "FlipsideTableViewDataSource.h"
 
 #import "Camera.h"
+#import "CameraBag.h"
 #import "CoC.h"
 #import "Lens.h"
 #import "Notifications.h"
@@ -73,7 +74,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if (section == LENSES_SECTION)
 	{
-		return [Lens count] + adjustment + 1;
+		return [[CameraBag sharedCameraBag] lensCount] + adjustment + 1;
 	}
 	else
 	{
@@ -139,7 +140,7 @@ static NSString *CellIdentifier = @"Cell";
 										   maximumAperture:[NSNumber numberWithFloat:1.4]
 										minimumFocalLength:[NSNumber numberWithInt:50]
 										maximumFocalLength:[NSNumber numberWithInt:50] 
-												identifier:[Lens count]];
+												identifier:[[CameraBag sharedCameraBag] lensCount]];
 			
 			[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:LENS_SELECTED_FOR_EDIT_NOTIFICATION
 																								 object:lens]];
@@ -161,7 +162,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else
 	{
-		return [indexPath row] < [Lens count] ? YES : NO;
+		return [indexPath row] < [[CameraBag sharedCameraBag] lensCount] ? YES : NO;
 	}
 }
 
@@ -176,8 +177,8 @@ static NSString *CellIdentifier = @"Cell";
 	else
 	{
 		// Lens moved
-		[Lens moveFromIndex:[fromIndexPath row]
-					toIndex:[toIndexPath row]];
+		[[CameraBag sharedCameraBag] moveLensFromIndex:[fromIndexPath row]
+									   toIndex:[toIndexPath row]];
 	}
 }
 
@@ -212,7 +213,7 @@ static NSString *CellIdentifier = @"Cell";
 							
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
 {
-	int lensCount = [Lens count];
+	int lensCount = [[CameraBag sharedCameraBag] lensCount];
 	bool macroRow = [indexPath row] == lensCount;
 	bool addLensRow = [indexPath row] == lensCount + 1;
 	
@@ -240,7 +241,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else
 	{
-		Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
+		Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
 		[[cell textLabel] setText:[lens description]];
 	}
 	
@@ -342,8 +343,8 @@ static NSString *CellIdentifier = @"Cell";
 - (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView
 {
 	int currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-	Lens* lens = [Lens findFromDefaultsForIndex:[indexPath row]];
-	[Lens delete:lens];
+	Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
+	[[CameraBag sharedCameraBag] deleteLens:lens];
 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 					 withRowAnimation:UITableViewRowAnimationFade];

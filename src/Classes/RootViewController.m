@@ -22,6 +22,7 @@
 #import "RootViewController.h"
 
 #import "Camera.h"
+#import "CameraBag.h"
 #import "FieldToolsAppDelegate.h"
 #import "FlipsideViewController.h"
 #import "Lens.h"
@@ -130,12 +131,13 @@
 
 - (void)updateCameraAndLensDescription
 {
+	CameraBag* cameraBag = [CameraBag sharedCameraBag];
 	bool macroMode = [[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
 	NSString* title = macroMode ?
 		[NSString stringWithFormat:@"%@ - %@ - %@", 
-		 [Camera findSelectedInDefaults], [Lens findSelectedInDefaults], NSLocalizedString(@"MACRO", "MACRO")] :
+		 [Camera findSelectedInDefaults], [cameraBag findSelectedLens], NSLocalizedString(@"MACRO", "MACRO")] :
 		[NSString stringWithFormat:@"%@ - %@", 
-		 [Camera findSelectedInDefaults], [Lens findSelectedInDefaults]];
+		 [Camera findSelectedInDefaults], [cameraBag findSelectedLens]];
 	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
 }
 

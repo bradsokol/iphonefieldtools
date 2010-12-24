@@ -22,6 +22,7 @@
 #import "FlipsideViewController.h"
 
 #import "Camera.h"
+#import "CameraBag.h"
 #import "CameraViewController.h"
 #import "CoCViewController.h"
 #import "CustomCoCViewController.h"
@@ -114,7 +115,7 @@
 	[[self tableViewDataSource] setEditing:editing];
 	
 	int cameraCount = [Camera count];
-	int lensCount = [Lens count];
+	int lensCount = [[CameraBag sharedCameraBag] lensCount];
 	UITableView* tableView = (UITableView*) [self view];
 	
 	[tableView beginUpdates];
