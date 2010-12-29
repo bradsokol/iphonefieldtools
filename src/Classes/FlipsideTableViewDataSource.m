@@ -70,7 +70,7 @@ static NSString *CellIdentifier = @"Cell";
 	
 	if (section == CAMERAS_SECTION)
 	{
-		return [Camera count] + adjustment;
+		return [[CameraBag sharedCameraBag] cameraCount] + adjustment;
 	}
 	else if (section == LENSES_SECTION)
 	{
@@ -125,7 +125,9 @@ static NSString *CellIdentifier = @"Cell";
 		if ([indexPath section] == CAMERAS_SECTION)
 		{
 			CoC* coc = [CoC findFromPresets:NSLocalizedString(@"DEFAULT_COC", "35 mm")];
-			Camera* camera = [[Camera alloc] initWithDescription:@"" coc:coc identifier:[Camera count]];
+			Camera* camera = [[Camera alloc] initWithDescription:@"" 
+															 coc:coc 
+													  identifier:[[CameraBag sharedCameraBag] cameraCount]];
 			
 			[[NSNotificationCenter defaultCenter] postNotification:
 			 [NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
@@ -158,7 +160,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if ([indexPath section] == CAMERAS_SECTION)
 	{
-		return [indexPath row] < [Camera count] ? YES : NO;
+		return [indexPath row] < [[CameraBag sharedCameraBag] cameraCount] ? YES : NO;
 	}
 	else
 	{
@@ -171,8 +173,8 @@ static NSString *CellIdentifier = @"Cell";
 	if ([fromIndexPath section] == CAMERAS_SECTION)
 	{
 		// Camera moved
-		[Camera moveFromIndex:[fromIndexPath row]
-					  toIndex:[toIndexPath row]];
+		[[CameraBag sharedCameraBag] moveCameraFromIndex:[fromIndexPath row]
+												 toIndex:[toIndexPath row]];
 	}
 	else
 	{
@@ -187,7 +189,7 @@ static NSString *CellIdentifier = @"Cell";
 // Format table cell for rows in the cameras section of the table view.
 - (UITableViewCell *) cellForCameraRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *) tableView
 {
-	int cameraCount = [Camera count];
+	int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
 	bool nonCameraRow = [indexPath row] >= cameraCount;
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
@@ -198,7 +200,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else
 	{
-		Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
+		Camera* camera = [[CameraBag sharedCameraBag] findCameraForIndex:[indexPath row]];
 		[[cell textLabel] setText:[camera description]];
 	}
 	
@@ -305,8 +307,8 @@ static NSString *CellIdentifier = @"Cell";
 - (void)deleteCameraAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView
 {
 	int currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
-	[Camera delete:camera];
+	Camera* camera = [[CameraBag sharedCameraBag] findCameraForIndex:[indexPath row]];
+	[[CameraBag sharedCameraBag] deleteCamera:camera];
 	
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
 					 withRowAnimation:UITableViewRowAnimationFade];

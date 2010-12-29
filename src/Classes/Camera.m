@@ -78,12 +78,6 @@ static NSString* KeyCoc = @"CameraCoC";
 	return result;
 }
 
-+ (Camera*)findSelectedInDefaults
-{
-	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	return [Camera findFromDefaultsForIndex:index];
-}
-
 + (Camera*)findFromDefaultsForIndex:(int)index
 {
 	int cameraCount = [Camera count];
@@ -134,57 +128,6 @@ static NSString* KeyCoc = @"CameraCoC";
 	return cameras;
 }
 
-+ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex
-{
-	Camera* theCamera = [Camera findFromDefaultsForIndex:fromIndex];
-	[theCamera setIdentifier:toIndex];
-	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	
-	if (fromIndex < toIndex)
-	{
-		// Moving camera down the list
-		for (int i = fromIndex + 1; i <= toIndex; ++i)
-		{
-			Camera* camera = [Camera findFromDefaultsForIndex:i];
-			[camera setIdentifier:i - 1];
-			[camera save];
-		}
-
-		// Adjust the index of the selected camera if necessary
-		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
-		{
-			if (--selectedIndex < 0)
-			{
-				selectedIndex = [Camera count] - 1;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTCameraIndex];
-		}
-	}
-	else
-	{
-		// Moving camera up the list
-		for (int i = fromIndex - 1; i >= toIndex; --i)
-		{
-			Camera* camera = [Camera findFromDefaultsForIndex:i];
-			[camera setIdentifier:i + 1];
-			[camera save];
-		}
-		
-		// Adjust the index of the selected camera if necessary
-		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
-		{
-			if (++selectedIndex == [Camera count])
-			{
-				selectedIndex = 0;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTCameraIndex];
-		}
-	}
-	[theCamera save];
-}
-
 - (void)save
 {
 	NSUserDefaults* defaultValues = [NSUserDefaults standardUserDefaults];
@@ -205,35 +148,6 @@ static NSString* KeyCoc = @"CameraCoC";
 + (int)count
 {
 	return [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraCount];
-}
-
-+ (void)delete:(Camera*)camera
-{
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	
-	int id = [camera identifier];
-	int cameraCount = [Camera count];
-	
-	// Safety check - never delete the last camera
-	if (cameraCount == 1)
-	{
-		NSLog(@"Can't delete the last camera in Camera:delete");
-		return;
-	}
-	
-	// Delete cameras in prefs higher than this one. 
-	while (id < cameraCount - 1)
-	{
-		camera = [Camera findFromDefaultsForIndex:id + 1];
-		[defaults setObject:[camera asDictionary] forKey:[NSString stringWithFormat:CameraKeyFormat, [camera identifier] - 1]];
-		
-		++id;
-	}
-	
-	// Delete the last camera
-	--cameraCount;
-	[defaults removeObjectForKey:[NSString stringWithFormat:CameraKeyFormat, id]];
-	[defaults setInteger:cameraCount forKey:FTCameraCount];
 }
 
 - (NSDictionary*)asDictionary

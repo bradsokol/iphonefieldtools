@@ -135,9 +135,9 @@
 	bool macroMode = [[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
 	NSString* title = macroMode ?
 		[NSString stringWithFormat:@"%@ - %@ - %@", 
-		 [Camera findSelectedInDefaults], [cameraBag findSelectedLens], NSLocalizedString(@"MACRO", "MACRO")] :
+		 [cameraBag findSelectedCamera], [cameraBag findSelectedLens], NSLocalizedString(@"MACRO", "MACRO")] :
 		[NSString stringWithFormat:@"%@ - %@", 
-		 [Camera findSelectedInDefaults], [cameraBag findSelectedLens]];
+		 [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
 	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
 }
 

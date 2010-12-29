@@ -84,13 +84,15 @@ static const float SectionHeaderHeight = 44.0;
 	{
 		if ([self isEditing])
 		{
-			Camera* camera = [Camera findFromDefaultsForIndex:[indexPath row]];
+			Camera* camera = [[CameraBag sharedCameraBag] findCameraForIndex:[indexPath row]];
 			if (nil == camera)
 			{
 				// Nil means not found. This happens when user touches the 'Add camera' row
 				// which is the last one.
 				CoC* coc = [CoC findFromPresets:NSLocalizedString(@"DEFAULT_COC", "35 mm")];
-				camera = [[Camera alloc] initWithDescription:@"" coc:coc identifier:[Camera count]];
+				camera = [[Camera alloc] initWithDescription:@"" 
+														 coc:coc 
+												  identifier:[[CameraBag sharedCameraBag] cameraCount]];
 			}
 			else
 			{
@@ -158,7 +160,7 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	else if ([indexPath section] == CAMERAS_SECTION)
 	{
-		int cameraCount = [Camera count];
+		int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
 		if ([indexPath row] < cameraCount)
 		{
 			// This is a camera row - allow delete if more than one camera (must have at least one)
@@ -201,7 +203,9 @@ static const float SectionHeaderHeight = 44.0;
 	   toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
 	// Don't allow a row to be dragged out of it's section or to the bottom of it's section.
-	int max = [sourceIndexPath section] == CAMERAS_SECTION ? [Camera count] - 1 : [[CameraBag sharedCameraBag] lensCount] - 1;
+	int max = [sourceIndexPath section] == CAMERAS_SECTION ? 
+		[[CameraBag sharedCameraBag] cameraCount] - 1 : 
+		[[CameraBag sharedCameraBag] lensCount] - 1;
 	if ([proposedDestinationIndexPath section] != [sourceIndexPath section])
 	{
 		// Suggest the first row in 'home' section if proposed section is above, or row above 'Add...' 

@@ -33,12 +33,14 @@
 #import "Notifications.h"
 #import "UserDefaults.h"
 
-@interface FlipsideViewController (Private)
+@interface FlipsideViewController ()
 
+-(void)cameraWasEdited:(NSNotification *)notification;
 -(void)editCamera:(NSNotification*)notification;
 -(void)editCoC:(NSNotification*)notification;
 -(void)editCustomCoC:(NSNotification*)notification;
 -(void)editLens:(NSNotification*)notification;
+-(void)lensWasEdited:(NSNotification *)notification;
 
 @end
 
@@ -75,8 +77,16 @@
 												 name:LENS_SELECTED_FOR_EDIT_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(cameraWasAdded:)
+												 name:CAMERA_WAS_ADDED_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(cameraWasEdited:)
 												 name:CAMERA_WAS_EDITED_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(lensWasAdded:)
+												 name:LENS_WAS_ADDED_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(lensWasEdited:)
@@ -114,7 +124,7 @@
 	[[self tableViewDelegate] setEditing:editing];
 	[[self tableViewDataSource] setEditing:editing];
 	
-	int cameraCount = [Camera count];
+	int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
 	int lensCount = [[CameraBag sharedCameraBag] lensCount];
 	UITableView* tableView = (UITableView*) [self view];
 	
@@ -225,11 +235,17 @@
 	[viewController release];
 }
 
+- (void)cameraWasAdded:(NSNotification*)notification
+{
+	[[CameraBag sharedCameraBag] addCamera:[notification object]];
+	[self cameraWasEdited:notification];
+}
+
 - (void)cameraWasEdited:(NSNotification*)notification
 {
 	UITableView* tableView = (UITableView*) [self view];
-	Camera* camera = (Camera*)[notification object];
-	[camera save];
+	
+	[[CameraBag sharedCameraBag] save];
 	
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
@@ -237,11 +253,18 @@
 	[tableView reloadData];
 }
 
+- (void)lensWasAdded:(NSNotification*)notification
+{
+	[[CameraBag sharedCameraBag] addLens:[notification object]];
+	[self lensWasEdited:notification];
+}
+
 - (void)lensWasEdited:(NSNotification*)notification
 {
 	UITableView* tableView = (UITableView*) [self view];
 	Lens* lens = (Lens*)[notification object];
-	[lens save];
+	
+	[[CameraBag sharedCameraBag] save];
 	
 	int selectedLens = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	if ([lens identifier] == selectedLens)

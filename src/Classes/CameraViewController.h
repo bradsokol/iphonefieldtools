@@ -35,6 +35,8 @@
 	UIBarButtonItem* saveButton;
 	Camera* camera;
 	Camera* cameraWorking;
+	
+	bool newCamera;
 }
 
 // The designated initializer.

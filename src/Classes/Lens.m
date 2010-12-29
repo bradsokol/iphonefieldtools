@@ -136,42 +136,6 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 	}
 }
 
-+ (void)delete:(Lens*)lens
-{
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	
-	int id = [lens identifier];
-	int lensCount = [Lens count];
-	
-	// Safety check - never delete the last lens
-	if (lensCount == 1)
-	{
-		NSLog(@"Can't delete the last lens in Lens:delete");
-		return;
-	}
-	
-	// Delete lens in prefs higher than this one. 
-	while (id < lensCount - 1)
-	{
-		lens = [Lens findFromDefaultsForIndex:id + 1];
-		[defaults setObject:[lens asDictionary] 
-					 forKey:[NSString stringWithFormat:LensKeyFormat, [lens identifier] - 1]];
-		
-		++id;
-	}
-	
-	// Delete the last lens
-	--lensCount;
-	[defaults removeObjectForKey:[NSString stringWithFormat:LensKeyFormat, id]];
-	[defaults setInteger:lensCount forKey:FTLensCount];
-}
-
-+ (Lens*)findSelectedInDefaults
-{
-	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-	return [Lens findFromDefaultsForIndex:index];
-}
-
 + (Lens*)findFromDefaultsForIndex:(int)index
 {
 	int lensCount = [Lens count];
@@ -191,57 +155,6 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 										 identifier:index] autorelease];
 	
 	return lens;
-}
-
-+ (void)moveFromIndex:(int)fromIndex toIndex:(int)toIndex
-{
-	Lens* theLens = [Lens findFromDefaultsForIndex:fromIndex];
-	[theLens setIdentifier:toIndex];
-	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-	
-	if (fromIndex < toIndex)
-	{
-		// Moving lens down the list
-		for (int i = fromIndex + 1; i <= toIndex; ++i)
-		{
-			Lens* lens = [Lens findFromDefaultsForIndex:i];
-			[lens setIdentifier:i - 1];
-			[lens save];
-		}
-		
-		// Adjust the index of the selected lens if necessary
-		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
-		{
-			if (--selectedIndex < 0)
-			{
-				selectedIndex = [Lens count] - 1;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTLensIndex];
-		}
-	}
-	else
-	{
-		// Moving lens up the list
-		for (int i = fromIndex - 1; i >= toIndex; --i)
-		{
-			Lens* lens = [Lens findFromDefaultsForIndex:i];
-			[lens setIdentifier:i + 1];
-			[lens save];
-		}
-		
-		// Adjust the index of the selected lens if necessary
-		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
-		{
-			if (++selectedIndex == [Lens count])
-			{
-				selectedIndex = 0;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTLensIndex];
-		}
-	}
-	[theLens save];
 }
 
 + (int)count

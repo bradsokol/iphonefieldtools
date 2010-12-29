@@ -37,6 +37,7 @@
 
 @property(nonatomic, retain) Camera* camera;
 @property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, getter=isNewCamera) bool newCamera;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
 
 @end
@@ -48,6 +49,7 @@
 @synthesize cameraNameCell;
 @synthesize cameraNameLabel;
 @synthesize cameraWorking;
+@synthesize newCamera;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
 
@@ -70,6 +72,8 @@
 	[self setCamera:aCamera];
 	
 	[self setCameraWorking:[[[self camera] copy] autorelease]];
+	
+	[self setNewCamera:[[[self camera] description] length] == 0];
 	
 	UIBarButtonItem* cancelButton = 
 		[[[UIBarButtonItem alloc] 
@@ -123,7 +127,9 @@
 		[[self camera] setDescription:[[self cameraWorking] description]];
 		[[self camera] setCoc:[[self cameraWorking] coc]];
 		
-		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CAMERA_WAS_EDITED_NOTIFICATION
+		NSString* notificationName = [self isNewCamera] ? CAMERA_WAS_ADDED_NOTIFICATION : CAMERA_WAS_EDITED_NOTIFICATION;
+		
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:notificationName
 																							 object:[self camera]]];
 		
 		[[self navigationController] popViewControllerAnimated:YES];

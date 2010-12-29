@@ -579,7 +579,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)readDefaultCircleOfLeastConfusion
 {
-	Camera* camera = [Camera findSelectedInDefaults];
+	Camera* camera = [[CameraBag sharedCameraBag] findSelectedCamera];
 	
 	[self setCircleOfLeastConfusion:[[camera coc] value]];
 }

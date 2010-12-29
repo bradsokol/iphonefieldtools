@@ -29,10 +29,18 @@
 {
 	NSMutableArray* cameras;
 	NSMutableArray* lenses;
+	
+	NSString* archivePath;
 }
 
 + (id)initSharedCameraBagFromArchive:(NSString*)archiveFile;
 + (CameraBag*)sharedCameraBag;
+
+- (int)cameraCount;
+- (void)deleteCamera:(Camera*)camera;
+- (Camera*)findCameraForIndex:(int)index;
+- (Camera*)findSelectedCamera;
+- (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex;
 
 - (void)deleteLens:(Lens*)lens;
 - (Lens*)findSelectedLens;
@@ -42,5 +50,7 @@
 
 - (void)addCamera:(Camera*)camera;
 - (void)addLens:(Lens*)lens;
+
+- (void)save;
 
 @end

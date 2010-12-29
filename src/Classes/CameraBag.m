@@ -26,7 +26,15 @@
 
 #import "UserDefaults.h"
 
+@interface CameraBag ()
+
+@property(nonatomic, retain) NSString* archivePath;
+
+@end
+
 @implementation CameraBag
+
+@synthesize archivePath;
 
 static CameraBag* sharedCameraBag = nil;
 
@@ -37,6 +45,7 @@ static CameraBag* sharedCameraBag = nil;
 		if (sharedCameraBag == nil)
 		{
 			sharedCameraBag = [NSKeyedUnarchiver unarchiveObjectWithFile:archiveFile];
+			[sharedCameraBag setArchivePath:archiveFile];
 		}
 	}
 	
@@ -54,20 +63,6 @@ static CameraBag* sharedCameraBag = nil;
 	} 
 	
 	return sharedCameraBag; 
-} 
-
-+ (id)allocWithZone:(NSZone *)zone 
-{ 
-	@synchronized(self) 
-	{ 
-		if (sharedCameraBag == nil) 
-		{ 
-			sharedCameraBag = [super allocWithZone:zone]; 
-			return sharedCameraBag; 
-		} 
-	} 
-	
-	return nil; 
 } 
 
 - (id)copyWithZone:(NSZone *)zone 
@@ -129,6 +124,98 @@ static CameraBag* sharedCameraBag = nil;
 - (void)addCamera:(Camera*)camera
 {
 	[cameras addObject:camera];
+}
+
+- (int)cameraCount
+{
+	return [cameras count];
+}
+
+- (void)deleteCamera:(Camera*)camera
+{
+	int id = [camera identifier];
+	int cameraCount = [cameras count];
+	
+	// Safety check - never delete the last camera
+	if (cameraCount == 1)
+	{
+		NSLog(@"Can't delete the last camera in Camera:delete");
+		return;
+	}
+
+	[cameras removeObjectAtIndex:[camera identifier]];
+	while (id < cameraCount - 1)
+	{
+		camera = [cameras objectAtIndex:id];
+		[camera setIdentifier:id];
+		
+		++id;
+	}
+}
+
+- (Camera*)findCameraForIndex:(int)index
+{
+	int cameraCount = [cameras count];
+	if (index >= cameraCount)
+	{
+		return nil;
+	}
+	
+	return [cameras objectAtIndex:index];
+}
+
+- (Camera*)findSelectedCamera
+{
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	return [cameras objectAtIndex:index];
+}
+
+- (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
+{
+	Camera* theCamera = [cameras objectAtIndex:fromIndex];
+	[theCamera setIdentifier:toIndex];
+	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	
+	if (fromIndex < toIndex)
+	{
+		// Moving camera down the list
+		for (int i = fromIndex + 1; i <= toIndex; ++i)
+		{
+			Camera* camera = [cameras objectAtIndex:i];
+			[camera setIdentifier:i - 1];
+		}
+		
+		// Adjust the index of the selected camera if necessary
+		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
+		{
+			if (--selectedIndex < 0)
+			{
+				selectedIndex = [cameras count] - 1;
+			}
+			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
+													   forKey:FTCameraIndex];
+		}
+	}
+	else
+	{
+		// Moving camera up the list
+		for (int i = fromIndex - 1; i >= toIndex; --i)
+		{
+			Camera* camera = [cameras objectAtIndex:i];
+			[camera setIdentifier:i + 1];
+		}
+		
+		// Adjust the index of the selected camera if necessary
+		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
+		{
+			if (++selectedIndex == [cameras count])
+			{
+				selectedIndex = 0;
+			}
+			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
+													   forKey:FTCameraIndex];
+		}
+	}
 }
 
 #pragma mark Lenses
@@ -235,12 +322,28 @@ static CameraBag* sharedCameraBag = nil;
 	return [lenses count];
 }
 
+- (NSString*)description
+{
+	return [NSString stringWithFormat:@"CameraBag with %d cameras and %d lenses",
+			[cameras count], [lenses count]];
+}
+
+- (void)save
+{
+	NSAssert([self archivePath] != nil && [[self archivePath] length] > 0, @"No archive path set for camera bag");
+	
+	[NSKeyedArchiver archiveRootObject:self
+								toFile:[self archivePath]];
+}
+
 - (void)dealloc
 {
 	[cameras release];
 	cameras = nil;
 	[lenses release];
 	lenses = nil;
+	[archivePath release];
+	archivePath = nil;
 	
 	[super dealloc];
 }
