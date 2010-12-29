@@ -182,6 +182,8 @@ static NSString *CellIdentifier = @"Cell";
 		[[CameraBag sharedCameraBag] moveLensFromIndex:[fromIndexPath row]
 									   toIndex:[toIndexPath row]];
 	}
+	
+	[[CameraBag sharedCameraBag] save];
 }
 
 #pragma mark Helper methods

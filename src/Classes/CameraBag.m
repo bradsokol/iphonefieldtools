@@ -172,50 +172,52 @@ static CameraBag* sharedCameraBag = nil;
 
 - (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
-	Camera* theCamera = [cameras objectAtIndex:fromIndex];
-	[theCamera setIdentifier:toIndex];
 	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	int newSelectedIndex = selectedIndex;
+
+	if (fromIndex == selectedIndex)
+	{
+		// Moving selected camera
+		newSelectedIndex = toIndex;
+	}
 	
 	if (fromIndex < toIndex)
 	{
 		// Moving camera down the list
-		for (int i = fromIndex + 1; i <= toIndex; ++i)
+		if (selectedIndex > fromIndex && selectedIndex <= toIndex)
 		{
-			Camera* camera = [cameras objectAtIndex:i];
-			[camera setIdentifier:i - 1];
+			// Selected moves one up
+			newSelectedIndex = selectedIndex - 1;
 		}
 		
-		// Adjust the index of the selected camera if necessary
-		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
+		for (int i = fromIndex; i < toIndex; ++i)
 		{
-			if (--selectedIndex < 0)
-			{
-				selectedIndex = [cameras count] - 1;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTCameraIndex];
+			[cameras exchangeObjectAtIndex:i withObjectAtIndex:i + 1];
 		}
 	}
 	else
 	{
 		// Moving camera up the list
-		for (int i = fromIndex - 1; i >= toIndex; --i)
+		if (selectedIndex > toIndex && selectedIndex <= fromIndex)
 		{
-			Camera* camera = [cameras objectAtIndex:i];
-			[camera setIdentifier:i + 1];
+			// Selected moves one down
+			newSelectedIndex = selectedIndex + 1;
 		}
 		
-		// Adjust the index of the selected camera if necessary
-		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
+		for (int i = fromIndex; i > toIndex; --i)
 		{
-			if (++selectedIndex == [cameras count])
-			{
-				selectedIndex = 0;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTCameraIndex];
+			[cameras exchangeObjectAtIndex:i withObjectAtIndex:i - 1];
 		}
 	}
+	
+	for (int i = 0; i < [cameras count]; ++i)
+	{
+		Camera* camera = [cameras objectAtIndex:i];
+		[camera setIdentifier:i];
+	}
+
+	[[NSUserDefaults standardUserDefaults] setInteger:newSelectedIndex
+											   forKey:FTCameraIndex];
 }
 
 #pragma mark Lenses
