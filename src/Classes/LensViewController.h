@@ -55,6 +55,8 @@
 	UIBarButtonItem* saveButton;
 	
 	NSNumberFormatter* numberFormatter;
+	
+	bool newLens;
 }
 
 // The designated initializer

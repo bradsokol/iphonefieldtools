@@ -172,7 +172,7 @@ static CameraBag* sharedCameraBag = nil;
 
 - (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
-	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
 	int newSelectedIndex = selectedIndex;
 
 	if (fromIndex == selectedIndex)
@@ -198,7 +198,7 @@ static CameraBag* sharedCameraBag = nil;
 	else
 	{
 		// Moving camera up the list
-		if (selectedIndex > toIndex && selectedIndex <= fromIndex)
+		if (selectedIndex >= toIndex && selectedIndex < fromIndex)
 		{
 			// Selected moves one down
 			newSelectedIndex = selectedIndex + 1;
@@ -210,9 +210,9 @@ static CameraBag* sharedCameraBag = nil;
 		}
 	}
 	
-	for (int i = 0; i < [cameras count]; ++i)
+	for (int i = 0; i < [self cameraCount]; ++i)
 	{
-		Camera* camera = [cameras objectAtIndex:i];
+		Camera* camera = [self findCameraForIndex:i];
 		[camera setIdentifier:i];
 	}
 
@@ -273,50 +273,52 @@ static CameraBag* sharedCameraBag = nil;
 
 - (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
-	Lens* theLens = [lenses objectAtIndex:fromIndex];
-	[theLens setIdentifier:toIndex];
-	int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	int newSelectedIndex = selectedIndex;
+	
+	if (fromIndex == selectedIndex)
+	{
+		// Moving selected lens
+		newSelectedIndex = toIndex;
+	}
 	
 	if (fromIndex < toIndex)
 	{
 		// Moving lens down the list
-		for (int i = fromIndex + 1; i <= toIndex; ++i)
+		if (selectedIndex > fromIndex && selectedIndex <= toIndex)
 		{
-			Lens* lens = [lenses objectAtIndex:i];
-			[lens setIdentifier:i - 1];
+			// Selected moves one up
+			newSelectedIndex = selectedIndex - 1;
 		}
 		
-		// Adjust the index of the selected lens if necessary
-		if (selectedIndex >= fromIndex && selectedIndex <= toIndex)
+		for (int i = fromIndex; i < toIndex; ++i)
 		{
-			if (--selectedIndex < 0)
-			{
-				selectedIndex = [lenses count] - 1;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTLensIndex];
+			[lenses exchangeObjectAtIndex:i withObjectAtIndex:i + 1];
 		}
 	}
 	else
 	{
 		// Moving lens up the list
-		for (int i = fromIndex - 1; i >= toIndex; --i)
+		if (selectedIndex >= toIndex && selectedIndex < fromIndex)
 		{
-			Lens* lens = [lenses objectAtIndex:i];
-			[lens setIdentifier:i + 1];
+			// Selected moves one down
+			newSelectedIndex = selectedIndex + 1;
 		}
 		
-		// Adjust the index of the selected lens if necessary
-		if (selectedIndex >= toIndex && selectedIndex <= fromIndex)
+		for (int i = fromIndex; i > toIndex; --i)
 		{
-			if (++selectedIndex == [lenses count])
-			{
-				selectedIndex = 0;
-			}
-			[[NSUserDefaults standardUserDefaults] setInteger:selectedIndex
-													   forKey:FTLensIndex];
+			[lenses exchangeObjectAtIndex:i withObjectAtIndex:i - 1];
 		}
 	}
+	
+	for (int i = 0; i < [self lensCount]; ++i)
+	{
+		Lens* lens = [self findLensForIndex:i];
+		[lens setIdentifier:i];
+	}
+	
+	[[NSUserDefaults standardUserDefaults] setInteger:newSelectedIndex
+											   forKey:FTLensIndex];
 }
 
 - (int)lensCount

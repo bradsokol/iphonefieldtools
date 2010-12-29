@@ -53,6 +53,7 @@ static const float SectionHeaderHeight = 44.0;
 
 @property(nonatomic, retain) Lens* lens;
 @property(nonatomic, retain) Lens* lensWorking;
+@property(nonatomic, getter=isNewLens) bool newLens;
 @property(nonatomic, retain) NSNumberFormatter* numberFormatter;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
 
@@ -77,6 +78,7 @@ static const float SectionHeaderHeight = 44.0;
 @synthesize minimumFocalLengthField;
 @synthesize minimumFocalLengthCell;
 @synthesize minimumFocalLengthLabel;
+@synthesize newLens;
 @synthesize numberFormatter;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
@@ -104,6 +106,8 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	
 	[self setLensWorking:[[[self lens] copy] autorelease]];
+	
+	[self setNewLens:[[[self lens] description] length] == 0];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 
@@ -146,8 +150,10 @@ static const float SectionHeaderHeight = 44.0;
 		{
 			[[self lens] setMaximumFocalLength:[[self lens] minimumFocalLength]];
 		}
+		
+		NSString* notificationName = [self isNewLens] ? LENS_WAS_ADDED_NOTIFICATION : LENS_WAS_EDITED_NOTIFICATION;
 
-		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:LENS_WAS_EDITED_NOTIFICATION
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:notificationName
 																							 object:[self lens]]];
 		
 		[[self navigationController] popViewControllerAnimated:YES];
