@@ -29,12 +29,16 @@
 @interface CameraBag ()
 
 @property(nonatomic, retain) NSString* archivePath;
+@property(nonatomic, retain, readonly) NSMutableArray* cameras;
+@property(nonatomic, retain, readonly) NSMutableArray* lenses;
 
 @end
 
 @implementation CameraBag
 
 @synthesize archivePath;
+@synthesize cameras;
+@synthesize lenses;
 
 static CameraBag* sharedCameraBag = nil;
 
@@ -46,6 +50,18 @@ static CameraBag* sharedCameraBag = nil;
 		{
 			sharedCameraBag = [NSKeyedUnarchiver unarchiveObjectWithFile:archiveFile];
 			[sharedCameraBag setArchivePath:archiveFile];
+			
+			int identifier = 0;
+			for (Camera* camera in [sharedCameraBag cameras])
+			{
+				[camera setIdentifier:identifier++];
+			}
+			
+			identifier = 0;
+			for (Lens* lens in [sharedCameraBag lenses])
+			{
+				[lens setIdentifier:identifier++];
+			}
 		}
 	}
 	

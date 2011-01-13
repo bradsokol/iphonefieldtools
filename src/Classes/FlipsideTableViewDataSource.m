@@ -117,6 +117,8 @@ static NSString *CellIdentifier = @"Cell";
 		{
 			[self deleteLensAtIndexPath:indexPath inTableView:tableView];
 		}
+		
+		[[CameraBag sharedCameraBag] save];
 	}
 	else if (editingStyle == UITableViewCellEditingStyleInsert)
 	{
