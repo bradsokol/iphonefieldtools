@@ -46,6 +46,7 @@
 		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
+		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
 		A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
 		A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
@@ -146,6 +147,8 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
@@ -223,6 +226,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2747B9F12E255EC002731EC /* Controls */,
 				A24FF4980FE0C3B00073BC03 /* Camera View */,
 				A2D6241910424A2200B2F055 /* CoC View */,
 				A28D8A05108D5F4200C77FEA /* Custom CoC View */,
@@ -372,6 +376,15 @@
 				A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */,
 			);
 			name = "Camera View";
+			sourceTree = "<group>";
+		};
+		A2747B9F12E255EC002731EC /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				A2747BA312E25617002731EC /* OBSlider.h */,
+				A2747BA412E25617002731EC /* OBSlider.m */,
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 		A27E41AF1224A07B0060CDB2 /* IntegrationTests */ = {
@@ -647,6 +660,7 @@
 				A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */,
 				A237E63F12AAF4F00089862B /* Camera.m in Sources */,
 				A237E64012AAF4F00089862B /* CameraBag.m in Sources */,
+				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
