@@ -28,18 +28,18 @@
 	CoC* coc;
 }
 
-+ (int)count __attribute__((deprecated));
++ (int)count_deprecated;
 + (NSArray*)findAll __attribute__((deprecated));
 
-+ (Camera*)findFromDefaultsForIndex:(int)index __attribute__((deprecated));
++ (Camera*)findFromDefaultsForIndex_deprecated:(int)index;
 
 // The designated initializer
 - (id)initWithDescription:(NSString*)description coc:(CoC*)coc identifier:(int)identifier;
 
 - (id)copyWithZone:(NSZone *)zone;
 
-- (NSDictionary*) asDictionary __attribute__((deprecated));
-- (void)save __attribute__((deprecated));
+- (NSDictionary*) asDictionary_deprecated;
+- (void)save_deprecated;
 
 @property(nonatomic, retain) NSString* description;
 @property(nonatomic, retain) CoC* coc;

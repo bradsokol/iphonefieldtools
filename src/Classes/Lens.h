@@ -42,15 +42,15 @@
 
 - (id)copyWithZone:(NSZone *)zone;
 
-+ (Lens*)findFromDefaultsForIndex:(int)index __attribute__((deprecated));
++ (Lens*)findFromDefaultsForIndex_deprecated:(int)index;
 
-+ (int)count __attribute__((deprecated));
++ (int)count_deprecated;
 
-- (NSDictionary*)asDictionary __attribute__((deprecated));
+- (NSDictionary*)asDictionary_deprecated;
 
 - (bool)isZoom;
 
-- (void)save __attribute__((deprecated));
+- (void)save_deprecated;
 
 @property(nonatomic, retain) NSString* description;
 @property(nonatomic) int identifier;

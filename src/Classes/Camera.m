@@ -78,9 +78,9 @@ static NSString* KeyCoc = @"CameraCoC";
 	return result;
 }
 
-+ (Camera*)findFromDefaultsForIndex:(int)index
++ (Camera*)findFromDefaultsForIndex_deprecated:(int)index
 {
-	int cameraCount = [Camera count];
+	int cameraCount = [Camera count_deprecated];
 	if (index >= cameraCount)
 	{
 		return nil;
@@ -117,24 +117,24 @@ static NSString* KeyCoc = @"CameraCoC";
 
 + (NSArray*)findAll
 {
-	int cameraCount = [Camera count];
+	int cameraCount = [Camera count_deprecated];
 	NSMutableArray* cameras = [[[NSMutableArray alloc] initWithCapacity:cameraCount] autorelease];
 	for (int i = 0; i < cameraCount; ++i)
 	{
-		Camera* camera = [Camera findFromDefaultsForIndex:i];
+		Camera* camera = [Camera findFromDefaultsForIndex_deprecated:i];
 		[cameras addObject:camera];
 	}
 		
 	return cameras;
 }
 
-- (void)save
+- (void)save_deprecated
 {
 	NSUserDefaults* defaultValues = [NSUserDefaults standardUserDefaults];
-	[defaultValues setObject:[self asDictionary]
+	[defaultValues setObject:[self asDictionary_deprecated]
 					  forKey:[NSString stringWithFormat:CameraKeyFormat, [self identifier]]];
 	
-	int cameraCount = [Camera count];
+	int cameraCount = [Camera count_deprecated];
 	if ([self identifier] > cameraCount - 1)
 	{
 		// This is a new camera
@@ -145,12 +145,12 @@ static NSString* KeyCoc = @"CameraCoC";
 	NSLog(@"Camera save: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
 }
 
-+ (int)count
++ (int)count_deprecated
 {
 	return [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraCount];
 }
 
-- (NSDictionary*)asDictionary
+- (NSDictionary*)asDictionary_deprecated
 {
 	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:2];
 	[dict setObject:[self description]

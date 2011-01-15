@@ -115,13 +115,13 @@ float DefaultSubjectDistance = 2.5f;
 				NSLog(@"Migrating defaults from 1.0 to 2.0");
 				[FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
 			}
-			else if ([Camera count] == 0)
+			else if ([Camera count_deprecated] == 0)
 			{
 				CoC* coc = [CoC findFromPresets:DefaultCoC];
 				Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
 																 coc:coc
 														  identifier:0];
-				[camera save];
+				[camera save_deprecated];
 				[camera release];
 			}
 			
@@ -177,7 +177,7 @@ float DefaultSubjectDistance = 2.5f;
 	Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
 													 coc:coc
 											  identifier:0];
-	[camera save];
+	[camera save_deprecated];
 	[camera release];
 	[coc release];
 	
@@ -188,7 +188,7 @@ float DefaultSubjectDistance = 2.5f;
 								minimumFocalLength:[NSNumber numberWithInt:10]
 								maximumFocalLength:[NSNumber numberWithInt:200]
 										identifier:0];
-	[lens save];
+	[lens save_deprecated];
 	[lens release];
 	
 	// Remove obsolete keys
@@ -213,7 +213,7 @@ float DefaultSubjectDistance = 2.5f;
 	int cameraCount = [defaults integerForKey:FTCameraCount];
 	for (int i = 0; i < cameraCount; ++i)
 	{
-		Camera* camera = [Camera findFromDefaultsForIndex:i];
+		Camera* camera = [Camera findFromDefaultsForIndex_deprecated:i];
 		
 		[cameraBag addCamera:camera];
 	}
@@ -221,7 +221,7 @@ float DefaultSubjectDistance = 2.5f;
 	int lensCount = [defaults integerForKey:FTLensCount];
 	for (int i = 0; i < lensCount; ++i)
 	{
-		Lens* lens = [Lens findFromDefaultsForIndex:i];
+		Lens* lens = [Lens findFromDefaultsForIndex_deprecated:i];
 		
 		[cameraBag addLens:lens];
 	}
