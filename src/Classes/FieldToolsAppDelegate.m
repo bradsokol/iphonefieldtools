@@ -210,16 +210,16 @@ float DefaultSubjectDistance = 2.5f;
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	CameraBag* cameraBag = [[CameraBag alloc] init];
 	
-	int count = [defaults integerForKey:FTCameraCount];
-	for (int i = 0; i < count; ++i)
+	int cameraCount = [defaults integerForKey:FTCameraCount];
+	for (int i = 0; i < cameraCount; ++i)
 	{
 		Camera* camera = [Camera findFromDefaultsForIndex:i];
 		
 		[cameraBag addCamera:camera];
 	}
 	
-	count = [defaults integerForKey:FTLensCount];
-	for (int i = 0; i < count; ++i)
+	int lensCount = [defaults integerForKey:FTLensCount];
+	for (int i = 0; i < lensCount; ++i)
 	{
 		Lens* lens = [Lens findFromDefaultsForIndex:i];
 		
@@ -230,7 +230,17 @@ float DefaultSubjectDistance = 2.5f;
 	{
 		[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 		
-		// TODO: Remove obsolete keys
+		// Remove obsolete defaults
+		for (int i = 0; i < cameraCount; ++i)
+		{
+			[defaults removeObjectForKey:[NSString stringWithFormat:@"Camera%d", i]];
+		}
+		[defaults removeObjectForKey:FTCameraCount];
+		for (int i = 0; i < lensCount; ++i)
+		{
+			[defaults removeObjectForKey:[NSString stringWithFormat:@"Lens%d", i]];
+		}
+		[defaults removeObjectForKey:FTLensCount];
 	}
 	else
 	{
