@@ -230,12 +230,14 @@ float DefaultSubjectDistance = 2.5f;
 	{
 		[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 		
-		// Remove obsolete keys
+		// TODO: Remove obsolete keys
 	}
 	else
 	{
 		NSLog(@"Failed to create archive while migrating from 2.0 defaults");
 	}
+	
+	[cameraBag release];
 }
 
 - (void)saveDefaults
