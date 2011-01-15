@@ -29,8 +29,8 @@
 @interface CameraBag ()
 
 @property(nonatomic, retain) NSString* archivePath;
-@property(nonatomic, retain, readonly) NSMutableArray* cameras;
-@property(nonatomic, retain, readonly) NSMutableArray* lenses;
+@property(nonatomic, retain) NSMutableArray* cameras;
+@property(nonatomic, retain) NSMutableArray* lenses;
 
 @end
 
@@ -122,9 +122,8 @@ static CameraBag* sharedCameraBag = nil;
 {
 	[self init];
 	
-	// TODO: Leak
-	cameras = [[decoder decodeObjectForKey:@"Cameras"] retain];
-	lenses = [[decoder decodeObjectForKey:@"Lenses"] retain];
+	[self setCameras:[[decoder decodeObjectForKey:@"Cameras"] retain]];
+	[self setLenses:[[decoder decodeObjectForKey:@"Lenses"] retain] ];
 
 	return self;
 }
