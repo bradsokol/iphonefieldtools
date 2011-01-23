@@ -133,11 +133,21 @@
 		
 		CGFloat valueAdjustment = self.scrubbingSpeed * (self.maximumValue - self.minimumValue) * (trackingOffset / trackRect.size.width);
 		CGFloat thumbAdjustment = 0.0f;
-        if ( (self.beganTrackingLocation.y < currentLocation.y) && (currentLocation.y < previousLocation.y) ||
+		if ( (self.beganTrackingLocation.y < currentLocation.y) && (currentLocation.y < previousLocation.y) ||
              (self.beganTrackingLocation.y > currentLocation.y) && (currentLocation.y > previousLocation.y) )
             {
             // We are getting closer to the slider, go closer to the real location
-			thumbAdjustment = (realPositionValue - self.value) / ( 1 + fabsf(currentLocation.y - self.beganTrackingLocation.y));
+				
+			if (CGRectContainsPoint([self bounds], currentLocation)) {
+				// If within the bounds of the slider, then adjust thumb x-position to match touch
+				thumbAdjustment = realPositionValue - self.value;
+				NSLog(@"In bounds");
+			}
+			else {
+				// Progressively move thumb closer to the x-position of the touch
+				thumbAdjustment = (realPositionValue - self.value) / ( 1 + fabsf(currentLocation.y - self.beganTrackingLocation.y));
+				NSLog(@"Moving closer");
+			}
         }
 		self.value += valueAdjustment + thumbAdjustment;
 
