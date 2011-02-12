@@ -1,5 +1,13 @@
+Version 2.2
+??, 2011
+
+New features, enhancements:
+  * Slider for subject distance and focal length tracks slower the further
+    above or below the touch is from the slider. This is similar to how
+    the slider behaves in the iOS iPod app.
+
 Version 2.1
-??, 2010
+November 23, 2010
 
 New features, enhancements:
   * Display selected camera and lens in the main view.
