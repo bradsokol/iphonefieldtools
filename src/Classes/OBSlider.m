@@ -141,12 +141,10 @@
 			if (CGRectContainsPoint([self bounds], currentLocation)) {
 				// If within the bounds of the slider, then adjust thumb x-position to match touch
 				thumbAdjustment = realPositionValue - self.value;
-				NSLog(@"In bounds");
 			}
 			else {
 				// Progressively move thumb closer to the x-position of the touch
 				thumbAdjustment = (realPositionValue - self.value) / ( 1 + fabsf(currentLocation.y - self.beganTrackingLocation.y));
-				NSLog(@"Moving closer");
 			}
         }
 		self.value += valueAdjustment + thumbAdjustment;
