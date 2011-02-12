@@ -25,6 +25,8 @@
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
+		A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE82130729C600C0020B /* sliderThumbHighlighted.png */; };
+		A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE83130729C600C0020B /* sliderThumbNormal.png */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -121,6 +123,8 @@
 		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
+		A222FE82130729C600C0020B /* sliderThumbHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbHighlighted.png; sourceTree = "<group>"; };
+		A222FE83130729C600C0020B /* sliderThumbNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbNormal.png; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -481,6 +485,8 @@
 			children = (
 				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
 				A200F9E212541ABA006689F9 /* distanceArrows@2x.png */,
+				A222FE82130729C600C0020B /* sliderThumbHighlighted.png */,
+				A222FE83130729C600C0020B /* sliderThumbNormal.png */,
 				A2B372C80F754EA700774532 /* sliderTrack.png */,
 				A200F9E312541ABA006689F9 /* sliderTrack@2x.png */,
 			);
@@ -600,6 +606,8 @@
 				A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */,
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A200F9E512541ABA006689F9 /* sliderTrack@2x.png in Resources */,
+				A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */,
+				A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
