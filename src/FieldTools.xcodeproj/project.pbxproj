@@ -25,6 +25,8 @@
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
+		A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE82130729C600C0020B /* sliderThumbHighlighted.png */; };
+		A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE83130729C600C0020B /* sliderThumbNormal.png */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -46,6 +48,9 @@
 		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
+		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
+		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
+		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
 		A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
 		A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
 		A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
@@ -118,6 +123,8 @@
 		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
+		A222FE82130729C600C0020B /* sliderThumbHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbHighlighted.png; sourceTree = "<group>"; };
+		A222FE83130729C600C0020B /* sliderThumbNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbNormal.png; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -146,6 +153,12 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
+		A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSlider.h; sourceTree = "<group>"; };
+		A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceSlider.m; sourceTree = "<group>"; };
+		A2747BC012E2804B002731EC /* FocalLengthSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocalLengthSlider.h; sourceTree = "<group>"; };
+		A2747BC112E2804B002731EC /* FocalLengthSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocalLengthSlider.m; sourceTree = "<group>"; };
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
@@ -223,6 +236,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2747B9F12E255EC002731EC /* Controls */,
 				A24FF4980FE0C3B00073BC03 /* Camera View */,
 				A2D6241910424A2200B2F055 /* CoC View */,
 				A28D8A05108D5F4200C77FEA /* Custom CoC View */,
@@ -374,6 +388,19 @@
 			name = "Camera View";
 			sourceTree = "<group>";
 		};
+		A2747B9F12E255EC002731EC /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				A2747BC012E2804B002731EC /* FocalLengthSlider.h */,
+				A2747BC112E2804B002731EC /* FocalLengthSlider.m */,
+				A2747BA312E25617002731EC /* OBSlider.h */,
+				A2747BA412E25617002731EC /* OBSlider.m */,
+				A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */,
+				A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 		A27E41AF1224A07B0060CDB2 /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +485,8 @@
 			children = (
 				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
 				A200F9E212541ABA006689F9 /* distanceArrows@2x.png */,
+				A222FE82130729C600C0020B /* sliderThumbHighlighted.png */,
+				A222FE83130729C600C0020B /* sliderThumbNormal.png */,
 				A2B372C80F754EA700774532 /* sliderTrack.png */,
 				A200F9E312541ABA006689F9 /* sliderTrack@2x.png */,
 			);
@@ -577,6 +606,8 @@
 				A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */,
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A200F9E512541ABA006689F9 /* sliderTrack@2x.png in Resources */,
+				A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */,
+				A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +678,9 @@
 				A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */,
 				A237E63F12AAF4F00089862B /* Camera.m in Sources */,
 				A237E64012AAF4F00089862B /* CameraBag.m in Sources */,
+				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
+				A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */,
+				A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
