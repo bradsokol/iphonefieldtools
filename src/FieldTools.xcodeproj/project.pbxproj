@@ -743,6 +743,7 @@
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Field Tools";
+				SDKROOT = iphoneos4.3;
 			};
 			name = Debug;
 		};
@@ -756,6 +757,7 @@
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Field Tools";
+				SDKROOT = iphoneos4.3;
 			};
 			name = Release;
 		};
@@ -788,6 +790,7 @@
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Field Tools";
+				SDKROOT = iphoneos4.3;
 			};
 			name = Distribution;
 		};
@@ -817,6 +820,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ModelTests;
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -846,6 +850,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ModelTests;
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -874,6 +879,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ModelTests;
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Distribution;
