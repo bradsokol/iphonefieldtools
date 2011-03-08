@@ -116,6 +116,9 @@ static const float SMALL_FONT_SIZE = 24.0;
 // Call this method to display a single value.
 - (void)setResult:(CGFloat)distance
 {
+#ifdef DEBUG
+    NSLog(@"setResult: distance: %f", distance);
+#endif
 	displayRange = NO;
 	nearDistance = distance;
 	[self setNeedsDisplay];
@@ -138,20 +141,21 @@ static const float SMALL_FONT_SIZE = 24.0;
 		// When formatting feet and inches, values will be rounded to the nearest quarter inch.
 		// Must adjust near and far to nearest quarter inch so that distance difference 
 		// calculation will be correct after rounding.
-		nearDistance = rintf((near * METRES_TO_QUARTER_INCHES) + 0.5) / METRES_TO_QUARTER_INCHES;
-		farDistance = rintf((far * METRES_TO_QUARTER_INCHES) + 0.5) / METRES_TO_QUARTER_INCHES;
+		nearDistance = rintf(near * METRES_TO_QUARTER_INCHES) / METRES_TO_QUARTER_INCHES;
+		farDistance = rintf(far * METRES_TO_QUARTER_INCHES) / METRES_TO_QUARTER_INCHES;
 	}
 	else
 	{
 		if ([defaults integerForKey:FTMacroModeKey] == 0)
 		{
-			nearDistance = rintf((near * METRES_TO_DECIMETRES) + 0.5) / METRES_TO_DECIMETRES;
-			farDistance = rintf((far * METRES_TO_DECIMETRES) + 0.5) / METRES_TO_DECIMETRES;
+            NSLog(@"rintf: %f", (far * METRES_TO_DECIMETRES));
+			nearDistance = rintf(near * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
+			farDistance = rintf(far * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
 		}
 		else
 		{
-			nearDistance = rintf((near * METRES_TO_CENTIMETRES) + 0.5) / METRES_TO_CENTIMETRES;
-			farDistance = rintf((far * METRES_TO_CENTIMETRES) + 0.5) / METRES_TO_CENTIMETRES;
+			nearDistance = rintf(near * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
+			farDistance = rintf(far * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
 		}
 	}
 	

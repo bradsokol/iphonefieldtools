@@ -2,23 +2,55 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Canon APS-C</key>
-	<real>0.019</real>
-	<key>Nikon DX</key>
-	<real>0.02</real>
-	<key>Olympus 4:3</key>
-	<real>0.015</real>
-	<key>Pentax DSLR</key>
-	<real>0.02</real>
-	<key>Sony DSLR</key>
-	<real>0.02</real>
 	<key>35 mm</key>
 	<real>0.03</real>
 	<key>4x5 format</key>
 	<real>0.1</real>
 	<key>6x6 format</key>
 	<real>0.045</real>
+	<key>Canon 1D</key>
+	<string>0.023</string>
+	<key>Canon 1Ds/5D</key>
+	<string>0.03</string>
+	<key>Canon APS-C</key>
+	<real>0.019</real>
+	<key>Contax N</key>
+	<string>0.03</string>
+	<key>Fuji FinePix S1/S2/S3/S5</key>
+	<string>0.02</string>
+	<key>Kodak DCS-14N</key>
+	<string>0.003</string>
+	<key>Kodak DCS-720X</key>
+	<string>0.019</string>
+	<key>Kodak DCS-760</key>
+	<string>0.023</string>
+	<key>Kodak DCS Pro</key>
+	<string>0.03</string>
+	<key>Konica Minolta Maxxum</key>
+	<string>0.02</string>
+	<key>Leica M8/X1</key>
+	<string>0.023</string>
+	<key>Leica M9</key>
+	<string>0.03</string>
+	<key>Mamiya ZD</key>
+	<string>0.39</string>
+	<key>Nikon DX</key>
+	<real>0.02</real>
+	<key>Nikon FX</key>
+	<string>0.03</string>
+	<key>Olympus 4:3</key>
+	<real>0.015</real>
+	<key>Panasonic 4:3</key>
+	<string>0.015</string>
+	<key>Pentax 645D</key>
+	<string>0.05</string>
+	<key>Pentax DSLR</key>
+	<real>0.02</real>
+	<key>Samsung DX/NX</key>
+	<string>0.02</string>
 	<key>Sony A850, A900</key>
 	<real>0.03</real>
+	<key>Sony DSLR</key>
+	<real>0.02</real>
 </dict>
 </plist>

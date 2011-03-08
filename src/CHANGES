@@ -1,10 +1,11 @@
 Version 2.2
-??, 2011
+March 6, 2011
 
 New features, enhancements:
   * Slider for subject distance and focal length tracks slower the further
     above or below the touch is from the slider. This is similar to how
     the slider behaves in the iOS iPod app.
+  * Additional circle of confusion presets.
 
 Version 2.1
 November 23, 2010

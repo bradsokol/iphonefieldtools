@@ -157,7 +157,9 @@
 			}
 			else {
 				// Progressively move thumb closer to the x-position of the touch
-				thumbAdjustment = (realPositionValue - self.value) / ( 1 + fabsf(currentLocation.y - self.beganTrackingLocation.y));
+                CGFloat yDeltaAsPercentage = fabsf(currentLocation.y - previousLocation.y) / verticalOffset;
+                CGFloat xDiff = realPositionValue - self.value;
+                thumbAdjustment = yDeltaAsPercentage * xDiff;
 			}
         }
 		self.value += valueAdjustment + thumbAdjustment;
