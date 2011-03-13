@@ -109,7 +109,7 @@ NSString* CellIdentifier = @"Cell";
 	
 	// Tag the cell with section and row so that the delegate can handle data
 	[cell setTag:tag];
-	NSLog(@"Tag for cell %08x is %04x", cell, [cell tag]);
+	NSLog(@"Tag for cell %08x is %04x", (unsigned int) cell, [cell tag]);
 	
 	if (TYPE_SECTION == [indexPath section] && [indexPath row] != LENS_TITLE_ROW)
 	{
