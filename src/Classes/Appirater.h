@@ -57,33 +57,33 @@ extern NSString *const kAppiraterDeclinedToRate;
  This is the message your users will see once they've passed the day+launches
  threshold.
  */
-#define APPIRATER_MESSAGE				[NSString stringWithFormat:@"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", APPIRATER_APP_NAME]
+#define APPIRATER_MESSAGE				[NSString stringWithFormat:NSLocalizedString(@"APPIRATER_MESSAGE", "APPIRATER_MESSAGE"), APPIRATER_APP_NAME]
 
 /*
  This is the title of the message alert that users will see.
  */
-#define APPIRATER_MESSAGE_TITLE			[NSString stringWithFormat:@"Rate %@", APPIRATER_APP_NAME]
+#define APPIRATER_MESSAGE_TITLE			[NSString stringWithFormat:NSLocalizedString(@"APPIRATER_TITLE", "APPIRATER_TITLE"), APPIRATER_APP_NAME]
 
 /*
  The text of the button that rejects reviewing the app.
  */
-#define APPIRATER_CANCEL_BUTTON			@"No, Thanks"
+#define APPIRATER_CANCEL_BUTTON			NSLocalizedString(@"APPIRATER_CANCEL", "APPIRATER_CANCEL")
 
 /*
  Text of button that will send user to app review page.
  */
-#define APPIRATER_RATE_BUTTON			[NSString stringWithFormat:@"Rate %@", APPIRATER_APP_NAME]
+#define APPIRATER_RATE_BUTTON			[NSString stringWithFormat:NSLocalizedString(@"APPIRATER_RATE", "APPIRATER_RATE"), APPIRATER_APP_NAME]
 
 /*
  Text for button to remind the user to review later.
  */
-#define APPIRATER_RATE_LATER			@"Remind Me Later"
+#define APPIRATER_RATE_LATER			NSLocalizedString(@"APPIRATER_LATER", "APPIRATER_LATER")
 
 /*
  Users will need to have the same version of your app installed for this many
  days before they will be prompted to rate it.
  */
-#define APPIRATER_DAYS_UNTIL_PROMPT		30		// double
+#define APPIRATER_DAYS_UNTIL_PROMPT		0		// double
 
 /*
  An example of a 'use' would be if the user launched the app. Bringing the app
@@ -95,7 +95,7 @@ extern NSString *const kAppiraterDeclinedToRate;
  Users need to 'use' the same version of the app this many times before
  before they will be prompted to rate it.
  */
-#define APPIRATER_USES_UNTIL_PROMPT		20		// integer
+#define APPIRATER_USES_UNTIL_PROMPT		0		// integer
 
 /*
  A significant event can be anything you want to be in your app. In a
