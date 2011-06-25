@@ -66,6 +66,9 @@
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */; };
+		A2ACD85513B64C850052557E /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = A2ACD85413B64C850052557E /* Appirater.m */; };
+		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
+		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
@@ -184,6 +187,10 @@
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2A45C46126B75EB00423D79 /* MacroDistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDistanceFormatter.h; sourceTree = "<group>"; };
 		A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroDistanceFormatter.m; sourceTree = "<group>"; };
+		A2ACD85313B64C850052557E /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		A2ACD85413B64C850052557E /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Appirater.m; path = Classes/Appirater.m; sourceTree = "<group>"; };
+		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
 		A2B95F9E10715EDF0057A70E /* LensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensView.xib; sourceTree = "<group>"; };
 		A2B95FA410715FB80057A70E /* LensViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewController.h; sourceTree = "<group>"; };
@@ -217,6 +224,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */,
+				A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -246,6 +255,7 @@
 				A2AAAECD0F2831D400945F6E /* Model */,
 				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
 				A2A0D30710156E4000A34735 /* Table View Cells */,
+				A2ACD85313B64C850052557E /* Appirater.h */,
 				A20D30610F7B333900A744C3 /* DistanceFormatter.h */,
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
 				A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */,
@@ -272,6 +282,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A2ACD85413B64C850052557E /* Appirater.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -322,6 +333,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2ACD85813B64CB30052557E /* SystemConfiguration.framework */,
+				A2ACD85613B64CAD0052557E /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -681,6 +694,7 @@
 				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
 				A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */,
 				A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */,
+				A2ACD85513B64C850052557E /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,7 +801,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Brad Sokol (687QFLNJFV)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brad Sokol";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

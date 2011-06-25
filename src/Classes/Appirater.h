@@ -46,7 +46,7 @@ extern NSString *const kAppiraterDeclinedToRate;
 /*
  Place your Apple generated software id here.
  */
-#define APPIRATER_APP_ID				301377083
+#define APPIRATER_APP_ID				305817254
 
 /*
  Your app's name.
@@ -77,7 +77,7 @@ extern NSString *const kAppiraterDeclinedToRate;
 /*
  Text for button to remind the user to review later.
  */
-#define APPIRATER_RATE_LATER			@"Remind me later"
+#define APPIRATER_RATE_LATER			@"Remind Me Later"
 
 /*
  Users will need to have the same version of your app installed for this many
