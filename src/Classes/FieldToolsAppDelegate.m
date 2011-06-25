@@ -21,6 +21,7 @@
 
 #import "FieldToolsAppDelegate.h"
 
+#import "Appirater.h"
 #import "Camera.h"
 #import "CameraBag.h"
 #import "Coc.h"
@@ -81,10 +82,20 @@ float DefaultSubjectDistance = 2.5f;
 	[self saveDefaults];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication*)application
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[window addSubview:[rootViewController view]];
     [window makeKeyAndVisible];
+    
+    [Appirater appLaunched:YES];
+    
+    return YES;
+}
+
+// Called only on iOS 4.0 and later
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
