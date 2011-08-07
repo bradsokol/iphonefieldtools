@@ -300,7 +300,7 @@ static BOOL previousLensWasZoom = YES;
 	[focalLengthMaximum setHidden:isPrime];
 	[focalLengthMinimum setHidden:isPrime];
 
-	if (previousLensWasZoom && isPrime || !previousLensWasZoom && !isPrime)
+	if ((previousLensWasZoom && isPrime) || (!previousLensWasZoom && !isPrime))
 	{
 		CGFloat delta;
 		delta = isPrime ? -controlYDelta : controlYDelta;

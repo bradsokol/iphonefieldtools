@@ -202,7 +202,7 @@ static const float SectionHeaderHeight = 44.0;
 	// All cells except the first two of the type section have a UITextField. If the cell is touched 
 	// anywhere, not just in the text field, make the text field the first responder.
 	if ([indexPath section] != TYPE_SECTION ||
-		[indexPath section] == TYPE_SECTION && [indexPath row] == LENS_TITLE_ROW)
+		([indexPath section] == TYPE_SECTION && [indexPath row] == LENS_TITLE_ROW))
 	{
 		UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
 		UITextField* textField = (UITextField*)[cell viewWithTag:TEXT_FIELD_TAG];
