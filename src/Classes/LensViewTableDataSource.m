@@ -118,8 +118,8 @@ NSString* CellIdentifier = @"Cell";
 		[[cell textLabel] setText:text];
 		[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 		
-		if ([indexPath row] == PRIME_ROW && !lensIsZoom ||
-			[indexPath row] == ZOOM_ROW && lensIsZoom)
+		if (([indexPath row] == PRIME_ROW && !lensIsZoom) ||
+			([indexPath row] == ZOOM_ROW && lensIsZoom))
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		}
