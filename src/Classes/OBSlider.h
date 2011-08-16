@@ -23,6 +23,8 @@
 
 }
 
+- (void)scrubbingZoneDidChangeFrom:(NSUInteger)oldZone to:(NSUInteger)newZone;
+
 @property (assign, readonly) float scrubbingSpeed;
 @property (retain) NSArray *scrubbingSpeeds;
 @property (retain) NSArray *scrubbingSpeedChangePositions;
