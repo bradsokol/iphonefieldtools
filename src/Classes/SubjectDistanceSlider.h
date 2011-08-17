@@ -22,9 +22,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "OBSlider.h"
+#import "OBSliderWithNotificationView.h"
 
-@interface SubjectDistanceSlider : OBSlider
+@interface SubjectDistanceSlider : OBSliderWithNotificationView
 {
 
 }
