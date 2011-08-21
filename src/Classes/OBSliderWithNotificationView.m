@@ -36,8 +36,8 @@
     BOOL beginTracking = [super beginTrackingWithTouch:touch withEvent:event];
     if (beginTracking)
     {
-        [notificationView setTextLabel:@"Hi-Speed Scrubbing" animated:YES];
-        [notificationView setSecondaryTextLabel:@"Slide your finger up or down to adjust the scrubbing speed."];
+        [notificationView setTextLabel:NSLocalizedString(@"SCRUBBING_HIGH", "Hi-Speed Scrubbing") animated:YES];
+        [notificationView setSecondaryTextLabel:NSLocalizedString(@"SCRUBBING_TIP", "SCRUBBING_TIP")];
         [notificationView show:YES];
     }
     
@@ -68,16 +68,16 @@
     switch (newZone)
     {
         case 1:
-            [notificationView setTextLabel:@"Hi-Speed Scrubbing" animated:NO];
+            [notificationView setTextLabel:NSLocalizedString(@"SCRUBBING_HIGH", "Hi-Speed Scrubbing") animated:NO];
             break;
         case 2:
-            [notificationView setTextLabel:@"Half Speed Scrubbing" animated:NO];
+            [notificationView setTextLabel:NSLocalizedString(@"SCRUBBING_HALF", "Half Speed Scrubbing") animated:NO];
             break;
         case 3:
-            [notificationView setTextLabel:@"Quarter Speed Scrubbing" animated:NO];
+            [notificationView setTextLabel:NSLocalizedString(@"SCRUBBING_QUARTER", "Quarter Speed Scrubbing") animated:NO];
             break;
         case 4:
-            [notificationView setTextLabel:@"Fine Scrubbing" animated:NO];
+            [notificationView setTextLabel:NSLocalizedString(@"SCRUBBING_FINE", "Fine Scrubbing") animated:NO];
             break;
             
         default:
