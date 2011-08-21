@@ -50,6 +50,8 @@
 		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
+		A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */; };
+		A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */; };
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
@@ -162,6 +164,8 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbHighlighted@2x.png"; sourceTree = "<group>"; };
+		A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbNormal@2x.png"; sourceTree = "<group>"; };
 		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSlider.h; sourceTree = "<group>"; };
@@ -509,7 +513,9 @@
 				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
 				A200F9E212541ABA006689F9 /* distanceArrows@2x.png */,
 				A222FE82130729C600C0020B /* sliderThumbHighlighted.png */,
+				A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */,
 				A222FE83130729C600C0020B /* sliderThumbNormal.png */,
+				A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */,
 				A2B372C80F754EA700774532 /* sliderTrack.png */,
 				A200F9E312541ABA006689F9 /* sliderTrack@2x.png */,
 			);
@@ -634,6 +640,8 @@
 				A200F9E512541ABA006689F9 /* sliderTrack@2x.png in Resources */,
 				A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */,
 				A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */,
+				A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */,
+				A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@ New features, enhancements:
   * Added tips for using the variable scrubbing speed sliders added in v2.2.
 
 Fixes:
+  * Fix rendering problems for slider thumb.
 
 Version 2.2
 March 6, 2011
