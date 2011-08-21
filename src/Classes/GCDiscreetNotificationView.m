@@ -8,6 +8,8 @@
 
 #import "GCDiscreetNotificationView.h"
 
+#import "MarqueeLabel.h"
+
 const CGFloat GCDiscreetNotificationViewBorderSize = 25;
 const CGFloat GCDiscreetNotificationViewPadding = 5;
 const CGFloat GCDiscreetNotificationViewHeight = 30;
@@ -126,7 +128,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         [self setNeedsDisplay];
     }
 
-    self.secondaryLabel.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 15, width, 15);
+    self.secondaryLabel.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 12, width, 15);
     if (self.activityIndicator == nil) self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 0, width, 15);
     else {
         self.activityIndicator.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, GCDiscreetNotificationViewPadding, self.activityIndicator.frame.size.width, self.activityIndicator.frame.size.height);
@@ -289,7 +291,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     if (label == nil) {
         label = [[UILabel alloc] init];
         
-        label.font = [UIFont boldSystemFontOfSize:15.0];
+        label.font = [UIFont boldSystemFontOfSize:12.0];
         label.textColor = [UIColor whiteColor];
         label.shadowColor = [UIColor blackColor];
         label.shadowOffset = CGSizeMake(0, 1);
@@ -302,9 +304,9 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     return label;
 }
 
-- (UILabel *)secondaryLabel {
+- (MarqueeLabel *)secondaryLabel {
     if (secondaryLabel == nil) {
-        secondaryLabel = [[UILabel alloc] init];
+        secondaryLabel = [[MarqueeLabel alloc] init];
         
         secondaryLabel.font = [UIFont systemFontOfSize:12.0];
         secondaryLabel.textColor = [UIColor whiteColor];

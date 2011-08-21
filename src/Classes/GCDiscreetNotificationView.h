@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class MarqueeLabel;
+
 //The presentation mode of the notification, it sticks to the top or buttom of the content view
 typedef enum {
     GCDiscreetNotificationViewPresentationModeTop,
@@ -19,7 +21,7 @@ typedef enum {
 //You can access the label and the activity indicator to change its values. 
 //If you want to change the text or the activity itself, use textLabel and showActivity proprieties.
 @property (nonatomic, retain, readonly) UILabel *label;  
-@property (nonatomic, retain, readonly) UILabel *secondaryLabel;  
+@property (nonatomic, retain, readonly) MarqueeLabel *secondaryLabel;  
 @property (nonatomic, retain, readonly) UIActivityIndicatorView *activityIndicator;
 
 @property (nonatomic, assign) UIView *view; //The content view where the notification will be shown
