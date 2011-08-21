@@ -72,6 +72,7 @@
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
 		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
+		A2B84A4113FDF8B00053081A /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B84A4013FDF8B00053081A /* MarqueeLabel.m */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
@@ -198,6 +199,8 @@
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
+		A2B84A3F13FDF8B00053081A /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
+		A2B84A4013FDF8B00053081A /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 		A2B95F9E10715EDF0057A70E /* LensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensView.xib; sourceTree = "<group>"; };
 		A2B95FA410715FB80057A70E /* LensViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewController.h; sourceTree = "<group>"; };
 		A2B95FA510715FB80057A70E /* LensViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewController.m; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 			children = (
 				A2747BC012E2804B002731EC /* FocalLengthSlider.h */,
 				A2747BC112E2804B002731EC /* FocalLengthSlider.m */,
+				A2B84A3F13FDF8B00053081A /* MarqueeLabel.h */,
+				A2B84A4013FDF8B00053081A /* MarqueeLabel.m */,
 				A2747BA312E25617002731EC /* OBSlider.h */,
 				A2747BA412E25617002731EC /* OBSlider.m */,
 				A2090FC313EF65B3006E74E6 /* OBSliderWithNotificationView.h */,
@@ -710,6 +715,7 @@
 				A2ACD85513B64C850052557E /* Appirater.m in Sources */,
 				A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */,
 				A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */,
+				A2B84A4113FDF8B00053081A /* MarqueeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
