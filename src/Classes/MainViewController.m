@@ -28,7 +28,6 @@
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
-#import "MacroDistanceFormatter.h"
 #import "MacroImperialSubjectDistanceSliderPolicy.h"
 #import "MacroMetricSubjectDistanceSliderPolicy.h"
 #import "MainView.h"
@@ -322,14 +321,8 @@ static BOOL previousLensWasZoom = YES;
 
 - (void) updateDistanceFormatter 
 {
-  if ([[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey])
-	{
-		[self setDistanceFormatter:[[[MacroDistanceFormatter alloc] init] autorelease]];
-	}
-	else
-	{
-		[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
-	}
+	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
+
 	[resultView setDistanceFormatter:[self distanceFormatter]];
 }
 
@@ -338,8 +331,6 @@ static BOOL previousLensWasZoom = YES;
 	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
 											  forKey:FTMacroModeKey];
-	
-	[self updateDistanceFormatter];
 
 	[self updateSubjectDistanceSliderPolicy];
 	
@@ -591,7 +582,7 @@ static BOOL previousLensWasZoom = YES;
 	
 	if (macroMode)
 	{
-		if (DistanceUnitsMeters == units)
+		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
 		{
 			[self setSubjectDistanceSliderPolicy:[[MacroMetricSubjectDistanceSliderPolicy alloc] init]];
 		}
@@ -602,7 +593,7 @@ static BOOL previousLensWasZoom = YES;
 	}
 	else
 	{
-		if (DistanceUnitsMeters == units)
+		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
 		{
 			[self setSubjectDistanceSliderPolicy:[[StandardMetricSubjectDistanceSliderPolicy alloc] init]];
 		}

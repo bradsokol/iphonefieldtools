@@ -131,8 +131,12 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			break;
 			
 		case DistanceUnitsMeters:
-			return [NSString stringWithFormat:[self formatStringForMetric], distance];
+			return [NSString stringWithFormat:[self formatStringForMetres], distance];
 			break;
+            
+        case DistanceUnitsCentimeters:
+            return [NSString stringWithFormat:[self formatStringForCentimetres], distance];
+            break;
 	}
 	
 	// We should never get here. This is here to satisfy a compiler warning.
@@ -179,6 +183,10 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	{
 		return distance;
 	}
+    else if (units == DistanceUnitsCentimeters)
+    {
+        return distance * METRES_TO_CENTIMETRES;
+    }
 	else
 	{
 		return distance * METRES_TO_FEET;
@@ -191,10 +199,16 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet")];
 }
 
-- (NSString*)formatStringForMetric
+- (NSString*)formatStringForMetres
 {
 	return [NSString stringWithFormat:@"%%.1f %@",
 			NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+}
+
+- (NSString*)formatStringForCentimetres
+{
+	return [NSString stringWithFormat:@"%%.1f %@",
+			NSLocalizedString(@"CENTIMETRES_ABBREVIATION", "Abbreviation for centimetres")];
 }
 
 @end

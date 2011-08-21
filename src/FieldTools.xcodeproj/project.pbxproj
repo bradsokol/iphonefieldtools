@@ -69,7 +69,6 @@
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
-		A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */; };
 		A2ACD85513B64C850052557E /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = A2ACD85413B64C850052557E /* Appirater.m */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
 		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
@@ -195,8 +194,6 @@
 		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
-		A2A45C46126B75EB00423D79 /* MacroDistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDistanceFormatter.h; sourceTree = "<group>"; };
-		A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroDistanceFormatter.m; sourceTree = "<group>"; };
 		A2ACD85313B64C850052557E /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		A2ACD85413B64C850052557E /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -275,8 +272,6 @@
 				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
 				A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */,
 				A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */,
-				A2A45C46126B75EB00423D79 /* MacroDistanceFormatter.h */,
-				A2A45C47126B75EB00423D79 /* MacroDistanceFormatter.m */,
 				A284E6FF0EE45DDE00C37E21 /* RootViewController.h */,
 				A284E7000EE45DDE00C37E21 /* RootViewController.m */,
 			);
@@ -709,7 +704,6 @@
 				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
 				A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
 				A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
-				A2A45C48126B75EB00423D79 /* MacroDistanceFormatter.m in Sources */,
 				A237E63F12AAF4F00089862B /* Camera.m in Sources */,
 				A237E64012AAF4F00089862B /* CameraBag.m in Sources */,
 				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
