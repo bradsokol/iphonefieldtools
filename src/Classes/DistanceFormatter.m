@@ -26,7 +26,7 @@
 #import "UserDefaults.h"
 
 const float METRES_TO_FEET = 3.280839895f;
-const float METRES_TO_QUARTER_INCHES = 157.48031496f;
+const float METRES_TO_QUARTER_INCHES = METRES_TO_FEET * 48.0f;
 
 const float METRES_TO_DECIMETRES = 10.0f;
 const float METRES_TO_CENTIMETRES = 100.0f;
