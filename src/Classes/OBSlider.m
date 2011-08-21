@@ -9,6 +9,9 @@
 
 
 @interface OBSlider ()
+{
+    NSUInteger currentScrubZoneIndex;
+}
 
 @property (assign, readwrite) float scrubbingSpeed;
 @property (assign) CGPoint beganTrackingLocation;
@@ -107,6 +110,8 @@
     BOOL beginTracking = [super beginTrackingWithTouch:touch withEvent:event];
     if (beginTracking)
     {
+        currentScrubZoneIndex = 0;
+        
 		// Set the beginning tracking location to the centre of the current
 		// position of the thumb. This ensures that the thumb is correctly re-positioned
 		// when the touch position moves back to the track after tracking in one
@@ -140,6 +145,12 @@
             scrubbingSpeedChangePosIndex = [self.scrubbingSpeeds count];
         }
         self.scrubbingSpeed = [[self.scrubbingSpeeds objectAtIndex:scrubbingSpeedChangePosIndex - 1] floatValue];
+        
+        if (currentScrubZoneIndex != scrubbingSpeedChangePosIndex)
+        {
+            [self scrubbingZoneDidChangeFrom:currentScrubZoneIndex to:scrubbingSpeedChangePosIndex];
+            currentScrubZoneIndex = scrubbingSpeedChangePosIndex;
+        }
          
         CGRect trackRect = [self trackRectForBounds:self.bounds];
         realPositionValue = realPositionValue + (self.maximumValue - self.minimumValue) * (trackingOffset / trackRect.size.width);
@@ -185,6 +196,10 @@
 }
 
 
+- (void)scrubbingZoneDidChangeFrom:(NSUInteger)oldZone to:(NSUInteger)newZone
+{
+    // Default method does nothing
+}
 
 #pragma mark -
 #pragma mark Helper methods
