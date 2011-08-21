@@ -35,6 +35,6 @@ Field Tools is licensed under the [Apache License](http://www.apache.org/license
 Thanks to following people for their contributions on Github that helped make Field Tools better:
 
 * [Arash Payan](https://github.com/arashpayan) for [Appirater](https://github.com/arashpayan/appirater), a class for gently prompting users to write an app review.
-* [cbpowell](https://github.com/cbpowell) for [MarqueeLabel](https://github.com/cbpowell/MarqueeLabel), a drop-in replacement for UILabel that adds marquee-style horizontal scrolling.
 * [Ole Begemann](https://github.com/ole) for [OBSlider](https://github.com/ole/OBSlider), a UISlider subclass with variable scrubbing speed.
+
 
