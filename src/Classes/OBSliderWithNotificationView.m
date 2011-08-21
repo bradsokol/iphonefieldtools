@@ -57,6 +57,7 @@
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    [super endTrackingWithTouch:touch withEvent:event];
     if (self.tracking)
     {
         [notificationView hide:YES];
