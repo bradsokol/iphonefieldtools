@@ -57,6 +57,10 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	{
 		return nil;
 	}
+    
+    numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setMaximumFractionDigits:1];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 	
 	[self setTesting:test];
 	[self setDistanceUnits:DistanceUnitsMeters];
@@ -95,6 +99,8 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	float feet = 0.0f;
 	float inches = 0.0f;
 	
+    NSString* localizedDistance = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:distance]];
+    NSLog(@"Localized distance: %@", localizedDistance);
 	switch (units)
 	{
 		case DistanceUnitsFeet:
@@ -135,7 +141,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			break;
             
         case DistanceUnitsCentimeters:
-            return [NSString stringWithFormat:[self formatStringForCentimetres], distance];
+            return [NSString stringWithFormat:[self formatStringForCentimetres], localizedDistance];
             break;
 	}
 	
@@ -207,8 +213,15 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 
 - (NSString*)formatStringForCentimetres
 {
-	return [NSString stringWithFormat:@"%%.1f %@",
+	return [NSString stringWithFormat:@"%%@ %@",
 			NSLocalizedString(@"CENTIMETRES_ABBREVIATION", "Abbreviation for centimetres")];
+}
+
+- (void)dealloc
+{
+    [numberFormatter release], numberFormatter = nil;
+    
+    [super dealloc];
 }
 
 @end

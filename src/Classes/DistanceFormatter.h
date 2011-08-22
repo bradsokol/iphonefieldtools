@@ -42,6 +42,8 @@ const extern float METRES_TO_CENTIMETRES;
 	
 	// For testing only
 	DistanceUnits distanceUnits;
+    
+    NSNumberFormatter* numberFormatter;
 }
 
 - (id)init;
