@@ -47,5 +47,6 @@ typedef enum _DistanceUnits
 {
 	DistanceUnitsFeet,
 	DistanceUnitsFeetAndInches,
-	DistanceUnitsMeters
+	DistanceUnitsMeters,
+    DistanceUnitsCentimeters
 } DistanceUnits;

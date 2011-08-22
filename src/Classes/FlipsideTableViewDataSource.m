@@ -30,7 +30,7 @@
 #import "UserDefaults.h"
 
 const NSInteger SECTION_COUNT = 3;
-const NSInteger UNITS_COUNT = 3;
+const NSInteger UNITS_COUNT = 4;
 
 // Enumerate sections in UITable
 const NSInteger LENSES_SECTION = 0;
@@ -276,7 +276,11 @@ static NSString *CellIdentifier = @"Cell";
 			break;
 			
 		case DistanceUnitsMeters:
-			[[cell textLabel] setText:NSLocalizedString(@"METRIC", "METRIC")];
+			[[cell textLabel] setText:NSLocalizedString(@"METRIC_M", "METRIC_M")];
+			break;
+			
+		case DistanceUnitsCentimeters:
+			[[cell textLabel] setText:NSLocalizedString(@"METRIC_CM", "METRIC_CM")];
 			break;
 	}
 

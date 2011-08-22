@@ -22,11 +22,11 @@
 
 #import "MacroImperialSubjectDistanceSliderPolicy.h"
 
-static float minimumDistanceToSubject = 0.0254f;	// one inch as metres
+static float minimumDistanceToSubject = 0.0127f;	// one inch as metres
 static float maximumDistanceToSubject = 0.9144f;	// three feet as metres
 
 static float sliderMaximum = 0.9144f;
-static float sliderMinimum = 0.0254f;
+static float sliderMinimum = 0.0127f;
 
 @implementation MacroImperialSubjectDistanceSliderPolicy
 

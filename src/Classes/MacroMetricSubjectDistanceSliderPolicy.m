@@ -22,11 +22,11 @@
 
 #import "MacroMetricSubjectDistanceSliderPolicy.h"
 
-static float minimumDistanceToSubject = 0.025f;	// metres
+static float minimumDistanceToSubject = 0.01f;	// metres
 static float maximumDistanceToSubject = 1.0f;	// metres
 
 static float sliderMaximum = 1.0f;
-static float sliderMinimum = 0.025f;
+static float sliderMinimum = 0.01f;
 
 @implementation MacroMetricSubjectDistanceSliderPolicy
 

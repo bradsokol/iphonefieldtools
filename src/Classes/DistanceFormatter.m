@@ -26,7 +26,7 @@
 #import "UserDefaults.h"
 
 const float METRES_TO_FEET = 3.280839895f;
-const float METRES_TO_QUARTER_INCHES = 157.48031496f;
+const float METRES_TO_QUARTER_INCHES = METRES_TO_FEET * 48.0f;
 
 const float METRES_TO_DECIMETRES = 10.0f;
 const float METRES_TO_CENTIMETRES = 100.0f;
@@ -57,6 +57,10 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	{
 		return nil;
 	}
+    
+    numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setMaximumFractionDigits:1];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 	
 	[self setTesting:test];
 	[self setDistanceUnits:DistanceUnitsMeters];
@@ -95,6 +99,8 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	float feet = 0.0f;
 	float inches = 0.0f;
 	
+    NSString* localizedDistance = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:distance]];
+    NSLog(@"Localized distance: %@", localizedDistance);
 	switch (units)
 	{
 		case DistanceUnitsFeet:
@@ -131,8 +137,12 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			break;
 			
 		case DistanceUnitsMeters:
-			return [NSString stringWithFormat:[self formatStringForMetric], distance];
+			return [NSString stringWithFormat:[self formatStringForMetres], distance];
 			break;
+            
+        case DistanceUnitsCentimeters:
+            return [NSString stringWithFormat:[self formatStringForCentimetres], localizedDistance];
+            break;
 	}
 	
 	// We should never get here. This is here to satisfy a compiler warning.
@@ -179,6 +189,10 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	{
 		return distance;
 	}
+    else if (units == DistanceUnitsCentimeters)
+    {
+        return distance * METRES_TO_CENTIMETRES;
+    }
 	else
 	{
 		return distance * METRES_TO_FEET;
@@ -191,10 +205,23 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet")];
 }
 
-- (NSString*)formatStringForMetric
+- (NSString*)formatStringForMetres
 {
 	return [NSString stringWithFormat:@"%%.1f %@",
 			NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+}
+
+- (NSString*)formatStringForCentimetres
+{
+	return [NSString stringWithFormat:@"%%@ %@",
+			NSLocalizedString(@"CENTIMETRES_ABBREVIATION", "Abbreviation for centimetres")];
+}
+
+- (void)dealloc
+{
+    [numberFormatter release], numberFormatter = nil;
+    
+    [super dealloc];
 }
 
 @end
