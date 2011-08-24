@@ -124,6 +124,15 @@
 
 #pragma mark UITableViewDelegate methods
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == [[CoC cocPresets] count])
+    {
+        // Custom CoC row
+        [self didSelectCustomCoCInTableView:tableView];
+    }
+}
+
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath
