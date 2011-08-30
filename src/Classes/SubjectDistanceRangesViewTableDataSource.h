@@ -11,35 +11,18 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 
 //
-//  FlipsideTableViewDataSource.h
+//  SubjectDistanceRangesViewTableDataSource.h
 //  FieldTools
 //
-//  Created by Brad on 2009/05/28.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 2011-08-23.
+//  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class FlipsideViewController;
-
-extern const NSInteger SECTION_COUNT;
-extern const NSInteger UNITS_COUNT;
-
-// Enumerate sections in UITable
-extern const NSInteger CAMERAS_SECTION;
-extern const NSInteger LENSES_SECTION;
-extern const NSInteger UNITS_SECTION;
-
-@interface FlipsideTableViewDataSource : NSObject <UITableViewDataSource>
-{
-	BOOL editing;
-	
-	FlipsideViewController* controller;
-}
-
-@property(nonatomic, getter=isEditing) BOOL editing;
-@property(nonatomic, assign) FlipsideViewController* controller;
+@interface SubjectDistanceRangesViewTableDataSource : NSObject <UITableViewDataSource>
 
 @end

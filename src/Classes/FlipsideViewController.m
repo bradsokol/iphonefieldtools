@@ -31,6 +31,7 @@
 #import "Lens.h"
 #import "LensViewController.h"
 #import "Notifications.h"
+#import "SubjectDistanceRangesViewController.h"
 #import "UserDefaults.h"
 
 @interface FlipsideViewController ()
@@ -40,6 +41,7 @@
 -(void)editCoC:(NSNotification*)notification;
 -(void)editCustomCoC:(NSNotification*)notification;
 -(void)editLens:(NSNotification*)notification;
+-(void)editSubjectDistanceRange:(NSNotification*)notification;
 -(void)lensWasEdited:(NSNotification *)notification;
 
 @end
@@ -75,6 +77,10 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(editLens:)
 												 name:LENS_SELECTED_FOR_EDIT_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(editSubjectDistanceRange:)
+												 name:EDIT_SUBJECT_DISTANCE_RANGE_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(cameraWasAdded:)
@@ -233,6 +239,15 @@
 									    forLens:(Lens*)[notification object]];
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
+}
+
+- (void)editSubjectDistanceRange:(NSNotification*)notification
+{
+    UIViewController* viewController =
+        [[SubjectDistanceRangesViewController alloc] initWithNibName:@"SubjectDistanceRangesViewController"
+                                                              bundle:nil];
+    [[self navigationController] pushViewController:viewController animated:YES];
+    [viewController release];
 }
 
 - (void)cameraWasAdded:(NSNotification*)notification

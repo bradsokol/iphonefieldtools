@@ -27,6 +27,7 @@
 #define COC_SELECTED_FOR_EDIT_NOTIFICATION	    @"CoCSelectedForEdit"
 #define CUSTOM_COC_NOTIFICATION					@"CustomCoC"
 #define CUSTOM_COC_SELECTED_FOR_EDIT_NOTIFICATION	    @"CustomCoCSelectedForEdit"
+#define EDIT_SUBJECT_DISTANCE_RANGE_NOTIFICATION        @"EditSubjectDistanceRange"
 #define LENS_CHANGED_NOTIFICATION				@"LensChanged"
 #define LENS_SELECTED_FOR_EDIT_NOTIFICATION		@"LensSelectedForEdit"
 #define LENS_WAS_ADDED_NOTIFICATION				@"LensWasAdded"

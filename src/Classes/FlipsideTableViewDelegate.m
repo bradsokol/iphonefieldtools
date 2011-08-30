@@ -62,12 +62,13 @@ static const float SectionHeaderHeight = 44.0;
 		{
 			return nil;
 		}
-	}
-
-	// Don't allow selection of the macro button row in the lens section.
-	if ([indexPath section] == LENSES_SECTION && [indexPath row] == [[CameraBag sharedCameraBag] lensCount])
-	{
-		return nil;
+        
+        // If editing, don't allow selection of subject distance ranges
+        if ([indexPath section] == LENSES_SECTION &&
+            [indexPath row] == [[CameraBag sharedCameraBag] lensCount])
+        {
+            return nil;
+        }
 	}
 	
 	return indexPath;
@@ -113,26 +114,14 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	else if ([indexPath section] == LENSES_SECTION)
 	{
+        Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
 		if ([self isEditing])
 		{
-			Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
-			if (nil == lens)
-			{
-				// Nil means not found. This happens when user touches the 'Macro' or'Add lens' rows
-				// which are the last two.
-				
-				// If the macro row,
-				lens = [[Lens alloc] initWithDescription:@""
-										 minimumAperture:[NSNumber numberWithFloat:32.0]
-										 maximumAperture:[NSNumber numberWithFloat:1.4]
-									  minimumFocalLength:[NSNumber numberWithInt:50]
-									  maximumFocalLength:[NSNumber numberWithInt:50] 
-											  identifier:[[CameraBag sharedCameraBag] lensCount]];
-			}
-			else
-			{
-				[lens retain];
-			}
+            // Should always find a lens since subject distance range row is not selectable
+            // in edit mode.
+            NSAssert(lens != nil, @"No lens found for editing");
+            
+			[lens retain];
 			
 			[[NSNotificationCenter defaultCenter] 
 			 postNotification:
@@ -143,7 +132,15 @@ static const float SectionHeaderHeight = 44.0;
 		}
 		else
 		{
-			[self didSelectLensInTableView:tableView atIndexPath:indexPath];
+            if (lens != nil)
+            {
+                [self didSelectLensInTableView:tableView atIndexPath:indexPath];
+            }
+            else
+            {
+                [[NSNotificationCenter defaultCenter]
+                 postNotification:[NSNotification notificationWithName:EDIT_SUBJECT_DISTANCE_RANGE_NOTIFICATION object:nil]];
+            }
 		}
 	}
 	else

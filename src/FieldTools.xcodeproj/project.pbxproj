@@ -68,6 +68,9 @@
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
+		A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */; };
+		A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */; };
+		A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2ACD85513B64C850052557E /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = A2ACD85413B64C850052557E /* Appirater.m */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
@@ -192,6 +195,11 @@
 		A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewController.m; sourceTree = "<group>"; };
 		A28D8A47108D67F000C77FEA /* CustomCoCViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewTableDataSource.h; sourceTree = "<group>"; };
 		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
+		A294A02A14048DDF0090C9AA /* SubjectDistanceRangesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangesViewController.h; sourceTree = "<group>"; };
+		A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewController.m; sourceTree = "<group>"; };
+		A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubjectDistanceRangesViewController.xib; path = Classes/SubjectDistanceRangesViewController.xib; sourceTree = "<group>"; };
+		A294A02F140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangesViewTableDataSource.h; sourceTree = "<group>"; };
+		A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2ACD85313B64C850052557E /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
@@ -261,6 +269,7 @@
 				A23CFF29108A5FC400A41662 /* Main View */,
 				A2AAAECD0F2831D400945F6E /* Model */,
 				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
+				A294A02914048D5C0090C9AA /* Subject Distance Ranges View */,
 				A2A0D30710156E4000A34735 /* Table View Cells */,
 				A2ACD85313B64C850052557E /* Appirater.h */,
 				A2ACD85413B64C850052557E /* Appirater.m */,
@@ -333,6 +342,7 @@
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				2899E55F0DE3E45000AC0155 /* MainView.xib */,
 				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
+				A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -460,6 +470,17 @@
 				A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */,
 			);
 			name = "Custom CoC View";
+			sourceTree = "<group>";
+		};
+		A294A02914048D5C0090C9AA /* Subject Distance Ranges View */ = {
+			isa = PBXGroup;
+			children = (
+				A294A02A14048DDF0090C9AA /* SubjectDistanceRangesViewController.h */,
+				A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */,
+				A294A02F140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.h */,
+				A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */,
+			);
+			name = "Subject Distance Ranges View";
 			sourceTree = "<group>";
 		};
 		A2A0D30710156E4000A34735 /* Table View Cells */ = {
@@ -637,6 +658,7 @@
 				A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */,
 				A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */,
 				A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */,
+				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +734,8 @@
 				A2ACD85513B64C850052557E /* Appirater.m in Sources */,
 				A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */,
 				A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */,
+				A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */,
+				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

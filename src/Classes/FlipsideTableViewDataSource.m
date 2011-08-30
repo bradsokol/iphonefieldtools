@@ -220,7 +220,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
 {
 	int lensCount = [[CameraBag sharedCameraBag] lensCount];
-	bool macroRow = [indexPath row] == lensCount;
+	bool subjectDistanceRangeRow = [indexPath row] == lensCount;
 	bool addLensRow = [indexPath row] == lensCount + 1;
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
@@ -230,19 +230,10 @@ static NSString *CellIdentifier = @"Cell";
 	{
 		[[cell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
 	}
-	else if (macroRow)
+	else if (subjectDistanceRangeRow)
 	{
-		[[cell textLabel] setText:NSLocalizedString(@"MACRO", "MACRO")];
-		
-		if (nil == macroModeSwitch)
-		{
-			macroModeSwitch = [[UISwitch alloc] init];
-			[macroModeSwitch addTarget:[self controller]
-								action:@selector(macroModeDidChange:)
-					  forControlEvents:UIControlEventValueChanged];
-		}
-		[macroModeSwitch setOn:[[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey]];
-		[cell setAccessoryView:macroModeSwitch];
+		[[cell textLabel] setText:NSLocalizedString(@"SUBJECT_DISTANCE_RANGE", "SUBJECT DISTANCE RANGE")];
+
 		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	}
 	else
@@ -255,7 +246,14 @@ static NSString *CellIdentifier = @"Cell";
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
 	
-	[cell setEditingAccessoryType:macroRow ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator];
+    if ([self isEditing] && subjectDistanceRangeRow)
+    {
+        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    }
+    else
+    {
+        [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
 	
 	return cell;
 }
@@ -391,8 +389,6 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)dealloc
 {
-	[macroModeSwitch release];
-	
 	[super dealloc];
 }
 
