@@ -23,6 +23,8 @@
 
 #import "SubjectDistanceRangesViewTableDataSource.h"
 
+#import "SubjectDistanceRangePolicy.h"
+#import "SubjectDistanceRangePolicyFactory.h"
 #import "TwoLabelTableViewCell.h"
 
 static const int NUM_SECTIONS = 1;
@@ -69,7 +71,10 @@ static const int NUM_ROWS = 4;
     NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%d", [indexPath row]];
     [cell setLabel:NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE")];
     
-    [cell setText:@"asdf"];
+    id<SubjectDistanceRangePolicy> distanceRangePolicy =
+    [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForIndex:[indexPath row]];
+    
+    [cell setText:[distanceRangePolicy rangeDescription]];
     
     return cell;
 }
