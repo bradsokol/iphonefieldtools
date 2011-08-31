@@ -92,15 +92,24 @@
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
     UITableView* tv = [self tableView];
-    SubjectDistanceRangesViewTableDataSource* sdrvtds = [tv dataSource];
+    SubjectDistanceRangesViewTableDataSource* sdrvtds = 
+        (SubjectDistanceRangesViewTableDataSource*) [tv dataSource];
     [self setTableViewDataSource:sdrvtds];
-	[self setTableViewDataSource:[[self tableView] dataSource]];
+	[self setTableViewDataSource:(SubjectDistanceRangesViewTableDataSource*)[[self tableView] dataSource]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath
+							 animated:YES];
 }
 
 - (void)dealloc 

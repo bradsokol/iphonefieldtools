@@ -23,8 +23,10 @@
 
 #import "SubjectDistanceRangesViewTableDataSource.h"
 
+#import "TwoLabelTableViewCell.h"
+
 static const int NUM_SECTIONS = 1;
-static const int NUM_ROWS = 3;
+static const int NUM_ROWS = 4;
 
 @implementation SubjectDistanceRangesViewTableDataSource
 
@@ -55,15 +57,19 @@ static const int NUM_ROWS = 3;
 {
     static NSString *CellIdentifier = @"Cell";
 
-	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	TwoLabelTableViewCell* cell = 
+        (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[[UITableViewCell alloc]
+		cell = [[[TwoLabelTableViewCell alloc]
 				 initWithFrame:CGRectZero
 				 reuseIdentifier:CellIdentifier] autorelease];
 	}
-
-    [[cell textLabel] setText:[NSString stringWithFormat:@"Subject distance range %d", [indexPath row]]];
+    
+    NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%d", [indexPath row]];
+    [cell setLabel:NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE")];
+    
+    [cell setText:@"asdf"];
     
     return cell;
 }
