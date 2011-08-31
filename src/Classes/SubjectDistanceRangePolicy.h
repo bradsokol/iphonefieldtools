@@ -23,10 +23,11 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol SubjectDistanceRangePolicy <NSObject>
+@interface SubjectDistanceRangePolicy : NSObject
 
--(NSString*) rangeDescription;
--(CGFloat) minimumDistance;
--(CGFloat) maximumDistance;
+@property(readonly) bool isMetric;
+@property(readonly) CGFloat minimumDistance;
+@property(readonly) CGFloat maximumDistance;
+@property(readonly, nonatomic) NSString* rangeDescription;
 
 @end

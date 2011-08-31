@@ -23,22 +23,7 @@
 
 #import "MetricMacroSubjectDistanceRangePolicy.h"
 
-#import "DistanceFormatter.h"
-
 @implementation MetricMacroSubjectDistanceRangePolicy
-
-- (NSString*)rangeDescription
-{
-    DistanceFormatter* formatter = [[DistanceFormatter alloc] init];
-
-    NSString* description = [NSString stringWithFormat:@"%@ to %@",
-                             [formatter stringForObjectValue:[NSNumber numberWithFloat:[self minimumDistance]]],
-                             [formatter stringForObjectValue:[NSNumber numberWithFloat:[self maximumDistance]]]];
-    
-    [formatter release];
-    
-    return description;
-}
 
 - (CGFloat)minimumDistance
 {

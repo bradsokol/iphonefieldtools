@@ -71,7 +71,7 @@ static const int NUM_ROWS = 4;
     NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%d", [indexPath row]];
     [cell setLabel:NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE")];
     
-    id<SubjectDistanceRangePolicy> distanceRangePolicy =
+    SubjectDistanceRangePolicy* distanceRangePolicy =
     [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForIndex:[indexPath row]];
     
     [cell setText:[distanceRangePolicy rangeDescription]];

@@ -32,6 +32,6 @@
 
 + (SubjectDistanceRangePolicyFactory*) sharedPolicyFactory;
 
--(id<SubjectDistanceRangePolicy>) policyForIndex:(int)index;
+-(SubjectDistanceRangePolicy*) policyForIndex:(int)index;
 
 @end

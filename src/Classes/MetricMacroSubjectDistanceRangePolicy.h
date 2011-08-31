@@ -25,7 +25,7 @@
 
 #import "SubjectDistanceRangePolicy.h"
 
-@interface MetricMacroSubjectDistanceRangePolicy : NSObject <SubjectDistanceRangePolicy>
+@interface MetricMacroSubjectDistanceRangePolicy : SubjectDistanceRangePolicy
 {
     
 }

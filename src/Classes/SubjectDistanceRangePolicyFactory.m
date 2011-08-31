@@ -24,7 +24,6 @@
 #import "SubjectDistanceRangePolicyFactory.h"
 
 #import "MetricMacroSubjectDistanceRangePolicy.h"
-#import "UserDefaults.h"
 
 SubjectDistanceRangePolicyFactory* theInstance;
 
@@ -58,13 +57,9 @@ SubjectDistanceRangePolicyFactory* theInstance;
     return theInstance;
 }
 
--(id<SubjectDistanceRangePolicy>) policyForIndex:(int)index
+-(SubjectDistanceRangePolicy*) policyForIndex:(int)index
 {
-    id<SubjectDistanceRangePolicy> policy = nil;
-    
-    int distanceUnitsType = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
-    bool metric = distanceUnitsType == DistanceUnitsCentimeters ||
-        distanceUnitsType == DistanceUnitsMeters;
+    SubjectDistanceRangePolicy* policy = nil;
     
     policy = [[[MetricMacroSubjectDistanceRangePolicy alloc] init] autorelease];
     

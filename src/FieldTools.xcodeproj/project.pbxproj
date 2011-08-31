@@ -17,6 +17,7 @@
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
 		888FB7E4140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
+		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
 		A200F9D71254190F006689F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D31254190F006689F9 /* Default@2x.png */; };
 		A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D41254190F006689F9 /* FieldTools-Small.png */; };
 		A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */; };
@@ -123,6 +124,7 @@
 		888FB7E3140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetricMacroSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangePolicyFactory.h; sourceTree = "<group>"; };
 		888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicyFactory.m; sourceTree = "<group>"; };
+		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A200F9D31254190F006689F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A200F9D41254190F006689F9 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small.png"; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */,
+				888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */,
 				888FB7E2140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.h */,
 				888FB7E3140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m */,
 				888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */,
@@ -758,6 +761,7 @@
 				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
 				888FB7E4140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m in Sources */,
 				888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */,
+				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
