@@ -24,6 +24,7 @@
 #import "SubjectDistanceRangePolicyFactory.h"
 
 #import "CloseSubjectDistanceRangePolicy.h"
+#import "FarSubjectDistanceRangePolicy.h"
 #import "MacroSubjectDistanceRangePolicy.h"
 #import "MidSubjectDistanceRangePolicy.h"
 
@@ -80,8 +81,9 @@ SubjectDistanceRangePolicyFactory* theInstance;
             policy = [[[MidSubjectDistanceRangePolicy alloc] init] autorelease];
             break;
             
+        case 3:
         default:
-            policy = [[[MacroSubjectDistanceRangePolicy alloc] init] autorelease];
+            policy = [[[FarSubjectDistanceRangePolicy alloc] init] autorelease];
             break;
     }
     

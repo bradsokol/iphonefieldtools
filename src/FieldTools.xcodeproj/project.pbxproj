@@ -33,6 +33,7 @@
 		A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE83130729C600C0020B /* sliderThumbNormal.png */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
 		A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */; };
+		A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -151,6 +152,8 @@
 		A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A224E15014152FC5005735C0 /* MidSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -379,12 +382,14 @@
 			children = (
 				A224E14D14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.h */,
 				A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */,
-				888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */,
-				888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */,
+				A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */,
+				A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */,
 				888FB7E2140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.h */,
 				888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */,
 				A224E15014152FC5005735C0 /* MidSubjectDistanceRangePolicy.h */,
 				A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */,
+				888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */,
+				888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */,
 				888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */,
 				888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */,
 			);
@@ -774,6 +779,7 @@
 				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
 				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
+				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
