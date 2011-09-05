@@ -23,6 +23,7 @@
 
 #import "SubjectDistanceRangePolicyFactory.h"
 
+#import "CloseSubjectDistanceRangePolicy.h"
 #import "MetricMacroSubjectDistanceRangePolicy.h"
 
 SubjectDistanceRangePolicyFactory* theInstance;
@@ -64,7 +65,20 @@ SubjectDistanceRangePolicyFactory* theInstance;
 {
     SubjectDistanceRangePolicy* policy = nil;
     
-    policy = [[[MetricMacroSubjectDistanceRangePolicy alloc] init] autorelease];
+    switch (index)
+    {
+        case 0:
+            policy = [[[MetricMacroSubjectDistanceRangePolicy alloc] init] autorelease];
+            break;
+
+        case 1:
+            policy = [[[CloseSubjectDistanceRangePolicy alloc] init] autorelease];
+            break;
+            
+        default:
+            policy = [[[MetricMacroSubjectDistanceRangePolicy alloc] init] autorelease];
+            break;
+    }
     
     return policy;
 }
