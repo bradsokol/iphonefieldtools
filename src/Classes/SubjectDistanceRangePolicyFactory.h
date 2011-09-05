@@ -25,6 +25,14 @@
 
 #import "SubjectDistanceRangePolicy.h"
 
+typedef enum
+{
+    SubjectDistanceRangeMacro,
+    SubjectDistanceRangeClose,
+    SubjectDistanceRangeMid,
+    SubjectDistanceRangeFar
+} SubjectDistanceRange;
+
 @interface SubjectDistanceRangePolicyFactory : NSObject 
 {
     
