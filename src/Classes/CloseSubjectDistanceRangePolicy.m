@@ -32,6 +32,11 @@ static const float MINIMUM_METRIC = 0.1f;
 
 @implementation CloseSubjectDistanceRangePolicy
 
+- (NSString*)description
+{
+   return NSLocalizedString(@"CLOSE", "CLOSE"); 
+}
+
 - (CGFloat)minimumDistance
 {
     return [self isMetric] ? MINIMUM_METRIC : MINIMUM_IMPERIAL / METRES_TO_FEET;
