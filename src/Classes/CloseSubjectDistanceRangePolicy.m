@@ -25,10 +25,10 @@
 #import "DistanceFormatter.h"
 
 static const float MAXIMUM_IMPERIAL = 30.0f;
-static const float MINIMUM_IMPERIAL = (1.0f / 12.0f);
+static const float MINIMUM_IMPERIAL = (4.0f / 12.0f);
 
 static const float MAXIMUM_METRIC = 10.0f;
-static const float MINIMUM_METRIC = 0.01f;
+static const float MINIMUM_METRIC = 0.1f;
 
 @implementation CloseSubjectDistanceRangePolicy
 

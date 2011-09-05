@@ -26,10 +26,10 @@
 #import "DistanceFormatter.h"
 
 static const float MAXIMUM_IMPERIAL = 2000.0f;
-static const float MINIMUM_IMPERIAL = (1.0f / 12.0f);
+static const float MINIMUM_IMPERIAL = 10.0f;
 
 static const float MAXIMUM_METRIC = 500.0f;
-static const float MINIMUM_METRIC = 0.01f;
+static const float MINIMUM_METRIC = 3.0f;
 
 @implementation FarSubjectDistanceRangePolicy
 
