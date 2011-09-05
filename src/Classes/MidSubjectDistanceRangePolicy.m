@@ -18,7 +18,7 @@
 //  FieldTools
 //
 //  Created by Brad Sokol on 2011-09-05.
-//  Copyright 2011 Cubic Apps. All rights reserved.
+//  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
 #import "MidSubjectDistanceRangePolicy.h"
