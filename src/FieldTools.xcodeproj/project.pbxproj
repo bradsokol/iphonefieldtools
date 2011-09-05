@@ -15,7 +15,7 @@
 		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
-		888FB7E4140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m */; };
+		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
 		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
 		A200F9D71254190F006689F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D31254190F006689F9 /* Default@2x.png */; };
@@ -121,8 +121,8 @@
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
-		888FB7E2140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetricMacroSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
-		888FB7E3140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetricMacroSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		888FB7E2140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MacroSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangePolicyFactory.h; sourceTree = "<group>"; };
 		888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicyFactory.m; sourceTree = "<group>"; };
 		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
@@ -378,8 +378,8 @@
 				A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */,
 				888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */,
 				888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */,
-				888FB7E2140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.h */,
-				888FB7E3140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m */,
+				888FB7E2140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.h */,
+				888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */,
 				888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */,
 				888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */,
 			);
@@ -764,7 +764,7 @@
 				A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */,
 				A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */,
 				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
-				888FB7E4140E7FB20041BB2B /* MetricMacroSubjectDistanceRangePolicy.m in Sources */,
+				888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */,
 				888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */,
 				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
