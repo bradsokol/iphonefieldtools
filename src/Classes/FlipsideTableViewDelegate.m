@@ -117,11 +117,23 @@ static const float SectionHeaderHeight = 44.0;
         Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
 		if ([self isEditing])
 		{
-            // Should always find a lens since subject distance range row is not selectable
-            // in edit mode.
-            NSAssert(lens != nil, @"No lens found for editing");
-            
-			[lens retain];
+			if (nil == lens)
+			{
+				// Nil means not found. This happens when user touches the 'Subject distance range' or 'Add lens' rows
+				// which are the last two.
+				
+				// If the subject distance row row,
+				lens = [[Lens alloc] initWithDescription:@""
+										 minimumAperture:[NSNumber numberWithFloat:32.0]
+										 maximumAperture:[NSNumber numberWithFloat:1.4]
+									  minimumFocalLength:[NSNumber numberWithInt:50]
+									  maximumFocalLength:[NSNumber numberWithInt:50] 
+											  identifier:[[CameraBag sharedCameraBag] lensCount]];
+			}
+			else
+			{
+				[lens retain];
+			}
 			
 			[[NSNotificationCenter defaultCenter] 
 			 postNotification:
