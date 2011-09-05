@@ -42,4 +42,5 @@ static const float MINIMUM_METRIC = 0.01f;
 {
     return [self isMetric] ? MAXIMUM_METRIC : MAXIMUM_IMPERIAL / METRES_TO_FEET;
 }
+
 @end
