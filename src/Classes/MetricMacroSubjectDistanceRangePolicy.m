@@ -23,15 +23,23 @@
 
 #import "MetricMacroSubjectDistanceRangePolicy.h"
 
+#import "DistanceFormatter.h"
+
+static const float MAXIMUM_IMPERIAL = 3.0f;
+static const float MINIMUM_IMPERIAL = (1.0f / 12.0f);
+
+static const float MAXIMUM_METRIC = 1.0f;
+static const float MINIMUM_METRIC = 0.01f;
+
 @implementation MetricMacroSubjectDistanceRangePolicy
 
 - (CGFloat)minimumDistance
 {
-    return 0.01f;
+    return [self isMetric] ? MINIMUM_METRIC : MINIMUM_IMPERIAL / METRES_TO_FEET;
 }
 
 - (CGFloat)maximumDistance
 {
-    return 1.0f;
+    return [self isMetric] ? MAXIMUM_METRIC : MAXIMUM_IMPERIAL / METRES_TO_FEET;
 }
 @end
