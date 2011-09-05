@@ -121,10 +121,13 @@ static CameraBag* sharedCameraBag = nil;
 
 - (id)initWithCoder:(NSCoder*)decoder
 {
-	[self init];
+	if ([self init] == nil)
+    {
+        return nil;
+    }
 	
-	[self setCameras:[[decoder decodeObjectForKey:@"Cameras"] retain]];
-	[self setLenses:[[decoder decodeObjectForKey:@"Lenses"] retain] ];
+	[self setCameras:[decoder decodeObjectForKey:@"Cameras"]];
+	[self setLenses:[decoder decodeObjectForKey:@"Lenses"] ];
 
 	return self;
 }

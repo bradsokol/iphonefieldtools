@@ -580,28 +580,32 @@ static BOOL previousLensWasZoom = YES;
 	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 	bool macroMode = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
 	
+    id sliderPolicy = nil;
 	if (macroMode)
 	{
 		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
 		{
-			[self setSubjectDistanceSliderPolicy:[[MacroMetricSubjectDistanceSliderPolicy alloc] init]];
+            sliderPolicy = [[MacroMetricSubjectDistanceSliderPolicy alloc] init];
 		}
 		else
 		{
-			[self setSubjectDistanceSliderPolicy:[[MacroImperialSubjectDistanceSliderPolicy alloc] init]];
+			sliderPolicy = [[MacroImperialSubjectDistanceSliderPolicy alloc] init];
 		}
 	}
 	else
 	{
 		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
 		{
-			[self setSubjectDistanceSliderPolicy:[[StandardMetricSubjectDistanceSliderPolicy alloc] init]];
+			sliderPolicy = [[StandardMetricSubjectDistanceSliderPolicy alloc] init];
 		}
 		else 
 		{
-			[self setSubjectDistanceSliderPolicy:[[StandardImperialSubjectDistanceSliderPolicy alloc] init]];
+			sliderPolicy = [[StandardImperialSubjectDistanceSliderPolicy alloc] init];
 		}
 	}
+    
+    [self setSubjectDistanceSliderPolicy:sliderPolicy];
+    [sliderPolicy release];
 }
 
 - (void)dealloc 
