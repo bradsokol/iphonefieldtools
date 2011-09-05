@@ -49,9 +49,12 @@ SubjectDistanceRangePolicyFactory* theInstance;
 
 + (SubjectDistanceRangePolicyFactory*) sharedPolicyFactory
 {
-    if (nil == theInstance)
+    @synchronized(self)
     {
-        theInstance = [[SubjectDistanceRangePolicyFactory alloc] init];
+        if (nil == theInstance)
+        {
+            theInstance = [[SubjectDistanceRangePolicyFactory alloc] init];
+        }
     }
     
     return theInstance;
