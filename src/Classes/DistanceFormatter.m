@@ -104,7 +104,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	switch (units)
 	{
 		case DistanceUnitsFeet:
-			return [NSString stringWithFormat:[self formatStringForFeet], distance];
+			return [NSString stringWithFormat:[self formatStringForFeet], localizedDistance];
 			break;
 			
 		case DistanceUnitsFeetAndInches:
@@ -137,7 +137,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			break;
 			
 		case DistanceUnitsMeters:
-			return [NSString stringWithFormat:[self formatStringForMetres], distance];
+			return [NSString stringWithFormat:[self formatStringForMetres], localizedDistance];
 			break;
             
         case DistanceUnitsCentimeters:
@@ -201,13 +201,13 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 
 - (NSString*)formatStringForFeet
 {
-	return [NSString stringWithFormat:@"%%.1f %@", 
+	return [NSString stringWithFormat:@"%%@ %@", 
 			NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet")];
 }
 
 - (NSString*)formatStringForMetres
 {
-	return [NSString stringWithFormat:@"%%.1f %@",
+	return [NSString stringWithFormat:@"%%@ %@",
 			NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
 }
 
