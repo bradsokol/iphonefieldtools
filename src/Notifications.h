@@ -32,6 +32,6 @@
 #define LENS_SELECTED_FOR_EDIT_NOTIFICATION		@"LensSelectedForEdit"
 #define LENS_WAS_ADDED_NOTIFICATION				@"LensWasAdded"
 #define LENS_WAS_EDITED_NOTIFICATION			@"LensWasEdited"
-#define MACRO_MODE_CHANGED_NOTIFICATION			@"MacroModeChanged"
+#define SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION			@"SubjectDistanceRangeChanged"
 #define SAVING_NOTIFICATION						@"Saving"
 #define UNITS_CHANGED_NOTIFICATION				@"UnitsChanged"

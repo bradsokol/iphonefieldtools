@@ -63,9 +63,9 @@ static BOOL previousLensWasZoom = YES;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
 - (void)lensDidChangeWithLens:(Lens*)lens;
-- (void)macroModeDidChange:(NSNotification*)notification;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
+- (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
 - (void)updateAperture;
 - (void) updateDistanceFormatter;
@@ -132,8 +132,8 @@ static BOOL previousLensWasZoom = YES;
 												 name:LENS_CHANGED_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(macroModeDidChange:)
-												 name:MACRO_MODE_CHANGED_NOTIFICATION
+											 selector:@selector(subjectDistanceRangeDidChange:)
+												 name:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION
 											   object:nil];
 	
 	[self initApertures];
@@ -326,41 +326,42 @@ static BOOL previousLensWasZoom = YES;
 	[resultView setDistanceFormatter:[self distanceFormatter]];
 }
 
-- (void)macroModeDidChange:(NSNotification*)notification;
+- (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 {
-	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
-											  forKey:FTMacroModeKey];
-
-	[self updateSubjectDistanceSliderPolicy];
-	
-	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
-	bool updateResult = NO;
-	if ([self subjectDistance] < [policy minimumDistanceToSubject])
-	{
-		[self setSubjectDistance:[policy minimumDistanceToSubject]];
-		updateResult = YES;
-	}
-	else if ([self subjectDistance] > [policy maximumDistanceToSubject])
-	{
-		[self setSubjectDistance:[policy maximumDistanceToSubject]];
-		updateResult = YES;
-	}
-
-	[self updateSubjectDistanceSliderLimits];
-	[self updateSubjectDistance];
-	
-	// Setting the value isn't enough on its own to move the thumb. It stays put (bug in UIKit?).
-	// Setting it zero then to the actual value seems to be necessary to cause the thumb
-	// to move to the correct location.
-	[subjectDistanceSlider setValue:0];
-	[subjectDistanceSlider setValue:1000];
-	[subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]];
-	
-	if (updateResult)
-	{
-		[self updateResult];
-	}
+    NSLog(@"Boop!");
+//	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
+//	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
+//											  forKey:FTMacroModeKey];
+//
+//	[self updateSubjectDistanceSliderPolicy];
+//	
+//	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
+//	bool updateResult = NO;
+//	if ([self subjectDistance] < [policy minimumDistanceToSubject])
+//	{
+//		[self setSubjectDistance:[policy minimumDistanceToSubject]];
+//		updateResult = YES;
+//	}
+//	else if ([self subjectDistance] > [policy maximumDistanceToSubject])
+//	{
+//		[self setSubjectDistance:[policy maximumDistanceToSubject]];
+//		updateResult = YES;
+//	}
+//
+//	[self updateSubjectDistanceSliderLimits];
+//	[self updateSubjectDistance];
+//	
+//	// Setting the value isn't enough on its own to move the thumb. It stays put (bug in UIKit?).
+//	// Setting it zero then to the actual value seems to be necessary to cause the thumb
+//	// to move to the correct location.
+//	[subjectDistanceSlider setValue:0];
+//	[subjectDistanceSlider setValue:1000];
+//	[subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]];
+//	
+//	if (updateResult)
+//	{
+//		[self updateResult];
+//	}
 }
 
 #pragma mark Calculations

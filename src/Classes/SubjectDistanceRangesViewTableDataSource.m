@@ -27,6 +27,8 @@
 #import "SubjectDistanceRangePolicyFactory.h"
 #import "TwoLabelTableViewCell.h"
 
+#import "UserDefaults.h"
+
 static const int NUM_SECTIONS = 1;
 static const int NUM_ROWS = 4;
 
@@ -75,6 +77,9 @@ static const int NUM_ROWS = 4;
     [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForIndex:[indexPath row]];
     
     [cell setText:[distanceRangePolicy rangeDescription]];
+    
+    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    [cell setAccessoryType:subjectDistanceRangeIndex == [indexPath row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
     
     return cell;
 }

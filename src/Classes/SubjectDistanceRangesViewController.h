@@ -26,6 +26,8 @@
 {
     SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
     UIBarButtonItem* saveButton;
+    
+    int newSubjectDistanceRangeIndex;
 }
 
 @property(nonatomic, retain) SubjectDistanceRangesViewTableDataSource* tableViewDataSource;

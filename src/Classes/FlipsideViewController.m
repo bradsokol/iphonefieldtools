@@ -291,12 +291,6 @@
 	[tableView reloadData];
 }
 
-- (void)macroModeDidChange:(UISwitch*)sender
-{
-	[[NSNotificationCenter defaultCenter] 
-	 postNotification:[NSNotification notificationWithName:MACRO_MODE_CHANGED_NOTIFICATION object:nil]];
-}
-
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObject:self];

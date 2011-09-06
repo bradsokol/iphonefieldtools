@@ -22,18 +22,22 @@
 
 #import "SubjectDistanceRangesViewController.h"
 
+#import "Notifications.h"
+#import "UserDefaults.h"
+
 @interface SubjectDistanceRangesViewController ()
 
 - (void)cancelWasSelected;
 - (void)saveWasSelected;
 
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic) int newSubjectDistanceRangeIndex;
 
 @end
 
 @implementation SubjectDistanceRangesViewController
 
-@synthesize saveButton, tableViewDataSource;
+@synthesize newSubjectDistanceRangeIndex, saveButton, tableViewDataSource;
 
 // The designated initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,11 +62,8 @@
 	[[self navigationItem] setRightBarButtonItem:saveButton];
 	
 	[self setTitle:NSLocalizedString(@"SUBJECT_DISTANCE_RANGES_VIEW_TITLE", "subject distance ranges view")];
-	
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(customCoCSpecified:)
-//												 name:CUSTOM_COC_NOTIFICATION
-//											   object:nil];
+    
+    newSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     
 	return self;
 }
@@ -74,6 +75,16 @@
 
 - (void)saveWasSelected
 {
+    int oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    if (newSubjectDistanceRangeIndex != oldSubjectDistanceRangeIndex)
+    {
+        [[NSUserDefaults standardUserDefaults] setInteger:newSubjectDistanceRangeIndex
+                                                   forKey:FTSubjectDistanceRangeKey];
+        
+        [[NSNotificationCenter defaultCenter] 
+            postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
+    }
+    
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -110,6 +121,30 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath
 							 animated:YES];
+
+	NSIndexPath* oldIndexPath = [NSIndexPath indexPathForRow:newSubjectDistanceRangeIndex
+												   inSection:[indexPath section]];
+	
+	if ([oldIndexPath row] == [indexPath row])
+	{
+		// User selected the currently selected units - take no action
+		return;
+	}
+	
+	UITableViewCell* newCell = [tableView cellForRowAtIndexPath:indexPath];
+	if ([newCell accessoryType] == UITableViewCellAccessoryNone)
+	{
+		// Selected row is not the current distance rabge so change the selection
+		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		
+        newSubjectDistanceRangeIndex = [indexPath row];
+	}
+	
+	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
+	{
+		[oldCell setAccessoryType:UITableViewCellAccessoryNone];
+	}
 }
 
 - (void)dealloc 
