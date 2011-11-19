@@ -22,6 +22,7 @@
 
 #import "CameraBag.h"
 
+#import "Camera.h"
 #import "Lens.h"
 
 #import "UserDefaults.h"
