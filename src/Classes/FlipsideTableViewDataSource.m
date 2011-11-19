@@ -306,7 +306,7 @@ static NSString *CellIdentifier = @"Cell";
 	if (cell == nil) 
 	{
 		cell = [[[UITableViewCell alloc]
-				 initWithFrame:CGRectZero
+				 initWithStyle:UITableViewCellStyleDefault
 				 reuseIdentifier:CellIdentifier] autorelease];
 	}
 	return cell;

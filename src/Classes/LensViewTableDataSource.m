@@ -90,8 +90,9 @@ NSString* CellIdentifier = @"Cell";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (nil == cell)
 			{
-				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
-											   reuseIdentifier:CellIdentifier] autorelease];
+				cell = [[[UITableViewCell alloc] 
+                         initWithStyle:UITableViewCellStyleDefault
+                         reuseIdentifier:CellIdentifier] autorelease];
 			}
 		}
 	}
