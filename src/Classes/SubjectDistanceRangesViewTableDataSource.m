@@ -66,7 +66,7 @@ static const int NUM_ROWS = 4;
 	if (cell == nil) 
 	{
 		cell = [[[TwoLabelTableViewCell alloc]
-				 initWithFrame:CGRectZero
+				 initWithStyle:UITableViewCellStyleDefault
 				 reuseIdentifier:CellIdentifier] autorelease];
 	}
     
