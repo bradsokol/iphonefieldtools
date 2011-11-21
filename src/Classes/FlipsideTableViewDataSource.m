@@ -74,7 +74,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if (section == LENSES_SECTION)
 	{
-		return [[CameraBag sharedCameraBag] lensCount] + adjustment + 1;
+		return [[CameraBag sharedCameraBag] lensCount] + 1;
 	}
 	else
 	{
@@ -220,8 +220,8 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
 {
 	int lensCount = [[CameraBag sharedCameraBag] lensCount];
-	bool subjectDistanceRangeRow = [indexPath row] == lensCount;
-	bool addLensRow = [indexPath row] == lensCount + 1;
+	bool addLensRow = ([indexPath row] == lensCount) && [self isEditing];
+	bool subjectDistanceRangeRow = ([indexPath row] == lensCount) && ![self isEditing];
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
 	[cell setAccessoryView:nil];

@@ -133,6 +133,7 @@
 	int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
 	int lensCount = [[CameraBag sharedCameraBag] lensCount];
 	UITableView* tableView = (UITableView*) [self view];
+    UITableViewCell* extraLensCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:lensCount inSection:LENSES_SECTION]];
 	
 	[tableView beginUpdates];
 	
@@ -148,13 +149,12 @@
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		path = [NSIndexPath indexPathForRow:lensCount + 1
-								  inSection:LENSES_SECTION];
-		[indexPaths replaceObjectAtIndex:0
-							  withObject:path];
-		[tableView insertRowsAtIndexPaths:indexPaths
-						 withRowAnimation:UITableViewRowAnimationTop];
 		[indexPaths release];
+        
+        if (nil != extraLensCell)
+        {
+            [[extraLensCell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD_LENS")];
+        }
 	}
 	else
 	{
@@ -174,16 +174,13 @@
 		
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
-		
-		path = [NSIndexPath indexPathForRow:lensCount + 1
-								  inSection:LENSES_SECTION];
-		[indexPaths replaceObjectAtIndex:0
-							  withObject:path];
-		
-		[tableView deleteRowsAtIndexPaths:indexPaths
-						 withRowAnimation:UITableViewRowAnimationTop];
-		
+				
 		[indexPaths release];
+        
+        if (nil != extraLensCell)
+        {
+            [[extraLensCell textLabel] setText:NSLocalizedString(@"SUBJECT_DISTANCE_RANGE", "SUBJECT_DISTANCE_RANGE")];
+        }
 	}
 	
 	// Force the units section to reload so the selection style can be set appropriately.

@@ -62,13 +62,6 @@ static const float SectionHeaderHeight = 44.0;
 		{
 			return nil;
 		}
-        
-        // If editing, don't allow selection of subject distance ranges
-        if ([indexPath section] == LENSES_SECTION &&
-            [indexPath row] == [[CameraBag sharedCameraBag] lensCount])
-        {
-            return nil;
-        }
 	}
 	
 	return indexPath;
@@ -119,10 +112,8 @@ static const float SectionHeaderHeight = 44.0;
 		{
 			if (nil == lens)
 			{
-				// Nil means not found. This happens when user touches the 'Subject distance range' or 'Add lens' rows
-				// which are the last two.
+				// Nil means not found. This happens when user touches the 'Add lens' row
 				
-				// If the subject distance row row,
 				lens = [[Lens alloc] initWithDescription:@""
 										 minimumAperture:[NSNumber numberWithFloat:32.0]
 										 maximumAperture:[NSNumber numberWithFloat:1.4]
