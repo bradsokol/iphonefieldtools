@@ -121,7 +121,7 @@ static CameraBag* sharedCameraBag = nil;
 
 - (id)initWithCoder:(NSCoder*)decoder
 {
-	if ([self init] == nil)
+	if ((self = [self init]) == nil)
     {
         return nil;
     }
