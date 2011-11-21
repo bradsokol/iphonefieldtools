@@ -233,8 +233,6 @@ static NSString *CellIdentifier = @"Cell";
 	else if (subjectDistanceRangeRow)
 	{
 		[[cell textLabel] setText:NSLocalizedString(@"SUBJECT_DISTANCE_RANGE", "SUBJECT DISTANCE RANGE")];
-
-		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	}
 	else
 	{
