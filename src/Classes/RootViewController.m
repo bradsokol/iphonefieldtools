@@ -27,8 +27,6 @@
 #import "FlipsideViewController.h"
 #import "Lens.h"
 #import "MainViewController.h"
-#import "SubjectDistanceRangePolicy.h"
-#import "SubjectDistanceRangePolicyFactory.h"
 
 #import "UserDefaults.h"
 
@@ -134,13 +132,9 @@
 - (void)updateCameraAndLensDescription
 {
 	CameraBag* cameraBag = [CameraBag sharedCameraBag];
-    
-    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
-    SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
-        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForIndex:subjectDistanceRangeIndex];
 	
-    NSString* title = [NSString stringWithFormat:@"%@ - %@ - %@",
-                       [cameraBag findSelectedCamera], [cameraBag findSelectedLens], subjectDistanceRangePolicy];
+    NSString* title = [NSString stringWithFormat:@"%@ - %@",
+                       [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
     
 	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
 }

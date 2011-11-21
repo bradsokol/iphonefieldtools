@@ -35,7 +35,7 @@ static const float MINIMUM_METRIC = 3.0f;
 
 - (NSString*)description
 {
-    return NSLocalizedString(@"FAR", "FAR"); 
+    return NSLocalizedString(@"SUBJECT_DISTANCE_RANGE_3", "SUBJECT_DISTANCE_RANGE_3"); 
 }
 
 - (CGFloat)minimumDistance

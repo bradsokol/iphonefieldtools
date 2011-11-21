@@ -34,6 +34,8 @@
 #import "ResultView.h"
 #import "StandardImperialSubjectDistanceSliderPolicy.h"
 #import "StandardMetricSubjectDistanceSliderPolicy.h"
+#import "SubjectDistanceRangePolicy.h"
+#import "SubjectDistanceRangePolicyFactory.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -74,6 +76,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistanceSliderLimits;
 - (void)updateSubjectDistanceSliderPolicy;
 - (void)updateSubjectDistance;
+- (void)updateSubjectDistanceRangeText;
 
 @property(nonatomic) int apertureIndex;
 @property(nonatomic, retain) DistanceFormatter* distanceFormatter;
@@ -174,6 +177,7 @@ static BOOL previousLensWasZoom = YES;
 	[self updateAperture];
 	[self updateFocalLength];
 	[self updateSubjectDistance];
+    [self updateSubjectDistanceRangeText];
 	
 	[self distanceTypeDidChange:self];
 }
@@ -329,6 +333,8 @@ static BOOL previousLensWasZoom = YES;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 {
     NSLog(@"Boop!");
+    
+    [self updateSubjectDistanceRangeText];
 //	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
 //	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
 //											  forKey:FTMacroModeKey];
@@ -482,6 +488,15 @@ static BOOL previousLensWasZoom = YES;
 	[self updateResult];
 }
 
+- (void)updateSubjectDistanceRangeText
+{
+    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForIndex:subjectDistanceRangeIndex];
+    
+    [subjectDistanceRangeText setText:[subjectDistanceRangePolicy description]];
+}
+
 #pragma mark Helpers
 
 - (void)customizeSliderAppearance:(UISlider*)slider
@@ -616,7 +631,15 @@ static BOOL previousLensWasZoom = YES;
 	
 	[self setSubjectDistanceSliderPolicy:nil];
 
+    [subjectDistanceRangeText release];
     [super dealloc];
 }
 
+- (void)viewDidUnload 
+{
+    [subjectDistanceRangeText release];
+    subjectDistanceRangeText = nil;
+
+    [super viewDidUnload];
+}
 @end
