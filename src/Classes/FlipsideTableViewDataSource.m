@@ -244,14 +244,11 @@ static NSString *CellIdentifier = @"Cell";
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
 	
-    if ([self isEditing] && subjectDistanceRangeRow)
+    if (subjectDistanceRangeRow)
     {
-        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
-    else
-    {
-        [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    }
+    [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
 }
