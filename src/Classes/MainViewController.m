@@ -492,7 +492,7 @@ static BOOL previousLensWasZoom = YES;
 {
     int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
-        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForIndex:subjectDistanceRangeIndex];
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRangeIndex];
     
     [subjectDistanceRangeText setText:[subjectDistanceRangePolicy description]];
 }

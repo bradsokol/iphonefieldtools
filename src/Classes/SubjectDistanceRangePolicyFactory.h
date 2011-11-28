@@ -40,6 +40,6 @@ typedef enum
 
 + (SubjectDistanceRangePolicyFactory*) sharedPolicyFactory;
 
--(SubjectDistanceRangePolicy*) policyForIndex:(int)index;
+-(SubjectDistanceRangePolicy*) policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRange;
 
 @end

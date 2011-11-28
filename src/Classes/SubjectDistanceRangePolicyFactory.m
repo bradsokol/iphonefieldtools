@@ -63,25 +63,25 @@ SubjectDistanceRangePolicyFactory* theInstance;
     return theInstance;
 }
 
--(SubjectDistanceRangePolicy*) policyForIndex:(int)index
+-(SubjectDistanceRangePolicy*) policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRange
 {
     SubjectDistanceRangePolicy* policy = nil;
     
-    switch (index)
+    switch (subjectDistanceRange)
     {
-        case 0:
+        case SubjectDistanceRangeMacro:
             policy = [[[MacroSubjectDistanceRangePolicy alloc] init] autorelease];
             break;
 
-        case 1:
+        case SubjectDistanceRangeClose:
             policy = [[[CloseSubjectDistanceRangePolicy alloc] init] autorelease];
             break;
             
-        case 2:
+        case SubjectDistanceRangeMid:
             policy = [[[MidSubjectDistanceRangePolicy alloc] init] autorelease];
             break;
             
-        case 3:
+        case SubjectDistanceRangeFar:
         default:
             policy = [[[FarSubjectDistanceRangePolicy alloc] init] autorelease];
             break;
