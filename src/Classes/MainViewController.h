@@ -58,7 +58,7 @@
 	
 	NSMutableArray* apertures;
 	
-	id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
+	SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 }
 
 - (void)apertureDidChange:(id)sender;

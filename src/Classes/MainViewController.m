@@ -28,12 +28,10 @@
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
-#import "MacroImperialSubjectDistanceSliderPolicy.h"
-#import "MacroMetricSubjectDistanceSliderPolicy.h"
+#import "LinearSubjectDistanceSliderPolicy.h"
 #import "MainView.h"
+#import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
-#import "StandardImperialSubjectDistanceSliderPolicy.h"
-#import "StandardMetricSubjectDistanceSliderPolicy.h"
 #import "SubjectDistanceRangePolicy.h"
 #import "SubjectDistanceRangePolicyFactory.h"
 
@@ -80,7 +78,7 @@ static BOOL previousLensWasZoom = YES;
 
 @property(nonatomic) int apertureIndex;
 @property(nonatomic, retain) DistanceFormatter* distanceFormatter;
-@property(nonatomic, retain) id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
+@property(nonatomic, retain) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 
 @end
 
@@ -332,42 +330,11 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 {
-    NSLog(@"Boop!");
-    
     [self updateSubjectDistanceRangeText];
-//	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
-//	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
-//											  forKey:FTMacroModeKey];
-//
-//	[self updateSubjectDistanceSliderPolicy];
-//	
-//	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
-//	bool updateResult = NO;
-//	if ([self subjectDistance] < [policy minimumDistanceToSubject])
-//	{
-//		[self setSubjectDistance:[policy minimumDistanceToSubject]];
-//		updateResult = YES;
-//	}
-//	else if ([self subjectDistance] > [policy maximumDistanceToSubject])
-//	{
-//		[self setSubjectDistance:[policy maximumDistanceToSubject]];
-//		updateResult = YES;
-//	}
-//
-//	[self updateSubjectDistanceSliderLimits];
-//	[self updateSubjectDistance];
-//	
-//	// Setting the value isn't enough on its own to move the thumb. It stays put (bug in UIKit?).
-//	// Setting it zero then to the actual value seems to be necessary to cause the thumb
-//	// to move to the correct location.
-//	[subjectDistanceSlider setValue:0];
-//	[subjectDistanceSlider setValue:1000];
-//	[subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]];
-//	
-//	if (updateResult)
-//	{
-//		[self updateResult];
-//	}
+    [self updateSubjectDistanceSliderPolicy];
+    [self updateSubjectDistanceSliderLimits];
+	[self updateSubjectDistance];
+	[self updateResult];
 }
 
 #pragma mark Calculations
@@ -464,7 +431,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateSubjectDistanceSliderLimits
 {
-	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
+	SubjectDistanceSliderPolicy* policy = [self subjectDistanceSliderPolicy];
 
 	float minimum = [policy minimumDistanceToSubject];
 	float maximum = [policy maximumDistanceToSubject];
@@ -593,32 +560,20 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateSubjectDistanceSliderPolicy
 {
-	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
-	bool macroMode = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
+    SubjectDistanceRange subjectDistanceRange = 
+        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRange];
 	
-    id sliderPolicy = nil;
-	if (macroMode)
-	{
-		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
-		{
-            sliderPolicy = [[MacroMetricSubjectDistanceSliderPolicy alloc] init];
-		}
-		else
-		{
-			sliderPolicy = [[MacroImperialSubjectDistanceSliderPolicy alloc] init];
-		}
-	}
-	else
-	{
-		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
-		{
-			sliderPolicy = [[StandardMetricSubjectDistanceSliderPolicy alloc] init];
-		}
-		else 
-		{
-			sliderPolicy = [[StandardImperialSubjectDistanceSliderPolicy alloc] init];
-		}
-	}
+    SubjectDistanceSliderPolicy* sliderPolicy = nil;
+    if (SubjectDistanceRangeFar == subjectDistanceRange)
+    {
+        sliderPolicy = [[NonLinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
+    }
+    else
+    {
+        sliderPolicy = [[LinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
+    }
     
     [self setSubjectDistanceSliderPolicy:sliderPolicy];
     [sliderPolicy release];

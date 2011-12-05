@@ -1,4 +1,4 @@
-// Copyright 2010 Brad Sokol
+// Copyright 2011 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,20 +13,35 @@
 // limitations under the License.
 
 //
-//  MacroSubjectDistanceSliderPolicy.h
+//  LinearSubjectDistanceSliderPolicy.m
 //  FieldTools
 //
-//  Created by Brad on 2010/06/16.
-//  Copyright 2010 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 2011-12-04.
+//  Copyright (c) 2011 by Brad Sokol. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "LinearSubjectDistanceSliderPolicy.h"
 
-#import "SubjectDistanceSliderPolicy.h"
+@implementation LinearSubjectDistanceSliderPolicy
 
-@interface MacroSubjectDistanceSliderPolicy : NSObject <SubjectDistanceSliderPolicy>
+- (float)distanceForSliderValue:(float)value
 {
+	return value;
+}
 
+- (float)sliderMaximum
+{
+    return [[self subjectDistanceRangePolicy] maximumDistance];
+}
+
+- (float)sliderMinimum
+{
+    return [[self subjectDistanceRangePolicy] minimumDistance];
+}
+
+- (float)sliderValueForDistance:(float)distance
+{
+	return distance;
 }
 
 @end

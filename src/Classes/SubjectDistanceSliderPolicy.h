@@ -22,13 +22,22 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SubjectDistanceSliderPolicy <NSObject>
+#import "SubjectDistanceRangePolicy.h"
 
+@interface SubjectDistanceSliderPolicy : NSObject
+{
+    SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
+}
+
+- (id)initWithSubjectDistanceRangePolicy:(SubjectDistanceRangePolicy*)policy;
+    
 - (float)distanceForSliderValue:(float)value;
 - (float)maximumDistanceToSubject;
 - (float)minimumDistanceToSubject;
 - (float)sliderMaximum;
 - (float)sliderMinimum;
 - (float)sliderValueForDistance:(float)distance;
+
+@property(nonatomic, retain, readonly) SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
 
 @end

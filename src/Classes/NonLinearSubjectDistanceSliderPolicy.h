@@ -1,4 +1,4 @@
-// Copyright 2010 Brad Sokol
+// Copyright 2011 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,20 +13,17 @@
 // limitations under the License.
 
 //
-//  StandardMetricSubjectDistanceSliderPolicy.h
+//  NonLinearSubjectDistanceSliderPolicy.h
 //  FieldTools
 //
-//  Created by Brad on 2010/06/06.
-//  Copyright 2010 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 2011-12-04.
+//  Copyright (c) 2011 by Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "StandardSubjectDistanceSliderPolicy.h"
+#import "SubjectDistanceSliderPolicy.h"
 
-@interface StandardMetricSubjectDistanceSliderPolicy : StandardSubjectDistanceSliderPolicy
-{
-	
-}
+@interface NonLinearSubjectDistanceSliderPolicy : SubjectDistanceSliderPolicy
 
 @end

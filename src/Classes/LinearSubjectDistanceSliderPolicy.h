@@ -1,4 +1,4 @@
-// Copyright 2010 Brad Sokol
+// Copyright 2011 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,20 +13,17 @@
 // limitations under the License.
 
 //
-//  MacroImperialSubjectDistanceSliderPolicy.h
+//  LinearSubjectDistanceSliderPolicy.h
 //  FieldTools
 //
-//  Created by Brad Sokol on 2010/06/25.
-//  Copyright 2010 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 2011-12-04.
+//  Copyright (c) 2011 by Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "MacroSubjectDistanceSliderPolicy.h"
+#import "SubjectDistanceSliderPolicy.h"
 
-@interface MacroImperialSubjectDistanceSliderPolicy : MacroSubjectDistanceSliderPolicy 
-{
-
-}
+@interface LinearSubjectDistanceSliderPolicy : SubjectDistanceSliderPolicy
 
 @end
