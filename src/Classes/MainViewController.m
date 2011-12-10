@@ -566,7 +566,7 @@ static BOOL previousLensWasZoom = YES;
         [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRange];
 	
     SubjectDistanceSliderPolicy* sliderPolicy = nil;
-    if (SubjectDistanceRangeFar == subjectDistanceRange)
+    if (SubjectDistanceRangeFar == subjectDistanceRange || SubjectDistanceRangeMid == subjectDistanceRange)
     {
         sliderPolicy = [[NonLinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
     }
