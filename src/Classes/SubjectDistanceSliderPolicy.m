@@ -56,4 +56,30 @@
     return [[self subjectDistanceRangePolicy] minimumDistance];
 }
 
+// Empty methods to satisfy compiler warning about incomplete class implementation
+
+- (float)distanceForSliderValue:(float)value
+{
+    NSAssert(NO, @"Method %@ should only be called on derived classes.", NSStringFromSelector(_cmd));
+    return 0.0f;
+}
+
+- (float)sliderMaximum
+{
+    NSAssert(NO, @"Method %@ should only be called on derived classes.", NSStringFromSelector(_cmd));
+    return 0.0f;
+}
+
+- (float)sliderMinimum
+{
+    NSAssert(NO, @"Method %@ should only be called on derived classes.", NSStringFromSelector(_cmd));
+    return 0.0f;
+}
+
+- (float)sliderValueForDistance:(float)distance
+{
+    NSAssert(NO, @"Method %@ should only be called on derived classes.", NSStringFromSelector(_cmd));
+    return 0.0f;
+}
+
 @end
