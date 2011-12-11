@@ -432,6 +432,15 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistanceSliderLimits
 {
 	SubjectDistanceSliderPolicy* policy = [self subjectDistanceSliderPolicy];
+    
+    if ([self subjectDistance] > [policy maximumDistanceToSubject])
+    {
+        [self setSubjectDistance:[policy maximumDistanceToSubject]];
+    }
+    else if ([self subjectDistance] < [policy minimumDistanceToSubject])
+    {
+        [self setSubjectDistance:[policy minimumDistanceToSubject]];
+    }
 
 	float minimum = [policy minimumDistanceToSubject];
 	float maximum = [policy maximumDistanceToSubject];
