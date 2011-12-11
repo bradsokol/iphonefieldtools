@@ -14,19 +14,15 @@
 //
 
 //
-//  OBSliderWithNotificationView.h
+//  FarSubjectDistanceRangePolicy.h
 //  FieldTools
 //
-//  Created by Brad Sokol on 11-08-07.
+//  Created by Brad Sokol on 2011-09-05.
 //  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
-#import "OBSlider.h"
+#import "SubjectDistanceRangePolicy.h"
 
-@class GCDiscreetNotificationView;
-
-@interface OBSliderWithNotificationView : OBSlider
-
-@property (nonatomic, retain, readonly) GCDiscreetNotificationView *notificationView;
+@interface FarSubjectDistanceRangePolicy : SubjectDistanceRangePolicy
 
 @end

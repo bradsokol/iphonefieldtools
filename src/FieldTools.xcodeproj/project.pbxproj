@@ -15,6 +15,9 @@
 		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
+		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
+		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
+		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
 		A200F9D71254190F006689F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D31254190F006689F9 /* Default@2x.png */; };
 		A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D41254190F006689F9 /* FieldTools-Small.png */; };
 		A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */; };
@@ -28,6 +31,9 @@
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE82130729C600C0020B /* sliderThumbHighlighted.png */; };
 		A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE83130729C600C0020B /* sliderThumbNormal.png */; };
+		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
+		A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */; };
+		A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -55,12 +61,6 @@
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
-		A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
-		A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */; };
-		A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
-		A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */; };
-		A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */; };
-		A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E7000EE45DDE00C37E21 /* RootViewController.m */; };
@@ -68,6 +68,9 @@
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
+		A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */; };
+		A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */; };
+		A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */; };
 		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2ACD85513B64C850052557E /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = A2ACD85413B64C850052557E /* Appirater.m */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
@@ -79,15 +82,13 @@
 		A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */; };
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
-		A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D458D71246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m */; };
-		A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D458D91246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m */; };
+		A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
+		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
 		A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
-		A2FDC0D411C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */; };
-		A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,12 @@
 		28C286DF0D94DF7D0034E888 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		888FB7E2140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangePolicyFactory.h; sourceTree = "<group>"; };
+		888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicyFactory.m; sourceTree = "<group>"; };
+		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A200F9D31254190F006689F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A200F9D41254190F006689F9 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small.png"; sourceTree = "<group>"; };
@@ -133,6 +140,12 @@
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
 		A222FE82130729C600C0020B /* sliderThumbHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbHighlighted.png; sourceTree = "<group>"; };
 		A222FE83130729C600C0020B /* sliderThumbNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbNormal.png; sourceTree = "<group>"; };
+		A224E14D14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		A224E15014152FC5005735C0 /* MidSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
+		A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -173,12 +186,6 @@
 		A2747BC112E2804B002731EC /* FocalLengthSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocalLengthSlider.m; sourceTree = "<group>"; };
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
-		A28082DF11BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardMetricSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardMetricSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
-		A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardImperialSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardImperialSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 		A2811FD30ECE8DB100A7FB7A /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
@@ -192,6 +199,11 @@
 		A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewController.m; sourceTree = "<group>"; };
 		A28D8A47108D67F000C77FEA /* CustomCoCViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewTableDataSource.h; sourceTree = "<group>"; };
 		A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewTableDataSource.m; sourceTree = "<group>"; };
+		A294A02A14048DDF0090C9AA /* SubjectDistanceRangesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangesViewController.h; sourceTree = "<group>"; };
+		A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewController.m; sourceTree = "<group>"; };
+		A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubjectDistanceRangesViewController.xib; path = Classes/SubjectDistanceRangesViewController.xib; sourceTree = "<group>"; };
+		A294A02F140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangesViewTableDataSource.h; sourceTree = "<group>"; };
+		A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2ACD85313B64C850052557E /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
@@ -209,10 +221,9 @@
 		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
-		A2D458D61246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroImperialSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A2D458D71246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroImperialSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
-		A2D458D81246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroMetricSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A2D458D91246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroMetricSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
+		A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
+		A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
+		A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		A2D62409104248DA00B2F055 /* CoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoCView.xib; sourceTree = "<group>"; };
 		A2D6241A10424A5600B2F055 /* CoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewController.h; sourceTree = "<group>"; };
 		A2D6241B10424A5600B2F055 /* CoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewController.m; sourceTree = "<group>"; };
@@ -222,8 +233,6 @@
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
 		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoC.m; path = Classes/CoC.m; sourceTree = "<group>"; };
-		A2FDC0D211C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +270,7 @@
 				A23CFF29108A5FC400A41662 /* Main View */,
 				A2AAAECD0F2831D400945F6E /* Model */,
 				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
+				A294A02914048D5C0090C9AA /* Subject Distance Ranges View */,
 				A2A0D30710156E4000A34735 /* Table View Cells */,
 				A2ACD85313B64C850052557E /* Appirater.h */,
 				A2ACD85413B64C850052557E /* Appirater.m */,
@@ -333,6 +343,7 @@
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				2899E55F0DE3E45000AC0155 /* MainView.xib */,
 				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
+				A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -347,6 +358,25 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		888FB7E0140E7D840041BB2B /* Subject Distance Range Policies */ = {
+			isa = PBXGroup;
+			children = (
+				A224E14D14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.h */,
+				A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */,
+				A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */,
+				A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */,
+				888FB7E2140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.h */,
+				888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */,
+				A224E15014152FC5005735C0 /* MidSubjectDistanceRangePolicy.h */,
+				A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */,
+				888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */,
+				888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */,
+				888FB7E5140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.h */,
+				888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */,
+			);
+			name = "Subject Distance Range Policies";
 			sourceTree = "<group>";
 		};
 		A21DCDAB10EE7F9E00139D93 /* Model Tests */ = {
@@ -369,6 +399,7 @@
 		A23CFF29108A5FC400A41662 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				888FB7E0140E7D840041BB2B /* Subject Distance Range Policies */,
 				A28082F411BBFC240057669F /* Subject Distance Slider Policies */,
 				A24EF5EA0ECA9415001A7B46 /* MainView.h */,
 				A24EF5EB0ECA9415001A7B46 /* MainView.m */,
@@ -434,19 +465,10 @@
 		A28082F411BBFC240057669F /* Subject Distance Slider Policies */ = {
 			isa = PBXGroup;
 			children = (
-				A2D458D61246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.h */,
-				A2D458D71246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m */,
-				A2D458D81246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.h */,
-				A2D458D91246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m */,
-				A2FDC0D211C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.h */,
-				A2FDC0D311C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m */,
-				A28082EE11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.h */,
-				A28082EF11BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m */,
-				A28082DF11BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.h */,
-				A28082E011BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m */,
-				A28082D711BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.h */,
-				A28082D811BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m */,
+				A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */,
+				A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */,
 				A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */,
+				A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */,
 			);
 			name = "Subject Distance Slider Policies";
 			sourceTree = "<group>";
@@ -460,6 +482,17 @@
 				A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */,
 			);
 			name = "Custom CoC View";
+			sourceTree = "<group>";
+		};
+		A294A02914048D5C0090C9AA /* Subject Distance Ranges View */ = {
+			isa = PBXGroup;
+			children = (
+				A294A02A14048DDF0090C9AA /* SubjectDistanceRangesViewController.h */,
+				A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */,
+				A294A02F140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.h */,
+				A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */,
+			);
+			name = "Subject Distance Ranges View";
 			sourceTree = "<group>";
 		};
 		A2A0D30710156E4000A34735 /* Table View Cells */ = {
@@ -637,6 +670,7 @@
 				A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */,
 				A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */,
 				A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */,
+				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,12 +732,6 @@
 				A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */,
 				A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */,
 				A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
-				A28082DA11BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */,
-				A28082E211BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
-				A28082F111BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
-				A2FDC0D511C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
-				A2D458DA1246E69E00CCBACF /* MacroImperialSubjectDistanceSliderPolicy.m in Sources */,
-				A2D458DB1246E69E00CCBACF /* MacroMetricSubjectDistanceSliderPolicy.m in Sources */,
 				A237E63F12AAF4F00089862B /* Camera.m in Sources */,
 				A237E64012AAF4F00089862B /* CameraBag.m in Sources */,
 				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
@@ -712,6 +740,16 @@
 				A2ACD85513B64C850052557E /* Appirater.m in Sources */,
 				A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */,
 				A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */,
+				A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */,
+				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
+				888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */,
+				888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */,
+				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
+				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
+				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
+				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
+				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
+				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,10 +763,6 @@
 				A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */,
 				A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */,
 				A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
-				A28082D911BBFAF70057669F /* StandardSubjectDistanceSliderPolicy.m in Sources */,
-				A28082E111BBFBA80057669F /* StandardMetricSubjectDistanceSliderPolicy.m in Sources */,
-				A28082F011BBFBFC0057669F /* StandardImperialSubjectDistanceSliderPolicy.m in Sources */,
-				A2FDC0D411C9A48000CD7618 /* MacroSubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

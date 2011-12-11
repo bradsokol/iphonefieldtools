@@ -14,19 +14,20 @@
 //
 
 //
-//  OBSliderWithNotificationView.h
+//  SubjectDistanceRangePolicy.h
 //  FieldTools
 //
-//  Created by Brad Sokol on 11-08-07.
+//  Created by Brad Sokol on 11-08-31.
 //  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
-#import "OBSlider.h"
+#import <Foundation/Foundation.h>
 
-@class GCDiscreetNotificationView;
+@interface SubjectDistanceRangePolicy : NSObject
 
-@interface OBSliderWithNotificationView : OBSlider
-
-@property (nonatomic, retain, readonly) GCDiscreetNotificationView *notificationView;
+@property(readonly) bool isMetric;
+@property(readonly) CGFloat minimumDistance;
+@property(readonly) CGFloat maximumDistance;
+@property(readonly, nonatomic) NSString* rangeDescription;
 
 @end

@@ -11,22 +11,37 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 
 //
-//  OBSliderWithNotificationView.h
+//  LinearSubjectDistanceSliderPolicy.m
 //  FieldTools
 //
-//  Created by Brad Sokol on 11-08-07.
-//  Copyright 2011 by Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 2011-12-04.
+//  Copyright (c) 2011 by Brad Sokol. All rights reserved.
 //
 
-#import "OBSlider.h"
+#import "LinearSubjectDistanceSliderPolicy.h"
 
-@class GCDiscreetNotificationView;
+@implementation LinearSubjectDistanceSliderPolicy
 
-@interface OBSliderWithNotificationView : OBSlider
+- (float)distanceForSliderValue:(float)value
+{
+	return value;
+}
 
-@property (nonatomic, retain, readonly) GCDiscreetNotificationView *notificationView;
+- (float)sliderMaximum
+{
+    return [[self subjectDistanceRangePolicy] maximumDistance];
+}
+
+- (float)sliderMinimum
+{
+    return [[self subjectDistanceRangePolicy] minimumDistance];
+}
+
+- (float)sliderValueForDistance:(float)distance
+{
+	return distance;
+}
 
 @end

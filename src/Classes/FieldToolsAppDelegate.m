@@ -27,6 +27,7 @@
 #import "Coc.h"
 #import "Lens.h"
 #import "RootViewController.h"
+#import "SubjectDistanceRangePolicyFactory.h"
 
 #import "UserDefaults.h"
 
@@ -47,6 +48,7 @@ float DefaultSubjectDistance = 2.5f;
 + (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom21:(NSMutableDictionary*)defaultValues;
++ (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues;
 + (void)setupDefaultValues;
 
 @end
@@ -65,11 +67,14 @@ float DefaultSubjectDistance = 2.5f;
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom22Key, nil]];
 	
 	[FieldToolsAppDelegate setupDefaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
 
 	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 }
@@ -114,35 +119,44 @@ float DefaultSubjectDistance = 2.5f;
 	
 	bool migratedFrom21 = [[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath];
 	NSLog(@"Previously migrated from 2.1: %s", migratedFrom21 ? "YES" : "NO");
+	
+	bool migratedFrom22 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom22Key];
+	NSLog(@"Previously migrated from 2.2: %s", migratedFrom22 ? "YES" : "NO");
 
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
 	
-	if (!migratedFrom21)
-	{
-		if (!migratedFrom20)
-		{
-			if (!migratedFrom10)
-			{
-				NSLog(@"Migrating defaults from 1.0 to 2.0");
-				[FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
-			}
-			else if ([Camera count_deprecated] == 0)
-			{
-				CoC* coc = [CoC findFromPresets:DefaultCoC];
-				Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
-																 coc:coc
-														  identifier:0];
-				[camera save_deprecated];
-				[camera release];
-			}
-			
-			NSLog(@"Migrating defaults from 2.0 to 2.1");
-			[FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
-		}
-		
-		NSLog(@"Migrating defaults from 2.1");
-		[FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
-	}
+    if (!migratedFrom22)
+    {
+        if (!migratedFrom21)
+        {
+            if (!migratedFrom20)
+            {
+                if (!migratedFrom10)
+                {
+                    NSLog(@"Migrating defaults from 1.0 to 2.0");
+                    [FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
+                }
+                else if ([Camera count_deprecated] == 0)
+                {
+                    CoC* coc = [CoC findFromPresets:DefaultCoC];
+                    Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
+                                                                     coc:coc
+                                                              identifier:0];
+                    [camera save_deprecated];
+                    [camera release];
+                }
+                
+                NSLog(@"Migrating defaults from 2.0 to 2.1");
+                [FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
+            }
+            
+            NSLog(@"Migrating defaults from 2.1");
+            [FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
+        }
+        
+        NSLog(@"Migrating defaults from 2.2");
+        [FieldToolsAppDelegate migrateDefaultsFrom22:defaultValues];
+    }
 	
 	[defaultValues setObject:[NSNumber numberWithInt:1]
 					  forKey:FTCameraCount];
@@ -163,9 +177,9 @@ float DefaultSubjectDistance = 2.5f;
 					  forKey:FTDistanceTypeKey];
 	[defaultValues setObject:[NSNumber numberWithInt:DistanceUnitsFeetAndInches]
 					  forKey:FTDistanceUnitsKey];
-	
-	[defaultValues setObject:[NSNumber numberWithBool:false]
-					  forKey:FTMacroModeKey];
+    
+    [defaultValues setObject:[NSNumber numberWithInt:SubjectDistanceRangeMid]
+                                              forKey:FTSubjectDistanceRangeKey];
 
 	// Add default version to make migration easier for subsequent versions
 	[defaultValues setObject:[NSNumber numberWithInt:DEFAULTS_BASE_VERSION]
@@ -259,6 +273,17 @@ float DefaultSubjectDistance = 2.5f;
 	}
 	
 	[cameraBag release];
+}
+
++ (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues
+{
+    bool macro = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:macro ? SubjectDistanceRangeMacro : SubjectDistanceRangeMid]
+                                              forKey:FTSubjectDistanceRangeKey];
+    
+    // Remove obsolete keys
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FTMacroModeKey];
 }
 
 - (void)saveDefaults

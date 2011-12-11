@@ -132,12 +132,10 @@
 - (void)updateCameraAndLensDescription
 {
 	CameraBag* cameraBag = [CameraBag sharedCameraBag];
-	bool macroMode = [[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
-	NSString* title = macroMode ?
-		[NSString stringWithFormat:@"%@ - %@ - %@", 
-		 [cameraBag findSelectedCamera], [cameraBag findSelectedLens], NSLocalizedString(@"MACRO", "MACRO")] :
-		[NSString stringWithFormat:@"%@ - %@", 
-		 [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
+	
+    NSString* title = [NSString stringWithFormat:@"%@ - %@",
+                       [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
+    
 	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
 }
 

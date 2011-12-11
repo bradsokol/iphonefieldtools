@@ -146,7 +146,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 	}
 	else
 	{
-		if ([defaults integerForKey:FTMacroModeKey] == 0)
+		if ([defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsMeters)
 		{
             NSLog(@"rintf: %f", (far * METRES_TO_DECIMETRES));
 			nearDistance = rintf(near * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;

@@ -11,22 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 
 //
-//  OBSliderWithNotificationView.h
+//  SubjectDistanceRangesViewController.h
 //  FieldTools
 //
-//  Created by Brad Sokol on 11-08-07.
+//  Created by Brad Sokol on 2011-08-23.
 //  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
-#import "OBSlider.h"
+@class SubjectDistanceRangesViewTableDataSource;
 
-@class GCDiscreetNotificationView;
+@interface SubjectDistanceRangesViewController : UITableViewController <UITableViewDelegate>
+{
+    SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
+    UIBarButtonItem* saveButton;
+    
+    int newSubjectDistanceRangeIndex;
+}
 
-@interface OBSliderWithNotificationView : OBSlider
-
-@property (nonatomic, retain, readonly) GCDiscreetNotificationView *notificationView;
+@property(nonatomic, retain) SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
 
 @end

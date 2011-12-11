@@ -32,7 +32,9 @@ NSString* const FTLensCount = @"LensCount";
 NSString* const FTLensIndex = @"LensIndex";
 NSString* const FTMetricKey = @"Metric";
 NSString* const FTSubjectDistanceKey = @"SubjectDistance";
+NSString* const FTSubjectDistanceRangeKey = @"SubjectDistanceRange";
 NSString* const FTMacroModeKey = @"MacroMode";
 
 NSString* const FTMigratedFrom10Key = @"MigratedFrom10";
 NSString* const FTMigratedFrom20Key = @"MigratedFrom20";
+NSString* const FTMigratedFrom22Key = @"MigratedFrom22";

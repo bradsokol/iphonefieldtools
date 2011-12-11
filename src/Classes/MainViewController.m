@@ -28,12 +28,12 @@
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "Lens.h"
-#import "MacroImperialSubjectDistanceSliderPolicy.h"
-#import "MacroMetricSubjectDistanceSliderPolicy.h"
+#import "LinearSubjectDistanceSliderPolicy.h"
 #import "MainView.h"
+#import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
-#import "StandardImperialSubjectDistanceSliderPolicy.h"
-#import "StandardMetricSubjectDistanceSliderPolicy.h"
+#import "SubjectDistanceRangePolicy.h"
+#import "SubjectDistanceRangePolicyFactory.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -63,9 +63,9 @@ static BOOL previousLensWasZoom = YES;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
 - (void)lensDidChangeWithLens:(Lens*)lens;
-- (void)macroModeDidChange:(NSNotification*)notification;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
+- (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
 - (void)updateAperture;
 - (void) updateDistanceFormatter;
@@ -74,10 +74,11 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistanceSliderLimits;
 - (void)updateSubjectDistanceSliderPolicy;
 - (void)updateSubjectDistance;
+- (void)updateSubjectDistanceRangeText;
 
 @property(nonatomic) int apertureIndex;
 @property(nonatomic, retain) DistanceFormatter* distanceFormatter;
-@property(nonatomic, retain) id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
+@property(nonatomic, retain) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 
 @end
 
@@ -132,8 +133,8 @@ static BOOL previousLensWasZoom = YES;
 												 name:LENS_CHANGED_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(macroModeDidChange:)
-												 name:MACRO_MODE_CHANGED_NOTIFICATION
+											 selector:@selector(subjectDistanceRangeDidChange:)
+												 name:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION
 											   object:nil];
 	
 	[self initApertures];
@@ -160,7 +161,8 @@ static BOOL previousLensWasZoom = YES;
 	[distanceType setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceTypeKey]];
 	[apertureSlider setValue:[self apertureIndex]];
 	[focalLengthSlider setValue:[self focalLength]];
-	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]];
+	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]
+                           animated:YES];
 	
 	// Set limits on sliders
 	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
@@ -174,6 +176,7 @@ static BOOL previousLensWasZoom = YES;
 	[self updateAperture];
 	[self updateFocalLength];
 	[self updateSubjectDistance];
+    [self updateSubjectDistanceRangeText];
 	
 	[self distanceTypeDidChange:self];
 }
@@ -326,41 +329,13 @@ static BOOL previousLensWasZoom = YES;
 	[resultView setDistanceFormatter:[self distanceFormatter]];
 }
 
-- (void)macroModeDidChange:(NSNotification*)notification;
+- (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 {
-	bool macroMode = ![[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey];
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:macroMode]
-											  forKey:FTMacroModeKey];
-
-	[self updateSubjectDistanceSliderPolicy];
-	
-	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
-	bool updateResult = NO;
-	if ([self subjectDistance] < [policy minimumDistanceToSubject])
-	{
-		[self setSubjectDistance:[policy minimumDistanceToSubject]];
-		updateResult = YES;
-	}
-	else if ([self subjectDistance] > [policy maximumDistanceToSubject])
-	{
-		[self setSubjectDistance:[policy maximumDistanceToSubject]];
-		updateResult = YES;
-	}
-
-	[self updateSubjectDistanceSliderLimits];
+    [self updateSubjectDistanceRangeText];
+    [self updateSubjectDistanceSliderPolicy];
+    [self updateSubjectDistanceSliderLimits];
 	[self updateSubjectDistance];
-	
-	// Setting the value isn't enough on its own to move the thumb. It stays put (bug in UIKit?).
-	// Setting it zero then to the actual value seems to be necessary to cause the thumb
-	// to move to the correct location.
-	[subjectDistanceSlider setValue:0];
-	[subjectDistanceSlider setValue:1000];
-	[subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]];
-	
-	if (updateResult)
-	{
-		[self updateResult];
-	}
+	[self updateResult];
 }
 
 #pragma mark Calculations
@@ -457,7 +432,16 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateSubjectDistanceSliderLimits
 {
-	id<SubjectDistanceSliderPolicy> policy = [self subjectDistanceSliderPolicy];
+	SubjectDistanceSliderPolicy* policy = [self subjectDistanceSliderPolicy];
+    
+    if ([self subjectDistance] > [policy maximumDistanceToSubject])
+    {
+        [self setSubjectDistance:[policy maximumDistanceToSubject]];
+    }
+    else if ([self subjectDistance] < [policy minimumDistanceToSubject])
+    {
+        [self setSubjectDistance:[policy minimumDistanceToSubject]];
+    }
 
 	float minimum = [policy minimumDistanceToSubject];
 	float maximum = [policy maximumDistanceToSubject];
@@ -472,6 +456,10 @@ static BOOL previousLensWasZoom = YES;
 	
 	[subjectDistanceSlider setMinimumValue:minimum];
 	[subjectDistanceSlider setMaximumValue:maximum];
+
+    [subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]
+                           animated:YES];
+    [subjectDistanceSlider setNeedsDisplay];
 }
 
 // Update the distance to subject display
@@ -479,6 +467,15 @@ static BOOL previousLensWasZoom = YES;
 {
 	[subjectDistanceText setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:[self subjectDistance]]]];
 	[self updateResult];
+}
+
+- (void)updateSubjectDistanceRangeText
+{
+    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRangeIndex];
+    
+    [subjectDistanceRangeText setText:[subjectDistanceRangePolicy description]];
 }
 
 #pragma mark Helpers
@@ -577,31 +574,15 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateSubjectDistanceSliderPolicy
 {
-	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
-	bool macroMode = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
+    SubjectDistanceRange subjectDistanceRange = 
+        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRange];
 	
-	if (macroMode)
-	{
-		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
-		{
-			[self setSubjectDistanceSliderPolicy:[[MacroMetricSubjectDistanceSliderPolicy alloc] init]];
-		}
-		else
-		{
-			[self setSubjectDistanceSliderPolicy:[[MacroImperialSubjectDistanceSliderPolicy alloc] init]];
-		}
-	}
-	else
-	{
-		if (DistanceUnitsMeters == units || DistanceUnitsCentimeters == units)
-		{
-			[self setSubjectDistanceSliderPolicy:[[StandardMetricSubjectDistanceSliderPolicy alloc] init]];
-		}
-		else 
-		{
-			[self setSubjectDistanceSliderPolicy:[[StandardImperialSubjectDistanceSliderPolicy alloc] init]];
-		}
-	}
+    SubjectDistanceSliderPolicy* sliderPolicy = [[LinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
+    
+    [self setSubjectDistanceSliderPolicy:sliderPolicy];
+    [sliderPolicy release];
 }
 
 - (void)dealloc 
@@ -611,7 +592,15 @@ static BOOL previousLensWasZoom = YES;
 	
 	[self setSubjectDistanceSliderPolicy:nil];
 
+    [subjectDistanceRangeText release];
     [super dealloc];
 }
 
+- (void)viewDidUnload 
+{
+    [subjectDistanceRangeText release];
+    subjectDistanceRangeText = nil;
+
+    [super viewDidUnload];
+}
 @end

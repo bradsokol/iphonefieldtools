@@ -46,6 +46,7 @@
 	IBOutlet UILabel* subjectDistanceText;
 	IBOutlet UILabel* subjectDistanceMinimum;
 	IBOutlet UILabel* subjectDistanceMaximum;
+    IBOutlet UILabel* subjectDistanceRangeText;
 	
 	IBOutlet ResultView* resultView;
 	
@@ -57,7 +58,7 @@
 	
 	NSMutableArray* apertures;
 	
-	id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
+	SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 }
 
 - (void)apertureDidChange:(id)sender;
