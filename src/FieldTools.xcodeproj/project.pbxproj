@@ -83,7 +83,6 @@
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
 		A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
-		A2C71361148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71360148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.m */; };
 		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
@@ -224,8 +223,6 @@
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
 		A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
-		A2C7135F148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonLinearSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
-		A2C71360148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonLinearSubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceSliderPolicy.m; sourceTree = "<group>"; };
 		A2D62409104248DA00B2F055 /* CoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoCView.xib; sourceTree = "<group>"; };
 		A2D6241A10424A5600B2F055 /* CoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewController.h; sourceTree = "<group>"; };
@@ -470,8 +467,6 @@
 			children = (
 				A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */,
 				A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */,
-				A2C7135F148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.h */,
-				A2C71360148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.m */,
 				A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */,
 				A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */,
 			);
@@ -754,7 +749,6 @@
 				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
-				A2C71361148C0FCF005E1D05 /* NonLinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

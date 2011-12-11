@@ -565,15 +565,7 @@ static BOOL previousLensWasZoom = YES;
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
         [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRange];
 	
-    SubjectDistanceSliderPolicy* sliderPolicy = nil;
-    if (SubjectDistanceRangeFar == subjectDistanceRange || SubjectDistanceRangeMid == subjectDistanceRange)
-    {
-        sliderPolicy = [[NonLinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
-    }
-    else
-    {
-        sliderPolicy = [[LinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
-    }
+    SubjectDistanceSliderPolicy* sliderPolicy = [[LinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
     
     [self setSubjectDistanceSliderPolicy:sliderPolicy];
     [sliderPolicy release];
