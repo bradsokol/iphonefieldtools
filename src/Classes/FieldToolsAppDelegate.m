@@ -31,6 +31,7 @@
 
 #import "UserDefaults.h"
 
+static NSString* oldSharedCameraBagArchivePath;
 static NSString* sharedCameraBagArchivePath;
 
 // Defaults for preferences
@@ -43,6 +44,7 @@ float DefaultSubjectDistance = 2.5f;
 
 @interface FieldToolsAppDelegate ()
 
+- (void)relocateCameraBag;
 - (void)saveDefaults;
 
 + (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues;
@@ -60,8 +62,15 @@ float DefaultSubjectDistance = 2.5f;
 
 - (void)awakeFromNib
 {
-	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Library/Default.camerabag",
-								   NSHomeDirectory()] retain];
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];    
+    
+	oldSharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
+								   libraryPath] retain];
+	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
+                                      documentsPath] retain];
+    
+    [self relocateCameraBag];
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
@@ -289,6 +298,32 @@ float DefaultSubjectDistance = 2.5f;
 - (void)saveDefaults
 {
 	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// This method is necessary because for some reason I originally put the camera bag
+// in the Library directory. It should be in Documents.
+- (void)relocateCameraBag
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath])
+    {
+        NSLog(@"Camera bag already exists at new location.");
+        
+        // File exists at the new location. There is nothing to do. For safety, check
+        // that there is not a file at the old location.
+        NSAssert(![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath],
+                 @"Camera bags found at both old and new location.");
+        return;
+    }
+    
+    NSLog(@"Moving camera bag to new location.");
+    
+    NSError* error;
+    if (![[NSFileManager defaultManager] moveItemAtPath:oldSharedCameraBagArchivePath
+                                            toPath:sharedCameraBagArchivePath
+                                             error:&error])
+    {
+        NSLog(@"%@", [error localizedDescription]);
+    }
 }
 
 - (void)dealloc 
