@@ -161,7 +161,8 @@ static BOOL previousLensWasZoom = YES;
 	[distanceType setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceTypeKey]];
 	[apertureSlider setValue:[self apertureIndex]];
 	[focalLengthSlider setValue:[self focalLength]];
-	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]];
+	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]
+                           animated:YES];
 	
 	// Set limits on sliders
 	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
@@ -455,6 +456,10 @@ static BOOL previousLensWasZoom = YES;
 	
 	[subjectDistanceSlider setMinimumValue:minimum];
 	[subjectDistanceSlider setMaximumValue:maximum];
+
+    [subjectDistanceSlider setValue:[policy sliderValueForDistance:[self subjectDistance]]
+                           animated:YES];
+    [subjectDistanceSlider setNeedsDisplay];
 }
 
 // Update the distance to subject display
