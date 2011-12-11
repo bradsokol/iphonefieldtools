@@ -240,6 +240,7 @@ static BOOL previousLensWasZoom = YES;
 	[subjectDistanceSlider setHidden:hide];
 	[subjectDistanceMinimum setHidden:hide];
 	[subjectDistanceMaximum setHidden:hide];
+    [subjectDistanceRangeText setHidden:hide];
 	
 	[self updateResult];
 }
