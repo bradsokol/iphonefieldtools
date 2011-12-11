@@ -82,4 +82,11 @@
     return 0.0f;
 }
 
+- (void)dealloc
+{
+    [self setSubjectDistanceRangePolicy:nil];
+    
+    [super dealloc];
+}
+
 @end
