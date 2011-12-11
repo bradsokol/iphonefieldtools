@@ -40,6 +40,7 @@ typedef enum
 
 + (SubjectDistanceRangePolicyFactory*) sharedPolicyFactory;
 
+- (NSUInteger)policyCount;
 -(SubjectDistanceRangePolicy*) policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRange;
 
 @end

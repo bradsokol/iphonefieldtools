@@ -63,6 +63,11 @@ SubjectDistanceRangePolicyFactory* theInstance;
     return theInstance;
 }
 
+- (NSUInteger)policyCount
+{
+    return SubjectDistanceRangeFar + 1;
+}
+
 -(SubjectDistanceRangePolicy*) policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRange
 {
     SubjectDistanceRangePolicy* policy = nil;

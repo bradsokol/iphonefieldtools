@@ -183,6 +183,31 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Action messages
 
+- (IBAction)subjectDistanceRangeTextWasTouched:(id)sender 
+{
+    SubjectDistanceRangePolicy* macro = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeMacro];
+    SubjectDistanceRangePolicy* close = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeClose];
+    SubjectDistanceRangePolicy* mid = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeMid];
+    SubjectDistanceRangePolicy* far = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeFar];
+
+	UIActionSheet *styleAlert = 
+        [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"SUBJECT_DISTANCE_RANGES_VIEW_TITLE", "SUBJECT_DISTANCE_RANGES_VIEW_TITLE")
+                                    delegate:self
+                           cancelButtonTitle:NSLocalizedString(@"CANCEL", "CANCEL")
+                      destructiveButtonTitle:nil
+                           otherButtonTitles:[macro description], 
+                                             [close description], 
+                                             [mid description], 
+                                             [far description], 
+                                             nil];
+	
+	// use the same style as the nav bar
+	styleAlert.actionSheetStyle = (UIActionSheetStyle) self.navigationController.navigationBar.barStyle;
+	
+	[styleAlert showInView:self.view];
+	[styleAlert release];
+}
+
 // Aperture slider changed
 - (void)apertureDidChange:(id)sender
 {
@@ -475,7 +500,8 @@ static BOOL previousLensWasZoom = YES;
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
         [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRangeIndex];
     
-    [subjectDistanceRangeText setText:[subjectDistanceRangePolicy description]];
+    [subjectDistanceRangeText setTitle:[subjectDistanceRangePolicy description]
+                              forState:UIControlStateNormal];
 }
 
 #pragma mark Helpers
@@ -583,6 +609,27 @@ static BOOL previousLensWasZoom = YES;
     
     [self setSubjectDistanceSliderPolicy:sliderPolicy];
     [sliderPolicy release];
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // The cancel button counts as one of the buttons.
+    if ([[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyCount] == buttonIndex)
+    {
+        return;
+    }
+    
+    int oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    if (buttonIndex != oldSubjectDistanceRangeIndex)
+    {
+        [[NSUserDefaults standardUserDefaults] setInteger:buttonIndex
+                                                   forKey:FTSubjectDistanceRangeKey];
+        
+        [[NSNotificationCenter defaultCenter] 
+         postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
+    }
 }
 
 - (void)dealloc 
