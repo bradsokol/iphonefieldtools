@@ -970,7 +970,7 @@
 						<int key="objectID">38</int>
 						<reference key="object" ref="348322784"/>
 						<reference key="parent" ref="883825266"/>
-						<string key="objectName">Subject Distance Slider</string>
+						<string key="objectName">Focal Length Slider</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">39</int>
@@ -994,7 +994,7 @@
 						<int key="objectID">42</int>
 						<reference key="object" ref="7362584"/>
 						<reference key="parent" ref="883825266"/>
-						<string key="objectName">Focal Length Slider</string>
+						<string key="objectName">Subject Distance Slider</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
