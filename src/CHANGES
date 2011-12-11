@@ -5,6 +5,7 @@ New features, enhancements:
   * Integrated Appirater to prompt users to rate the app.
   * Added tips for using the variable scrubbing speed sliders added in v2.2.
   * Added centimetres as unit of measure.
+  * Added selectable subject distance ranges for more precise settings.
 
 Fixes:
   * Fix rendering problems for slider thumb.
