@@ -152,6 +152,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	[self setSaveButton:nil];
+    [self setTableViewDataSource:nil];
 	
     [super dealloc];
 }
