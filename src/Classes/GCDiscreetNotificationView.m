@@ -40,10 +40,8 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 
 @implementation GCDiscreetNotificationView
 
-@synthesize activityIndicator;
-@synthesize presentationMode;
+@synthesize activityIndicator, presentationMode, label;
 @synthesize view;
-@synthesize label;
 @synthesize secondaryLabel;
 @synthesize animating, animationDict;
 
@@ -92,6 +90,8 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 }
 
 - (void)dealloc {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideAnimated) object:nil];
+    
     self.view = nil;
     
     [label release];
@@ -115,12 +115,12 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     
     CGFloat maxLabelWidth = self.view.frame.size.width - self.activityIndicator.frame.size.width * withActivity - baseWidth;
     CGSize maxLabelSize = CGSizeMake(maxLabelWidth, GCDiscreetNotificationViewHeight);
-    CGSize textSize = [self.textLabel sizeWithFont:self.label.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation];
-    CGSize secondaryTextSize = [self.secondaryTextLabel sizeWithFont:self.secondaryLabel.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGFloat textSizeWidth = (self.textLabel != nil) ? [self.textLabel sizeWithFont:self.label.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation].width : 0;
+    CGFloat secondaryTextSizeWidth = (self.secondaryTextLabel != nil) ? [self.secondaryTextLabel sizeWithFont:self.secondaryLabel.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation].width : 0;
     
-    CGFloat width = (textSize.width > secondaryTextSize.width ? textSize.width : secondaryTextSize.width);
-    CGRect bounds = CGRectMake(0, 0, baseWidth + width +
-                               (self.activityIndicator != nil) * self.activityIndicator.frame.size.width , GCDiscreetNotificationViewHeight);
+    CGFloat width = (textSizeWidth > secondaryTextSizeWidth ? textSizeWidth : secondaryTextSizeWidth);
+    CGFloat activityIndicatorWidth = (self.activityIndicator != nil) ? self.activityIndicator.frame.size.width : 0;
+    CGRect bounds = CGRectMake(0, 0, baseWidth + width + activityIndicatorWidth , GCDiscreetNotificationViewHeight);
     if (!CGRectEqualToRect(self.bounds, bounds)) { //The bounds have changed...
         self.bounds = bounds;
         [self setNeedsDisplay];
@@ -194,7 +194,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 
 - (void)showAndDismissAfter:(NSTimeInterval)timeInterval {
     [self showAnimated];
-    [self performSelector:@selector(hideAnimated) withObject:nil afterDelay:timeInterval];
+    [self hideAnimatedAfter:timeInterval];
 }
 
 - (void) show:(BOOL)animated {
@@ -206,6 +206,8 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 }
 
 - (void) show:(BOOL)animated name:(NSString*) name {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideAnimated) object:nil];
+
     [self showOrHide:NO animated:animated name:name];
 }
 
@@ -341,16 +343,19 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 }
 
 - (void) setView:(UIView *) aView {
-    if (view != aView) {
+    if (self.view != aView) {
         [self retain];
         [self removeFromSuperview];
         
-        view = aView;
-        [view addSubview:self];
+        [aView addSubview:self];
         [self setNeedsLayout];
         
         [self release];
     }
+}
+
+- (UIView *)view {
+    return self.superview;
 }
 
 - (void) setPresentationMode:(GCDiscreetNotificationViewPresentationMode) newPresentationMode {
@@ -454,6 +459,12 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     }
     
     if (!self.animating) [self hide:YES name:GCChangeProprety];
+}
+
+#pragma mark - UIView subclass
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if (newSuperview == nil) self.animationDict = nil;
 }
 
 @end
