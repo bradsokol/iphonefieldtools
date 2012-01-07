@@ -126,11 +126,23 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         [self setNeedsDisplay];
     }
 
-    self.secondaryLabel.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 15, width, 15);
-    if (self.activityIndicator == nil) self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 0, width, 15);
+    BOOL hasSecondaryText = self.secondaryLabel.text.length > 0;
+    CGFloat height = hasSecondaryText ? GCDiscreetNotificationViewHeight / 2 : GCDiscreetNotificationViewHeight;
+    
+    if (hasSecondaryText) {
+        self.secondaryLabel.hidden = NO;
+        self.secondaryLabel.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 15, width, height);
+    }
+    else {
+        self.secondaryLabel.hidden = YES;
+    }
+    
+    if (self.activityIndicator == nil) {
+        self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 0, width, height);
+    }
     else {
         self.activityIndicator.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, GCDiscreetNotificationViewPadding, self.activityIndicator.frame.size.width, self.activityIndicator.frame.size.height);
-        self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize + GCDiscreetNotificationViewPadding + self.activityIndicator.frame.size.width, 0, width, 15);
+        self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize + GCDiscreetNotificationViewPadding + self.activityIndicator.frame.size.width, 0, width, height);
     }
     
     [self placeOnGrid];
@@ -234,9 +246,6 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         [self placeOnGrid];
         
         if (animated) [UIView commitAnimations]; 
-        
-        self.label.hidden = hide;
-        self.secondaryLabel.hidden = hide;
     }
 }
 
