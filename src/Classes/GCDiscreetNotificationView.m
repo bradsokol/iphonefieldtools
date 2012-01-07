@@ -110,7 +110,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 #pragma mark Drawing and layout
 
 - (void) layoutSubviews {
-    BOOL withActivity = self.activityIndicator != nil;
+    BOOL withActivity = self.showActivity;
     CGFloat baseWidth = (2 * GCDiscreetNotificationViewBorderSize) + (withActivity * GCDiscreetNotificationViewPadding);
     
     CGFloat maxLabelWidth = self.view.frame.size.width - self.activityIndicator.frame.size.width * withActivity - baseWidth;
@@ -119,7 +119,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     CGFloat secondaryTextSizeWidth = (self.secondaryTextLabel != nil) ? [self.secondaryTextLabel sizeWithFont:self.secondaryLabel.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation].width : 0;
     
     CGFloat width = (textSizeWidth > secondaryTextSizeWidth ? textSizeWidth : secondaryTextSizeWidth);
-    CGFloat activityIndicatorWidth = (self.activityIndicator != nil) ? self.activityIndicator.frame.size.width : 0;
+    CGFloat activityIndicatorWidth = (self.showActivity) ? self.activityIndicator.frame.size.width : 0;
     CGRect bounds = CGRectMake(0, 0, baseWidth + width + activityIndicatorWidth , GCDiscreetNotificationViewHeight);
     if (!CGRectEqualToRect(self.bounds, bounds)) { //The bounds have changed...
         self.bounds = bounds;
@@ -137,12 +137,14 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         self.secondaryLabel.hidden = YES;
     }
     
-    if (self.activityIndicator == nil) {
+    if (self.showActivity == NO) {
         self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, 0, width, height);
+        self.activityIndicator.hidden = YES;
     }
     else {
         self.activityIndicator.frame = CGRectMake(GCDiscreetNotificationViewBorderSize, GCDiscreetNotificationViewPadding, self.activityIndicator.frame.size.width, self.activityIndicator.frame.size.height);
         self.label.frame = CGRectMake(GCDiscreetNotificationViewBorderSize + GCDiscreetNotificationViewPadding + self.activityIndicator.frame.size.width, 0, width, height);
+        self.activityIndicator.hidden = NO;
     }
     
     [self placeOnGrid];
@@ -246,6 +248,8 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         [self placeOnGrid];
         
         if (animated) [UIView commitAnimations]; 
+
+        self.label.hidden = hide;
     }
 }
 
@@ -334,7 +338,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
 }
 
 - (BOOL) showActivity {
-    return (self.activityIndicator != nil);
+    return (self.activityIndicator != nil && self.secondaryLabel.text.length == 0);
 }
 
 - (void) setShowActivity:(BOOL) activity {
