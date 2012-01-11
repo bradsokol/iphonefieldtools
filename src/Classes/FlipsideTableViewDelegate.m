@@ -183,14 +183,17 @@ static const float SectionHeaderHeight = 44.0;
 		}
 		else if ([indexPath row] == lensCount)
 		{
-			// Macro row
-			return UITableViewCellEditingStyleNone;
-		}
-		else
-		{
 			// This is the add row
 			return UITableViewCellEditingStyleInsert;
 		}
+        else
+        {
+            // Should never get here but this is necessary
+            // to satisfy a compiler warning about always returning
+            // a value.
+            NSAssert(NO, @"Should never reach this line - see comments");
+            return UITableViewCellEditingStyleNone;
+        }
 	}
 }
 
