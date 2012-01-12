@@ -41,7 +41,7 @@
 - (void)testWholeMetres
 {
 	[formatter setDistanceUnits:DistanceUnitsMeters];
-	NSString* expected = @"2.0 m";
+	NSString* expected = @"2 m";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.0f]];
 	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
