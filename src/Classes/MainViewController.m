@@ -267,10 +267,13 @@ static BOOL previousLensWasZoom = YES;
 // Distance to subject slider was changed
 - (void)subjectDistanceDidChange:(id)sender
 {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+
 	// Subject distance is a non-linear scale. This allows a wide range of settings
 	// with finer grained control over near distances and coarser grained over
 	// longer distances.
-	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
+	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value] usingUnits:distanceUnits]];
 	
 	[[NSUserDefaults standardUserDefaults] setFloat:[self subjectDistance]
 											 forKey:FTSubjectDistanceKey];
@@ -393,10 +396,14 @@ static BOOL previousLensWasZoom = YES;
 
 - (float)calculateFarLimit
 {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+
 	return [DepthOfFieldCalculator calculateFarLimitForAperture:[self aperture]
 													focalLength:[self focalLength]
 											  circleOfConfusion:[self circleOfLeastConfusion]
-												subjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
+												subjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]
+                                                                 usingUnits:distanceUnits]];
 }
 
 - (float)calculateHyperfocalDistance
@@ -408,10 +415,14 @@ static BOOL previousLensWasZoom = YES;
 
 - (float)calculateNearLimit
 {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+
 	return [DepthOfFieldCalculator calculateNearLimitForAperture:[self aperture]
 													 focalLength:[self focalLength]
 											   circleOfConfusion:[self circleOfLeastConfusion]
-												 subjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]]];
+												 subjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value]
+                                                                  usingUnits:distanceUnits]];
 }
 
 #pragma mark Updaters

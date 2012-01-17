@@ -58,7 +58,7 @@
 
 // Empty methods to satisfy compiler warning about incomplete class implementation
 
-- (float)distanceForSliderValue:(float)value
+- (float)distanceForSliderValue:(float)value usingUnits:(DistanceUnits)units
 {
     NSAssert(NO, @"Method %@ should only be called on derived classes.", NSStringFromSelector(_cmd));
     return 0.0f;

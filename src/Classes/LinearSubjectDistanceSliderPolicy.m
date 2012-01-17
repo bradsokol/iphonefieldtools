@@ -22,10 +22,32 @@
 
 #import "LinearSubjectDistanceSliderPolicy.h"
 
+#import "UserDefaults.h"
+
+extern const float METRES_TO_FEET;
+
 @implementation LinearSubjectDistanceSliderPolicy
 
-- (float)distanceForSliderValue:(float)value
+- (float)distanceForSliderValue:(float)value usingUnits:(DistanceUnits)units
 {
+    switch (units)
+    {
+        case DistanceUnitsFeet:
+        case DistanceUnitsFeetAndInches:
+            return roundf(value * METRES_TO_FEET * 10.0f) * 0.1f / METRES_TO_FEET;
+            break;
+            
+        case DistanceUnitsMeters:
+            return roundf(value * 10.0f) * 0.1f;
+            break;
+            
+        case DistanceUnitsCentimeters:
+            return roundf(value * 1000.0f) * 0.001f;
+            break;
+    }
+    
+    // We should never get here
+    NSAssert(FALSE, @"Internal error. It looks like a case condition is missing or not implemented.");
 	return value;
 }
 

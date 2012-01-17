@@ -24,6 +24,8 @@
 
 #import "SubjectDistanceRangePolicy.h"
 
+#import "UserDefaults.h"
+
 @interface SubjectDistanceSliderPolicy : NSObject
 {
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
@@ -31,7 +33,7 @@
 
 - (id)initWithSubjectDistanceRangePolicy:(SubjectDistanceRangePolicy*)policy;
     
-- (float)distanceForSliderValue:(float)value;
+- (float)distanceForSliderValue:(float)value usingUnits:(DistanceUnits)units;
 - (float)maximumDistanceToSubject;
 - (float)minimumDistanceToSubject;
 - (float)sliderMaximum;
