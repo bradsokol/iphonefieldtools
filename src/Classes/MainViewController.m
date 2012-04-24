@@ -359,6 +359,7 @@ static BOOL previousLensWasZoom = YES;
 		[self moveControl:subjectDistanceSlider byYDelta:delta];
 		[self moveControl:subjectDistanceMinimum byYDelta:delta];
 		[self moveControl:subjectDistanceMaximum byYDelta:delta];
+        [self moveControl:subjectDistanceRangeText byYDelta:delta];
 	}
 	previousLensWasZoom = !isPrime;
 }
