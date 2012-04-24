@@ -314,8 +314,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */,
-				A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -604,6 +602,8 @@
 			isa = PBXGroup;
 			children = (
 				A2F8627A1545ACB500BF8480 /* GANTracker.h */,
+				A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */,
+				A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */,
 			);
 			name = "Google Analytics";
 			sourceTree = "<group>";
