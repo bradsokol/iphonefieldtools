@@ -256,8 +256,13 @@ static BOOL previousLensWasZoom = YES;
 // Focal length slider changed
 - (void)focalLengthDidChange:(id)sender
 {
-	// Round slider value to nearest integer value
-	[self setFocalLength:floorf([focalLengthSlider value] + 0.5f)];
+	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
+    
+    if ([lens isZoom])
+    {
+        // Round slider value to nearest integer value
+        [self setFocalLength:floorf([focalLengthSlider value] + 0.5f)];
+    }
 	
 	[[NSUserDefaults standardUserDefaults] setFloat:[self focalLength]
 											 forKey:FTFocalLengthKey];
@@ -335,10 +340,18 @@ static BOOL previousLensWasZoom = YES;
 	// value won't trigger the value changed action so we have to force it.
 	[apertureSlider setValue:apertureIndex animated:YES];
 	[self apertureDidChange:nil];
-	[focalLengthSlider setValue:[self focalLength] animated:YES];
+    
+	BOOL isPrime = ![lens isZoom];
+    if (isPrime)
+    {
+        [self setFocalLength:[[lens minimumFocalLength] floatValue]];
+    }
+    else 
+    {
+        [focalLengthSlider setValue:[self focalLength] animated:YES];
+    }
 	[self focalLengthDidChange:nil];
 	
-	BOOL isPrime = ![lens isZoom];
 	[focalLengthSlider setHidden:isPrime];
 	[focalLengthMaximum setHidden:isPrime];
 	[focalLengthMinimum setHidden:isPrime];
