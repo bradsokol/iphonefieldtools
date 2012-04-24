@@ -94,7 +94,7 @@ static BOOL previousLensWasZoom = YES;
 @synthesize subjectDistanceSliderPolicy;
 
 // Convert aperture index to an aperture which is set of values
-// with a non-deterministic patter.
+// with a non-deterministic pattern.
 - (float)aperture 
 {
 	return [[apertures objectAtIndex:apertureIndex] floatValue];
@@ -613,10 +613,10 @@ static BOOL previousLensWasZoom = YES;
 	[slider setMaximumTrackImage:sliderTrack forState:UIControlStateNormal];
 }
 
-// Initialise a table of f-number values
+// Initialise a table of f-number values using standard one-third stop increments
 - (void)initApertures
 {
-	apertures = [[NSMutableArray alloc] init];
+	apertures = [[NSMutableArray alloc] initWithCapacity:39];
 	[apertures addObject:[NSNumber numberWithFloat:1.0]];		// index: 0
 	[apertures addObject:[NSNumber numberWithFloat:1.1]];
 	[apertures addObject:[NSNumber numberWithFloat:1.2]];
@@ -646,7 +646,7 @@ static BOOL previousLensWasZoom = YES;
 	[apertures addObject:[NSNumber numberWithFloat:20.0]];
 	[apertures addObject:[NSNumber numberWithFloat:22.0]];
 	[apertures addObject:[NSNumber numberWithFloat:25.0]];
-	[apertures addObject:[NSNumber numberWithFloat:29.0]];
+	[apertures addObject:[NSNumber numberWithFloat:28.0]];
 	[apertures addObject:[NSNumber numberWithFloat:32.0]];		// index: 30
 	[apertures addObject:[NSNumber numberWithFloat:45.0]];
 	[apertures addObject:[NSNumber numberWithFloat:51.0]];

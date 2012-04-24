@@ -220,7 +220,7 @@
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:32.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 4.099f;
+	expected = 3.99f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
@@ -242,17 +242,17 @@
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:11.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 8.928f;
+	expected = 9.058f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:16.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 13.887f;
+	expected = 13.646f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:22.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 41.657f;
+	expected = 48.098f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
@@ -272,12 +272,12 @@
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:8.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 27.778f;
+	expected = 27.533f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:11.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 83.314f;
+	expected = 100.574f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
@@ -298,12 +298,12 @@
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:5.6f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 45.734f;
+	expected = 46.376f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:8.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 375.0f;
+	expected = 347.222f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
@@ -322,7 +322,7 @@
 	// -----------------------
 	subjectDistance = 25.0f;
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:2.8f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 56.818f;
+	expected = 57.412f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
@@ -583,24 +583,24 @@
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:22.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 57.971f;
+	expected = 58.159f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateFarLimitForAperture:32.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 62.5f;
+	expected = 62.375f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in far distance calculation - expected %f got %f", expected, result);
 }
 
 - (void)testHyperfocalCalculations
 {
-	float accuracy = 0.0009f;
+	float accuracy = 0.009f;
 	float expected, result, focalLength;
 
 	focalLength = 10.0f;
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:2.8f focalLength:focalLength circleOfConfusion:coc];
-	expected = 1.786f;
+	expected = 1.78f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 
@@ -610,7 +610,7 @@
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:8.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 0.625f;
+	expected = 0.635f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
@@ -625,162 +625,162 @@
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:32.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 0.156f;
+	expected = 0.166f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	focalLength = 24.0f;
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:2.8f focalLength:focalLength circleOfConfusion:coc];
-	expected = 10.286f;
+	expected = 10.206f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:5.6f focalLength:focalLength circleOfConfusion:coc];
-	expected = 5.143f;
+	expected = 5.115f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:8.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 3.6f;
+	expected = 3.624f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:11.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 2.618f;
+	expected = 2.57f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:22.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 1.309f;
+	expected = 1.3f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:32.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 0.9f;
+	expected = 0.924f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	focalLength = 50.0f;
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:2.8f focalLength:focalLength circleOfConfusion:coc];
-	expected = 44.643f;
+	expected = 44.244f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:5.6f focalLength:focalLength circleOfConfusion:coc];
-	expected = 22.321f;
+	expected = 22.147f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:8.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 15.625f;
+	expected = 15.675f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:11.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 11.364f;
+	expected = 11.099f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:22.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 5.682f;
+	expected = 5.574f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:32.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 3.906f;
+	expected = 3.956f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	focalLength = 100.0f;
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:2.8f focalLength:focalLength circleOfConfusion:coc];
-	expected = 178.571f;
+	expected = 176.877f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:5.6f focalLength:focalLength circleOfConfusion:coc];
-	expected = 89.286f;
+	expected = 88.488f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:8.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 62.5f;
+	expected = 62.6f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:11.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 45.455f;
+	expected = 44.294f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:22.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 22.727f;
+	expected = 22.197f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:32.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 15.625f;
+	expected = 15.725f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	focalLength = 200.0f;
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:2.8f focalLength:focalLength circleOfConfusion:coc];
-	expected = 714.286f;
+	expected = 707.307f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:5.6f focalLength:focalLength circleOfConfusion:coc];
-	expected = 357.143f;
+	expected = 353.753f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:8.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 250.0f;
+	expected = 250.2f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:11.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 181.818f;
+	expected = 176.977f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:22.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 90.909f;
+	expected = 88.588f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:32.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 62.5f;
+	expected = 62.7f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	focalLength = 400.0f;
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:2.8f focalLength:focalLength circleOfConfusion:coc];
-	expected = 2857.143f;
+	expected = 2828.827f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:5.6f focalLength:focalLength circleOfConfusion:coc];
-	expected = 1428.571f;
+	expected = 1414.614f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:8.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 1000.0f;
+	expected = 1000.4f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:11.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 727.273f;
+	expected = 707.507f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:22.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 363.636f;
+	expected = 353.953f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateHyperfocalDistanceForAperture:32.0f focalLength:focalLength circleOfConfusion:coc];
-	expected = 250.0f;
+	expected = 250.4f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in hyperfocal distance calculation - expected %f got %f", expected, result);
 }
@@ -1147,7 +1147,7 @@
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:11.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 6.466f;
+	expected = 6.375f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
@@ -1184,7 +1184,7 @@
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:11.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 7.813f;
+	expected = 7.673f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
@@ -1194,7 +1194,7 @@
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:22.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 4.63f;
+	expected = 4.532f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
@@ -1206,12 +1206,12 @@
 	// -----------------------
 	subjectDistance = 50.0f;
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:2.8f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 23.585f;
+	expected = 23.472f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:5.6f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 15.432f;
+	expected = 15.335f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
@@ -1221,7 +1221,7 @@
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:11.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 9.26f;
+	expected = 9.056f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
@@ -1231,7 +1231,7 @@
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:22.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 5.102f;
+	expected = 4.979f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
@@ -1456,7 +1456,7 @@
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
 	result = [DepthOfFieldCalculator calculateNearLimitForAperture:22.0f focalLength:focalLength circleOfConfusion:coc subjectDistance:subjectDistance];
-	expected = 43.956f;
+	expected = 43.848f;
 	STAssertEqualsWithAccuracy(result, expected, accuracy, 
 							   @"Error in near distance calculation - expected %f got %f", expected, result);
 	
