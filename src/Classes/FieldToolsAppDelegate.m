@@ -62,6 +62,16 @@ float DefaultSubjectDistance = 2.5f;
 
 - (void)awakeFromNib
 {
+#ifdef DEBUG
+    // Don't send events to Google from debug builds
+    [[GANTracker sharedTracker] setDryRun:YES];
+#endif
+    
+    [[GANTracker sharedTracker] setAnonymizeIp:YES];
+    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];	
+    
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];    
     
@@ -98,7 +108,7 @@ float DefaultSubjectDistance = 2.5f;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[window addSubview:[rootViewController view]];
+    [window addSubview:[rootViewController view]];
     [window makeKeyAndVisible];
     
     [Appirater appLaunched:YES];

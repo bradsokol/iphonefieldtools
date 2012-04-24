@@ -65,10 +65,11 @@ static BOOL previousLensWasZoom = YES;
 - (void)lensDidChangeWithLens:(Lens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
+- (void)recordAnalyticsForDistanceType:(int)distanceType;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
 - (void)updateAperture;
-- (void) updateDistanceFormatter;
+- (void)updateDistanceFormatter;
 - (void)updateFocalLength;
 - (void)updateResult;
 - (void)updateSubjectDistanceSliderLimits;
@@ -152,13 +153,17 @@ static BOOL previousLensWasZoom = YES;
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	
+
+    int distanceTypeSetting = [[NSUserDefaults standardUserDefaults] 
+                        integerForKey:FTDistanceTypeKey];
+    [self recordAnalyticsForDistanceType:distanceTypeSetting];
+    
 	[self updateDistanceFormatter];
 	
 	[self updateSubjectDistanceSliderPolicy];
 	
 	// Set initial values in to controls
-	[distanceType setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceTypeKey]];
+	[distanceType setSelectedSegmentIndex:distanceTypeSetting];
 	[apertureSlider setValue:[self apertureIndex]];
 	[focalLengthSlider setValue:[self focalLength]];
 	[subjectDistanceSlider setValue:[[self subjectDistanceSliderPolicy] sliderValueForDistance:[self subjectDistance]]
@@ -229,8 +234,11 @@ static BOOL previousLensWasZoom = YES;
 // Distance type changed in segment control
 - (void)distanceTypeDidChange:(id)sender
 {
-	[[NSUserDefaults standardUserDefaults] setInteger:[distanceType selectedSegmentIndex]
+    int distanceTypeSetting = [distanceType selectedSegmentIndex];
+	[[NSUserDefaults standardUserDefaults] setInteger:distanceTypeSetting
 											   forKey:FTDistanceTypeKey];
+    
+    [self recordAnalyticsForDistanceType:distanceTypeSetting];
 	
 	// Show or hide the distance slider depending on the distance
 	// type selected in the segment control.
@@ -292,6 +300,10 @@ static BOOL previousLensWasZoom = YES;
 // Notification that units changed. Need to re-display results.
 - (void)unitsDidChange
 {
+    int distanceTypeSetting = [[NSUserDefaults standardUserDefaults] 
+                               integerForKey:FTDistanceTypeKey];
+    [self recordAnalyticsForDistanceType:distanceTypeSetting];
+    
 	[self updateSubjectDistanceSliderPolicy];
 	[self updateSubjectDistanceSliderLimits];
 	[self updateSubjectDistance];
@@ -518,6 +530,62 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Helpers
 
+- (void)recordAnalyticsForDistanceType:(int)distanceTypeSetting
+{
+    NSString* viewName;
+    switch (distanceTypeSetting)
+    {
+        case 0:
+            viewName = kDistanceTypeHyper;
+            break;
+        case 1:
+            viewName = kDistanceTypeNear;
+            break;
+        case 2:
+            viewName = kDistanceTypeFar;
+            break;
+        case 3:
+            viewName = kDistanceTypeNearAndFar;
+            break;
+            
+        default:
+            NSAssert(FALSE, @"Unsupported or unhandled distance type");
+    }
+    
+    NSString* unitsName;
+    DistanceUnits distanceUnits = [[NSUserDefaults standardUserDefaults]
+                                   integerForKey:FTDistanceUnitsKey];
+    switch (distanceUnits)
+    {
+        case DistanceUnitsCentimeters:
+            unitsName = kUnitsCentimetres;
+            break;
+            
+        case DistanceUnitsFeet:
+            unitsName = kUnitsFeet;
+            break;
+            
+        case DistanceUnitsFeetAndInches:
+            unitsName = kUnitsFeetAndInches;
+            break;
+            
+        case DistanceUnitsMeters:
+            unitsName = kUnitsMetres;
+            break;
+        
+        default:
+            NSAssert(FALSE, @"Unsupported or unhandled units");
+        
+    }
+    
+    NSError *error;
+    NSString* pageName = [NSString stringWithFormat:@"%@%@", viewName, unitsName];
+    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
+}
+
 - (void)customizeSliderAppearance:(UISlider*)slider
 {
 	static UIImage* sliderTrack;
@@ -641,6 +709,16 @@ static BOOL previousLensWasZoom = YES;
         
         [[NSNotificationCenter defaultCenter] 
          postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
+        
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:kCategorySubjectDistanceRange
+                                             action:kActionChanged
+                                              label:kLabelMainView
+                                              value:buttonIndex
+                                          withError:&error]) 
+        {
+            NSLog(@"Error recording analytics page view: %@", error);
+        }
     }
 }
 

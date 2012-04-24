@@ -83,6 +83,17 @@
         
         [[NSNotificationCenter defaultCenter] 
             postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
+        
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:kCategorySubjectDistanceRange
+                                             action:kActionChanged
+                                              label:kLabelSettingsView
+                                              value:newSubjectDistanceRangeIndex
+                                          withError:&error]) 
+        {
+            NSLog(@"Error recording analytics page view: %@", error);
+        }
+
     }
     
 	[[self navigationController] popViewControllerAnimated:YES];
@@ -99,6 +110,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:kSettingsSubjectDistanceRanges withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	

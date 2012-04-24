@@ -101,6 +101,17 @@
 - (void)saveWasSelected
 {
 	[[self camera] setCoc:[[self cameraWorking] coc]];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kCategoryCoC
+                                         action:kActionChanged
+                                          label:[[[self cameraWorking] coc] description]
+                                          value:-1
+                                      withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
+
 	
 	[[self navigationController] popViewControllerAnimated:YES];
 }
@@ -108,6 +119,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:kSettingsCoC withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
