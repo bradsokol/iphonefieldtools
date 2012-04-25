@@ -37,6 +37,7 @@
 #import "ResultView.h"
 
 #import "DistanceFormatter.h"
+#import "SubjectDistanceRangePolicyFactory.h"
 #import "UserDefaults.h"
 
 static const float DIFFERENCE_FONT_SIZE = 17.0;
@@ -140,29 +141,37 @@ static const float SMALL_FONT_SIZE = 24.0;
 #endif
 	
 	displayRange = YES;
-	
-	if ([defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsFeetAndInches)
-	{
-		// When formatting feet and inches, values will be rounded to the nearest quarter inch.
-		// Must adjust near and far to nearest quarter inch so that distance difference 
-		// calculation will be correct after rounding.
-		nearDistance = rintf(near * METRES_TO_QUARTER_INCHES) / METRES_TO_QUARTER_INCHES;
-		farDistance = rintf(far * METRES_TO_QUARTER_INCHES) / METRES_TO_QUARTER_INCHES;
-	}
-	else
-	{
-		if ([defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsMeters)
-		{
+
+	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    switch (distanceUnits)
+    {
+        case DistanceUnitsFeetAndInches:
+            // When formatting feet and inches, values will be rounded to the nearest quarter inch.
+            // Must adjust near and far to nearest quarter inch so that distance difference 
+            // calculation will be correct after rounding.
+            nearDistance = rintf(near * METRES_TO_QUARTER_INCHES) / METRES_TO_QUARTER_INCHES;
+            farDistance = rintf(far * METRES_TO_QUARTER_INCHES) / METRES_TO_QUARTER_INCHES;
+            break;
+            
+        case DistanceUnitsMeters:
             NSLog(@"rintf: %f", (far * METRES_TO_DECIMETRES));
 			nearDistance = rintf(near * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
 			farDistance = rintf(far * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
-		}
-		else
-		{
-			nearDistance = rintf(near * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
-			farDistance = rintf(far * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
-		}
-	}
+            break;
+            
+        default:
+            if ([defaults integerForKey:FTSubjectDistanceRangeKey] == SubjectDistanceRangeMacro)
+            {
+                nearDistance = rintf(near * METRES_TO_MILLIMETRES) / METRES_TO_MILLIMETRES;
+                farDistance = rintf(far * METRES_TO_MILLIMETRES) / METRES_TO_MILLIMETRES;
+            }
+            else
+            {
+                nearDistance = rintf(near * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
+                farDistance = rintf(far * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
+            }
+            break;
+    }
 	
 	distanceDifference = farDistance - nearDistance;
 

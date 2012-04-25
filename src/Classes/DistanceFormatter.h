@@ -35,6 +35,7 @@ const extern float METRES_TO_QUARTER_INCHES;
 
 const extern float METRES_TO_DECIMETRES;
 const extern float METRES_TO_CENTIMETRES;
+const extern float METRES_TO_MILLIMETRES;
 
 @interface DistanceFormatter : NSFormatter 
 {
