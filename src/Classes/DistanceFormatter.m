@@ -30,6 +30,7 @@ const float METRES_TO_QUARTER_INCHES = METRES_TO_FEET * 48.0f;
 
 const float METRES_TO_DECIMETRES = 10.0f;
 const float METRES_TO_CENTIMETRES = 100.0f;
+const float METRES_TO_MILLIMETRES = 1000.0f;
 
 @interface DistanceFormatter ()
 
@@ -44,6 +45,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 @implementation DistanceFormatter
 
 @synthesize distanceUnits;
+@synthesize showTenths;
 @synthesize testing;
 
 - (id)init
@@ -64,6 +66,8 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	
 	[self setTesting:test];
 	[self setDistanceUnits:DistanceUnitsMeters];
+    
+    showTenths = NO;
 	
 	return self;
 }
@@ -99,6 +103,14 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	float feet = 0.0f;
 	float inches = 0.0f;
 	
+    if ([self showTenths])
+    {
+        [numberFormatter setPositiveFormat:@"#,##0.0"];
+    }
+    else 
+    {
+        [numberFormatter setPositiveFormat:@"#,##0.#"];
+    }
     NSString* localizedDistance = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:distance]];
     NSLog(@"Localized distance: %@", localizedDistance);
 	switch (units)
@@ -146,6 +158,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	}
 	
 	// We should never get here. This is here to satisfy a compiler warning.
+    NSAssert(FALSE, @"Unsupported distance units");
 	return @"FORMATTING ERROR";
 }
 
