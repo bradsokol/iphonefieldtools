@@ -73,6 +73,11 @@ static const float SMALL_FONT_SIZE = 24.0;
     return self;
 }
 
+- (void)setShowTenths:(bool)showTenths
+{
+    [[self distanceFormatter] setShowTenths:showTenths];
+}
+
 - (void)drawRect:(CGRect)rect 
 {
 	if (firstDraw)

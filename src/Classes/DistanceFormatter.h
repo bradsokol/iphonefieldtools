@@ -56,5 +56,6 @@ const extern float METRES_TO_CENTIMETRES;
 - (NSString*)formatStringForCentimetres;
 
 @property(nonatomic) DistanceUnits distanceUnits;
+@property(nonatomic, assign) bool showTenths;
 
 @end

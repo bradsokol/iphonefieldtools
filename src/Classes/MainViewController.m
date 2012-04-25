@@ -66,12 +66,14 @@ static BOOL previousLensWasZoom = YES;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
 - (void)recordAnalyticsForDistanceType:(int)distanceType;
+- (bool)shouldShowTenths;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
 - (void)updateAperture;
 - (void)updateDistanceFormatter;
 - (void)updateFocalLength;
 - (void)updateResult;
+- (void)updateResultView;
 - (void)updateSubjectDistanceSliderLimits;
 - (void)updateSubjectDistanceSliderPolicy;
 - (void)updateSubjectDistance;
@@ -178,6 +180,7 @@ static BOOL previousLensWasZoom = YES;
 	[self customizeSliderAppearance:apertureSlider];
 	[self customizeSliderAppearance:subjectDistanceSlider];
 	
+    [self updateResultView];
 	[self updateAperture];
 	[self updateFocalLength];
 	[self updateSubjectDistance];
@@ -302,12 +305,21 @@ static BOOL previousLensWasZoom = YES;
 	[self updateResult];
 }
 
+- (void)updateResultView
+{
+    [resultView setShowTenths:[self shouldShowTenths]];
+    
+    [self updateResult];
+}
+
 // Notification that units changed. Need to re-display results.
 - (void)unitsDidChange
 {
-    int distanceTypeSetting = [[NSUserDefaults standardUserDefaults] 
-                               integerForKey:FTDistanceTypeKey];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    int distanceTypeSetting = [defaults integerForKey:FTDistanceTypeKey];
     [self recordAnalyticsForDistanceType:distanceTypeSetting];
+    
+	[self updateResultView];
     
 	[self updateSubjectDistanceSliderPolicy];
 	[self updateSubjectDistanceSliderLimits];
@@ -386,6 +398,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 {
+	[self updateResultView];
     [self updateSubjectDistanceRangeText];
     [self updateSubjectDistanceSliderPolicy];
     [self updateSubjectDistanceSliderLimits];
@@ -509,10 +522,12 @@ static BOOL previousLensWasZoom = YES;
 	float minimum = [policy minimumDistanceToSubject];
 	float maximum = [policy maximumDistanceToSubject];
 
+    [distanceFormatter setShowTenths:NO];
 	[subjectDistanceMinimum setText:[[self distanceFormatter] 
 									 stringForObjectValue:[NSNumber numberWithFloat:minimum]]];
 	[subjectDistanceMaximum setText:[[self distanceFormatter] 
 									 stringForObjectValue:[NSNumber numberWithFloat:maximum]]];
+    [distanceFormatter setShowTenths:[self shouldShowTenths]];
 	
 	minimum = [policy sliderMinimum];
 	maximum = [policy sliderMaximum];
@@ -703,6 +718,16 @@ static BOOL previousLensWasZoom = YES;
     
     [self setSubjectDistanceSliderPolicy:sliderPolicy];
     [sliderPolicy release];
+}
+
+- (bool)shouldShowTenths
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+    
+    return distanceUnits == DistanceUnitsCentimeters &&
+        subjectDistanceRange == SubjectDistanceRangeMacro;
 }
 
 #pragma mark UIActionSheetDelegate

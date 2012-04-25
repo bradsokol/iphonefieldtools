@@ -6,7 +6,9 @@ New features, enhancements:
   * Added tips for using the variable scrubbing speed sliders added in v2.2.
   * Added centimetres as unit of measure.
   * Added selectable subject distance ranges for more precise settings.
+  * Centimetres show tenths (i.e. millimetres) in macro distance range.
   * Added Google Analytics.
+  * Improved calculations
 
 Fixes:
   * Fix rendering problems for slider thumb.
