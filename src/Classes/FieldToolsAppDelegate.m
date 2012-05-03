@@ -21,10 +21,11 @@
 
 #import "FieldToolsAppDelegate.h"
 
-#import "Appirater.h"
 #import "Camera.h"
 #import "CameraBag.h"
 #import "Coc.h"
+#import "iRate.h"
+#import "iRateConfiguration.h"
 #import "Lens.h"
 #import "RootViewController.h"
 #import "SubjectDistanceRangePolicyFactory.h"
@@ -59,6 +60,25 @@ float DefaultSubjectDistance = 2.5f;
 
 @synthesize window;
 @synthesize rootViewController;
+
++ (void)initialize
+{
+    // Configure iRate
+    [[iRate sharedInstance] setAppStoreID:kAppStoreID];
+    [[iRate sharedInstance] setDaysUntilPrompt:kDaysUntilRatingPrompt];
+    [[iRate sharedInstance] setUsesUntilPrompt:kUsesUntilRatingPrompt];
+    [[iRate sharedInstance] setRemindPeriod:kDaysUntilRatingReminder];
+    
+    [[iRate sharedInstance] setMessageTitle:NSLocalizedString(@"RATING_TITLE", @"RATING_TITLE")];
+    [[iRate sharedInstance] setMessage:NSLocalizedString(@"RATING_MESSAGE", @"RATING_MESSAGE")];
+    [[iRate sharedInstance] setCancelButtonLabel:NSLocalizedString(@"RATING_CANCEL", @"RATING_CANCEL")];
+    [[iRate sharedInstance] setRateButtonLabel:NSLocalizedString(@"RATING_RATE", @"RATING_RATE")];
+    [[iRate sharedInstance] setRemindButtonLabel:NSLocalizedString(@"RATING_LATER", @"RATING_LATER")];
+    
+#ifdef DEBUG
+    [[iRate sharedInstance] setDebug:YES];
+#endif
+}
 
 - (void)awakeFromNib
 {
@@ -111,15 +131,7 @@ float DefaultSubjectDistance = 2.5f;
     [window addSubview:[rootViewController view]];
     [window makeKeyAndVisible];
     
-    [Appirater appLaunched:YES];
-    
     return YES;
-}
-
-// Called only on iOS 4.0 and later
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
