@@ -250,6 +250,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         if (animated) [UIView commitAnimations]; 
 
         self.label.hidden = hide;
+        self.secondaryLabel.hidden = hide;
     }
 }
 

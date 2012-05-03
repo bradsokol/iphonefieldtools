@@ -161,8 +161,8 @@
 		A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideNonEditingTableViewDelegate.m; sourceTree = "<group>"; };
 		A22F4A900FC65793003A5E26 /* FlipsideEditingTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideEditingTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideEditingTableViewDelegate.m; sourceTree = "<group>"; };
-		A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDiscreetNotificationView.h; sourceTree = "<group>"; };
-		A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDiscreetNotificationView.m; sourceTree = "<group>"; };
+		A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDiscreetNotificationView.h; path = Classes/GCDiscreetNotificationView.h; sourceTree = "<group>"; };
+		A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDiscreetNotificationView.m; path = Classes/GCDiscreetNotificationView.m; sourceTree = "<group>"; };
 		A237E63B12AAF4F00089862B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
@@ -214,8 +214,8 @@
 		A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewTableDataSource.m; sourceTree = "<group>"; };
 		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
 		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
-		A2ACD85313B64C850052557E /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
-		A2ACD85413B64C850052557E /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		A2ACD85313B64C850052557E /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Appirater.h; path = Classes/Appirater.h; sourceTree = "<group>"; };
+		A2ACD85413B64C850052557E /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Appirater.m; path = Classes/Appirater.m; sourceTree = "<group>"; };
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
@@ -286,16 +286,12 @@
 				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
 				A294A02914048D5C0090C9AA /* Subject Distance Ranges View */,
 				A2A0D30710156E4000A34735 /* Table View Cells */,
-				A2ACD85313B64C850052557E /* Appirater.h */,
-				A2ACD85413B64C850052557E /* Appirater.m */,
 				A20D30610F7B333900A744C3 /* DistanceFormatter.h */,
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
 				A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */,
 				A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */,
 				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
-				A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */,
-				A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */,
 				A284E6FF0EE45DDE00C37E21 /* RootViewController.h */,
 				A284E7000EE45DDE00C37E21 /* RootViewController.m */,
 			);
@@ -590,9 +586,29 @@
 			name = "CoC View";
 			sourceTree = "<group>";
 		};
+		A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */,
+				A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */,
+			);
+			name = GCDiscreetNotificationView;
+			sourceTree = "<group>";
+		};
+		A2E3D0E21553177B005F3F30 /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				A2ACD85313B64C850052557E /* Appirater.h */,
+				A2ACD85413B64C850052557E /* Appirater.m */,
+			);
+			name = Appirater;
+			sourceTree = "<group>";
+		};
 		A2F862791545AC8400BF8480 /* Third Party Components */ = {
 			isa = PBXGroup;
 			children = (
+				A2E3D0E21553177B005F3F30 /* Appirater */,
+				A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */,
 				A2F8627B1545ACC400BF8480 /* Google Analytics */,
 			);
 			name = "Third Party Components";
