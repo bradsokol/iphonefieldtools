@@ -37,6 +37,7 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 - (NSString*)formatDistance:(CGFloat)distance;
 - (NSString*)formatDistancesForRange:(DistanceRange*)distanceRange;
 - (NSString*)formatInches:(CGFloat)inches;
+- (void)setNumberFormat;
 
 @property(nonatomic,getter=isTesting) BOOL testing;
 
@@ -44,8 +45,8 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 
 @implementation DistanceFormatter
 
+@synthesize decimalPlaces;
 @synthesize distanceUnits;
-@synthesize showTenths;
 @synthesize testing;
 
 - (id)init
@@ -66,8 +67,8 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 	
 	[self setTesting:test];
 	[self setDistanceUnits:DistanceUnitsMeters];
-    
-    showTenths = NO;
+
+    decimalPlaces = 0;
 	
 	return self;
 }
@@ -103,14 +104,7 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 	float feet = 0.0f;
 	float inches = 0.0f;
 	
-    if ([self showTenths])
-    {
-        [numberFormatter setPositiveFormat:@"#,##0.0"];
-    }
-    else 
-    {
-        [numberFormatter setPositiveFormat:@"#,##0.#"];
-    }
+    [self setNumberFormat];
     NSString* localizedDistance = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:distance]];
     NSLog(@"Localized distance: %@", localizedDistance);
 	switch (units)
@@ -228,6 +222,35 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 {
 	return [NSString stringWithFormat:@"%%@ %@",
 			NSLocalizedString(@"CENTIMETRES_ABBREVIATION", "Abbreviation for centimetres")];
+}
+
+- (void)setDecimalPlaces:(NSUInteger)newDecimalPlaces
+{
+    if (decimalPlaces > 2)
+    {
+        NSAssert(FALSE, @"Decimal places must be 0, 1, or 2");
+        return;
+    }
+    
+    decimalPlaces = newDecimalPlaces;
+}
+
+- (void)setNumberFormat
+{
+    switch ([self decimalPlaces]) 
+    {
+        case 0:
+            [numberFormatter setPositiveFormat:@"#,##0.#"];
+            break;
+            
+        case 1:
+            [numberFormatter setPositiveFormat:@"#,##0.0"];
+            break;
+            
+        case 2:
+            [numberFormatter setPositiveFormat:@"#,##0.00"];
+            break;
+    }
 }
 
 - (void)dealloc

@@ -522,12 +522,12 @@ static BOOL previousLensWasZoom = YES;
 	float minimum = [policy minimumDistanceToSubject];
 	float maximum = [policy maximumDistanceToSubject];
 
-    [distanceFormatter setShowTenths:NO];
+    [distanceFormatter setDecimalPlaces:0];
 	[subjectDistanceMinimum setText:[[self distanceFormatter] 
 									 stringForObjectValue:[NSNumber numberWithFloat:minimum]]];
 	[subjectDistanceMaximum setText:[[self distanceFormatter] 
 									 stringForObjectValue:[NSNumber numberWithFloat:maximum]]];
-    [distanceFormatter setShowTenths:[self shouldShowTenths]];
+    [distanceFormatter setDecimalPlaces:[self shouldShowTenths] ? 1 : 0];
 	
 	minimum = [policy sliderMinimum];
 	maximum = [policy sliderMaximum];

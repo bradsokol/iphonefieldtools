@@ -76,7 +76,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 
 - (void)setShowTenths:(bool)showTenths
 {
-    [[self distanceFormatter] setShowTenths:showTenths];
+    [[self distanceFormatter] setDecimalPlaces:1];
 }
 
 - (void)drawRect:(CGRect)rect 
@@ -100,10 +100,29 @@ static const float SMALL_FONT_SIZE = 24.0;
 		[self hideNumberLabels:NO];
 		
 		[self adjustFontsForNearFarDisplay];
+        
+        
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+        SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+        bool showTwoDecimals = distanceUnits == DistanceUnitsMeters &&
+            (subjectDistanceRange == SubjectDistanceRangeClose || 
+             subjectDistanceRange == SubjectDistanceRangeMacro);
 
+        if (showTwoDecimals)
+        {
+            [[self distanceFormatter] setDecimalPlaces:2];
+        }
+        
 		leftNumber.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:nearDistance]];
 		rightNumber.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:farDistance]];
 		difference.text = [[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:distanceDifference]];
+        
+        if (showTwoDecimals)
+        {
+            // Reset to defaults
+            [[self distanceFormatter] setDecimalPlaces:0];
+        }
 		
 		NSLog(@"drawRect near: %@ far: %@ difference: %@", leftNumber.text, rightNumber.text, difference.text);
 		
@@ -143,6 +162,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 	displayRange = YES;
 
 	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
     switch (distanceUnits)
     {
         case DistanceUnitsFeetAndInches:
@@ -154,13 +174,22 @@ static const float SMALL_FONT_SIZE = 24.0;
             break;
             
         case DistanceUnitsMeters:
-            NSLog(@"rintf: %f", (far * METRES_TO_DECIMETRES));
-			nearDistance = rintf(near * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
-			farDistance = rintf(far * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
+            if (subjectDistanceRange == SubjectDistanceRangeMacro || 
+                subjectDistanceRange == SubjectDistanceRangeClose)
+            {
+                nearDistance = rintf(near * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
+                farDistance = rintf(far * METRES_TO_CENTIMETRES) / METRES_TO_CENTIMETRES;
+            }
+            else 
+            {
+                nearDistance = rintf(near * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
+                farDistance = rintf(far * METRES_TO_DECIMETRES) / METRES_TO_DECIMETRES;
+            }
             break;
             
         default:
-            if ([defaults integerForKey:FTSubjectDistanceRangeKey] == SubjectDistanceRangeMacro)
+            if (subjectDistanceRange == SubjectDistanceRangeMacro ||
+                subjectDistanceRange == SubjectDistanceRangeClose)
             {
                 nearDistance = rintf(near * METRES_TO_MILLIMETRES) / METRES_TO_MILLIMETRES;
                 farDistance = rintf(far * METRES_TO_MILLIMETRES) / METRES_TO_MILLIMETRES;
