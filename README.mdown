@@ -18,6 +18,7 @@ Field Tools is an efficient, easy to use depth of field calculator for photograp
 
 Field Tools is implemented as a utility application. The settings "side" of the app uses UITableViews and UINavigationController to configure cameras and lenses. Hopefully, the source can serve as an example of a reasonably well written app that is a bit more substantial than the typical sample Cocoa Touch code.
 
+The "master" branch contains source for versions that have been released to the iTunes App Store. To follow on-going development, have a look at the "develop" branch.
 ## Downloads
 
 Downloads are available from the [iTunes App Store](http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=305817254&mt=8).
