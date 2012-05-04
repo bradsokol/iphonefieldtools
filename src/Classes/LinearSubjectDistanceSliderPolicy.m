@@ -38,7 +38,7 @@ extern const float METRES_TO_FEET;
             break;
             
         case DistanceUnitsMeters:
-            return roundf(value * 10.0f) * 0.1f;
+            return roundf(value * 100.0f) * 0.01f;
             break;
             
         case DistanceUnitsCentimeters:

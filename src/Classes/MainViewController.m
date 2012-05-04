@@ -286,9 +286,6 @@ static BOOL previousLensWasZoom = YES;
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
 
-	// Subject distance is a non-linear scale. This allows a wide range of settings
-	// with finer grained control over near distances and coarser grained over
-	// longer distances.
 	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value] usingUnits:distanceUnits]];
 	
 	[[NSUserDefaults standardUserDefaults] setFloat:[self subjectDistance]
