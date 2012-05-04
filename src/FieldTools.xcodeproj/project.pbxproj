@@ -910,13 +910,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brad Sokol";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081E431E-3E21-4A94-B99B-F88AD36ADC87";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "~/include";
 				VALIDATE_PRODUCT = YES;

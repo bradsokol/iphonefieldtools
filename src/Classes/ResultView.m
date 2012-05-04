@@ -144,6 +144,21 @@ static const float SMALL_FONT_SIZE = 24.0;
 #ifdef DEBUG
     NSLog(@"setResult: distance: %f", distance);
 #endif
+
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+
+    if (DistanceUnitsMeters == distanceUnits &&
+        (SubjectDistanceRangeClose == subjectDistanceRange || 
+         SubjectDistanceRangeMacro == subjectDistanceRange))
+    {
+        [[self distanceFormatter] setDecimalPlaces:2];
+    }
+    else 
+    {
+        [[self distanceFormatter] setDecimalPlaces:0];
+    }
 	displayRange = NO;
 	nearDistance = distance;
 	[self setNeedsDisplay];
