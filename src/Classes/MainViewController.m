@@ -543,6 +543,21 @@ static BOOL previousLensWasZoom = YES;
 // Update the distance to subject display
 - (void)updateSubjectDistance
 {
+    SubjectDistanceRange subjectDistanceRange = 
+        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    DistanceUnits units = 
+        [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+
+    if (DistanceUnitsMeters == units && (subjectDistanceRange == SubjectDistanceRangeClose ||
+                                         subjectDistanceRange == SubjectDistanceRangeMacro))
+    {
+        [distanceFormatter setDecimalPlaces:2];
+    }
+    else 
+    {
+        [distanceFormatter setDecimalPlaces:0];
+    }
+    
 	[subjectDistanceText setText:[[self distanceFormatter] stringForObjectValue:[NSNumber numberWithFloat:[self subjectDistance]]]];
 	[self updateResult];
 }
