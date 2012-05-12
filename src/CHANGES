@@ -1,3 +1,19 @@
+Version 2.3
+???, 2012
+
+New features, enhancements:
+  * Integrated Appirater to prompt users to rate the app.
+  * Added tips for using the variable scrubbing speed sliders added in v2.2.
+  * Added centimetres as unit of measure.
+  * Added selectable subject distance ranges for more precise settings.
+  * Centimetres show tenths (i.e. millimetres) in macro distance range.
+  * Added Google Analytics.
+  * Improved calculations
+
+Fixes:
+  * Fix rendering problems for slider thumb.
+  * Fixed bug where focal length not changed when switching from one prime lens to another.
+
 Version 2.2
 March 6, 2011
 

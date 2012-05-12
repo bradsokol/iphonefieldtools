@@ -96,6 +96,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:kSettingsCustomCoC withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	

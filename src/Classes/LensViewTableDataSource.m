@@ -90,8 +90,9 @@ NSString* CellIdentifier = @"Cell";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (nil == cell)
 			{
-				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
-											   reuseIdentifier:CellIdentifier] autorelease];
+				cell = [[[UITableViewCell alloc] 
+                         initWithStyle:UITableViewCellStyleDefault
+                         reuseIdentifier:CellIdentifier] autorelease];
 			}
 		}
 	}
@@ -109,7 +110,7 @@ NSString* CellIdentifier = @"Cell";
 	
 	// Tag the cell with section and row so that the delegate can handle data
 	[cell setTag:tag];
-	NSLog(@"Tag for cell %08x is %04x", cell, [cell tag]);
+	NSLog(@"Tag for cell %08x is %04x", (unsigned int) cell, [cell tag]);
 	
 	if (TYPE_SECTION == [indexPath section] && [indexPath row] != LENS_TITLE_ROW)
 	{
@@ -118,8 +119,8 @@ NSString* CellIdentifier = @"Cell";
 		[[cell textLabel] setText:text];
 		[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 		
-		if ([indexPath row] == PRIME_ROW && !lensIsZoom ||
-			[indexPath row] == ZOOM_ROW && lensIsZoom)
+		if (([indexPath row] == PRIME_ROW && !lensIsZoom) ||
+			([indexPath row] == ZOOM_ROW && lensIsZoom))
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		}

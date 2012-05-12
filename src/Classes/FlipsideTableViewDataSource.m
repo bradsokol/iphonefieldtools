@@ -30,7 +30,7 @@
 #import "UserDefaults.h"
 
 const NSInteger SECTION_COUNT = 3;
-const NSInteger UNITS_COUNT = 3;
+const NSInteger UNITS_COUNT = 4;
 
 // Enumerate sections in UITable
 const NSInteger LENSES_SECTION = 0;
@@ -74,7 +74,7 @@ static NSString *CellIdentifier = @"Cell";
 	}
 	else if (section == LENSES_SECTION)
 	{
-		return [[CameraBag sharedCameraBag] lensCount] + adjustment + 1;
+		return [[CameraBag sharedCameraBag] lensCount] + 1;
 	}
 	else
 	{
@@ -220,8 +220,8 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
 {
 	int lensCount = [[CameraBag sharedCameraBag] lensCount];
-	bool macroRow = [indexPath row] == lensCount;
-	bool addLensRow = [indexPath row] == lensCount + 1;
+	bool addLensRow = ([indexPath row] == lensCount) && [self isEditing];
+	bool subjectDistanceRangeRow = ([indexPath row] == lensCount) && ![self isEditing];
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
 	[cell setAccessoryView:nil];
@@ -230,20 +230,9 @@ static NSString *CellIdentifier = @"Cell";
 	{
 		[[cell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD LENS")];
 	}
-	else if (macroRow)
+	else if (subjectDistanceRangeRow)
 	{
-		[[cell textLabel] setText:NSLocalizedString(@"MACRO", "MACRO")];
-		
-		if (nil == macroModeSwitch)
-		{
-			macroModeSwitch = [[UISwitch alloc] init];
-			[macroModeSwitch addTarget:[self controller]
-								action:@selector(macroModeDidChange:)
-					  forControlEvents:UIControlEventValueChanged];
-		}
-		[macroModeSwitch setOn:[[NSUserDefaults standardUserDefaults] integerForKey:FTMacroModeKey]];
-		[cell setAccessoryView:macroModeSwitch];
-		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		[[cell textLabel] setText:NSLocalizedString(@"SUBJECT_DISTANCE_RANGE", "SUBJECT DISTANCE RANGE")];
 	}
 	else
 	{
@@ -255,7 +244,11 @@ static NSString *CellIdentifier = @"Cell";
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	[cell setAccessoryType:[indexPath row] == index ? UITableViewCellAccessoryCheckmark :UITableViewCellAccessoryNone];
 	
-	[cell setEditingAccessoryType:macroRow ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator];
+    if (subjectDistanceRangeRow)
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
+    [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	
 	return cell;
 }
@@ -276,7 +269,11 @@ static NSString *CellIdentifier = @"Cell";
 			break;
 			
 		case DistanceUnitsMeters:
-			[[cell textLabel] setText:NSLocalizedString(@"METRIC", "METRIC")];
+			[[cell textLabel] setText:NSLocalizedString(@"METRIC_M", "METRIC_M")];
+			break;
+			
+		case DistanceUnitsCentimeters:
+			[[cell textLabel] setText:NSLocalizedString(@"METRIC_CM", "METRIC_CM")];
 			break;
 	}
 
@@ -302,7 +299,7 @@ static NSString *CellIdentifier = @"Cell";
 	if (cell == nil) 
 	{
 		cell = [[[UITableViewCell alloc]
-				 initWithFrame:CGRectZero
+				 initWithStyle:UITableViewCellStyleDefault
 				 reuseIdentifier:CellIdentifier] autorelease];
 	}
 	return cell;
@@ -387,8 +384,6 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)dealloc
 {
-	[macroModeSwitch release];
-	
 	[super dealloc];
 }
 

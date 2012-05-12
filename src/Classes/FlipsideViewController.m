@@ -31,6 +31,7 @@
 #import "Lens.h"
 #import "LensViewController.h"
 #import "Notifications.h"
+#import "SubjectDistanceRangesViewController.h"
 #import "UserDefaults.h"
 
 @interface FlipsideViewController ()
@@ -40,6 +41,7 @@
 -(void)editCoC:(NSNotification*)notification;
 -(void)editCustomCoC:(NSNotification*)notification;
 -(void)editLens:(NSNotification*)notification;
+-(void)editSubjectDistanceRange:(NSNotification*)notification;
 -(void)lensWasEdited:(NSNotification *)notification;
 
 @end
@@ -77,6 +79,10 @@
 												 name:LENS_SELECTED_FOR_EDIT_NOTIFICATION
 											   object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(editSubjectDistanceRange:)
+												 name:EDIT_SUBJECT_DISTANCE_RANGE_NOTIFICATION
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(cameraWasAdded:)
 												 name:CAMERA_WAS_ADDED_NOTIFICATION
 											   object:nil];
@@ -99,6 +105,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:kSettings withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
@@ -127,6 +139,7 @@
 	int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
 	int lensCount = [[CameraBag sharedCameraBag] lensCount];
 	UITableView* tableView = (UITableView*) [self view];
+    UITableViewCell* extraLensCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:lensCount inSection:LENSES_SECTION]];
 	
 	[tableView beginUpdates];
 	
@@ -142,13 +155,12 @@
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		path = [NSIndexPath indexPathForRow:lensCount + 1
-								  inSection:LENSES_SECTION];
-		[indexPaths replaceObjectAtIndex:0
-							  withObject:path];
-		[tableView insertRowsAtIndexPaths:indexPaths
-						 withRowAnimation:UITableViewRowAnimationTop];
 		[indexPaths release];
+        
+        if (nil != extraLensCell)
+        {
+            [[extraLensCell textLabel] setText:NSLocalizedString(@"ADD_LENS", "ADD_LENS")];
+        }
 	}
 	else
 	{
@@ -168,16 +180,13 @@
 		
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
-		
-		path = [NSIndexPath indexPathForRow:lensCount + 1
-								  inSection:LENSES_SECTION];
-		[indexPaths replaceObjectAtIndex:0
-							  withObject:path];
-		
-		[tableView deleteRowsAtIndexPaths:indexPaths
-						 withRowAnimation:UITableViewRowAnimationTop];
-		
+				
 		[indexPaths release];
+        
+        if (nil != extraLensCell)
+        {
+            [[extraLensCell textLabel] setText:NSLocalizedString(@"SUBJECT_DISTANCE_RANGE", "SUBJECT_DISTANCE_RANGE")];
+        }
 	}
 	
 	// Force the units section to reload so the selection style can be set appropriately.
@@ -235,6 +244,15 @@
 	[viewController release];
 }
 
+- (void)editSubjectDistanceRange:(NSNotification*)notification
+{
+    UIViewController* viewController =
+        [[SubjectDistanceRangesViewController alloc] initWithNibName:@"SubjectDistanceRangesViewController"
+                                                              bundle:nil];
+    [[self navigationController] pushViewController:viewController animated:YES];
+    [viewController release];
+}
+
 - (void)cameraWasAdded:(NSNotification*)notification
 {
 	[[CameraBag sharedCameraBag] addCamera:[notification object]];
@@ -274,12 +292,6 @@
 	}
 	
 	[tableView reloadData];
-}
-
-- (void)macroModeDidChange:(UISwitch*)sender
-{
-	[[NSNotificationCenter defaultCenter] 
-	 postNotification:[NSNotification notificationWithName:MACRO_MODE_CHANGED_NOTIFICATION object:nil]];
 }
 
 - (void)dealloc 

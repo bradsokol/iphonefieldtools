@@ -26,16 +26,18 @@
 #import "UserDefaults.h"
 
 const float METRES_TO_FEET = 3.280839895f;
-const float METRES_TO_QUARTER_INCHES = 157.48031496f;
+const float METRES_TO_QUARTER_INCHES = METRES_TO_FEET * 48.0f;
 
 const float METRES_TO_DECIMETRES = 10.0f;
 const float METRES_TO_CENTIMETRES = 100.0f;
+const float METRES_TO_MILLIMETRES = 1000.0f;
 
 @interface DistanceFormatter ()
 
 - (NSString*)formatDistance:(CGFloat)distance;
 - (NSString*)formatDistancesForRange:(DistanceRange*)distanceRange;
 - (NSString*)formatInches:(CGFloat)inches;
+- (void)setNumberFormat;
 
 @property(nonatomic,getter=isTesting) BOOL testing;
 
@@ -43,6 +45,7 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 
 @implementation DistanceFormatter
 
+@synthesize decimalPlaces;
 @synthesize distanceUnits;
 @synthesize testing;
 
@@ -57,9 +60,15 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	{
 		return nil;
 	}
+    
+    numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setMaximumFractionDigits:1];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 	
 	[self setTesting:test];
 	[self setDistanceUnits:DistanceUnitsMeters];
+
+    decimalPlaces = 0;
 	
 	return self;
 }
@@ -95,10 +104,13 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	float feet = 0.0f;
 	float inches = 0.0f;
 	
+    [self setNumberFormat];
+    NSString* localizedDistance = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:distance]];
+    NSLog(@"Localized distance: %@", localizedDistance);
 	switch (units)
 	{
 		case DistanceUnitsFeet:
-			return [NSString stringWithFormat:[self formatStringForFeet], distance];
+			return [NSString stringWithFormat:[self formatStringForFeet], localizedDistance];
 			break;
 			
 		case DistanceUnitsFeetAndInches:
@@ -131,11 +143,16 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 			break;
 			
 		case DistanceUnitsMeters:
-			return [NSString stringWithFormat:[self formatStringForMetric], distance];
+			return [NSString stringWithFormat:[self formatStringForMetres], localizedDistance];
 			break;
+            
+        case DistanceUnitsCentimeters:
+            return [NSString stringWithFormat:[self formatStringForCentimetres], localizedDistance];
+            break;
 	}
 	
 	// We should never get here. This is here to satisfy a compiler warning.
+    NSAssert(FALSE, @"Unsupported distance units");
 	return @"FORMATTING ERROR";
 }
 
@@ -179,6 +196,10 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 	{
 		return distance;
 	}
+    else if (units == DistanceUnitsCentimeters)
+    {
+        return distance * METRES_TO_CENTIMETRES;
+    }
 	else
 	{
 		return distance * METRES_TO_FEET;
@@ -187,14 +208,56 @@ const float METRES_TO_CENTIMETRES = 100.0f;
 
 - (NSString*)formatStringForFeet
 {
-	return [NSString stringWithFormat:@"%%.1f %@", 
+	return [NSString stringWithFormat:@"%%@ %@", 
 			NSLocalizedString(@"FEET_ABBREVIATION", "Abbreviation for feet")];
 }
 
-- (NSString*)formatStringForMetric
+- (NSString*)formatStringForMetres
 {
-	return [NSString stringWithFormat:@"%%.1f %@",
+	return [NSString stringWithFormat:@"%%@ %@",
 			NSLocalizedString(@"METRES_ABBREVIATION", "Abbreviation for metres")];
+}
+
+- (NSString*)formatStringForCentimetres
+{
+	return [NSString stringWithFormat:@"%%@ %@",
+			NSLocalizedString(@"CENTIMETRES_ABBREVIATION", "Abbreviation for centimetres")];
+}
+
+- (void)setDecimalPlaces:(NSUInteger)newDecimalPlaces
+{
+    if (decimalPlaces > 2)
+    {
+        NSAssert(FALSE, @"Decimal places must be 0, 1, or 2");
+        return;
+    }
+    
+    decimalPlaces = newDecimalPlaces;
+}
+
+- (void)setNumberFormat
+{
+    switch ([self decimalPlaces]) 
+    {
+        case 0:
+            [numberFormatter setPositiveFormat:@"#,##0.#"];
+            break;
+            
+        case 1:
+            [numberFormatter setPositiveFormat:@"#,##0.0"];
+            break;
+            
+        case 2:
+            [numberFormatter setPositiveFormat:@"#,##0.00"];
+            break;
+    }
+}
+
+- (void)dealloc
+{
+    [numberFormatter release], numberFormatter = nil;
+    
+    [super dealloc];
 }
 
 @end

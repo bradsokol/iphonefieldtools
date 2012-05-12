@@ -35,6 +35,7 @@ const extern float METRES_TO_QUARTER_INCHES;
 
 const extern float METRES_TO_DECIMETRES;
 const extern float METRES_TO_CENTIMETRES;
+const extern float METRES_TO_MILLIMETRES;
 
 @interface DistanceFormatter : NSFormatter 
 {
@@ -42,6 +43,8 @@ const extern float METRES_TO_CENTIMETRES;
 	
 	// For testing only
 	DistanceUnits distanceUnits;
+    
+    NSNumberFormatter* numberFormatter;
 }
 
 - (id)init;
@@ -50,8 +53,10 @@ const extern float METRES_TO_CENTIMETRES;
 - (CGFloat)convertDistance:(CGFloat)distance toUnits:(DistanceUnits)units;
 
 - (NSString*)formatStringForFeet;
-- (NSString*)formatStringForMetric;
+- (NSString*)formatStringForMetres;
+- (NSString*)formatStringForCentimetres;
 
 @property(nonatomic) DistanceUnits distanceUnits;
+@property(nonatomic, assign) NSUInteger decimalPlaces;
 
 @end

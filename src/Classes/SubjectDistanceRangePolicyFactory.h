@@ -1,4 +1,4 @@
-// Copyright 2010 Brad Sokol
+// Copyright 2011 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,22 +11,36 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 
 //
-//  MacroImperialSubjectDistanceSliderPolicy.h
+//  SubjectDistanceRangePolicyFactory.h
 //  FieldTools
 //
-//  Created by Brad Sokol on 2010/06/25.
-//  Copyright 2010 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 11-08-31.
+//  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "MacroSubjectDistanceSliderPolicy.h"
+#import "SubjectDistanceRangePolicy.h"
 
-@interface MacroImperialSubjectDistanceSliderPolicy : MacroSubjectDistanceSliderPolicy 
+typedef enum
 {
+    SubjectDistanceRangeMacro,
+    SubjectDistanceRangeClose,
+    SubjectDistanceRangeMid,
+    SubjectDistanceRangeFar
+} SubjectDistanceRange;
 
+@interface SubjectDistanceRangePolicyFactory : NSObject 
+{
+    
 }
+
++ (SubjectDistanceRangePolicyFactory*) sharedPolicyFactory;
+
+- (NSUInteger)policyCount;
+-(SubjectDistanceRangePolicy*) policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRange;
 
 @end

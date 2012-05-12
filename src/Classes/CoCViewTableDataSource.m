@@ -70,7 +70,9 @@ int cocPresetsCount = 0;
     TwoLabelTableViewCell* cell = (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) 
 	{
-		cell = [[[TwoLabelTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
+		cell = [[[TwoLabelTableViewCell alloc] 
+				 initWithStyle:UITableViewCellStyleDefault
+                 reuseIdentifier:@"Cell"] autorelease];
     }
     
 	if ([indexPath row] < cocPresetsCount)

@@ -24,11 +24,15 @@
 #import "Camera.h"
 #import "CameraBag.h"
 #import "Coc.h"
+#import "iRate.h"
+#import "iRateConfiguration.h"
 #import "Lens.h"
 #import "RootViewController.h"
+#import "SubjectDistanceRangePolicyFactory.h"
 
 #import "UserDefaults.h"
 
+static NSString* oldSharedCameraBagArchivePath;
 static NSString* sharedCameraBagArchivePath;
 
 // Defaults for preferences
@@ -41,11 +45,13 @@ float DefaultSubjectDistance = 2.5f;
 
 @interface FieldToolsAppDelegate ()
 
+- (void)relocateCameraBag;
 - (void)saveDefaults;
 
 + (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom21:(NSMutableDictionary*)defaultValues;
++ (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues;
 + (void)setupDefaultValues;
 
 @end
@@ -55,20 +61,59 @@ float DefaultSubjectDistance = 2.5f;
 @synthesize window;
 @synthesize rootViewController;
 
++ (void)initialize
+{
+    // Configure iRate
+    [[iRate sharedInstance] setAppStoreID:kAppStoreID];
+    [[iRate sharedInstance] setDaysUntilPrompt:kDaysUntilRatingPrompt];
+    [[iRate sharedInstance] setUsesUntilPrompt:kUsesUntilRatingPrompt];
+    [[iRate sharedInstance] setRemindPeriod:kDaysUntilRatingReminder];
+    
+    [[iRate sharedInstance] setMessageTitle:NSLocalizedString(@"RATING_TITLE", @"RATING_TITLE")];
+    [[iRate sharedInstance] setMessage:NSLocalizedString(@"RATING_MESSAGE", @"RATING_MESSAGE")];
+    [[iRate sharedInstance] setCancelButtonLabel:NSLocalizedString(@"RATING_CANCEL", @"RATING_CANCEL")];
+    [[iRate sharedInstance] setRateButtonLabel:NSLocalizedString(@"RATING_RATE", @"RATING_RATE")];
+    [[iRate sharedInstance] setRemindButtonLabel:NSLocalizedString(@"RATING_LATER", @"RATING_LATER")];
+    
+#ifdef DEBUG
+    [[iRate sharedInstance] setDebug:YES];
+#endif
+}
+
 - (void)awakeFromNib
 {
-	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Library/Default.camerabag",
-								   NSHomeDirectory()] retain];
+#ifdef DEBUG
+    // Don't send events to Google from debug builds
+    [[GANTracker sharedTracker] setDryRun:YES];
+#endif
+    
+    [[GANTracker sharedTracker] setAnonymizeIp:YES];
+    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];	
+    
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];    
+    
+	oldSharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
+								   libraryPath] retain];
+	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
+                                      documentsPath] retain];
+    
+    [self relocateCameraBag];
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom22Key, nil]];
 	
 	[FieldToolsAppDelegate setupDefaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
 
 	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 }
@@ -81,10 +126,12 @@ float DefaultSubjectDistance = 2.5f;
 	[self saveDefaults];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication*)application
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[window addSubview:[rootViewController view]];
+    [window addSubview:[rootViewController view]];
     [window makeKeyAndVisible];
+    
+    return YES;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -103,35 +150,44 @@ float DefaultSubjectDistance = 2.5f;
 	
 	bool migratedFrom21 = [[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath];
 	NSLog(@"Previously migrated from 2.1: %s", migratedFrom21 ? "YES" : "NO");
+	
+	bool migratedFrom22 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom22Key];
+	NSLog(@"Previously migrated from 2.2: %s", migratedFrom22 ? "YES" : "NO");
 
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
 	
-	if (!migratedFrom21)
-	{
-		if (!migratedFrom20)
-		{
-			if (!migratedFrom10)
-			{
-				NSLog(@"Migrating defaults from 1.0 to 2.0");
-				[FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
-			}
-			else if ([Camera count_deprecated] == 0)
-			{
-				CoC* coc = [CoC findFromPresets:DefaultCoC];
-				Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
-																 coc:coc
-														  identifier:0];
-				[camera save_deprecated];
-				[camera release];
-			}
-			
-			NSLog(@"Migrating defaults from 2.0 to 2.1");
-			[FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
-		}
-		
-		NSLog(@"Migrating defaults from 2.1");
-		[FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
-	}
+    if (!migratedFrom22)
+    {
+        if (!migratedFrom21)
+        {
+            if (!migratedFrom20)
+            {
+                if (!migratedFrom10)
+                {
+                    NSLog(@"Migrating defaults from 1.0 to 2.0");
+                    [FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
+                }
+                else if ([Camera count_deprecated] == 0)
+                {
+                    CoC* coc = [CoC findFromPresets:DefaultCoC];
+                    Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
+                                                                     coc:coc
+                                                              identifier:0];
+                    [camera save_deprecated];
+                    [camera release];
+                }
+                
+                NSLog(@"Migrating defaults from 2.0 to 2.1");
+                [FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
+            }
+            
+            NSLog(@"Migrating defaults from 2.1");
+            [FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
+        }
+        
+        NSLog(@"Migrating defaults from 2.2");
+        [FieldToolsAppDelegate migrateDefaultsFrom22:defaultValues];
+    }
 	
 	[defaultValues setObject:[NSNumber numberWithInt:1]
 					  forKey:FTCameraCount];
@@ -152,9 +208,9 @@ float DefaultSubjectDistance = 2.5f;
 					  forKey:FTDistanceTypeKey];
 	[defaultValues setObject:[NSNumber numberWithInt:DistanceUnitsFeetAndInches]
 					  forKey:FTDistanceUnitsKey];
-	
-	[defaultValues setObject:[NSNumber numberWithBool:false]
-					  forKey:FTMacroModeKey];
+    
+    [defaultValues setObject:[NSNumber numberWithInt:SubjectDistanceRangeMid]
+                                              forKey:FTSubjectDistanceRangeKey];
 
 	// Add default version to make migration easier for subsequent versions
 	[defaultValues setObject:[NSNumber numberWithInt:DEFAULTS_BASE_VERSION]
@@ -250,9 +306,46 @@ float DefaultSubjectDistance = 2.5f;
 	[cameraBag release];
 }
 
++ (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues
+{
+    bool macro = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:macro ? SubjectDistanceRangeMacro : SubjectDistanceRangeMid]
+                                              forKey:FTSubjectDistanceRangeKey];
+    
+    // Remove obsolete keys
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FTMacroModeKey];
+}
+
 - (void)saveDefaults
 {
 	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// This method is necessary because for some reason I originally put the camera bag
+// in the Library directory. It should be in Documents.
+- (void)relocateCameraBag
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath])
+    {
+        NSLog(@"Camera bag already exists at new location.");
+        
+        // File exists at the new location. There is nothing to do. For safety, check
+        // that there is not a file at the old location.
+        NSAssert(![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath],
+                 @"Camera bags found at both old and new location.");
+        return;
+    }
+    
+    NSLog(@"Moving camera bag to new location.");
+    
+    NSError* error;
+    if (![[NSFileManager defaultManager] moveItemAtPath:oldSharedCameraBagArchivePath
+                                            toPath:sharedCameraBagArchivePath
+                                             error:&error])
+    {
+        NSLog(@"%@", [error localizedDescription]);
+    }
 }
 
 - (void)dealloc 

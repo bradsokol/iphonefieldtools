@@ -16,7 +16,9 @@ Field Tools is an efficient, easy to use depth of field calculator for photograp
 
 ## Source Code
 
+Field Tools is implemented as a utility application. The settings "side" of the app uses UITableViews and UINavigationController to configure cameras and lenses. Hopefully, the source can serve as an example of a reasonably well written app that is a bit more substantial than the typical sample Cocoa Touch code.
 
+The [master](https://github.com/bradsokol/iphonefieldtools/tree/master) branch contains source for versions that have been released to the iTunes App Store. To follow on-going development, have a look at the [develop](https://github.com/bradsokol/iphonefieldtools/tree/develop) branch.
 
 ## Downloads
 
@@ -34,7 +36,7 @@ Field Tools is licensed under the [Apache License](http://www.apache.org/license
 
 Thanks to following people for their contributions on Github that helped make Field Tools better:
 
-* [Arash Payan](https://github.com/arashpayan) for [Appirater](https://github.com/arashpayan/appirater), a class for gently prompting users to write an app review.
+* [Guillaume Campagna](https://github.com/gcamp) for [GCDiscreetNotificationView](https://github.com/gcamp/GCDiscreetNotificationView), a discreet, non-modal notification view.
+* [Nick Lockwood](https://github.com/nicklockwood) for [iRate](https://github.com/nicklockwood/iRate), a class for gently prompting users to write an app review.
 * [Ole Begemann](https://github.com/ole) for [OBSlider](https://github.com/ole/OBSlider), a UISlider subclass with variable scrubbing speed.
-
 

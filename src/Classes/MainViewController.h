@@ -26,7 +26,7 @@
 @class DistanceFormatter;
 @class ResultView;
 
-@interface MainViewController : UIViewController 
+@interface MainViewController : UIViewController <UIActionSheetDelegate> 
 {
 	IBOutlet UILabel* apertureLabel;
 	IBOutlet UISlider* apertureSlider;
@@ -46,6 +46,7 @@
 	IBOutlet UILabel* subjectDistanceText;
 	IBOutlet UILabel* subjectDistanceMinimum;
 	IBOutlet UILabel* subjectDistanceMaximum;
+    IBOutlet UIButton* subjectDistanceRangeText;
 	
 	IBOutlet ResultView* resultView;
 	
@@ -57,8 +58,10 @@
 	
 	NSMutableArray* apertures;
 	
-	id<SubjectDistanceSliderPolicy> subjectDistanceSliderPolicy;
+	SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 }
+
+- (IBAction)subjectDistanceRangeTextWasTouched:(id)sender;
 
 - (void)apertureDidChange:(id)sender;
 - (void)distanceTypeDidChange:(id)sender;

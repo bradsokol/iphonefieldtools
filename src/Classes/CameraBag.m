@@ -22,6 +22,7 @@
 
 #import "CameraBag.h"
 
+#import "Camera.h"
 #import "Lens.h"
 
 #import "UserDefaults.h"
@@ -96,7 +97,7 @@ static CameraBag* sharedCameraBag = nil;
 	return NSUIntegerMax; 
 } 
 
-- (void)release 
+- (oneway void)release 
 { 
 } 
 
@@ -120,10 +121,13 @@ static CameraBag* sharedCameraBag = nil;
 
 - (id)initWithCoder:(NSCoder*)decoder
 {
-	[self init];
+	if ((self = [self init]) == nil)
+    {
+        return nil;
+    }
 	
-	[self setCameras:[[decoder decodeObjectForKey:@"Cameras"] retain]];
-	[self setLenses:[[decoder decodeObjectForKey:@"Lenses"] retain] ];
+	[self setCameras:[decoder decodeObjectForKey:@"Cameras"]];
+	[self setLenses:[decoder decodeObjectForKey:@"Lenses"] ];
 
 	return self;
 }

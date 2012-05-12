@@ -1,4 +1,4 @@
-// Copyright 2010 Brad Sokol
+// Copyright 2011 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,24 +11,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 
 //
-//  StandardSubjectDistanceSliderPolicy.h
+//  MetricMacroSubjectDistanceRangePolicy.h
 //  FieldTools
 //
-//  Created by Brad on 2010/06/06.
-//  Copyright 2010 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 11-08-31.
+//  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "SubjectDistanceSliderPolicy.h"
+#import "SubjectDistanceRangePolicy.h"
 
-@interface StandardSubjectDistanceSliderPolicy : NSObject <SubjectDistanceSliderPolicy>
+@interface MacroSubjectDistanceRangePolicy : SubjectDistanceRangePolicy
 {
+    
 }
-
-- (float)distanceForSliderValue:(float)value;
-- (float)sliderValueForDistance:(float)distance;
 
 @end

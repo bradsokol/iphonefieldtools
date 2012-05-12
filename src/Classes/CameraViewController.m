@@ -150,6 +150,13 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+
+    NSError *error;
+    NSString* pageName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
+    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 

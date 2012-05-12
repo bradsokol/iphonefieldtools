@@ -101,6 +101,17 @@
 - (void)saveWasSelected
 {
 	[[self camera] setCoc:[[self cameraWorking] coc]];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:kCategoryCoC
+                                         action:kActionChanged
+                                          label:[[[self cameraWorking] coc] description]
+                                          value:-1
+                                      withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
+
 	
 	[[self navigationController] popViewControllerAnimated:YES];
 }
@@ -108,6 +119,12 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackPageview:kSettingsCoC withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
@@ -123,6 +140,15 @@
 }
 
 #pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == [[CoC cocPresets] count])
+    {
+        // Custom CoC row
+        [self didSelectCustomCoCInTableView:tableView];
+    }
+}
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {

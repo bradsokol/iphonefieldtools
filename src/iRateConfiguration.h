@@ -1,4 +1,4 @@
-// Copyright 2010 Brad Sokol
+// Copyright 2012 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,20 +13,18 @@
 // limitations under the License.
 
 //
-//  MacroDistanceFormatter.h
+//  iRateConfiguration.h
 //  FieldTools
 //
-//  Created by Brad on 2010/10/17.
-//  Copyright 2010 Brad Sokol. All rights reserved.
+//  Created by Brad Sokol on 2012-05-03.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef FieldTools_iRateConfiguration_h
+#define FieldTools_iRateConfiguration_h
 
-#import "DistanceFormatter.h"
+#define kAppStoreID                 305817254
+#define kDaysUntilRatingPrompt      14.0
+#define kUsesUntilRatingPrompt      20
+#define kDaysUntilRatingReminder    7.0
 
-@interface MacroDistanceFormatter : DistanceFormatter 
-{
-
-}
-
-@end
+#endif

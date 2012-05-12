@@ -29,9 +29,9 @@
 		
 #define UPPER_ROW_TOP			0
 
-- (id)initWithFrame:(CGRect)aRect reuseIdentifier:(NSString *)identifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
 {
-	self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (nil == self)
 	{
 		return nil;

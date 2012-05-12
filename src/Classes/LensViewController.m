@@ -202,7 +202,7 @@ static const float SectionHeaderHeight = 44.0;
 	// All cells except the first two of the type section have a UITextField. If the cell is touched 
 	// anywhere, not just in the text field, make the text field the first responder.
 	if ([indexPath section] != TYPE_SECTION ||
-		[indexPath section] == TYPE_SECTION && [indexPath row] == LENS_TITLE_ROW)
+		([indexPath section] == TYPE_SECTION && [indexPath row] == LENS_TITLE_ROW))
 	{
 		UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
 		UITextField* textField = (UITextField*)[cell viewWithTag:TEXT_FIELD_TAG];
@@ -286,6 +286,13 @@ static const float SectionHeaderHeight = 44.0;
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    NSError *error;
+    NSString* pageName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
+    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
+    {
+        NSLog(@"Error recording analytics page view: %@", error);
+    }
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
@@ -415,7 +422,8 @@ static const float SectionHeaderHeight = 44.0;
 	NSInteger tag = [cell tag];
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
-	NSLog(@"Text field %08x did end editing for section %d row %d for cell %08x", textField, section, row, cell);
+	NSLog(@"Text field %08x did end editing for section %d row %d for cell %08x", 
+          (unsigned int) textField, section, row, (unsigned int) cell);
 	
 	if (TITLE_SECTION == section)
 	{
