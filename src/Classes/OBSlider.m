@@ -220,8 +220,8 @@
 
 - (void) loadImages
 {
-    normalThumb = [UIImage imageNamed:@"sliderThumbNormal.png"];
-    highlightedThumb = [UIImage imageNamed:@"sliderThumbHighlighted.png"];
+    normalThumb = [[UIImage imageNamed:@"sliderThumbNormal.png"] retain];
+    highlightedThumb = [[UIImage imageNamed:@"sliderThumbHighlighted.png"] retain];
 }
 
 
