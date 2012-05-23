@@ -877,6 +877,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Field Tools";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11FABEC7-AE44-42E7-8C39-165FFCE3BC0A";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -902,6 +903,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Field Tools";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11FABEC7-AE44-42E7-8C39-165FFCE3BC0A";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

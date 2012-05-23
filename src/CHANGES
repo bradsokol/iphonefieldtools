@@ -1,5 +1,11 @@
-Version 2.3
+Version 2.3.1
 ???, 2012
+
+Fixes:
+  * Fix crash when using sliders. Was not retaining the thumb image.
+
+Version 2.3
+May 12, 2012
 
 New features, enhancements:
   * Integrated Appirater to prompt users to rate the app.
