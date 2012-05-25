@@ -46,6 +46,7 @@
 		A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */; };
 		A237E63F12AAF4F00089862B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63C12AAF4F00089862B /* Camera.m */; };
 		A237E64012AAF4F00089862B /* CameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63E12AAF4F00089862B /* CameraBag.m */; };
+		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
@@ -167,6 +168,7 @@
 		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
 		A237E63E12AAF4F00089862B /* CameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraBag.m; path = Classes/CameraBag.m; sourceTree = "<group>"; };
+		A24B1764156FE23D00BFBFF0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				A2F862791545AC8400BF8480 /* Third Party Components */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				A24B1764156FE23D00BFBFF0 /* Settings.bundle */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				A21DCF5810EF06D700139D93 /* Documentation */,
@@ -636,6 +639,8 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				A24B1766156FE3BA00BFBFF0 /* Run Script - Update Version */,
+				A24B1767156FE4E100BFBFF0 /* Run Script - Update Acknowledgements */,
 			);
 			buildRules = (
 			);
@@ -724,6 +729,7 @@
 				A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */,
 				A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
+				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +756,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		A24B1766156FE3BA00BFBFF0 /* Run Script - Update Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - Update Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\ncd $PROJECT_DIR\nBUILD_VERSION=`/usr/local/git/bin/git rev-parse --short HEAD`\necho $BUILD_VERSION\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\necho $RELEASE_VERSION\necho `pwd`\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion $BUILD_VERSION\" Info.plist\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist";
+		};
+		A24B1767156FE4E100BFBFF0 /* Run Script - Update Acknowledgements */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - Update Acknowledgements";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $PROJECT_DIR/Licenses\n./licenses2settings.pl";
 		};
 /* End PBXShellScriptBuildPhase section */
 
