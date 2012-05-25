@@ -7,8 +7,8 @@
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
-            <key>FooterText</key>
-            <string>Copyright</string>
+			<key>FooterText</key>
+			<string>Copyright</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -19,6 +19,14 @@
 			<string>version_preference</string>
 			<key>DefaultValue</key>
 			<string>VersionValue</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>License</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>License</string>
 		</dict>
 		<dict>
 			<key>File</key>
