@@ -769,7 +769,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\ncd $PROJECT_DIR\nBUILD_VERSION=`/usr/local/git/bin/git rev-parse --short HEAD`\necho $BUILD_VERSION\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\necho $RELEASE_VERSION\necho `pwd`\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion $BUILD_VERSION\" Info.plist\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist";
+			shellScript = "#!/bin/bash\ncd \"$PROJECT_DIR\"\nBUILD_VERSION=`/usr/local/git/bin/git rev-parse --short HEAD`\necho $BUILD_VERSION\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\necho $RELEASE_VERSION\necho `pwd`\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion $BUILD_VERSION\" Info.plist\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist";
 		};
 		A24B1767156FE4E100BFBFF0 /* Run Script - Update Acknowledgements */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -783,7 +783,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/Licenses\n./licenses2settings.pl";
+			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./licenses2settings.pl";
 		};
 /* End PBXShellScriptBuildPhase section */
 
