@@ -185,21 +185,19 @@ static const int TEXT_FIELD_TAG = 99;
 {
 	[tableView deselectRowAtIndexPath:indexPath
 							 animated:YES];
-    [[self cameraNameField] resignFirstResponder];
     
     if ([indexPath row] == 0)
     {
         // Camera name row. Touching this row anywhere including on the 
         // label makes in the text field the first responder, bringing up
         // the keyboard.
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-        UITextField* textField = (UITextField*)[cell viewWithTag:TEXT_FIELD_TAG];
-        NSAssert(nil != textField, @"No text field found");
-        [textField becomeFirstResponder];
+        [[self cameraNameField] becomeFirstResponder];
     }
     else 
     {
         // CoC row
+        [[self cameraNameField] resignFirstResponder];
+
         [[NSNotificationCenter defaultCenter] 
          postNotification:
          [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
