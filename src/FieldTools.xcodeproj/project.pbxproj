@@ -46,6 +46,7 @@
 		A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */; };
 		A237E63F12AAF4F00089862B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63C12AAF4F00089862B /* Camera.m */; };
 		A237E64012AAF4F00089862B /* CameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63E12AAF4F00089862B /* CameraBag.m */; };
+		A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2391BF41604062F008D545A /* Default-568h@2x.png */; };
 		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
@@ -168,6 +169,7 @@
 		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
 		A237E63E12AAF4F00089862B /* CameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraBag.m; path = Classes/CameraBag.m; sourceTree = "<group>"; };
+		A2391BF41604062F008D545A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A24B1764156FE23D00BFBFF0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
 				A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */,
 				A28D89E2108D5A6D00C77FEA /* Default.png */,
+				A2391BF41604062F008D545A /* Default-568h@2x.png */,
 				A200F9D31254190F006689F9 /* Default@2x.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
@@ -730,6 +733,7 @@
 				A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
+				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +909,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
@@ -932,7 +936,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
@@ -952,7 +956,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081E431E-3E21-4A94-B99B-F88AD36ADC87";
@@ -979,7 +983,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
@@ -1085,7 +1089,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_NAME = "Field Tools";
@@ -1102,7 +1106,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
