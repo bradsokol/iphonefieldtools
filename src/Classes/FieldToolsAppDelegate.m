@@ -82,6 +82,8 @@ float DefaultSubjectDistance = 2.5f;
 
 - (void)awakeFromNib
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
 #ifdef DEBUG
     // Don't send events to Google from debug builds
     [[GANTracker sharedTracker] setDryRun:YES];
