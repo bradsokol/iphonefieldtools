@@ -126,7 +126,8 @@ float DefaultSubjectDistance = 2.5f;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [window addSubview:[rootViewController view]];
+//    [window addSubview:[rootViewController view]];
+    [[self window] setRootViewController:rootViewController];
     [window makeKeyAndVisible];
     
     return YES;
