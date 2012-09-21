@@ -74,10 +74,6 @@ float DefaultSubjectDistance = 2.5f;
     [[iRate sharedInstance] setCancelButtonLabel:NSLocalizedString(@"RATING_CANCEL", @"RATING_CANCEL")];
     [[iRate sharedInstance] setRateButtonLabel:NSLocalizedString(@"RATING_RATE", @"RATING_RATE")];
     [[iRate sharedInstance] setRemindButtonLabel:NSLocalizedString(@"RATING_LATER", @"RATING_LATER")];
-    
-#ifdef DEBUG
-    [[iRate sharedInstance] setDebug:YES];
-#endif
 }
 
 - (void)awakeFromNib
