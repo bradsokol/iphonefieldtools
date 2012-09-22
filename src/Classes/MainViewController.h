@@ -28,6 +28,9 @@
 
 @interface MainViewController : UIViewController <UIActionSheetDelegate> 
 {
+	IBOutlet UIButton *cameraAndLensDescription;
+	IBOutlet UIButton *infoButton;
+
 	IBOutlet UILabel* apertureLabel;
 	IBOutlet UISlider* apertureSlider;
 	IBOutlet UILabel* apertureText;
@@ -69,6 +72,9 @@
 - (void)subjectDistanceDidChange:(id)sender;
 
 - (float)aperture;
+
+@property (nonatomic, retain) UIButton* cameraAndLensDescription;
+@property (nonatomic, retain) UIButton *infoButton;
 
 @property(assign) float circleOfLeastConfusion;
 @property(assign) float focalLength;

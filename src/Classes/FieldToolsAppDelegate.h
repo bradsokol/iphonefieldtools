@@ -21,16 +21,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class RootViewController;
+@class MainViewController;
 
-@interface FieldToolsAppDelegate : NSObject <UIApplicationDelegate> 
+@interface FieldToolsAppDelegate : UIResponder <UIApplicationDelegate>
 {
     IBOutlet UIWindow *window;
-    IBOutlet RootViewController *rootViewController;
+    IBOutlet MainViewController *mainViewController;
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) RootViewController *rootViewController;
+@property (nonatomic, retain) MainViewController *mainViewController;
 
 @end
 
