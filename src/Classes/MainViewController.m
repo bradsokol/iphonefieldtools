@@ -30,7 +30,6 @@
 #import "FlipsideViewController.h"
 #import "Lens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
-#import "MainView.h"
 #import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
 #import "SubjectDistanceRangePolicy.h"
