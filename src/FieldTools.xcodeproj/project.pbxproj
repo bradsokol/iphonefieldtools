@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
-		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
 		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
@@ -52,7 +51,6 @@
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
-		A24EF5EC0ECA9415001A7B46 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A24EF5EB0ECA9415001A7B46 /* MainView.m */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
@@ -70,7 +68,6 @@
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
-		A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E7000EE45DDE00C37E21 /* RootViewController.m */; };
 		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
@@ -119,7 +116,6 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTools_Prefix.pch; sourceTree = "<group>"; };
-		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -175,8 +171,6 @@
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
-		A24EF5EA0ECA9415001A7B46 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
-		A24EF5EB0ECA9415001A7B46 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
 		A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewTableDataSource.m; sourceTree = "<group>"; };
 		A25BDF3210479BFE00B22B2B /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lens.h; path = Classes/Lens.h; sourceTree = "<group>"; };
@@ -203,8 +197,6 @@
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
-		A284E6FF0EE45DDE00C37E21 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		A284E7000EE45DDE00C37E21 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCoCView.xib; sourceTree = "<group>"; };
 		A28D8A02108D5F2B00C77FEA /* CustomCoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewController.h; sourceTree = "<group>"; };
@@ -297,8 +289,6 @@
 				A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */,
 				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
-				A284E6FF0EE45DDE00C37E21 /* RootViewController.h */,
-				A284E7000EE45DDE00C37E21 /* RootViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -360,7 +350,6 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				A2B95F9E10715EDF0057A70E /* LensView.xib */,
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
-				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				2899E55F0DE3E45000AC0155 /* MainView.xib */,
 				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
 				A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */,
@@ -422,8 +411,6 @@
 			children = (
 				888FB7E0140E7D840041BB2B /* Subject Distance Range Policies */,
 				A28082F411BBFC240057669F /* Subject Distance Slider Policies */,
-				A24EF5EA0ECA9415001A7B46 /* MainView.h */,
-				A24EF5EB0ECA9415001A7B46 /* MainView.m */,
 				28C286DF0D94DF7D0034E888 /* MainViewController.h */,
 				28C286E00D94DF7D0034E888 /* MainViewController.m */,
 				A2C70FE70F7562AF00484E24 /* ResultView.h */,
@@ -707,7 +694,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* MainView.xib in Resources */,
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
 				A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */,
@@ -799,9 +785,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */,
-				A24EF5EC0ECA9415001A7B46 /* MainView.m in Sources */,
 				A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */,
-				A284E7030EE45DDE00C37E21 /* RootViewController.m in Sources */,
 				A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */,
 				A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */,
 				A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */,
