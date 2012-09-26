@@ -801,6 +801,7 @@ static BOOL previousLensWasZoom = YES;
     
     controller.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [controller setNavigationController:navController];
     
 	UINavigationItem* navigationItem = [[[navController navigationBar] items] objectAtIndex:0];
 	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
