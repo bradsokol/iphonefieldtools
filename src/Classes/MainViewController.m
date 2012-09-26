@@ -27,6 +27,7 @@
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
+#import "FlipsideViewController.h"
 #import "Lens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
 #import "MainView.h"
@@ -757,6 +758,13 @@ static BOOL previousLensWasZoom = YES;
         subjectDistanceRange == SubjectDistanceRangeMacro;
 }
 
+#pragma mark FlipsideViewControllerDelegate
+
+- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -786,6 +794,22 @@ static BOOL previousLensWasZoom = YES;
             NSLog(@"Error recording analytics page view: %@", error);
         }
     }
+}
+
+- (IBAction)toggleView
+{
+    FlipsideViewController* controller = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil] autorelease];
+    
+    controller.delegate = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+	UINavigationItem* navigationItem = [[[navController navigationBar] items] objectAtIndex:0];
+	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
+	[[navController navigationBar] setBarStyle:UIBarStyleBlackOpaque];
+    
+    [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self presentViewController:navController animated:YES completion:NULL];
+    [navController release];
 }
 
 - (void)dealloc 

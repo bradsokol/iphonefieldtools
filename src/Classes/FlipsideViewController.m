@@ -49,7 +49,6 @@
 @implementation FlipsideViewController
 
 @synthesize navigationController;
-@synthesize rootViewController;
 @synthesize tableViewDataSource;
 @synthesize tableViewDelegate;
 
@@ -117,8 +116,8 @@
 	[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 	UIBarButtonItem* rightBarButtonItem = 
 		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-													  target:rootViewController
-													  action:@selector(toggleView)];
+													  target:self
+													  action:@selector(done)];
 	[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
 	[rightBarButtonItem release];
 	
@@ -167,8 +166,8 @@
 		UIBarButtonItem* rightBarButtonItem = 
 			[[UIBarButtonItem alloc] 
 			 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-			 target:rootViewController
-			 action:@selector(toggleView)];
+			 target:self
+			 action:@selector(done)];
 		
 		[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
 		[rightBarButtonItem release];
@@ -197,6 +196,11 @@
 }
 
 #pragma mark Events
+
+- (void)done
+{
+    [self.delegate flipsideViewControllerDidFinish:self];
+}
 
 - (void)didReceiveMemoryWarning 
 {
@@ -296,10 +300,9 @@
 
 - (void)dealloc 
 {
-	[[NSNotificationCenter defaultCenter] removeObject:self];
+//	[[NSNotificationCenter defaultCenter] removeObject:self];
 	
 	[self setNavigationController:nil];
-	[self setRootViewController:nil];
 	[self setTableViewDataSource:nil];
 	[self setTableViewDelegate:nil];
 	

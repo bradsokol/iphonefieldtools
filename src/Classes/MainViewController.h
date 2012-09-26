@@ -21,12 +21,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FlipsideViewController.h"
 #import "SubjectDistanceSliderPolicy.h"
 
 @class DistanceFormatter;
 @class ResultView;
 
-@interface MainViewController : UIViewController <UIActionSheetDelegate> 
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIActionSheetDelegate>
 {
 	IBOutlet UIButton *cameraAndLensDescription;
 	IBOutlet UIButton *infoButton;
@@ -72,6 +73,8 @@
 - (void)subjectDistanceDidChange:(id)sender;
 
 - (float)aperture;
+
+- (IBAction)toggleView;
 
 @property (nonatomic, retain) UIButton* cameraAndLensDescription;
 @property (nonatomic, retain) UIButton *infoButton;

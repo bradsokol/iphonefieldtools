@@ -23,19 +23,22 @@
 
 @class FlipsideTableViewDataSource;
 @class FlipsideTableViewDelegate;
-@class RootViewController;
+@class FlipsideViewController;
+
+@protocol FlipsideViewControllerDelegate
+- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+@end
 
 @interface FlipsideViewController : UITableViewController 
 {
 	FlipsideTableViewDataSource* tableViewDataSource;
 	FlipsideTableViewDelegate* tableViewDelegate;
-	RootViewController* rootViewController;
 	UINavigationController* navigationController;
 }
 
+@property (assign, nonatomic) id <FlipsideViewControllerDelegate> delegate;
 @property(nonatomic, retain) FlipsideTableViewDataSource* tableViewDataSource;
 @property(nonatomic, retain) FlipsideTableViewDelegate* tableViewDelegate;
-@property(nonatomic, retain) RootViewController* rootViewController;
 @property(nonatomic, retain) UINavigationController* navigationController;
 
 @end
