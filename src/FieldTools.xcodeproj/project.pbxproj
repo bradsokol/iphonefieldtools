@@ -68,6 +68,10 @@
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
+		A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */; };
+		A289FAD41613D8D300211AE0 /* iRate.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD01613D8D300211AE0 /* iRate.license */; };
+		A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD11613D8D300211AE0 /* licenses2settings.pl */; };
+		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
 		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
@@ -197,6 +201,10 @@
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
+		A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDiscreetNotificationView.license; sourceTree = "<group>"; };
+		A289FAD01613D8D300211AE0 /* iRate.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iRate.license; sourceTree = "<group>"; };
+		A289FAD11613D8D300211AE0 /* licenses2settings.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = licenses2settings.pl; sourceTree = "<group>"; };
+		A289FAD21613D8D300211AE0 /* OBSlider.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OBSlider.license; sourceTree = "<group>"; };
 		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCoCView.xib; sourceTree = "<group>"; };
 		A28D8A02108D5F2B00C77FEA /* CustomCoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewController.h; sourceTree = "<group>"; };
@@ -481,6 +489,17 @@
 			name = "Subject Distance Slider Policies";
 			sourceTree = "<group>";
 		};
+		A289FACE1613D8D300211AE0 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */,
+				A289FAD01613D8D300211AE0 /* iRate.license */,
+				A289FAD11613D8D300211AE0 /* licenses2settings.pl */,
+				A289FAD21613D8D300211AE0 /* OBSlider.license */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
 		A28D8A05108D5F4200C77FEA /* Custom CoC View */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +621,7 @@
 		A2F862791545AC8400BF8480 /* Third Party Components */ = {
 			isa = PBXGroup;
 			children = (
+				A289FACE1613D8D300211AE0 /* Licenses */,
 				A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */,
 				A2F8627B1545ACC400BF8480 /* Google Analytics */,
 				A2E3D0F315532789005F3F30 /* iRate */,
@@ -720,6 +740,10 @@
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
+				A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */,
+				A289FAD41613D8D300211AE0 /* iRate.license in Resources */,
+				A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */,
+				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
