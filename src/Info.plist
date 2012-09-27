@@ -33,5 +33,9 @@
 	<string>2.3.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>
