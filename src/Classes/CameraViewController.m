@@ -29,6 +29,8 @@
 #import "Notifications.h"
 #import "UserDefaults.h"
 
+static const int TEXT_FIELD_TAG = 99;
+
 @interface CameraViewController ()
 
 - (void)cancelWasSelected;
@@ -183,11 +185,24 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath
 							 animated:YES];
-	
-	[[NSNotificationCenter defaultCenter] 
-	 postNotification:
-	 [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
-								   object:[self cameraWorking]]];
+    
+    if ([indexPath row] == 0)
+    {
+        // Camera name row. Touching this row anywhere including on the 
+        // label makes in the text field the first responder, bringing up
+        // the keyboard.
+        [[self cameraNameField] becomeFirstResponder];
+    }
+    else 
+    {
+        // CoC row
+        [[self cameraNameField] resignFirstResponder];
+
+        [[NSNotificationCenter defaultCenter] 
+         postNotification:
+         [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
+                                       object:[self cameraWorking]]];
+    }
 }
 
 #pragma mark UIAlertViewDelegate methods

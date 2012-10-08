@@ -27,7 +27,7 @@
 #import "iRate.h"
 #import "iRateConfiguration.h"
 #import "Lens.h"
-#import "RootViewController.h"
+#import "MainViewController.h"
 #import "SubjectDistanceRangePolicyFactory.h"
 
 #import "UserDefaults.h"
@@ -45,6 +45,8 @@ float DefaultSubjectDistance = 2.5f;
 
 @interface FieldToolsAppDelegate ()
 
+- (void)startGoogleAnalytics;
+
 - (void)relocateCameraBag;
 - (void)saveDefaults;
 
@@ -59,7 +61,7 @@ float DefaultSubjectDistance = 2.5f;
 @implementation FieldToolsAppDelegate
 
 @synthesize window;
-@synthesize rootViewController;
+@synthesize mainViewController;
 
 + (void)initialize
 {
@@ -74,48 +76,6 @@ float DefaultSubjectDistance = 2.5f;
     [[iRate sharedInstance] setCancelButtonLabel:NSLocalizedString(@"RATING_CANCEL", @"RATING_CANCEL")];
     [[iRate sharedInstance] setRateButtonLabel:NSLocalizedString(@"RATING_RATE", @"RATING_RATE")];
     [[iRate sharedInstance] setRemindButtonLabel:NSLocalizedString(@"RATING_LATER", @"RATING_LATER")];
-    
-#ifdef DEBUG
-    [[iRate sharedInstance] setDebug:YES];
-#endif
-}
-
-- (void)awakeFromNib
-{
-#ifdef DEBUG
-    // Don't send events to Google from debug builds
-    [[GANTracker sharedTracker] setDryRun:YES];
-#endif
-    
-    [[GANTracker sharedTracker] setAnonymizeIp:YES];
-    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
-                                           dispatchPeriod:kGANDispatchPeriodSec
-                                                 delegate:nil];	
-    
-    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];    
-    
-	oldSharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
-								   libraryPath] retain];
-	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
-                                      documentsPath] retain];
-    
-    [self relocateCameraBag];
-
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom22Key, nil]];
-	
-	[FieldToolsAppDelegate setupDefaultValues];
-	
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
-
-	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 }
 
 # pragma mark "UIApplicationDelegate methods"
@@ -128,9 +88,35 @@ float DefaultSubjectDistance = 2.5f;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [window addSubview:[rootViewController view]];
-    [window makeKeyAndVisible];
+    [self setWindow:[[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease]];
     
+    [self startGoogleAnalytics];
+
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
+                                   documentsPath] retain];
+    
+    [self relocateCameraBag];
+    
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom22Key, nil]];
+	
+	[FieldToolsAppDelegate setupDefaultValues];
+	
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
+    
+	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
+    
+    [self setMainViewController:[[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease]];
+    [[self window] setRootViewController:[self mainViewController]];
+    [[self window] makeKeyAndVisible];
+
     return YES;
 }
 
@@ -326,6 +312,11 @@ float DefaultSubjectDistance = 2.5f;
 // in the Library directory. It should be in Documents.
 - (void)relocateCameraBag
 {
+    NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+	oldSharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
+                                      libraryPath] retain];
+
     if ([[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath])
     {
         NSLog(@"Camera bag already exists at new location.");
@@ -348,9 +339,22 @@ float DefaultSubjectDistance = 2.5f;
     }
 }
 
+- (void)startGoogleAnalytics
+{
+#ifdef DEBUG
+    // Don't send events to Google from debug builds
+    [[GANTracker sharedTracker] setDryRun:YES];
+#endif
+    
+    [[GANTracker sharedTracker] setAnonymizeIp:YES];
+    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
+}
+
 - (void)dealloc 
 {
-    [self setRootViewController:nil];
+    [self setMainViewController:nil];
     [self setWindow:nil];
 	
     [super dealloc];

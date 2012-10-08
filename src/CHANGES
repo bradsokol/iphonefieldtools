@@ -1,5 +1,5 @@
 Version 2.3.1
-???, 2012
+May 22, 2012
 
 Fixes:
   * Fix crash when using sliders. Was not retaining the thumb image.

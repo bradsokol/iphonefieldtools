@@ -27,9 +27,9 @@
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
+#import "FlipsideViewController.h"
 #import "Lens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
-#import "MainView.h"
 #import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
 #import "SubjectDistanceRangePolicy.h"
@@ -70,6 +70,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
 - (void)updateAperture;
+- (void)updateCameraAndLensDescription;
 - (void)updateDistanceFormatter;
 - (void)updateFocalLength;
 - (void)updateResult;
@@ -90,8 +91,10 @@ static BOOL previousLensWasZoom = YES;
 #pragma mark Accessors
 
 @synthesize apertureIndex;
+@synthesize cameraAndLensDescription;
 @synthesize circleOfLeastConfusion;
 @synthesize distanceFormatter;
+@synthesize infoButton;
 @synthesize subjectDistance;
 @synthesize subjectDistanceSliderPolicy;
 
@@ -159,6 +162,8 @@ static BOOL previousLensWasZoom = YES;
     int distanceTypeSetting = [[NSUserDefaults standardUserDefaults] 
                         integerForKey:FTDistanceTypeKey];
     [self recordAnalyticsForDistanceType:distanceTypeSetting];
+    
+    [self updateCameraAndLensDescription];
     
 	[self updateDistanceFormatter];
 	
@@ -482,6 +487,16 @@ static BOOL previousLensWasZoom = YES;
 	[self updateResult];
 }
 
+- (void)updateCameraAndLensDescription
+{
+	CameraBag* cameraBag = [CameraBag sharedCameraBag];
+	
+    NSString* title = [NSString stringWithFormat:@"%@ - %@",
+                       [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
+    
+	[cameraAndLensDescription setTitle:title forState:UIControlStateNormal];
+}
+
 // Update the focallength display
 - (void)updateFocalLength
 {
@@ -742,6 +757,13 @@ static BOOL previousLensWasZoom = YES;
         subjectDistanceRange == SubjectDistanceRangeMacro;
 }
 
+#pragma mark FlipsideViewControllerDelegate
+
+- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -773,6 +795,23 @@ static BOOL previousLensWasZoom = YES;
     }
 }
 
+- (IBAction)toggleView
+{
+    FlipsideViewController* controller = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil] autorelease];
+    
+    controller.delegate = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [controller setNavigationController:navController];
+    
+	UINavigationItem* navigationItem = [[[navController navigationBar] items] objectAtIndex:0];
+	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
+	[[navController navigationBar] setBarStyle:UIBarStyleBlackOpaque];
+    
+    [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self presentViewController:navController animated:YES completion:NULL];
+    [navController release];
+}
+
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -788,6 +827,8 @@ static BOOL previousLensWasZoom = YES;
 {
     [subjectDistanceRangeText release];
     subjectDistanceRangeText = nil;
+	[self setCameraAndLensDescription:nil];
+	[self setInfoButton:nil];
 
     [super viewDidUnload];
 }
