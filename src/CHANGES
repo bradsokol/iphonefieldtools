@@ -1,6 +1,10 @@
 Version 2.3.4
 xxx nn, 2012
 
+Internal changes:
+* Re-factored analytics in to a polcy class with corresponding protocol.
+  Goal is to reduce coupling and enable more automated unit testing.
+
 New features, enhancements:
 
 Fixes:
