@@ -22,6 +22,7 @@
 
 #import "CameraViewController.h"
 
+#import "AnalyticsPolicy.h"
 #import "Camera.h"
 #import "CameraViewTableDataSource.h"
 #import "CoC.h"
@@ -46,6 +47,7 @@ static const int TEXT_FIELD_TAG = 99;
 
 @implementation CameraViewController
 
+@synthesize analyticsPolicy;
 @synthesize camera;
 @synthesize cameraNameField;
 @synthesize cameraNameCell;
@@ -153,12 +155,8 @@ static const int TEXT_FIELD_TAG = 99;
 {
     [super viewDidLoad];
 
-    NSError *error;
-    NSString* pageName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
-    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+    NSString* viewName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
+    [[self analyticsPolicy] trackView:viewName];
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 

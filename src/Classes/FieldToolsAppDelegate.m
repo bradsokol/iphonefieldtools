@@ -24,6 +24,7 @@
 #import "Camera.h"
 #import "CameraBag.h"
 #import "Coc.h"
+#import "GoogleAnalyticsPolicy.h"
 #import "iRate.h"
 #import "iRateConfiguration.h"
 #import "Lens.h"
@@ -56,10 +57,13 @@ float DefaultSubjectDistance = 2.5f;
 + (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues;
 + (void)setupDefaultValues;
 
+@property (retain, nonatomic) GoogleAnalyticsPolicy* analyticsPolicy;
+
 @end
 
 @implementation FieldToolsAppDelegate
 
+@synthesize analyticsPolicy;
 @synthesize window;
 @synthesize mainViewController;
 
@@ -114,6 +118,9 @@ float DefaultSubjectDistance = 2.5f;
 	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
     
     [self setMainViewController:[[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease]];
+    
+    [[self mainViewController] setAnalyticsPolicy:[self analyticsPolicy]];
+    
     [[self window] setRootViewController:[self mainViewController]];
     [[self window] makeKeyAndVisible];
 
@@ -341,19 +348,17 @@ float DefaultSubjectDistance = 2.5f;
 
 - (void)startGoogleAnalytics
 {
+    [self setAnalyticsPolicy:[[GoogleAnalyticsPolicy alloc] init]];
+    
 #ifdef DEBUG
     // Don't send events to Google from debug builds
-    [[GANTracker sharedTracker] setDryRun:YES];
+    [[self analyticsPolicy] setDebug:YES];
 #endif
-    
-    [[GANTracker sharedTracker] setAnonymizeIp:YES];
-    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
-                                           dispatchPeriod:kGANDispatchPeriodSec
-                                                 delegate:nil];
 }
 
 - (void)dealloc 
 {
+    [self setAnalyticsPolicy:nil];
     [self setMainViewController:nil];
     [self setWindow:nil];
 	

@@ -46,6 +46,7 @@
 
 @implementation CoCViewController
 
+@synthesize analyticsPolicy;
 @synthesize camera;
 @synthesize cameraWorking;
 @synthesize saveButton;
@@ -102,15 +103,9 @@
 {
 	[[self camera] setCoc:[[self cameraWorking] coc]];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackEvent:kCategoryCoC
-                                         action:kActionChanged
-                                          label:[[[self cameraWorking] coc] description]
-                                          value:-1
-                                      withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+    [[self analyticsPolicy] trackEvent:kCategoryCoC
+                                action:kActionChanged
+                                 label:[[[self cameraWorking] coc] description] value:-1];
 
 	
 	[[self navigationController] popViewControllerAnimated:YES];
@@ -119,12 +114,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:kSettingsCoC withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+
+    [[self analyticsPolicy] trackView:kSettingsCoC];
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	

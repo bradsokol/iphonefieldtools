@@ -22,12 +22,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TableViewControllerWithAnalytics.h"
+
 #define CUSTOM_COC_KEY	@"Custom"
 
 @class Camera;
 @class CustomCoCViewTableDataSource;
 
-@interface CustomCoCViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
+@interface CustomCoCViewController : TableViewControllerWithAnalytics <UITableViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITableViewCell* cocValueCell;
 	IBOutlet UITextField* cocValueField;
