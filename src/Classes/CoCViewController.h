@@ -22,10 +22,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TableViewControllerWithAnalytics.h"
+
 @class Camera;
 @class CoCViewTableDataSource;
+@protocol AnalyticsPolicy;
 
-@interface CoCViewController : UITableViewController <UITableViewDelegate>
+@interface CoCViewController : TableViewControllerWithAnalytics <UITableViewDelegate>
 {
 	CoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;

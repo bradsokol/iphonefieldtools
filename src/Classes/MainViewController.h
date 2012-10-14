@@ -27,6 +27,8 @@
 @class DistanceFormatter;
 @class ResultView;
 
+@protocol AnalyticsPolicy;
+
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIActionSheetDelegate>
 {
 	IBOutlet UIButton *cameraAndLensDescription;
@@ -82,5 +84,7 @@
 @property(assign) float circleOfLeastConfusion;
 @property(assign) float focalLength;
 @property(assign) float subjectDistance;
+
+@property(nonatomic, retain) id<AnalyticsPolicy> analyticsPolicy;
 
 @end

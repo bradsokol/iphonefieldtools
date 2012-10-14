@@ -287,12 +287,8 @@ static const float SectionHeaderHeight = 44.0;
 {
     [super viewDidLoad];
     
-    NSError *error;
-    NSString* pageName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
-    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+    NSString* viewName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
+    [[self analyticsPolicy] trackView:viewName];
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	

@@ -38,6 +38,8 @@
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
 		A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */; };
 		A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
+		A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */; };
+		A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -156,6 +158,11 @@
 		A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		A22601BD162AF96F00EE9923 /* AnalyticsPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsPolicy.h; sourceTree = "<group>"; };
+		A22601BE162AF9FC00EE9923 /* GoogleAnalyticsPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsPolicy.h; sourceTree = "<group>"; };
+		A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsPolicy.m; sourceTree = "<group>"; };
+		A22601C1162B198600EE9923 /* TableViewControllerWithAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerWithAnalytics.h; sourceTree = "<group>"; };
+		A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerWithAnalytics.m; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -249,7 +256,7 @@
 		A2F8627A1545ACB500BF8480 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = GoogleAnalytics/GANTracker.h; sourceTree = "<group>"; };
 		A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = GoogleAnalytics/libGoogleAnalytics.a; sourceTree = "<group>"; };
-		A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
+		A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoogleAnalytics.h; path = ../GoogleAnalytics.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +287,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A22601BC162AF7A900EE9923 /* Analytics */,
 				A2747B9F12E255EC002731EC /* Controls */,
 				A24FF4980FE0C3B00073BC03 /* Camera View */,
 				A2D6241910424A2200B2F055 /* CoC View */,
@@ -330,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */,
-				A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */,
 				A2E3D0FA15532C54005F3F30 /* iRateConfiguration.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */,
@@ -412,6 +419,19 @@
 				A21DCF5910EF06ED00139D93 /* CHANGES */,
 			);
 			name = Documentation;
+			sourceTree = "<group>";
+		};
+		A22601BC162AF7A900EE9923 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				A22601BD162AF96F00EE9923 /* AnalyticsPolicy.h */,
+				A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */,
+				A22601BE162AF9FC00EE9923 /* GoogleAnalyticsPolicy.h */,
+				A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */,
+				A22601C1162B198600EE9923 /* TableViewControllerWithAnalytics.h */,
+				A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */,
+			);
+			name = Analytics;
 			sourceTree = "<group>";
 		};
 		A23CFF29108A5FC400A41662 /* Main View */ = {
@@ -849,6 +869,8 @@
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
 				A2E3D0F915532869005F3F30 /* iRate.m in Sources */,
+				A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */,
+				A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,7 @@
 
 #import "FlipsideViewController.h"
 
+#import "AnalyticsPolicy.h"
 #import "Camera.h"
 #import "CameraBag.h"
 #import "CameraViewController.h"
@@ -48,6 +49,7 @@
 
 @implementation FlipsideViewController
 
+@synthesize analyticsPolicy;
 @synthesize navigationController;
 @synthesize tableViewDataSource;
 @synthesize tableViewDelegate;
@@ -105,11 +107,7 @@
 {
     [super viewDidLoad];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:kSettings withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+    [[self analyticsPolicy] trackView:kSettings];
 
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
@@ -209,20 +207,23 @@
 
 - (void)editCamera:(NSNotification*)notification
 {
-	UIViewController* viewController = 
+	CameraViewController* viewController =
 		[[CameraViewController alloc] initWithNibName:@"CameraView" 
 											   bundle:nil
 											forCamera:(Camera*)[notification object]];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }
 
 - (void)editCoC:(NSNotification*)notification
 {
-	UIViewController* viewController = 
+	CoCViewController* viewController =
 	[[CoCViewController alloc] initWithNibName:@"CoCView" 
 										bundle:nil
 									 forCamera:(Camera*)[notification object]];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }
@@ -230,29 +231,35 @@
 - (void)editCustomCoC:(NSNotification*)notification
 {
 	Camera* camera = (Camera*)[notification object];
-	UIViewController* viewController = 
+	CustomCoCViewController* viewController =
 		[[CustomCoCViewController alloc] initWithNibName:@"CustomCoCView" 
 												  bundle:nil
 											   forCamera:camera];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }
 
 - (void)editLens:(NSNotification*)notification
 {
-	UIViewController* viewController = 
+	LensViewController* viewController =
 	[[LensViewController alloc] initWithNibName:@"LensView" 
 										 bundle:nil
 									    forLens:(Lens*)[notification object]];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
 }
 
 - (void)editSubjectDistanceRange:(NSNotification*)notification
 {
-    UIViewController* viewController =
+    SubjectDistanceRangesViewController* viewController =
         [[SubjectDistanceRangesViewController alloc] initWithNibName:@"SubjectDistanceRangesViewController"
                                                               bundle:nil];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
     [[self navigationController] pushViewController:viewController animated:YES];
     [viewController release];
 }

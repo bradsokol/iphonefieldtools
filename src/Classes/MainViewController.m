@@ -21,6 +21,7 @@
 
 #import "MainViewController.h"
 
+#import "AnalyticsPolicy.h"
 #import "Camera.h"
 #import "CameraBag.h"
 #import "CoC.h"
@@ -90,6 +91,7 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Accessors
 
+@synthesize analyticsPolicy;
 @synthesize apertureIndex;
 @synthesize cameraAndLensDescription;
 @synthesize circleOfLeastConfusion;
@@ -633,13 +635,9 @@ static BOOL previousLensWasZoom = YES;
             NSAssert(FALSE, @"Unsupported or unhandled units");
         
     }
-    
-    NSError *error;
+
     NSString* pageName = [NSString stringWithFormat:@"%@%@", viewName, unitsName];
-    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+    [[self analyticsPolicy] trackView:pageName];
 }
 
 - (void)customizeSliderAppearance:(UISlider*)slider
@@ -782,22 +780,19 @@ static BOOL previousLensWasZoom = YES;
         
         [[NSNotificationCenter defaultCenter] 
          postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
-        
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:kCategorySubjectDistanceRange
-                                             action:kActionChanged
-                                              label:kLabelMainView
-                                              value:buttonIndex
-                                          withError:&error]) 
-        {
-            NSLog(@"Error recording analytics page view: %@", error);
-        }
+
+        [[self analyticsPolicy] trackEvent:kCategorySubjectDistanceRange
+                                    action:kActionChanged
+                                     label:kLabelMainView
+                                     value:buttonIndex];
     }
 }
 
 - (IBAction)toggleView
 {
     FlipsideViewController* controller = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil] autorelease];
+    
+    [controller setAnalyticsPolicy:[self analyticsPolicy]];
     
     controller.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -820,6 +815,9 @@ static BOOL previousLensWasZoom = YES;
 	[self setSubjectDistanceSliderPolicy:nil];
 
     [subjectDistanceRangeText release];
+    
+    [self setAnalyticsPolicy:nil];
+    
     [super dealloc];
 }
 
