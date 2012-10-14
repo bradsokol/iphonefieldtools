@@ -42,7 +42,7 @@
 
 - (void)setDebug:(BOOL)value
 {
-    self.debug = value;
+    debug = value;
     
     [[GANTracker sharedTracker] setDryRun:[self debug]];
 }
@@ -51,6 +51,8 @@
 // set to the specific error, or nil).
 - (BOOL)trackView:(NSString *)viewName
 {
+    NSLog(@"Google Anlytics: Tracking view %@", viewName);
+    
     NSError *error;
     BOOL success = [[GANTracker sharedTracker] trackPageview:viewName
                                                    withError:&error];
@@ -70,6 +72,9 @@
              label:(NSString *)label
              value:(NSInteger)value
 {
+    NSLog(@"Google Analytics: Tracking event: (%@, %@, %@, %d)",
+          category, action, label, value);
+    
     NSError *error;
     BOOL success = [[GANTracker sharedTracker] trackEvent:category
                                                    action:action
