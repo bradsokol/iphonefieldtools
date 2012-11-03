@@ -24,6 +24,10 @@
 #import "Camera.h"
 #import "CameraBag.h"
 #import "Coc.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
+#import "FTLens.h"
 #import "GoogleAnalyticsPolicy.h"
 #import "iRate.h"
 #import "iRateConfiguration.h"
@@ -109,20 +113,24 @@ float DefaultSubjectDistance = 2.5f;
     
     [self relocateCameraBag];
     
+    [FTCameraBag initSharedCameraBag:[self managedObjectContext]];
+    
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom22Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom23Key, nil]];
 	
 	[FieldToolsAppDelegate setupDefaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
-    
-	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
+    // TODO: set this flag once code is done
+//	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
     
     [self setMainViewController:[[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease]];
     
@@ -329,7 +337,50 @@ float DefaultSubjectDistance = 2.5f;
 
 + (void)migrateDefaultsFrom23:(NSMutableDictionary*)defaultValues
 {
+	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
     
+    CameraBag* bag = [CameraBag sharedCameraBag];
+    FTCameraBag* newBag = [FTCameraBag sharedCameraBag];
+    
+    int cameraCount = [bag cameraCount];
+    for (int i = 0; i < cameraCount; ++i)
+    {
+        Camera* camera = [bag findCameraForIndex:i];
+        
+        FTCamera* newCamera = [newBag newCamera];
+        [newCamera setName:[camera description]];
+        [newCamera setIndexValue:[camera identifier]];
+        
+        CoC* coc = [camera coc];
+        FTCoC* newCoc = [newBag newCoC];
+        [newCoc setValueValue:[coc value]];
+        [newCoc setName:[coc description]];
+        [newCamera setCoc:newCoc];
+    }
+    
+    int lensCount = [bag lensCount];
+    for (int i = 0; i < lensCount; ++i)
+    {
+        Lens* lens = [bag findLensForIndex:i];
+        
+        FTLens* newLens = [newBag newLens];
+        [newLens setMinimumAperture:[lens minimumAperture]];
+        [newLens setMaximumAperture:[lens maximumAperture]];
+        [newLens setMinimumFocalLength:[lens minimumFocalLength]];
+        [newLens setMaximumFocalLength:[lens maximumFocalLength]];
+        [newLens setName:[lens description]];
+        [newLens setIndexValue:[lens identifier]];
+    }
+    
+    if ([newBag save])
+    {
+        // TODO: Uncomment once testing is complete
+//        NSError* error;
+//        if (![[NSFileManager defaultManager] removeItemAtPath:sharedCameraBagArchivePath error:&error])
+//        {
+//            NSLog(@"Error deleting old camera bag: %@", error);
+//        }
+    }
 }
 
 - (void)saveDefaults

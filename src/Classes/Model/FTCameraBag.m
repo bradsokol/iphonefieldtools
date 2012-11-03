@@ -24,6 +24,7 @@
 
 #import "FieldToolsAppDelegate.h"
 #import "FTCamera.h"
+#import "FTCoC.h"
 #import "FTLens.h"
 
 #import "UserDefaults.h"
@@ -58,6 +59,12 @@ static FTCameraBag* sharedCameraBag = nil;
 + (FTCameraBag*)sharedCameraBag
 {
 	return sharedCameraBag;
+}
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Camera bag with %d cameras and %d lenses",
+            [self cameraCount], [self lensCount]];
 }
 
 - (int)cameraCount
@@ -245,6 +252,17 @@ static FTCameraBag* sharedCameraBag = nil;
     return camera;
 }
 
+- (FTCoC*)newCoC
+{
+    NSManagedObjectContext* context = [self managedObjectContext];
+    FTCoC* coc = [[FTCoC alloc] initWithEntity:[NSEntityDescription
+                                                entityForName:@"CoC"
+                                                inManagedObjectContext:context]
+                insertIntoManagedObjectContext:context];
+    
+    return coc;
+}
+
 - (FTLens*)newLens
 {
     NSUInteger count = [self lensCount];
@@ -260,7 +278,7 @@ static FTCameraBag* sharedCameraBag = nil;
     return lens;
 }
 
-- (void)save
+- (BOOL)save
 {
     NSError *error = nil;
     NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
@@ -268,9 +286,25 @@ static FTCameraBag* sharedCameraBag = nil;
     {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
-            NSLog(@"Error saving managed object context %@, %@", error, [error userInfo]);
+            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+            if(detailedErrors != nil && [detailedErrors count] > 0)
+            {
+                for(NSError* detailedError in detailedErrors)
+                {
+                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+                }
+            }
+            else
+            {
+                NSLog(@"  %@", [error userInfo]);
+            }
+            
+            return NO;
         }
     }
+    
+    return YES;
 }
 
 - (NSManagedObjectContext*)managedObjectContext

@@ -41,10 +41,6 @@ const struct FTCoCFetchedProperties FTCoCFetchedProperties = {
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"nameValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"name"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-	}
 	if ([key isEqualToString:@"valueValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"value"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -58,25 +54,6 @@ const struct FTCoCFetchedProperties FTCoCFetchedProperties = {
 
 @dynamic name;
 
-
-
-- (float)nameValue {
-	NSNumber *result = [self name];
-	return [result floatValue];
-}
-
-- (void)setNameValue:(float)value_ {
-	[self setName:[NSNumber numberWithFloat:value_]];
-}
-
-- (float)primitiveNameValue {
-	NSNumber *result = [self primitiveName];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveNameValue:(float)value_ {
-	[self setPrimitiveName:[NSNumber numberWithFloat:value_]];
-}
 
 
 

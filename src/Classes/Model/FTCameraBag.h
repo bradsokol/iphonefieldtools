@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 
 @class FTCamera;
+@class FTCoC;
 @class FTLens;
 
 @interface FTCameraBag : NSObject
@@ -43,8 +44,9 @@
 - (int)lensCount;
 
 - (FTCamera*)newCamera;
+- (FTCoC*)newCoC;
 - (FTLens*)newLens;
 
-- (void)save;
+- (BOOL)save;
 
 @end

@@ -6,8 +6,8 @@
         <relationship name="coc" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoC" inverseName="camera" inverseEntity="CoC" syncable="YES"/>
     </entity>
     <entity name="CoC" representedClassName="FTCoC" syncable="YES">
-        <attribute name="name" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="value" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.019" syncable="YES"/>
         <relationship name="camera" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Camera" inverseName="coc" inverseEntity="Camera" syncable="YES"/>
     </entity>
     <entity name="Lens" representedClassName="FTLens" syncable="YES">

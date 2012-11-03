@@ -33,12 +33,8 @@ extern const struct FTCoCFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* name;
+@property (nonatomic, retain) NSString* name;
 
-
-@property float nameValue;
-- (float)nameValue;
-- (void)setNameValue:(float)value_;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
@@ -75,11 +71,8 @@ extern const struct FTCoCFetchedProperties {
 @interface _FTCoC (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSNumber*)primitiveName;
-- (void)setPrimitiveName:(NSNumber*)value;
-
-- (float)primitiveNameValue;
-- (void)setPrimitiveNameValue:(float)value_;
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
 
 
 
