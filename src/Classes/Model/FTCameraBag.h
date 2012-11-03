@@ -22,27 +22,29 @@
 
 #import <Foundation/Foundation.h>
 
-@class Camera;
-@class Lens;
+@class FTCamera;
+@class FTLens;
 
 @interface FTCameraBag : NSObject
 
++ (id)initSharedCameraBag:(NSManagedObjectContext*)managedObjectContext;
 + (FTCameraBag*)sharedCameraBag;
 
 - (int)cameraCount;
-- (void)deleteCamera:(Camera*)camera;
-- (Camera*)findCameraForIndex:(int)index;
-- (Camera*)findSelectedCamera;
+- (void)deleteCamera:(FTCamera*)camera;
+- (FTCamera*)findCameraForIndex:(int)index;
+- (FTCamera*)findSelectedCamera;
 - (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex;
 
-- (void)deleteLens:(Lens*)lens;
-- (Lens*)findSelectedLens;
-- (Lens*)findLensForIndex:(int)index;
+- (void)deleteLens:(FTLens*)lens;
+- (FTLens*)findSelectedLens;
+- (FTLens*)findLensForIndex:(int)index;
 - (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex;
 - (int)lensCount;
 
-- (void)addCamera:(Camera*)camera;
-- (void)addLens:(Lens*)lens;
+- (FTCamera*)newCamera;
+- (void)addCamera:(FTCamera*)camera;
+- (void)addLens:(FTLens*)lens;
 
 - (void)save;
 

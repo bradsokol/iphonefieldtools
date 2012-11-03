@@ -19,6 +19,7 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #endif
 
 // By default NSLocalizedString looks for strings in the main bundle. When
