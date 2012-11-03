@@ -121,6 +121,38 @@
     STAssertEqualObjects([camera name], [camera2 name], @"Camera 2 should be at index 1");
 }
 
+- (void)testMovingCameraUpAdjustsIndices
+{
+    FTCamera* camera1 = [bag newCamera];
+    [camera1 setName:@"Camera 1"];
+    FTCamera* camera2 = [bag newCamera];
+    [camera2 setName:@"Camera 2"];
+    FTCamera* camera3 = [bag newCamera];
+    [camera3 setName:@"Camera 3"];
+    
+    [bag moveCameraFromIndex:0 toIndex:2];
+    
+    STAssertEquals([camera1 indexValue], 2, @"Moved camera has correct index");
+    STAssertEquals([camera2 indexValue], 0, @"Stationary camera has correct index");
+    STAssertEquals([camera3 indexValue], 1, @"Stationary camera has correct index");
+}
+
+- (void)testMovingCameraDownAdjustsIndices
+{
+    FTCamera* camera1 = [bag newCamera];
+    [camera1 setName:@"Camera 1"];
+    FTCamera* camera2 = [bag newCamera];
+    [camera2 setName:@"Camera 2"];
+    FTCamera* camera3 = [bag newCamera];
+    [camera3 setName:@"Camera 3"];
+    
+    [bag moveCameraFromIndex:2 toIndex:0];
+    
+    STAssertEquals([camera1 indexValue], 1, @"Stationary camera has correct index");
+    STAssertEquals([camera2 indexValue], 2, @"Stationary camera has correct index");
+    STAssertEquals([camera3 indexValue], 0, @"Moved camera has correct index");
+}
+
 - (void)testCanAddLensesToBag
 {
     int numLenses = 3;
@@ -176,6 +208,38 @@
     STAssertEquals([bag lensCount], 2, @"There should be one less lens");
     STAssertEquals([lens1 indexValue], 0, @"Lenses before the deleted should have the same index");
     STAssertEquals([lens3 indexValue], 1, @"Lenses after the deleted should have a new index");
+}
+
+- (void)testMovingLensUpAdjustsIndices
+{
+    FTLens* lens1 = [bag newLens];
+    [lens1 setName:@"Lens 1"];
+    FTLens* lens2 = [bag newLens];
+    [lens1 setName:@"Lens 2"];
+    FTLens* lens3 = [bag newLens];
+    [lens1 setName:@"Lens 3"];
+    
+    [bag moveLensFromIndex:0 toIndex:2];
+    
+    STAssertEquals([lens1 indexValue], 2, @"Moved lens has correct index");
+    STAssertEquals([lens2 indexValue], 0, @"Stationary lens has correct index");
+    STAssertEquals([lens3 indexValue], 1, @"Stationary lens has correct index");
+}
+
+- (void)testMovingLensDownAdjustsIndices
+{
+    FTLens* lens1 = [bag newLens];
+    [lens1 setName:@"Lens 1"];
+    FTLens* lens2 = [bag newLens];
+    [lens1 setName:@"Lens 2"];
+    FTLens* lens3 = [bag newLens];
+    [lens1 setName:@"Lens 3"];
+    
+    [bag moveLensFromIndex:2 toIndex:0];
+    
+    STAssertEquals([lens1 indexValue], 1, @"Stationary lens has correct index");
+    STAssertEquals([lens2 indexValue], 2, @"Stationary lens has correct index");
+    STAssertEquals([lens3 indexValue], 0, @"Moved lens has correct index");
 }
 
 - (void)tearDown

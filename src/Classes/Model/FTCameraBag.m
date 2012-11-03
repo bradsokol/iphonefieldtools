@@ -26,6 +26,8 @@
 #import "FTCamera.h"
 #import "FTLens.h"
 
+#import "UserDefaults.h"
+
 @interface FTCameraBag ()
 
 - (NSUInteger)countEntityInstances:(NSString *)entityName;
@@ -89,7 +91,58 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
-    // TODO: Needs implementation
+	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	int newSelectedIndex = selectedIndex;
+    
+	if (fromIndex == selectedIndex)
+	{
+		// Moving selected camera
+		newSelectedIndex = toIndex;
+	}
+	
+	if (fromIndex < toIndex)
+	{
+		// Moving camera down the list
+		if (selectedIndex > fromIndex && selectedIndex <= toIndex)
+		{
+			// Selected moves one up
+			newSelectedIndex = selectedIndex - 1;
+		}
+		
+		for (int i = fromIndex; i < toIndex; ++i)
+		{
+            FTCamera* camera = [self findCameraForIndex:i];
+            FTCamera* nextCamera = [self findCameraForIndex:i + 1];
+            [camera setIndexValue:i + 1];
+            [nextCamera setIndexValue:i];
+		}
+	}
+	else
+	{
+		// Moving camera up the list
+		if (selectedIndex >= toIndex && selectedIndex < fromIndex)
+		{
+			// Selected moves one down
+			newSelectedIndex = selectedIndex + 1;
+		}
+		
+		for (int i = fromIndex; i > toIndex; --i)
+		{
+            FTCamera* camera = [self findCameraForIndex:i];
+            FTCamera* previousCamera = [self findCameraForIndex:i - 1];
+            [camera setIndexValue:i - 1];
+            [previousCamera setIndexValue:i];
+		}
+	}
+	
+	for (int i = 0; i < [self cameraCount]; ++i)
+	{
+		FTCamera* camera = [self findCameraForIndex:i];
+		[camera setIndexValue:i];
+	}
+    
+	[[NSUserDefaults standardUserDefaults] setInteger:newSelectedIndex
+											   forKey:FTCameraIndex];
 }
 
 - (void)deleteLens:(FTLens*)lens
@@ -118,7 +171,58 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
-    // TODO: Needs implementation
+	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	int newSelectedIndex = selectedIndex;
+	
+	if (fromIndex == selectedIndex)
+	{
+		// Moving selected lens
+		newSelectedIndex = toIndex;
+	}
+	
+	if (fromIndex < toIndex)
+	{
+		// Moving lens down the list
+		if (selectedIndex > fromIndex && selectedIndex <= toIndex)
+		{
+			// Selected moves one up
+			newSelectedIndex = selectedIndex - 1;
+		}
+		
+		for (int i = fromIndex; i < toIndex; ++i)
+		{
+            FTLens* lens = [self findLensForIndex:i];
+            FTLens* nextLens = [self findLensForIndex:i + 1];
+            [lens setIndexValue:i + 1];
+            [nextLens setIndexValue:i];
+		}
+	}
+	else
+	{
+		// Moving lens up the list
+		if (selectedIndex >= toIndex && selectedIndex < fromIndex)
+		{
+			// Selected moves one down
+			newSelectedIndex = selectedIndex + 1;
+		}
+		
+		for (int i = fromIndex; i > toIndex; --i)
+		{
+            FTLens* lens = [self findLensForIndex:i];
+            FTLens* previousLens = [self findLensForIndex:i - 1];
+            [lens setIndexValue:i - 1];
+            [previousLens setIndexValue:i];
+		}
+	}
+	
+	for (int i = 0; i < [self lensCount]; ++i)
+	{
+        FTLens* lens = [self findLensForIndex:i];
+		[lens setIndexValue:i];
+	}
+	
+	[[NSUserDefaults standardUserDefaults] setInteger:newSelectedIndex
+											   forKey:FTLensIndex];
 }
 
 - (int)lensCount
