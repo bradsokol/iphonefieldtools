@@ -65,6 +65,15 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (void)deleteCamera:(FTCamera*)camera
 {
+    int deletedIndex = [camera indexValue];
+    [[self managedObjectContext] deleteObject:camera];
+    
+    int cameraCount = [self cameraCount];
+    for (int i = deletedIndex + 1; i <= cameraCount; ++i)
+    {
+        FTCamera* camera = [self findCameraForIndex:i];
+        [camera setIndexValue:i - 1];
+    }
 }
 
 - (FTCamera*)findCameraForIndex:(int)index
@@ -74,19 +83,31 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTCamera*)findSelectedCamera
 {
+    // TODO: Needs implementation
     return nil;
 }
 
 - (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
+    // TODO: Needs implementation
 }
 
 - (void)deleteLens:(FTLens*)lens
 {
+    int deletedIndex = [lens indexValue];
+    [[self managedObjectContext] deleteObject:lens];
+    
+    int lensCount = [self lensCount];
+    for (int i = deletedIndex + 1; i <= lensCount; ++i)
+    {
+        FTLens* lens = [self findLensForIndex:i];
+        [lens setIndexValue:i - 1];
+    }
 }
 
 - (FTLens*)findSelectedLens
 {
+    // TODO: Needs implementation
     return nil;
 }
 
@@ -97,6 +118,7 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
+    // TODO: Needs implementation
 }
 
 - (int)lensCount

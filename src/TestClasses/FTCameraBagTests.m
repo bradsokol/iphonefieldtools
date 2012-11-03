@@ -31,6 +31,8 @@
     NSManagedObjectContext *ctx;
     NSManagedObjectModel *model;
     NSPersistentStore *store;
+    
+    FTCameraBag* bag;
 }
 
 @end
@@ -51,20 +53,19 @@
     [ctx setPersistentStoreCoordinator: coord];
     
     [FTCameraBag initSharedCameraBag:ctx];
+    
+    bag = [FTCameraBag sharedCameraBag];
+    [bag retain];
 }
 
 - (void)testSharedCameraBagIsInitiallyEmpty
 {
-    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
-    
     STAssertEquals([bag cameraCount], 0, @"Bag should initially have no cameras");
     STAssertEquals([bag lensCount], 0, @"Bag should initially have no lenses");
 }
 
 - (void)testCanAddCamerasToBag
 {
-    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
-    
     int numCameras = 3;
     for (int i = 0; i < numCameras; ++i)
     {
@@ -75,10 +76,38 @@
     STAssertEquals([bag cameraCount], numCameras, @"Bag should have correct number of cameras");
 }
 
+- (void)testCanDeleteCameraFromBag
+{
+    // Put some cameras in the bag
+    [self testCanAddCamerasToBag];
+    
+    int countBefore = [bag cameraCount];
+    
+    // Delete the last camera
+    FTCamera* camera = [bag findCameraForIndex:countBefore - 1];
+    [bag deleteCamera:camera];
+    
+    STAssertEquals([bag cameraCount], countBefore - 1, @"Camera should be deleted");
+}
+
+- (void)testDeletingCameraAdjustsIndices
+{
+    FTCamera* camera1 = [bag newCamera];
+    [camera1 setName:@"Camera 1"];
+    FTCamera* camera2 = [bag newCamera];
+    [camera2 setName:@"Camera 2"];
+    FTCamera* camera3 = [bag newCamera];
+    [camera3 setName:@"Camera 3"];
+    
+    [bag deleteCamera:camera2];
+    
+    STAssertEquals([bag cameraCount], 2, @"There should be one less camera");
+    STAssertEquals([camera1 indexValue], 0, @"Cameras before the deleted should have the same index");
+    STAssertEquals([camera3 indexValue], 1, @"Cameras after the deleted should have a new index");
+}
+
 - (void)testNewCamerasHaveCorrectIndex
 {
-    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
-    
     FTCamera* camera1 = [bag newCamera];
     [camera1 setName:@"Camera 1"];
     FTCamera* camera2 = [bag newCamera];
@@ -94,8 +123,6 @@
 
 - (void)testCanAddLensesToBag
 {
-    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
-    
     int numLenses = 3;
     for (int i = 0; i < numLenses; ++i)
     {
@@ -108,8 +135,6 @@
 
 - (void)testNewLensesHaveCorrectIndex
 {
-    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
-    
     FTLens* lens1 = [bag newLens];
     [lens1 setName:@"Lens 1"];
     FTLens* lens2 = [bag newLens];
@@ -123,8 +148,40 @@
     STAssertEqualObjects([lens name], [lens2 name], @"Lens 2 should be at index 1");
 }
 
+- (void)testCanDeleteLensFromBag
+{
+    // Put some lenses in the bag
+    [self testCanAddLensesToBag];
+    
+    int countBefore = [bag lensCount];
+    
+    // Delete the last lens
+    FTLens* lens = [bag findLensForIndex:countBefore - 1];
+    [bag deleteLens:lens];
+    
+    STAssertEquals([bag lensCount], countBefore - 1, @"Lens should be deleted");
+}
+
+- (void)testDeletingLensAdjustsIndices
+{
+    FTLens* lens1 = [bag newLens];
+    [lens1 setName:@"Lens 1"];
+    FTLens* lens2 = [bag newLens];
+    [lens1 setName:@"Lens 2"];
+    FTLens* lens3 = [bag newLens];
+    [lens1 setName:@"Lens 3"];
+    
+    [bag deleteLens:lens2];
+    
+    STAssertEquals([bag lensCount], 2, @"There should be one less lens");
+    STAssertEquals([lens1 indexValue], 0, @"Lenses before the deleted should have the same index");
+    STAssertEquals([lens3 indexValue], 1, @"Lenses after the deleted should have a new index");
+}
+
 - (void)tearDown
 {
+    [bag release];
+    bag = nil;
     [ctx release];
     ctx = nil;
     NSError *error = nil;
