@@ -70,10 +70,57 @@
     {
         FTCamera* camera = [bag newCamera];
         [camera setName:[NSString stringWithFormat:@"Camera %d", i + 1]];
-        [bag addCamera:camera];
     }
     
     STAssertEquals([bag cameraCount], numCameras, @"Bag should have correct number of cameras");
+}
+
+- (void)testNewCamerasHaveCorrectIndex
+{
+    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
+    
+    FTCamera* camera1 = [bag newCamera];
+    [camera1 setName:@"Camera 1"];
+    FTCamera* camera2 = [bag newCamera];
+    [camera2 setName:@"Camera 2"];
+    
+    STAssertEquals([bag cameraCount], 2, @"Bag should have correct number of cameras");
+
+    FTCamera* camera = [bag findCameraForIndex:0];
+    STAssertEqualObjects([camera name], [camera1 name], @"Camera 1 should be at index 0");
+    camera = [bag findCameraForIndex:1];
+    STAssertEqualObjects([camera name], [camera2 name], @"Camera 2 should be at index 1");
+}
+
+- (void)testCanAddLensesToBag
+{
+    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
+    
+    int numLenses = 3;
+    for (int i = 0; i < numLenses; ++i)
+    {
+        FTLens* lens = [bag newLens];
+        [lens setName:[NSString stringWithFormat:@"Lens %d", i + 1]];
+    }
+    
+    STAssertEquals([bag lensCount], numLenses, @"Bag should have correct number of lenses");
+}
+
+- (void)testNewLensesHaveCorrectIndex
+{
+    FTCameraBag* bag = [FTCameraBag sharedCameraBag];
+    
+    FTLens* lens1 = [bag newLens];
+    [lens1 setName:@"Lens 1"];
+    FTLens* lens2 = [bag newLens];
+    [lens2 setName:@"Lens 2"];
+    
+    STAssertEquals([bag lensCount], 2, @"Bag should have correct number of lenses");
+    
+    FTLens* lens = [bag findLensForIndex:0];
+    STAssertEqualObjects([lens name], [lens1 name], @"Lens 1 should be at index 0");
+    lens = [bag findLensForIndex:1];
+    STAssertEqualObjects([lens name], [lens2 name], @"Lens 2 should be at index 1");
 }
 
 - (void)tearDown

@@ -43,8 +43,7 @@
 - (int)lensCount;
 
 - (FTCamera*)newCamera;
-- (void)addCamera:(FTCamera*)camera;
-- (void)addLens:(FTLens*)lens;
+- (FTLens*)newLens;
 
 - (void)save;
 

@@ -29,6 +29,7 @@
 @interface FTCameraBag ()
 
 - (NSUInteger)countEntityInstances:(NSString *)entityName;
+- (NSManagedObject*)findEntityInstanceWithName:(NSString*)name atIndex:(NSUInteger)index;
 
 @property(nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
@@ -68,7 +69,7 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTCamera*)findCameraForIndex:(int)index
 {
-    return nil;
+    return (FTCamera*)[self findEntityInstanceWithName:@"Camera" atIndex:index];
 }
 
 - (FTCamera*)findSelectedCamera
@@ -91,7 +92,7 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTLens*)findLensForIndex:(int)index
 {
-    return nil;
+    return (FTLens*)[self findEntityInstanceWithName:@"Lens" atIndex:index];
 }
 
 - (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex
@@ -105,18 +106,32 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTCamera*)newCamera
 {
-    return [[FTCamera alloc] initWithEntity:[NSEntityDescription
-                                             entityForName:@"Camera"
-                                             inManagedObjectContext:[self managedObjectContext]]
-             insertIntoManagedObjectContext:[self managedObjectContext]];
+    NSUInteger count = [self cameraCount];
+    
+    NSManagedObjectContext* context = [self managedObjectContext];
+    FTCamera* camera = [[FTCamera alloc] initWithEntity:[NSEntityDescription
+                                                         entityForName:@"Camera"
+                                                         inManagedObjectContext:context]
+                         insertIntoManagedObjectContext:context];
+    
+    [camera setIndexValue:count];
+    
+    return camera;
 }
 
-- (void)addCamera:(FTCamera*)camera
+- (FTLens*)newLens
 {
-}
-
-- (void)addLens:(FTLens*)lens
-{
+    NSUInteger count = [self lensCount];
+    
+    NSManagedObjectContext* context = [self managedObjectContext];
+    FTLens* lens = [[FTLens alloc] initWithEntity:[NSEntityDescription
+                                                   entityForName:@"Lens"
+                                                   inManagedObjectContext:context]
+                   insertIntoManagedObjectContext:context];
+    
+    [lens setIndexValue:count];
+    
+    return lens;
 }
 
 - (void)save
@@ -148,10 +163,7 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (NSUInteger)countEntityInstances:(NSString *)entityName
 {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription
-                        entityForName:entityName
-                        inManagedObjectContext:[self managedObjectContext]]];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     
     [request setIncludesSubentities:NO];
     
@@ -166,6 +178,21 @@ static FTCameraBag* sharedCameraBag = nil;
     [request release];
     
     return count;
+}
+
+- (NSManagedObject*)findEntityInstanceWithName:(NSString*)name atIndex:(NSUInteger)index
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:name];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"(index = %d)", index];
+    [request setPredicate:predicate];
+    
+    NSError* error;
+    NSArray* results = [[self managedObjectContext] executeFetchRequest:request
+                                                                  error:&error];
+    
+    [request release];
+    
+    return [results count] == 0 ? nil : [results objectAtIndex:0];
 }
 
 - (void)dealloc
