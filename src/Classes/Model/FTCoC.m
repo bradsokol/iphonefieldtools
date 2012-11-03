@@ -16,6 +16,9 @@
 
 @implementation FTCoC
 
-// Custom logic goes here.
+- (NSString*)description
+{
+    return [self name];
+}
 
 @end

@@ -16,6 +16,9 @@
 
 @implementation FTCamera
 
-// Custom logic goes here.
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ (index %d)", [self name], [self indexValue]];
+}
 
 @end
