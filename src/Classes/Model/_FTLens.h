@@ -5,6 +5,7 @@
 
 
 extern const struct FTLensAttributes {
+	 NSString *index;
 	 NSString *maximumAperture;
 	 NSString *maximumFocalLength;
 	 NSString *minimumAperture;
@@ -25,6 +26,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
+
 @interface FTLensID : NSManagedObjectID {}
 @end
 
@@ -33,6 +35,18 @@ extern const struct FTLensFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (FTLensID*)objectID;
+
+
+
+
+@property (nonatomic, retain) NSNumber* index;
+
+
+@property int32_t indexValue;
+- (int32_t)indexValue;
+- (void)setIndexValue:(int32_t)value_;
+
+//- (BOOL)validateIndex:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -102,6 +116,15 @@ extern const struct FTLensFetchedProperties {
 @end
 
 @interface _FTLens (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveIndex;
+- (void)setPrimitiveIndex:(NSNumber*)value;
+
+- (int32_t)primitiveIndexValue;
+- (void)setPrimitiveIndexValue:(int32_t)value_;
+
+
 
 
 - (NSNumber*)primitiveMaximumAperture;

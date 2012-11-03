@@ -5,6 +5,7 @@
 
 
 extern const struct FTCameraAttributes {
+	 NSString *index;
 	 NSString *name;
 } FTCameraAttributes;
 
@@ -19,6 +20,7 @@ extern const struct FTCameraFetchedProperties {
 
 
 
+
 @interface FTCameraID : NSManagedObjectID {}
 @end
 
@@ -27,6 +29,18 @@ extern const struct FTCameraFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (FTCameraID*)objectID;
+
+
+
+
+@property (nonatomic, retain) NSNumber* index;
+
+
+@property int32_t indexValue;
+- (int32_t)indexValue;
+- (void)setIndexValue:(int32_t)value_;
+
+//- (BOOL)validateIndex:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -55,6 +69,15 @@ extern const struct FTCameraFetchedProperties {
 @end
 
 @interface _FTCamera (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveIndex;
+- (void)setPrimitiveIndex:(NSNumber*)value;
+
+- (int32_t)primitiveIndexValue;
+- (void)setPrimitiveIndexValue:(int32_t)value_;
+
+
 
 
 - (NSString*)primitiveName;

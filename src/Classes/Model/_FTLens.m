@@ -4,6 +4,7 @@
 #import "_FTLens.h"
 
 const struct FTLensAttributes FTLensAttributes = {
+	.index = @"index",
 	.maximumAperture = @"maximumAperture",
 	.maximumFocalLength = @"maximumFocalLength",
 	.minimumAperture = @"minimumAperture",
@@ -43,6 +44,10 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"indexValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"index"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+	}
 	if ([key isEqualToString:@"maximumApertureValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maximumAperture"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -62,6 +67,32 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic index;
+
+
+
+- (int32_t)indexValue {
+	NSNumber *result = [self index];
+	return [result intValue];
+}
+
+- (void)setIndexValue:(int32_t)value_ {
+	[self setIndex:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveIndexValue {
+	NSNumber *result = [self primitiveIndex];
+	return [result intValue];
+}
+
+- (void)setPrimitiveIndexValue:(int32_t)value_ {
+	[self setPrimitiveIndex:[NSNumber numberWithInt:value_]];
+}
+
 
 
 
