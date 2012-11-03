@@ -65,6 +65,7 @@
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */; };
 		A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */; };
+		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
@@ -195,6 +196,7 @@
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 		A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbHighlighted@2x.png"; sourceTree = "<group>"; };
 		A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbNormal@2x.png"; sourceTree = "<group>"; };
+		A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldTools.xcdatamodel; sourceTree = "<group>"; };
 		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSlider.h; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
 				A25BDF3210479BFE00B22B2B /* Lens.h */,
 				A25BDF3310479BFE00B22B2B /* Lens.m */,
+				A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */,
 			);
 			name = Model;
 			path = ..;
@@ -871,6 +874,7 @@
 				A2E3D0F915532869005F3F30 /* iRate.m in Sources */,
 				A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */,
 				A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */,
+				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,6 +1183,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */,
+			);
+			currentVersion = A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */;
+			path = FieldTools.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }
