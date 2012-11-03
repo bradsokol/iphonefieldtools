@@ -85,8 +85,8 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTCamera*)findSelectedCamera
 {
-    // TODO: Needs implementation
-    return nil;
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+    return [self findCameraForIndex:index];
 }
 
 - (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
@@ -160,8 +160,8 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTLens*)findSelectedLens
 {
-    // TODO: Needs implementation
-    return nil;
+	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+    return [self findLensForIndex:index];
 }
 
 - (FTLens*)findLensForIndex:(int)index
