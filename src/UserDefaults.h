@@ -41,6 +41,7 @@ extern NSString* const FTMacroModeKey;
 extern NSString* const FTMigratedFrom10Key;
 extern NSString* const FTMigratedFrom20Key;
 extern NSString* const FTMigratedFrom22Key;
+extern NSString* const FTMigratedFrom23Key;
 
 // Deprecated
 extern NSString* const FTMetricKey;				// Use FTUnitsKey

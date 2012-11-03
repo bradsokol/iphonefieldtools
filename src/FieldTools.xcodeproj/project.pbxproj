@@ -90,6 +90,7 @@
 		A282978716453E8700F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
 		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
 		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
+		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */; };
@@ -241,6 +242,8 @@
 		A282978116453E8700F6DE5D /* FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTLens.h; path = Classes/Model/FTLens.h; sourceTree = "<group>"; };
 		A282978216453E8700F6DE5D /* FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTLens.m; path = Classes/Model/FTLens.m; sourceTree = "<group>"; };
 		A282978916453F2B00F6DE5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A282978C16454D2E00F6DE5D /* FTCameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCameraBag.h; path = Classes/Model/FTCameraBag.h; sourceTree = "<group>"; };
+		A282978D16454D2E00F6DE5D /* FTCameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBag.m; path = Classes/Model/FTCameraBag.m; sourceTree = "<group>"; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
@@ -358,7 +361,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				A282978916453F2B00F6DE5D /* CoreData.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -413,6 +415,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A282978916453F2B00F6DE5D /* CoreData.framework */,
 				A2ACD85813B64CB30052557E /* SystemConfiguration.framework */,
 				A2ACD85613B64CAD0052557E /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -552,6 +555,8 @@
 			children = (
 				A237E63B12AAF4F00089862B /* Camera.h */,
 				A237E63C12AAF4F00089862B /* Camera.m */,
+				A237E63D12AAF4F00089862B /* CameraBag.h */,
+				A237E63E12AAF4F00089862B /* CameraBag.m */,
 				A2E357951044DBDD003C449D /* CoC.h */,
 				A2E357961044DBDD003C449D /* CoC.m */,
 				A25BDF3210479BFE00B22B2B /* Lens.h */,
@@ -634,12 +639,12 @@
 				A282978B16453FBE00F6DE5D /* Base Classes */,
 				A282977D16453E8700F6DE5D /* FTCamera.h */,
 				A282977E16453E8700F6DE5D /* FTCamera.m */,
+				A282978C16454D2E00F6DE5D /* FTCameraBag.h */,
+				A282978D16454D2E00F6DE5D /* FTCameraBag.m */,
 				A282977F16453E8700F6DE5D /* FTCoC.h */,
 				A282978016453E8700F6DE5D /* FTCoC.m */,
 				A282978116453E8700F6DE5D /* FTLens.h */,
 				A282978216453E8700F6DE5D /* FTLens.m */,
-				A237E63D12AAF4F00089862B /* CameraBag.h */,
-				A237E63E12AAF4F00089862B /* CameraBag.m */,
 				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
 				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
 				A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */,
@@ -959,6 +964,7 @@
 				A282978616453E8700F6DE5D /* FTCamera.m in Sources */,
 				A282978716453E8700F6DE5D /* FTCoC.m in Sources */,
 				A282978816453E8700F6DE5D /* FTLens.m in Sources */,
+				A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
