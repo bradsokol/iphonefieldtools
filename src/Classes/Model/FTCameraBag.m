@@ -326,10 +326,10 @@ static FTCameraBag* sharedCameraBag = nil;
     
     NSError *error;
     NSUInteger count = [[self managedObjectContext] countForFetchRequest:request error:&error];
-    if(count == NSNotFound)
+    if (count == NSNotFound)
     {
-        //Handle error
-        
+        NSLog(@"Error counting entity instances: %@", error);
+        count = 0;
     }
     
     [request release];
