@@ -760,6 +760,8 @@ static BOOL previousLensWasZoom = YES;
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self updateCameraAndLensDescription];
 }
 
 #pragma mark UIActionSheetDelegate
