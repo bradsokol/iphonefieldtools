@@ -18,6 +18,11 @@
 
 - (NSString*)description
 {
+    return [self name];
+}
+
+- (NSString*)debugDescription
+{
     return [NSString stringWithFormat:@"%@ (index %d)", [self name], [self indexValue]];
 }
 

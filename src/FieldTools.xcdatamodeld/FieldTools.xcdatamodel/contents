@@ -12,10 +12,10 @@
     </entity>
     <entity name="Lens" representedClassName="FTLens" syncable="YES">
         <attribute name="index" attributeType="Integer 32" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="maximumAperture" attributeType="Float" minValueString="0.1" maxValueString="200" syncable="YES"/>
-        <attribute name="maximumFocalLength" attributeType="Integer 32" minValueString="1" maxValueString="5000" syncable="YES"/>
-        <attribute name="minimumAperture" attributeType="Float" minValueString="0.1" maxValueString="200" syncable="YES"/>
-        <attribute name="minimumFocalLength" attributeType="Integer 32" minValueString="1" maxValueString="5000" syncable="YES"/>
+        <attribute name="maximumAperture" attributeType="Float" minValueString="0.1" maxValueString="200" defaultValueString="1.4" syncable="YES"/>
+        <attribute name="maximumFocalLength" attributeType="Integer 32" minValueString="1" maxValueString="5000" defaultValueString="50" syncable="YES"/>
+        <attribute name="minimumAperture" attributeType="Float" minValueString="0.1" maxValueString="200" defaultValueString="32" syncable="YES"/>
+        <attribute name="minimumFocalLength" attributeType="Integer 32" minValueString="1" maxValueString="5000" defaultValueString="50" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
     </entity>
     <elements>

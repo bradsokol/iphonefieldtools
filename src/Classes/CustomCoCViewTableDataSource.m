@@ -22,9 +22,9 @@
 
 #import "CustomCoCViewTableDataSource.h"
 
-#import "Camera.h"
-#import "CoC.h"
 #import "CustomCoCViewController.h"
+#import "FTCamera.h"
+#import "FTCoC.h"
 
 @implementation CustomCoCViewTableDataSource
 
@@ -52,7 +52,7 @@
 	
 	if ([[[camera coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
-		[[customCoCViewController cocValueField] setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+		[[customCoCViewController cocValueField] setText:[NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]]];
 	}
 	
 	[[customCoCViewController cocValueField] becomeFirstResponder];

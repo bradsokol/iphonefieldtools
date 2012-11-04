@@ -22,10 +22,10 @@
 
 #import "FlipsideTableViewDelegate.h"
 
-#import "Camera.h"
-#import "CameraBag.h"
-#import "CoC.h"
-#import "Lens.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
+#import "FTLens.h"
 #import "Notifications.h"
 #import "UserDefaults.h"
 
@@ -78,15 +78,14 @@ static const float SectionHeaderHeight = 44.0;
 	{
 		if ([self isEditing])
 		{
-			Camera* camera = [[CameraBag sharedCameraBag] findCameraForIndex:[indexPath row]];
+			FTCamera* camera = [[FTCameraBag sharedCameraBag] findCameraForIndex:[indexPath row]];
 			if (nil == camera)
 			{
 				// Nil means not found. This happens when user touches the 'Add camera' row
 				// which is the last one.
-				CoC* coc = [CoC findFromPresets:NSLocalizedString(@"DEFAULT_COC", "35 mm")];
-				camera = [[Camera alloc] initWithDescription:@"" 
-														 coc:coc 
-												  identifier:[[CameraBag sharedCameraBag] cameraCount]];
+				FTCoC* coc = [FTCoC findFromPresets:NSLocalizedString(@"DEFAULT_COC", "35 mm")];
+                camera = [[FTCameraBag sharedCameraBag] newCamera];
+                [camera setCoc:coc];
 			}
 			else
 			{
@@ -107,19 +106,14 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	else if ([indexPath section] == LENSES_SECTION)
 	{
-        Lens* lens = [[CameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
+        FTLens* lens = [[FTCameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
 		if ([self isEditing])
 		{
 			if (nil == lens)
 			{
 				// Nil means not found. This happens when user touches the 'Add lens' row
 				
-				lens = [[Lens alloc] initWithDescription:@""
-										 minimumAperture:[NSNumber numberWithFloat:32.0]
-										 maximumAperture:[NSNumber numberWithFloat:1.4]
-									  minimumFocalLength:[NSNumber numberWithInt:50]
-									  maximumFocalLength:[NSNumber numberWithInt:50] 
-											  identifier:[[CameraBag sharedCameraBag] lensCount]];
+                lens = [[FTCameraBag sharedCameraBag] newLens];
 			}
 			else
 			{
@@ -160,7 +154,7 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	else if ([indexPath section] == CAMERAS_SECTION)
 	{
-		int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
+		int cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
 		if ([indexPath row] < cameraCount)
 		{
 			// This is a camera row - allow delete if more than one camera (must have at least one)
@@ -175,7 +169,7 @@ static const float SectionHeaderHeight = 44.0;
 	else
 	{
 		// Lenses section
-		int lensCount = [[CameraBag sharedCameraBag] lensCount];
+		int lensCount = [[FTCameraBag sharedCameraBag] lensCount];
 		if ([indexPath row] < lensCount)
 		{
 			// This is a lens row - allow delete if more than one lens (must have at least one)
@@ -207,8 +201,8 @@ static const float SectionHeaderHeight = 44.0;
 {
 	// Don't allow a row to be dragged out of it's section or to the bottom of it's section.
 	int max = [sourceIndexPath section] == CAMERAS_SECTION ? 
-		[[CameraBag sharedCameraBag] cameraCount] - 1 : 
-		[[CameraBag sharedCameraBag] lensCount] - 1;
+		[[FTCameraBag sharedCameraBag] cameraCount] - 1 :
+		[[FTCameraBag sharedCameraBag] lensCount] - 1;
 	if ([proposedDestinationIndexPath section] != [sourceIndexPath section])
 	{
 		// Suggest the first row in 'home' section if proposed section is above, or row above 'Add...' 
@@ -293,7 +287,7 @@ static const float SectionHeaderHeight = 44.0;
 												   inSection:[indexPath section]];
 	
 	if ([oldIndexPath row] == [indexPath row] ||
-		[indexPath row] == [[CameraBag sharedCameraBag] lensCount])
+		[indexPath row] == [[FTCameraBag sharedCameraBag] lensCount])
 	{
 		// User selected the currently selected lens or the macro button row - take no action
 		return;
@@ -307,7 +301,7 @@ static const float SectionHeaderHeight = 44.0;
 		
 		[[NSUserDefaults standardUserDefaults] setInteger:[indexPath row]
 												   forKey:FTLensIndex];
-		Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
+		FTLens* lens = [[FTCameraBag sharedCameraBag] findSelectedLens];
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:LENS_CHANGED_NOTIFICATION object:lens]];
 	}

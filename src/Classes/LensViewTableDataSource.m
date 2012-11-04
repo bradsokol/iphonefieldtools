@@ -22,7 +22,7 @@
 
 #import "LensViewTableDataSource.h"
 
-#import "Lens.h"
+#import "FTLens.h"
 #import "LensViewController.h"
 
 #import "LensViewSections.h"

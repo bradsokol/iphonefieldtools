@@ -23,9 +23,9 @@
 #import "CameraViewController.h"
 
 #import "AnalyticsPolicy.h"
-#import "Camera.h"
 #import "CameraViewTableDataSource.h"
-#import "CoC.h"
+#import "FTCamera.h"
+#import "FTCoC.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
@@ -121,14 +121,14 @@ static const int TEXT_FIELD_TAG = 99;
 	{
 		message = NSLocalizedString(@"CAMERA_ERROR_MISSING_NAME", "CAMERA_ERROR_MISSING_NAME");
 	}
-	else if ([[cameraWorking coc] value] <= 0.0)
+	else if ([[cameraWorking coc] valueValue] <= 0.0)
 	{
 		message = NSLocalizedString(@"CAMERA_ERROR_INVALID_COC", "CAMERA_ERROR_INVALID_COC");
 	}
 	
 	if (message == nil)
 	{
-		[[self camera] setDescription:[[self cameraWorking] description]];
+		[[self camera] setName:[[self cameraWorking] name]];
 		[[self camera] setCoc:[[self cameraWorking] coc]];
 		
 		NSString* notificationName = [self isNewCamera] ? CAMERA_WAS_ADDED_NOTIFICATION : CAMERA_WAS_EDITED_NOTIFICATION;
@@ -174,7 +174,7 @@ static const int TEXT_FIELD_TAG = 99;
 	 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	[[self cameraWorking] setDescription:[textField text]];
+	[[self cameraWorking] setName:[textField text]];
 }
 
 #pragma mark UITableViewDelegate methods

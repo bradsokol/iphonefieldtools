@@ -14,6 +14,8 @@
 
 #import "_FTLens.h"
 
-@interface FTLens : _FTLens {}
-// Custom logic goes here.
+@interface FTLens : _FTLens
+
+- (bool)isZoom;
+
 @end

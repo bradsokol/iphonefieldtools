@@ -14,6 +14,9 @@
 
 #import "_FTCoC.h"
 
-@interface FTCoC : _FTCoC {}
-// Custom logic goes here.
+@interface FTCoC : _FTCoC
+
++ (NSDictionary*)cocPresets;
++ (FTCoC*)findFromPresets:(NSString*)cocDescription;
+
 @end

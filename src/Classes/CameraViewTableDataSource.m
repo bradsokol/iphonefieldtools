@@ -22,9 +22,9 @@
 
 #import "CameraViewTableDataSource.h"
 
-#import "Camera.h"
 #import "CameraViewController.h"
-#import "CoC.h"
+#import "FTCamera.h"
+#import "FTCoC.h"
 #import "TwoLabelTableViewCell.h"
 
 static const int CAMERA_NAME_ROW = 0;

@@ -22,9 +22,10 @@
 
 #import "CoCViewController.h"
 
-#import "Camera.h"
-#import "CoC.h"
 #import "CoCViewTableDataSource.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
 
 #import "Notifications.h"
 
@@ -134,7 +135,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath row] == [[CoC cocPresets] count])
+    if ([indexPath row] == [[FTCoC cocPresets] count])
     {
         // Custom CoC row
         [self didSelectCustomCoCInTableView:tableView];
@@ -146,7 +147,7 @@
 	[tableView deselectRowAtIndexPath:indexPath
 							 animated:YES];
 
-	if ([indexPath row] < [[CoC cocPresets] count])
+	if ([indexPath row] < [[FTCoC cocPresets] count])
 	{
 		[self didSelectCoCPresetAtIndexPath:indexPath inTableView:tableView];
 	}
@@ -177,8 +178,9 @@
 		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		
 		NSString* description = [self keyForRow:[indexPath row]];
-		CoC* coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
-								  description:description];
+        FTCoC* coc = [[FTCameraBag sharedCameraBag] newCoC];
+        [coc setValueValue:[[FTCoC findFromPresets:description] valueValue]];
+        [coc setName:description];
 		[[self cameraWorking] setCoc:coc];
 		[coc release];
 		
@@ -189,7 +191,7 @@
 	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
 	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
 	{
-		if ([oldIndexPath row] == [[CoC cocPresets] count])
+		if ([oldIndexPath row] == [[FTCoC cocPresets] count])
 		{
 			[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:oldIndexPath]
 							 withRowAnimation:UITableViewRowAnimationFade];
@@ -211,7 +213,7 @@
 
 - (NSString*)keyForRow:(int)row
 {
-	NSArray* keys = [[CoC cocPresets] allKeys];
+	NSArray* keys = [[FTCoC cocPresets] allKeys];
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	return [sortedKeys objectAtIndex:row];
 }
@@ -221,10 +223,10 @@
 	// Check if custom CoC
 	if ([[[cameraWorking coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
-		return [[CoC cocPresets] count];
+		return [[FTCoC cocPresets] count];
 	}
 	
-	NSArray* keys = [[CoC cocPresets] allKeys];
+	NSArray* keys = [[FTCoC cocPresets] allKeys];
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	for (int i = 0; i < [sortedKeys count]; ++i)
 	{

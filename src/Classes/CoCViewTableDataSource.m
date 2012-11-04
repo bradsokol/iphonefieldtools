@@ -23,8 +23,8 @@
 
 #import "CoCViewTableDataSource.h"
 
-#import "Camera.h"
-#import "CoC.h"
+#import "FTCamera.h"
+#import "FTCoC.h"
 #import "TwoLabelTableViewCell.h"
 
 static const int NUM_SECTIONS = 1;
@@ -46,7 +46,7 @@ int cocPresetsCount = 0;
 	
 	if (cocPresetsCount == 0)
 	{
-		cocPresetsCount = [[CoC cocPresets] count];
+		cocPresetsCount = [[FTCoC cocPresets] count];
 	}
 	
 	return self;
@@ -60,7 +60,7 @@ int cocPresetsCount = 0;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
 	// Return one extra row for the custom setting
-	return [[CoC cocPresets] count] + 1;
+	return [[FTCoC cocPresets] count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -78,10 +78,10 @@ int cocPresetsCount = 0;
 	if ([indexPath row] < cocPresetsCount)
 	{
 		// This is one of the rows for the preset CoC values
-		NSArray* keys = [[CoC cocPresets] allKeys];
+		NSArray* keys = [[FTCoC cocPresets] allKeys];
 		NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 		NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
-		[cell setText:[NSString stringWithFormat:@"%.3f", [[[CoC cocPresets] objectForKey:key] floatValue]]];
+		[cell setText:[NSString stringWithFormat:@"%.3f", [[[FTCoC cocPresets] objectForKey:key] floatValue]]];
 		[cell setLabel:key];
 		
 		if ([key compare:[[[self camera] coc] description]] == 0)
@@ -104,7 +104,7 @@ int cocPresetsCount = 0;
 		if ([cocDescription compare:customLabel] == NSOrderedSame)
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-			[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+			[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]]];
 		}
 		else 
 		{

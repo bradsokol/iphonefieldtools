@@ -18,7 +18,17 @@
 
 - (NSString*)description
 {
+    return [self name];
+}
+
+- (NSString*)debugDescription
+{
     return [NSString stringWithFormat:@"%@ (index %d)", [self name], [self indexValue]];
+}
+
+- (bool)isZoom
+{
+	return [[self minimumFocalLength] compare:[self maximumFocalLength]] == NSOrderedAscending;
 }
 
 @end

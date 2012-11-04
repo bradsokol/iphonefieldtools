@@ -22,7 +22,7 @@
 
 #import "LensViewController.h"
 
-#import "Lens.h"
+#import "FTLens.h"
 #import "LensViewTableDataSource.h"
 
 #import "LensViewSections.h"
@@ -140,7 +140,7 @@ static const float SectionHeaderHeight = 44.0;
 	
 	if ([self validateAndLoadInput])
 	{
-		[[self lens] setDescription:[[self lensWorking] description]];
+		[[self lens] setName:[[self lensWorking] description]];
 		[[self lens] setMinimumAperture:[[self lensWorking] minimumAperture]];
 		[[self lens] setMaximumAperture:[[self lensWorking] maximumAperture]];
 		[[self lens] setMinimumFocalLength:[[self lensWorking] minimumFocalLength]];
@@ -423,7 +423,7 @@ static const float SectionHeaderHeight = 44.0;
 	
 	if (TITLE_SECTION == section)
 	{
-		[[self lensWorking] setDescription:[textField text]];
+		[[self lensWorking] setName:[textField text]];
 		NSLog(@"Set description to %@", [[self lensWorking] description]);
 	}
 	else
