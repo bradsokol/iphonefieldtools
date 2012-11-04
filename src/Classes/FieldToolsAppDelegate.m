@@ -355,6 +355,8 @@ float DefaultSubjectDistance = 2.5f;
         [newCoc setValueValue:[coc value]];
         [newCoc setName:[coc description]];
         [newCamera setCoc:newCoc];
+        [newCoc release];
+        [newCamera release];
     }
     
     int lensCount = [bag lensCount];
@@ -369,6 +371,7 @@ float DefaultSubjectDistance = 2.5f;
         [newLens setMaximumFocalLength:[lens maximumFocalLength]];
         [newLens setName:[lens description]];
         [newLens setIndexValue:[lens identifier]];
+        [newLens release];
     }
     
     if ([newBag save])
