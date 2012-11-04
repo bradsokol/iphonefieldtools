@@ -129,8 +129,7 @@ float DefaultSubjectDistance = 2.5f;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
-    // TODO: set this flag once code is done
-//	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
     
     [self setMainViewController:[[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease]];
     
