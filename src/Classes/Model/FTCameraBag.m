@@ -307,6 +307,11 @@ static FTCameraBag* sharedCameraBag = nil;
     return YES;
 }
 
+- (void)rollback
+{
+    [[self managedObjectContext] rollback];
+}
+
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (nil == _managedObjectContext)

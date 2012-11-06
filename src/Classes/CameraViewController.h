@@ -36,7 +36,6 @@
 	CameraViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
 	Camera* camera;
-	Camera* cameraWorking;
 	
 	bool newCamera;
 }

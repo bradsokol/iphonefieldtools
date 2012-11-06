@@ -48,5 +48,6 @@
 - (FTLens*)newLens;
 
 - (BOOL)save;
+- (void)rollback;
 
 @end
