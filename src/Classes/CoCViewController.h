@@ -24,7 +24,7 @@
 
 #import "TableViewControllerWithAnalytics.h"
 
-@class Camera;
+@class FTCamera;
 @class CoCViewTableDataSource;
 @protocol AnalyticsPolicy;
 
@@ -32,12 +32,12 @@
 {
 	CoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
-	Camera* camera;
-	Camera* cameraWorking;
+	FTCamera* camera;
+	FTCamera* cameraWorking;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
 @property(nonatomic, retain) CoCViewTableDataSource* tableViewDataSource;
 

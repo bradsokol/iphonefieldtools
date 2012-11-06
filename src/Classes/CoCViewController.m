@@ -39,8 +39,8 @@
 - (int)rowForSelectedCoC;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Camera* camera;
-@property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, retain) FTCamera* camera;
+@property(nonatomic, retain) FTCamera* cameraWorking;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
 
 @end
@@ -61,7 +61,7 @@
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 

@@ -24,7 +24,7 @@
 
 #import "TableViewControllerWithAnalytics.h"
 
-@class Lens;
+@class FTLens;
 @class LensViewTableDataSource;
 
 @interface LensViewController : TableViewControllerWithAnalytics <UITableViewDelegate, UITextFieldDelegate>
@@ -50,8 +50,8 @@
 	IBOutlet UILabel* maximumApertureLabel;
 	
 	LensViewTableDataSource* tableViewDataSource;
-	Lens* lens;
-	Lens* lensWorking;
+	FTLens* lens;
+	FTLens* lensWorking;
 	bool lensIsZoom;
 
 	UIBarButtonItem* saveButton;
@@ -62,7 +62,7 @@
 }
 
 // The designated initializer
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(FTLens*)lens;
 
 @property(nonatomic, retain) LensViewTableDataSource* tableViewDataSource;
 

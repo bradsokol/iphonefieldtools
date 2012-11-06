@@ -39,7 +39,7 @@ static const int TEXT_FIELD_TAG = 99;
 - (void)cocChanged:(NSNotification*)notification;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Camera* camera;
+@property(nonatomic, retain) FTCamera* camera;
 @property(nonatomic, getter=isNewCamera) bool newCamera;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
 
@@ -64,7 +64,7 @@ static const int TEXT_FIELD_TAG = 99;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 

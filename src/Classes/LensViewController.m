@@ -51,8 +51,8 @@ static const float SectionHeaderHeight = 44.0;
 - (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Lens* lens;
-@property(nonatomic, retain) Lens* lensWorking;
+@property(nonatomic, retain) FTLens* lens;
+@property(nonatomic, retain) FTLens* lensWorking;
 @property(nonatomic, getter=isNewLens) bool newLens;
 @property(nonatomic, retain) NSNumberFormatter* numberFormatter;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
@@ -91,7 +91,7 @@ static const float SectionHeaderHeight = 44.0;
 }
 
 // The designated initializer
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)aLens
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(FTLens*)aLens
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (nil == self)

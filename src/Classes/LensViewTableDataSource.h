@@ -24,17 +24,17 @@
 
 extern NSString* CellIdentifier;
 
-@class Lens;
+@class FTLens;
 
 @interface LensViewTableDataSource : NSObject <UITableViewDataSource>
 {
-	Lens* lens;
+	FTLens* lens;
 	bool lensIsZoom;
 	UIViewController* controller;
 }
 
-- (Lens*)lens;
-- (void)setLens:(Lens*)aLens;
+- (FTLens*)lens;
+- (void)setLens:(FTLens*)aLens;
 
 @property(nonatomic) bool lensIsZoom;
 

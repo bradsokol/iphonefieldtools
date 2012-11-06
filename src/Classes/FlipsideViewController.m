@@ -210,7 +210,7 @@
 	CameraViewController* viewController =
 		[[CameraViewController alloc] initWithNibName:@"CameraView" 
 											   bundle:nil
-											forCamera:(Camera*)[notification object]];
+											forCamera:(FTCamera*)[notification object]];
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
 	[[self navigationController] pushViewController:viewController animated:YES];
@@ -222,7 +222,7 @@
 	CoCViewController* viewController =
 	[[CoCViewController alloc] initWithNibName:@"CoCView" 
 										bundle:nil
-									 forCamera:(Camera*)[notification object]];
+									 forCamera:(FTCamera*)[notification object]];
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
 	[[self navigationController] pushViewController:viewController animated:YES];
 	[viewController release];
@@ -246,7 +246,7 @@
 	LensViewController* viewController =
 	[[LensViewController alloc] initWithNibName:@"LensView" 
 										 bundle:nil
-									    forLens:(Lens*)[notification object]];
+									    forLens:(FTLens*)[notification object]];
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
 	[[self navigationController] pushViewController:viewController animated:YES];
@@ -289,7 +289,7 @@
 - (void)lensWasEdited:(NSNotification*)notification
 {
 	UITableView* tableView = (UITableView*) [self view];
-	Lens* lens = (Lens*)[notification object];
+	FTLens* lens = (FTLens*)[notification object];
 	
 	[[FTCameraBag sharedCameraBag] save];
 	

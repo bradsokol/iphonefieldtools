@@ -24,8 +24,8 @@
 
 #import "TableViewControllerWithAnalytics.h"
 
-@class Camera;
 @class CameraViewTableDataSource;
+@class FTCamera;
 
 @interface CameraViewController : TableViewControllerWithAnalytics <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 {
@@ -35,13 +35,13 @@
 
 	CameraViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
-	Camera* camera;
+	FTCamera* camera;
 	
 	bool newCamera;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
 @property(nonatomic, retain) CameraViewTableDataSource* tableViewDataSource;
 @property(nonatomic, retain, readonly) UITableViewCell* cameraNameCell;
