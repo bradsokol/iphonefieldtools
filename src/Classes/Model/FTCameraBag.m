@@ -48,7 +48,6 @@ static FTCameraBag* sharedCameraBag = nil;
 {
     NSParameterAssert(managedObjectContext);
     
-    [sharedCameraBag release];
     
     sharedCameraBag = [[FTCameraBag alloc] init];
     [sharedCameraBag setManagedObjectContext:managedObjectContext];
@@ -346,7 +345,6 @@ static FTCameraBag* sharedCameraBag = nil;
         count = 0;
     }
     
-    [request release];
     
     return count;
 }
@@ -361,16 +359,9 @@ static FTCameraBag* sharedCameraBag = nil;
     NSArray* results = [[self managedObjectContext] executeFetchRequest:request
                                                                   error:&error];
     
-    [request release];
     
     return [results count] == 0 ? nil : [results objectAtIndex:0];
 }
 
-- (void)dealloc
-{
-    [self setManagedObjectContext:nil];
-    
-    [super dealloc];
-}
 
 @end

@@ -36,7 +36,7 @@
 + (NSDictionary*)cocPresets;
 + (CoC*)findFromPresets:(NSString*)cocDescription;
 
-@property (readonly, retain, nonatomic) NSString* description;
+@property (readonly, strong, nonatomic) NSString* description;
 @property (readonly, assign) float value;
 
 @end

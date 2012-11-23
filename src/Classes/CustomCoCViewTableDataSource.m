@@ -60,11 +60,5 @@
 	return cell;
 }
 
-- (void)dealloc
-{
-	[self setCamera:nil];
-	
-	[super dealloc];
-}
 
 @end

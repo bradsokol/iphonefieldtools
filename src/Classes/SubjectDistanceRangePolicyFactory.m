@@ -75,20 +75,20 @@ SubjectDistanceRangePolicyFactory* theInstance;
     switch (subjectDistanceRange)
     {
         case SubjectDistanceRangeMacro:
-            policy = [[[MacroSubjectDistanceRangePolicy alloc] init] autorelease];
+            policy = [[MacroSubjectDistanceRangePolicy alloc] init];
             break;
 
         case SubjectDistanceRangeClose:
-            policy = [[[CloseSubjectDistanceRangePolicy alloc] init] autorelease];
+            policy = [[CloseSubjectDistanceRangePolicy alloc] init];
             break;
             
         case SubjectDistanceRangeMid:
-            policy = [[[MidSubjectDistanceRangePolicy alloc] init] autorelease];
+            policy = [[MidSubjectDistanceRangePolicy alloc] init];
             break;
             
         case SubjectDistanceRangeFar:
         default:
-            policy = [[[FarSubjectDistanceRangePolicy alloc] init] autorelease];
+            policy = [[FarSubjectDistanceRangePolicy alloc] init];
             break;
     }
     

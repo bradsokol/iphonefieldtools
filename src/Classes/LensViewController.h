@@ -63,26 +63,26 @@
 // The designated initializer
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(FTLens*)lens;
 
-@property(nonatomic, retain) LensViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong) LensViewTableDataSource* tableViewDataSource;
 
-@property(nonatomic, retain, readonly) UITableViewCell* lensNameCell;
-@property(nonatomic, retain, readonly) UITextField* lensNameField;
-@property(nonatomic, retain, readonly) UILabel* lensNameLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* lensNameCell;
+@property(nonatomic, strong, readonly) UITextField* lensNameField;
+@property(nonatomic, strong, readonly) UILabel* lensNameLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* minimumApertureCell;
-@property(nonatomic, retain, readonly) UITextField* minimumApertureField;
-@property(nonatomic, retain, readonly) UILabel* minimumApertureLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* minimumApertureCell;
+@property(nonatomic, strong, readonly) UITextField* minimumApertureField;
+@property(nonatomic, strong, readonly) UILabel* minimumApertureLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* maximumApertureCell;
-@property(nonatomic, retain, readonly) UITextField* maximumApertureField;
-@property(nonatomic, retain, readonly) UILabel* maximumApertureLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* maximumApertureCell;
+@property(nonatomic, strong, readonly) UITextField* maximumApertureField;
+@property(nonatomic, strong, readonly) UILabel* maximumApertureLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* minimumFocalLengthCell;
-@property(nonatomic, retain, readonly) UITextField* minimumFocalLengthField;
-@property(nonatomic, retain, readonly) UILabel* minimumFocalLengthLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* minimumFocalLengthCell;
+@property(nonatomic, strong, readonly) UITextField* minimumFocalLengthField;
+@property(nonatomic, strong, readonly) UILabel* minimumFocalLengthLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* maximumFocalLengthCell;
-@property(nonatomic, retain, readonly) UITextField* maximumFocalLengthField;
-@property(nonatomic, retain, readonly) UILabel* maximumFocalLengthLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* maximumFocalLengthCell;
+@property(nonatomic, strong, readonly) UITextField* maximumFocalLengthField;
+@property(nonatomic, strong, readonly) UILabel* maximumFocalLengthLabel;
 
 @end

@@ -5,12 +5,12 @@
 
 
 extern const struct FTLensAttributes {
-	 NSString *index;
-	 NSString *maximumAperture;
-	 NSString *maximumFocalLength;
-	 NSString *minimumAperture;
-	 NSString *minimumFocalLength;
-	 NSString *name;
+	__unsafe_unretained NSString *index;
+	__unsafe_unretained NSString *maximumAperture;
+	__unsafe_unretained NSString *maximumFocalLength;
+	__unsafe_unretained NSString *minimumAperture;
+	__unsafe_unretained NSString *minimumFocalLength;
+	__unsafe_unretained NSString *name;
 } FTLensAttributes;
 
 extern const struct FTLensRelationships {
@@ -39,7 +39,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* index;
+@property (nonatomic, strong) NSNumber* index;
 
 
 @property int32_t indexValue;
@@ -51,7 +51,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* maximumAperture;
+@property (nonatomic, strong) NSNumber* maximumAperture;
 
 
 @property float maximumApertureValue;
@@ -63,7 +63,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* maximumFocalLength;
+@property (nonatomic, strong) NSNumber* maximumFocalLength;
 
 
 @property int32_t maximumFocalLengthValue;
@@ -75,7 +75,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* minimumAperture;
+@property (nonatomic, strong) NSNumber* minimumAperture;
 
 
 @property float minimumApertureValue;
@@ -87,7 +87,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* minimumFocalLength;
+@property (nonatomic, strong) NSNumber* minimumFocalLength;
 
 
 @property int32_t minimumFocalLengthValue;
@@ -99,7 +99,7 @@ extern const struct FTLensFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* name;
+@property (nonatomic, strong) NSString* name;
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;

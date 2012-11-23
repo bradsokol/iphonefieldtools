@@ -26,7 +26,7 @@
 
 @interface SubjectDistanceSliderPolicy ()
 
-@property(nonatomic, retain) SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
+@property(nonatomic, strong) SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
 
 @end
 
@@ -82,11 +82,5 @@
     return 0.0f;
 }
 
-- (void)dealloc
-{
-    [self setSubjectDistanceRangePolicy:nil];
-    
-    [super dealloc];
-}
 
 @end

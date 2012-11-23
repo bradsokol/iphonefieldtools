@@ -144,13 +144,8 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
-	NSLog(@"Release text field %p cell tag %d",textField, [self tag]);
-	[textField release]; 
-	textField = nil;
-	[label release]; 
 	label = nil;
 	
-    [super dealloc];
 }
 
 @end

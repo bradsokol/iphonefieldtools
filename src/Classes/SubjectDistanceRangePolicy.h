@@ -28,6 +28,6 @@
 @property(readonly) bool isMetric;
 @property(readonly) CGFloat minimumDistance;
 @property(readonly) CGFloat maximumDistance;
-@property(readonly, nonatomic) NSString* rangeDescription;
+@property(unsafe_unretained, readonly, nonatomic) NSString* rangeDescription;
 
 @end

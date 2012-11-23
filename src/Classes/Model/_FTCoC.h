@@ -5,12 +5,12 @@
 
 
 extern const struct FTCoCAttributes {
-	 NSString *name;
-	 NSString *value;
+	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *value;
 } FTCoCAttributes;
 
 extern const struct FTCoCRelationships {
-	 NSString *camera;
+	__unsafe_unretained NSString *camera;
 } FTCoCRelationships;
 
 extern const struct FTCoCFetchedProperties {
@@ -33,7 +33,7 @@ extern const struct FTCoCFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* name;
+@property (nonatomic, strong) NSString* name;
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -41,7 +41,7 @@ extern const struct FTCoCFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* value;
+@property (nonatomic, strong) NSNumber* value;
 
 
 @property float valueValue;
@@ -54,7 +54,7 @@ extern const struct FTCoCFetchedProperties {
 
 
 
-@property (nonatomic, retain) FTCamera* camera;
+@property (nonatomic, strong) FTCamera* camera;
 
 //- (BOOL)validateCamera:(id*)value_ error:(NSError**)error_;
 

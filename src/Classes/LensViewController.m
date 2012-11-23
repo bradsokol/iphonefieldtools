@@ -51,10 +51,10 @@ static const float SectionHeaderHeight = 44.0;
 - (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) FTLens* lens;
+@property(nonatomic, strong) FTLens* lens;
 @property(nonatomic, getter=isNewLens) bool newLens;
-@property(nonatomic, retain) NSNumberFormatter* numberFormatter;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) NSNumberFormatter* numberFormatter;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
@@ -106,21 +106,21 @@ static const float SectionHeaderHeight = 44.0;
 	[self setNewLens:[[[self lens] description] length] == 0];
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
-	 action:@selector(saveWasSelected)] autorelease]];
+	 action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
 	
 	[self setTitle:NSLocalizedString(@"LENS_VIEW_TITLE", "Lens view")];
 
-	[self setNumberFormatter:[[[NSNumberFormatter alloc] init] autorelease]];
+	[self setNumberFormatter:[[NSNumberFormatter alloc] init]];
 	
 	return self;
 }
@@ -262,8 +262,8 @@ static const float SectionHeaderHeight = 44.0;
 			headerText = NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE");
 			break;
 	}
-	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
-	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];
+	UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)];
+	UILabel *label = [[UILabel alloc] initWithFrame:headerView.frame];
 	[label setTextColor:[UIColor whiteColor]];
 	[label setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	[label setText:headerText];
@@ -314,7 +314,6 @@ static const float SectionHeaderHeight = 44.0;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		return NO;
 	}
@@ -334,7 +333,6 @@ static const float SectionHeaderHeight = 44.0;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		return NO;
 	}
@@ -354,7 +352,6 @@ static const float SectionHeaderHeight = 44.0;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		return NO;
 	}
@@ -473,15 +470,6 @@ static const float SectionHeaderHeight = 44.0;
 	return NO;
 }
 
-- (void)dealloc 
-{
-	[self setSaveButton:nil];
-	[self setLens:nil];
-	[self setNumberFormatter:nil];
-	[self setTableViewDataSource:nil];
-
-    [super dealloc];
-}
 
 @end
 

@@ -32,6 +32,6 @@
     int newSubjectDistanceRangeIndex;
 }
 
-@property(nonatomic, retain) SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong) SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
 
 @end

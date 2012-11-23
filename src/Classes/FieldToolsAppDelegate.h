@@ -29,8 +29,8 @@
     IBOutlet MainViewController *mainViewController;
 }
 
-@property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) MainViewController *mainViewController;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) MainViewController *mainViewController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

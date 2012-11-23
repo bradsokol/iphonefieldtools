@@ -103,9 +103,8 @@
 
 - (void)dealloc
 {
-    [notificationView release], notificationView = nil;
+    notificationView = nil;
     
-    [super dealloc];
 }
 
 @end

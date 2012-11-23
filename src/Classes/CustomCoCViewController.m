@@ -35,10 +35,10 @@
 - (void)makeTextFieldFirstResponder;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) FTCamera* camera;
+@property(nonatomic, strong) FTCamera* camera;
 @property(nonatomic, assign) float coc;
-@property(nonatomic, retain) NSNumberFormatter* numberFormatter;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) NSNumberFormatter* numberFormatter;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
@@ -72,21 +72,21 @@
 	[self setCamera:aCamera];
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
 						  initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 						  target:self
-						  action:@selector(saveWasSelected)] autorelease]];
+						  action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
 	
 	[self setTitle:NSLocalizedString(@"CUSTOM_COC_VIEW_TITLE", "CoC view")];
 
-	[self setNumberFormatter:[[[NSNumberFormatter alloc] init] autorelease]];
+	[self setNumberFormatter:[[NSNumberFormatter alloc] init]];
     
 	return self;
 }
@@ -127,7 +127,6 @@
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		[self makeTextFieldFirstResponder];
 	}
@@ -148,7 +147,6 @@
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CUSTOM_COC_NOTIFICATION 
 																							 object:customCoc]];
 		
-		[customCoc release];
 
 		[[self navigationController] popViewControllerAnimated:YES];
 	}
@@ -177,15 +175,6 @@
 	coc = [[numberFormatter numberFromString:[textField text]] floatValue];
 }
 
-- (void)dealloc 
-{
-	[self setCamera:nil];
-	[self setNumberFormatter:nil];
-	[self setSaveButton:nil];
-	[self setTableViewDataSource:nil];
-	
-    [super dealloc];
-}
 
 @end
 

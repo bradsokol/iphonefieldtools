@@ -63,6 +63,6 @@
 - (void)setResultNear:(CGFloat)nearDistance far:(CGFloat)farDistance;
 - (void)setShowTenths:(bool)showTenths;
 
-@property (nonatomic, retain) DistanceFormatter* distanceFormatter;
+@property (nonatomic, strong) DistanceFormatter* distanceFormatter;
 
 @end

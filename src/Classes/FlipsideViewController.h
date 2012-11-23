@@ -38,9 +38,9 @@
 	UINavigationController* navigationController;
 }
 
-@property (assign, nonatomic) id <FlipsideViewControllerDelegate> delegate;
-@property(nonatomic, retain) FlipsideTableViewDataSource* tableViewDataSource;
-@property(nonatomic, retain) FlipsideTableViewDelegate* tableViewDelegate;
-@property(nonatomic, retain) UINavigationController* navigationController;
+@property (unsafe_unretained, nonatomic) id <FlipsideViewControllerDelegate> delegate;
+@property(nonatomic, strong) FlipsideTableViewDataSource* tableViewDataSource;
+@property(nonatomic, strong) FlipsideTableViewDelegate* tableViewDelegate;
+@property(nonatomic, strong) UINavigationController* navigationController;
 
 @end

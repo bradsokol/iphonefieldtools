@@ -255,9 +255,8 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 
 - (void)dealloc
 {
-    [numberFormatter release], numberFormatter = nil;
+    numberFormatter = nil;
     
-    [super dealloc];
 }
 
 @end

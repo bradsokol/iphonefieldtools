@@ -82,8 +82,8 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistanceRangeText;
 
 @property(nonatomic) int apertureIndex;
-@property(nonatomic, retain) DistanceFormatter* distanceFormatter;
-@property(nonatomic, retain) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
+@property(nonatomic, strong) DistanceFormatter* distanceFormatter;
+@property(nonatomic, strong) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 
 @end
 
@@ -220,7 +220,6 @@ static BOOL previousLensWasZoom = YES;
 	styleAlert.actionSheetStyle = (UIActionSheetStyle) self.navigationController.navigationBar.barStyle;
 	
 	[styleAlert showInView:self.view];
-	[styleAlert release];
 }
 
 // Aperture slider changed
@@ -395,7 +394,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void) updateDistanceFormatter 
 {
-	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
+	[self setDistanceFormatter:[[DistanceFormatter alloc] init]];
 
 	[resultView setDistanceFormatter:[self distanceFormatter]];
 }
@@ -742,7 +741,6 @@ static BOOL previousLensWasZoom = YES;
     SubjectDistanceSliderPolicy* sliderPolicy = [[LinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
     
     [self setSubjectDistanceSliderPolicy:sliderPolicy];
-    [sliderPolicy release];
 }
 
 - (bool)shouldShowTenths
@@ -792,7 +790,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (IBAction)toggleView
 {
-    FlipsideViewController* controller = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil] autorelease];
+    FlipsideViewController* controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
     
     [controller setAnalyticsPolicy:[self analyticsPolicy]];
     
@@ -806,26 +804,19 @@ static BOOL previousLensWasZoom = YES;
     
     [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:navController animated:YES completion:NULL];
-    [navController release];
 }
 
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[self setDistanceFormatter:nil];
 	
-	[self setSubjectDistanceSliderPolicy:nil];
 
-    [subjectDistanceRangeText release];
     
-    [self setAnalyticsPolicy:nil];
     
-    [super dealloc];
 }
 
 - (void)viewDidUnload 
 {
-    [subjectDistanceRangeText release];
     subjectDistanceRangeText = nil;
 	[self setCameraAndLensDescription:nil];
 	[self setInfoButton:nil];

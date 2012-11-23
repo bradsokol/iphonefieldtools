@@ -36,7 +36,6 @@
                              [formatter stringForObjectValue:[NSNumber numberWithFloat:[self minimumDistance]]],
                              [formatter stringForObjectValue:[NSNumber numberWithFloat:[self maximumDistance]]]];
     
-    [formatter release];
     
     return description;
 }

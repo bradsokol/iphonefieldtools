@@ -36,10 +36,10 @@ extern const NSInteger UNITS_SECTION;
 {
 	BOOL editing;
 	
-	FlipsideViewController* controller;
+	FlipsideViewController* __unsafe_unretained controller;
 }
 
 @property(nonatomic, getter=isEditing) BOOL editing;
-@property(nonatomic, assign) FlipsideViewController* controller;
+@property(nonatomic, unsafe_unretained) FlipsideViewController* controller;
 
 @end

@@ -52,11 +52,11 @@
 
 - (void)save_deprecated;
 
-@property(nonatomic, retain) NSString* description;
+@property(nonatomic, strong) NSString* description;
 @property(nonatomic) int identifier;
-@property(nonatomic, retain) NSNumber* maximumAperture;
-@property(nonatomic, retain) NSNumber* minimumAperture;
-@property(nonatomic, retain) NSNumber* maximumFocalLength;
-@property(nonatomic, retain) NSNumber* minimumFocalLength;
+@property(nonatomic, strong) NSNumber* maximumAperture;
+@property(nonatomic, strong) NSNumber* minimumAperture;
+@property(nonatomic, strong) NSNumber* maximumFocalLength;
+@property(nonatomic, strong) NSNumber* minimumFocalLength;
 
 @end

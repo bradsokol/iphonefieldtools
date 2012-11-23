@@ -68,7 +68,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 		return nil;
 	}
 	
-	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
+	[self setDistanceFormatter:[[DistanceFormatter alloc] init]];
 	firstDraw = YES;
 	
     return self;
@@ -285,11 +285,5 @@ static const float SMALL_FONT_SIZE = 24.0;
 	distanceArrows.hidden = hide;
 }
 
-- (void)dealloc 
-{
-	[self setDistanceFormatter:nil];
-	
-    [super dealloc];
-}
 
 @end

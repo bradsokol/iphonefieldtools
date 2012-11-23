@@ -26,6 +26,7 @@
 #import "CoCViewController.h"
 #import "CustomCoCViewController.h"
 #import "FlipsideTableViewDataSource.h"
+#import "FlipsideTableViewDelegate.h"
 #import "FieldToolsAppDelegate.h"
 #import "FTCamera.h"
 #import "FTCameraBag.h"
@@ -117,7 +118,6 @@
 													  target:self
 													  action:@selector(done)];
 	[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
-	[rightBarButtonItem release];
 	
 	[self setTableViewDelegate:(FlipsideTableViewDelegate*) [[self tableView] delegate]];
 	[self setTableViewDataSource: [[self tableView] dataSource]];
@@ -152,7 +152,6 @@
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		[indexPaths release];
         
         if (nil != extraLensCell)
         {
@@ -168,7 +167,6 @@
 			 action:@selector(done)];
 		
 		[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
-		[rightBarButtonItem release];
 		
 		NSMutableArray* indexPaths = [[NSMutableArray alloc] initWithCapacity:2];
 		NSIndexPath* path = [NSIndexPath indexPathForRow:cameraCount 
@@ -178,7 +176,6 @@
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 				
-		[indexPaths release];
         
         if (nil != extraLensCell)
         {
@@ -214,7 +211,6 @@
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editCoC:(NSNotification*)notification
@@ -225,7 +221,6 @@
 									 forCamera:(FTCamera*)[notification object]];
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editCustomCoC:(NSNotification*)notification
@@ -238,7 +233,6 @@
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editLens:(NSNotification*)notification
@@ -250,7 +244,6 @@
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editSubjectDistanceRange:(NSNotification*)notification
@@ -261,7 +254,6 @@
     [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
     [[self navigationController] pushViewController:viewController animated:YES];
-    [viewController release];
 }
 
 - (void)cameraWasAdded:(NSNotification*)notification
@@ -303,15 +295,5 @@
 	[tableView reloadData];
 }
 
-- (void)dealloc 
-{
-//	[[NSNotificationCenter defaultCenter] removeObject:self];
-	
-	[self setNavigationController:nil];
-	[self setTableViewDataSource:nil];
-	[self setTableViewDelegate:nil];
-	
-    [super dealloc];
-}
 
 @end

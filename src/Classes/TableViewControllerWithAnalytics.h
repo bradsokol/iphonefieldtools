@@ -26,6 +26,6 @@
 
 @interface TableViewControllerWithAnalytics : UITableViewController
 
-@property(nonatomic, retain) id<AnalyticsPolicy> analyticsPolicy;
+@property(nonatomic, strong) id<AnalyticsPolicy> analyticsPolicy;
 
 @end

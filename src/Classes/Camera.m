@@ -39,8 +39,8 @@ static NSString* KeyCoc = @"CameraCoC";
 
 - (id)initWithCoder:(NSCoder*)decoder
 {
-	description = [[decoder decodeObjectForKey:KeyDescription] retain];
-	coc = [[decoder decodeObjectForKey:KeyCoc] retain];
+	description = [decoder decodeObjectForKey:KeyDescription];
+	coc = [decoder decodeObjectForKey:KeyCoc];
 	
 	return self;
 }
@@ -72,7 +72,7 @@ static NSString* KeyCoc = @"CameraCoC";
 - (id)copyWithZone:(NSZone *)zone
 {
 	id result = [[[self class] allocWithZone:zone] initWithDescription:[self description]
-																   coc:[[[self coc] copy] autorelease]
+																   coc:[[self coc] copy]
 															identifier:[self identifier]];
 	
 	return result;
@@ -107,10 +107,9 @@ static NSString* KeyCoc = @"CameraCoC";
 		coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
 							 description:description];
 	}
-	Camera* camera = [[[Camera alloc] initWithDescription:[dict objectForKey:CameraNameKey]																		
+	Camera* camera = [[Camera alloc] initWithDescription:[dict objectForKey:CameraNameKey]																		
 													 coc:coc
-											  identifier:index] autorelease];	
-	[coc release];
+											  identifier:index];	
 	
 	return camera;
 }
@@ -118,7 +117,7 @@ static NSString* KeyCoc = @"CameraCoC";
 + (NSArray*)findAll
 {
 	int cameraCount = [Camera count_deprecated];
-	NSMutableArray* cameras = [[[NSMutableArray alloc] initWithCapacity:cameraCount] autorelease];
+	NSMutableArray* cameras = [[NSMutableArray alloc] initWithCapacity:cameraCount];
 	for (int i = 0; i < cameraCount; ++i)
 	{
 		Camera* camera = [Camera findFromDefaultsForIndex_deprecated:i];
@@ -170,12 +169,5 @@ static NSString* KeyCoc = @"CameraCoC";
 	return dict;
 }
 
-- (void)dealloc
-{
-	[self setCoc:nil];
-	[self setDescription:nil];
-	
-	[super dealloc];
-}
 
 @end
