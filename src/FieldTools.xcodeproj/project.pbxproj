@@ -128,7 +128,6 @@
 		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
-		A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
 		A2E3D0F915532869005F3F30 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E3D0F815532869005F3F30 /* iRate.m */; };
@@ -294,8 +293,6 @@
 		A2D62409104248DA00B2F055 /* CoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoCView.xib; sourceTree = "<group>"; };
 		A2D6241A10424A5600B2F055 /* CoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewController.h; sourceTree = "<group>"; };
 		A2D6241B10424A5600B2F055 /* CoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewController.m; sourceTree = "<group>"; };
-		A2D6245D104251AA00B2F055 /* CoCViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewTableDataSource.h; sourceTree = "<group>"; };
-		A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2D64AA00FCF855B00E337D9 /* FlipsideTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDataSource.h; sourceTree = "<group>"; };
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
@@ -699,8 +696,6 @@
 			children = (
 				A2D6241A10424A5600B2F055 /* CoCViewController.h */,
 				A2D6241B10424A5600B2F055 /* CoCViewController.m */,
-				A2D6245D104251AA00B2F055 /* CoCViewTableDataSource.h */,
-				A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */,
 			);
 			name = "CoC View";
 			sourceTree = "<group>";
@@ -940,7 +935,6 @@
 				A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */,
 				A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */,
 				A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */,
-				A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */,
 				A2E357971044DBDD003C449D /* CoC.m in Sources */,
 				A25BDF3410479BFE00B22B2B /* Lens.m in Sources */,
 				A2B95FA610715FB80057A70E /* LensViewController.m in Sources */,
@@ -1313,6 +1307,7 @@
 				A282977316453D2D00F6DE5D /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */ = {
 			isa = XCConfigurationList;

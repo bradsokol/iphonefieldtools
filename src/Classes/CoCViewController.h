@@ -29,9 +29,8 @@
 @class FTCoC;
 @protocol AnalyticsPolicy;
 
-@interface CoCViewController : TableViewControllerWithAnalytics <UITableViewDelegate>
+@interface CoCViewController : TableViewControllerWithAnalytics <UITableViewDataSource, UITableViewDelegate>
 {
-	CoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
 	FTCamera* camera;
     FTCoC* coc;
@@ -39,7 +38,5 @@
 
 // The designated initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
-
-@property(nonatomic, retain) CoCViewTableDataSource* tableViewDataSource;
 
 @end

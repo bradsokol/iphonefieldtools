@@ -22,12 +22,14 @@
 
 #import "CoCViewController.h"
 
-#import "CoCViewTableDataSource.h"
 #import "FTCamera.h"
 #import "FTCameraBag.h"
 #import "FTCoC.h"
+#import "TwoLabelTableViewCell.h"
 
 #import "Notifications.h"
+
+static const int NUM_SECTIONS = 1;
 
 @interface CoCViewController ()
 
@@ -51,7 +53,6 @@
 @synthesize camera;
 @synthesize coc;
 @synthesize saveButton;
-@synthesize tableViewDataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -110,7 +111,7 @@
     
     [[self analyticsPolicy] trackEvent:kCategoryCoC
                                 action:kActionChanged
-                                 label:[[[self camera] coc] description] value:-1];
+                                 label:[[[self camera] coc] name] value:-1];
 
 	
 	[[self navigationController] popViewControllerAnimated:YES];
@@ -121,14 +122,12 @@
     [super viewDidLoad];
     
     [self setCoc:[[FTCameraBag sharedCameraBag] newCoC]];
+    [[self coc] setName:[[[self camera] coc] name]];
+    [[self coc] setValue:[[[self camera] coc] value]];
 
     [[self analyticsPolicy] trackView:kSettingsCoC];
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
-	
-	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:[self camera]];
-	[[self tableViewDataSource] setController:self];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -149,6 +148,73 @@
     
     [newCoc retain];
     coc = newCoc;
+}
+
+#pragma mark UITableViewDataSource methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return NUM_SECTIONS;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	// Return one extra row for the custom setting
+	return [[FTCoC cocPresets] count] + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    TwoLabelTableViewCell* cell = (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+	{
+		cell = [[[TwoLabelTableViewCell alloc]
+				 initWithStyle:UITableViewCellStyleDefault
+                 reuseIdentifier:@"Cell"] autorelease];
+    }
+    
+	if ([indexPath row] < [[FTCoC cocPresets] count])
+	{
+		// This is one of the rows for the preset CoC values
+		NSArray* keys = [[FTCoC cocPresets] allKeys];
+		NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+		NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
+		[cell setText:[NSString stringWithFormat:@"%.3f", [[[FTCoC cocPresets] objectForKey:key] floatValue]]];
+		[cell setLabel:key];
+		
+		if ([key compare:[[self coc] name]] == NSOrderedSame)
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		}
+		else
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryNone];
+		}
+	}
+	else
+	{
+		// This is the custom CoC row
+		
+		// See if custom CoC is configured.
+		NSString* customLabel = NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM");
+		NSString* cocDescription = [[self coc] name];
+		
+		if ([cocDescription compare:customLabel] == NSOrderedSame)
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+			[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]]];
+		}
+		else
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			[cell setText:@""];
+		}
+		[cell setLabel:customLabel];
+	}
+	
+    return cell;
 }
 
 #pragma mark UITableViewDelegate methods
@@ -238,7 +304,7 @@
 - (int)rowForSelectedCoC
 {
 	// Check if custom CoC
-	if ([[[camera coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
+	if ([[[self coc] name] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
 		return [[FTCoC cocPresets] count];
 	}
@@ -247,7 +313,7 @@
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	for (int i = 0; i < [sortedKeys count]; ++i)
 	{
-		if ([[[[self camera] coc] description] compare:[sortedKeys objectAtIndex:i]] == 0)
+		if ([[[self coc] name] compare:[sortedKeys objectAtIndex:i]] == 0)
 		{
 			return i;
 		}
@@ -270,7 +336,6 @@
 	[self setSaveButton:nil];
 	[self setCamera:nil];
 	[self setCoc:nil];
-	[self setTableViewDataSource:nil];
 	
     [super dealloc];
 }
