@@ -43,6 +43,7 @@
 - (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex;
 - (int)lensCount;
 
+- (void)deleteCoC:(FTCoC*)coc;
 - (FTCamera*)newCamera;
 - (FTCoC*)newCoC;
 - (FTLens*)newLens;

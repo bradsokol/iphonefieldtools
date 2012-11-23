@@ -41,7 +41,6 @@
 	NSNumberFormatter* numberFormatter;
 	
 	FTCamera* camera;
-	FTCamera* cameraWorking;
 
 	float coc;
 }

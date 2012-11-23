@@ -40,7 +40,7 @@
 - (void)saveWasSelected;
 
 @property(nonatomic, retain) FTCamera* camera;
-@property(nonatomic, retain) FTCamera* cameraWorking;
+@property(nonatomic, retain) FTCoC* coc;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
 
 @end
@@ -49,7 +49,7 @@
 
 @synthesize analyticsPolicy;
 @synthesize camera;
-@synthesize cameraWorking;
+@synthesize coc;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
 
@@ -70,7 +70,6 @@
     }
 	
 	[self setCamera:aCamera];
-	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 
@@ -102,11 +101,16 @@
 
 - (void)saveWasSelected
 {
-	[[self camera] setCoc:[[self cameraWorking] coc]];
+    if ([[self camera] coc] != [self coc])
+    {
+        FTCoC* oldCoc = [[self camera] coc];
+        [[self camera] setCoc:[self coc]];
+        [[FTCameraBag sharedCameraBag] deleteCoC:oldCoc];
+    }
     
     [[self analyticsPolicy] trackEvent:kCategoryCoC
                                 action:kActionChanged
-                                 label:[[[self cameraWorking] coc] description] value:-1];
+                                 label:[[[self camera] coc] description] value:-1];
 
 	
 	[[self navigationController] popViewControllerAnimated:YES];
@@ -115,13 +119,15 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    [self setCoc:[[FTCameraBag sharedCameraBag] newCoC]];
 
     [[self analyticsPolicy] trackView:kSettingsCoC];
 	
 	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	
 	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:[self cameraWorking]];
+	[[self tableViewDataSource] setCamera:[self camera]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -129,6 +135,20 @@
 {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+}
+
+- (void)setCoc:(FTCoC *)newCoc
+{
+    // If the CoC object doesn't have a camera, it was a temporary one for
+    // editing purposes. It should be deleted.
+    if (nil != coc && nil == [coc camera])
+    {
+        [[FTCameraBag sharedCameraBag] deleteCoC:coc];
+    }
+    [coc release];
+    
+    [newCoc retain];
+    coc = newCoc;
 }
 
 #pragma mark UITableViewDelegate methods
@@ -178,11 +198,8 @@
 		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		
 		NSString* description = [self keyForRow:[indexPath row]];
-        FTCoC* coc = [[FTCameraBag sharedCameraBag] newCoC];
-        [coc setValueValue:[[FTCoC findFromPresets:description] valueValue]];
-        [coc setName:description];
-		[[self cameraWorking] setCoc:coc];
-		[coc release];
+        FTCoC* newCoc = [FTCoC findFromPresets:description];
+        [self setCoc:newCoc];
 		
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
@@ -208,7 +225,7 @@
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:
 	 [NSNotification notificationWithName:CUSTOM_COC_SELECTED_FOR_EDIT_NOTIFICATION 
-								   object:[self cameraWorking]]];
+								   object:[self camera]]];
 }
 
 - (NSString*)keyForRow:(int)row
@@ -221,7 +238,7 @@
 - (int)rowForSelectedCoC
 {
 	// Check if custom CoC
-	if ([[[cameraWorking coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
+	if ([[[camera coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
 		return [[FTCoC cocPresets] count];
 	}
@@ -230,7 +247,7 @@
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	for (int i = 0; i < [sortedKeys count]; ++i)
 	{
-		if ([[[[self cameraWorking] coc] description] compare:[sortedKeys objectAtIndex:i]] == 0)
+		if ([[[[self camera] coc] description] compare:[sortedKeys objectAtIndex:i]] == 0)
 		{
 			return i;
 		}
@@ -252,7 +269,7 @@
 	
 	[self setSaveButton:nil];
 	[self setCamera:nil];
-	[self setCameraWorking:nil];
+	[self setCoc:nil];
 	[self setTableViewDataSource:nil];
 	
     [super dealloc];

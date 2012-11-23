@@ -24,8 +24,9 @@
 
 #import "TableViewControllerWithAnalytics.h"
 
-@class FTCamera;
 @class CoCViewTableDataSource;
+@class FTCamera;
+@class FTCoC;
 @protocol AnalyticsPolicy;
 
 @interface CoCViewController : TableViewControllerWithAnalytics <UITableViewDelegate>
@@ -33,7 +34,7 @@
 	CoCViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
 	FTCamera* camera;
-	FTCamera* cameraWorking;
+    FTCoC* coc;
 }
 
 // The designated initializer.

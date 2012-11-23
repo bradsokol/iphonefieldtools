@@ -36,7 +36,6 @@
 - (void)saveWasSelected;
 
 @property(nonatomic, retain) FTCamera* camera;
-@property(nonatomic, retain) FTCamera* cameraWorking;
 @property(nonatomic, assign) float coc;
 @property(nonatomic, retain) NSNumberFormatter* numberFormatter;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
@@ -46,7 +45,6 @@
 @implementation CustomCoCViewController
 
 @synthesize camera;
-@synthesize cameraWorking;
 @synthesize coc;
 @synthesize cocValueCell;
 @synthesize cocValueField;
@@ -72,7 +70,6 @@
     }
 	
 	[self setCamera:aCamera];
-	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 
@@ -176,7 +173,6 @@
 - (void)dealloc 
 {
 	[self setCamera:nil];
-	[self setCameraWorking:nil];
 	[self setNumberFormatter:nil];
 	[self setSaveButton:nil];
 	[self setTableViewDataSource:nil];

@@ -260,6 +260,7 @@ static FTCameraBag* sharedCameraBag = nil;
                                                 inManagedObjectContext:context]
                 insertIntoManagedObjectContext:context];
     
+    NSLog(@"New CoC: %p", coc);
     return coc;
 }
 
@@ -278,10 +279,30 @@ static FTCameraBag* sharedCameraBag = nil;
     return lens;
 }
 
+- (void)deleteCoC:(FTCoC*)coc
+{
+    NSAssert([coc camera] == nil, @"Attempting to delete coc that is attached to a camera");
+    
+    [[self managedObjectContext] deleteObject:coc];
+}
+
 - (BOOL)save
 {
     NSError *error = nil;
     NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
+#if DEBUG
+    NSSet* inserts = [managedObjectContext insertedObjects];
+    if ([inserts count] > 0)
+    {
+        NSLog(@"Persisting %d objects", [inserts count]);
+    }
+    for (id object in inserts)
+    {
+        FTCoC* coc = (FTCoC*) object;
+        NSLog(@"%p %@ (camera: %@)", object, [object description], [[coc camera] description]);
+        
+    }
+#endif
     if (managedObjectContext != nil)
     {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
