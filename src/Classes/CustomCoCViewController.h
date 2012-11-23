@@ -26,8 +26,8 @@
 
 #define CUSTOM_COC_KEY	@"Custom"
 
-@class Camera;
 @class CustomCoCViewTableDataSource;
+@class FTCamera;
 
 @interface CustomCoCViewController : TableViewControllerWithAnalytics <UITableViewDelegate, UITextFieldDelegate>
 {
@@ -40,14 +40,13 @@
 	
 	NSNumberFormatter* numberFormatter;
 	
-	Camera* camera;
-	Camera* cameraWorking;
+	FTCamera* camera;
 
 	float coc;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
 @property(nonatomic, retain) CustomCoCViewTableDataSource* tableViewDataSource;
 @property(nonatomic, retain, readonly) UITableViewCell* cocValueCell;

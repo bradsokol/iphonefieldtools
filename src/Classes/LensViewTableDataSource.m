@@ -22,7 +22,7 @@
 
 #import "LensViewTableDataSource.h"
 
-#import "Lens.h"
+#import "FTLens.h"
 #import "LensViewController.h"
 
 #import "LensViewSections.h"
@@ -34,12 +34,12 @@ NSString* CellIdentifier = @"Cell";
 @synthesize lensIsZoom;
 @synthesize controller;
 
-- (Lens*)lens
+- (FTLens*)lens
 {
 	return lens;
 }
 
-- (void)setLens:(Lens*)aLens
+- (void)setLens:(FTLens*)aLens
 {
 	[lens release];
 	[aLens retain];

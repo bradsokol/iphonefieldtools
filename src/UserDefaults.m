@@ -38,3 +38,4 @@ NSString* const FTMacroModeKey = @"MacroMode";
 NSString* const FTMigratedFrom10Key = @"MigratedFrom10";
 NSString* const FTMigratedFrom20Key = @"MigratedFrom20";
 NSString* const FTMigratedFrom22Key = @"MigratedFrom22";
+NSString* const FTMigratedFrom23Key = @"MigratedFrom23";

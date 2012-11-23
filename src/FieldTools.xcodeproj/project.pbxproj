@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A282977016453D2D00F6DE5D /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				A282977516453D3200F6DE5D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -65,9 +79,28 @@
 		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */; };
 		A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */; };
+		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
+		A282978316453E8700F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
+		A282978416453E8700F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
+		A282978516453E8700F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
+		A282978616453E8700F6DE5D /* FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977E16453E8700F6DE5D /* FTCamera.m */; };
+		A282978716453E8700F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
+		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
+		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
+		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
+		A28297CD1645716800F6DE5D /* FTCameraBagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28297CC1645716800F6DE5D /* FTCameraBagTests.m */; };
+		A28297CE164572B100F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
+		A28297CF164572D400F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
+		A28297D01645758C00F6DE5D /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
+		A28297D1164597A700F6DE5D /* FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977E16453E8700F6DE5D /* FTCamera.m */; };
+		A28297D2164597A700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
+		A28297D31645986F00F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
+		A28297D41645986F00F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
+		A28297D51645986F00F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
+		A28297D61645986F00F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */; };
@@ -95,7 +128,6 @@
 		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
-		A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
 		A2E3D0F915532869005F3F30 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E3D0F815532869005F3F30 /* iRate.m */; };
@@ -195,6 +227,7 @@
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 		A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbHighlighted@2x.png"; sourceTree = "<group>"; };
 		A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbNormal@2x.png"; sourceTree = "<group>"; };
+		A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldTools.xcdatamodel; sourceTree = "<group>"; };
 		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSlider.h; sourceTree = "<group>"; };
@@ -205,6 +238,22 @@
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 		A2811FD30ECE8DB100A7FB7A /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		A282977716453E8700F6DE5D /* _FTCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTCamera.h; path = Classes/Model/_FTCamera.h; sourceTree = "<group>"; };
+		A282977816453E8700F6DE5D /* _FTCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTCamera.m; path = Classes/Model/_FTCamera.m; sourceTree = "<group>"; };
+		A282977916453E8700F6DE5D /* _FTCoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTCoC.h; path = Classes/Model/_FTCoC.h; sourceTree = "<group>"; };
+		A282977A16453E8700F6DE5D /* _FTCoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTCoC.m; path = Classes/Model/_FTCoC.m; sourceTree = "<group>"; };
+		A282977B16453E8700F6DE5D /* _FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTLens.h; path = Classes/Model/_FTLens.h; sourceTree = "<group>"; };
+		A282977C16453E8700F6DE5D /* _FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTLens.m; path = Classes/Model/_FTLens.m; sourceTree = "<group>"; };
+		A282977D16453E8700F6DE5D /* FTCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCamera.h; path = Classes/Model/FTCamera.h; sourceTree = "<group>"; };
+		A282977E16453E8700F6DE5D /* FTCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCamera.m; path = Classes/Model/FTCamera.m; sourceTree = "<group>"; };
+		A282977F16453E8700F6DE5D /* FTCoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCoC.h; path = Classes/Model/FTCoC.h; sourceTree = "<group>"; };
+		A282978016453E8700F6DE5D /* FTCoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCoC.m; path = Classes/Model/FTCoC.m; sourceTree = "<group>"; };
+		A282978116453E8700F6DE5D /* FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTLens.h; path = Classes/Model/FTLens.h; sourceTree = "<group>"; };
+		A282978216453E8700F6DE5D /* FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTLens.m; path = Classes/Model/FTLens.m; sourceTree = "<group>"; };
+		A282978916453F2B00F6DE5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A282978C16454D2E00F6DE5D /* FTCameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCameraBag.h; path = Classes/Model/FTCameraBag.h; sourceTree = "<group>"; };
+		A282978D16454D2E00F6DE5D /* FTCameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBag.m; path = Classes/Model/FTCameraBag.m; sourceTree = "<group>"; };
+		A28297CC1645716800F6DE5D /* FTCameraBagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBagTests.m; path = TestClasses/FTCameraBagTests.m; sourceTree = SOURCE_ROOT; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
@@ -244,8 +293,6 @@
 		A2D62409104248DA00B2F055 /* CoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoCView.xib; sourceTree = "<group>"; };
 		A2D6241A10424A5600B2F055 /* CoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewController.h; sourceTree = "<group>"; };
 		A2D6241B10424A5600B2F055 /* CoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewController.m; sourceTree = "<group>"; };
-		A2D6245D104251AA00B2F055 /* CoCViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewTableDataSource.h; sourceTree = "<group>"; };
-		A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2D64AA00FCF855B00E337D9 /* FlipsideTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDataSource.h; sourceTree = "<group>"; };
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
@@ -264,6 +311,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */,
 				A2F862851545B41A00BF8480 /* libGoogleAnalytics.a in Frameworks */,
 				A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */,
 				A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */,
@@ -278,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A28297CF164572D400F6DE5D /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +424,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A282978916453F2B00F6DE5D /* CoreData.framework */,
 				A2ACD85813B64CB30052557E /* SystemConfiguration.framework */,
 				A2ACD85613B64CAD0052557E /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -408,6 +458,7 @@
 			children = (
 				A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */,
 				A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */,
+				A28297CC1645716800F6DE5D /* FTCameraBagTests.m */,
 				88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */,
 			);
 			name = "Model Tests";
@@ -509,6 +560,34 @@
 			name = "Subject Distance Slider Policies";
 			sourceTree = "<group>";
 		};
+		A282977616453E3E00F6DE5D /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				A237E63B12AAF4F00089862B /* Camera.h */,
+				A237E63C12AAF4F00089862B /* Camera.m */,
+				A237E63D12AAF4F00089862B /* CameraBag.h */,
+				A237E63E12AAF4F00089862B /* CameraBag.m */,
+				A2E357951044DBDD003C449D /* CoC.h */,
+				A2E357961044DBDD003C449D /* CoC.m */,
+				A25BDF3210479BFE00B22B2B /* Lens.h */,
+				A25BDF3310479BFE00B22B2B /* Lens.m */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		A282978B16453FBE00F6DE5D /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A282977716453E8700F6DE5D /* _FTCamera.h */,
+				A282977816453E8700F6DE5D /* _FTCamera.m */,
+				A282977916453E8700F6DE5D /* _FTCoC.h */,
+				A282977A16453E8700F6DE5D /* _FTCoC.m */,
+				A282977B16453E8700F6DE5D /* _FTLens.h */,
+				A282977C16453E8700F6DE5D /* _FTLens.m */,
+			);
+			name = "Base Classes";
+			sourceTree = "<group>";
+		};
 		A289FACE1613D8D300211AE0 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,16 +646,19 @@
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A237E63B12AAF4F00089862B /* Camera.h */,
-				A237E63C12AAF4F00089862B /* Camera.m */,
-				A237E63D12AAF4F00089862B /* CameraBag.h */,
-				A237E63E12AAF4F00089862B /* CameraBag.m */,
-				A2E357951044DBDD003C449D /* CoC.h */,
-				A2E357961044DBDD003C449D /* CoC.m */,
+				A282978B16453FBE00F6DE5D /* Base Classes */,
+				A282977D16453E8700F6DE5D /* FTCamera.h */,
+				A282977E16453E8700F6DE5D /* FTCamera.m */,
+				A282978C16454D2E00F6DE5D /* FTCameraBag.h */,
+				A282978D16454D2E00F6DE5D /* FTCameraBag.m */,
+				A282977F16453E8700F6DE5D /* FTCoC.h */,
+				A282978016453E8700F6DE5D /* FTCoC.m */,
+				A282978116453E8700F6DE5D /* FTLens.h */,
+				A282978216453E8700F6DE5D /* FTLens.m */,
 				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
 				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
-				A25BDF3210479BFE00B22B2B /* Lens.h */,
-				A25BDF3310479BFE00B22B2B /* Lens.m */,
+				A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */,
+				A282977616453E3E00F6DE5D /* Old */,
 			);
 			name = Model;
 			path = ..;
@@ -614,8 +696,6 @@
 			children = (
 				A2D6241A10424A5600B2F055 /* CoCViewController.h */,
 				A2D6241B10424A5600B2F055 /* CoCViewController.m */,
-				A2D6245D104251AA00B2F055 /* CoCViewTableDataSource.h */,
-				A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */,
 			);
 			name = "CoC View";
 			sourceTree = "<group>";
@@ -725,6 +805,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* FieldTools */,
 				A21DCD7D10EE7D0300139D93 /* ModelTests */,
+				A282977016453D2D00F6DE5D /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -819,6 +900,19 @@
 			shellPath = /bin/sh;
 			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./licenses2settings.pl";
 		};
+		A282977516453D3200F6DE5D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mogenerator --model FieldTools.xcdatamodeld/FieldTools.xcdatamodel/  --output-dir Classes/Model";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -841,7 +935,6 @@
 				A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */,
 				A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */,
 				A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */,
-				A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */,
 				A2E357971044DBDD003C449D /* CoC.m in Sources */,
 				A25BDF3410479BFE00B22B2B /* Lens.m in Sources */,
 				A2B95FA610715FB80057A70E /* LensViewController.m in Sources */,
@@ -871,6 +964,14 @@
 				A2E3D0F915532869005F3F30 /* iRate.m in Sources */,
 				A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */,
 				A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */,
+				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
+				A282978316453E8700F6DE5D /* _FTCamera.m in Sources */,
+				A282978416453E8700F6DE5D /* _FTCoC.m in Sources */,
+				A282978516453E8700F6DE5D /* _FTLens.m in Sources */,
+				A282978616453E8700F6DE5D /* FTCamera.m in Sources */,
+				A282978716453E8700F6DE5D /* FTCoC.m in Sources */,
+				A282978816453E8700F6DE5D /* FTLens.m in Sources */,
+				A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +979,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A28297D31645986F00F6DE5D /* _FTCamera.m in Sources */,
+				A28297D41645986F00F6DE5D /* _FTCoC.m in Sources */,
+				A28297D51645986F00F6DE5D /* _FTLens.m in Sources */,
+				A28297D61645986F00F6DE5D /* FTCoC.m in Sources */,
+				A28297D1164597A700F6DE5D /* FTCamera.m in Sources */,
+				A28297D2164597A700F6DE5D /* FTLens.m in Sources */,
+				A28297D01645758C00F6DE5D /* FieldTools.xcdatamodeld in Sources */,
+				A28297CE164572B100F6DE5D /* FTCameraBag.m in Sources */,
 				88C08BD614BE74EC0043D6E1 /* SubjectDistanceSliderPolicy.m in Sources */,
 				88C08BD514BE74E40043D6E1 /* SubjectDistanceRangePolicy.m in Sources */,
 				88C08BD414BE74360043D6E1 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
@@ -889,6 +998,7 @@
 				A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */,
 				A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
 				88C08BDD14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,
+				A28297CD1645716800F6DE5D /* FTCameraBagTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,6 +1221,27 @@
 			};
 			name = Distribution;
 		};
+		A282977116453D2D00F6DE5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A282977216453D2D00F6DE5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A282977316453D2D00F6DE5D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Distribution;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1168,6 +1299,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A282977116453D2D00F6DE5D /* Debug */,
+				A282977216453D2D00F6DE5D /* Release */,
+				A282977316453D2D00F6DE5D /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1179,6 +1320,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */,
+			);
+			currentVersion = A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */;
+			path = FieldTools.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

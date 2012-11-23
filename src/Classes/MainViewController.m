@@ -22,14 +22,14 @@
 #import "MainViewController.h"
 
 #import "AnalyticsPolicy.h"
-#import "Camera.h"
-#import "CameraBag.h"
-#import "CoC.h"
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "FlipsideViewController.h"
-#import "Lens.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
+#import "FTLens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
 #import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
@@ -63,7 +63,7 @@ static BOOL previousLensWasZoom = YES;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
-- (void)lensDidChangeWithLens:(Lens*)lens;
+- (void)lensDidChangeWithLens:(FTLens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
 - (void)recordAnalyticsForDistanceType:(int)distanceType;
@@ -179,7 +179,7 @@ static BOOL previousLensWasZoom = YES;
                            animated:YES];
 	
 	// Set limits on sliders
-	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
+	FTLens* lens = [[FTCameraBag sharedCameraBag] findSelectedLens];
 	[self lensDidChangeWithLens:lens];
 	[self updateSubjectDistanceSliderLimits];
 
@@ -266,7 +266,7 @@ static BOOL previousLensWasZoom = YES;
 // Focal length slider changed
 - (void)focalLengthDidChange:(id)sender
 {
-	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
+	FTLens* lens = [[FTCameraBag sharedCameraBag] findSelectedLens];
     
     if ([lens isZoom])
     {
@@ -333,11 +333,11 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)lensDidChange:(NSNotification*)notification
 {
-	Lens* lens = (Lens*)[notification object];
+	FTLens* lens = (FTLens*)[notification object];
 	[self lensDidChangeWithLens:lens];
 }
 
-- (void)lensDidChangeWithLens:(Lens*)lens
+- (void)lensDidChangeWithLens:(FTLens*)lens
 {
 	[apertureMinimum setText:[NSString stringWithFormat:@"f/%@", [[lens minimumAperture] description]]];
 	[apertureMaximum setText:[NSString stringWithFormat:@"f/%@", [[lens maximumAperture] description]]];
@@ -491,7 +491,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateCameraAndLensDescription
 {
-	CameraBag* cameraBag = [CameraBag sharedCameraBag];
+	FTCameraBag* cameraBag = [FTCameraBag sharedCameraBag];
 	
     NSString* title = [NSString stringWithFormat:@"%@ - %@",
                        [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
@@ -727,9 +727,9 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)readDefaultCircleOfLeastConfusion
 {
-	Camera* camera = [[CameraBag sharedCameraBag] findSelectedCamera];
+	FTCamera* camera = [[FTCameraBag sharedCameraBag] findSelectedCamera];
 	
-	[self setCircleOfLeastConfusion:[[camera coc] value]];
+	[self setCircleOfLeastConfusion:[[camera coc] valueValue]];
 }
 
 - (void)updateSubjectDistanceSliderPolicy
@@ -760,6 +760,8 @@ static BOOL previousLensWasZoom = YES;
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self updateCameraAndLensDescription];
 }
 
 #pragma mark UIActionSheetDelegate

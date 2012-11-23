@@ -22,9 +22,10 @@
 
 #import "CustomCoCViewController.h"
 
-#import "Camera.h"
-#import "CoC.h"
 #import "CustomCoCViewTableDataSource.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
 
 #import "Notifications.h"
 
@@ -34,8 +35,7 @@
 - (void)makeTextFieldFirstResponder;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Camera* camera;
-@property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, retain) FTCamera* camera;
 @property(nonatomic, assign) float coc;
 @property(nonatomic, retain) NSNumberFormatter* numberFormatter;
 @property(nonatomic, retain) UIBarButtonItem* saveButton;
@@ -45,7 +45,6 @@
 @implementation CustomCoCViewController
 
 @synthesize camera;
-@synthesize cameraWorking;
 @synthesize coc;
 @synthesize cocValueCell;
 @synthesize cocValueField;
@@ -62,7 +61,7 @@
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 
@@ -71,7 +70,6 @@
     }
 	
 	[self setCamera:aCamera];
-	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
 	[[[UIBarButtonItem alloc] 
@@ -135,8 +133,16 @@
 	}
 	else
 	{
-		CoC* customCoc = [[CoC alloc] initWithValue:coc
-										description:CUSTOM_COC_KEY];
+        FTCoC* customCoc = [[FTCameraBag sharedCameraBag] newCoC];
+        [customCoc setValueValue:coc];
+        [customCoc setName:CUSTOM_COC_KEY];
+
+        if ([[self camera] coc] != nil)
+        {
+            FTCoC* oldCoC = [[self camera] coc];
+            [oldCoC setCamera:nil];
+            [[FTCameraBag sharedCameraBag] deleteCoC:oldCoC];
+        }
 		[[self camera] setCoc:customCoc];
 		
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CUSTOM_COC_NOTIFICATION 
@@ -174,7 +180,6 @@
 - (void)dealloc 
 {
 	[self setCamera:nil];
-	[self setCameraWorking:nil];
 	[self setNumberFormatter:nil];
 	[self setSaveButton:nil];
 	[self setTableViewDataSource:nil];
