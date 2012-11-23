@@ -376,12 +376,11 @@ float DefaultSubjectDistance = 2.5f;
     
     if ([newBag save])
     {
-        // TODO: Uncomment once testing is complete
-//        NSError* error;
-//        if (![[NSFileManager defaultManager] removeItemAtPath:sharedCameraBagArchivePath error:&error])
-//        {
-//            NSLog(@"Error deleting old camera bag: %@", error);
-//        }
+        NSError* error;
+        if (![[NSFileManager defaultManager] removeItemAtPath:sharedCameraBagArchivePath error:&error])
+        {
+            NSLog(@"Error deleting old camera bag: %@", error);
+        }
     }
 }
 
@@ -407,6 +406,12 @@ float DefaultSubjectDistance = 2.5f;
         // that there is not a file at the old location.
         NSAssert(![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath],
                  @"Camera bags found at both old and new location.");
+        return;
+    }
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath])
+    {
+        NSLog(@"Neither old nor new camera bags not found - assuming conversion to Core Data complete");
         return;
     }
     
