@@ -14,6 +14,9 @@
 
 #import "FTCamera.h"
 
+#import "FTCameraBag.h"
+#import "FTCoC.h"
+
 @implementation FTCamera
 
 - (NSString*)description

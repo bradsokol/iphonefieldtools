@@ -257,7 +257,7 @@
 
 - (void)customCoCSpecified:(NSNotification*)notification
 {
-	// Camera already has the custom CoC. We just need to update the UI.
+    [self setCoc:[[self camera] coc]];
 	UITableView* tableView = (UITableView*)[self view];
 	
 	[tableView reloadData];

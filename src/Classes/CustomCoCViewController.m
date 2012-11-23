@@ -136,6 +136,13 @@
         FTCoC* customCoc = [[FTCameraBag sharedCameraBag] newCoC];
         [customCoc setValueValue:coc];
         [customCoc setName:CUSTOM_COC_KEY];
+
+        if ([[self camera] coc] != nil)
+        {
+            FTCoC* oldCoC = [[self camera] coc];
+            [oldCoC setCamera:nil];
+            [[FTCameraBag sharedCameraBag] deleteCoC:oldCoC];
+        }
 		[[self camera] setCoc:customCoc];
 		
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CUSTOM_COC_NOTIFICATION 

@@ -282,7 +282,8 @@ static FTCameraBag* sharedCameraBag = nil;
 - (void)deleteCoC:(FTCoC*)coc
 {
     NSAssert([coc camera] == nil, @"Attempting to delete coc that is attached to a camera");
-    
+
+    NSLog(@"Deleting CoC: %p", coc);
     [[self managedObjectContext] deleteObject:coc];
 }
 
