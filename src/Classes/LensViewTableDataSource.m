@@ -41,8 +41,6 @@ NSString* CellIdentifier = @"Cell";
 
 - (void)setLens:(FTLens*)aLens
 {
-	[lens release];
-	[aLens retain];
 	lens = aLens;
 	
 	lensIsZoom = [lens isZoom];
@@ -90,9 +88,9 @@ NSString* CellIdentifier = @"Cell";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (nil == cell)
 			{
-				cell = [[[UITableViewCell alloc] 
+				cell = [[UITableViewCell alloc] 
                          initWithStyle:UITableViewCellStyleDefault
-                         reuseIdentifier:CellIdentifier] autorelease];
+                         reuseIdentifier:CellIdentifier];
 			}
 		}
 	}
@@ -187,7 +185,6 @@ NSString* CellIdentifier = @"Cell";
 {
 	[self setLens:nil];
 	
-	[super dealloc];
 }
 
 @end

@@ -30,7 +30,7 @@ extern NSString* CellIdentifier;
 {
 	FTLens* lens;
 	bool lensIsZoom;
-	UIViewController* controller;
+	UIViewController* __unsafe_unretained controller;
 }
 
 - (FTLens*)lens;
@@ -39,6 +39,6 @@ extern NSString* CellIdentifier;
 @property(nonatomic) bool lensIsZoom;
 
 // Weak reference to avoid retain cycles.
-@property(nonatomic, assign) UIViewController* controller;
+@property(nonatomic, unsafe_unretained) UIViewController* controller;
 
 @end

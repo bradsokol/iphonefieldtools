@@ -41,9 +41,9 @@ static const int NUM_SECTIONS = 1;
 - (int)rowForSelectedCoC;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) FTCamera* camera;
-@property(nonatomic, retain) FTCoC* coc;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) FTCamera* camera;
+@property(nonatomic, strong) FTCoC* coc;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
@@ -73,14 +73,14 @@ static const int NUM_SECTIONS = 1;
 	[self setCamera:aCamera];
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
-	 action:@selector(saveWasSelected)] autorelease]];
+	 action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
@@ -144,9 +144,7 @@ static const int NUM_SECTIONS = 1;
     {
         [[FTCameraBag sharedCameraBag] deleteCoC:coc];
     }
-    [coc release];
     
-    [newCoc retain];
     coc = newCoc;
 }
 
@@ -170,9 +168,9 @@ static const int NUM_SECTIONS = 1;
     TwoLabelTableViewCell* cell = (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
 	{
-		cell = [[[TwoLabelTableViewCell alloc]
+		cell = [[TwoLabelTableViewCell alloc]
 				 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:@"Cell"] autorelease];
+                 reuseIdentifier:@"Cell"];
     }
     
 	if ([indexPath row] < [[FTCoC cocPresets] count])
@@ -333,11 +331,7 @@ static const int NUM_SECTIONS = 1;
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
-	[self setSaveButton:nil];
-	[self setCamera:nil];
-	[self setCoc:nil];
 	
-    [super dealloc];
 }
 
 @end

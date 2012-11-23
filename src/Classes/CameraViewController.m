@@ -39,9 +39,9 @@ static const int TEXT_FIELD_TAG = 99;
 - (void)cocChanged:(NSNotification*)notification;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) FTCamera* camera;
+@property(nonatomic, strong) FTCamera* camera;
 @property(nonatomic, getter=isNewCamera) bool newCamera;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
@@ -77,15 +77,15 @@ static const int TEXT_FIELD_TAG = 99;
 	[self setNewCamera:[[[self camera] description] length] == 0];
 	
 	UIBarButtonItem* cancelButton = 
-		[[[UIBarButtonItem alloc] 
+		[[UIBarButtonItem alloc] 
 		  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 							   target:self
-							   action:@selector(cancelWasSelected)] autorelease];
+							   action:@selector(cancelWasSelected)];
 	[self setSaveButton: 
-		[[[UIBarButtonItem alloc] 
+		[[UIBarButtonItem alloc] 
 		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 							  target:self
-							  action:@selector(saveWasSelected)] autorelease]];
+							  action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
@@ -141,7 +141,6 @@ static const int TEXT_FIELD_TAG = 99;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}
 }
 
@@ -213,13 +212,5 @@ static const int TEXT_FIELD_TAG = 99;
 	[tableView reloadData];
 }
 
-- (void)dealloc 
-{
-	[self setSaveButton:nil];
-	[self setCamera:nil];
-	[self setTableViewDataSource:nil];
-	
-    [super dealloc];
-}
 
 @end

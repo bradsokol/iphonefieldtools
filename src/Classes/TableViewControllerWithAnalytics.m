@@ -26,11 +26,5 @@
 
 @synthesize analyticsPolicy;
 
-- (void)dealloc
-{
-    [self setAnalyticsPolicy:nil];
-    
-    [super dealloc];
-}
 
 @end

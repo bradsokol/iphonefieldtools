@@ -30,7 +30,7 @@
 - (void)cancelWasSelected;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 @property(nonatomic) int newSubjectDistanceRangeIndex;
 
 @end
@@ -49,14 +49,14 @@
     }
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
                           initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
                           target:self
-                          action:@selector(saveWasSelected)] autorelease]];
+                          action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
@@ -159,10 +159,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
-	[self setSaveButton:nil];
-    [self setTableViewDataSource:nil];
 	
-    [super dealloc];
 }
 
 @end

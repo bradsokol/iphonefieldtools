@@ -64,7 +64,7 @@ float DefaultSubjectDistance = 2.5f;
 
 - (NSURL*)applicationDocumentsDirectory;
 
-@property (retain, nonatomic) GoogleAnalyticsPolicy* analyticsPolicy;
+@property (strong, nonatomic) GoogleAnalyticsPolicy* analyticsPolicy;
 
 @end
 
@@ -108,8 +108,8 @@ float DefaultSubjectDistance = 2.5f;
     [self startGoogleAnalytics];
 
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
-                                   documentsPath] retain];
+	sharedCameraBagArchivePath = [NSString stringWithFormat:@"%@/Default.camerabag",
+                                   documentsPath];
     
     [self relocateCameraBag];
     
@@ -395,8 +395,8 @@ float DefaultSubjectDistance = 2.5f;
 {
     NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
-	oldSharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
-                                      libraryPath] retain];
+	oldSharedCameraBagArchivePath = [NSString stringWithFormat:@"%@/Default.camerabag",
+                                      libraryPath];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath])
     {
@@ -523,13 +523,5 @@ float DefaultSubjectDistance = 2.5f;
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void)dealloc 
-{
-    [self setAnalyticsPolicy:nil];
-    [self setMainViewController:nil];
-    [self setWindow:nil];
-	
-    [super dealloc];
-}
 
 @end

@@ -48,9 +48,9 @@
 // The designated initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
-@property(nonatomic, retain) CustomCoCViewTableDataSource* tableViewDataSource;
-@property(nonatomic, retain, readonly) UITableViewCell* cocValueCell;
-@property(nonatomic, retain, readonly) UITextField* cocValueField;
-@property(nonatomic, retain, readonly) UILabel* cocValueLabel;
+@property(nonatomic, strong) CustomCoCViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong, readonly) UITableViewCell* cocValueCell;
+@property(nonatomic, strong, readonly) UITextField* cocValueField;
+@property(nonatomic, strong, readonly) UILabel* cocValueLabel;
 
 @end

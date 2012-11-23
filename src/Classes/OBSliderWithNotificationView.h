@@ -27,6 +27,6 @@
 
 @interface OBSliderWithNotificationView : OBSlider
 
-@property (nonatomic, retain, readonly) GCDiscreetNotificationView *notificationView;
+@property (nonatomic, strong, readonly) GCDiscreetNotificationView *notificationView;
 
 @end

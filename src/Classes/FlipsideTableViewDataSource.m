@@ -134,7 +134,6 @@ static NSString *CellIdentifier = @"Cell";
 			 [NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
 										   object:camera]];
 			
-			[camera release];
 		}
 		else if ([indexPath section] == LENSES_SECTION)
 		{
@@ -143,7 +142,6 @@ static NSString *CellIdentifier = @"Cell";
 			[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:LENS_SELECTED_FOR_EDIT_NOTIFICATION
 																								 object:lens]];
 			
-			[lens release];
 		}
 	}
 }
@@ -292,9 +290,9 @@ static NSString *CellIdentifier = @"Cell";
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[[UITableViewCell alloc]
+		cell = [[UITableViewCell alloc]
 				 initWithStyle:UITableViewCellStyleDefault
-				 reuseIdentifier:CellIdentifier] autorelease];
+				 reuseIdentifier:CellIdentifier];
 	}
 	return cell;
 }
@@ -376,9 +374,5 @@ static NSString *CellIdentifier = @"Cell";
 	}
 }
 
-- (void)dealloc
-{
-	[super dealloc];
-}
 
 @end

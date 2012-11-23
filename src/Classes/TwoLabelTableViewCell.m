@@ -86,12 +86,9 @@
 
 - (void)dealloc
 {
-	[label release];
 	label = nil;
-	[text release];
 	text = nil;
 
-    [super dealloc];
 }
 
 @end

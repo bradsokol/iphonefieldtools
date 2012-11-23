@@ -88,9 +88,9 @@ static const int NUM_SECTIONS = 1;
 		(TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (nil == cell)
 	{
-		cell = [[[TwoLabelTableViewCell alloc] 
+		cell = [[TwoLabelTableViewCell alloc] 
 				 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:CellIdentifier] autorelease];
+                 reuseIdentifier:CellIdentifier];
 	}
 	[cell setLabel:NSLocalizedString(@"COC_TITLE", "CoC")];
 	[cell setText:[[[self camera] coc] description]];
@@ -99,11 +99,5 @@ static const int NUM_SECTIONS = 1;
 	return cell;
 }
 
-- (void)dealloc
-{
-	[self setCamera:nil];
-	
-	[super dealloc];
-}
 
 @end

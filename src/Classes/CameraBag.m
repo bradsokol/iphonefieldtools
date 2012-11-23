@@ -29,9 +29,9 @@
 
 @interface CameraBag ()
 
-@property(nonatomic, retain) NSString* archivePath;
-@property(nonatomic, retain) NSMutableArray* cameras;
-@property(nonatomic, retain) NSMutableArray* lenses;
+@property(nonatomic, strong) NSString* archivePath;
+@property(nonatomic, strong) NSMutableArray* cameras;
+@property(nonatomic, strong) NSMutableArray* lenses;
 
 @end
 
@@ -338,18 +338,6 @@ static CameraBag* sharedCameraBag = nil;
 	
 	[NSKeyedArchiver archiveRootObject:self
 								toFile:[self archivePath]];
-}
-
-- (void)dealloc
-{
-	[cameras release];
-	cameras = nil;
-	[lenses release];
-	lenses = nil;
-	[archivePath release];
-	archivePath = nil;
-	
-	[super dealloc];
 }
 
 @end

@@ -65,9 +65,9 @@ static const int NUM_ROWS = 4;
         (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) 
 	{
-		cell = [[[TwoLabelTableViewCell alloc]
+		cell = [[TwoLabelTableViewCell alloc]
 				 initWithStyle:UITableViewCellStyleDefault
-				 reuseIdentifier:CellIdentifier] autorelease];
+				 reuseIdentifier:CellIdentifier];
 	}
     
     NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%d", [indexPath row]];

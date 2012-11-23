@@ -43,7 +43,7 @@
 - (void)setUp
 {
     NSArray* bundles = [NSArray arrayWithObject:[NSBundle bundleForClass:[self class]]];
-    model = [[NSManagedObjectModel mergedModelFromBundles:bundles] retain];
+    model = [NSManagedObjectModel mergedModelFromBundles:bundles];
     coord = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
     store = [coord addPersistentStoreWithType: NSInMemoryStoreType
                                 configuration: nil
@@ -56,7 +56,6 @@
     [FTCameraBag initSharedCameraBag:ctx];
     
     bag = [FTCameraBag sharedCameraBag];
-    [bag retain];
 }
 
 - (void)testSharedCameraBagIsInitiallyEmpty
@@ -245,17 +244,13 @@
 
 - (void)tearDown
 {
-    [bag release];
     bag = nil;
-    [ctx release];
     ctx = nil;
     NSError *error = nil;
     STAssertTrue([coord removePersistentStore: store error: &error],
                  @"couldn't remove persistent store: %@", error);
     store = nil;
-    [coord release];
     coord = nil;
-    [model release];
     model = nil;
 }
 

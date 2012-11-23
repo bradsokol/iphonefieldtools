@@ -40,6 +40,6 @@
 - (float)sliderMinimum;
 - (float)sliderValueForDistance:(float)distance;
 
-@property(nonatomic, retain, readonly) SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
+@property(nonatomic, strong, readonly) SubjectDistanceRangePolicy* subjectDistanceRangePolicy;
 
 @end

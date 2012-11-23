@@ -78,13 +78,13 @@
 
 - (IBAction)toggleView;
 
-@property (nonatomic, retain) UIButton* cameraAndLensDescription;
-@property (nonatomic, retain) UIButton *infoButton;
+@property (nonatomic, strong) UIButton* cameraAndLensDescription;
+@property (nonatomic, strong) UIButton *infoButton;
 
 @property(assign) float circleOfLeastConfusion;
 @property(assign) float focalLength;
 @property(assign) float subjectDistance;
 
-@property(nonatomic, retain) id<AnalyticsPolicy> analyticsPolicy;
+@property(nonatomic, strong) id<AnalyticsPolicy> analyticsPolicy;
 
 @end

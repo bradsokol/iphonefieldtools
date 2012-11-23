@@ -27,12 +27,12 @@
 @interface CustomCoCViewTableDataSource : NSObject <UITableViewDataSource>
 {
 	FTCamera* camera;
-	UIViewController* controller;
+	UIViewController* __unsafe_unretained controller;
 }
 
-@property(nonatomic, retain) FTCamera* camera;
+@property(nonatomic, strong) FTCamera* camera;
 
 // Weak reference to prevent retain cycles.
-@property(nonatomic, assign) UIViewController* controller;
+@property(nonatomic, unsafe_unretained) UIViewController* controller;
 
 @end

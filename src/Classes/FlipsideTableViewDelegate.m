@@ -89,7 +89,6 @@ static const float SectionHeaderHeight = 44.0;
 			}
 			else
 			{
-				[camera retain];
 			}
 			
 			[[NSNotificationCenter defaultCenter] 
@@ -97,7 +96,6 @@ static const float SectionHeaderHeight = 44.0;
 					[NSNotification notificationWithName:CAMERA_SELECTED_FOR_EDIT_NOTIFICATION 
 												  object:camera]];
 			
-			[camera release];
 		}
 		else
 		{
@@ -117,7 +115,6 @@ static const float SectionHeaderHeight = 44.0;
 			}
 			else
 			{
-				[lens retain];
 			}
 			
 			[[NSNotificationCenter defaultCenter] 
@@ -125,7 +122,6 @@ static const float SectionHeaderHeight = 44.0;
 			 [NSNotification notificationWithName:LENS_SELECTED_FOR_EDIT_NOTIFICATION 
 										   object:lens]];
 			
-			[lens release];
 		}
 		else
 		{
@@ -224,8 +220,8 @@ static const float SectionHeaderHeight = 44.0;
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
-	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];
+	UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)];
+	UILabel *label = [[UILabel alloc] initWithFrame:headerView.frame];
 	[label setTextColor:[UIColor whiteColor]];
 	[label setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
 	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];

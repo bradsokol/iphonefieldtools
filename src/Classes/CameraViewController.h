@@ -43,9 +43,9 @@
 // The designated initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
-@property(nonatomic, retain) CameraViewTableDataSource* tableViewDataSource;
-@property(nonatomic, retain, readonly) UITableViewCell* cameraNameCell;
-@property(nonatomic, retain, readonly) UITextField* cameraNameField;
-@property(nonatomic, retain, readonly) UILabel* cameraNameLabel;
+@property(nonatomic, strong) CameraViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong, readonly) UITableViewCell* cameraNameCell;
+@property(nonatomic, strong, readonly) UITextField* cameraNameField;
+@property(nonatomic, strong, readonly) UILabel* cameraNameLabel;
 
 @end

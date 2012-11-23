@@ -30,7 +30,7 @@ static NSString* KeyValue = @"Value";
 @interface CoC ()
 
 // This will make write access private
-@property (retain, nonatomic) NSString* description;
+@property (strong, nonatomic) NSString* description;
 @property (assign) float value;
 
 @end
@@ -43,7 +43,7 @@ static NSString* KeyValue = @"Value";
 - (id)initWithCoder:(NSCoder*)decoder
 {
 	value = [decoder decodeFloatForKey:KeyValue];
-	description = [[decoder decodeObjectForKey:KeyDescription] retain];
+	description = [decoder decodeObjectForKey:KeyDescription];
 	
 	return self;
 }
@@ -82,7 +82,6 @@ static NSString* KeyValue = @"Value";
 	{
 		NSString* path = [[NSBundle mainBundle] pathForResource:@"CoC" ofType:@"plist"];
 		cocPresets = [NSDictionary dictionaryWithContentsOfFile:path];
-		[cocPresets retain];
 		for (NSString* key in cocPresets)
 		{
 			NSLog(@"%@ %@", key, [cocPresets objectForKey:key]);
@@ -100,14 +99,8 @@ static NSString* KeyValue = @"Value";
 	}
 	
 	float value = [[cocPresets objectForKey:cocDescription] floatValue];
-	return [[[CoC alloc] initWithValue:value description:cocDescription] autorelease];
+	return [[CoC alloc] initWithValue:value description:cocDescription];
 }
 
-- (void)dealloc
-{
-	[self setDescription:nil];
-	
-	[super dealloc];
-}
 
 @end

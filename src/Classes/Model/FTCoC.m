@@ -26,7 +26,6 @@ static NSDictionary* cocPresets;
 	{
 		NSString* path = [[NSBundle mainBundle] pathForResource:@"CoC" ofType:@"plist"];
 		cocPresets = [NSDictionary dictionaryWithContentsOfFile:path];
-		[cocPresets retain];
 		for (NSString* key in cocPresets)
 		{
 			NSLog(@"%@ %@", key, [cocPresets objectForKey:key]);
@@ -49,7 +48,7 @@ static NSDictionary* cocPresets;
     [coc setName:cocDescription];
     [coc setValueValue:value];
 
-    return [coc autorelease];
+    return coc;
 }
 
 - (NSString*)description

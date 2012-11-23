@@ -41,8 +41,8 @@
 - (NSDictionary*) asDictionary_deprecated;
 - (void)save_deprecated;
 
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
+@property(nonatomic, strong) NSString* description;
+@property(nonatomic, strong) CoC* coc;
 @property(nonatomic) int identifier;
 
 @end

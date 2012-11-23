@@ -35,15 +35,6 @@
 @synthesize beganTrackingLocation;
 
 
-- (void) dealloc
-{
-    self.scrubbingSpeeds = nil;
-    self.scrubbingSpeedChangePositions = nil;
-    [normalThumb release];
-    [highlightedThumb release];
-    
-    [super dealloc];
-}
 
 
 - (id) initWithFrame:(CGRect)frame
@@ -220,8 +211,8 @@
 
 - (void) loadImages
 {
-    normalThumb = [[UIImage imageNamed:@"sliderThumbNormal.png"] retain];
-    highlightedThumb = [[UIImage imageNamed:@"sliderThumbHighlighted.png"] retain];
+    normalThumb = [UIImage imageNamed:@"sliderThumbNormal.png"];
+    highlightedThumb = [UIImage imageNamed:@"sliderThumbHighlighted.png"];
 }
 
 
