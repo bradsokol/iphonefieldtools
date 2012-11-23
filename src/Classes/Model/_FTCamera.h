@@ -5,12 +5,12 @@
 
 
 extern const struct FTCameraAttributes {
-	 NSString *index;
-	 NSString *name;
+	__unsafe_unretained NSString *index;
+	__unsafe_unretained NSString *name;
 } FTCameraAttributes;
 
 extern const struct FTCameraRelationships {
-	 NSString *coc;
+	__unsafe_unretained NSString *coc;
 } FTCameraRelationships;
 
 extern const struct FTCameraFetchedProperties {
@@ -33,7 +33,7 @@ extern const struct FTCameraFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* index;
+@property (nonatomic, strong) NSNumber* index;
 
 
 @property int32_t indexValue;
@@ -45,7 +45,7 @@ extern const struct FTCameraFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* name;
+@property (nonatomic, strong) NSString* name;
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -54,7 +54,7 @@ extern const struct FTCameraFetchedProperties {
 
 
 
-@property (nonatomic, retain) FTCoC* coc;
+@property (nonatomic, strong) FTCoC* coc;
 
 //- (BOOL)validateCoc:(id*)value_ error:(NSError**)error_;
 

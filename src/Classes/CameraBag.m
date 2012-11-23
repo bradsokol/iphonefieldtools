@@ -87,25 +87,6 @@ static CameraBag* sharedCameraBag = nil;
 	return self; 
 } 
 
-- (id)retain 
-{ 
-	return self; 
-} 
-
-- (NSUInteger)retainCount 
-{ 
-	return NSUIntegerMax; 
-} 
-
-- (oneway void)release 
-{ 
-} 
-
-- (id)autorelease 
-{ 
-	return self; 
-}
-
 - (id)init
 {
 	if ((self = [super init]) == nil)

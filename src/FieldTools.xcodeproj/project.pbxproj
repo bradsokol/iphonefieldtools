@@ -911,7 +911,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator --model FieldTools.xcdatamodeld/FieldTools.xcdatamodel/  --output-dir Classes/Model";
+			shellScript = "mogenerator --model FieldTools.xcdatamodeld/FieldTools.xcdatamodel/ --template-var arc=true --output-dir Classes/Model";
 		};
 /* End PBXShellScriptBuildPhase section */
 

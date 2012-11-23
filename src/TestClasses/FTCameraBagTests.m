@@ -24,6 +24,7 @@
 
 #import "FTCamera.h"
 #import "FTCameraBag.h"
+#import "FTLens.h"
 
 @interface FTCameraBagTests : SenTestCase
 {
