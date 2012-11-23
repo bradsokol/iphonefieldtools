@@ -291,19 +291,6 @@ static FTCameraBag* sharedCameraBag = nil;
 {
     NSError *error = nil;
     NSManagedObjectContext* managedObjectContext = [self managedObjectContext];
-#if DEBUG
-    NSSet* inserts = [managedObjectContext insertedObjects];
-    if ([inserts count] > 0)
-    {
-        NSLog(@"Persisting %d objects", [inserts count]);
-    }
-    for (id object in inserts)
-    {
-        FTCoC* coc = (FTCoC*) object;
-        NSLog(@"%p %@ (camera: %@)", object, [object description], [[coc camera] description]);
-        
-    }
-#endif
     if (managedObjectContext != nil)
     {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])

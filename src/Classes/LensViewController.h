@@ -51,7 +51,6 @@
 	
 	LensViewTableDataSource* tableViewDataSource;
 	FTLens* lens;
-	FTLens* lensWorking;
 	bool lensIsZoom;
 
 	UIBarButtonItem* saveButton;
