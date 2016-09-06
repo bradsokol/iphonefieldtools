@@ -778,7 +778,7 @@
 			name = ModelTests;
 			productName = ModelTests;
 			productReference = A21DCD7E10EE7D0300139D93 /* ModelTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -786,7 +786,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1036,10 +1036,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = NO;
@@ -1056,6 +1052,7 @@
 					"\"$(SRCROOT)/GoogleAnalytics\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03314A9C-485C-472A-BC21-8C9E415BE505";
 				SDKROOT = iphoneos;
@@ -1066,10 +1063,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = YES;
@@ -1084,6 +1077,7 @@
 					"\"$(SRCROOT)/GoogleAnalytics\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03314A9C-485C-472A-BC21-8C9E415BE505";
 				SDKROOT = iphoneos;
@@ -1093,7 +1087,6 @@
 		A20C8E790F4A913F00B73E79 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brad Sokol";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1112,10 +1105,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
@@ -1132,6 +1121,7 @@
 					"\"$(SRCROOT)/GoogleAnalytics\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
 			};
@@ -1162,6 +1152,7 @@
 					"-framework",
 					UIKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools.modeltests;
 				PRODUCT_NAME = ModelTests;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -1192,6 +1183,7 @@
 					"-framework",
 					UIKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools.modeltests;
 				PRODUCT_NAME = ModelTests;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -1221,6 +1213,7 @@
 					"-framework",
 					UIKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools.modeltests;
 				PRODUCT_NAME = ModelTests;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -1251,8 +1244,8 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1268,7 +1261,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
