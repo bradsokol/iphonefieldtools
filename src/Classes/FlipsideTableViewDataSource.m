@@ -185,7 +185,7 @@ static NSString *CellIdentifier = @"Cell";
 // Format table cell for rows in the cameras section of the table view.
 - (UITableViewCell *) cellForCameraRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *) tableView
 {
-	int cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
+	NSInteger cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
 	bool nonCameraRow = [indexPath row] >= cameraCount;
 	
 	UITableViewCell *cell = [self standardCellForTableView:tableView];
@@ -211,7 +211,7 @@ static NSString *CellIdentifier = @"Cell";
 							
 - (UITableViewCell*) cellForLensRowAtIndexPath:(NSIndexPath*)indexPath inTableView:(UITableView*) tableView
 {
-	int lensCount = [[FTCameraBag sharedCameraBag] lensCount];
+	NSInteger lensCount = [[FTCameraBag sharedCameraBag] lensCount];
 	bool addLensRow = ([indexPath row] == lensCount) && [self isEditing];
 	bool subjectDistanceRangeRow = ([indexPath row] == lensCount) && ![self isEditing];
 	
@@ -269,7 +269,7 @@ static NSString *CellIdentifier = @"Cell";
 			break;
 	}
 
-	DistanceUnits units = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+	DistanceUnits units = (DistanceUnits)[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 	if ([indexPath row] == units)
 	{
 		[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
@@ -299,7 +299,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)deleteCameraAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView
 {
-	int currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	NSInteger currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
 	FTCamera* camera = [[FTCameraBag sharedCameraBag] findCameraForIndex:[indexPath row]];
 	[[FTCameraBag sharedCameraBag] deleteCamera:camera];
 	
@@ -309,7 +309,7 @@ static NSString *CellIdentifier = @"Cell";
 	if ([indexPath row] == currentSelection)
 	{
 		// Camera being deleted is the currently selected one. Choose the one above.
-		int newSelection = [indexPath row] - 1;
+		NSInteger newSelection = [indexPath row] - 1;
 		if (newSelection < 0)
 		{
 			// Deleting the first one so the one below becomes the new selection
@@ -337,7 +337,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)deleteLensAtIndexPath: (NSIndexPath *) indexPath inTableView:(UITableView*)tableView
 {
-	int currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	NSInteger currentSelection = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	FTLens* lens = [[FTCameraBag sharedCameraBag] findLensForIndex:[indexPath row]];
 	[[FTCameraBag sharedCameraBag] deleteLens:lens];
 
@@ -347,7 +347,7 @@ static NSString *CellIdentifier = @"Cell";
 	if ([indexPath row] == currentSelection)
 	{
 		// Lens being deleted is the currently selected one. Choose the one above.
-		int newSelection = [indexPath row] - 1;
+		NSInteger newSelection = [indexPath row] - 1;
 		if (newSelection < 0)
 		{
 			// Deleting the first one so the one below becomes the new selection

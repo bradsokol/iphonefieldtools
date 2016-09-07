@@ -1,131 +1,66 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to FTLens.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-
-extern const struct FTLensAttributes {
-	__unsafe_unretained NSString *index;
-	__unsafe_unretained NSString *maximumAperture;
-	__unsafe_unretained NSString *maximumFocalLength;
-	__unsafe_unretained NSString *minimumAperture;
-	__unsafe_unretained NSString *minimumFocalLength;
-	__unsafe_unretained NSString *name;
-} FTLensAttributes;
-
-extern const struct FTLensRelationships {
-} FTLensRelationships;
-
-extern const struct FTLensFetchedProperties {
-} FTLensFetchedProperties;
-
-
-
-
-
-
-
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface FTLensID : NSManagedObjectID {}
 @end
 
-@interface _FTLens : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _FTLens : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (FTLensID*)objectID;
-
-
-
+@property (nonatomic, readonly, strong) FTLensID *objectID;
 
 @property (nonatomic, strong) NSNumber* index;
 
-
-@property int32_t indexValue;
-- (int32_t)indexValue;
-- (void)setIndexValue:(int32_t)value_;
-
-//- (BOOL)validateIndex:(id*)value_ error:(NSError**)error_;
-
-
-
+@property (atomic) uint32_t indexValue;
+- (uint32_t)indexValue;
+- (void)setIndexValue:(uint32_t)value_;
 
 @property (nonatomic, strong) NSNumber* maximumAperture;
 
-
-@property float maximumApertureValue;
+@property (atomic) float maximumApertureValue;
 - (float)maximumApertureValue;
 - (void)setMaximumApertureValue:(float)value_;
 
-//- (BOOL)validateMaximumAperture:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSNumber* maximumFocalLength;
 
-
-@property int32_t maximumFocalLengthValue;
+@property (atomic) int32_t maximumFocalLengthValue;
 - (int32_t)maximumFocalLengthValue;
 - (void)setMaximumFocalLengthValue:(int32_t)value_;
 
-//- (BOOL)validateMaximumFocalLength:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSNumber* minimumAperture;
 
-
-@property float minimumApertureValue;
+@property (atomic) float minimumApertureValue;
 - (float)minimumApertureValue;
 - (void)setMinimumApertureValue:(float)value_;
 
-//- (BOOL)validateMinimumAperture:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSNumber* minimumFocalLength;
 
-
-@property int32_t minimumFocalLengthValue;
+@property (atomic) int32_t minimumFocalLengthValue;
 - (int32_t)minimumFocalLengthValue;
 - (void)setMinimumFocalLengthValue:(int32_t)value_;
 
-//- (BOOL)validateMinimumFocalLength:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSString* name;
-
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-
-@end
-
-@interface _FTLens (CoreDataGeneratedAccessors)
 
 @end
 
 @interface _FTLens (CoreDataGeneratedPrimitiveAccessors)
 
-
 - (NSNumber*)primitiveIndex;
 - (void)setPrimitiveIndex:(NSNumber*)value;
 
-- (int32_t)primitiveIndexValue;
-- (void)setPrimitiveIndexValue:(int32_t)value_;
-
-
-
+- (uint32_t)primitiveIndexValue;
+- (void)setPrimitiveIndexValue:(uint32_t)value_;
 
 - (NSNumber*)primitiveMaximumAperture;
 - (void)setPrimitiveMaximumAperture:(NSNumber*)value;
@@ -133,17 +68,11 @@ extern const struct FTLensFetchedProperties {
 - (float)primitiveMaximumApertureValue;
 - (void)setPrimitiveMaximumApertureValue:(float)value_;
 
-
-
-
 - (NSNumber*)primitiveMaximumFocalLength;
 - (void)setPrimitiveMaximumFocalLength:(NSNumber*)value;
 
 - (int32_t)primitiveMaximumFocalLengthValue;
 - (void)setPrimitiveMaximumFocalLengthValue:(int32_t)value_;
-
-
-
 
 - (NSNumber*)primitiveMinimumAperture;
 - (void)setPrimitiveMinimumAperture:(NSNumber*)value;
@@ -151,22 +80,24 @@ extern const struct FTLensFetchedProperties {
 - (float)primitiveMinimumApertureValue;
 - (void)setPrimitiveMinimumApertureValue:(float)value_;
 
-
-
-
 - (NSNumber*)primitiveMinimumFocalLength;
 - (void)setPrimitiveMinimumFocalLength:(NSNumber*)value;
 
 - (int32_t)primitiveMinimumFocalLengthValue;
 - (void)setPrimitiveMinimumFocalLengthValue:(int32_t)value_;
 
-
-
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
-
-
-
 @end
+
+@interface FTLensAttributes: NSObject 
++ (NSString *)index;
++ (NSString *)maximumAperture;
++ (NSString *)maximumFocalLength;
++ (NSString *)minimumAperture;
++ (NSString *)minimumFocalLength;
++ (NSString *)name;
+@end
+
+NS_ASSUME_NONNULL_END

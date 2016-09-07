@@ -42,7 +42,7 @@
 
 - (bool)isMetric
 {    
-    int distanceUnitsType = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+    NSInteger distanceUnitsType = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
     bool metric = distanceUnitsType == DistanceUnitsCentimeters ||
     distanceUnitsType == DistanceUnitsMeters;
     

@@ -37,8 +37,8 @@ static const int NUM_SECTIONS = 1;
 - (void)customCoCSpecified:(NSNotification*)notification;
 - (void)didSelectCoCPresetAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView;
 - (void)didSelectCustomCoCInTableView:(UITableView *)tableView;
-- (NSString*)keyForRow:(int)row;
-- (int)rowForSelectedCoC;
+- (NSString*)keyForRow:(NSInteger)row;
+- (NSInteger)rowForSelectedCoC;
 - (void)saveWasSelected;
 
 @property(nonatomic, strong) FTCamera* camera;
@@ -292,14 +292,14 @@ static const int NUM_SECTIONS = 1;
 								   object:[self camera]]];
 }
 
-- (NSString*)keyForRow:(int)row
+- (NSString*)keyForRow:(NSInteger)row
 {
 	NSArray* keys = [[FTCoC cocPresets] allKeys];
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	return [sortedKeys objectAtIndex:row];
 }
 
-- (int)rowForSelectedCoC
+- (NSInteger)rowForSelectedCoC
 {
 	// Check if custom CoC
 	if ([[[self coc] name] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)

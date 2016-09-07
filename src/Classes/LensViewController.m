@@ -45,8 +45,8 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)cancelWasSelected;
 - (UITableViewCell*)cellForView:(UIView*)view;
-- (NSString*)cellTextForRow:(int)row inSection:(int)section;
-- (NSIndexPath*) nextCellForTag:(int)tag;
+- (NSString*)cellTextForRow:(NSInteger)row inSection:(NSInteger)section;
+- (NSIndexPath*) nextCellForTag:(NSInteger)tag;
 - (void)resignAllFirstResponders;
 - (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
@@ -293,7 +293,7 @@ static const float SectionHeaderHeight = 44.0;
     [super didReceiveMemoryWarning];
 }
 
-- (NSString*)cellTextForRow:(int)row inSection:(int)section
+- (NSString*)cellTextForRow:(NSInteger)row inSection:(NSInteger)section
 {
 	UITableView* tableView = (UITableView*)[self view];
 	UITableViewCell* cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
@@ -359,7 +359,7 @@ static const float SectionHeaderHeight = 44.0;
 	return YES;
 }
 
-- (NSIndexPath*) nextCellForTag:(int)tag
+- (NSIndexPath*) nextCellForTag:(NSInteger)tag
 {
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
@@ -454,7 +454,7 @@ static const float SectionHeaderHeight = 44.0;
 		return YES;
 	}
 	
-	NSLog(@"Next cell is section %d row %d", [nextCellPath section], [nextCellPath row]);
+	NSLog(@"Next cell is section %ld row %ld", (long)[nextCellPath section], (long)[nextCellPath row]);
 	[textField resignFirstResponder];
 	
 	UITableView* tableView = (UITableView*)[self view];

@@ -239,9 +239,9 @@ float DefaultSubjectDistance = 2.5f;
 {
 	// Convert camera index to a COC value
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	NSString* key = [NSString stringWithFormat:@"CAMERA_COC_%d", index];
+	NSString* key = [NSString stringWithFormat:@"CAMERA_COC_%ld", (long)index];
 
-	NSString* descriptionKey = [NSString stringWithFormat:@"CAMERA_DESCRIPTION_%d", index];
+	NSString* descriptionKey = [NSString stringWithFormat:@"CAMERA_DESCRIPTION_%ld", (long)index];
 	NSString* description = NSLocalizedString(descriptionKey, "CoCDescription");
 	CoC* coc = [[CoC alloc] initWithValue:[NSLocalizedString(key, "CoC") floatValue]
 							  description:description];
@@ -282,7 +282,7 @@ float DefaultSubjectDistance = 2.5f;
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	CameraBag* cameraBag = [[CameraBag alloc] init];
 	
-	int cameraCount = [defaults integerForKey:FTCameraCount];
+	NSInteger cameraCount = [defaults integerForKey:FTCameraCount];
 	for (int i = 0; i < cameraCount; ++i)
 	{
 		Camera* camera = [Camera findFromDefaultsForIndex_deprecated:i];
@@ -290,7 +290,7 @@ float DefaultSubjectDistance = 2.5f;
 		[cameraBag addCamera:camera];
 	}
 	
-	int lensCount = [defaults integerForKey:FTLensCount];
+	NSInteger lensCount = [defaults integerForKey:FTLensCount];
 	for (int i = 0; i < lensCount; ++i)
 	{
 		Lens* lens = [Lens findFromDefaultsForIndex_deprecated:i];
@@ -341,7 +341,7 @@ float DefaultSubjectDistance = 2.5f;
     CameraBag* bag = [CameraBag sharedCameraBag];
     FTCameraBag* newBag = [FTCameraBag sharedCameraBag];
     
-    int cameraCount = [bag cameraCount];
+    NSInteger cameraCount = [bag cameraCount];
     for (int i = 0; i < cameraCount; ++i)
     {
         Camera* camera = [bag findCameraForIndex:i];
@@ -359,7 +359,7 @@ float DefaultSubjectDistance = 2.5f;
         [newCamera release];
     }
     
-    int lensCount = [bag lensCount];
+    NSInteger lensCount = [bag lensCount];
     for (int i = 0; i < lensCount; ++i)
     {
         Lens* lens = [bag findLensForIndex:i];

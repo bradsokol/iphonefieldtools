@@ -103,8 +103,8 @@ static const float SMALL_FONT_SIZE = 24.0;
         
         
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-        SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+        DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+        SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
         bool showTwoDecimals = distanceUnits == DistanceUnitsMeters &&
             (subjectDistanceRange == SubjectDistanceRangeClose || 
              subjectDistanceRange == SubjectDistanceRangeMacro);
@@ -146,8 +146,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 #endif
 
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+	DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
 
     if (DistanceUnitsMeters == distanceUnits &&
         (SubjectDistanceRangeClose == subjectDistanceRange || 
@@ -176,8 +176,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 	
 	displayRange = YES;
 
-	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+	DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
     switch (distanceUnits)
     {
         case DistanceUnitsFeetAndInches:

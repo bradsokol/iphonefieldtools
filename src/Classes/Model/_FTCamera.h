@@ -1,94 +1,62 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to FTCamera.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-
-extern const struct FTCameraAttributes {
-	__unsafe_unretained NSString *index;
-	__unsafe_unretained NSString *name;
-} FTCameraAttributes;
-
-extern const struct FTCameraRelationships {
-	__unsafe_unretained NSString *coc;
-} FTCameraRelationships;
-
-extern const struct FTCameraFetchedProperties {
-} FTCameraFetchedProperties;
+NS_ASSUME_NONNULL_BEGIN
 
 @class FTCoC;
-
-
-
 
 @interface FTCameraID : NSManagedObjectID {}
 @end
 
-@interface _FTCamera : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _FTCamera : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (FTCameraID*)objectID;
-
-
-
+@property (nonatomic, readonly, strong) FTCameraID *objectID;
 
 @property (nonatomic, strong) NSNumber* index;
 
-
-@property int32_t indexValue;
-- (int32_t)indexValue;
-- (void)setIndexValue:(int32_t)value_;
-
-//- (BOOL)validateIndex:(id*)value_ error:(NSError**)error_;
-
-
-
+@property (atomic) uint32_t indexValue;
+- (uint32_t)indexValue;
+- (void)setIndexValue:(uint32_t)value_;
 
 @property (nonatomic, strong) NSString* name;
 
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) FTCoC* coc;
-
-//- (BOOL)validateCoc:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@end
-
-@interface _FTCamera (CoreDataGeneratedAccessors)
+@property (nonatomic, strong) FTCoC *coc;
 
 @end
 
 @interface _FTCamera (CoreDataGeneratedPrimitiveAccessors)
 
-
 - (NSNumber*)primitiveIndex;
 - (void)setPrimitiveIndex:(NSNumber*)value;
 
-- (int32_t)primitiveIndexValue;
-- (void)setPrimitiveIndexValue:(int32_t)value_;
-
-
-
+- (uint32_t)primitiveIndexValue;
+- (void)setPrimitiveIndexValue:(uint32_t)value_;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
-
-
-
-
 - (FTCoC*)primitiveCoc;
 - (void)setPrimitiveCoc:(FTCoC*)value;
 
-
 @end
+
+@interface FTCameraAttributes: NSObject 
++ (NSString *)index;
++ (NSString *)name;
+@end
+
+@interface FTCameraRelationships: NSObject
++ (NSString *)coc;
+@end
+
+NS_ASSUME_NONNULL_END

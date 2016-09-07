@@ -31,7 +31,7 @@
 - (void)saveWasSelected;
 
 @property(nonatomic, strong) UIBarButtonItem* saveButton;
-@property(nonatomic) int newSubjectDistanceRangeIndex;
+@property(nonatomic) NSInteger newSubjectDistanceRangeIndex;
 
 @end
 
@@ -75,7 +75,7 @@
 
 - (void)saveWasSelected
 {
-    int oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     if (newSubjectDistanceRangeIndex != oldSubjectDistanceRangeIndex)
     {
         [[NSUserDefaults standardUserDefaults] setInteger:newSubjectDistanceRangeIndex

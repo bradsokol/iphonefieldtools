@@ -66,7 +66,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)lensDidChangeWithLens:(FTLens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
-- (void)recordAnalyticsForDistanceType:(int)distanceType;
+- (void)recordAnalyticsForDistanceType:(NSInteger)distanceType;
 - (bool)shouldShowTenths;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
@@ -81,7 +81,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistance;
 - (void)updateSubjectDistanceRangeText;
 
-@property(nonatomic) int apertureIndex;
+@property(nonatomic) NSInteger apertureIndex;
 @property(nonatomic, strong) DistanceFormatter* distanceFormatter;
 @property(nonatomic, strong) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 
@@ -161,7 +161,7 @@ static BOOL previousLensWasZoom = YES;
 {
     [super viewDidLoad];
 
-    int distanceTypeSetting = [[NSUserDefaults standardUserDefaults] 
+    NSInteger distanceTypeSetting = [[NSUserDefaults standardUserDefaults]
                         integerForKey:FTDistanceTypeKey];
     [self recordAnalyticsForDistanceType:distanceTypeSetting];
     
@@ -243,7 +243,7 @@ static BOOL previousLensWasZoom = YES;
 // Distance type changed in segment control
 - (void)distanceTypeDidChange:(id)sender
 {
-    int distanceTypeSetting = [distanceType selectedSegmentIndex];
+    NSInteger distanceTypeSetting = [distanceType selectedSegmentIndex];
 	[[NSUserDefaults standardUserDefaults] setInteger:distanceTypeSetting
 											   forKey:FTDistanceTypeKey];
     
@@ -290,7 +290,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)subjectDistanceDidChange:(id)sender
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
 
 	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value] usingUnits:distanceUnits]];
 	
@@ -319,7 +319,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)unitsDidChange
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    int distanceTypeSetting = [defaults integerForKey:FTDistanceTypeKey];
+    NSInteger distanceTypeSetting = [defaults integerForKey:FTDistanceTypeKey];
     [self recordAnalyticsForDistanceType:distanceTypeSetting];
     
 	[self updateResultView];
@@ -439,7 +439,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateFarLimit
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
 
 	return [DepthOfFieldCalculator calculateFarLimitForAperture:[self aperture]
 													focalLength:[self focalLength]
@@ -458,7 +458,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateNearLimit
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
 
 	return [DepthOfFieldCalculator calculateNearLimitForAperture:[self aperture]
 													 focalLength:[self focalLength]
@@ -557,9 +557,9 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistance
 {
     SubjectDistanceRange subjectDistanceRange = 
-        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+        (SubjectDistanceRange)[[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     DistanceUnits units = 
-        [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+        (DistanceUnits)[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 
     if (DistanceUnitsMeters == units && (subjectDistanceRange == SubjectDistanceRangeClose ||
                                          subjectDistanceRange == SubjectDistanceRangeMacro))
@@ -577,9 +577,9 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateSubjectDistanceRangeText
 {
-    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
-        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRangeIndex];
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRangeIndex];
     
     [subjectDistanceRangeText setTitle:[subjectDistanceRangePolicy description]
                               forState:UIControlStateNormal];
@@ -587,7 +587,7 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Helpers
 
-- (void)recordAnalyticsForDistanceType:(int)distanceTypeSetting
+- (void)recordAnalyticsForDistanceType:(NSInteger)distanceTypeSetting
 {
     NSString* viewName;
     switch (distanceTypeSetting)
@@ -610,7 +610,7 @@ static BOOL previousLensWasZoom = YES;
     }
     
     NSString* unitsName;
-    DistanceUnits distanceUnits = [[NSUserDefaults standardUserDefaults]
+    DistanceUnits distanceUnits = (DistanceUnits)[[NSUserDefaults standardUserDefaults]
                                    integerForKey:FTDistanceUnitsKey];
     switch (distanceUnits)
     {
@@ -734,7 +734,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistanceSliderPolicy
 {
     SubjectDistanceRange subjectDistanceRange = 
-        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+        (SubjectDistanceRange)[[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
         [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRange];
 	
@@ -746,8 +746,8 @@ static BOOL previousLensWasZoom = YES;
 - (bool)shouldShowTenths
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
     
     return distanceUnits == DistanceUnitsCentimeters &&
         subjectDistanceRange == SubjectDistanceRangeMacro;
@@ -772,7 +772,7 @@ static BOOL previousLensWasZoom = YES;
         return;
     }
     
-    int oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     if (buttonIndex != oldSubjectDistanceRangeIndex)
     {
         [[NSUserDefaults standardUserDefaults] setInteger:buttonIndex

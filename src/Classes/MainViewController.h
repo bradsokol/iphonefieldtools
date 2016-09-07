@@ -57,7 +57,7 @@
 	IBOutlet ResultView* resultView;
 	
 	DistanceFormatter* distanceFormatter;
-	int apertureIndex;
+	NSInteger apertureIndex;
 	float circleOfLeastConfusion;
 	float focalLength;
 	float subjectDistance;

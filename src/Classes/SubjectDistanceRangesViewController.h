@@ -29,7 +29,7 @@
     SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
     UIBarButtonItem* saveButton;
     
-    int newSubjectDistanceRangeIndex;
+    NSInteger newSubjectDistanceRangeIndex;
 }
 
 @property(nonatomic, strong) SubjectDistanceRangesViewTableDataSource* tableViewDataSource;

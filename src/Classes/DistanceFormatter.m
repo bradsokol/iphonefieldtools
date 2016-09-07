@@ -97,7 +97,7 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 	}
 	
 	DistanceUnits units = [self isTesting] ? [self distanceUnits] :
-		[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+		(DistanceUnits)[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 	
 	distance = [self convertDistance:distance toUnits:units];
 

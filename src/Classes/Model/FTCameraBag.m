@@ -62,11 +62,11 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Camera bag with %d cameras and %d lenses",
-            [self cameraCount], [self lensCount]];
+    return [NSString stringWithFormat:@"Camera bag with %ld cameras and %ld lenses",
+            (long)[self cameraCount], (long)[self lensCount]];
 }
 
-- (int)cameraCount
+- (NSInteger)cameraCount
 {
     return [self countEntityInstances:@"Camera"];
 }
@@ -76,7 +76,7 @@ static FTCameraBag* sharedCameraBag = nil;
     int deletedIndex = [camera indexValue];
     [[self managedObjectContext] deleteObject:camera];
     
-    int cameraCount = [self cameraCount];
+    NSInteger cameraCount = [self cameraCount];
     for (int i = deletedIndex + 1; i <= cameraCount; ++i)
     {
         FTCamera* camera = [self findCameraForIndex:i];
@@ -84,7 +84,7 @@ static FTCameraBag* sharedCameraBag = nil;
     }
 }
 
-- (FTCamera*)findCameraForIndex:(int)index
+- (FTCamera*)findCameraForIndex:(NSInteger)index
 {
     return (FTCamera*)[self findEntityInstanceWithName:@"Camera" atIndex:index];
 }
@@ -95,10 +95,10 @@ static FTCameraBag* sharedCameraBag = nil;
     return [self findCameraForIndex:index];
 }
 
-- (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
+- (void)moveCameraFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
 {
-	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	int newSelectedIndex = selectedIndex;
+	const NSInteger selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	NSInteger newSelectedIndex = selectedIndex;
     
 	if (fromIndex == selectedIndex)
 	{
@@ -115,7 +115,7 @@ static FTCameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex - 1;
 		}
 		
-		for (int i = fromIndex; i < toIndex; ++i)
+		for (uint32_t i = (uint32_t)fromIndex; i < toIndex; ++i)
 		{
             FTCamera* camera = [self findCameraForIndex:i];
             FTCamera* nextCamera = [self findCameraForIndex:i + 1];
@@ -132,7 +132,7 @@ static FTCameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex + 1;
 		}
 		
-		for (int i = fromIndex; i > toIndex; --i)
+		for (uint32_t i = (uint32_t)fromIndex; i > toIndex; --i)
 		{
             FTCamera* camera = [self findCameraForIndex:i];
             FTCamera* previousCamera = [self findCameraForIndex:i - 1];
@@ -156,7 +156,7 @@ static FTCameraBag* sharedCameraBag = nil;
     int deletedIndex = [lens indexValue];
     [[self managedObjectContext] deleteObject:lens];
     
-    int lensCount = [self lensCount];
+    NSInteger lensCount = [self lensCount];
     for (int i = deletedIndex + 1; i <= lensCount; ++i)
     {
         FTLens* lens = [self findLensForIndex:i];
@@ -170,15 +170,15 @@ static FTCameraBag* sharedCameraBag = nil;
     return [self findLensForIndex:index];
 }
 
-- (FTLens*)findLensForIndex:(int)index
+- (FTLens*)findLensForIndex:(NSInteger)index
 {
     return (FTLens*)[self findEntityInstanceWithName:@"Lens" atIndex:index];
 }
 
-- (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex
+- (void)moveLensFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
 {
-	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-	int newSelectedIndex = selectedIndex;
+	const NSInteger selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	NSInteger newSelectedIndex = selectedIndex;
 	
 	if (fromIndex == selectedIndex)
 	{
@@ -195,7 +195,7 @@ static FTCameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex - 1;
 		}
 		
-		for (int i = fromIndex; i < toIndex; ++i)
+		for (uint32_t i = (uint32_t)fromIndex; i < toIndex; ++i)
 		{
             FTLens* lens = [self findLensForIndex:i];
             FTLens* nextLens = [self findLensForIndex:i + 1];
@@ -212,7 +212,7 @@ static FTCameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex + 1;
 		}
 		
-		for (int i = fromIndex; i > toIndex; --i)
+		for (uint32_t i = (uint32_t)fromIndex; i > toIndex; --i)
 		{
             FTLens* lens = [self findLensForIndex:i];
             FTLens* previousLens = [self findLensForIndex:i - 1];
@@ -231,14 +231,14 @@ static FTCameraBag* sharedCameraBag = nil;
 											   forKey:FTLensIndex];
 }
 
-- (int)lensCount
+- (NSInteger)lensCount
 {
     return [self countEntityInstances:@"Lens"];
 }
 
 - (FTCamera*)newCamera
 {
-    NSUInteger count = [self cameraCount];
+    uint32_t count = (uint32_t)[self cameraCount];
     
     NSManagedObjectContext* context = [self managedObjectContext];
     FTCamera* camera = [[FTCamera alloc] initWithEntity:[NSEntityDescription
@@ -265,7 +265,7 @@ static FTCameraBag* sharedCameraBag = nil;
 
 - (FTLens*)newLens
 {
-    NSUInteger count = [self lensCount];
+    uint32_t count = (uint32_t)[self lensCount];
     
     NSManagedObjectContext* context = [self managedObjectContext];
     FTLens* lens = [[FTLens alloc] initWithEntity:[NSEntityDescription

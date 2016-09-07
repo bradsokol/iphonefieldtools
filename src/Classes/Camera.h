@@ -28,7 +28,7 @@
 	CoC* coc;
 }
 
-+ (int)count_deprecated;
++ (NSInteger)count_deprecated;
 + (NSArray*)findAll __attribute__((deprecated));
 
 + (Camera*)findFromDefaultsForIndex_deprecated:(int)index;

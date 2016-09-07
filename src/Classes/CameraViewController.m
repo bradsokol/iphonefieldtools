@@ -31,8 +31,6 @@
 #import "Notifications.h"
 #import "UserDefaults.h"
 
-static const int TEXT_FIELD_TAG = 99;
-
 @interface CameraViewController ()
 
 - (void)cancelWasSelected;

@@ -126,7 +126,7 @@ static CameraBag* sharedCameraBag = nil;
 	[cameras addObject:camera];
 }
 
-- (int)cameraCount
+- (NSInteger)cameraCount
 {
 	return [cameras count];
 }
@@ -134,7 +134,7 @@ static CameraBag* sharedCameraBag = nil;
 - (void)deleteCamera:(Camera*)camera
 {
 	int id = [camera identifier];
-	int cameraCount = [cameras count];
+	NSInteger cameraCount = [cameras count];
 	
 	// Safety check - never delete the last camera
 	if (cameraCount == 1)
@@ -153,9 +153,9 @@ static CameraBag* sharedCameraBag = nil;
 	}
 }
 
-- (Camera*)findCameraForIndex:(int)index
+- (Camera*)findCameraForIndex:(NSInteger)index
 {
-	int cameraCount = [cameras count];
+	NSInteger cameraCount = [cameras count];
 	if (index >= cameraCount)
 	{
 		return nil;
@@ -170,10 +170,10 @@ static CameraBag* sharedCameraBag = nil;
 	return [cameras objectAtIndex:index];
 }
 
-- (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex
+- (void)moveCameraFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
 {
-	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	int newSelectedIndex = selectedIndex;
+	const NSInteger selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
+	NSInteger newSelectedIndex = selectedIndex;
 
 	if (fromIndex == selectedIndex)
 	{
@@ -189,8 +189,8 @@ static CameraBag* sharedCameraBag = nil;
 			// Selected moves one up
 			newSelectedIndex = selectedIndex - 1;
 		}
-		
-		for (int i = fromIndex; i < toIndex; ++i)
+
+		for (NSInteger i = fromIndex; i < toIndex; ++i)
 		{
 			[cameras exchangeObjectAtIndex:i withObjectAtIndex:i + 1];
 		}
@@ -204,7 +204,7 @@ static CameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex + 1;
 		}
 		
-		for (int i = fromIndex; i > toIndex; --i)
+		for (NSInteger i = fromIndex; i > toIndex; --i)
 		{
 			[cameras exchangeObjectAtIndex:i withObjectAtIndex:i - 1];
 		}
@@ -236,7 +236,7 @@ static CameraBag* sharedCameraBag = nil;
 	}
 	
 	int id = [lens identifier];
-	int lensCount = [lenses count];
+	NSInteger lensCount = [lenses count];
 	
 	// Safety check - never delete the last lens
 	if (lensCount == 1)
@@ -261,7 +261,7 @@ static CameraBag* sharedCameraBag = nil;
 	return [lenses objectAtIndex:index];
 }
 
-- (Lens*)findLensForIndex:(int)index
+- (Lens*)findLensForIndex:(NSInteger)index
 {
 	if (index >= [lenses count])
 	{
@@ -271,10 +271,10 @@ static CameraBag* sharedCameraBag = nil;
 	return [lenses objectAtIndex:index];
 }
 
-- (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex
+- (void)moveLensFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
 {
-	const int selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-	int newSelectedIndex = selectedIndex;
+	const NSInteger selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	NSInteger newSelectedIndex = selectedIndex;
 	
 	if (fromIndex == selectedIndex)
 	{
@@ -291,7 +291,7 @@ static CameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex - 1;
 		}
 		
-		for (int i = fromIndex; i < toIndex; ++i)
+		for (NSInteger i = fromIndex; i < toIndex; ++i)
 		{
 			[lenses exchangeObjectAtIndex:i withObjectAtIndex:i + 1];
 		}
@@ -305,7 +305,7 @@ static CameraBag* sharedCameraBag = nil;
 			newSelectedIndex = selectedIndex + 1;
 		}
 		
-		for (int i = fromIndex; i > toIndex; --i)
+		for (NSInteger i = fromIndex; i > toIndex; --i)
 		{
 			[lenses exchangeObjectAtIndex:i withObjectAtIndex:i - 1];
 		}
@@ -321,15 +321,15 @@ static CameraBag* sharedCameraBag = nil;
 											   forKey:FTLensIndex];
 }
 
-- (int)lensCount
+- (NSInteger)lensCount
 {
 	return [lenses count];
 }
 
 - (NSString*)description
 {
-	return [NSString stringWithFormat:@"CameraBag with %d cameras and %d lenses",
-			[cameras count], [lenses count]];
+    return [NSString stringWithFormat:@"CameraBag with %lu cameras and %lu lenses",
+            (unsigned long)[cameras count], (unsigned long)[lenses count]];
 }
 
 - (void)save

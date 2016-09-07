@@ -72,8 +72,8 @@
              label:(NSString *)label
              value:(NSInteger)value
 {
-    NSLog(@"Google Analytics: Tracking event: (%@, %@, %@, %d)",
-          category, action, label, value);
+    NSLog(@"Google Analytics: Tracking event: (%@, %@, %@, %ld)",
+          category, action, label, (long)value);
     
     NSError *error;
     BOOL success = [[GANTracker sharedTracker] trackEvent:category
