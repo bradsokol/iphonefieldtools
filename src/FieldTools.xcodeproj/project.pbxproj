@@ -68,6 +68,8 @@
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
+		A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */; };
+		A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A259002A1D7FB8800058D160 /* libz.tbd */; };
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
@@ -132,7 +134,6 @@
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
 		A2E3D0F915532869005F3F30 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E3D0F815532869005F3F30 /* iRate.m */; };
 		A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */; };
-		A2F862851545B41A00BF8480 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +217,8 @@
 		A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
 		A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewTableDataSource.m; sourceTree = "<group>"; };
+		A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GoogleAnalytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		A259002A1D7FB8800058D160 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A25BDF3210479BFE00B22B2B /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lens.h; path = Classes/Lens.h; sourceTree = "<group>"; };
 		A25BDF3310479BFE00B22B2B /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lens.m; path = Classes/Lens.m; sourceTree = "<group>"; };
 		A261F8C70FDCCA3600C907AD /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
@@ -311,8 +314,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */,
+				A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */,
 				A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */,
-				A2F862851545B41A00BF8480 /* libGoogleAnalytics.a in Frameworks */,
 				A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */,
 				A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */,
 				A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */,
@@ -424,6 +428,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A259002A1D7FB8800058D160 /* libz.tbd */,
+				A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */,
 				A282978916453F2B00F6DE5D /* CoreData.framework */,
 				A2ACD85813B64CB30052557E /* SystemConfiguration.framework */,
 				A2ACD85613B64CAD0052557E /* CFNetwork.framework */,
@@ -1046,10 +1052,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
@@ -1071,10 +1078,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
@@ -1115,10 +1123,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;

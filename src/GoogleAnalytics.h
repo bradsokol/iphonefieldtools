@@ -22,7 +22,7 @@
 #ifndef FieldTools_GoogleAnalytics_h
 #define FieldTools_GoogleAnalytics_h
 
-#import "GANTracker.h"
+#import "GoogleAnalytics/GAI.h"
 
 // Use a fake account ID for debug builds. During initialization of
 // the analytics library, dry run mode is turned on so nothing is

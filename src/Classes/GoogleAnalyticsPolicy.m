@@ -24,6 +24,10 @@
 
 #import "GoogleAnalytics.h"
 
+@interface GoogleAnalyticsPolicy ()
+@property id<GAITracker> tracker;
+@end
+
 @implementation GoogleAnalyticsPolicy
 
 @synthesize debug;
@@ -31,20 +35,18 @@
 - (id)init
 {
     [self setDebug:NO];
-    
-    [[GANTracker sharedTracker] setAnonymizeIp:YES];
-    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
-                                           dispatchPeriod:kGANDispatchPeriodSec
-                                                 delegate:nil];
-    
+
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kGANAccountId];
+    [self.tracker set:kGAIAnonymizeIp value:@"1"];
+    [GAI sharedInstance].dispatchInterval = kGANDispatchPeriodSec;
+
     return self;
 }
 
 - (void)setDebug:(BOOL)value
 {
     debug = value;
-    
-    [[GANTracker sharedTracker] setDryRun:[self debug]];
+    [GAI sharedInstance].dryRun = [self debug];
 }
 
 // Track display of a view. Returns YES on success or NO on error.
@@ -52,16 +54,10 @@
 - (BOOL)trackView:(NSString *)viewName
 {
     NSLog(@"Google Anlytics: Tracking view %@", viewName);
-    
-    NSError *error;
-    BOOL success = [[GANTracker sharedTracker] trackPageview:viewName
-                                                   withError:&error];
-    if (!success)
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-    
-    return success;
+
+    [self.tracker set:kGAIScreenName value:viewName];
+    [self.tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    return true;
 }
 
 // Track an event. The category and action are required. The label and
@@ -74,20 +70,13 @@
 {
     NSLog(@"Google Analytics: Tracking event: (%@, %@, %@, %ld)",
           category, action, label, (long)value);
-    
-    NSError *error;
-    BOOL success = [[GANTracker sharedTracker] trackEvent:category
-                                                   action:action
-                                                    label:label
-                                                    value:value
-                                                withError:&error];
-    
-    if (!success)
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-    
-    return success;
+
+    [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
+                                                               action:action
+                                                                label:label
+                                                                value:[NSNumber numberWithLong:value]] build]];
+
+    return true;
 }
 
 @end
