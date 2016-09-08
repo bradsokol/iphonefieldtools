@@ -137,7 +137,7 @@
 
 - (void)setTextAlignment:(UITextAlignment)alignment
 {
-	[textField setTextAlignment:alignment];
+	[textField setTextAlignment:(NSTextAlignment)alignment];
 }
 
 - (void)dealloc 
