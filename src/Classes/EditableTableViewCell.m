@@ -135,7 +135,7 @@
 	}
 }
 
-- (void)setTextAlignment:(UITextAlignment)alignment
+- (void)setTextAlignment:(NSTextAlignment)alignment
 {
 	[textField setTextAlignment:(NSTextAlignment)alignment];
 }

@@ -223,7 +223,7 @@ static const float SectionHeaderHeight = 44.0;
 	UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)];
 	UILabel *label = [[UILabel alloc] initWithFrame:headerView.frame];
 	[label setTextColor:[UIColor whiteColor]];
-	[label setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+	[label setBackgroundColor:[UIColor blackColor]];
 	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
 	
 	if (LENSES_SECTION == section)

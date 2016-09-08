@@ -53,7 +53,7 @@
 	text.textColor = [UIColor grayColor];
 	text.highlightedTextColor = [UIColor whiteColor];
 	text.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2.0];
-	text.textAlignment = UITextAlignmentRight;
+	text.textAlignment = NSTextAlignmentRight;
 	[self.contentView addSubview:text];
 	
 	return self;

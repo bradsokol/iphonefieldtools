@@ -127,7 +127,7 @@ static const int NUM_SECTIONS = 1;
 
     [[self analyticsPolicy] trackView:kSettingsCoC];
 	
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+	[[self view] setBackgroundColor:[UIColor blackColor]];
 }
 
 - (void)didReceiveMemoryWarning 

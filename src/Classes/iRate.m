@@ -864,7 +864,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
                 else if ([label.text isEqualToString:alertView.message])
                 {
                     label.alpha = 1.0f;
-                    label.lineBreakMode = UILineBreakModeWordWrap;
+                    label.lineBreakMode = NSLineBreakByWordWrapping;
                     label.numberOfLines = 0;
                     [label sizeToFit];
                     offset += label.frame.size.height - frame.size.height;
