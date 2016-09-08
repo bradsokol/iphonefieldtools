@@ -108,9 +108,9 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     
     CGFloat maxLabelWidth = self.view.frame.size.width - self.activityIndicator.frame.size.width * withActivity - baseWidth;
     CGSize maxLabelSize = CGSizeMake(maxLabelWidth, GCDiscreetNotificationViewHeight);
-    CGFloat textSizeWidth = (self.textLabel != nil) ? [self.textLabel sizeWithFont:self.label.font constrainedToSize:maxLabelSize lineBreakMode:(NSLineBreakMode)UILineBreakModeTailTruncation].width : 0;
-    CGFloat secondaryTextSizeWidth = (self.secondaryTextLabel != nil) ? [self.secondaryTextLabel sizeWithFont:self.secondaryLabel.font constrainedToSize:maxLabelSize lineBreakMode:(NSLineBreakMode)UILineBreakModeTailTruncation].width : 0;
-    
+    CGFloat textSizeWidth = (self.textLabel != nil) ? [self.textLabel boundingRectWithSize:maxLabelSize options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.label.font} context:nil].size.width : 0;
+    CGFloat secondaryTextSizeWidth = (self.secondaryTextLabel != nil) ? [self.secondaryTextLabel boundingRectWithSize:maxLabelSize options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.secondaryLabel.font} context:nil].size.width : 0;
+
     CGFloat width = (textSizeWidth > secondaryTextSizeWidth ? textSizeWidth : secondaryTextSizeWidth);
     CGFloat activityIndicatorWidth = (self.showActivity) ? self.activityIndicator.frame.size.width : 0;
     CGRect bounds = CGRectMake(0, 0, baseWidth + width + activityIndicatorWidth , GCDiscreetNotificationViewHeight);
@@ -142,7 +142,6 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     
     [self placeOnGrid];
 }
-
 
 - (void) drawRect:(CGRect)rect {
     CGRect myFrame = self.bounds;
@@ -307,7 +306,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         label.shadowOffset = CGSizeMake(0, 1);
         label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         
         [self addSubview:label];
     }
@@ -324,7 +323,7 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
         secondaryLabel.shadowOffset = CGSizeMake(0, 1);
         secondaryLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         secondaryLabel.backgroundColor = [UIColor clearColor];
-        secondaryLabel.textAlignment = UITextAlignmentCenter;
+        secondaryLabel.textAlignment = NSTextAlignmentCenter;
         
         [self addSubview:secondaryLabel];
     }

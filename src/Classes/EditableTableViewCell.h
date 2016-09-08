@@ -34,7 +34,7 @@
 - (void)setLabel:(NSString*)s;
 - (NSString*)text;
 - (void)setText:(NSString*)s;
-- (void)setTextAlignment:(UITextAlignment)alignment;
+- (void)setTextAlignment:(NSTextAlignment)alignment;
 
 @property(nonatomic, readonly) UITextField* textField;
 
