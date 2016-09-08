@@ -29,8 +29,6 @@
 #import "FTCoC.h"
 #import "FTLens.h"
 #import "GoogleAnalyticsPolicy.h"
-#import "iRate.h"
-#import "iRateConfiguration.h"
 #import "Lens.h"
 #import "MainViewController.h"
 #import "SubjectDistanceRangePolicyFactory.h"
@@ -80,17 +78,6 @@ float DefaultSubjectDistance = 2.5f;
 
 + (void)initialize
 {
-    // Configure iRate
-    [[iRate sharedInstance] setAppStoreID:kAppStoreID];
-    [[iRate sharedInstance] setDaysUntilPrompt:kDaysUntilRatingPrompt];
-    [[iRate sharedInstance] setUsesUntilPrompt:kUsesUntilRatingPrompt];
-    [[iRate sharedInstance] setRemindPeriod:kDaysUntilRatingReminder];
-    
-    [[iRate sharedInstance] setMessageTitle:NSLocalizedString(@"RATING_TITLE", @"RATING_TITLE")];
-    [[iRate sharedInstance] setMessage:NSLocalizedString(@"RATING_MESSAGE", @"RATING_MESSAGE")];
-    [[iRate sharedInstance] setCancelButtonLabel:NSLocalizedString(@"RATING_CANCEL", @"RATING_CANCEL")];
-    [[iRate sharedInstance] setRateButtonLabel:NSLocalizedString(@"RATING_RATE", @"RATING_RATE")];
-    [[iRate sharedInstance] setRemindButtonLabel:NSLocalizedString(@"RATING_LATER", @"RATING_LATER")];
 }
 
 # pragma mark "UIApplicationDelegate methods"
@@ -103,7 +90,7 @@ float DefaultSubjectDistance = 2.5f;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self setWindow:[[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease]];
+    [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
     
     [self startGoogleAnalytics];
 
@@ -131,7 +118,7 @@ float DefaultSubjectDistance = 2.5f;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
     
-    [self setMainViewController:[[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease]];
+    [self setMainViewController:[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil]];
     
     [[self mainViewController] setAnalyticsPolicy:[self analyticsPolicy]];
     
@@ -186,7 +173,6 @@ float DefaultSubjectDistance = 2.5f;
                                                                          coc:coc
                                                                   identifier:0];
                         [camera save_deprecated];
-                        [camera release];
                     }
                     
                     NSLog(@"Migrating defaults from 2.0 to 2.1");
@@ -250,9 +236,7 @@ float DefaultSubjectDistance = 2.5f;
 													 coc:coc
 											  identifier:0];
 	[camera save_deprecated];
-	[camera release];
-	[coc release];
-	
+
 	// Create an initial lens using the limits of the sliders from V1.0
 	Lens* lens = [[Lens alloc] initWithDescription:NSLocalizedString(@"DEFAULT_LENS_NAME", "Default lens")
 								   minimumAperture:[NSNumber numberWithFloat:32.0]
@@ -261,8 +245,7 @@ float DefaultSubjectDistance = 2.5f;
 								maximumFocalLength:[NSNumber numberWithInt:200]
 										identifier:0];
 	[lens save_deprecated];
-	[lens release];
-	
+
 	// Remove obsolete keys
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTCameraIndex];
 }
@@ -318,8 +301,6 @@ float DefaultSubjectDistance = 2.5f;
 	{
 		NSLog(@"Failed to create archive while migrating from 2.0 defaults");
 	}
-	
-	[cameraBag release];
 }
 
 + (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues
@@ -355,8 +336,6 @@ float DefaultSubjectDistance = 2.5f;
         [newCoc setValueValue:[coc value]];
         [newCoc setName:[coc description]];
         [newCamera setCoc:newCoc];
-        [newCoc release];
-        [newCamera release];
     }
     
     NSInteger lensCount = [bag lensCount];
@@ -371,7 +350,6 @@ float DefaultSubjectDistance = 2.5f;
         [newLens setMaximumFocalLength:[lens maximumFocalLength]];
         [newLens setName:[lens description]];
         [newLens setIndexValue:[lens identifier]];
-        [newLens release];
     }
     
     if ([newBag save])

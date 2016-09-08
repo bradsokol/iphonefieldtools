@@ -106,7 +106,6 @@
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */; };
-		A289FAD41613D8D300211AE0 /* iRate.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD01613D8D300211AE0 /* iRate.license */; };
 		A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD11613D8D300211AE0 /* licenses2settings.pl */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
 		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
@@ -132,7 +131,6 @@
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
-		A2E3D0F915532869005F3F30 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E3D0F815532869005F3F30 /* iRate.m */; };
 		A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
@@ -261,7 +259,6 @@
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDiscreetNotificationView.license; sourceTree = "<group>"; };
-		A289FAD01613D8D300211AE0 /* iRate.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iRate.license; sourceTree = "<group>"; };
 		A289FAD11613D8D300211AE0 /* licenses2settings.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = licenses2settings.pl; sourceTree = "<group>"; };
 		A289FAD21613D8D300211AE0 /* OBSlider.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OBSlider.license; sourceTree = "<group>"; };
 		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -300,9 +297,6 @@
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
 		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoC.m; path = Classes/CoC.m; sourceTree = "<group>"; };
-		A2E3D0F715532869005F3F30 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Classes/iRate.h; sourceTree = "<group>"; };
-		A2E3D0F815532869005F3F30 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Classes/iRate.m; sourceTree = "<group>"; };
-		A2E3D0FA15532C54005F3F30 /* iRateConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iRateConfiguration.h; sourceTree = "<group>"; };
 		A2F8627A1545ACB500BF8480 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = GoogleAnalytics/GANTracker.h; sourceTree = "<group>"; };
 		A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = GoogleAnalytics/libGoogleAnalytics.a; sourceTree = "<group>"; };
@@ -391,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */,
-				A2E3D0FA15532C54005F3F30 /* iRateConfiguration.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */,
 				A2811FD30ECE8DB100A7FB7A /* Notifications.h */,
@@ -598,7 +591,6 @@
 			isa = PBXGroup;
 			children = (
 				A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */,
-				A289FAD01613D8D300211AE0 /* iRate.license */,
 				A289FAD11613D8D300211AE0 /* licenses2settings.pl */,
 				A289FAD21613D8D300211AE0 /* OBSlider.license */,
 			);
@@ -715,22 +707,12 @@
 			name = GCDiscreetNotificationView;
 			sourceTree = "<group>";
 		};
-		A2E3D0F315532789005F3F30 /* iRate */ = {
-			isa = PBXGroup;
-			children = (
-				A2E3D0F715532869005F3F30 /* iRate.h */,
-				A2E3D0F815532869005F3F30 /* iRate.m */,
-			);
-			name = iRate;
-			sourceTree = "<group>";
-		};
 		A2F862791545AC8400BF8480 /* Third Party Components */ = {
 			isa = PBXGroup;
 			children = (
 				A289FACE1613D8D300211AE0 /* Licenses */,
 				A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */,
 				A2F8627B1545ACC400BF8480 /* Google Analytics */,
-				A2E3D0F315532789005F3F30 /* iRate */,
 			);
 			name = "Third Party Components";
 			sourceTree = "<group>";
@@ -848,7 +830,6 @@
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
 				A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */,
-				A289FAD41613D8D300211AE0 /* iRate.license in Resources */,
 				A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
@@ -967,7 +948,6 @@
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
-				A2E3D0F915532869005F3F30 /* iRate.m in Sources */,
 				A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */,
 				A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */,
 				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
