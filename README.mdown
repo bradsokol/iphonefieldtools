@@ -34,9 +34,8 @@ Field Tools is licensed under the [Apache License](http://www.apache.org/license
 
 ## Acknowledgements
 
-Thanks to following people for their contributions on Github that helped make Field Tools better:
+Thanks to following people for their contributions on GitHub that helped make Field Tools better:
 
 * [Guillaume Campagna](https://github.com/gcamp) for [GCDiscreetNotificationView](https://github.com/gcamp/GCDiscreetNotificationView), a discreet, non-modal notification view.
-* [Nick Lockwood](https://github.com/nicklockwood) for [iRate](https://github.com/nicklockwood/iRate), a class for gently prompting users to write an app review.
 * [Ole Begemann](https://github.com/ole) for [OBSlider](https://github.com/ole/OBSlider), a UISlider subclass with variable scrubbing speed.
 
