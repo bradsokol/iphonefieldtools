@@ -133,8 +133,8 @@
 	[[self tableViewDelegate] setEditing:editing];
 	[[self tableViewDataSource] setEditing:editing];
 	
-	int cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
-	int lensCount = [[FTCameraBag sharedCameraBag] lensCount];
+	NSInteger cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
+	NSInteger lensCount = [[FTCameraBag sharedCameraBag] lensCount];
 	UITableView* tableView = (UITableView*) [self view];
     UITableViewCell* extraLensCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:lensCount inSection:LENSES_SECTION]];
 	
@@ -285,7 +285,7 @@
 	
 	[[FTCameraBag sharedCameraBag] save];
 	
-	int selectedLens = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	NSInteger selectedLens = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
 	if ([lens indexValue] == selectedLens)
 	{
 		[[NSNotificationCenter defaultCenter]

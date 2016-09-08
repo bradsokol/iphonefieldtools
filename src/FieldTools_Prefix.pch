@@ -20,4 +20,8 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import <CoreData/CoreData.h>
+
+    #import "GoogleAnalytics/GAI.h"
+    #import "GoogleAnalytics/GAIDictionaryBuilder.h"
+    #import "GoogleAnalytics/GAIFields.h"
 #endif

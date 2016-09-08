@@ -3,24 +3,12 @@
 
 #import "_FTCoC.h"
 
-const struct FTCoCAttributes FTCoCAttributes = {
-	.name = @"name",
-	.value = @"value",
-};
-
-const struct FTCoCRelationships FTCoCRelationships = {
-	.camera = @"camera",
-};
-
-const struct FTCoCFetchedProperties FTCoCFetchedProperties = {
-};
-
 @implementation FTCoCID
 @end
 
 @implementation _FTCoC
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"CoC" inManagedObjectContext:moc_];
 }
@@ -38,30 +26,21 @@ const struct FTCoCFetchedProperties FTCoCFetchedProperties = {
 	return (FTCoCID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"valueValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"value"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 
 	return keyPaths;
 }
 
-
-
-
 @dynamic name;
 
-
-
-
-
-
 @dynamic value;
-
-
 
 - (float)valueValue {
 	NSNumber *result = [self value];
@@ -69,7 +48,7 @@ const struct FTCoCFetchedProperties FTCoCFetchedProperties = {
 }
 
 - (void)setValueValue:(float)value_ {
-	[self setValue:[NSNumber numberWithFloat:value_]];
+	[self setValue:@(value_)];
 }
 
 - (float)primitiveValueValue {
@@ -78,20 +57,25 @@ const struct FTCoCFetchedProperties FTCoCFetchedProperties = {
 }
 
 - (void)setPrimitiveValueValue:(float)value_ {
-	[self setPrimitiveValue:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveValue:@(value_)];
 }
-
-
-
-
 
 @dynamic camera;
 
-	
-
-
-
-
-
-
 @end
+
+@implementation FTCoCAttributes 
++ (NSString *)name {
+	return @"name";
+}
++ (NSString *)value {
+	return @"value";
+}
+@end
+
+@implementation FTCoCRelationships 
++ (NSString *)camera {
+	return @"camera";
+}
+@end
+

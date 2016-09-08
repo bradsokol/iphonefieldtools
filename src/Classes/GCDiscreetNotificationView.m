@@ -108,8 +108,8 @@ NSString* const GCDiscreetNotificationViewActivityKey = @"activity";
     
     CGFloat maxLabelWidth = self.view.frame.size.width - self.activityIndicator.frame.size.width * withActivity - baseWidth;
     CGSize maxLabelSize = CGSizeMake(maxLabelWidth, GCDiscreetNotificationViewHeight);
-    CGFloat textSizeWidth = (self.textLabel != nil) ? [self.textLabel sizeWithFont:self.label.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation].width : 0;
-    CGFloat secondaryTextSizeWidth = (self.secondaryTextLabel != nil) ? [self.secondaryTextLabel sizeWithFont:self.secondaryLabel.font constrainedToSize:maxLabelSize lineBreakMode:UILineBreakModeTailTruncation].width : 0;
+    CGFloat textSizeWidth = (self.textLabel != nil) ? [self.textLabel sizeWithFont:self.label.font constrainedToSize:maxLabelSize lineBreakMode:(NSLineBreakMode)UILineBreakModeTailTruncation].width : 0;
+    CGFloat secondaryTextSizeWidth = (self.secondaryTextLabel != nil) ? [self.secondaryTextLabel sizeWithFont:self.secondaryLabel.font constrainedToSize:maxLabelSize lineBreakMode:(NSLineBreakMode)UILineBreakModeTailTruncation].width : 0;
     
     CGFloat width = (textSizeWidth > secondaryTextSizeWidth ? textSizeWidth : secondaryTextSizeWidth);
     CGFloat activityIndicatorWidth = (self.showActivity) ? self.activityIndicator.frame.size.width : 0;

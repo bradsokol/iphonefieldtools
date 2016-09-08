@@ -3,27 +3,12 @@
 
 #import "_FTLens.h"
 
-const struct FTLensAttributes FTLensAttributes = {
-	.index = @"index",
-	.maximumAperture = @"maximumAperture",
-	.maximumFocalLength = @"maximumFocalLength",
-	.minimumAperture = @"minimumAperture",
-	.minimumFocalLength = @"minimumFocalLength",
-	.name = @"name",
-};
-
-const struct FTLensRelationships FTLensRelationships = {
-};
-
-const struct FTLensFetchedProperties FTLensFetchedProperties = {
-};
-
 @implementation FTLensID
 @end
 
 @implementation _FTLens
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Lens" inManagedObjectContext:moc_];
 }
@@ -41,65 +26,59 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 	return (FTLensID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"indexValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"index"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"maximumApertureValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maximumAperture"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"maximumFocalLengthValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maximumFocalLength"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"minimumApertureValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"minimumAperture"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 	if ([key isEqualToString:@"minimumFocalLengthValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"minimumFocalLength"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 
 	return keyPaths;
 }
 
-
-
-
 @dynamic index;
 
-
-
-- (int32_t)indexValue {
+- (uint32_t)indexValue {
 	NSNumber *result = [self index];
-	return [result intValue];
+	return [result unsignedIntValue];
 }
 
-- (void)setIndexValue:(int32_t)value_ {
-	[self setIndex:[NSNumber numberWithInt:value_]];
+- (void)setIndexValue:(uint32_t)value_ {
+	[self setIndex:@(value_)];
 }
 
-- (int32_t)primitiveIndexValue {
+- (uint32_t)primitiveIndexValue {
 	NSNumber *result = [self primitiveIndex];
-	return [result intValue];
+	return [result unsignedIntValue];
 }
 
-- (void)setPrimitiveIndexValue:(int32_t)value_ {
-	[self setPrimitiveIndex:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveIndexValue:(uint32_t)value_ {
+	[self setPrimitiveIndex:@(value_)];
 }
-
-
-
-
 
 @dynamic maximumAperture;
-
-
 
 - (float)maximumApertureValue {
 	NSNumber *result = [self maximumAperture];
@@ -107,7 +86,7 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setMaximumApertureValue:(float)value_ {
-	[self setMaximumAperture:[NSNumber numberWithFloat:value_]];
+	[self setMaximumAperture:@(value_)];
 }
 
 - (float)primitiveMaximumApertureValue {
@@ -116,16 +95,10 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setPrimitiveMaximumApertureValue:(float)value_ {
-	[self setPrimitiveMaximumAperture:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveMaximumAperture:@(value_)];
 }
 
-
-
-
-
 @dynamic maximumFocalLength;
-
-
 
 - (int32_t)maximumFocalLengthValue {
 	NSNumber *result = [self maximumFocalLength];
@@ -133,7 +106,7 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setMaximumFocalLengthValue:(int32_t)value_ {
-	[self setMaximumFocalLength:[NSNumber numberWithInt:value_]];
+	[self setMaximumFocalLength:@(value_)];
 }
 
 - (int32_t)primitiveMaximumFocalLengthValue {
@@ -142,16 +115,10 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setPrimitiveMaximumFocalLengthValue:(int32_t)value_ {
-	[self setPrimitiveMaximumFocalLength:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveMaximumFocalLength:@(value_)];
 }
 
-
-
-
-
 @dynamic minimumAperture;
-
-
 
 - (float)minimumApertureValue {
 	NSNumber *result = [self minimumAperture];
@@ -159,7 +126,7 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setMinimumApertureValue:(float)value_ {
-	[self setMinimumAperture:[NSNumber numberWithFloat:value_]];
+	[self setMinimumAperture:@(value_)];
 }
 
 - (float)primitiveMinimumApertureValue {
@@ -168,16 +135,10 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setPrimitiveMinimumApertureValue:(float)value_ {
-	[self setPrimitiveMinimumAperture:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveMinimumAperture:@(value_)];
 }
 
-
-
-
-
 @dynamic minimumFocalLength;
-
-
 
 - (int32_t)minimumFocalLengthValue {
 	NSNumber *result = [self minimumFocalLength];
@@ -185,7 +146,7 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setMinimumFocalLengthValue:(int32_t)value_ {
-	[self setMinimumFocalLength:[NSNumber numberWithInt:value_]];
+	[self setMinimumFocalLength:@(value_)];
 }
 
 - (int32_t)primitiveMinimumFocalLengthValue {
@@ -194,23 +155,31 @@ const struct FTLensFetchedProperties FTLensFetchedProperties = {
 }
 
 - (void)setPrimitiveMinimumFocalLengthValue:(int32_t)value_ {
-	[self setPrimitiveMinimumFocalLength:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveMinimumFocalLength:@(value_)];
 }
-
-
-
-
 
 @dynamic name;
 
-
-
-
-
-
-
-
-
-
-
 @end
+
+@implementation FTLensAttributes 
++ (NSString *)index {
+	return @"index";
+}
++ (NSString *)maximumAperture {
+	return @"maximumAperture";
+}
++ (NSString *)maximumFocalLength {
+	return @"maximumFocalLength";
+}
++ (NSString *)minimumAperture {
+	return @"minimumAperture";
+}
++ (NSString *)minimumFocalLength {
+	return @"minimumFocalLength";
+}
++ (NSString *)name {
+	return @"name";
+}
+@end
+

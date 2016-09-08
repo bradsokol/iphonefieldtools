@@ -70,15 +70,15 @@ static const int NUM_ROWS = 4;
 				 reuseIdentifier:CellIdentifier];
 	}
     
-    NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%d", [indexPath row]];
+    NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%ld", (long)[indexPath row]];
     [cell setLabel:NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE")];
     
     SubjectDistanceRangePolicy* distanceRangePolicy =
-    [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:[indexPath row]];
+    [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:(SubjectDistanceRange)[indexPath row]];
     
     [cell setText:[distanceRangePolicy rangeDescription]];
     
-    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     [cell setAccessoryType:subjectDistanceRangeIndex == [indexPath row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
     
     return cell;

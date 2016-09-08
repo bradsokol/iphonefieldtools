@@ -1,81 +1,43 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to FTCoC.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-
-extern const struct FTCoCAttributes {
-	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *value;
-} FTCoCAttributes;
-
-extern const struct FTCoCRelationships {
-	__unsafe_unretained NSString *camera;
-} FTCoCRelationships;
-
-extern const struct FTCoCFetchedProperties {
-} FTCoCFetchedProperties;
+NS_ASSUME_NONNULL_BEGIN
 
 @class FTCamera;
-
-
-
 
 @interface FTCoCID : NSManagedObjectID {}
 @end
 
-@interface _FTCoC : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _FTCoC : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (FTCoCID*)objectID;
-
-
-
+@property (nonatomic, readonly, strong) FTCoCID *objectID;
 
 @property (nonatomic, strong) NSString* name;
 
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSNumber* value;
 
-
-@property float valueValue;
+@property (atomic) float valueValue;
 - (float)valueValue;
 - (void)setValueValue:(float)value_;
 
-//- (BOOL)validateValue:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) FTCamera* camera;
-
-//- (BOOL)validateCamera:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@end
-
-@interface _FTCoC (CoreDataGeneratedAccessors)
+@property (nonatomic, strong, nullable) FTCamera *camera;
 
 @end
 
 @interface _FTCoC (CoreDataGeneratedPrimitiveAccessors)
 
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
-
-
-
 
 - (NSNumber*)primitiveValue;
 - (void)setPrimitiveValue:(NSNumber*)value;
@@ -83,12 +45,18 @@ extern const struct FTCoCFetchedProperties {
 - (float)primitiveValueValue;
 - (void)setPrimitiveValueValue:(float)value_;
 
-
-
-
-
 - (FTCamera*)primitiveCamera;
 - (void)setPrimitiveCamera:(FTCamera*)value;
 
-
 @end
+
+@interface FTCoCAttributes: NSObject 
++ (NSString *)name;
++ (NSString *)value;
+@end
+
+@interface FTCoCRelationships: NSObject
++ (NSString *)camera;
+@end
+
+NS_ASSUME_NONNULL_END

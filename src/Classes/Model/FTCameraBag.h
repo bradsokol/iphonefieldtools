@@ -31,17 +31,17 @@
 + (id)initSharedCameraBag:(NSManagedObjectContext*)managedObjectContext;
 + (FTCameraBag*)sharedCameraBag;
 
-- (int)cameraCount;
+- (NSInteger)cameraCount;
 - (void)deleteCamera:(FTCamera*)camera;
-- (FTCamera*)findCameraForIndex:(int)index;
+- (FTCamera*)findCameraForIndex:(NSInteger)index;
 - (FTCamera*)findSelectedCamera;
-- (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex;
+- (void)moveCameraFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
 - (void)deleteLens:(FTLens*)lens;
 - (FTLens*)findSelectedLens;
-- (FTLens*)findLensForIndex:(int)index;
-- (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex;
-- (int)lensCount;
+- (FTLens*)findLensForIndex:(NSInteger)index;
+- (void)moveLensFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+- (NSInteger)lensCount;
 
 - (void)deleteCoC:(FTCoC*)coc;
 - (FTCamera*)newCamera;

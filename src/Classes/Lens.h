@@ -44,7 +44,7 @@
 
 + (Lens*)findFromDefaultsForIndex_deprecated:(int)index;
 
-+ (int)count_deprecated;
++ (NSInteger)count_deprecated;
 
 - (NSDictionary*)asDictionary_deprecated;
 

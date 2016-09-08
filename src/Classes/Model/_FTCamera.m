@@ -3,24 +3,12 @@
 
 #import "_FTCamera.h"
 
-const struct FTCameraAttributes FTCameraAttributes = {
-	.index = @"index",
-	.name = @"name",
-};
-
-const struct FTCameraRelationships FTCameraRelationships = {
-	.coc = @"coc",
-};
-
-const struct FTCameraFetchedProperties FTCameraFetchedProperties = {
-};
-
 @implementation FTCameraID
 @end
 
 @implementation _FTCamera
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Camera" inManagedObjectContext:moc_];
 }
@@ -38,60 +26,56 @@ const struct FTCameraFetchedProperties FTCameraFetchedProperties = {
 	return (FTCameraID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"indexValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"index"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
 	}
 
 	return keyPaths;
 }
 
-
-
-
 @dynamic index;
 
-
-
-- (int32_t)indexValue {
+- (uint32_t)indexValue {
 	NSNumber *result = [self index];
-	return [result intValue];
+	return [result unsignedIntValue];
 }
 
-- (void)setIndexValue:(int32_t)value_ {
-	[self setIndex:[NSNumber numberWithInt:value_]];
+- (void)setIndexValue:(uint32_t)value_ {
+	[self setIndex:@(value_)];
 }
 
-- (int32_t)primitiveIndexValue {
+- (uint32_t)primitiveIndexValue {
 	NSNumber *result = [self primitiveIndex];
-	return [result intValue];
+	return [result unsignedIntValue];
 }
 
-- (void)setPrimitiveIndexValue:(int32_t)value_ {
-	[self setPrimitiveIndex:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveIndexValue:(uint32_t)value_ {
+	[self setPrimitiveIndex:@(value_)];
 }
-
-
-
-
 
 @dynamic name;
 
-
-
-
-
-
 @dynamic coc;
 
-	
-
-
-
-
-
-
 @end
+
+@implementation FTCameraAttributes 
++ (NSString *)index {
+	return @"index";
+}
++ (NSString *)name {
+	return @"name";
+}
+@end
+
+@implementation FTCameraRelationships 
++ (NSString *)coc {
+	return @"coc";
+}
+@end
+

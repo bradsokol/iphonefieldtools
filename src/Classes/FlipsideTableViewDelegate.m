@@ -150,7 +150,7 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	else if ([indexPath section] == CAMERAS_SECTION)
 	{
-		int cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
+		NSInteger cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
 		if ([indexPath row] < cameraCount)
 		{
 			// This is a camera row - allow delete if more than one camera (must have at least one)
@@ -165,7 +165,7 @@ static const float SectionHeaderHeight = 44.0;
 	else
 	{
 		// Lenses section
-		int lensCount = [[FTCameraBag sharedCameraBag] lensCount];
+		NSInteger lensCount = [[FTCameraBag sharedCameraBag] lensCount];
 		if ([indexPath row] < lensCount)
 		{
 			// This is a lens row - allow delete if more than one lens (must have at least one)
@@ -196,7 +196,7 @@ static const float SectionHeaderHeight = 44.0;
 	   toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
 	// Don't allow a row to be dragged out of it's section or to the bottom of it's section.
-	int max = [sourceIndexPath section] == CAMERAS_SECTION ? 
+	NSInteger max = [sourceIndexPath section] == CAMERAS_SECTION ? 
 		[[FTCameraBag sharedCameraBag] cameraCount] - 1 :
 		[[FTCameraBag sharedCameraBag] lensCount] - 1;
 	if ([proposedDestinationIndexPath section] != [sourceIndexPath section])
