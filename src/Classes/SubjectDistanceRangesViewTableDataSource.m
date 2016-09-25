@@ -25,7 +25,6 @@
 
 #import "SubjectDistanceRangePolicy.h"
 #import "SubjectDistanceRangePolicyFactory.h"
-#import "TwoLabelTableViewCell.h"
 
 #import "UserDefaults.h"
 
@@ -61,25 +60,22 @@ static const int NUM_ROWS = 4;
 {
     static NSString *CellIdentifier = @"Cell";
 
-	TwoLabelTableViewCell* cell = 
-        (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) 
-	{
-		cell = [[TwoLabelTableViewCell alloc]
-				 initWithStyle:UITableViewCellStyleDefault
-				 reuseIdentifier:CellIdentifier];
-	}
-    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+
     NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%ld", (long)[indexPath row]];
-    [cell setLabel:NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE")];
-    
+    cell.detailTextLabel.text = NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE");
+
     SubjectDistanceRangePolicy* distanceRangePolicy =
     [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:(SubjectDistanceRange)[indexPath row]];
-    
-    [cell setText:[distanceRangePolicy rangeDescription]];
-    
+
+    cell.textLabel.text = [distanceRangePolicy rangeDescription];
+
     NSInteger subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
-    [cell setAccessoryType:subjectDistanceRangeIndex == [indexPath row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+    cell.accessoryType = subjectDistanceRangeIndex == [indexPath row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
 }

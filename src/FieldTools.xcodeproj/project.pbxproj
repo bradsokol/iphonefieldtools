@@ -115,7 +115,6 @@
 		A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */; };
 		A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */; };
 		A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */; };
-		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
 		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
 		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
@@ -272,8 +271,6 @@
 		A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubjectDistanceRangesViewController.xib; path = Classes/SubjectDistanceRangesViewController.xib; sourceTree = "<group>"; };
 		A294A02F140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangesViewTableDataSource.h; sourceTree = "<group>"; };
 		A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewTableDataSource.m; sourceTree = "<group>"; };
-		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
-		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
@@ -624,8 +621,6 @@
 			children = (
 				A2BCB98D0FFDA823004F26EA /* EditableTableViewCell.h */,
 				A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */,
-				A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */,
-				A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -920,7 +915,6 @@
 				A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */,
 				A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */,
 				A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */,
-				A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */,
 				A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */,
 				A2E357971044DBDD003C449D /* CoC.m in Sources */,
 				A25BDF3410479BFE00B22B2B /* Lens.m in Sources */,
