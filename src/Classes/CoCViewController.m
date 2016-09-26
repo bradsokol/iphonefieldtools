@@ -25,7 +25,6 @@
 #import "FTCamera.h"
 #import "FTCameraBag.h"
 #import "FTCoC.h"
-#import "TwoLabelTableViewCell.h"
 
 #import "Notifications.h"
 
@@ -164,23 +163,21 @@ static const int NUM_SECTIONS = 1;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    
-    TwoLabelTableViewCell* cell = (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-	{
-		cell = [[TwoLabelTableViewCell alloc]
-				 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:@"Cell"];
+
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-    
+
 	if ([indexPath row] < [[FTCoC cocPresets] count])
 	{
 		// This is one of the rows for the preset CoC values
 		NSArray* keys = [[FTCoC cocPresets] allKeys];
 		NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 		NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
-		[cell setText:[NSString stringWithFormat:@"%.3f", [[[FTCoC cocPresets] objectForKey:key] floatValue]]];
-		[cell setLabel:key];
+        cell.textLabel.text = [NSString stringWithFormat:@"%.3f", [[[FTCoC cocPresets] objectForKey:key] floatValue]];
+        cell.detailTextLabel.text = key;
 		
 		if ([key compare:[[self coc] name]] == NSOrderedSame)
 		{
@@ -201,15 +198,15 @@ static const int NUM_SECTIONS = 1;
 		
 		if ([cocDescription compare:customLabel] == NSOrderedSame)
 		{
-			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-			[cell setText:[NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]]];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.textLabel.text = [NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]];
 		}
 		else
 		{
-			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
-			[cell setText:@""];
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            cell.textLabel.text = @"";
 		}
-		[cell setLabel:customLabel];
+        cell.detailTextLabel.text = customLabel;
 	}
 	
     return cell;

@@ -25,7 +25,6 @@
 #import "CameraViewController.h"
 #import "FTCamera.h"
 #import "FTCoC.h"
-#import "TwoLabelTableViewCell.h"
 
 static const int CAMERA_NAME_ROW = 0;
 static const int NUM_SECTIONS = 1;
@@ -84,18 +83,16 @@ static const int NUM_SECTIONS = 1;
 {
 	static NSString* CellIdentifier = @"Cell";
 
-	TwoLabelTableViewCell* cell = 
-		(TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (nil == cell)
-	{
-		cell = [[TwoLabelTableViewCell alloc] 
-				 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:CellIdentifier];
-	}
-	[cell setLabel:NSLocalizedString(@"COC_TITLE", "CoC")];
-	[cell setText:[[[self camera] coc] description]];
-	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+
+    cell.textLabel.text = NSLocalizedString(@"COC_TITLE", "CoC");
+    cell.detailTextLabel.text = self.camera.coc.description;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
 	return cell;
 }
 
