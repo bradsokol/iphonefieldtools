@@ -124,7 +124,6 @@ float DefaultSubjectDistance = 2.5f;
     
     [[self window] setRootViewController:[self mainViewController]];
     [[self window] makeKeyAndVisible];
-    [[self window] setTintColor:[UIColor whiteColor]];
 
     return YES;
 }

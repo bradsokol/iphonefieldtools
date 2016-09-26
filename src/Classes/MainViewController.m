@@ -59,7 +59,6 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateNearLimit;
 - (float)calculateResult;
 - (void)cocDidChange;
-- (void)customizeSliderAppearance:(UISlider*)slider;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
@@ -183,10 +182,6 @@ static BOOL previousLensWasZoom = YES;
 	[self lensDidChangeWithLens:lens];
 	[self updateSubjectDistanceSliderLimits];
 
-	[self customizeSliderAppearance:focalLengthSlider];
-	[self customizeSliderAppearance:apertureSlider];
-	[self customizeSliderAppearance:subjectDistanceSlider];
-	
     [self updateResultView];
 	[self updateAperture];
 	[self updateFocalLength];
@@ -637,19 +632,6 @@ static BOOL previousLensWasZoom = YES;
 
     NSString* pageName = [NSString stringWithFormat:@"%@%@", viewName, unitsName];
     [[self analyticsPolicy] trackView:pageName];
-}
-
-- (void)customizeSliderAppearance:(UISlider*)slider
-{
-	static UIImage* sliderTrack;
-	if (nil == sliderTrack)
-	{
-		sliderTrack = [[UIImage imageNamed:@"sliderTrack.png"]
-					   stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0];
-	}
-	
-	[slider setMinimumTrackImage:sliderTrack forState:UIControlStateNormal];
-	[slider setMaximumTrackImage:sliderTrack forState:UIControlStateNormal];
 }
 
 // Initialise a table of f-number values using standard one-third stop increments
