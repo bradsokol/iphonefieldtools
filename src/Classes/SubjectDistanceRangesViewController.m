@@ -108,8 +108,6 @@
     
     [[self analyticsPolicy] trackView:kSettingsSubjectDistanceRanges];
 	
-	[[self view] setBackgroundColor:[UIColor blackColor]];
-	
     UITableView* tv = [self tableView];
     SubjectDistanceRangesViewTableDataSource* sdrvtds = 
         (SubjectDistanceRangesViewTableDataSource*) [tv dataSource];
