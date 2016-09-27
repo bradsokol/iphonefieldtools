@@ -110,8 +110,6 @@
     
     [[self analyticsPolicy] trackView:kSettings];
 
-	[[self view] setBackgroundColor:[UIColor blackColor]];
-	
 	[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 	UIBarButtonItem* rightBarButtonItem = 
 		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
