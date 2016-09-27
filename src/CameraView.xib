@@ -23,7 +23,7 @@
                 <tableView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" indicatorStyle="white" bouncesZoom="NO" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3">
                     <frame key="frameInset"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="6" id="7"/>
                     </connections>

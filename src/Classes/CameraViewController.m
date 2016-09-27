@@ -149,8 +149,6 @@
 
     NSString* viewName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
     [[self analyticsPolicy] trackView:viewName];
-	
-	[[self view] setBackgroundColor:[UIColor blackColor]];
 
 	[self setTableViewDataSource: [[self tableView] dataSource]];
 	[[self tableViewDataSource] setCamera:[self camera]];
