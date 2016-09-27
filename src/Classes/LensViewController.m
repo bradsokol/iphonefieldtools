@@ -264,8 +264,6 @@ static const float SectionHeaderHeight = 44.0;
 	}
 	UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)];
 	UILabel *label = [[UILabel alloc] initWithFrame:headerView.frame];
-	[label setTextColor:[UIColor whiteColor]];
-	[label setBackgroundColor:[UIColor blackColor]];
 	[label setText:headerText];
 	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
 	
@@ -279,8 +277,6 @@ static const float SectionHeaderHeight = 44.0;
     
     NSString* viewName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
     [[self analyticsPolicy] trackView:viewName];
-	
-	[[self view] setBackgroundColor:[UIColor blackColor]];
 	
 	[self setTableViewDataSource: (LensViewTableDataSource*)[[self tableView] dataSource]];
 	[[self tableViewDataSource] setLens:[self lens]];
