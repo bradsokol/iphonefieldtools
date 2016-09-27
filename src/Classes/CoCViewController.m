@@ -125,8 +125,6 @@ static const int NUM_SECTIONS = 1;
     [[self coc] setValue:[[[self camera] coc] value]];
 
     [[self analyticsPolicy] trackView:kSettingsCoC];
-	
-	[[self view] setBackgroundColor:[UIColor blackColor]];
 }
 
 - (void)didReceiveMemoryWarning 
