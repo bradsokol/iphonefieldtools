@@ -784,7 +784,7 @@ static BOOL previousLensWasZoom = YES;
 	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
 	[[navController navigationBar] setBarStyle:UIBarStyleBlackOpaque];
     
-    [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [navController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [self presentViewController:navController animated:YES completion:NULL];
 }
 
