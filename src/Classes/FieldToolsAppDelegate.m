@@ -124,6 +124,7 @@ float DefaultSubjectDistance = 2.5f;
     
     [[self window] setRootViewController:[self mainViewController]];
     [[self window] makeKeyAndVisible];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
     return YES;
 }
