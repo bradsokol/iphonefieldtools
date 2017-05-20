@@ -23,7 +23,7 @@
 
 #import "Camera.h"
 #import "CameraBag.h"
-#import "Coc.h"
+#import "CoC.h"
 #import "FTCamera.h"
 #import "FTCameraBag.h"
 #import "FTCoC.h"
