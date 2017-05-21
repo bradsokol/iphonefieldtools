@@ -101,7 +101,6 @@
 		A28297D61645986F00F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
-		A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD11613D8D300211AE0 /* licenses2settings.pl */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
 		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
@@ -779,7 +778,6 @@
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
 				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
-				A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
