@@ -45,6 +45,7 @@
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C138E1ED2037600A5194B /* MPCoachMarks.m */; };
 		A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MBCoachMarks.license */; };
+		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
@@ -167,6 +168,7 @@
 		A21C138D1ED2037600A5194B /* MPCoachMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCoachMarks.h; sourceTree = "<group>"; };
 		A21C138E1ED2037600A5194B /* MPCoachMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCoachMarks.m; sourceTree = "<group>"; };
 		A21C13901ED203D100A5194B /* MBCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBCoachMarks.license; sourceTree = "<group>"; };
+		A21C13921ED217CF00A5194B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
 		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */,
 				A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */,
 				A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */,
 				A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */,
@@ -399,6 +402,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A21C13921ED217CF00A5194B /* QuartzCore.framework */,
 				A259002A1D7FB8800058D160 /* libz.tbd */,
 				A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */,
 				A282978916453F2B00F6DE5D /* CoreData.framework */,

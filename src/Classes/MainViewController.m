@@ -31,6 +31,7 @@
 #import "FTCoC.h"
 #import "FTLens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
+#import "MPCoachMarks.h"
 #import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
 #import "SubjectDistanceRangePolicy.h"
@@ -58,6 +59,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateHyperfocalDistance;
 - (float)calculateNearLimit;
 - (float)calculateResult;
+- (void)configureCoachMarks;
 - (void)cocDidChange;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
@@ -189,6 +191,8 @@ static BOOL previousLensWasZoom = YES;
     [self updateSubjectDistanceRangeText];
 	
 	[self distanceTypeDidChange:self];
+
+    [self configureCoachMarks];
 }
 
 #pragma mark Action messages
@@ -581,6 +585,31 @@ static BOOL previousLensWasZoom = YES;
 }
 
 #pragma mark Helpers
+
+- (void)configureCoachMarks
+{
+    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
+    if (coachMarksShown == NO) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        CGRect coachMark = CGRectInset(focalLengthSlider.frame, -2.0, -2.0);
+        NSArray* coachMarks =
+        @[@{
+              @"rect": [NSValue valueWithCGRect:coachMark],
+              @"caption": NSLocalizedString(@"SCRUBBING_COACH", "SCRUBBING_COACH"),
+              }
+          ];
+
+        MPCoachMarks* coachMarksView = [[MPCoachMarks alloc]
+                                        initWithFrame:UIScreen.mainScreen.bounds
+                                        coachMarks:coachMarks];
+        coachMarksView.enableSkipButton = NO;
+        coachMarksView.continueLabelText = NSLocalizedString(@"GOT_IT", "GOT_IT");
+        [self.view addSubview:coachMarksView];
+        [coachMarksView start];
+    }
+}
 
 - (void)recordAnalyticsForDistanceType:(NSInteger)distanceTypeSetting
 {
