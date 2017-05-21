@@ -29,6 +29,7 @@ extern NSString* const FTDefaultsVersion;
 extern NSString* const FTApertureIndex;
 extern NSString* const FTCameraCount;
 extern NSString* const FTCameraIndex;
+extern NSString* const FTCoachMarksShown;
 extern NSString* const FTDistanceTypeKey;
 extern NSString* const FTDistanceUnitsKey;
 extern NSString* const FTFocalLengthKey;

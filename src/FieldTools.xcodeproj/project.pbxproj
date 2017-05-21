@@ -42,8 +42,10 @@
 		A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D61254190F006689F9 /* FieldTools@2x.png */; };
 		A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9E212541ABA006689F9 /* distanceArrows@2x.png */; };
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
-		A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2090FC413EF65B3006E74E6 /* OBSliderWithNotificationView.m */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
+		A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C138E1ED2037600A5194B /* MPCoachMarks.m */; };
+		A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MBCoachMarks.license */; };
+		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
@@ -55,7 +57,6 @@
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
 		A22F4A920FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */; };
-		A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */; };
 		A237E63F12AAF4F00089862B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63C12AAF4F00089862B /* Camera.m */; };
 		A237E64012AAF4F00089862B /* CameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63E12AAF4F00089862B /* CameraBag.m */; };
 		A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2391BF41604062F008D545A /* Default-568h@2x.png */; };
@@ -100,7 +101,6 @@
 		A28297D61645986F00F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
-		A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */; };
 		A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD11613D8D300211AE0 /* licenses2settings.pl */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
 		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
@@ -162,11 +162,13 @@
 		A200F9D61254190F006689F9 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
 		A200F9E212541ABA006689F9 /* distanceArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distanceArrows@2x.png"; sourceTree = "<group>"; };
 		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
-		A2090FC313EF65B3006E74E6 /* OBSliderWithNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSliderWithNotificationView.h; sourceTree = "<group>"; };
-		A2090FC413EF65B3006E74E6 /* OBSliderWithNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSliderWithNotificationView.m; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
+		A21C138D1ED2037600A5194B /* MPCoachMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCoachMarks.h; sourceTree = "<group>"; };
+		A21C138E1ED2037600A5194B /* MPCoachMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCoachMarks.m; sourceTree = "<group>"; };
+		A21C13901ED203D100A5194B /* MBCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBCoachMarks.license; sourceTree = "<group>"; };
+		A21C13921ED217CF00A5194B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
 		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,8 +192,6 @@
 		A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideNonEditingTableViewDelegate.m; sourceTree = "<group>"; };
 		A22F4A900FC65793003A5E26 /* FlipsideEditingTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideEditingTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideEditingTableViewDelegate.m; sourceTree = "<group>"; };
-		A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDiscreetNotificationView.h; path = Classes/GCDiscreetNotificationView.h; sourceTree = "<group>"; };
-		A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDiscreetNotificationView.m; path = Classes/GCDiscreetNotificationView.m; sourceTree = "<group>"; };
 		A237E63B12AAF4F00089862B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
@@ -245,7 +245,6 @@
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
-		A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDiscreetNotificationView.license; sourceTree = "<group>"; };
 		A289FAD11613D8D300211AE0 /* licenses2settings.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = licenses2settings.pl; sourceTree = "<group>"; };
 		A289FAD21613D8D300211AE0 /* OBSlider.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OBSlider.license; sourceTree = "<group>"; };
 		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -290,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */,
 				A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */,
 				A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */,
 				A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */,
@@ -402,6 +402,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A21C13921ED217CF00A5194B /* QuartzCore.framework */,
 				A259002A1D7FB8800058D160 /* libz.tbd */,
 				A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */,
 				A282978916453F2B00F6DE5D /* CoreData.framework */,
@@ -511,10 +512,10 @@
 			children = (
 				A2747BC012E2804B002731EC /* FocalLengthSlider.h */,
 				A2747BC112E2804B002731EC /* FocalLengthSlider.m */,
+				A21C138D1ED2037600A5194B /* MPCoachMarks.h */,
+				A21C138E1ED2037600A5194B /* MPCoachMarks.m */,
 				A2747BA312E25617002731EC /* OBSlider.h */,
 				A2747BA412E25617002731EC /* OBSlider.m */,
-				A2090FC313EF65B3006E74E6 /* OBSliderWithNotificationView.h */,
-				A2090FC413EF65B3006E74E6 /* OBSliderWithNotificationView.m */,
 				A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */,
 				A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */,
 			);
@@ -571,8 +572,8 @@
 		A289FACE1613D8D300211AE0 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */,
 				A289FAD11613D8D300211AE0 /* licenses2settings.pl */,
+				A21C13901ED203D100A5194B /* MBCoachMarks.license */,
 				A289FAD21613D8D300211AE0 /* OBSlider.license */,
 			);
 			path = Licenses;
@@ -662,20 +663,10 @@
 			name = "CoC View";
 			sourceTree = "<group>";
 		};
-		A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */ = {
-			isa = PBXGroup;
-			children = (
-				A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */,
-				A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */,
-			);
-			name = GCDiscreetNotificationView;
-			sourceTree = "<group>";
-		};
 		A2F862791545AC8400BF8480 /* Third Party Components */ = {
 			isa = PBXGroup;
 			children = (
 				A289FACE1613D8D300211AE0 /* Licenses */,
-				A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */,
 				A2F8627B1545ACC400BF8480 /* Google Analytics */,
 			);
 			name = "Third Party Components";
@@ -787,7 +778,7 @@
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
-				A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */,
+				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
 				A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
@@ -892,8 +883,6 @@
 				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
 				A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */,
 				A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */,
-				A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */,
-				A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */,
 				A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */,
 				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
 				888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */,
@@ -901,6 +890,7 @@
 				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
 				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
+				A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */,
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,

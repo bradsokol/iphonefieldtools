@@ -25,6 +25,7 @@ NSString* const FTDefaultsVersion = @"DefaultsVersion";
 NSString* const FTApertureIndex = @"ApertureIndex";
 NSString* const FTCameraCount = @"CameraCount";
 NSString* const FTCameraIndex = @"CameraIndex";
+NSString* const FTCoachMarksShown = @"CoachMarksShown";
 NSString* const FTDistanceTypeKey = @"DistanceType";
 NSString* const FTDistanceUnitsKey = @"DistanceUnits";
 NSString* const FTFocalLengthKey = @"FocalLength";
