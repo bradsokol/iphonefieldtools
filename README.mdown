@@ -36,5 +36,7 @@ Field Tools is licensed under the [Apache License](http://www.apache.org/license
 
 Thanks to following people for their contributions on GitHub that helped make Field Tools better:
 
+* [Marcelo Perretta](https://github.com/bubudrc) for [MPCoachMarks](https://github.com/bubudrc/MPCoachMarks) which displays coach marks
+  over an existing UI.
 * [Ole Begemann](https://github.com/ole) for [OBSlider](https://github.com/ole/OBSlider), a UISlider subclass with variable scrubbing speed.
 

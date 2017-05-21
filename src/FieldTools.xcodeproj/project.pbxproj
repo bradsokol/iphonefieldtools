@@ -43,6 +43,8 @@
 		A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9E212541ABA006689F9 /* distanceArrows@2x.png */; };
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
+		A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C138E1ED2037600A5194B /* MPCoachMarks.m */; };
+		A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MBCoachMarks.license */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
@@ -162,6 +164,9 @@
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
+		A21C138D1ED2037600A5194B /* MPCoachMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCoachMarks.h; sourceTree = "<group>"; };
+		A21C138E1ED2037600A5194B /* MPCoachMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCoachMarks.m; sourceTree = "<group>"; };
+		A21C13901ED203D100A5194B /* MBCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBCoachMarks.license; sourceTree = "<group>"; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
 		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,6 +508,8 @@
 			children = (
 				A2747BC012E2804B002731EC /* FocalLengthSlider.h */,
 				A2747BC112E2804B002731EC /* FocalLengthSlider.m */,
+				A21C138D1ED2037600A5194B /* MPCoachMarks.h */,
+				A21C138E1ED2037600A5194B /* MPCoachMarks.m */,
 				A2747BA312E25617002731EC /* OBSlider.h */,
 				A2747BA412E25617002731EC /* OBSlider.m */,
 				A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */,
@@ -562,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				A289FAD11613D8D300211AE0 /* licenses2settings.pl */,
+				A21C13901ED203D100A5194B /* MBCoachMarks.license */,
 				A289FAD21613D8D300211AE0 /* OBSlider.license */,
 			);
 			path = Licenses;
@@ -766,6 +774,7 @@
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
+				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
 				A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
@@ -877,6 +886,7 @@
 				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
 				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
+				A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */,
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
