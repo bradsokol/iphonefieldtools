@@ -36,7 +36,6 @@
 		88C08BD514BE74E40043D6E1 /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
 		88C08BD614BE74EC0043D6E1 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
 		88C08BDD14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
-		A200F9D71254190F006689F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D31254190F006689F9 /* Default@2x.png */; };
 		A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D41254190F006689F9 /* FieldTools-Small.png */; };
 		A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */; };
 		A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D61254190F006689F9 /* FieldTools@2x.png */; };
@@ -59,8 +58,8 @@
 		A22F4A920FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */; };
 		A237E63F12AAF4F00089862B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63C12AAF4F00089862B /* Camera.m */; };
 		A237E64012AAF4F00089862B /* CameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63E12AAF4F00089862B /* CameraBag.m */; };
-		A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2391BF41604062F008D545A /* Default-568h@2x.png */; };
 		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
+		A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
@@ -102,7 +101,6 @@
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
-		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
@@ -155,7 +153,6 @@
 		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinearSubjectDistanceSliderPolicyTests.m; path = TestClasses/LinearSubjectDistanceSliderPolicyTests.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A200F9D31254190F006689F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A200F9D41254190F006689F9 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small.png"; sourceTree = "<group>"; };
 		A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small@2x.png"; sourceTree = "<group>"; };
 		A200F9D61254190F006689F9 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
@@ -195,8 +192,8 @@
 		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
 		A237E63E12AAF4F00089862B /* CameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraBag.m; path = Classes/CameraBag.m; sourceTree = "<group>"; };
-		A2391BF41604062F008D545A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A24B1764156FE23D00BFBFF0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -246,7 +243,6 @@
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		A289FAD11613D8D300211AE0 /* licenses2settings.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = licenses2settings.pl; sourceTree = "<group>"; };
 		A289FAD21613D8D300211AE0 /* OBSlider.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OBSlider.license; sourceTree = "<group>"; };
-		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCoCView.xib; sourceTree = "<group>"; };
 		A28D8A02108D5F2B00C77FEA /* CustomCoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewController.h; sourceTree = "<group>"; };
 		A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewController.m; sourceTree = "<group>"; };
@@ -383,12 +379,10 @@
 				A22C2451104387A1005BC94C /* CoC.plist */,
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
 				A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */,
-				A28D89E2108D5A6D00C77FEA /* Default.png */,
-				A2391BF41604062F008D545A /* Default-568h@2x.png */,
-				A200F9D31254190F006689F9 /* Default@2x.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */,
 				A2B95F9E10715EDF0057A70E /* LensView.xib */,
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
 				2899E55F0DE3E45000AC0155 /* MainView.xib */,
@@ -766,17 +760,15 @@
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
+				A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */,
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
-				A28D89E3108D5A6D00C77FEA /* Default.png in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
-				A200F9D71254190F006689F9 /* Default@2x.png in Resources */,
 				A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */,
 				A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */,
 				A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */,
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
-				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
 				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
