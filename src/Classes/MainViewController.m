@@ -60,6 +60,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateNearLimit;
 - (float)calculateResult;
 - (void)configureCoachMarks;
+- (void)configureSliderColours;
 - (void)cocDidChange;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
@@ -193,11 +194,12 @@ static BOOL previousLensWasZoom = YES;
 	[self distanceTypeDidChange:self];
 
     [self configureCoachMarks];
+    [self configureSliderColours];
 }
 
 #pragma mark Action messages
 
-- (IBAction)subjectDistanceRangeTextWasTouched:(id)sender 
+- (IBAction)subjectDistanceRangeTextWasTouched:(id)sender
 {
     SubjectDistanceRangePolicy* macro = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeMacro];
     SubjectDistanceRangePolicy* close = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeClose];
@@ -621,6 +623,17 @@ static BOOL previousLensWasZoom = YES;
         [self.view addSubview:coachMarksView];
         [coachMarksView start];
     }
+}
+
+- (void)configureSliderColours
+{
+    UIColor *trackColor = [UIColor colorWithRed:184.0/255.0 green:184.0/255.0 blue:184.0/255.0 alpha:1.0];
+    apertureSlider.minimumTrackTintColor = trackColor;
+    focalLengthSlider.minimumTrackTintColor = trackColor;
+    subjectDistanceSlider.minimumTrackTintColor = trackColor;
+    apertureSlider.maximumTrackTintColor = trackColor;
+    focalLengthSlider.maximumTrackTintColor = trackColor;
+    subjectDistanceSlider.maximumTrackTintColor = trackColor;
 }
 
 - (void)recordAnalyticsForDistanceType:(NSInteger)distanceTypeSetting
