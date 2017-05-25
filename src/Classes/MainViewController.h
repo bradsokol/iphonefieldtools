@@ -69,10 +69,10 @@
 
 - (IBAction)subjectDistanceRangeTextWasTouched:(id)sender;
 
-- (void)apertureDidChange:(id)sender;
-- (void)distanceTypeDidChange:(id)sender;
-- (void)focalLengthDidChange:(id)sender;
-- (void)subjectDistanceDidChange:(id)sender;
+- (IBAction)apertureDidChange:(id)sender;
+- (IBAction)distanceTypeDidChange:(id)sender;
+- (IBAction)focalLengthDidChange:(id)sender;
+- (IBAction)subjectDistanceDidChange:(id)sender;
 
 - (float)aperture;
 

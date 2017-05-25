@@ -118,12 +118,12 @@ float DefaultSubjectDistance = 2.5f;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
     
-    [self setMainViewController:[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil]];
-    
+    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self setMainViewController:[mainStoryboard instantiateViewControllerWithIdentifier:@"main"]];
     [[self mainViewController] setAnalyticsPolicy:[self analyticsPolicy]];
     
     [[self window] setRootViewController:[self mainViewController]];
-    [[self window] makeKeyAndVisible];
+//    [[self window] makeKeyAndVisible];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
     return YES;
