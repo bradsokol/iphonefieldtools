@@ -41,13 +41,13 @@
 #import "UserDefaults.h"
 
 static const float DIFFERENCE_FONT_SIZE = 17.0;
-static const float FONT_SIZE = 28.0;
+static const float FONT_SIZE = 22.0;
 static const float INFINITY_FONT_SIZE = 32.0;
-static const float SMALL_FONT_SIZE = 24.0;
+static const float SMALL_FONT_SIZE = 20.0;
 
 @interface ResultView ()
 
-- (void)adjustFontsForNearFarDisplay;
+- (void)adjustFontsForNearFarDisplay:(DistanceUnits)distanceUnits;
 - (void)adjustNumberDisplay:(UILabel*)label inRect:(CGRect)rect;
 - (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
@@ -99,11 +99,10 @@ static const float SMALL_FONT_SIZE = 24.0;
 		// effect is a UITextView displaying three values and the image.
 		[self hideNumberLabels:NO];
 		
-		[self adjustFontsForNearFarDisplay];
-        
-        
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+        [self adjustFontsForNearFarDisplay:distanceUnits];
+        
         SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
         bool showTwoDecimals = distanceUnits == DistanceUnitsMeters &&
             (subjectDistanceRange == SubjectDistanceRangeClose || 
@@ -252,12 +251,12 @@ static const float SMALL_FONT_SIZE = 24.0;
 }
 
 // Adjust fonts as appropriate for the values being displayed.
-- (void)adjustFontsForNearFarDisplay 
+- (void)adjustFontsForNearFarDisplay:(DistanceUnits)distanceUnits
 {
 	float leftFontSize = FONT_SIZE;
 	float rightFontSize = FONT_SIZE;
 	float differenceFontSize = DIFFERENCE_FONT_SIZE;
-	if (nearDistance >= 100.0 || farDistance >= 100.0)
+	if (nearDistance >= 100.0 || farDistance >= 100.0 || distanceUnits == DistanceUnitsFeetAndInches)
 	{
 		// Slightly smaller font for larger values.
 		leftFontSize = rightFontSize = SMALL_FONT_SIZE;
