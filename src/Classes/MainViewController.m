@@ -60,6 +60,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateNearLimit;
 - (float)calculateResult;
 - (void)configureCoachMarks;
+- (void)configureObservers;
 - (void)configureSliderColours;
 - (void)cocDidChange;
 - (int)indexNearestToAperture:(float)aperture;
@@ -120,48 +121,21 @@ static BOOL previousLensWasZoom = YES;
 	[self updateFocalLength];
 }
 
-// Initialization
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
-{
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (nil == self) 
-	{
-        return nil;
-    }
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(unitsDidChange)
-												 name:UNITS_CHANGED_NOTIFICATION
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(cocDidChange)
-												 name:COC_CHANGED_NOTIFICATION
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(lensDidChange:)
-												 name:LENS_CHANGED_NOTIFICATION
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(subjectDistanceRangeDidChange:)
-												 name:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION
-											   object:nil];
-	
-	[self initApertures];
-
-	// Reading initial values from defaults
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[self setApertureIndex:[defaults integerForKey:FTApertureIndex]];
-	[self setFocalLength:[defaults floatForKey:FTFocalLengthKey]];
-	[self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
-	[self readDefaultCircleOfLeastConfusion];
-	
-    return self;
-}
-
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+
+    [self configureObservers];
+    
+    [self initApertures];
+    
+    // Reading initial values from defaults
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [self setApertureIndex:[defaults integerForKey:FTApertureIndex]];
+    [self setFocalLength:[defaults floatForKey:FTFocalLengthKey]];
+    [self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
+    [self readDefaultCircleOfLeastConfusion];
+
 
     NSInteger distanceTypeSetting = [[NSUserDefaults standardUserDefaults]
                         integerForKey:FTDistanceTypeKey];
@@ -623,6 +597,26 @@ static BOOL previousLensWasZoom = YES;
         [self.view addSubview:coachMarksView];
         [coachMarksView start];
     }
+}
+
+- (void)configureObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(unitsDidChange)
+                                                 name:UNITS_CHANGED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cocDidChange)
+                                                 name:COC_CHANGED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(lensDidChange:)
+                                                 name:LENS_CHANGED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(subjectDistanceRangeDidChange:)
+                                                 name:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION
+                                               object:nil];
 }
 
 - (void)configureSliderColours
