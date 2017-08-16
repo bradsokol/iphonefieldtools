@@ -81,7 +81,7 @@
     // Put some cameras in the bag
     [self testCanAddCamerasToBag];
     
-    int countBefore = [bag cameraCount];
+    long countBefore = [bag cameraCount];
     
     // Delete the last camera
     FTCamera* camera = [bag findCameraForIndex:countBefore - 1];
@@ -185,7 +185,7 @@
     // Put some lenses in the bag
     [self testCanAddLensesToBag];
     
-    int countBefore = [bag lensCount];
+    long countBefore = [bag lensCount];
     
     // Delete the last lens
     FTLens* lens = [bag findLensForIndex:countBefore - 1];
