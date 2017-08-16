@@ -19,12 +19,12 @@
 //  Created by Brad on 2010/01/07.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "DistanceFormatter.h"
 #import "DistanceRange.h"
 
-@interface DistanceFormatterTests : SenTestCase
+@interface DistanceFormatterTests : XCTestCase
 {
 	DistanceFormatter* formatter;
 }
@@ -43,7 +43,7 @@
 	[formatter setDistanceUnits:DistanceUnitsMeters];
 	NSString* expected = @"2 m";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.0f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
 - (void)testFractionalMetres
@@ -51,7 +51,7 @@
 	[formatter setDistanceUnits:DistanceUnitsMeters];
 	NSString* expected = @"2.1 m";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.1f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
 - (void)testFeetAndInchesRounding
@@ -59,7 +59,7 @@
 	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
 	NSString* expected = @"7'";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:2.13333344f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
 // Test that 15", 15.25", 15.5" and 15.75" are displays as 15", 15 1/4", 15 1/2" and 15 3/4" respectively. 
@@ -68,23 +68,23 @@
 	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
 	NSString* expected = @"1'";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.3048f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 
 	expected = @"1' 3\"";
 	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.381f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 	
 	expected = @"1' 3¼\"";
 	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.38735f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 	
 	expected = @"1' 3½\"";
 	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.3937f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 	
 	expected = @"1' 3¾\"";
 	result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.40005f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
 - (void)testRangesWithFeetAndInches
@@ -97,7 +97,7 @@
 
 	NSString* expected = @"5' 4¾\"\t3'\t8' 4¾\"";
 	NSString* result = [formatter stringForObjectValue:distanceRange];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 	
 }
 
@@ -111,7 +111,7 @@
 	
 	NSString* expected = @"5' 4¾\"\t3'\t8' 4¾\"";
 	NSString* result = [formatter stringForObjectValue:distanceRange];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 	
 }
 
@@ -120,7 +120,7 @@
 	[formatter setDistanceUnits:DistanceUnitsFeetAndInches];
 	NSString* expected = @"3' ¼\"";
 	NSString* result = [formatter stringForObjectValue:[NSNumber numberWithFloat:0.92f]];
-	STAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
+	XCTAssertEqualObjects(result, expected, @"Formatted value mismatch. Expected \"%@\" got \"%@\"", expected, result);
 }
 
 @end
