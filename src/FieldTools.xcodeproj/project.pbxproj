@@ -30,11 +30,6 @@
 		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
 		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
-		88C08BD314BE742D0043D6E1 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
-		88C08BD414BE74360043D6E1 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
-		88C08BD514BE74E40043D6E1 /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
-		88C08BD614BE74EC0043D6E1 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
-		88C08BDD14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
 		A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D41254190F006689F9 /* FieldTools-Small.png */; };
 		A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */; };
 		A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D61254190F006689F9 /* FieldTools@2x.png */; };
@@ -45,7 +40,6 @@
 		A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MBCoachMarks.license */; };
 		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
-		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
 		A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */; };
 		A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
@@ -61,7 +55,6 @@
 		A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */; };
 		A24D56C81ED65C2A00AAB986 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C71ED65C2A00AAB986 /* Main.storyboard */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
-		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
@@ -70,12 +63,7 @@
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
-		A265A28810F6EA9F00678796 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
-		A265A28D10F6EDDC00678796 /* DistanceFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */; };
-		A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */; };
-		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
-		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
@@ -88,16 +76,6 @@
 		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
 		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
-		A28297CD1645716800F6DE5D /* FTCameraBagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28297CC1645716800F6DE5D /* FTCameraBagTests.m */; };
-		A28297CE164572B100F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
-		A28297CF164572D400F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
-		A28297D01645758C00F6DE5D /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
-		A28297D1164597A700F6DE5D /* FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977E16453E8700F6DE5D /* FTCamera.m */; };
-		A28297D2164597A700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
-		A28297D31645986F00F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
-		A28297D41645986F00F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
-		A28297D51645986F00F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
-		A28297D61645986F00F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
@@ -119,12 +97,19 @@
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
+		A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */; };
+		A2D67B351F43B355004CC775 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */; };
+		A2D67B361F43B355004CC775 /* DistanceFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */; };
+		A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28297CC1645716800F6DE5D /* FTCameraBagTests.m */; };
+		A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
+		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
+		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
 		A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A265A25210F6E53100678796 /* PBXContainerItemProxy */ = {
+		A2D67B2F1F43B33D004CC775 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -166,7 +151,6 @@
 		A21C13921ED217CF00A5194B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
-		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
 		A224E14D14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
@@ -271,6 +255,9 @@
 		A2D6241B10424A5600B2F055 /* CoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewController.m; sourceTree = "<group>"; };
 		A2D64AA00FCF855B00E337D9 /* FlipsideTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDataSource.h; sourceTree = "<group>"; };
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
+		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Field_Tools_Tests.m; sourceTree = "<group>"; };
+		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
 		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoC.m; path = Classes/CoC.m; sourceTree = "<group>"; };
 		A2F8627A1545ACB500BF8480 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = GoogleAnalytics/GANTracker.h; sourceTree = "<group>"; };
@@ -297,11 +284,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A21DCD7B10EE7D0300139D93 /* Frameworks */ = {
+		A2D67B271F43B33D004CC775 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A28297CF164572D400F6DE5D /* CoreData.framework in Frameworks */,
+				A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Field Tools.app */,
-				A21DCD7E10EE7D0300139D93 /* ModelTests.octest */,
+				A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,6 +337,7 @@
 				A2F862791545AC8400BF8480 /* Third Party Components */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				A24B1764156FE23D00BFBFF0 /* Settings.bundle */,
+				A2D67B2B1F43B33D004CC775 /* Field Tools Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				A21DCF5810EF06D700139D93 /* Documentation */,
@@ -656,6 +644,15 @@
 			name = "CoC View";
 			sourceTree = "<group>";
 		};
+		A2D67B2B1F43B33D004CC775 /* Field Tools Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */,
+				A2D67B2E1F43B33D004CC775 /* Info.plist */,
+			);
+			path = "Field Tools Tests";
+			sourceTree = "<group>";
+		};
 		A2F862791545AC8400BF8480 /* Third Party Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,24 +694,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Field Tools.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A21DCD7D10EE7D0300139D93 /* ModelTests */ = {
+		A2D67B291F43B33D004CC775 /* Field Tools Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A21DCD8410EE7D0300139D93 /* Build configuration list for PBXNativeTarget "ModelTests" */;
+			buildConfigurationList = A2D67B341F43B33D004CC775 /* Build configuration list for PBXNativeTarget "Field Tools Tests" */;
 			buildPhases = (
-				A21DCD7910EE7D0300139D93 /* Resources */,
-				A21DCD7A10EE7D0300139D93 /* Sources */,
-				A21DCD7B10EE7D0300139D93 /* Frameworks */,
-				A21DCD7C10EE7D0300139D93 /* ShellScript */,
+				A2D67B261F43B33D004CC775 /* Sources */,
+				A2D67B271F43B33D004CC775 /* Frameworks */,
+				A2D67B281F43B33D004CC775 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A265A25310F6E53100678796 /* PBXTargetDependency */,
+				A2D67B301F43B33D004CC775 /* PBXTargetDependency */,
 			);
-			name = ModelTests;
-			productName = ModelTests;
-			productReference = A21DCD7E10EE7D0300139D93 /* ModelTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			name = "Field Tools Tests";
+			productName = "Field Tools Tests";
+			productReference = A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -723,6 +719,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0800;
+				TargetAttributes = {
+					A2D67B291F43B33D004CC775 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1D6058900D05DD3D006BFB54;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -740,8 +743,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* FieldTools */,
-				A21DCD7D10EE7D0300139D93 /* ModelTests */,
 				A282977016453D2D00F6DE5D /* Mogenerator */,
+				A2D67B291F43B33D004CC775 /* Field Tools Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -774,30 +777,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A21DCD7910EE7D0300139D93 /* Resources */ = {
+		A2D67B281F43B33D004CC775 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A21DCD7C10EE7D0300139D93 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		A24B1766156FE3BA00BFBFF0 /* Run Script - Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -897,40 +886,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A21DCD7A10EE7D0300139D93 /* Sources */ = {
+		A2D67B261F43B33D004CC775 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A28297D31645986F00F6DE5D /* _FTCamera.m in Sources */,
-				A28297D41645986F00F6DE5D /* _FTCoC.m in Sources */,
-				A28297D51645986F00F6DE5D /* _FTLens.m in Sources */,
-				A28297D61645986F00F6DE5D /* FTCoC.m in Sources */,
-				A28297D1164597A700F6DE5D /* FTCamera.m in Sources */,
-				A28297D2164597A700F6DE5D /* FTLens.m in Sources */,
-				A28297D01645758C00F6DE5D /* FieldTools.xcdatamodeld in Sources */,
-				A28297CE164572B100F6DE5D /* FTCameraBag.m in Sources */,
-				88C08BD614BE74EC0043D6E1 /* SubjectDistanceSliderPolicy.m in Sources */,
-				88C08BD514BE74E40043D6E1 /* SubjectDistanceRangePolicy.m in Sources */,
-				88C08BD414BE74360043D6E1 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
-				88C08BD314BE742D0043D6E1 /* FarSubjectDistanceRangePolicy.m in Sources */,
-				A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */,
-				A265A28810F6EA9F00678796 /* DistanceFormatter.m in Sources */,
-				A265A28D10F6EDDC00678796 /* DistanceFormatterTests.m in Sources */,
-				A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */,
-				A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */,
-				A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
-				88C08BDD14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,
-				A28297CD1645716800F6DE5D /* FTCameraBagTests.m in Sources */,
+				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
+				A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,
+				A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */,
+				A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */,
+				A2D67B351F43B355004CC775 /* DepthOfFieldCalculatorTests.m in Sources */,
+				A2D67B361F43B355004CC775 /* DistanceFormatterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A265A25310F6E53100678796 /* PBXTargetDependency */ = {
+		A2D67B301F43B33D004CC775 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* FieldTools */;
-			targetProxy = A265A25210F6E53100678796 /* PBXContainerItemProxy */;
+			targetProxy = A2D67B2F1F43B33D004CC775 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1068,99 +1043,6 @@
 			};
 			name = Distribution;
 		};
-		A21DCD8110EE7D0300139D93 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "ModelTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools.modeltests;
-				PRODUCT_NAME = ModelTests;
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		A21DCD8210EE7D0300139D93 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "ModelTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools.modeltests;
-				PRODUCT_NAME = ModelTests;
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		A21DCD8310EE7D0300139D93 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "ModelTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools.modeltests;
-				PRODUCT_NAME = ModelTests;
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Distribution;
-		};
 		A282977116453D2D00F6DE5D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1179,6 +1061,102 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Distribution;
+		};
+		A2D67B311F43B33D004CC775 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
+			};
+			name = Debug;
+		};
+		A2D67B321F43B33D004CC775 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
+			};
+			name = Release;
+		};
+		A2D67B331F43B33D004CC775 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
 			};
 			name = Distribution;
 		};
@@ -1260,16 +1238,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A21DCD8410EE7D0300139D93 /* Build configuration list for PBXNativeTarget "ModelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A21DCD8110EE7D0300139D93 /* Debug */,
-				A21DCD8210EE7D0300139D93 /* Release */,
-				A21DCD8310EE7D0300139D93 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1279,6 +1247,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A2D67B341F43B33D004CC775 /* Build configuration list for PBXNativeTarget "Field Tools Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2D67B311F43B33D004CC775 /* Debug */,
+				A2D67B321F43B33D004CC775 /* Release */,
+				A2D67B331F43B33D004CC775 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */ = {
 			isa = XCConfigurationList;

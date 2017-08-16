@@ -20,13 +20,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "FTCamera.h"
 #import "FTCameraBag.h"
 #import "FTLens.h"
 
-@interface FTCameraBagTests : SenTestCase
+@interface FTCameraBagTests : XCTestCase
 {
     NSPersistentStoreCoordinator *coord;
     NSManagedObjectContext *ctx;
@@ -50,7 +50,7 @@
                                           URL: nil
                                       options: nil
                                         error: NULL];
-    ctx = [[NSManagedObjectContext alloc] init];
+    ctx = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [ctx setPersistentStoreCoordinator: coord];
     
     [FTCameraBag initSharedCameraBag:ctx];
@@ -60,8 +60,8 @@
 
 - (void)testSharedCameraBagIsInitiallyEmpty
 {
-    STAssertEquals([bag cameraCount], 0, @"Bag should initially have no cameras");
-    STAssertEquals([bag lensCount], 0, @"Bag should initially have no lenses");
+    XCTAssertEqual([bag cameraCount], 0, @"Bag should initially have no cameras");
+    XCTAssertEqual([bag lensCount], 0, @"Bag should initially have no lenses");
 }
 
 - (void)testCanAddCamerasToBag
@@ -73,7 +73,7 @@
         [camera setName:[NSString stringWithFormat:@"Camera %d", i + 1]];
     }
     
-    STAssertEquals([bag cameraCount], numCameras, @"Bag should have correct number of cameras");
+    XCTAssertEqual([bag cameraCount], numCameras, @"Bag should have correct number of cameras");
 }
 
 - (void)testCanDeleteCameraFromBag
@@ -81,13 +81,13 @@
     // Put some cameras in the bag
     [self testCanAddCamerasToBag];
     
-    int countBefore = [bag cameraCount];
+    long countBefore = [bag cameraCount];
     
     // Delete the last camera
     FTCamera* camera = [bag findCameraForIndex:countBefore - 1];
     [bag deleteCamera:camera];
     
-    STAssertEquals([bag cameraCount], countBefore - 1, @"Camera should be deleted");
+    XCTAssertEqual([bag cameraCount], countBefore - 1, @"Camera should be deleted");
 }
 
 - (void)testDeletingCameraAdjustsIndices
@@ -101,9 +101,9 @@
     
     [bag deleteCamera:camera2];
     
-    STAssertEquals([bag cameraCount], 2, @"There should be one less camera");
-    STAssertEquals([camera1 indexValue], 0, @"Cameras before the deleted should have the same index");
-    STAssertEquals([camera3 indexValue], 1, @"Cameras after the deleted should have a new index");
+    XCTAssertEqual([bag cameraCount], 2, @"There should be one less camera");
+    XCTAssertEqual([camera1 indexValue], 0, @"Cameras before the deleted should have the same index");
+    XCTAssertEqual([camera3 indexValue], 1, @"Cameras after the deleted should have a new index");
 }
 
 - (void)testNewCamerasHaveCorrectIndex
@@ -113,12 +113,12 @@
     FTCamera* camera2 = [bag newCamera];
     [camera2 setName:@"Camera 2"];
     
-    STAssertEquals([bag cameraCount], 2, @"Bag should have correct number of cameras");
+    XCTAssertEqual([bag cameraCount], 2, @"Bag should have correct number of cameras");
 
     FTCamera* camera = [bag findCameraForIndex:0];
-    STAssertEqualObjects([camera name], [camera1 name], @"Camera 1 should be at index 0");
+    XCTAssertEqualObjects([camera name], [camera1 name], @"Camera 1 should be at index 0");
     camera = [bag findCameraForIndex:1];
-    STAssertEqualObjects([camera name], [camera2 name], @"Camera 2 should be at index 1");
+    XCTAssertEqualObjects([camera name], [camera2 name], @"Camera 2 should be at index 1");
 }
 
 - (void)testMovingCameraUpAdjustsIndices
@@ -132,9 +132,9 @@
     
     [bag moveCameraFromIndex:0 toIndex:2];
     
-    STAssertEquals([camera1 indexValue], 2, @"Moved camera has correct index");
-    STAssertEquals([camera2 indexValue], 0, @"Stationary camera has correct index");
-    STAssertEquals([camera3 indexValue], 1, @"Stationary camera has correct index");
+    XCTAssertEqual([camera1 indexValue], 2, @"Moved camera has correct index");
+    XCTAssertEqual([camera2 indexValue], 0, @"Stationary camera has correct index");
+    XCTAssertEqual([camera3 indexValue], 1, @"Stationary camera has correct index");
 }
 
 - (void)testMovingCameraDownAdjustsIndices
@@ -148,9 +148,9 @@
     
     [bag moveCameraFromIndex:2 toIndex:0];
     
-    STAssertEquals([camera1 indexValue], 1, @"Stationary camera has correct index");
-    STAssertEquals([camera2 indexValue], 2, @"Stationary camera has correct index");
-    STAssertEquals([camera3 indexValue], 0, @"Moved camera has correct index");
+    XCTAssertEqual([camera1 indexValue], 1, @"Stationary camera has correct index");
+    XCTAssertEqual([camera2 indexValue], 2, @"Stationary camera has correct index");
+    XCTAssertEqual([camera3 indexValue], 0, @"Moved camera has correct index");
 }
 
 - (void)testCanAddLensesToBag
@@ -162,7 +162,7 @@
         [lens setName:[NSString stringWithFormat:@"Lens %d", i + 1]];
     }
     
-    STAssertEquals([bag lensCount], numLenses, @"Bag should have correct number of lenses");
+    XCTAssertEqual([bag lensCount], numLenses, @"Bag should have correct number of lenses");
 }
 
 - (void)testNewLensesHaveCorrectIndex
@@ -172,12 +172,12 @@
     FTLens* lens2 = [bag newLens];
     [lens2 setName:@"Lens 2"];
     
-    STAssertEquals([bag lensCount], 2, @"Bag should have correct number of lenses");
+    XCTAssertEqual([bag lensCount], 2, @"Bag should have correct number of lenses");
     
     FTLens* lens = [bag findLensForIndex:0];
-    STAssertEqualObjects([lens name], [lens1 name], @"Lens 1 should be at index 0");
+    XCTAssertEqualObjects([lens name], [lens1 name], @"Lens 1 should be at index 0");
     lens = [bag findLensForIndex:1];
-    STAssertEqualObjects([lens name], [lens2 name], @"Lens 2 should be at index 1");
+    XCTAssertEqualObjects([lens name], [lens2 name], @"Lens 2 should be at index 1");
 }
 
 - (void)testCanDeleteLensFromBag
@@ -185,13 +185,13 @@
     // Put some lenses in the bag
     [self testCanAddLensesToBag];
     
-    int countBefore = [bag lensCount];
+    long countBefore = [bag lensCount];
     
     // Delete the last lens
     FTLens* lens = [bag findLensForIndex:countBefore - 1];
     [bag deleteLens:lens];
     
-    STAssertEquals([bag lensCount], countBefore - 1, @"Lens should be deleted");
+    XCTAssertEqual([bag lensCount], countBefore - 1, @"Lens should be deleted");
 }
 
 - (void)testDeletingLensAdjustsIndices
@@ -205,9 +205,9 @@
     
     [bag deleteLens:lens2];
     
-    STAssertEquals([bag lensCount], 2, @"There should be one less lens");
-    STAssertEquals([lens1 indexValue], 0, @"Lenses before the deleted should have the same index");
-    STAssertEquals([lens3 indexValue], 1, @"Lenses after the deleted should have a new index");
+    XCTAssertEqual([bag lensCount], 2, @"There should be one less lens");
+    XCTAssertEqual([lens1 indexValue], 0, @"Lenses before the deleted should have the same index");
+    XCTAssertEqual([lens3 indexValue], 1, @"Lenses after the deleted should have a new index");
 }
 
 - (void)testMovingLensUpAdjustsIndices
@@ -221,9 +221,9 @@
     
     [bag moveLensFromIndex:0 toIndex:2];
     
-    STAssertEquals([lens1 indexValue], 2, @"Moved lens has correct index");
-    STAssertEquals([lens2 indexValue], 0, @"Stationary lens has correct index");
-    STAssertEquals([lens3 indexValue], 1, @"Stationary lens has correct index");
+    XCTAssertEqual([lens1 indexValue], 2, @"Moved lens has correct index");
+    XCTAssertEqual([lens2 indexValue], 0, @"Stationary lens has correct index");
+    XCTAssertEqual([lens3 indexValue], 1, @"Stationary lens has correct index");
 }
 
 - (void)testMovingLensDownAdjustsIndices
@@ -237,9 +237,9 @@
     
     [bag moveLensFromIndex:2 toIndex:0];
     
-    STAssertEquals([lens1 indexValue], 1, @"Stationary lens has correct index");
-    STAssertEquals([lens2 indexValue], 2, @"Stationary lens has correct index");
-    STAssertEquals([lens3 indexValue], 0, @"Moved lens has correct index");
+    XCTAssertEqual([lens1 indexValue], 1, @"Stationary lens has correct index");
+    XCTAssertEqual([lens2 indexValue], 2, @"Stationary lens has correct index");
+    XCTAssertEqual([lens3 indexValue], 0, @"Moved lens has correct index");
 }
 
 - (void)tearDown
@@ -247,7 +247,7 @@
     bag = nil;
     ctx = nil;
     NSError *error = nil;
-    STAssertTrue([coord removePersistentStore: store error: &error],
+    XCTAssertTrue([coord removePersistentStore: store error: &error],
                  @"couldn't remove persistent store: %@", error);
     store = nil;
     coord = nil;
