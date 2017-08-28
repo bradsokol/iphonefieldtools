@@ -235,7 +235,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOL-DE-W46">
-                                <rect key="frame" x="115.5" y="391" width="89" height="27"/>
+                                <rect key="frame" x="115.5" y="404" width="89" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Distance Range"/>
                                 <connections>
@@ -291,7 +291,7 @@
                             <constraint firstItem="M4T-He-eQi" firstAttribute="leading" secondItem="0mX-47-dvc" secondAttribute="trailing" constant="8" id="D2h-Yf-KI5"/>
                             <constraint firstItem="Cko-4G-m3v" firstAttribute="leading" secondItem="hxc-dA-Lup" secondAttribute="leading" id="Eib-tm-Az6"/>
                             <constraint firstItem="ET6-Wb-yns" firstAttribute="trailing" secondItem="hxc-dA-Lup" secondAttribute="trailing" id="FSE-2k-FVW"/>
-                            <constraint firstItem="GOL-DE-W46" firstAttribute="top" secondItem="6sB-w4-chA" secondAttribute="bottom" constant="-5" id="GWp-iD-THi"/>
+                            <constraint firstItem="GOL-DE-W46" firstAttribute="top" secondItem="6sB-w4-chA" secondAttribute="bottom" constant="8" id="GWp-iD-THi"/>
                             <constraint firstItem="itE-No-Gvf" firstAttribute="centerY" secondItem="YVm-l6-w58" secondAttribute="centerY" id="J2W-wU-dpM"/>
                             <constraint firstItem="6sB-w4-chA" firstAttribute="leading" secondItem="hxc-dA-Lup" secondAttribute="leading" id="MyP-rw-kFY"/>
                             <constraint firstItem="U5g-T7-JW6" firstAttribute="trailing" secondItem="SSY-jz-Ype" secondAttribute="trailing" id="S1l-Sp-b89"/>
