@@ -159,6 +159,16 @@
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir4-i9-WUc" customClass="ResultView">
                                 <rect key="frame" x="24" y="26" width="272" height="50"/>
                                 <subviews>
+                                    <textField opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xud-uc-Pk3">
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" label="distance"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="SGr-MG-WR0"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="48"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <textField opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6.8 m" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="83e-Ta-X5G">
                                         <rect key="frame" x="0.0" y="0.0" width="272" height="50"/>
                                         <accessibility key="accessibilityConfiguration" label="distance"/>
@@ -193,16 +203,6 @@
                                     <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="center" image="distanceArrows.png" translatesAutoresizingMaskIntoConstraints="NO" id="8IJ-Nn-q3N">
                                         <rect key="frame" x="84" y="18" width="104" height="22"/>
                                     </imageView>
-                                    <textField opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xud-uc-Pk3">
-                                        <rect key="frame" x="0.0" y="0.0" width="272" height="50"/>
-                                        <accessibility key="accessibilityConfiguration" label="distance"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="SGr-MG-WR0"/>
-                                        </constraints>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="48"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="resultView">
