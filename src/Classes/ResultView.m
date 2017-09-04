@@ -229,12 +229,6 @@ static const float SMALL_FONT_SIZE = 20.0;
 // One-time configuration of the various controls.
 - (void)configureControls
 {
-	// Adjust the height of the text display to show larger font.
-	CGRect r = [largeText frame];
-	r.size.height *= 1.75f;
-	[largeText setFrame:r];
-	[background setFrame:r];
-
     leftNumber.adjustsFontSizeToFitWidth = YES;
     difference.adjustsFontSizeToFitWidth = YES;
     rightNumber.adjustsFontSizeToFitWidth = YES;
