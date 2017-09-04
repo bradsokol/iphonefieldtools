@@ -46,6 +46,7 @@
 	IBOutlet UILabel* focalLengthText;
 	IBOutlet UILabel* focalLengthMinimum;
 	IBOutlet UILabel* focalLengthMaximum;
+    __weak IBOutlet NSLayoutConstraint*apertureToFocalLengthConstraint;
 	
 	IBOutlet UISlider* subjectDistanceSlider;
 	IBOutlet UILabel* subjectDistanceLabel;

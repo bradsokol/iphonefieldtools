@@ -300,6 +300,7 @@
                             <constraint firstItem="Cko-4G-m3v" firstAttribute="leading" secondItem="hxc-dA-Lup" secondAttribute="leading" id="Eib-tm-Az6"/>
                             <constraint firstItem="ET6-Wb-yns" firstAttribute="trailing" secondItem="hxc-dA-Lup" secondAttribute="trailing" id="FSE-2k-FVW"/>
                             <constraint firstItem="GOL-DE-W46" firstAttribute="top" secondItem="6sB-w4-chA" secondAttribute="bottom" constant="8" id="GWp-iD-THi"/>
+                            <constraint firstItem="YVm-l6-w58" firstAttribute="top" secondItem="Cuq-uP-h5i" secondAttribute="bottom" constant="76" id="IXk-YJ-uWq"/>
                             <constraint firstItem="itE-No-Gvf" firstAttribute="centerY" secondItem="YVm-l6-w58" secondAttribute="centerY" id="J2W-wU-dpM"/>
                             <constraint firstItem="6sB-w4-chA" firstAttribute="leading" secondItem="hxc-dA-Lup" secondAttribute="leading" id="MyP-rw-kFY"/>
                             <constraint firstItem="U5g-T7-JW6" firstAttribute="trailing" secondItem="SSY-jz-Ype" secondAttribute="trailing" id="S1l-Sp-b89"/>
@@ -321,7 +322,6 @@
                             <constraint firstAttribute="trailing" secondItem="hxc-dA-Lup" secondAttribute="trailing" constant="24" id="hDf-33-B6r"/>
                             <constraint firstItem="ET6-Wb-yns" firstAttribute="centerY" secondItem="Cko-4G-m3v" secondAttribute="centerY" id="jA7-fM-H7t"/>
                             <constraint firstItem="PAz-ZM-p1e" firstAttribute="trailing" secondItem="hxc-dA-Lup" secondAttribute="trailing" id="l5U-YZ-As1"/>
-                            <constraint firstItem="YVm-l6-w58" firstAttribute="top" secondItem="9BI-wn-aeG" secondAttribute="bottom" constant="15" id="mPn-MP-tVl"/>
                             <constraint firstItem="hxc-dA-Lup" firstAttribute="leading" secondItem="sg4-Md-eOg" secondAttribute="leading" constant="24" id="mzq-0s-Rp2"/>
                             <constraint firstItem="Dqu-gE-OJd" firstAttribute="leading" secondItem="OLX-3h-f71" secondAttribute="leading" id="nKY-nE-QHs"/>
                             <constraint firstItem="Ir4-i9-WUc" firstAttribute="leading" secondItem="sg4-Md-eOg" secondAttribute="leadingMargin" constant="8" id="npE-En-lmK"/>
@@ -342,6 +342,7 @@
                         <outlet property="apertureMinimum" destination="UpQ-oz-1f2" id="hdA-tb-Ha6"/>
                         <outlet property="apertureSlider" destination="OLX-3h-f71" id="b0R-BV-wNl"/>
                         <outlet property="apertureText" destination="itE-No-Gvf" id="xhg-fg-c6k"/>
+                        <outlet property="apertureToFocalLengthConstraint" destination="IXk-YJ-uWq" id="WTe-VB-K88"/>
                         <outlet property="cameraAndLensDescription" destination="0mX-47-dvc" id="er8-na-fph"/>
                         <outlet property="distanceType" destination="hxc-dA-Lup" id="gsK-Rq-Vbs"/>
                         <outlet property="focalLengthMaximum" destination="U5g-T7-JW6" id="aCv-XV-kqg"/>
