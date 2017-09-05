@@ -233,7 +233,7 @@ static BOOL previousLensWasZoom = YES;
 	[subjectDistanceMinimum setHidden:hide];
 	[subjectDistanceMaximum setHidden:hide];
     [subjectDistanceRangeText setHidden:hide];
-	
+
 	[self updateResult];
 }
 
@@ -348,21 +348,7 @@ static BOOL previousLensWasZoom = YES;
 
 	if ((previousLensWasZoom && isPrime) || (!previousLensWasZoom && !isPrime))
 	{
-		CGFloat delta;
-		delta = isPrime ? -controlYDelta : controlYDelta;
-
-		[self moveControl:apertureLabel byYDelta:delta];
-		[self moveControl:apertureText byYDelta:delta];
-		[self moveControl:apertureSlider byYDelta:delta];
-		[self moveControl:apertureMinimum byYDelta:delta];
-		[self moveControl:apertureMaximum byYDelta:delta];
-		
-		[self moveControl:subjectDistanceLabel byYDelta:delta];
-		[self moveControl:subjectDistanceText byYDelta:delta];
-		[self moveControl:subjectDistanceSlider byYDelta:delta];
-		[self moveControl:subjectDistanceMinimum byYDelta:delta];
-		[self moveControl:subjectDistanceMaximum byYDelta:delta];
-        [self moveControl:subjectDistanceRangeText byYDelta:delta];
+        apertureToFocalLengthConstraint.constant += isPrime ? -controlYDelta : controlYDelta;
 	}
 	previousLensWasZoom = !isPrime;
 }

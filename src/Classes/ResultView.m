@@ -229,16 +229,9 @@ static const float SMALL_FONT_SIZE = 20.0;
 // One-time configuration of the various controls.
 - (void)configureControls
 {
-	CGRect rect = [self bounds];
-	
-	// Adjust the height of the text display to show larger font.
-	CGRect r = [largeText frame];
-	r.size.height *= 1.75f;
-	[largeText setFrame:r];
-	[background setFrame:r];
-
-	[self adjustNumberDisplay:leftNumber inRect:rect];
-	[self adjustNumberDisplay:rightNumber inRect:rect];
+    leftNumber.adjustsFontSizeToFitWidth = YES;
+    difference.adjustsFontSizeToFitWidth = YES;
+    rightNumber.adjustsFontSizeToFitWidth = YES;
 }
 
 // Adjust the size of the frame of UILabel.
@@ -267,8 +260,6 @@ static const float SMALL_FONT_SIZE = 20.0;
 		rightFontSize = differenceFontSize = INFINITY_FONT_SIZE;
 	}
 	
-	[leftNumber setFont:[[leftNumber font] fontWithSize:leftFontSize]];
-	[rightNumber setFont:[[rightNumber font] fontWithSize:rightFontSize]];
 	[difference setFont:[[difference font] fontWithSize:differenceFontSize]];
 }
 
