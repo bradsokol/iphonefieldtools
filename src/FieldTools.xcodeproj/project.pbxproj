@@ -64,16 +64,6 @@
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
-		A27A7C0B1F5DFE2C00AEB1A2 /* FieldTools-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C001F5DFE2C00AEB1A2 /* FieldTools-60@3x.png */; };
-		A27A7C0C1F5DFE2C00AEB1A2 /* FieldTools-76.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C011F5DFE2C00AEB1A2 /* FieldTools-76.png */; };
-		A27A7C0D1F5DFE2C00AEB1A2 /* FieldTools-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C021F5DFE2C00AEB1A2 /* FieldTools-76@2x.png */; };
-		A27A7C0E1F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C031F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png */; };
-		A27A7C0F1F5DFE2C00AEB1A2 /* FieldTools-Small-40.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C041F5DFE2C00AEB1A2 /* FieldTools-Small-40.png */; };
-		A27A7C101F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C051F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png */; };
-		A27A7C111F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C061F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png */; };
-		A27A7C121F5DFE2C00AEB1A2 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C071F5DFE2C00AEB1A2 /* FieldTools-Small.png */; };
-		A27A7C131F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C081F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png */; };
-		A27A7C141F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C091F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png */; };
 		A282978316453E8700F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
 		A282978416453E8700F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
 		A282978516453E8700F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
@@ -97,7 +87,7 @@
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
-		A2C1EF841F5E2969009D8DE1 /* FieldTools-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF831F5E2969009D8DE1 /* FieldTools-60@2x.png */; };
+		A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
 		A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
 		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
@@ -205,16 +195,6 @@
 		A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceSlider.m; sourceTree = "<group>"; };
 		A2747BC012E2804B002731EC /* FocalLengthSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocalLengthSlider.h; sourceTree = "<group>"; };
 		A2747BC112E2804B002731EC /* FocalLengthSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocalLengthSlider.m; sourceTree = "<group>"; };
-		A27A7C001F5DFE2C00AEB1A2 /* FieldTools-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-60@3x.png"; path = "../artwork/FieldTools-60@3x.png"; sourceTree = "<group>"; };
-		A27A7C011F5DFE2C00AEB1A2 /* FieldTools-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-76.png"; path = "../artwork/FieldTools-76.png"; sourceTree = "<group>"; };
-		A27A7C021F5DFE2C00AEB1A2 /* FieldTools-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-76@2x.png"; path = "../artwork/FieldTools-76@2x.png"; sourceTree = "<group>"; };
-		A27A7C031F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-83.5@2x.png"; path = "../artwork/FieldTools-83.5@2x.png"; sourceTree = "<group>"; };
-		A27A7C041F5DFE2C00AEB1A2 /* FieldTools-Small-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small-40.png"; path = "../artwork/FieldTools-Small-40.png"; sourceTree = "<group>"; };
-		A27A7C051F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small-40@2x.png"; path = "../artwork/FieldTools-Small-40@2x.png"; sourceTree = "<group>"; };
-		A27A7C061F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small-40@3x.png"; path = "../artwork/FieldTools-Small-40@3x.png"; sourceTree = "<group>"; };
-		A27A7C071F5DFE2C00AEB1A2 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small.png"; path = "../artwork/FieldTools-Small.png"; sourceTree = "<group>"; };
-		A27A7C081F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small@2x.png"; path = "../artwork/FieldTools-Small@2x.png"; sourceTree = "<group>"; };
-		A27A7C091F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small@3x.png"; path = "../artwork/FieldTools-Small@3x.png"; sourceTree = "<group>"; };
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
@@ -258,7 +238,7 @@
 		A2B95FAB107161BA0057A70E /* LensViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewTableDataSource.h; sourceTree = "<group>"; };
 		A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewTableDataSource.m; sourceTree = "<group>"; };
 		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		A2C1EF831F5E2969009D8DE1 /* FieldTools-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-60@2x.png"; path = "../artwork/FieldTools-60@2x.png"; sourceTree = "<group>"; };
+		A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
 		A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
@@ -375,8 +355,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2A45BF7126B379900423D79 /* icons */,
 				A2B372C60F754E8F00774532 /* images */,
+				A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */,
 				A261F8CE0FDCCAAA00C907AD /* CameraView.xib */,
 				A22C2451104387A1005BC94C /* CoC.plist */,
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
@@ -596,24 +576,6 @@
 			name = "Subject Distance Ranges View";
 			sourceTree = "<group>";
 		};
-		A2A45BF7126B379900423D79 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				A2C1EF831F5E2969009D8DE1 /* FieldTools-60@2x.png */,
-				A27A7C001F5DFE2C00AEB1A2 /* FieldTools-60@3x.png */,
-				A27A7C011F5DFE2C00AEB1A2 /* FieldTools-76.png */,
-				A27A7C021F5DFE2C00AEB1A2 /* FieldTools-76@2x.png */,
-				A27A7C031F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png */,
-				A27A7C041F5DFE2C00AEB1A2 /* FieldTools-Small-40.png */,
-				A27A7C051F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png */,
-				A27A7C061F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png */,
-				A27A7C071F5DFE2C00AEB1A2 /* FieldTools-Small.png */,
-				A27A7C081F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png */,
-				A27A7C091F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png */,
-			);
-			name = icons;
-			sourceTree = "<group>";
-		};
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,29 +742,19 @@
 			files = (
 				A24D56C81ED65C2A00AAB986 /* Main.storyboard in Resources */,
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
+				A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
-				A27A7C0C1F5DFE2C00AEB1A2 /* FieldTools-76.png in Resources */,
-				A27A7C0F1F5DFE2C00AEB1A2 /* FieldTools-Small-40.png in Resources */,
-				A27A7C131F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png in Resources */,
 				A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */,
-				A2C1EF841F5E2969009D8DE1 /* FieldTools-60@2x.png in Resources */,
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
-				A27A7C0B1F5DFE2C00AEB1A2 /* FieldTools-60@3x.png in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
 				A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */,
-				A27A7C121F5DFE2C00AEB1A2 /* FieldTools-Small.png in Resources */,
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
-				A27A7C141F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png in Resources */,
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
-				A27A7C0D1F5DFE2C00AEB1A2 /* FieldTools-76@2x.png in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
-				A27A7C101F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png in Resources */,
-				A27A7C111F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png in Resources */,
-				A27A7C0E1F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png in Resources */,
 				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
@@ -964,6 +916,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = NO;
@@ -995,6 +948,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = YES;
@@ -1057,6 +1011,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
