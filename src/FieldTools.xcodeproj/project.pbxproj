@@ -30,9 +30,6 @@
 		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
 		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
-		A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D41254190F006689F9 /* FieldTools-Small.png */; };
-		A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */; };
-		A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D61254190F006689F9 /* FieldTools@2x.png */; };
 		A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9E212541ABA006689F9 /* distanceArrows@2x.png */; };
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
@@ -56,7 +53,6 @@
 		A24D56C81ED65C2A00AAB986 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C71ED65C2A00AAB986 /* Main.storyboard */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
-		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
 		A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */; };
 		A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A259002A1D7FB8800058D160 /* libz.tbd */; };
@@ -68,6 +64,16 @@
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
+		A27A7C0B1F5DFE2C00AEB1A2 /* FieldTools-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C001F5DFE2C00AEB1A2 /* FieldTools-60@3x.png */; };
+		A27A7C0C1F5DFE2C00AEB1A2 /* FieldTools-76.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C011F5DFE2C00AEB1A2 /* FieldTools-76.png */; };
+		A27A7C0D1F5DFE2C00AEB1A2 /* FieldTools-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C021F5DFE2C00AEB1A2 /* FieldTools-76@2x.png */; };
+		A27A7C0E1F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C031F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png */; };
+		A27A7C0F1F5DFE2C00AEB1A2 /* FieldTools-Small-40.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C041F5DFE2C00AEB1A2 /* FieldTools-Small-40.png */; };
+		A27A7C101F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C051F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png */; };
+		A27A7C111F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C061F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png */; };
+		A27A7C121F5DFE2C00AEB1A2 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C071F5DFE2C00AEB1A2 /* FieldTools-Small.png */; };
+		A27A7C131F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C081F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png */; };
+		A27A7C141F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A27A7C091F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png */; };
 		A282978316453E8700F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
 		A282978416453E8700F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
 		A282978516453E8700F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
@@ -91,6 +97,7 @@
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
+		A2C1EF841F5E2969009D8DE1 /* FieldTools-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF831F5E2969009D8DE1 /* FieldTools-60@2x.png */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
 		A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
 		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
@@ -137,9 +144,6 @@
 		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinearSubjectDistanceSliderPolicyTests.m; path = TestClasses/LinearSubjectDistanceSliderPolicyTests.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A200F9D41254190F006689F9 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small.png"; sourceTree = "<group>"; };
-		A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small@2x.png"; sourceTree = "<group>"; };
-		A200F9D61254190F006689F9 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
 		A200F9E212541ABA006689F9 /* distanceArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distanceArrows@2x.png"; sourceTree = "<group>"; };
 		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
@@ -181,7 +185,6 @@
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
 		A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewTableDataSource.m; sourceTree = "<group>"; };
 		A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GoogleAnalytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
@@ -202,6 +205,16 @@
 		A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceSlider.m; sourceTree = "<group>"; };
 		A2747BC012E2804B002731EC /* FocalLengthSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocalLengthSlider.h; sourceTree = "<group>"; };
 		A2747BC112E2804B002731EC /* FocalLengthSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocalLengthSlider.m; sourceTree = "<group>"; };
+		A27A7C001F5DFE2C00AEB1A2 /* FieldTools-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-60@3x.png"; path = "../artwork/FieldTools-60@3x.png"; sourceTree = "<group>"; };
+		A27A7C011F5DFE2C00AEB1A2 /* FieldTools-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-76.png"; path = "../artwork/FieldTools-76.png"; sourceTree = "<group>"; };
+		A27A7C021F5DFE2C00AEB1A2 /* FieldTools-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-76@2x.png"; path = "../artwork/FieldTools-76@2x.png"; sourceTree = "<group>"; };
+		A27A7C031F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-83.5@2x.png"; path = "../artwork/FieldTools-83.5@2x.png"; sourceTree = "<group>"; };
+		A27A7C041F5DFE2C00AEB1A2 /* FieldTools-Small-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small-40.png"; path = "../artwork/FieldTools-Small-40.png"; sourceTree = "<group>"; };
+		A27A7C051F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small-40@2x.png"; path = "../artwork/FieldTools-Small-40@2x.png"; sourceTree = "<group>"; };
+		A27A7C061F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small-40@3x.png"; path = "../artwork/FieldTools-Small-40@3x.png"; sourceTree = "<group>"; };
+		A27A7C071F5DFE2C00AEB1A2 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small.png"; path = "../artwork/FieldTools-Small.png"; sourceTree = "<group>"; };
+		A27A7C081F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small@2x.png"; path = "../artwork/FieldTools-Small@2x.png"; sourceTree = "<group>"; };
+		A27A7C091F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-Small@3x.png"; path = "../artwork/FieldTools-Small@3x.png"; sourceTree = "<group>"; };
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
@@ -245,6 +258,7 @@
 		A2B95FAB107161BA0057A70E /* LensViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewTableDataSource.h; sourceTree = "<group>"; };
 		A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewTableDataSource.m; sourceTree = "<group>"; };
 		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		A2C1EF831F5E2969009D8DE1 /* FieldTools-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FieldTools-60@2x.png"; path = "../artwork/FieldTools-60@2x.png"; sourceTree = "<group>"; };
 		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
 		A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
@@ -585,10 +599,17 @@
 		A2A45BF7126B379900423D79 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
-				A200F9D61254190F006689F9 /* FieldTools@2x.png */,
-				A200F9D41254190F006689F9 /* FieldTools-Small.png */,
-				A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */,
+				A2C1EF831F5E2969009D8DE1 /* FieldTools-60@2x.png */,
+				A27A7C001F5DFE2C00AEB1A2 /* FieldTools-60@3x.png */,
+				A27A7C011F5DFE2C00AEB1A2 /* FieldTools-76.png */,
+				A27A7C021F5DFE2C00AEB1A2 /* FieldTools-76@2x.png */,
+				A27A7C031F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png */,
+				A27A7C041F5DFE2C00AEB1A2 /* FieldTools-Small-40.png */,
+				A27A7C051F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png */,
+				A27A7C061F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png */,
+				A27A7C071F5DFE2C00AEB1A2 /* FieldTools-Small.png */,
+				A27A7C081F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png */,
+				A27A7C091F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png */,
 			);
 			name = icons;
 			sourceTree = "<group>";
@@ -759,22 +780,29 @@
 			files = (
 				A24D56C81ED65C2A00AAB986 /* Main.storyboard in Resources */,
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
-				A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
+				A27A7C0C1F5DFE2C00AEB1A2 /* FieldTools-76.png in Resources */,
+				A27A7C0F1F5DFE2C00AEB1A2 /* FieldTools-Small-40.png in Resources */,
+				A27A7C131F5DFE2C00AEB1A2 /* FieldTools-Small@2x.png in Resources */,
 				A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */,
+				A2C1EF841F5E2969009D8DE1 /* FieldTools-60@2x.png in Resources */,
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
+				A27A7C0B1F5DFE2C00AEB1A2 /* FieldTools-60@3x.png in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
 				A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */,
+				A27A7C121F5DFE2C00AEB1A2 /* FieldTools-Small.png in Resources */,
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
-				A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */,
-				A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */,
-				A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */,
+				A27A7C141F5DFE2C00AEB1A2 /* FieldTools-Small@3x.png in Resources */,
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
+				A27A7C0D1F5DFE2C00AEB1A2 /* FieldTools-76@2x.png in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
+				A27A7C101F5DFE2C00AEB1A2 /* FieldTools-Small-40@2x.png in Resources */,
+				A27A7C111F5DFE2C00AEB1A2 /* FieldTools-Small-40@3x.png in Resources */,
+				A27A7C0E1F5DFE2C00AEB1A2 /* FieldTools-83.5@2x.png in Resources */,
 				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
