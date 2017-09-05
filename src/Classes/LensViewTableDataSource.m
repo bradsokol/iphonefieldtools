@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/09/28.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "LensViewTableDataSource.h"
 
-#import "Lens.h"
+#import "FTLens.h"
 #import "LensViewController.h"
 
 #import "LensViewSections.h"
@@ -34,15 +34,13 @@ NSString* CellIdentifier = @"Cell";
 @synthesize lensIsZoom;
 @synthesize controller;
 
-- (Lens*)lens
+- (FTLens*)lens
 {
 	return lens;
 }
 
-- (void)setLens:(Lens*)aLens
+- (void)setLens:(FTLens*)aLens
 {
-	[lens release];
-	[aLens retain];
 	lens = aLens;
 	
 	lensIsZoom = [lens isZoom];
@@ -74,7 +72,7 @@ NSString* CellIdentifier = @"Cell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	int tag = ([indexPath section] << 4) | [indexPath row];
+	NSInteger tag = ([indexPath section] << 4) | [indexPath row];
 	LensViewController* lensViewController = (LensViewController*) [self controller];
 		
 	UITableViewCell* cell;
@@ -90,9 +88,9 @@ NSString* CellIdentifier = @"Cell";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (nil == cell)
 			{
-				cell = [[[UITableViewCell alloc] 
+				cell = [[UITableViewCell alloc] 
                          initWithStyle:UITableViewCellStyleDefault
-                         reuseIdentifier:CellIdentifier] autorelease];
+                         reuseIdentifier:CellIdentifier];
 			}
 		}
 	}
@@ -110,7 +108,7 @@ NSString* CellIdentifier = @"Cell";
 	
 	// Tag the cell with section and row so that the delegate can handle data
 	[cell setTag:tag];
-	NSLog(@"Tag for cell %08x is %04x", (unsigned int) cell, [cell tag]);
+	NSLog(@"Tag for cell %08x is %04lx", (unsigned int) cell, (long)[cell tag]);
 	
 	if (TYPE_SECTION == [indexPath section] && [indexPath row] != LENS_TITLE_ROW)
 	{
@@ -143,8 +141,8 @@ NSString* CellIdentifier = @"Cell";
 			NSString* key = nil;
 			if (lensIsZoom || [indexPath section] != FOCAL_LENGTH_SECTION)
 			{
-				int index = [indexPath row] + ([indexPath section] - 1) * 2;
-				key = [NSString stringWithFormat:@"LENS_EDIT_%d", index];
+				NSInteger index = [indexPath row] + ([indexPath section] - 1) * 2;
+				key = [NSString stringWithFormat:@"LENS_EDIT_%ld", (long)index];
 			}
 			else
 			{
@@ -187,7 +185,6 @@ NSString* CellIdentifier = @"Cell";
 {
 	[self setLens:nil];
 	
-	[super dealloc];
 }
 
 @end

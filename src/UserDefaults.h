@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Brad Sokol
+ * Copyright 2009-2017 Brad Sokol
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ extern NSString* const FTDefaultsVersion;
 extern NSString* const FTApertureIndex;
 extern NSString* const FTCameraCount;
 extern NSString* const FTCameraIndex;
+extern NSString* const FTCoachMarksShown;
 extern NSString* const FTDistanceTypeKey;
 extern NSString* const FTDistanceUnitsKey;
 extern NSString* const FTFocalLengthKey;
@@ -41,6 +42,7 @@ extern NSString* const FTMacroModeKey;
 extern NSString* const FTMigratedFrom10Key;
 extern NSString* const FTMigratedFrom20Key;
 extern NSString* const FTMigratedFrom22Key;
+extern NSString* const FTMigratedFrom23Key;
 
 // Deprecated
 extern NSString* const FTMetricKey;				// Use FTUnitsKey

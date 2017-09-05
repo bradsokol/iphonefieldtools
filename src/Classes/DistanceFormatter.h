@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 // behaviour (raise an exception and return nil, respectively).
 //
 //  Created by Brad on 2009/03/25.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <Foundation/Foundation.h>

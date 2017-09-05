@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,15 +17,17 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/09/28.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <UIKit/UIKit.h>
 
-@class Lens;
+#import "TableViewControllerWithAnalytics.h"
+
+@class FTLens;
 @class LensViewTableDataSource;
 
-@interface LensViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
+@interface LensViewController : TableViewControllerWithAnalytics <UITableViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITableViewCell* lensNameCell;
 	IBOutlet UITextField* lensNameField;
@@ -48,8 +50,7 @@
 	IBOutlet UILabel* maximumApertureLabel;
 	
 	LensViewTableDataSource* tableViewDataSource;
-	Lens* lens;
-	Lens* lensWorking;
+	FTLens* lens;
 	bool lensIsZoom;
 
 	UIBarButtonItem* saveButton;
@@ -60,28 +61,28 @@
 }
 
 // The designated initializer
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)lens;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(FTLens*)lens;
 
-@property(nonatomic, retain) LensViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong) LensViewTableDataSource* tableViewDataSource;
 
-@property(nonatomic, retain, readonly) UITableViewCell* lensNameCell;
-@property(nonatomic, retain, readonly) UITextField* lensNameField;
-@property(nonatomic, retain, readonly) UILabel* lensNameLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* lensNameCell;
+@property(nonatomic, strong, readonly) UITextField* lensNameField;
+@property(nonatomic, strong, readonly) UILabel* lensNameLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* minimumApertureCell;
-@property(nonatomic, retain, readonly) UITextField* minimumApertureField;
-@property(nonatomic, retain, readonly) UILabel* minimumApertureLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* minimumApertureCell;
+@property(nonatomic, strong, readonly) UITextField* minimumApertureField;
+@property(nonatomic, strong, readonly) UILabel* minimumApertureLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* maximumApertureCell;
-@property(nonatomic, retain, readonly) UITextField* maximumApertureField;
-@property(nonatomic, retain, readonly) UILabel* maximumApertureLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* maximumApertureCell;
+@property(nonatomic, strong, readonly) UITextField* maximumApertureField;
+@property(nonatomic, strong, readonly) UILabel* maximumApertureLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* minimumFocalLengthCell;
-@property(nonatomic, retain, readonly) UITextField* minimumFocalLengthField;
-@property(nonatomic, retain, readonly) UILabel* minimumFocalLengthLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* minimumFocalLengthCell;
+@property(nonatomic, strong, readonly) UITextField* minimumFocalLengthField;
+@property(nonatomic, strong, readonly) UILabel* minimumFocalLengthLabel;
 
-@property(nonatomic, retain, readonly) UITableViewCell* maximumFocalLengthCell;
-@property(nonatomic, retain, readonly) UITextField* maximumFocalLengthField;
-@property(nonatomic, retain, readonly) UILabel* maximumFocalLengthLabel;
+@property(nonatomic, strong, readonly) UITableViewCell* maximumFocalLengthCell;
+@property(nonatomic, strong, readonly) UITextField* maximumFocalLengthField;
+@property(nonatomic, strong, readonly) UILabel* maximumFocalLengthLabel;
 
 @end

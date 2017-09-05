@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@
 	CoC* coc;
 }
 
-+ (int)count_deprecated;
++ (NSInteger)count_deprecated;
 + (NSArray*)findAll __attribute__((deprecated));
 
 + (Camera*)findFromDefaultsForIndex_deprecated:(int)index;
@@ -41,8 +41,8 @@
 - (NSDictionary*) asDictionary_deprecated;
 - (void)save_deprecated;
 
-@property(nonatomic, retain) NSString* description;
-@property(nonatomic, retain) CoC* coc;
+@property(nonatomic, strong) NSString* description;
+@property(nonatomic, strong) CoC* coc;
 @property(nonatomic) int identifier;
 
 @end

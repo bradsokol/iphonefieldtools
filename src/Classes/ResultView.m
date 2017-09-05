@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 //  eliminates this delay.
 //
 //  Created by Brad on 2009/03/19.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "ResultView.h"
@@ -41,13 +41,13 @@
 #import "UserDefaults.h"
 
 static const float DIFFERENCE_FONT_SIZE = 17.0;
-static const float FONT_SIZE = 28.0;
+static const float FONT_SIZE = 22.0;
 static const float INFINITY_FONT_SIZE = 32.0;
-static const float SMALL_FONT_SIZE = 24.0;
+static const float SMALL_FONT_SIZE = 20.0;
 
 @interface ResultView ()
 
-- (void)adjustFontsForNearFarDisplay;
+- (void)adjustFontsForNearFarDisplay:(DistanceUnits)distanceUnits;
 - (void)adjustNumberDisplay:(UILabel*)label inRect:(CGRect)rect;
 - (void)configureControls;
 - (void)hideNumberLabels:(bool)hide;
@@ -68,7 +68,7 @@ static const float SMALL_FONT_SIZE = 24.0;
 		return nil;
 	}
 	
-	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
+	[self setDistanceFormatter:[[DistanceFormatter alloc] init]];
 	firstDraw = YES;
 	
     return self;
@@ -99,12 +99,11 @@ static const float SMALL_FONT_SIZE = 24.0;
 		// effect is a UITextView displaying three values and the image.
 		[self hideNumberLabels:NO];
 		
-		[self adjustFontsForNearFarDisplay];
-        
-        
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-        SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+        DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+        [self adjustFontsForNearFarDisplay:distanceUnits];
+        
+        SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
         bool showTwoDecimals = distanceUnits == DistanceUnitsMeters &&
             (subjectDistanceRange == SubjectDistanceRangeClose || 
              subjectDistanceRange == SubjectDistanceRangeMacro);
@@ -146,8 +145,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 #endif
 
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+	DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
 
     if (DistanceUnitsMeters == distanceUnits &&
         (SubjectDistanceRangeClose == subjectDistanceRange || 
@@ -176,8 +175,8 @@ static const float SMALL_FONT_SIZE = 24.0;
 	
 	displayRange = YES;
 
-	DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+	DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
     switch (distanceUnits)
     {
         case DistanceUnitsFeetAndInches:
@@ -230,16 +229,9 @@ static const float SMALL_FONT_SIZE = 24.0;
 // One-time configuration of the various controls.
 - (void)configureControls
 {
-	CGRect rect = [self bounds];
-	
-	// Adjust the height of the text display to show larger font.
-	CGRect r = [largeText frame];
-	r.size.height *= 1.75f;
-	[largeText setFrame:r];
-	[background setFrame:r];
-
-	[self adjustNumberDisplay:leftNumber inRect:rect];
-	[self adjustNumberDisplay:rightNumber inRect:rect];
+    leftNumber.adjustsFontSizeToFitWidth = YES;
+    difference.adjustsFontSizeToFitWidth = YES;
+    rightNumber.adjustsFontSizeToFitWidth = YES;
 }
 
 // Adjust the size of the frame of UILabel.
@@ -252,12 +244,12 @@ static const float SMALL_FONT_SIZE = 24.0;
 }
 
 // Adjust fonts as appropriate for the values being displayed.
-- (void)adjustFontsForNearFarDisplay 
+- (void)adjustFontsForNearFarDisplay:(DistanceUnits)distanceUnits
 {
 	float leftFontSize = FONT_SIZE;
 	float rightFontSize = FONT_SIZE;
 	float differenceFontSize = DIFFERENCE_FONT_SIZE;
-	if (nearDistance >= 100.0 || farDistance >= 100.0)
+	if (nearDistance >= 100.0 || farDistance >= 100.0 || distanceUnits == DistanceUnitsFeetAndInches)
 	{
 		// Slightly smaller font for larger values.
 		leftFontSize = rightFontSize = SMALL_FONT_SIZE;
@@ -268,8 +260,6 @@ static const float SMALL_FONT_SIZE = 24.0;
 		rightFontSize = differenceFontSize = INFINITY_FONT_SIZE;
 	}
 	
-	[leftNumber setFont:[[leftNumber font] fontWithSize:leftFontSize]];
-	[rightNumber setFont:[[rightNumber font] fontWithSize:rightFontSize]];
 	[difference setFont:[[difference font] fontWithSize:differenceFontSize]];
 }
 
@@ -285,11 +275,5 @@ static const float SMALL_FONT_SIZE = 24.0;
 	distanceArrows.hidden = hide;
 }
 
-- (void)dealloc 
-{
-	[self setDistanceFormatter:nil];
-	
-    [super dealloc];
-}
 
 @end

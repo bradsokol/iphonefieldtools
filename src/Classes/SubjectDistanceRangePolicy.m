@@ -36,14 +36,13 @@
                              [formatter stringForObjectValue:[NSNumber numberWithFloat:[self minimumDistance]]],
                              [formatter stringForObjectValue:[NSNumber numberWithFloat:[self maximumDistance]]]];
     
-    [formatter release];
     
     return description;
 }
 
 - (bool)isMetric
 {    
-    int distanceUnitsType = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+    NSInteger distanceUnitsType = [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
     bool metric = distanceUnitsType == DistanceUnitsCentimeters ||
     distanceUnitsType == DistanceUnitsMeters;
     

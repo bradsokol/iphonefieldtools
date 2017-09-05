@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@
 @class DistanceFormatter;
 @class ResultView;
 
+@protocol AnalyticsPolicy;
+
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIActionSheetDelegate>
 {
 	IBOutlet UIButton *cameraAndLensDescription;
@@ -44,6 +46,7 @@
 	IBOutlet UILabel* focalLengthText;
 	IBOutlet UILabel* focalLengthMinimum;
 	IBOutlet UILabel* focalLengthMaximum;
+    __weak IBOutlet NSLayoutConstraint*apertureToFocalLengthConstraint;
 	
 	IBOutlet UISlider* subjectDistanceSlider;
 	IBOutlet UILabel* subjectDistanceLabel;
@@ -55,7 +58,7 @@
 	IBOutlet ResultView* resultView;
 	
 	DistanceFormatter* distanceFormatter;
-	int apertureIndex;
+	NSInteger apertureIndex;
 	float circleOfLeastConfusion;
 	float focalLength;
 	float subjectDistance;
@@ -67,20 +70,22 @@
 
 - (IBAction)subjectDistanceRangeTextWasTouched:(id)sender;
 
-- (void)apertureDidChange:(id)sender;
-- (void)distanceTypeDidChange:(id)sender;
-- (void)focalLengthDidChange:(id)sender;
-- (void)subjectDistanceDidChange:(id)sender;
+- (IBAction)apertureDidChange:(id)sender;
+- (IBAction)distanceTypeDidChange:(id)sender;
+- (IBAction)focalLengthDidChange:(id)sender;
+- (IBAction)subjectDistanceDidChange:(id)sender;
 
 - (float)aperture;
 
 - (IBAction)toggleView;
 
-@property (nonatomic, retain) UIButton* cameraAndLensDescription;
-@property (nonatomic, retain) UIButton *infoButton;
+@property (nonatomic, strong) UIButton* cameraAndLensDescription;
+@property (nonatomic, strong) UIButton *infoButton;
 
 @property(assign) float circleOfLeastConfusion;
 @property(assign) float focalLength;
 @property(assign) float subjectDistance;
+
+@property(nonatomic, strong) id<AnalyticsPolicy> analyticsPolicy;
 
 @end

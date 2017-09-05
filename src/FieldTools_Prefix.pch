@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
-#endif
+    #import <CoreData/CoreData.h>
 
-#import "GoogleAnalytics.h"
+    #import "GoogleAnalytics/GAI.h"
+    #import "GoogleAnalytics/GAIDictionaryBuilder.h"
+    #import "GoogleAnalytics/GAIFields.h"
+#endif

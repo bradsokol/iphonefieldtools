@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,14 +21,16 @@
 
 #import "FlipsideViewController.h"
 
-#import "Camera.h"
-#import "CameraBag.h"
+#import "AnalyticsPolicy.h"
 #import "CameraViewController.h"
 #import "CoCViewController.h"
 #import "CustomCoCViewController.h"
 #import "FlipsideTableViewDataSource.h"
+#import "FlipsideTableViewDelegate.h"
 #import "FieldToolsAppDelegate.h"
-#import "Lens.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTLens.h"
 #import "LensViewController.h"
 #import "Notifications.h"
 #import "SubjectDistanceRangesViewController.h"
@@ -48,6 +50,7 @@
 
 @implementation FlipsideViewController
 
+@synthesize analyticsPolicy;
 @synthesize navigationController;
 @synthesize tableViewDataSource;
 @synthesize tableViewDelegate;
@@ -105,21 +108,14 @@
 {
     [super viewDidLoad];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:kSettings withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
+    [[self analyticsPolicy] trackView:kSettings];
 
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
-	
 	[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 	UIBarButtonItem* rightBarButtonItem = 
 		[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 													  target:self
 													  action:@selector(done)];
 	[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
-	[rightBarButtonItem release];
 	
 	[self setTableViewDelegate:(FlipsideTableViewDelegate*) [[self tableView] delegate]];
 	[self setTableViewDataSource: [[self tableView] dataSource]];
@@ -135,8 +131,8 @@
 	[[self tableViewDelegate] setEditing:editing];
 	[[self tableViewDataSource] setEditing:editing];
 	
-	int cameraCount = [[CameraBag sharedCameraBag] cameraCount];
-	int lensCount = [[CameraBag sharedCameraBag] lensCount];
+	NSInteger cameraCount = [[FTCameraBag sharedCameraBag] cameraCount];
+	NSInteger lensCount = [[FTCameraBag sharedCameraBag] lensCount];
 	UITableView* tableView = (UITableView*) [self view];
     UITableViewCell* extraLensCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:lensCount inSection:LENSES_SECTION]];
 	
@@ -154,7 +150,6 @@
 		[tableView insertRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 		
-		[indexPaths release];
         
         if (nil != extraLensCell)
         {
@@ -170,7 +165,6 @@
 			 action:@selector(done)];
 		
 		[[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
-		[rightBarButtonItem release];
 		
 		NSMutableArray* indexPaths = [[NSMutableArray alloc] initWithCapacity:2];
 		NSIndexPath* path = [NSIndexPath indexPathForRow:cameraCount 
@@ -180,7 +174,6 @@
 		[tableView deleteRowsAtIndexPaths:indexPaths 
 						 withRowAnimation:UITableViewRowAnimationTop];
 				
-		[indexPaths release];
         
         if (nil != extraLensCell)
         {
@@ -209,57 +202,60 @@
 
 - (void)editCamera:(NSNotification*)notification
 {
-	UIViewController* viewController = 
+	CameraViewController* viewController =
 		[[CameraViewController alloc] initWithNibName:@"CameraView" 
 											   bundle:nil
-											forCamera:(Camera*)[notification object]];
+											forCamera:(FTCamera*)[notification object]];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editCoC:(NSNotification*)notification
 {
-	UIViewController* viewController = 
+	CoCViewController* viewController =
 	[[CoCViewController alloc] initWithNibName:@"CoCView" 
 										bundle:nil
-									 forCamera:(Camera*)[notification object]];
+									 forCamera:(FTCamera*)[notification object]];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editCustomCoC:(NSNotification*)notification
 {
-	Camera* camera = (Camera*)[notification object];
-	UIViewController* viewController = 
+	FTCamera* camera = (FTCamera*)[notification object];
+	CustomCoCViewController* viewController =
 		[[CustomCoCViewController alloc] initWithNibName:@"CustomCoCView" 
 												  bundle:nil
 											   forCamera:camera];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editLens:(NSNotification*)notification
 {
-	UIViewController* viewController = 
+	LensViewController* viewController =
 	[[LensViewController alloc] initWithNibName:@"LensView" 
 										 bundle:nil
-									    forLens:(Lens*)[notification object]];
+									    forLens:(FTLens*)[notification object]];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
 	[[self navigationController] pushViewController:viewController animated:YES];
-	[viewController release];
 }
 
 - (void)editSubjectDistanceRange:(NSNotification*)notification
 {
-    UIViewController* viewController =
+    SubjectDistanceRangesViewController* viewController =
         [[SubjectDistanceRangesViewController alloc] initWithNibName:@"SubjectDistanceRangesViewController"
                                                               bundle:nil];
+    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
+    
     [[self navigationController] pushViewController:viewController animated:YES];
-    [viewController release];
 }
 
 - (void)cameraWasAdded:(NSNotification*)notification
 {
-	[[CameraBag sharedCameraBag] addCamera:[notification object]];
 	[self cameraWasEdited:notification];
 }
 
@@ -267,7 +263,7 @@
 {
 	UITableView* tableView = (UITableView*) [self view];
 	
-	[[CameraBag sharedCameraBag] save];
+	[[FTCameraBag sharedCameraBag] save];
 	
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
@@ -277,19 +273,18 @@
 
 - (void)lensWasAdded:(NSNotification*)notification
 {
-	[[CameraBag sharedCameraBag] addLens:[notification object]];
 	[self lensWasEdited:notification];
 }
 
 - (void)lensWasEdited:(NSNotification*)notification
 {
 	UITableView* tableView = (UITableView*) [self view];
-	Lens* lens = (Lens*)[notification object];
+	FTLens* lens = (FTLens*)[notification object];
 	
-	[[CameraBag sharedCameraBag] save];
+	[[FTCameraBag sharedCameraBag] save];
 	
-	int selectedLens = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
-	if ([lens identifier] == selectedLens)
+	NSInteger selectedLens = [[NSUserDefaults standardUserDefaults] integerForKey:FTLensIndex];
+	if ([lens indexValue] == selectedLens)
 	{
 		[[NSNotificationCenter defaultCenter]
 		 postNotification:[NSNotification notificationWithName:LENS_CHANGED_NOTIFICATION object:lens]];
@@ -298,15 +293,5 @@
 	[tableView reloadData];
 }
 
-- (void)dealloc 
-{
-//	[[NSNotificationCenter defaultCenter] removeObject:self];
-	
-	[self setNavigationController:nil];
-	[self setTableViewDataSource:nil];
-	[self setTableViewDelegate:nil];
-	
-    [super dealloc];
-}
 
 @end

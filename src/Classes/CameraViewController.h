@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,15 +17,17 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/04/14.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <UIKit/UIKit.h>
 
-@class Camera;
-@class CameraViewTableDataSource;
+#import "TableViewControllerWithAnalytics.h"
 
-@interface CameraViewController : UITableViewController <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
+@class CameraViewTableDataSource;
+@class FTCamera;
+
+@interface CameraViewController : TableViewControllerWithAnalytics <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITableViewCell* cameraNameCell;
 	IBOutlet UITextField* cameraNameField;
@@ -33,18 +35,17 @@
 
 	CameraViewTableDataSource* tableViewDataSource;
 	UIBarButtonItem* saveButton;
-	Camera* camera;
-	Camera* cameraWorking;
+	FTCamera* camera;
 	
 	bool newCamera;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
-@property(nonatomic, retain) CameraViewTableDataSource* tableViewDataSource;
-@property(nonatomic, retain, readonly) UITableViewCell* cameraNameCell;
-@property(nonatomic, retain, readonly) UITextField* cameraNameField;
-@property(nonatomic, retain, readonly) UILabel* cameraNameLabel;
+@property(nonatomic, strong) CameraViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong, readonly) UITableViewCell* cameraNameCell;
+@property(nonatomic, strong, readonly) UITextField* cameraNameField;
+@property(nonatomic, strong, readonly) UILabel* cameraNameLabel;
 
 @end

@@ -30,8 +30,8 @@
 - (void)cancelWasSelected;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
-@property(nonatomic) int newSubjectDistanceRangeIndex;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
+@property(nonatomic) NSInteger newSubjectDistanceRangeIndex;
 
 @end
 
@@ -49,14 +49,14 @@
     }
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
                           initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
                           target:self
-                          action:@selector(saveWasSelected)] autorelease]];
+                          action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
@@ -75,7 +75,7 @@
 
 - (void)saveWasSelected
 {
-    int oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     if (newSubjectDistanceRangeIndex != oldSubjectDistanceRangeIndex)
     {
         [[NSUserDefaults standardUserDefaults] setInteger:newSubjectDistanceRangeIndex
@@ -84,15 +84,10 @@
         [[NSNotificationCenter defaultCenter] 
             postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
         
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:kCategorySubjectDistanceRange
-                                             action:kActionChanged
-                                              label:kLabelSettingsView
-                                              value:newSubjectDistanceRangeIndex
-                                          withError:&error]) 
-        {
-            NSLog(@"Error recording analytics page view: %@", error);
-        }
+        [[self analyticsPolicy] trackEvent:kCategorySubjectDistanceRange
+                                    action:kActionChanged
+                                     label:kLabelSettingsView
+                                     value:newSubjectDistanceRangeIndex];
 
     }
     
@@ -111,13 +106,7 @@
 {
     [super viewDidLoad];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:kSettingsSubjectDistanceRanges withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-	
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+    [[self analyticsPolicy] trackView:kSettingsSubjectDistanceRanges];
 	
     UITableView* tv = [self tableView];
     SubjectDistanceRangesViewTableDataSource* sdrvtds = 
@@ -168,10 +157,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
-	[self setSaveButton:nil];
-    [self setTableViewDataSource:nil];
 	
-    [super dealloc];
 }
 
 @end

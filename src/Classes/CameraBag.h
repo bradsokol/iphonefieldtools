@@ -36,17 +36,17 @@
 + (id)initSharedCameraBagFromArchive:(NSString*)archiveFile;
 + (CameraBag*)sharedCameraBag;
 
-- (int)cameraCount;
+- (NSInteger)cameraCount;
 - (void)deleteCamera:(Camera*)camera;
-- (Camera*)findCameraForIndex:(int)index;
+- (Camera*)findCameraForIndex:(NSInteger)index;
 - (Camera*)findSelectedCamera;
-- (void)moveCameraFromIndex:(int)fromIndex toIndex:(int)toIndex;
+- (void)moveCameraFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
 - (void)deleteLens:(Lens*)lens;
 - (Lens*)findSelectedLens;
-- (Lens*)findLensForIndex:(int)index;
-- (void)moveLensFromIndex:(int)fromIndex toIndex:(int)toIndex;
-- (int)lensCount;
+- (Lens*)findLensForIndex:(NSInteger)index;
+- (void)moveLensFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+- (NSInteger)lensCount;
 
 - (void)addCamera:(Camera*)camera;
 - (void)addLens:(Lens*)lens;

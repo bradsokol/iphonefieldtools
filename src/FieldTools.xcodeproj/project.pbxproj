@@ -6,103 +6,107 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A282977016453D2D00F6DE5D /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				A282977516453D3200F6DE5D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		2899E5600DE3E45000AC0155 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* MainView.xib */; };
 		28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* MainViewController.m */; };
 		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
 		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
-		88C08BD314BE742D0043D6E1 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
-		88C08BD414BE74360043D6E1 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
-		88C08BD514BE74E40043D6E1 /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
-		88C08BD614BE74EC0043D6E1 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
-		88C08BDD14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
-		A200F9D71254190F006689F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D31254190F006689F9 /* Default@2x.png */; };
-		A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D41254190F006689F9 /* FieldTools-Small.png */; };
-		A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */; };
-		A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9D61254190F006689F9 /* FieldTools@2x.png */; };
 		A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9E212541ABA006689F9 /* distanceArrows@2x.png */; };
-		A200F9E512541ABA006689F9 /* sliderTrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9E312541ABA006689F9 /* sliderTrack@2x.png */; };
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
-		A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2090FC413EF65B3006E74E6 /* OBSliderWithNotificationView.m */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
+		A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C138E1ED2037600A5194B /* MPCoachMarks.m */; };
+		A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MBCoachMarks.license */; };
+		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
-		A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
-		A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE82130729C600C0020B /* sliderThumbHighlighted.png */; };
-		A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = A222FE83130729C600C0020B /* sliderThumbNormal.png */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
 		A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */; };
 		A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
+		A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */; };
+		A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
 		A22F4A920FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */; };
-		A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */; };
 		A237E63F12AAF4F00089862B /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63C12AAF4F00089862B /* Camera.m */; };
 		A237E64012AAF4F00089862B /* CameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A237E63E12AAF4F00089862B /* CameraBag.m */; };
-		A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2391BF41604062F008D545A /* Default-568h@2x.png */; };
 		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
+		A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */; };
+		A24D56C81ED65C2A00AAB986 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C71ED65C2A00AAB986 /* Main.storyboard */; };
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
-		A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
-		A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
+		A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */; };
+		A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A259002A1D7FB8800058D160 /* libz.tbd */; };
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
-		A265A28810F6EA9F00678796 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
-		A265A28D10F6EDDC00678796 /* DistanceFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */; };
-		A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */; };
-		A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
-		A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
-		A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */; };
-		A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */; };
+		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
 		A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BC112E2804B002731EC /* FocalLengthSlider.m */; };
+		A282978316453E8700F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
+		A282978416453E8700F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
+		A282978516453E8700F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
+		A282978616453E8700F6DE5D /* FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977E16453E8700F6DE5D /* FTCamera.m */; };
+		A282978716453E8700F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
+		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
+		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
+		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
-		A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */; };
-		A289FAD41613D8D300211AE0 /* iRate.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD01613D8D300211AE0 /* iRate.license */; };
-		A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD11613D8D300211AE0 /* licenses2settings.pl */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
-		A28D89E3108D5A6D00C77FEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A28D89E2108D5A6D00C77FEA /* Default.png */; };
 		A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */; };
 		A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */; };
 		A28D8A49108D67F000C77FEA /* CustomCoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A28D8A48108D67F000C77FEA /* CustomCoCViewTableDataSource.m */; };
 		A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A02B14048DDF0090C9AA /* SubjectDistanceRangesViewController.m */; };
 		A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */; };
 		A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */; };
-		A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
 		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
-		A2B372C90F754EA700774532 /* sliderTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = A2B372C80F754EA700774532 /* sliderTrack.png */; };
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
-		A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */; };
 		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
+		A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
 		A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
 		A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C71362148C1358005E1D05 /* SubjectDistanceSliderPolicy.m */; };
 		A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2D62409104248DA00B2F055 /* CoCView.xib */; };
 		A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6241B10424A5600B2F055 /* CoCViewController.m */; };
-		A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */; };
 		A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */; };
+		A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */; };
+		A2D67B351F43B355004CC775 /* DepthOfFieldCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */; };
+		A2D67B361F43B355004CC775 /* DistanceFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */; };
+		A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28297CC1645716800F6DE5D /* FTCameraBagTests.m */; };
+		A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
+		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
+		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
-		A2E3D0F915532869005F3F30 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E3D0F815532869005F3F30 /* iRate.m */; };
 		A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */; };
-		A2F862851545B41A00BF8480 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A265A25210F6E53100678796 /* PBXContainerItemProxy */ = {
+		A2D67B2F1F43B33D004CC775 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -118,7 +122,6 @@
 		1D6058910D05DD3D006BFB54 /* Field Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Field Tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2899E55F0DE3E45000AC0155 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTools_Prefix.pch; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -131,31 +134,30 @@
 		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinearSubjectDistanceSliderPolicyTests.m; path = TestClasses/LinearSubjectDistanceSliderPolicyTests.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A200F9D31254190F006689F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		A200F9D41254190F006689F9 /* FieldTools-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small.png"; sourceTree = "<group>"; };
-		A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools-Small@2x.png"; sourceTree = "<group>"; };
-		A200F9D61254190F006689F9 /* FieldTools@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FieldTools@2x.png"; sourceTree = "<group>"; };
 		A200F9E212541ABA006689F9 /* distanceArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distanceArrows@2x.png"; sourceTree = "<group>"; };
-		A200F9E312541ABA006689F9 /* sliderTrack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderTrack@2x.png"; sourceTree = "<group>"; };
 		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
-		A2090FC313EF65B3006E74E6 /* OBSliderWithNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSliderWithNotificationView.h; sourceTree = "<group>"; };
-		A2090FC413EF65B3006E74E6 /* OBSliderWithNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSliderWithNotificationView.m; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
+		A21C138D1ED2037600A5194B /* MPCoachMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCoachMarks.h; sourceTree = "<group>"; };
+		A21C138E1ED2037600A5194B /* MPCoachMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCoachMarks.m; sourceTree = "<group>"; };
+		A21C13901ED203D100A5194B /* MBCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBCoachMarks.license; sourceTree = "<group>"; };
+		A21C13921ED217CF00A5194B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
-		A21DCD7E10EE7D0300139D93 /* ModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
-		A222FE82130729C600C0020B /* sliderThumbHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbHighlighted.png; sourceTree = "<group>"; };
-		A222FE83130729C600C0020B /* sliderThumbNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderThumbNormal.png; sourceTree = "<group>"; };
 		A224E14D14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A224E15014152FC5005735C0 /* MidSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
+		A22601BD162AF96F00EE9923 /* AnalyticsPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsPolicy.h; sourceTree = "<group>"; };
+		A22601BE162AF9FC00EE9923 /* GoogleAnalyticsPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsPolicy.h; sourceTree = "<group>"; };
+		A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsPolicy.m; sourceTree = "<group>"; };
+		A22601C1162B198600EE9923 /* TableViewControllerWithAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerWithAnalytics.h; sourceTree = "<group>"; };
+		A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerWithAnalytics.m; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -163,20 +165,20 @@
 		A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideNonEditingTableViewDelegate.m; sourceTree = "<group>"; };
 		A22F4A900FC65793003A5E26 /* FlipsideEditingTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideEditingTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A910FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideEditingTableViewDelegate.m; sourceTree = "<group>"; };
-		A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDiscreetNotificationView.h; path = Classes/GCDiscreetNotificationView.h; sourceTree = "<group>"; };
-		A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDiscreetNotificationView.m; path = Classes/GCDiscreetNotificationView.m; sourceTree = "<group>"; };
 		A237E63B12AAF4F00089862B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
 		A237E63C12AAF4F00089862B /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
 		A237E63D12AAF4F00089862B /* CameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraBag.h; path = Classes/CameraBag.h; sourceTree = "<group>"; };
 		A237E63E12AAF4F00089862B /* CameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraBag.m; path = Classes/CameraBag.m; sourceTree = "<group>"; };
-		A2391BF41604062F008D545A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A24B1764156FE23D00BFBFF0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A24D56C71ED65C2A00AAB986 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceRange.h; sourceTree = "<group>"; };
 		A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceRange.m; sourceTree = "<group>"; };
 		A24EF5780ECA853C001A7B46 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FieldTools.png; sourceTree = "<group>"; };
 		A24FF4A20FE0C4DD0073BC03 /* CameraViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewTableDataSource.h; sourceTree = "<group>"; };
 		A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewTableDataSource.m; sourceTree = "<group>"; };
+		A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GoogleAnalytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		A259002A1D7FB8800058D160 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A25BDF3210479BFE00B22B2B /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lens.h; path = Classes/Lens.h; sourceTree = "<group>"; };
 		A25BDF3310479BFE00B22B2B /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lens.m; path = Classes/Lens.m; sourceTree = "<group>"; };
 		A261F8C70FDCCA3600C907AD /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
@@ -186,8 +188,7 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
-		A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbHighlighted@2x.png"; sourceTree = "<group>"; };
-		A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderThumbNormal@2x.png"; sourceTree = "<group>"; };
+		A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldTools.xcdatamodel; sourceTree = "<group>"; };
 		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSlider.h; sourceTree = "<group>"; };
@@ -198,14 +199,27 @@
 		A28082D611BBFA1B0057669F /* SubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
 		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 		A2811FD30ECE8DB100A7FB7A /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		A282977716453E8700F6DE5D /* _FTCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTCamera.h; path = Classes/Model/_FTCamera.h; sourceTree = "<group>"; };
+		A282977816453E8700F6DE5D /* _FTCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTCamera.m; path = Classes/Model/_FTCamera.m; sourceTree = "<group>"; };
+		A282977916453E8700F6DE5D /* _FTCoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTCoC.h; path = Classes/Model/_FTCoC.h; sourceTree = "<group>"; };
+		A282977A16453E8700F6DE5D /* _FTCoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTCoC.m; path = Classes/Model/_FTCoC.m; sourceTree = "<group>"; };
+		A282977B16453E8700F6DE5D /* _FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTLens.h; path = Classes/Model/_FTLens.h; sourceTree = "<group>"; };
+		A282977C16453E8700F6DE5D /* _FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTLens.m; path = Classes/Model/_FTLens.m; sourceTree = "<group>"; };
+		A282977D16453E8700F6DE5D /* FTCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCamera.h; path = Classes/Model/FTCamera.h; sourceTree = "<group>"; };
+		A282977E16453E8700F6DE5D /* FTCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCamera.m; path = Classes/Model/FTCamera.m; sourceTree = "<group>"; };
+		A282977F16453E8700F6DE5D /* FTCoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCoC.h; path = Classes/Model/FTCoC.h; sourceTree = "<group>"; };
+		A282978016453E8700F6DE5D /* FTCoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCoC.m; path = Classes/Model/FTCoC.m; sourceTree = "<group>"; };
+		A282978116453E8700F6DE5D /* FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTLens.h; path = Classes/Model/FTLens.h; sourceTree = "<group>"; };
+		A282978216453E8700F6DE5D /* FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTLens.m; path = Classes/Model/FTLens.m; sourceTree = "<group>"; };
+		A282978916453F2B00F6DE5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A282978C16454D2E00F6DE5D /* FTCameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCameraBag.h; path = Classes/Model/FTCameraBag.h; sourceTree = "<group>"; };
+		A282978D16454D2E00F6DE5D /* FTCameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBag.m; path = Classes/Model/FTCameraBag.m; sourceTree = "<group>"; };
+		A28297CC1645716800F6DE5D /* FTCameraBagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBagTests.m; path = TestClasses/FTCameraBagTests.m; sourceTree = SOURCE_ROOT; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
-		A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDiscreetNotificationView.license; sourceTree = "<group>"; };
-		A289FAD01613D8D300211AE0 /* iRate.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iRate.license; sourceTree = "<group>"; };
 		A289FAD11613D8D300211AE0 /* licenses2settings.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = licenses2settings.pl; sourceTree = "<group>"; };
 		A289FAD21613D8D300211AE0 /* OBSlider.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OBSlider.license; sourceTree = "<group>"; };
-		A28D89E2108D5A6D00C77FEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCoCView.xib; sourceTree = "<group>"; };
 		A28D8A02108D5F2B00C77FEA /* CustomCoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCoCViewController.h; sourceTree = "<group>"; };
 		A28D8A03108D5F2B00C77FEA /* CustomCoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCoCViewController.m; sourceTree = "<group>"; };
@@ -216,19 +230,15 @@
 		A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubjectDistanceRangesViewController.xib; path = Classes/SubjectDistanceRangesViewController.xib; sourceTree = "<group>"; };
 		A294A02F140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangesViewTableDataSource.h; sourceTree = "<group>"; };
 		A294A030140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangesViewTableDataSource.m; sourceTree = "<group>"; };
-		A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTableViewCell.h; sourceTree = "<group>"; };
-		A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTableViewCell.m; sourceTree = "<group>"; };
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		A2B372C80F754EA700774532 /* sliderTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderTrack.png; sourceTree = "<group>"; };
 		A2B95F9E10715EDF0057A70E /* LensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensView.xib; sourceTree = "<group>"; };
 		A2B95FA410715FB80057A70E /* LensViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewController.h; sourceTree = "<group>"; };
 		A2B95FA510715FB80057A70E /* LensViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewController.m; sourceTree = "<group>"; };
 		A2B95FAB107161BA0057A70E /* LensViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewTableDataSource.h; sourceTree = "<group>"; };
 		A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewTableDataSource.m; sourceTree = "<group>"; };
-		A2BCB98D0FFDA823004F26EA /* EditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableTableViewCell.h; sourceTree = "<group>"; };
-		A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
 		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
 		A2C7135C148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearSubjectDistanceSliderPolicy.h; sourceTree = "<group>"; };
@@ -237,19 +247,17 @@
 		A2D62409104248DA00B2F055 /* CoCView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoCView.xib; sourceTree = "<group>"; };
 		A2D6241A10424A5600B2F055 /* CoCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewController.h; sourceTree = "<group>"; };
 		A2D6241B10424A5600B2F055 /* CoCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewController.m; sourceTree = "<group>"; };
-		A2D6245D104251AA00B2F055 /* CoCViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCViewTableDataSource.h; sourceTree = "<group>"; };
-		A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCViewTableDataSource.m; sourceTree = "<group>"; };
 		A2D64AA00FCF855B00E337D9 /* FlipsideTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDataSource.h; sourceTree = "<group>"; };
 		A2D64AA10FCF855B00E337D9 /* FlipsideTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDataSource.m; sourceTree = "<group>"; };
+		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Field_Tools_Tests.m; sourceTree = "<group>"; };
+		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2E357951044DBDD003C449D /* CoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoC.h; path = Classes/CoC.h; sourceTree = "<group>"; };
 		A2E357961044DBDD003C449D /* CoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoC.m; path = Classes/CoC.m; sourceTree = "<group>"; };
-		A2E3D0F715532869005F3F30 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Classes/iRate.h; sourceTree = "<group>"; };
-		A2E3D0F815532869005F3F30 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Classes/iRate.m; sourceTree = "<group>"; };
-		A2E3D0FA15532C54005F3F30 /* iRateConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iRateConfiguration.h; sourceTree = "<group>"; };
 		A2F8627A1545ACB500BF8480 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = GoogleAnalytics/GANTracker.h; sourceTree = "<group>"; };
 		A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = GoogleAnalytics/libGoogleAnalytics.a; sourceTree = "<group>"; };
-		A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
+		A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoogleAnalytics.h; path = ../GoogleAnalytics.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +265,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2F862851545B41A00BF8480 /* libGoogleAnalytics.a in Frameworks */,
+				A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */,
+				A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */,
+				A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */,
+				A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */,
 				A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */,
 				A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */,
 				A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */,
@@ -267,10 +278,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A21DCD7B10EE7D0300139D93 /* Frameworks */ = {
+		A2D67B271F43B33D004CC775 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +292,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A22601BC162AF7A900EE9923 /* Analytics */,
 				A2747B9F12E255EC002731EC /* Controls */,
 				A24FF4980FE0C3B00073BC03 /* Camera View */,
 				A2D6241910424A2200B2F055 /* CoC View */,
@@ -290,7 +303,6 @@
 				A2AAAECD0F2831D400945F6E /* Model */,
 				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
 				A294A02914048D5C0090C9AA /* Subject Distance Ranges View */,
-				A2A0D30710156E4000A34735 /* Table View Cells */,
 				A20D30610F7B333900A744C3 /* DistanceFormatter.h */,
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
 				A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */,
@@ -305,7 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Field Tools.app */,
-				A21DCD7E10EE7D0300139D93 /* ModelTests.octest */,
+				A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +331,7 @@
 				A2F862791545AC8400BF8480 /* Third Party Components */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				A24B1764156FE23D00BFBFF0 /* Settings.bundle */,
+				A2D67B2B1F43B33D004CC775 /* Field Tools Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				A21DCF5810EF06D700139D93 /* Documentation */,
@@ -330,8 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */,
-				A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */,
-				A2E3D0FA15532C54005F3F30 /* iRateConfiguration.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */,
 				A2811FD30ECE8DB100A7FB7A /* Notifications.h */,
@@ -344,21 +355,19 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2A45BF7126B379900423D79 /* icons */,
 				A2B372C60F754E8F00774532 /* images */,
+				A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */,
 				A261F8CE0FDCCAAA00C907AD /* CameraView.xib */,
 				A22C2451104387A1005BC94C /* CoC.plist */,
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
 				A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */,
-				A28D89E2108D5A6D00C77FEA /* Default.png */,
-				A2391BF41604062F008D545A /* Default-568h@2x.png */,
-				A200F9D31254190F006689F9 /* Default@2x.png */,
 				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */,
 				A2B95F9E10715EDF0057A70E /* LensView.xib */,
 				A24EF5770ECA853C001A7B46 /* Localizable.strings */,
-				2899E55F0DE3E45000AC0155 /* MainView.xib */,
+				A24D56C71ED65C2A00AAB986 /* Main.storyboard */,
 				A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */,
 				A294A02C14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib */,
 			);
@@ -368,6 +377,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A21C13921ED217CF00A5194B /* QuartzCore.framework */,
+				A259002A1D7FB8800058D160 /* libz.tbd */,
+				A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */,
+				A282978916453F2B00F6DE5D /* CoreData.framework */,
 				A2ACD85813B64CB30052557E /* SystemConfiguration.framework */,
 				A2ACD85613B64CAD0052557E /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -401,6 +414,7 @@
 			children = (
 				A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */,
 				A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */,
+				A28297CC1645716800F6DE5D /* FTCameraBagTests.m */,
 				88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */,
 			);
 			name = "Model Tests";
@@ -412,6 +426,19 @@
 				A21DCF5910EF06ED00139D93 /* CHANGES */,
 			);
 			name = Documentation;
+			sourceTree = "<group>";
+		};
+		A22601BC162AF7A900EE9923 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				A22601BD162AF96F00EE9923 /* AnalyticsPolicy.h */,
+				A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */,
+				A22601BE162AF9FC00EE9923 /* GoogleAnalyticsPolicy.h */,
+				A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */,
+				A22601C1162B198600EE9923 /* TableViewControllerWithAnalytics.h */,
+				A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */,
+			);
+			name = Analytics;
 			sourceTree = "<group>";
 		};
 		A23CFF29108A5FC400A41662 /* Main View */ = {
@@ -460,10 +487,10 @@
 			children = (
 				A2747BC012E2804B002731EC /* FocalLengthSlider.h */,
 				A2747BC112E2804B002731EC /* FocalLengthSlider.m */,
+				A21C138D1ED2037600A5194B /* MPCoachMarks.h */,
+				A21C138E1ED2037600A5194B /* MPCoachMarks.m */,
 				A2747BA312E25617002731EC /* OBSlider.h */,
 				A2747BA412E25617002731EC /* OBSlider.m */,
-				A2090FC313EF65B3006E74E6 /* OBSliderWithNotificationView.h */,
-				A2090FC413EF65B3006E74E6 /* OBSliderWithNotificationView.m */,
 				A2747BBC12E2803B002731EC /* SubjectDistanceSlider.h */,
 				A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */,
 			);
@@ -489,12 +516,39 @@
 			name = "Subject Distance Slider Policies";
 			sourceTree = "<group>";
 		};
+		A282977616453E3E00F6DE5D /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				A237E63B12AAF4F00089862B /* Camera.h */,
+				A237E63C12AAF4F00089862B /* Camera.m */,
+				A237E63D12AAF4F00089862B /* CameraBag.h */,
+				A237E63E12AAF4F00089862B /* CameraBag.m */,
+				A2E357951044DBDD003C449D /* CoC.h */,
+				A2E357961044DBDD003C449D /* CoC.m */,
+				A25BDF3210479BFE00B22B2B /* Lens.h */,
+				A25BDF3310479BFE00B22B2B /* Lens.m */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		A282978B16453FBE00F6DE5D /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A282977716453E8700F6DE5D /* _FTCamera.h */,
+				A282977816453E8700F6DE5D /* _FTCamera.m */,
+				A282977916453E8700F6DE5D /* _FTCoC.h */,
+				A282977A16453E8700F6DE5D /* _FTCoC.m */,
+				A282977B16453E8700F6DE5D /* _FTLens.h */,
+				A282977C16453E8700F6DE5D /* _FTLens.m */,
+			);
+			name = "Base Classes";
+			sourceTree = "<group>";
+		};
 		A289FACE1613D8D300211AE0 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				A289FACF1613D8D300211AE0 /* GCDiscreetNotificationView.license */,
-				A289FAD01613D8D300211AE0 /* iRate.license */,
 				A289FAD11613D8D300211AE0 /* licenses2settings.pl */,
+				A21C13901ED203D100A5194B /* MBCoachMarks.license */,
 				A289FAD21613D8D300211AE0 /* OBSlider.license */,
 			);
 			path = Licenses;
@@ -522,41 +576,22 @@
 			name = "Subject Distance Ranges View";
 			sourceTree = "<group>";
 		};
-		A2A0D30710156E4000A34735 /* Table View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				A2BCB98D0FFDA823004F26EA /* EditableTableViewCell.h */,
-				A2BCB98E0FFDA823004F26EA /* EditableTableViewCell.m */,
-				A2A0D30410156E3700A34735 /* TwoLabelTableViewCell.h */,
-				A2A0D30510156E3700A34735 /* TwoLabelTableViewCell.m */,
-			);
-			name = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		A2A45BF7126B379900423D79 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				A24EF5BD0ECA8E22001A7B46 /* FieldTools.png */,
-				A200F9D61254190F006689F9 /* FieldTools@2x.png */,
-				A200F9D41254190F006689F9 /* FieldTools-Small.png */,
-				A200F9D51254190F006689F9 /* FieldTools-Small@2x.png */,
-			);
-			name = icons;
-			sourceTree = "<group>";
-		};
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A237E63B12AAF4F00089862B /* Camera.h */,
-				A237E63C12AAF4F00089862B /* Camera.m */,
-				A237E63D12AAF4F00089862B /* CameraBag.h */,
-				A237E63E12AAF4F00089862B /* CameraBag.m */,
-				A2E357951044DBDD003C449D /* CoC.h */,
-				A2E357961044DBDD003C449D /* CoC.m */,
+				A282978B16453FBE00F6DE5D /* Base Classes */,
+				A282977D16453E8700F6DE5D /* FTCamera.h */,
+				A282977E16453E8700F6DE5D /* FTCamera.m */,
+				A282978C16454D2E00F6DE5D /* FTCameraBag.h */,
+				A282978D16454D2E00F6DE5D /* FTCameraBag.m */,
+				A282977F16453E8700F6DE5D /* FTCoC.h */,
+				A282978016453E8700F6DE5D /* FTCoC.m */,
+				A282978116453E8700F6DE5D /* FTLens.h */,
+				A282978216453E8700F6DE5D /* FTLens.m */,
 				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
 				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
-				A25BDF3210479BFE00B22B2B /* Lens.h */,
-				A25BDF3310479BFE00B22B2B /* Lens.m */,
+				A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */,
+				A282977616453E3E00F6DE5D /* Old */,
 			);
 			name = Model;
 			path = ..;
@@ -567,12 +602,6 @@
 			children = (
 				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
 				A200F9E212541ABA006689F9 /* distanceArrows@2x.png */,
-				A222FE82130729C600C0020B /* sliderThumbHighlighted.png */,
-				A267698B1401626D00FA7FBD /* sliderThumbHighlighted@2x.png */,
-				A222FE83130729C600C0020B /* sliderThumbNormal.png */,
-				A267698C1401626D00FA7FBD /* sliderThumbNormal@2x.png */,
-				A2B372C80F754EA700774532 /* sliderTrack.png */,
-				A200F9E312541ABA006689F9 /* sliderTrack@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -594,37 +623,24 @@
 			children = (
 				A2D6241A10424A5600B2F055 /* CoCViewController.h */,
 				A2D6241B10424A5600B2F055 /* CoCViewController.m */,
-				A2D6245D104251AA00B2F055 /* CoCViewTableDataSource.h */,
-				A2D6245E104251AA00B2F055 /* CoCViewTableDataSource.m */,
 			);
 			name = "CoC View";
 			sourceTree = "<group>";
 		};
-		A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */ = {
+		A2D67B2B1F43B33D004CC775 /* Field Tools Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A2368F5613EEDB9F00BC91ED /* GCDiscreetNotificationView.h */,
-				A2368F5713EEDB9F00BC91ED /* GCDiscreetNotificationView.m */,
+				A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */,
+				A2D67B2E1F43B33D004CC775 /* Info.plist */,
 			);
-			name = GCDiscreetNotificationView;
-			sourceTree = "<group>";
-		};
-		A2E3D0F315532789005F3F30 /* iRate */ = {
-			isa = PBXGroup;
-			children = (
-				A2E3D0F715532869005F3F30 /* iRate.h */,
-				A2E3D0F815532869005F3F30 /* iRate.m */,
-			);
-			name = iRate;
+			path = "Field Tools Tests";
 			sourceTree = "<group>";
 		};
 		A2F862791545AC8400BF8480 /* Third Party Components */ = {
 			isa = PBXGroup;
 			children = (
 				A289FACE1613D8D300211AE0 /* Licenses */,
-				A2E3D0E11553176D005F3F30 /* GCDiscreetNotificationView */,
 				A2F8627B1545ACC400BF8480 /* Google Analytics */,
-				A2E3D0F315532789005F3F30 /* iRate */,
 			);
 			name = "Third Party Components";
 			sourceTree = "<group>";
@@ -661,24 +677,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Field Tools.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A21DCD7D10EE7D0300139D93 /* ModelTests */ = {
+		A2D67B291F43B33D004CC775 /* Field Tools Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A21DCD8410EE7D0300139D93 /* Build configuration list for PBXNativeTarget "ModelTests" */;
+			buildConfigurationList = A2D67B341F43B33D004CC775 /* Build configuration list for PBXNativeTarget "Field Tools Tests" */;
 			buildPhases = (
-				A21DCD7910EE7D0300139D93 /* Resources */,
-				A21DCD7A10EE7D0300139D93 /* Sources */,
-				A21DCD7B10EE7D0300139D93 /* Frameworks */,
-				A21DCD7C10EE7D0300139D93 /* ShellScript */,
+				A2D67B261F43B33D004CC775 /* Sources */,
+				A2D67B271F43B33D004CC775 /* Frameworks */,
+				A2D67B281F43B33D004CC775 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A265A25310F6E53100678796 /* PBXTargetDependency */,
+				A2D67B301F43B33D004CC775 /* PBXTargetDependency */,
 			);
-			name = ModelTests;
-			productName = ModelTests;
-			productReference = A21DCD7E10EE7D0300139D93 /* ModelTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			name = "Field Tools Tests";
+			productName = "Field Tools Tests";
+			productReference = A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -686,7 +701,17 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0800;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = L5XZS2MG2S;
+					};
+					A2D67B291F43B33D004CC775 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1D6058900D05DD3D006BFB54;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FieldTools" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -704,7 +729,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* FieldTools */,
-				A21DCD7D10EE7D0300139D93 /* ModelTests */,
+				A282977016453D2D00F6DE5D /* Mogenerator */,
+				A2D67B291F43B33D004CC775 /* Field Tools Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -714,63 +740,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2899E5600DE3E45000AC0155 /* MainView.xib in Resources */,
+				A24D56C81ED65C2A00AAB986 /* Main.storyboard in Resources */,
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
-				A24EF5BE0ECA8E22001A7B46 /* FieldTools.png in Resources */,
+				A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
-				A2B372C90F754EA700774532 /* sliderTrack.png in Resources */,
 				A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */,
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
+				A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */,
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
-				A28D89E3108D5A6D00C77FEA /* Default.png in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
-				A200F9D71254190F006689F9 /* Default@2x.png in Resources */,
-				A200F9D81254190F006689F9 /* FieldTools-Small.png in Resources */,
-				A200F9D91254190F006689F9 /* FieldTools-Small@2x.png in Resources */,
-				A200F9DA1254190F006689F9 /* FieldTools@2x.png in Resources */,
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
-				A200F9E512541ABA006689F9 /* sliderTrack@2x.png in Resources */,
-				A222FE84130729C600C0020B /* sliderThumbHighlighted.png in Resources */,
-				A222FE85130729C600C0020B /* sliderThumbNormal.png in Resources */,
-				A267698D1401626D00FA7FBD /* sliderThumbHighlighted@2x.png in Resources */,
-				A267698E1401626D00FA7FBD /* sliderThumbNormal@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
-				A2391BF51604062F008D545A /* Default-568h@2x.png in Resources */,
-				A289FAD31613D8D300211AE0 /* GCDiscreetNotificationView.license in Resources */,
-				A289FAD41613D8D300211AE0 /* iRate.license in Resources */,
-				A289FAD51613D8D300211AE0 /* licenses2settings.pl in Resources */,
+				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A21DCD7910EE7D0300139D93 /* Resources */ = {
+		A2D67B281F43B33D004CC775 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A265A2AE10F6F1D600678796 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A21DCD7C10EE7D0300139D93 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		A24B1766156FE3BA00BFBFF0 /* Run Script - Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -797,7 +796,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./licenses2settings.pl";
+			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./credits.py -s \"$PROJECT_DIR/Licenses\" -o \"$PROJECT_DIR/Settings.bundle/Acknowledgements.plist\"";
+		};
+		A282977516453D3200F6DE5D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mogenerator --model FieldTools.xcdatamodeld/FieldTools.xcdatamodel/ --template-var arc=true --output-dir Classes/Model";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -818,10 +830,7 @@
 				A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */,
 				A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */,
 				A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */,
-				A2BCB98F0FFDA823004F26EA /* EditableTableViewCell.m in Sources */,
-				A2A0D30610156E3700A34735 /* TwoLabelTableViewCell.m in Sources */,
 				A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */,
-				A2D6245F104251AA00B2F055 /* CoCViewTableDataSource.m in Sources */,
 				A2E357971044DBDD003C449D /* CoC.m in Sources */,
 				A25BDF3410479BFE00B22B2B /* Lens.m in Sources */,
 				A2B95FA610715FB80057A70E /* LensViewController.m in Sources */,
@@ -836,8 +845,6 @@
 				A2747BA512E25617002731EC /* OBSlider.m in Sources */,
 				A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */,
 				A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */,
-				A2368F5813EEDB9F00BC91ED /* GCDiscreetNotificationView.m in Sources */,
-				A2090FC513EF65B3006E74E6 /* OBSliderWithNotificationView.m in Sources */,
 				A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */,
 				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
 				888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */,
@@ -845,38 +852,43 @@
 				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
 				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
+				A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */,
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
-				A2E3D0F915532869005F3F30 /* iRate.m in Sources */,
+				A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */,
+				A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */,
+				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
+				A282978316453E8700F6DE5D /* _FTCamera.m in Sources */,
+				A282978416453E8700F6DE5D /* _FTCoC.m in Sources */,
+				A282978516453E8700F6DE5D /* _FTLens.m in Sources */,
+				A282978616453E8700F6DE5D /* FTCamera.m in Sources */,
+				A282978716453E8700F6DE5D /* FTCoC.m in Sources */,
+				A282978816453E8700F6DE5D /* FTLens.m in Sources */,
+				A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A21DCD7A10EE7D0300139D93 /* Sources */ = {
+		A2D67B261F43B33D004CC775 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88C08BD614BE74EC0043D6E1 /* SubjectDistanceSliderPolicy.m in Sources */,
-				88C08BD514BE74E40043D6E1 /* SubjectDistanceRangePolicy.m in Sources */,
-				88C08BD414BE74360043D6E1 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
-				88C08BD314BE742D0043D6E1 /* FarSubjectDistanceRangePolicy.m in Sources */,
-				A21DCDA510EE7EE600139D93 /* DepthOfFieldCalculator.m in Sources */,
-				A265A28810F6EA9F00678796 /* DistanceFormatter.m in Sources */,
-				A265A28D10F6EDDC00678796 /* DistanceFormatterTests.m in Sources */,
-				A265A28F10F6EDF700678796 /* DepthOfFieldCalculatorTests.m in Sources */,
-				A265A29A10F6F00B00678796 /* UserDefaults.m in Sources */,
-				A24E52DF11B5DD3E00516BE3 /* DistanceRange.m in Sources */,
-				88C08BDD14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,
+				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
+				A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,
+				A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */,
+				A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */,
+				A2D67B351F43B355004CC775 /* DepthOfFieldCalculatorTests.m in Sources */,
+				A2D67B361F43B355004CC775 /* DistanceFormatterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A265A25310F6E53100678796 /* PBXTargetDependency */ = {
+		A2D67B301F43B33D004CC775 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* FieldTools */;
-			targetProxy = A265A25210F6E53100678796 /* PBXContainerItemProxy */;
+			targetProxy = A2D67B2F1F43B33D004CC775 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -904,12 +916,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = L5XZS2MG2S;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -917,14 +928,18 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
+				PROVISIONING_PROFILE = "bbd14262-e84a-47fe-81af-757259d59343";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03314A9C-485C-472A-BC21-8C9E415BE505";
+				PROVISIONING_PROFILE_SPECIFIER = "Field Tools: Development";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -933,25 +948,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L5XZS2MG2S;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
+				PROVISIONING_PROFILE = "bbd14262-e84a-47fe-81af-757259d59343";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03314A9C-485C-472A-BC21-8C9E415BE505";
+				PROVISIONING_PROFILE_SPECIFIER = "Field Tools: Development";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -959,12 +977,27 @@
 		A20C8E790F4A913F00B73E79 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brad Sokol";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081E431E-3E21-4A94-B99B-F88AD36ADC87";
@@ -978,126 +1011,175 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brad Sokol";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L5XZS2MG2S;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAnalytics\"",
+					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
+				PROVISIONING_PROFILE = "3f4af323-e721-4845-ba2d-391ef0d502b1";
+				PROVISIONING_PROFILE_SPECIFIER = "Field Tools: Distribution";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
-		A21DCD8110EE7D0300139D93 /* Debug */ = {
+		A282977116453D2D00F6DE5D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "ModelTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PRODUCT_NAME = ModelTests;
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		A21DCD8210EE7D0300139D93 /* Release */ = {
+		A282977216453D2D00F6DE5D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "ModelTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PRODUCT_NAME = ModelTests;
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		A21DCD8310EE7D0300139D93 /* Distribution */ = {
+		A282977316453D2D00F6DE5D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Distribution;
+		};
+		A2D67B311F43B33D004CC775 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ModelTests_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "ModelTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PRODUCT_NAME = ModelTests;
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
+			};
+			name = Debug;
+		};
+		A2D67B321F43B33D004CC775 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
+			};
+			name = Release;
+		};
+		A2D67B331F43B33D004CC775 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
 			};
 			name = Distribution;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brad Sokol (687QFLNJFV)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_NAME = "Field Tools";
@@ -1109,12 +1191,27 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
@@ -1136,12 +1233,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A21DCD8410EE7D0300139D93 /* Build configuration list for PBXNativeTarget "ModelTests" */ = {
+		A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A21DCD8110EE7D0300139D93 /* Debug */,
-				A21DCD8210EE7D0300139D93 /* Release */,
-				A21DCD8310EE7D0300139D93 /* Distribution */,
+				A282977116453D2D00F6DE5D /* Debug */,
+				A282977216453D2D00F6DE5D /* Release */,
+				A282977316453D2D00F6DE5D /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2D67B341F43B33D004CC775 /* Build configuration list for PBXNativeTarget "Field Tools Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2D67B311F43B33D004CC775 /* Debug */,
+				A2D67B321F43B33D004CC775 /* Release */,
+				A2D67B331F43B33D004CC775 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1157,6 +1264,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */,
+			);
+			currentVersion = A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */;
+			path = FieldTools.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

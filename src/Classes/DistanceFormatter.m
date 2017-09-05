@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/03/25.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "DistanceFormatter.h"
@@ -97,7 +97,7 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 	}
 	
 	DistanceUnits units = [self isTesting] ? [self distanceUnits] :
-		[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+		(DistanceUnits)[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 	
 	distance = [self convertDistance:distance toUnits:units];
 
@@ -255,9 +255,8 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 
 - (void)dealloc
 {
-    [numberFormatter release], numberFormatter = nil;
+    numberFormatter = nil;
     
-    [super dealloc];
 }
 
 @end

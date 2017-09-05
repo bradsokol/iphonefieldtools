@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Camera" representedClassName="FTCamera" syncable="YES">
+        <attribute name="index" attributeType="Integer 32" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="coc" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CoC" inverseName="camera" inverseEntity="CoC" syncable="YES"/>
+    </entity>
+    <entity name="CoC" representedClassName="FTCoC" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.019" syncable="YES"/>
+        <relationship name="camera" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Camera" inverseName="coc" inverseEntity="Camera" syncable="YES"/>
+    </entity>
+    <entity name="Lens" representedClassName="FTLens" syncable="YES">
+        <attribute name="index" attributeType="Integer 32" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="maximumAperture" attributeType="Float" minValueString="0.1" maxValueString="200" defaultValueString="1.4" syncable="YES"/>
+        <attribute name="maximumFocalLength" attributeType="Integer 32" minValueString="1" maxValueString="5000" defaultValueString="50" syncable="YES"/>
+        <attribute name="minimumAperture" attributeType="Float" minValueString="0.1" maxValueString="200" defaultValueString="32" syncable="YES"/>
+        <attribute name="minimumFocalLength" attributeType="Integer 32" minValueString="1" maxValueString="5000" defaultValueString="50" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Camera" positionX="-36" positionY="-45" width="128" height="88"/>
+        <element name="CoC" positionX="-63" positionY="81" width="128" height="88"/>
+        <element name="Lens" positionX="-63" positionY="218" width="128" height="133"/>
+    </elements>
+</model>

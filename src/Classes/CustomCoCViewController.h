@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,17 +17,19 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/10/19.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <UIKit/UIKit.h>
 
+#import "TableViewControllerWithAnalytics.h"
+
 #define CUSTOM_COC_KEY	@"Custom"
 
-@class Camera;
 @class CustomCoCViewTableDataSource;
+@class FTCamera;
 
-@interface CustomCoCViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
+@interface CustomCoCViewController : TableViewControllerWithAnalytics <UITableViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITableViewCell* cocValueCell;
 	IBOutlet UITextField* cocValueField;
@@ -38,18 +40,17 @@
 	
 	NSNumberFormatter* numberFormatter;
 	
-	Camera* camera;
-	Camera* cameraWorking;
+	FTCamera* camera;
 
 	float coc;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)camera;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)camera;
 
-@property(nonatomic, retain) CustomCoCViewTableDataSource* tableViewDataSource;
-@property(nonatomic, retain, readonly) UITableViewCell* cocValueCell;
-@property(nonatomic, retain, readonly) UITextField* cocValueField;
-@property(nonatomic, retain, readonly) UILabel* cocValueLabel;
+@property(nonatomic, strong) CustomCoCViewTableDataSource* tableViewDataSource;
+@property(nonatomic, strong, readonly) UITableViewCell* cocValueCell;
+@property(nonatomic, strong, readonly) UITextField* cocValueField;
+@property(nonatomic, strong, readonly) UILabel* cocValueLabel;
 
 @end

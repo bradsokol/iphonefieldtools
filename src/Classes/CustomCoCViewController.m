@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,14 +17,15 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/10/19.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "CustomCoCViewController.h"
 
-#import "Camera.h"
-#import "CoC.h"
 #import "CustomCoCViewTableDataSource.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
 
 #import "Notifications.h"
 
@@ -34,18 +35,16 @@
 - (void)makeTextFieldFirstResponder;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Camera* camera;
-@property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, strong) FTCamera* camera;
 @property(nonatomic, assign) float coc;
-@property(nonatomic, retain) NSNumberFormatter* numberFormatter;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) NSNumberFormatter* numberFormatter;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
 @implementation CustomCoCViewController
 
 @synthesize camera;
-@synthesize cameraWorking;
 @synthesize coc;
 @synthesize cocValueCell;
 @synthesize cocValueField;
@@ -62,7 +61,7 @@
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 
@@ -71,24 +70,23 @@
     }
 	
 	[self setCamera:aCamera];
-	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
 						  initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 						  target:self
-						  action:@selector(saveWasSelected)] autorelease]];
+						  action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
 	
 	[self setTitle:NSLocalizedString(@"CUSTOM_COC_VIEW_TITLE", "CoC view")];
 
-	[self setNumberFormatter:[[[NSNumberFormatter alloc] init] autorelease]];
+	[self setNumberFormatter:[[NSNumberFormatter alloc] init]];
     
 	return self;
 }
@@ -97,13 +95,9 @@
 {
     [super viewDidLoad];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:kSettingsCustomCoC withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-	
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+	[[self analyticsPolicy] trackView:kSettingsCustomCoC];
+    
+	[[self view] setBackgroundColor:[UIColor blackColor]];
 	
 	[self setTableViewDataSource: [[self tableView] dataSource]];
 	[[self tableViewDataSource] setCamera:[self camera]];
@@ -133,20 +127,26 @@
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		[self makeTextFieldFirstResponder];
 	}
 	else
 	{
-		CoC* customCoc = [[CoC alloc] initWithValue:coc
-										description:CUSTOM_COC_KEY];
+        FTCoC* customCoc = [[FTCameraBag sharedCameraBag] newCoC];
+        [customCoc setValueValue:coc];
+        [customCoc setName:CUSTOM_COC_KEY];
+
+        if ([[self camera] coc] != nil)
+        {
+            FTCoC* oldCoC = [[self camera] coc];
+            [oldCoC setCamera:nil];
+            [[FTCameraBag sharedCameraBag] deleteCoC:oldCoC];
+        }
 		[[self camera] setCoc:customCoc];
 		
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CUSTOM_COC_NOTIFICATION 
 																							 object:customCoc]];
 		
-		[customCoc release];
 
 		[[self navigationController] popViewControllerAnimated:YES];
 	}
@@ -175,16 +175,6 @@
 	coc = [[numberFormatter numberFromString:[textField text]] floatValue];
 }
 
-- (void)dealloc 
-{
-	[self setCamera:nil];
-	[self setCameraWorking:nil];
-	[self setNumberFormatter:nil];
-	[self setSaveButton:nil];
-	[self setTableViewDataSource:nil];
-	
-    [super dealloc];
-}
 
 @end
 

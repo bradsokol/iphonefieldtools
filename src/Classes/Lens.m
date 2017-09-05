@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/08/27.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "Lens.h"
@@ -48,11 +48,11 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 
 - (id)initWithCoder:(NSCoder*)decoder
 {
-	description = [[decoder decodeObjectForKey:KeyDescription] retain];
-	minimumAperture = [[NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMinimumAperture]] retain];
-	maximumAperture = [[NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMaximumAperture]] retain];
-	minimumFocalLength = [[NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMinimumFocalLength]] retain];
-	maximumFocalLength = [[NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMaximumFocalLength]] retain];
+	description = [decoder decodeObjectForKey:KeyDescription];
+	minimumAperture = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMinimumAperture]];
+	maximumAperture = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMaximumAperture]];
+	minimumFocalLength = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMinimumFocalLength]];
+	maximumFocalLength = [NSNumber numberWithFloat:[decoder decodeFloatForKey:KeyMaximumFocalLength]];
 
 	return self;
 }
@@ -127,7 +127,7 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 	[defaultValues setObject:[self asDictionary_deprecated]
 					  forKey:[NSString stringWithFormat:LensKeyFormat, [self identifier]]];
 	
-	int lensCount = [Lens count_deprecated];
+	NSInteger lensCount = [Lens count_deprecated];
 	if ([self identifier] > lensCount - 1)
 	{
 		// This is a new lens
@@ -138,7 +138,7 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 
 + (Lens*)findFromDefaultsForIndex_deprecated:(int)index
 {
-	int lensCount = [Lens count_deprecated];
+	NSInteger lensCount = [Lens count_deprecated];
 	if (index >= lensCount)
 	{
 		return nil;
@@ -147,17 +147,17 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 	NSString* key = [NSString stringWithFormat:LensKeyFormat, index];
 	NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:key];
 	
-	Lens* lens = [[[Lens alloc] initWithDescription:[dict objectForKey:LensNameKey]
+	Lens* lens = [[Lens alloc] initWithDescription:[dict objectForKey:LensNameKey]
 									minimumAperture:(NSNumber*)[dict objectForKey:MinimumApertureKey]
 									maximumAperture:(NSNumber*)[dict objectForKey:MaximumApertureKey]
 								 minimumFocalLength:(NSNumber*)[dict objectForKey:MinimumFocalLengthKey]
 								 maximumFocalLength:(NSNumber*)[dict objectForKey:MaximumFocalLengthKey]
-										 identifier:index] autorelease];
+										 identifier:index];
 	
 	return lens;
 }
 
-+ (int)count_deprecated
++ (NSInteger)count_deprecated
 {
 	return [[NSUserDefaults standardUserDefaults] integerForKey:FTLensCount];
 }
@@ -184,11 +184,5 @@ static NSString* KeyMaximumFocalLength = @"LensMaximumFocalLength";
 	return dict;
 }
 
-- (void)dealloc
-{
-	[self setDescription:nil];
-	
-	[super dealloc];
-}
 
 @end

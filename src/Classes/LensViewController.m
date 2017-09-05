@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/09/28.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "LensViewController.h"
 
-#import "Lens.h"
+#import "FTLens.h"
 #import "LensViewTableDataSource.h"
 
 #import "LensViewSections.h"
@@ -45,17 +45,16 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)cancelWasSelected;
 - (UITableViewCell*)cellForView:(UIView*)view;
-- (NSString*)cellTextForRow:(int)row inSection:(int)section;
-- (NSIndexPath*) nextCellForTag:(int)tag;
+- (NSString*)cellTextForRow:(NSInteger)row inSection:(NSInteger)section;
+- (NSIndexPath*) nextCellForTag:(NSInteger)tag;
 - (void)resignAllFirstResponders;
 - (BOOL)validateAndLoadInput;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Lens* lens;
-@property(nonatomic, retain) Lens* lensWorking;
+@property(nonatomic, strong) FTLens* lens;
 @property(nonatomic, getter=isNewLens) bool newLens;
-@property(nonatomic, retain) NSNumberFormatter* numberFormatter;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) NSNumberFormatter* numberFormatter;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
@@ -65,7 +64,6 @@ static const float SectionHeaderHeight = 44.0;
 @synthesize lensNameField;
 @synthesize lensNameCell;
 @synthesize lensNameLabel;
-@synthesize lensWorking;
 @synthesize maximumApertureField;
 @synthesize maximumApertureCell;
 @synthesize maximumApertureLabel;
@@ -91,7 +89,7 @@ static const float SectionHeaderHeight = 44.0;
 }
 
 // The designated initializer
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(Lens*)aLens
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forLens:(FTLens*)aLens
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (nil == self)
@@ -105,26 +103,24 @@ static const float SectionHeaderHeight = 44.0;
 		lensIsZoom = [[self lens] isZoom];
 	}
 	
-	[self setLensWorking:[[[self lens] copy] autorelease]];
-	
 	[self setNewLens:[[[self lens] description] length] == 0];
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
-	 action:@selector(saveWasSelected)] autorelease]];
+	 action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
 	
 	[self setTitle:NSLocalizedString(@"LENS_VIEW_TITLE", "Lens view")];
 
-	[self setNumberFormatter:[[[NSNumberFormatter alloc] init] autorelease]];
+	[self setNumberFormatter:[[NSNumberFormatter alloc] init]];
 	
 	return self;
 }
@@ -140,12 +136,6 @@ static const float SectionHeaderHeight = 44.0;
 	
 	if ([self validateAndLoadInput])
 	{
-		[[self lens] setDescription:[[self lensWorking] description]];
-		[[self lens] setMinimumAperture:[[self lensWorking] minimumAperture]];
-		[[self lens] setMaximumAperture:[[self lensWorking] maximumAperture]];
-		[[self lens] setMinimumFocalLength:[[self lensWorking] minimumFocalLength]];
-		[[self lens] setMaximumFocalLength:[[self lensWorking] maximumFocalLength]];
-		
 		if (!lensIsZoom)
 		{
 			[[self lens] setMaximumFocalLength:[[self lens] minimumFocalLength]];
@@ -272,10 +262,8 @@ static const float SectionHeaderHeight = 44.0;
 			headerText = NSLocalizedString(@"LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE");
 			break;
 	}
-	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)] autorelease];
-	UILabel *label = [[[UILabel alloc] initWithFrame:headerView.frame] autorelease];
-	[label setTextColor:[UIColor whiteColor]];
-	[label setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+	UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 320, SectionHeaderHeight)];
+	UILabel *label = [[UILabel alloc] initWithFrame:headerView.frame];
 	[label setText:headerText];
 	[label setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
 	
@@ -287,17 +275,11 @@ static const float SectionHeaderHeight = 44.0;
 {
     [super viewDidLoad];
     
-    NSError *error;
-    NSString* pageName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
-    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-	
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+    NSString* viewName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
+    [[self analyticsPolicy] trackView:viewName];
 	
 	[self setTableViewDataSource: (LensViewTableDataSource*)[[self tableView] dataSource]];
-	[[self tableViewDataSource] setLens:[self lensWorking]];
+	[[self tableViewDataSource] setLens:[self lens]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -307,7 +289,7 @@ static const float SectionHeaderHeight = 44.0;
     [super didReceiveMemoryWarning];
 }
 
-- (NSString*)cellTextForRow:(int)row inSection:(int)section
+- (NSString*)cellTextForRow:(NSInteger)row inSection:(NSInteger)section
 {
 	UITableView* tableView = (UITableView*)[self view];
 	UITableViewCell* cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
@@ -319,7 +301,7 @@ static const float SectionHeaderHeight = 44.0;
 
 - (BOOL)validateAndLoadInput
 {
-	NSString* description = [[self lensWorking] description];
+	NSString* description = [[self lens] description];
 	if (description == nil || [description length] == 0)
 	{
 		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
@@ -328,13 +310,12 @@ static const float SectionHeaderHeight = 44.0;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		return NO;
 	}
 	
-	NSNumber* maximumAperture = [[self lensWorking] maximumAperture];
-	NSNumber* minimumAperture = [[self lensWorking] minimumAperture];
+	NSNumber* maximumAperture = [[self lens] maximumAperture];
+	NSNumber* minimumAperture = [[self lens] minimumAperture];
 	if (nil == maximumAperture || nil == minimumAperture || 
 		[maximumAperture floatValue] <= APERTURE_LOWER_LIMIT || [maximumAperture floatValue] >= APERTURE_UPPER_LIMIT ||
 		[minimumAperture floatValue] <= APERTURE_LOWER_LIMIT || [minimumAperture floatValue] >= APERTURE_UPPER_LIMIT)
@@ -348,13 +329,12 @@ static const float SectionHeaderHeight = 44.0;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		return NO;
 	}
 	
-	NSNumber* minimumFocalLength = [[self lensWorking] minimumFocalLength];
-	NSNumber* maximumFocalLength = [[self lensWorking] maximumFocalLength];
+	NSNumber* minimumFocalLength = [[self lens] minimumFocalLength];
+	NSNumber* maximumFocalLength = [[self lens] maximumFocalLength];
 	if (nil == minimumFocalLength || nil == maximumFocalLength || 
 		[minimumFocalLength floatValue] <= FOCAL_LENGTH_LOWER_LIMIT || [minimumFocalLength floatValue] >= FOCAL_LENGTH_UPPER_LIMIT ||
 		[maximumFocalLength floatValue] <= FOCAL_LENGTH_LOWER_LIMIT || [maximumFocalLength floatValue] >= FOCAL_LENGTH_UPPER_LIMIT)
@@ -368,7 +348,6 @@ static const float SectionHeaderHeight = 44.0;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		
 		return NO;
 	}
@@ -376,7 +355,7 @@ static const float SectionHeaderHeight = 44.0;
 	return YES;
 }
 
-- (NSIndexPath*) nextCellForTag:(int)tag
+- (NSIndexPath*) nextCellForTag:(NSInteger)tag
 {
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
@@ -427,8 +406,8 @@ static const float SectionHeaderHeight = 44.0;
 	
 	if (TITLE_SECTION == section)
 	{
-		[[self lensWorking] setDescription:[textField text]];
-		NSLog(@"Set description to %@", [[self lensWorking] description]);
+		[[self lens] setName:[textField text]];
+		NSLog(@"Set description to %@", [[self lens] description]);
 	}
 	else
 	{
@@ -436,13 +415,13 @@ static const float SectionHeaderHeight = 44.0;
 		{
 			if (row == 0)
 			{
-				[[self lensWorking] setMaximumAperture:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set maximum aperture to %@", [[self lensWorking] maximumAperture]);
+				[[self lens] setMaximumAperture:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set maximum aperture to %@", [[self lens] maximumAperture]);
 			}
 			else 
 			{
-				[[self lensWorking] setMinimumAperture:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set minimum aperture to %@", [[self lensWorking] minimumAperture]);
+				[[self lens] setMinimumAperture:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set minimum aperture to %@", [[self lens] minimumAperture]);
 			}
 
 		}
@@ -450,13 +429,13 @@ static const float SectionHeaderHeight = 44.0;
 		{
 			if (row == 0)
 			{
-				[[self lensWorking] setMinimumFocalLength:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set minimum focal length to %@", [[self lensWorking] minimumFocalLength]);
+				[[self lens] setMinimumFocalLength:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set minimum focal length to %@", [[self lens] minimumFocalLength]);
 			}
 			else
 			{
-				[[self lensWorking] setMaximumFocalLength:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set maximum focal length to %@", [[self lensWorking] maximumFocalLength]);
+				[[self lens] setMaximumFocalLength:[numberFormatter numberFromString:[textField text]]];
+				NSLog(@"Set maximum focal length to %@", [[self lens] maximumFocalLength]);
 			}
 		}
 	}
@@ -471,7 +450,7 @@ static const float SectionHeaderHeight = 44.0;
 		return YES;
 	}
 	
-	NSLog(@"Next cell is section %d row %d", [nextCellPath section], [nextCellPath row]);
+	NSLog(@"Next cell is section %ld row %ld", (long)[nextCellPath section], (long)[nextCellPath row]);
 	[textField resignFirstResponder];
 	
 	UITableView* tableView = (UITableView*)[self view];
@@ -487,16 +466,6 @@ static const float SectionHeaderHeight = 44.0;
 	return NO;
 }
 
-- (void)dealloc 
-{
-	[self setSaveButton:nil];
-	[self setLens:nil];
-	[self setLensWorking:nil];
-	[self setNumberFormatter:nil];
-	[self setTableViewDataSource:nil];
-
-    [super dealloc];
-}
 
 @end
 

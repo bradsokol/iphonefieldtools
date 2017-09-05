@@ -22,7 +22,7 @@
 #ifndef FieldTools_GoogleAnalytics_h
 #define FieldTools_GoogleAnalytics_h
 
-#import "GANTracker.h"
+#import "GoogleAnalytics/GAI.h"
 
 // Use a fake account ID for debug builds. During initialization of
 // the analytics library, dry run mode is turned on so nothing is
@@ -35,37 +35,5 @@
 #endif
 
 #define kGANDispatchPeriodSec   10
-
-// Page names for page view tracking
-
-#define kDistanceTypeHyper      @"/HyperfocalView"
-#define kDistanceTypeNear       @"/NearView"
-#define kDistanceTypeFar        @"/FarView"
-#define kDistanceTypeNearAndFar @"/NearAndFarView"
-
-#define kUnitsCentimetres       @"/Centimetres"
-#define kUnitsFeet              @"/Feet"
-#define kUnitsFeetAndInches     @"/FeetAndInches"
-#define kUnitsMetres            @"/Metres"
-
-#define kSettings               @"/Settings"
-#define kSettingsAddCamera      @"/Settings/AddCamera"
-#define kSettingsEditCamera     @"/Settings/EditCamera"
-#define kSettingsAddLens        @"/Settings/AddLens"
-#define kSettingsEditLens       @"/Settings/EditLens"
-#define kSettingsCoC            @"/Settings/CoC"
-#define kSettingsCustomCoC      @"/Settings/CustomCoC"
-#define kSettingsSubjectDistanceRanges @"/Settings/SubjectDistanceRanges"
-
-// Event categories
-#define kCategorySubjectDistanceRange   @"SubjectDistanceRange"
-#define kCategoryCoC            @"CoC"
-
-// Event actions
-#define kActionChanged          @"Changed"
-
-// Event labels
-#define kLabelMainView          @"MainView"
-#define kLabelSettingsView      @"SettingsView"
 
 #endif

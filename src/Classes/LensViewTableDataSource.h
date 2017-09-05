@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,28 +17,28 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/09/28.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <Foundation/Foundation.h>
 
 extern NSString* CellIdentifier;
 
-@class Lens;
+@class FTLens;
 
 @interface LensViewTableDataSource : NSObject <UITableViewDataSource>
 {
-	Lens* lens;
+	FTLens* lens;
 	bool lensIsZoom;
-	UIViewController* controller;
+	UIViewController* __unsafe_unretained controller;
 }
 
-- (Lens*)lens;
-- (void)setLens:(Lens*)aLens;
+- (FTLens*)lens;
+- (void)setLens:(FTLens*)aLens;
 
 @property(nonatomic) bool lensIsZoom;
 
 // Weak reference to avoid retain cycles.
-@property(nonatomic, assign) UIViewController* controller;
+@property(nonatomic, unsafe_unretained) UIViewController* controller;
 
 @end

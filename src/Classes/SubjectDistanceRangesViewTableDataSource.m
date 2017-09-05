@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,14 +18,13 @@
 //  FieldTools
 //
 //  Created by Brad Sokol on 2011-08-23.
-//  Copyright 2011 by Brad Sokol. All rights reserved.
+//  Copyright 2011 by Brad Sokol. 
 //
 
 #import "SubjectDistanceRangesViewTableDataSource.h"
 
 #import "SubjectDistanceRangePolicy.h"
 #import "SubjectDistanceRangePolicyFactory.h"
-#import "TwoLabelTableViewCell.h"
 
 #import "UserDefaults.h"
 
@@ -61,25 +60,22 @@ static const int NUM_ROWS = 4;
 {
     static NSString *CellIdentifier = @"Cell";
 
-	TwoLabelTableViewCell* cell = 
-        (TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) 
-	{
-		cell = [[[TwoLabelTableViewCell alloc]
-				 initWithStyle:UITableViewCellStyleDefault
-				 reuseIdentifier:CellIdentifier] autorelease];
-	}
-    
-    NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%d", [indexPath row]];
-    [cell setLabel:NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE")];
-    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+
+    NSString* key = [NSString stringWithFormat:@"SUBJECT_DISTANCE_RANGE_%ld", (long)[indexPath row]];
+    cell.detailTextLabel.text = NSLocalizedString(key, "SUBJECT_DISTANCE_RANGE");
+
     SubjectDistanceRangePolicy* distanceRangePolicy =
-    [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:[indexPath row]];
-    
-    [cell setText:[distanceRangePolicy rangeDescription]];
-    
-    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
-    [cell setAccessoryType:subjectDistanceRangeIndex == [indexPath row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+    [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:(SubjectDistanceRange)[indexPath row]];
+
+    cell.textLabel.text = [distanceRangePolicy rangeDescription];
+
+    NSInteger subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    cell.accessoryType = subjectDistanceRangeIndex == [indexPath row] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
 }

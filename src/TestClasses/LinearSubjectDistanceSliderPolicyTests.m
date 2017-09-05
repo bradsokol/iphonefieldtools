@@ -19,12 +19,12 @@
 //  Created by Brad Sokol on 2012-01-11.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "FarSubjectDistanceRangePolicy.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
 
-@interface LinearSubjectDistanceSliderPolicyTests : SenTestCase
+@interface LinearSubjectDistanceSliderPolicyTests : XCTestCase
 {
     FarSubjectDistanceRangePolicy* rangePolicy;
     LinearSubjectDistanceSliderPolicy* sliderPolicy;
@@ -45,25 +45,25 @@
 - (void)testWholeMetres
 {
     float expected = 2.0f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:2.0f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:2.0f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
 }
 
 - (void)testMetresWithSingleDecimal
 {
     float expected = 2.1f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:2.1f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:2.1f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
 }
 
 - (void)testMetresWithTwoDecimals
 {
     float expected = 2.1f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:2.12f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:2.12f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
 }
 
 - (void)testMetresWithTwoDecimalsRounded
 {
     float expected = 2.2f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:2.18f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:2.18f usingUnits:DistanceUnitsMeters], expected, 0.09f, @"Slider policy test failure");
 }
 
 // ----------- Centimetres 
@@ -71,25 +71,25 @@
 - (void)testWholeCentimetres
 {
     float expected = 1.23f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.23f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.23f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
 }
 
 - (void)testCentimetresWithSingleDecimal
 {
     float expected = 1.234f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
 }
 
 - (void)testCentimetresWithTwoDecimals
 {
     float expected = 1.234f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
 }
 
 - (void)testCentimetresWithTwoDecimalsRound
 {
     float expected = 1.235f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.2345f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.2345f usingUnits:DistanceUnitsCentimeters], expected, 0.0009f, @"Slider policy test failure");
 }
 
 // ----------- Feet 
@@ -97,25 +97,25 @@
 - (void)testWholeFeet
 {
     float expected = 2.01f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:2.0f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:2.0f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
 }
 
 - (void)testFeetWithSingleDecimal
 {
     float expected = 1.22f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
 }
 
 - (void)testFeetWithTwoDecimals
 {
     float expected = 1.22f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.234f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
 }
 
 - (void)testFeetWithTwoDecimalsRound
 {
     float expected = 1.25f;
-    STAssertEqualsWithAccuracy([sliderPolicy distanceForSliderValue:1.2345f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
+    XCTAssertEqualWithAccuracy([sliderPolicy distanceForSliderValue:1.2345f usingUnits:DistanceUnitsFeet], expected, 0.009f, @"Slider policy test failure");
 }
 
 @end

@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TableViewControllerWithAnalytics.h"
+
 @class FlipsideTableViewDataSource;
 @class FlipsideTableViewDelegate;
 @class FlipsideViewController;
@@ -29,16 +31,16 @@
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
 @end
 
-@interface FlipsideViewController : UITableViewController 
+@interface FlipsideViewController : TableViewControllerWithAnalytics
 {
 	FlipsideTableViewDataSource* tableViewDataSource;
 	FlipsideTableViewDelegate* tableViewDelegate;
 	UINavigationController* navigationController;
 }
 
-@property (assign, nonatomic) id <FlipsideViewControllerDelegate> delegate;
-@property(nonatomic, retain) FlipsideTableViewDataSource* tableViewDataSource;
-@property(nonatomic, retain) FlipsideTableViewDelegate* tableViewDelegate;
-@property(nonatomic, retain) UINavigationController* navigationController;
+@property (unsafe_unretained, nonatomic) id <FlipsideViewControllerDelegate> delegate;
+@property(nonatomic, strong) FlipsideTableViewDataSource* tableViewDataSource;
+@property(nonatomic, strong) FlipsideTableViewDelegate* tableViewDelegate;
+@property(nonatomic, strong) UINavigationController* navigationController;
 
 @end

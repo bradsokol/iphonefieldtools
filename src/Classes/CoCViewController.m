@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,16 +17,18 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/08/23.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "CoCViewController.h"
 
-#import "Camera.h"
-#import "CoC.h"
-#import "CoCViewTableDataSource.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
 
 #import "Notifications.h"
+
+static const int NUM_SECTIONS = 1;
 
 @interface CoCViewController ()
 
@@ -34,22 +36,22 @@
 - (void)customCoCSpecified:(NSNotification*)notification;
 - (void)didSelectCoCPresetAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView;
 - (void)didSelectCustomCoCInTableView:(UITableView *)tableView;
-- (NSString*)keyForRow:(int)row;
-- (int)rowForSelectedCoC;
+- (NSString*)keyForRow:(NSInteger)row;
+- (NSInteger)rowForSelectedCoC;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Camera* camera;
-@property(nonatomic, retain) Camera* cameraWorking;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) FTCamera* camera;
+@property(nonatomic, strong) FTCoC* coc;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
 @implementation CoCViewController
 
+@synthesize analyticsPolicy;
 @synthesize camera;
-@synthesize cameraWorking;
+@synthesize coc;
 @synthesize saveButton;
-@synthesize tableViewDataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -59,7 +61,7 @@
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 
@@ -68,17 +70,16 @@
     }
 	
 	[self setCamera:aCamera];
-	[self setCameraWorking:[[[self camera] copy] autorelease]];
 	
 	UIBarButtonItem* cancelButton = 
-	[[[UIBarButtonItem alloc] 
+	[[UIBarButtonItem alloc] 
 	  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 	  target:self
-	  action:@selector(cancelWasSelected)] autorelease];
-	[self setSaveButton:[[[UIBarButtonItem alloc] 
+	  action:@selector(cancelWasSelected)];
+	[self setSaveButton:[[UIBarButtonItem alloc] 
 	 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 	 target:self
-	 action:@selector(saveWasSelected)] autorelease]];
+	 action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:saveButton];
@@ -100,17 +101,16 @@
 
 - (void)saveWasSelected
 {
-	[[self camera] setCoc:[[self cameraWorking] coc]];
-    
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackEvent:kCategoryCoC
-                                         action:kActionChanged
-                                          label:[[[self cameraWorking] coc] description]
-                                          value:-1
-                                      withError:&error]) 
+    if ([[self camera] coc] != [self coc])
     {
-        NSLog(@"Error recording analytics page view: %@", error);
+        FTCoC* oldCoc = [[self camera] coc];
+        [[self camera] setCoc:[self coc]];
+        [[FTCameraBag sharedCameraBag] deleteCoC:oldCoc];
     }
+    
+    [[self analyticsPolicy] trackEvent:kCategoryCoC
+                                action:kActionChanged
+                                 label:[[[self camera] coc] name] value:-1];
 
 	
 	[[self navigationController] popViewControllerAnimated:YES];
@@ -120,17 +120,11 @@
 {
     [super viewDidLoad];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:kSettingsCoC withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-	
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
-	
-	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:[self cameraWorking]];
-	[[self tableViewDataSource] setController:self];
+    [self setCoc:[[FTCameraBag sharedCameraBag] newCoC]];
+    [[self coc] setName:[[[self camera] coc] name]];
+    [[self coc] setValue:[[[self camera] coc] value]];
+
+    [[self analyticsPolicy] trackView:kSettingsCoC];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -139,11 +133,88 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)setCoc:(FTCoC *)newCoc
+{
+    // If the CoC object doesn't have a camera, it was a temporary one for
+    // editing purposes. It should be deleted.
+    if (nil != coc && nil == [coc camera])
+    {
+        [[FTCameraBag sharedCameraBag] deleteCoC:coc];
+    }
+    
+    coc = newCoc;
+}
+
+#pragma mark UITableViewDataSource methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return NUM_SECTIONS;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	// Return one extra row for the custom setting
+	return [[FTCoC cocPresets] count] + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+
+	if ([indexPath row] < [[FTCoC cocPresets] count])
+	{
+		// This is one of the rows for the preset CoC values
+		NSArray* keys = [[FTCoC cocPresets] allKeys];
+		NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+		NSString* key = [sortedKeys objectAtIndex:[indexPath row]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%.3f", [[[FTCoC cocPresets] objectForKey:key] floatValue]];
+        cell.detailTextLabel.text = key;
+		
+		if ([key compare:[[self coc] name]] == NSOrderedSame)
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+		}
+		else
+		{
+			[cell setAccessoryType:UITableViewCellAccessoryNone];
+		}
+	}
+	else
+	{
+		// This is the custom CoC row
+		
+		// See if custom CoC is configured.
+		NSString* customLabel = NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM");
+		NSString* cocDescription = [[self coc] name];
+		
+		if ([cocDescription compare:customLabel] == NSOrderedSame)
+		{
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.textLabel.text = [NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]];
+		}
+		else
+		{
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            cell.textLabel.text = @"";
+		}
+        cell.detailTextLabel.text = customLabel;
+	}
+	
+    return cell;
+}
+
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath row] == [[CoC cocPresets] count])
+    if ([indexPath row] == [[FTCoC cocPresets] count])
     {
         // Custom CoC row
         [self didSelectCustomCoCInTableView:tableView];
@@ -155,7 +226,7 @@
 	[tableView deselectRowAtIndexPath:indexPath
 							 animated:YES];
 
-	if ([indexPath row] < [[CoC cocPresets] count])
+	if ([indexPath row] < [[FTCoC cocPresets] count])
 	{
 		[self didSelectCoCPresetAtIndexPath:indexPath inTableView:tableView];
 	}
@@ -186,10 +257,8 @@
 		[newCell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		
 		NSString* description = [self keyForRow:[indexPath row]];
-		CoC* coc = [[CoC alloc] initWithValue:[[CoC findFromPresets:description] value]
-								  description:description];
-		[[self cameraWorking] setCoc:coc];
-		[coc release];
+        FTCoC* newCoc = [FTCoC findFromPresets:description];
+        [self setCoc:newCoc];
 		
 		[[NSNotificationCenter defaultCenter] 
 		 postNotification:[NSNotification notificationWithName:COC_CHANGED_NOTIFICATION object:nil]];
@@ -198,7 +267,7 @@
 	UITableViewCell* oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
 	if ([oldCell accessoryType] == UITableViewCellAccessoryCheckmark)
 	{
-		if ([oldIndexPath row] == [[CoC cocPresets] count])
+		if ([oldIndexPath row] == [[FTCoC cocPresets] count])
 		{
 			[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:oldIndexPath]
 							 withRowAnimation:UITableViewRowAnimationFade];
@@ -215,29 +284,29 @@
 	[[NSNotificationCenter defaultCenter] 
 	 postNotification:
 	 [NSNotification notificationWithName:CUSTOM_COC_SELECTED_FOR_EDIT_NOTIFICATION 
-								   object:[self cameraWorking]]];
+								   object:[self camera]]];
 }
 
-- (NSString*)keyForRow:(int)row
+- (NSString*)keyForRow:(NSInteger)row
 {
-	NSArray* keys = [[CoC cocPresets] allKeys];
+	NSArray* keys = [[FTCoC cocPresets] allKeys];
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	return [sortedKeys objectAtIndex:row];
 }
 
-- (int)rowForSelectedCoC
+- (NSInteger)rowForSelectedCoC
 {
 	// Check if custom CoC
-	if ([[[cameraWorking coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
+	if ([[[self coc] name] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
-		return [[CoC cocPresets] count];
+		return [[FTCoC cocPresets] count];
 	}
 	
-	NSArray* keys = [[CoC cocPresets] allKeys];
+	NSArray* keys = [[FTCoC cocPresets] allKeys];
 	NSArray* sortedKeys = [keys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	for (int i = 0; i < [sortedKeys count]; ++i)
 	{
-		if ([[[[self cameraWorking] coc] description] compare:[sortedKeys objectAtIndex:i]] == 0)
+		if ([[[self coc] name] compare:[sortedKeys objectAtIndex:i]] == 0)
 		{
 			return i;
 		}
@@ -247,7 +316,7 @@
 
 - (void)customCoCSpecified:(NSNotification*)notification
 {
-	// Camera already has the custom CoC. We just need to update the UI.
+    [self setCoc:[[self camera] coc]];
 	UITableView* tableView = (UITableView*)[self view];
 	
 	[tableView reloadData];
@@ -257,12 +326,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
-	[self setSaveButton:nil];
-	[self setCamera:nil];
-	[self setCameraWorking:nil];
-	[self setTableViewDataSource:nil];
 	
-    [super dealloc];
 }
 
 @end

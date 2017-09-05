@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,9 +23,12 @@
 
 #import "Camera.h"
 #import "CameraBag.h"
-#import "Coc.h"
-#import "iRate.h"
-#import "iRateConfiguration.h"
+#import "CoC.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
+#import "FTLens.h"
+#import "GoogleAnalyticsPolicy.h"
 #import "Lens.h"
 #import "MainViewController.h"
 #import "SubjectDistanceRangePolicyFactory.h"
@@ -54,28 +57,27 @@ float DefaultSubjectDistance = 2.5f;
 + (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom21:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues;
++ (void)migrateDefaultsFrom23:(NSMutableDictionary*)defaultValues;
 + (void)setupDefaultValues;
+
+- (NSURL*)applicationDocumentsDirectory;
+
+@property (strong, nonatomic) GoogleAnalyticsPolicy* analyticsPolicy;
 
 @end
 
 @implementation FieldToolsAppDelegate
 
+@synthesize analyticsPolicy;
 @synthesize window;
 @synthesize mainViewController;
 
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
 + (void)initialize
 {
-    // Configure iRate
-    [[iRate sharedInstance] setAppStoreID:kAppStoreID];
-    [[iRate sharedInstance] setDaysUntilPrompt:kDaysUntilRatingPrompt];
-    [[iRate sharedInstance] setUsesUntilPrompt:kUsesUntilRatingPrompt];
-    [[iRate sharedInstance] setRemindPeriod:kDaysUntilRatingReminder];
-    
-    [[iRate sharedInstance] setMessageTitle:NSLocalizedString(@"RATING_TITLE", @"RATING_TITLE")];
-    [[iRate sharedInstance] setMessage:NSLocalizedString(@"RATING_MESSAGE", @"RATING_MESSAGE")];
-    [[iRate sharedInstance] setCancelButtonLabel:NSLocalizedString(@"RATING_CANCEL", @"RATING_CANCEL")];
-    [[iRate sharedInstance] setRateButtonLabel:NSLocalizedString(@"RATING_RATE", @"RATING_RATE")];
-    [[iRate sharedInstance] setRemindButtonLabel:NSLocalizedString(@"RATING_LATER", @"RATING_LATER")];
 }
 
 # pragma mark "UIApplicationDelegate methods"
@@ -88,15 +90,17 @@ float DefaultSubjectDistance = 2.5f;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self setWindow:[[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease]];
+    [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
     
     [self startGoogleAnalytics];
 
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	sharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
-                                   documentsPath] retain];
+	sharedCameraBagArchivePath = [NSString stringWithFormat:@"%@/Default.camerabag",
+                                   documentsPath];
     
     [self relocateCameraBag];
+    
+    [FTCameraBag initSharedCameraBag:[self managedObjectContext]];
     
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
@@ -104,18 +108,23 @@ float DefaultSubjectDistance = 2.5f;
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom20Key, nil]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom22Key, nil]];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom23Key, nil]];
 	
 	[FieldToolsAppDelegate setupDefaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom10Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
     
-	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
+    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self setMainViewController:[mainStoryboard instantiateViewControllerWithIdentifier:@"main"]];
+    [[self mainViewController] setAnalyticsPolicy:[self analyticsPolicy]];
     
-    [self setMainViewController:[[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease]];
     [[self window] setRootViewController:[self mainViewController]];
-    [[self window] makeKeyAndVisible];
+//    [[self window] makeKeyAndVisible];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
     return YES;
 }
@@ -139,40 +148,48 @@ float DefaultSubjectDistance = 2.5f;
 	
 	bool migratedFrom22 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom22Key];
 	NSLog(@"Previously migrated from 2.2: %s", migratedFrom22 ? "YES" : "NO");
+    
+    bool migratedFrom23 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom23Key];
+	NSLog(@"Previously migrated from 2.3: %s", migratedFrom23 ? "YES" : "NO");
 
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
 	
-    if (!migratedFrom22)
+    if (!migratedFrom23)
     {
-        if (!migratedFrom21)
+        if (!migratedFrom22)
         {
-            if (!migratedFrom20)
+            if (!migratedFrom21)
             {
-                if (!migratedFrom10)
+                if (!migratedFrom20)
                 {
-                    NSLog(@"Migrating defaults from 1.0 to 2.0");
-                    [FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
-                }
-                else if ([Camera count_deprecated] == 0)
-                {
-                    CoC* coc = [CoC findFromPresets:DefaultCoC];
-                    Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
-                                                                     coc:coc
-                                                              identifier:0];
-                    [camera save_deprecated];
-                    [camera release];
+                    if (!migratedFrom10)
+                    {
+                        NSLog(@"Migrating defaults from 1.0 to 2.0");
+                        [FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
+                    }
+                    else if ([Camera count_deprecated] == 0)
+                    {
+                        CoC* coc = [CoC findFromPresets:DefaultCoC];
+                        Camera* camera = [[Camera alloc] initWithDescription:NSLocalizedString(@"DEFAULT_CAMERA_NAME", "Default camera")
+                                                                         coc:coc
+                                                                  identifier:0];
+                        [camera save_deprecated];
+                    }
+                    
+                    NSLog(@"Migrating defaults from 2.0 to 2.1");
+                    [FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
                 }
                 
-                NSLog(@"Migrating defaults from 2.0 to 2.1");
-                [FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
+                NSLog(@"Migrating defaults from 2.1");
+                [FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
             }
             
-            NSLog(@"Migrating defaults from 2.1");
-            [FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
+            NSLog(@"Migrating defaults from 2.2");
+            [FieldToolsAppDelegate migrateDefaultsFrom22:defaultValues];
         }
         
-        NSLog(@"Migrating defaults from 2.2");
-        [FieldToolsAppDelegate migrateDefaultsFrom22:defaultValues];
+        NSLog(@"Migrating defaults from 2.3");
+        [FieldToolsAppDelegate migrateDefaultsFrom23:defaultValues];
     }
 	
 	[defaultValues setObject:[NSNumber numberWithInt:1]
@@ -209,9 +226,9 @@ float DefaultSubjectDistance = 2.5f;
 {
 	// Convert camera index to a COC value
 	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:FTCameraIndex];
-	NSString* key = [NSString stringWithFormat:@"CAMERA_COC_%d", index];
+	NSString* key = [NSString stringWithFormat:@"CAMERA_COC_%ld", (long)index];
 
-	NSString* descriptionKey = [NSString stringWithFormat:@"CAMERA_DESCRIPTION_%d", index];
+	NSString* descriptionKey = [NSString stringWithFormat:@"CAMERA_DESCRIPTION_%ld", (long)index];
 	NSString* description = NSLocalizedString(descriptionKey, "CoCDescription");
 	CoC* coc = [[CoC alloc] initWithValue:[NSLocalizedString(key, "CoC") floatValue]
 							  description:description];
@@ -220,9 +237,7 @@ float DefaultSubjectDistance = 2.5f;
 													 coc:coc
 											  identifier:0];
 	[camera save_deprecated];
-	[camera release];
-	[coc release];
-	
+
 	// Create an initial lens using the limits of the sliders from V1.0
 	Lens* lens = [[Lens alloc] initWithDescription:NSLocalizedString(@"DEFAULT_LENS_NAME", "Default lens")
 								   minimumAperture:[NSNumber numberWithFloat:32.0]
@@ -231,8 +246,7 @@ float DefaultSubjectDistance = 2.5f;
 								maximumFocalLength:[NSNumber numberWithInt:200]
 										identifier:0];
 	[lens save_deprecated];
-	[lens release];
-	
+
 	// Remove obsolete keys
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:FTCameraIndex];
 }
@@ -252,7 +266,7 @@ float DefaultSubjectDistance = 2.5f;
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	CameraBag* cameraBag = [[CameraBag alloc] init];
 	
-	int cameraCount = [defaults integerForKey:FTCameraCount];
+	NSInteger cameraCount = [defaults integerForKey:FTCameraCount];
 	for (int i = 0; i < cameraCount; ++i)
 	{
 		Camera* camera = [Camera findFromDefaultsForIndex_deprecated:i];
@@ -260,7 +274,7 @@ float DefaultSubjectDistance = 2.5f;
 		[cameraBag addCamera:camera];
 	}
 	
-	int lensCount = [defaults integerForKey:FTLensCount];
+	NSInteger lensCount = [defaults integerForKey:FTLensCount];
 	for (int i = 0; i < lensCount; ++i)
 	{
 		Lens* lens = [Lens findFromDefaultsForIndex_deprecated:i];
@@ -288,19 +302,65 @@ float DefaultSubjectDistance = 2.5f;
 	{
 		NSLog(@"Failed to create archive while migrating from 2.0 defaults");
 	}
-	
-	[cameraBag release];
 }
 
 + (void)migrateDefaultsFrom22:(NSMutableDictionary*)defaultValues
 {
     bool macro = [[NSUserDefaults standardUserDefaults] boolForKey:FTMacroModeKey];
     
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:macro ? SubjectDistanceRangeMacro : SubjectDistanceRangeMid]
-                                              forKey:FTSubjectDistanceRangeKey];
+    [[NSUserDefaults standardUserDefaults]
+         setObject:[NSNumber numberWithInt:macro ? SubjectDistanceRangeMacro : SubjectDistanceRangeMid]
+         forKey:FTSubjectDistanceRangeKey];
     
     // Remove obsolete keys
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:FTMacroModeKey];
+}
+
++ (void)migrateDefaultsFrom23:(NSMutableDictionary*)defaultValues
+{
+	[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
+    
+    CameraBag* bag = [CameraBag sharedCameraBag];
+    FTCameraBag* newBag = [FTCameraBag sharedCameraBag];
+    
+    NSInteger cameraCount = [bag cameraCount];
+    for (int i = 0; i < cameraCount; ++i)
+    {
+        Camera* camera = [bag findCameraForIndex:i];
+        
+        FTCamera* newCamera = [newBag newCamera];
+        [newCamera setName:[camera description]];
+        [newCamera setIndexValue:[camera identifier]];
+        
+        CoC* coc = [camera coc];
+        FTCoC* newCoc = [newBag newCoC];
+        [newCoc setValueValue:[coc value]];
+        [newCoc setName:[coc description]];
+        [newCamera setCoc:newCoc];
+    }
+    
+    NSInteger lensCount = [bag lensCount];
+    for (int i = 0; i < lensCount; ++i)
+    {
+        Lens* lens = [bag findLensForIndex:i];
+        
+        FTLens* newLens = [newBag newLens];
+        [newLens setMinimumAperture:[lens minimumAperture]];
+        [newLens setMaximumAperture:[lens maximumAperture]];
+        [newLens setMinimumFocalLength:[lens minimumFocalLength]];
+        [newLens setMaximumFocalLength:[lens maximumFocalLength]];
+        [newLens setName:[lens description]];
+        [newLens setIndexValue:[lens identifier]];
+    }
+    
+    if ([newBag save])
+    {
+        NSError* error;
+        if (![[NSFileManager defaultManager] removeItemAtPath:sharedCameraBagArchivePath error:&error])
+        {
+            NSLog(@"Error deleting old camera bag: %@", error);
+        }
+    }
 }
 
 - (void)saveDefaults
@@ -314,8 +374,8 @@ float DefaultSubjectDistance = 2.5f;
 {
     NSString* libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
-	oldSharedCameraBagArchivePath = [[NSString stringWithFormat:@"%@/Default.camerabag",
-                                      libraryPath] retain];
+	oldSharedCameraBagArchivePath = [NSString stringWithFormat:@"%@/Default.camerabag",
+                                      libraryPath];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath])
     {
@@ -325,6 +385,12 @@ float DefaultSubjectDistance = 2.5f;
         // that there is not a file at the old location.
         NSAssert(![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath],
                  @"Camera bags found at both old and new location.");
+        return;
+    }
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath])
+    {
+        NSLog(@"Neither old nor new camera bags not found - assuming conversion to Core Data complete");
         return;
     }
     
@@ -341,23 +407,100 @@ float DefaultSubjectDistance = 2.5f;
 
 - (void)startGoogleAnalytics
 {
+    [self setAnalyticsPolicy:[[GoogleAnalyticsPolicy alloc] init]];
+    
 #ifdef DEBUG
     // Don't send events to Google from debug builds
-    [[GANTracker sharedTracker] setDryRun:YES];
+    [[self analyticsPolicy] setDebug:YES];
 #endif
-    
-    [[GANTracker sharedTracker] setAnonymizeIp:YES];
-    [[GANTracker sharedTracker] startTrackerWithAccountID:kGANAccountId
-                                           dispatchPeriod:kGANDispatchPeriodSec
-                                                 delegate:nil];
 }
 
-- (void)dealloc 
+#pragma mark - Core Data stack
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext
 {
-    [self setMainViewController:nil];
-    [self setWindow:nil];
-	
-    [super dealloc];
+    if (_managedObjectContext != nil)
+    {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil)
+    {
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return _managedObjectContext;
 }
+
+// Returns the managed object model for the application.
+// If the model doesn't already exist, it is created from the application's model.
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (_managedObjectModel != nil)
+    {
+        return _managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"FieldTools" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+}
+
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator != nil)
+    {
+        return _persistentStoreCoordinator;
+    }
+    
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"FieldTools.sqlite"];
+    
+    NSError *error = nil;
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+         
+         Typical reasons for an error here include:
+         * The persistent store is not accessible;
+         * The schema for the persistent store is incompatible with current managed object model.
+         Check the error message to determine what the actual problem was.
+         
+         
+         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+         
+         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
+         * Simply deleting the existing store:
+         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+         
+         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
+         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
+         
+         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
+         
+         */
+        
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _persistentStoreCoordinator;
+}
+
+#pragma mark - Application's Documents directory
+
+// Returns the URL to the application's Documents directory.
+- (NSURL*)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 @end

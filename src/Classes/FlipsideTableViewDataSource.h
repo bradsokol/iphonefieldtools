@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/05/28.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <Foundation/Foundation.h>
@@ -36,10 +36,10 @@ extern const NSInteger UNITS_SECTION;
 {
 	BOOL editing;
 	
-	FlipsideViewController* controller;
+	FlipsideViewController* __unsafe_unretained controller;
 }
 
 @property(nonatomic, getter=isEditing) BOOL editing;
-@property(nonatomic, assign) FlipsideViewController* controller;
+@property(nonatomic, unsafe_unretained) FlipsideViewController* controller;
 
 @end

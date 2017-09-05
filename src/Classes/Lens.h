@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/08/27.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <Foundation/Foundation.h>
@@ -44,7 +44,7 @@
 
 + (Lens*)findFromDefaultsForIndex_deprecated:(int)index;
 
-+ (int)count_deprecated;
++ (NSInteger)count_deprecated;
 
 - (NSDictionary*)asDictionary_deprecated;
 
@@ -52,11 +52,11 @@
 
 - (void)save_deprecated;
 
-@property(nonatomic, retain) NSString* description;
+@property(nonatomic, strong) NSString* description;
 @property(nonatomic) int identifier;
-@property(nonatomic, retain) NSNumber* maximumAperture;
-@property(nonatomic, retain) NSNumber* minimumAperture;
-@property(nonatomic, retain) NSNumber* maximumFocalLength;
-@property(nonatomic, retain) NSNumber* minimumFocalLength;
+@property(nonatomic, strong) NSNumber* maximumAperture;
+@property(nonatomic, strong) NSNumber* minimumAperture;
+@property(nonatomic, strong) NSNumber* maximumFocalLength;
+@property(nonatomic, strong) NSNumber* minimumFocalLength;
 
 @end

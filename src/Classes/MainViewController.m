@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,15 +21,17 @@
 
 #import "MainViewController.h"
 
-#import "Camera.h"
-#import "CameraBag.h"
-#import "CoC.h"
+#import "AnalyticsPolicy.h"
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
 #import "FlipsideViewController.h"
-#import "Lens.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
+#import "FTLens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
+#import "MPCoachMarks.h"
 #import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
 #import "SubjectDistanceRangePolicy.h"
@@ -57,15 +59,17 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateHyperfocalDistance;
 - (float)calculateNearLimit;
 - (float)calculateResult;
+- (void)configureCoachMarks;
+- (void)configureObservers;
+- (void)configureSliderColours;
 - (void)cocDidChange;
-- (void)customizeSliderAppearance:(UISlider*)slider;
 - (int)indexNearestToAperture:(float)aperture;
 - (void)initApertures;
 - (void)lensDidChange:(NSNotification*)notification;
-- (void)lensDidChangeWithLens:(Lens*)lens;
+- (void)lensDidChangeWithLens:(FTLens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
-- (void)recordAnalyticsForDistanceType:(int)distanceType;
+- (void)recordAnalyticsForDistanceType:(NSInteger)distanceType;
 - (bool)shouldShowTenths;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
@@ -80,9 +84,9 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistance;
 - (void)updateSubjectDistanceRangeText;
 
-@property(nonatomic) int apertureIndex;
-@property(nonatomic, retain) DistanceFormatter* distanceFormatter;
-@property(nonatomic, retain) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
+@property(nonatomic) NSInteger apertureIndex;
+@property(nonatomic, strong) DistanceFormatter* distanceFormatter;
+@property(nonatomic, strong) SubjectDistanceSliderPolicy* subjectDistanceSliderPolicy;
 
 @end
 
@@ -90,6 +94,7 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Accessors
 
+@synthesize analyticsPolicy;
 @synthesize apertureIndex;
 @synthesize cameraAndLensDescription;
 @synthesize circleOfLeastConfusion;
@@ -116,50 +121,23 @@ static BOOL previousLensWasZoom = YES;
 	[self updateFocalLength];
 }
 
-// Initialization
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
-{
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (nil == self) 
-	{
-        return nil;
-    }
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(unitsDidChange)
-												 name:UNITS_CHANGED_NOTIFICATION
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(cocDidChange)
-												 name:COC_CHANGED_NOTIFICATION
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(lensDidChange:)
-												 name:LENS_CHANGED_NOTIFICATION
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(subjectDistanceRangeDidChange:)
-												 name:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION
-											   object:nil];
-	
-	[self initApertures];
-
-	// Reading initial values from defaults
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[self setApertureIndex:[defaults integerForKey:FTApertureIndex]];
-	[self setFocalLength:[defaults floatForKey:FTFocalLengthKey]];
-	[self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
-	[self readDefaultCircleOfLeastConfusion];
-	
-    return self;
-}
-
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 
-    int distanceTypeSetting = [[NSUserDefaults standardUserDefaults] 
+    [self configureObservers];
+    
+    [self initApertures];
+    
+    // Reading initial values from defaults
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [self setApertureIndex:[defaults integerForKey:FTApertureIndex]];
+    [self setFocalLength:[defaults floatForKey:FTFocalLengthKey]];
+    [self setSubjectDistance:[defaults floatForKey:FTSubjectDistanceKey]];
+    [self readDefaultCircleOfLeastConfusion];
+
+
+    NSInteger distanceTypeSetting = [[NSUserDefaults standardUserDefaults]
                         integerForKey:FTDistanceTypeKey];
     [self recordAnalyticsForDistanceType:distanceTypeSetting];
     
@@ -177,14 +155,10 @@ static BOOL previousLensWasZoom = YES;
                            animated:YES];
 	
 	// Set limits on sliders
-	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
+	FTLens* lens = [[FTCameraBag sharedCameraBag] findSelectedLens];
 	[self lensDidChangeWithLens:lens];
 	[self updateSubjectDistanceSliderLimits];
 
-	[self customizeSliderAppearance:focalLengthSlider];
-	[self customizeSliderAppearance:apertureSlider];
-	[self customizeSliderAppearance:subjectDistanceSlider];
-	
     [self updateResultView];
 	[self updateAperture];
 	[self updateFocalLength];
@@ -192,11 +166,14 @@ static BOOL previousLensWasZoom = YES;
     [self updateSubjectDistanceRangeText];
 	
 	[self distanceTypeDidChange:self];
+
+    [self configureCoachMarks];
+    [self configureSliderColours];
 }
 
 #pragma mark Action messages
 
-- (IBAction)subjectDistanceRangeTextWasTouched:(id)sender 
+- (IBAction)subjectDistanceRangeTextWasTouched:(id)sender
 {
     SubjectDistanceRangePolicy* macro = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeMacro];
     SubjectDistanceRangePolicy* close = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeClose];
@@ -218,7 +195,6 @@ static BOOL previousLensWasZoom = YES;
 	styleAlert.actionSheetStyle = (UIActionSheetStyle) self.navigationController.navigationBar.barStyle;
 	
 	[styleAlert showInView:self.view];
-	[styleAlert release];
 }
 
 // Aperture slider changed
@@ -242,7 +218,7 @@ static BOOL previousLensWasZoom = YES;
 // Distance type changed in segment control
 - (void)distanceTypeDidChange:(id)sender
 {
-    int distanceTypeSetting = [distanceType selectedSegmentIndex];
+    NSInteger distanceTypeSetting = [distanceType selectedSegmentIndex];
 	[[NSUserDefaults standardUserDefaults] setInteger:distanceTypeSetting
 											   forKey:FTDistanceTypeKey];
     
@@ -257,14 +233,14 @@ static BOOL previousLensWasZoom = YES;
 	[subjectDistanceMinimum setHidden:hide];
 	[subjectDistanceMaximum setHidden:hide];
     [subjectDistanceRangeText setHidden:hide];
-	
+
 	[self updateResult];
 }
 
 // Focal length slider changed
 - (void)focalLengthDidChange:(id)sender
 {
-	Lens* lens = [[CameraBag sharedCameraBag] findSelectedLens];
+	FTLens* lens = [[FTCameraBag sharedCameraBag] findSelectedLens];
     
     if ([lens isZoom])
     {
@@ -289,7 +265,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)subjectDistanceDidChange:(id)sender
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
 
 	[self setSubjectDistance:[[self subjectDistanceSliderPolicy] distanceForSliderValue:[subjectDistanceSlider value] usingUnits:distanceUnits]];
 	
@@ -318,7 +294,7 @@ static BOOL previousLensWasZoom = YES;
 - (void)unitsDidChange
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    int distanceTypeSetting = [defaults integerForKey:FTDistanceTypeKey];
+    NSInteger distanceTypeSetting = [defaults integerForKey:FTDistanceTypeKey];
     [self recordAnalyticsForDistanceType:distanceTypeSetting];
     
 	[self updateResultView];
@@ -331,11 +307,11 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)lensDidChange:(NSNotification*)notification
 {
-	Lens* lens = (Lens*)[notification object];
+	FTLens* lens = (FTLens*)[notification object];
 	[self lensDidChangeWithLens:lens];
 }
 
-- (void)lensDidChangeWithLens:(Lens*)lens
+- (void)lensDidChangeWithLens:(FTLens*)lens
 {
 	[apertureMinimum setText:[NSString stringWithFormat:@"f/%@", [[lens minimumAperture] description]]];
 	[apertureMaximum setText:[NSString stringWithFormat:@"f/%@", [[lens maximumAperture] description]]];
@@ -372,28 +348,14 @@ static BOOL previousLensWasZoom = YES;
 
 	if ((previousLensWasZoom && isPrime) || (!previousLensWasZoom && !isPrime))
 	{
-		CGFloat delta;
-		delta = isPrime ? -controlYDelta : controlYDelta;
-
-		[self moveControl:apertureLabel byYDelta:delta];
-		[self moveControl:apertureText byYDelta:delta];
-		[self moveControl:apertureSlider byYDelta:delta];
-		[self moveControl:apertureMinimum byYDelta:delta];
-		[self moveControl:apertureMaximum byYDelta:delta];
-		
-		[self moveControl:subjectDistanceLabel byYDelta:delta];
-		[self moveControl:subjectDistanceText byYDelta:delta];
-		[self moveControl:subjectDistanceSlider byYDelta:delta];
-		[self moveControl:subjectDistanceMinimum byYDelta:delta];
-		[self moveControl:subjectDistanceMaximum byYDelta:delta];
-        [self moveControl:subjectDistanceRangeText byYDelta:delta];
+        apertureToFocalLengthConstraint.constant += isPrime ? -controlYDelta : controlYDelta;
 	}
 	previousLensWasZoom = !isPrime;
 }
 
 - (void) updateDistanceFormatter 
 {
-	[self setDistanceFormatter:[[[DistanceFormatter alloc] init] autorelease]];
+	[self setDistanceFormatter:[[DistanceFormatter alloc] init]];
 
 	[resultView setDistanceFormatter:[self distanceFormatter]];
 }
@@ -438,7 +400,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateFarLimit
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
 
 	return [DepthOfFieldCalculator calculateFarLimitForAperture:[self aperture]
 													focalLength:[self focalLength]
@@ -457,7 +419,7 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateNearLimit
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
 
 	return [DepthOfFieldCalculator calculateNearLimitForAperture:[self aperture]
 													 focalLength:[self focalLength]
@@ -489,7 +451,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateCameraAndLensDescription
 {
-	CameraBag* cameraBag = [CameraBag sharedCameraBag];
+	FTCameraBag* cameraBag = [FTCameraBag sharedCameraBag];
 	
     NSString* title = [NSString stringWithFormat:@"%@ - %@",
                        [cameraBag findSelectedCamera], [cameraBag findSelectedLens]];
@@ -556,9 +518,9 @@ static BOOL previousLensWasZoom = YES;
 - (void)updateSubjectDistance
 {
     SubjectDistanceRange subjectDistanceRange = 
-        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+        (SubjectDistanceRange)[[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     DistanceUnits units = 
-        [[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
+        (DistanceUnits)[[NSUserDefaults standardUserDefaults] integerForKey:FTDistanceUnitsKey];
 
     if (DistanceUnitsMeters == units && (subjectDistanceRange == SubjectDistanceRangeClose ||
                                          subjectDistanceRange == SubjectDistanceRangeMacro))
@@ -576,9 +538,9 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)updateSubjectDistanceRangeText
 {
-    int subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger subjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
-        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRangeIndex];
+        [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:(SubjectDistanceRange)subjectDistanceRangeIndex];
     
     [subjectDistanceRangeText setTitle:[subjectDistanceRangePolicy description]
                               forState:UIControlStateNormal];
@@ -586,7 +548,75 @@ static BOOL previousLensWasZoom = YES;
 
 #pragma mark Helpers
 
-- (void)recordAnalyticsForDistanceType:(int)distanceTypeSetting
+- (void)configureCoachMarks
+{
+    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
+    if (coachMarksShown == NO) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        CGRect coachMark = CGRectInset(focalLengthSlider.frame, -2.0, -2.0);
+        NSMutableArray* coachMarks = [NSMutableArray arrayWithArray:
+        @[@{
+              @"rect": [NSValue valueWithCGRect:coachMark],
+              @"caption": NSLocalizedString(@"FOCAL_LENGTH_SCRUBBING_COACH", "FOCAL_LENGTH_SCRUBBING_COACH"),
+              }
+          ]
+        ];
+
+        if (subjectDistanceSlider.hidden == NO)
+        {
+            coachMark = CGRectInset(subjectDistanceSlider.frame, -2.0, -2.0);
+            [coachMarks addObject:@{
+                                    @"rect": [NSValue valueWithCGRect:coachMark],
+                                    @"caption": NSLocalizedString(@"DISTANCE_SCRUBBING_COACH", "DISTANCE_SCRUBBING_COACH"),
+                                    @"position": [NSNumber numberWithInteger:LABEL_POSITION_TOP]
+                                    }
+             ];
+        }
+
+        MPCoachMarks* coachMarksView = [[MPCoachMarks alloc]
+                                        initWithFrame:UIScreen.mainScreen.bounds
+                                        coachMarks:coachMarks];
+        coachMarksView.enableSkipButton = NO;
+        coachMarksView.continueLabelText = NSLocalizedString(@"GOT_IT", "GOT_IT");
+        [self.view addSubview:coachMarksView];
+        [coachMarksView start];
+    }
+}
+
+- (void)configureObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(unitsDidChange)
+                                                 name:UNITS_CHANGED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cocDidChange)
+                                                 name:COC_CHANGED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(lensDidChange:)
+                                                 name:LENS_CHANGED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(subjectDistanceRangeDidChange:)
+                                                 name:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION
+                                               object:nil];
+}
+
+- (void)configureSliderColours
+{
+    UIColor *trackColor = [UIColor colorWithRed:184.0/255.0 green:184.0/255.0 blue:184.0/255.0 alpha:1.0];
+    apertureSlider.minimumTrackTintColor = trackColor;
+    focalLengthSlider.minimumTrackTintColor = trackColor;
+    subjectDistanceSlider.minimumTrackTintColor = trackColor;
+    apertureSlider.maximumTrackTintColor = trackColor;
+    focalLengthSlider.maximumTrackTintColor = trackColor;
+    subjectDistanceSlider.maximumTrackTintColor = trackColor;
+}
+
+- (void)recordAnalyticsForDistanceType:(NSInteger)distanceTypeSetting
 {
     NSString* viewName;
     switch (distanceTypeSetting)
@@ -609,7 +639,7 @@ static BOOL previousLensWasZoom = YES;
     }
     
     NSString* unitsName;
-    DistanceUnits distanceUnits = [[NSUserDefaults standardUserDefaults]
+    DistanceUnits distanceUnits = (DistanceUnits)[[NSUserDefaults standardUserDefaults]
                                    integerForKey:FTDistanceUnitsKey];
     switch (distanceUnits)
     {
@@ -633,26 +663,9 @@ static BOOL previousLensWasZoom = YES;
             NSAssert(FALSE, @"Unsupported or unhandled units");
         
     }
-    
-    NSError *error;
-    NSString* pageName = [NSString stringWithFormat:@"%@%@", viewName, unitsName];
-    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-}
 
-- (void)customizeSliderAppearance:(UISlider*)slider
-{
-	static UIImage* sliderTrack;
-	if (nil == sliderTrack)
-	{
-		sliderTrack = [[UIImage imageNamed:@"sliderTrack.png"]
-					   stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0];
-	}
-	
-	[slider setMinimumTrackImage:sliderTrack forState:UIControlStateNormal];
-	[slider setMaximumTrackImage:sliderTrack forState:UIControlStateNormal];
+    NSString* pageName = [NSString stringWithFormat:@"%@%@", viewName, unitsName];
+    [[self analyticsPolicy] trackView:pageName];
 }
 
 // Initialise a table of f-number values using standard one-third stop increments
@@ -729,29 +742,28 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)readDefaultCircleOfLeastConfusion
 {
-	Camera* camera = [[CameraBag sharedCameraBag] findSelectedCamera];
+	FTCamera* camera = [[FTCameraBag sharedCameraBag] findSelectedCamera];
 	
-	[self setCircleOfLeastConfusion:[[camera coc] value]];
+	[self setCircleOfLeastConfusion:[[camera coc] valueValue]];
 }
 
 - (void)updateSubjectDistanceSliderPolicy
 {
     SubjectDistanceRange subjectDistanceRange = 
-        [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+        (SubjectDistanceRange)[[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     SubjectDistanceRangePolicy* subjectDistanceRangePolicy = 
         [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:subjectDistanceRange];
 	
     SubjectDistanceSliderPolicy* sliderPolicy = [[LinearSubjectDistanceSliderPolicy alloc] initWithSubjectDistanceRangePolicy:subjectDistanceRangePolicy];
     
     [self setSubjectDistanceSliderPolicy:sliderPolicy];
-    [sliderPolicy release];
 }
 
 - (bool)shouldShowTenths
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    DistanceUnits distanceUnits = [defaults integerForKey:FTDistanceUnitsKey];
-    SubjectDistanceRange subjectDistanceRange = [defaults integerForKey:FTSubjectDistanceRangeKey];
+    DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
+    SubjectDistanceRange subjectDistanceRange = (SubjectDistanceRange)[defaults integerForKey:FTSubjectDistanceRangeKey];
     
     return distanceUnits == DistanceUnitsCentimeters &&
         subjectDistanceRange == SubjectDistanceRangeMacro;
@@ -776,7 +788,7 @@ static BOOL previousLensWasZoom = YES;
         return;
     }
     
-    int oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
+    NSInteger oldSubjectDistanceRangeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:FTSubjectDistanceRangeKey];
     if (buttonIndex != oldSubjectDistanceRangeIndex)
     {
         [[NSUserDefaults standardUserDefaults] setInteger:buttonIndex
@@ -784,22 +796,19 @@ static BOOL previousLensWasZoom = YES;
         
         [[NSNotificationCenter defaultCenter] 
          postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
-        
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:kCategorySubjectDistanceRange
-                                             action:kActionChanged
-                                              label:kLabelMainView
-                                              value:buttonIndex
-                                          withError:&error]) 
-        {
-            NSLog(@"Error recording analytics page view: %@", error);
-        }
+
+        [[self analyticsPolicy] trackEvent:kCategorySubjectDistanceRange
+                                    action:kActionChanged
+                                     label:kLabelMainView
+                                     value:buttonIndex];
     }
 }
 
 - (IBAction)toggleView
 {
-    FlipsideViewController* controller = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil] autorelease];
+    FlipsideViewController* controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
+    
+    [controller setAnalyticsPolicy:[self analyticsPolicy]];
     
     controller.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -807,27 +816,23 @@ static BOOL previousLensWasZoom = YES;
     
 	UINavigationItem* navigationItem = [[[navController navigationBar] items] objectAtIndex:0];
 	[navigationItem setTitle:NSLocalizedString(@"SETTINGS_TITLE", "Settings title")];
-	[[navController navigationBar] setBarStyle:UIBarStyleBlackOpaque];
+    [navController navigationBar].barStyle = UIBarStyleDefault;
     
-    [navController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [navController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [self presentViewController:navController animated:YES completion:NULL];
-    [navController release];
 }
 
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[self setDistanceFormatter:nil];
 	
-	[self setSubjectDistanceSliderPolicy:nil];
 
-    [subjectDistanceRangeText release];
-    [super dealloc];
+    
+    
 }
 
 - (void)viewDidUnload 
 {
-    [subjectDistanceRangeText release];
     subjectDistanceRangeText = nil;
 	[self setCameraAndLensDescription:nil];
 	[self setInfoButton:nil];

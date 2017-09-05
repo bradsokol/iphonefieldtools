@@ -7,26 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface OBSlider : UISlider
-{
-    float scrubbingSpeed;
-    NSArray *scrubbingSpeeds;
-    NSArray *scrubbingSpeedChangePositions;
-    
-    CGPoint beganTrackingLocation;
-	
-    float realPositionValue;
-    
-    UIImage* normalThumb;
-    UIImage* highlightedThumb;
 
-}
-
-- (void)scrubbingZoneDidChangeFrom:(NSUInteger)oldZone to:(NSUInteger)newZone;
-
-@property (assign, readonly) float scrubbingSpeed;
-@property (retain) NSArray *scrubbingSpeeds;
-@property (retain) NSArray *scrubbingSpeedChangePositions;
+@property (assign, nonatomic, readonly) float scrubbingSpeed;
+@property (strong, nonatomic) NSArray *scrubbingSpeeds;
+@property (strong, nonatomic) NSArray *scrubbingSpeedChangePositions;
 
 @end

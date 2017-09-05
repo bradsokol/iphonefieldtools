@@ -15,157 +15,157 @@
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache2</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache3</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache4</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache5</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache6</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache7</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache8</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache9</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache10</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache11</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache12</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache13</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache14</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache15</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache16</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache17</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache18</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache19</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache20</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache21</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache22</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache23</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache24</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache25</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache26</string>
                 </dict>
                 <dict>
                         <key>Type</key>
                         <string>PSGroupSpecifier</string>
-                        <key>Title</key>
+                        <key>FooterText</key>
                         <string>apache27</string>
                 </dict>
         </array>

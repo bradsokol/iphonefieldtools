@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,15 +17,14 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/06/10.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "CameraViewTableDataSource.h"
 
-#import "Camera.h"
 #import "CameraViewController.h"
-#import "CoC.h"
-#import "TwoLabelTableViewCell.h"
+#import "FTCamera.h"
+#import "FTCoC.h"
 
 static const int CAMERA_NAME_ROW = 0;
 static const int NUM_SECTIONS = 1;
@@ -84,26 +83,18 @@ static const int NUM_SECTIONS = 1;
 {
 	static NSString* CellIdentifier = @"Cell";
 
-	TwoLabelTableViewCell* cell = 
-		(TwoLabelTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (nil == cell)
-	{
-		cell = [[[TwoLabelTableViewCell alloc] 
-				 initWithStyle:UITableViewCellStyleDefault
-                 reuseIdentifier:CellIdentifier] autorelease];
-	}
-	[cell setLabel:NSLocalizedString(@"COC_TITLE", "CoC")];
-	[cell setText:[[[self camera] coc] description]];
-	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+
+    cell.textLabel.text = NSLocalizedString(@"COC_TITLE", "CoC");
+    cell.detailTextLabel.text = self.camera.coc.description;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
 	return cell;
 }
 
-- (void)dealloc
-{
-	[self setCamera:nil];
-	
-	[super dealloc];
-}
 
 @end

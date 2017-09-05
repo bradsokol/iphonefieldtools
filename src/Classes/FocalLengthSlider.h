@@ -22,9 +22,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "OBSliderWithNotificationView.h"
+#import "OBSlider.h"
 
-@interface FocalLengthSlider : OBSliderWithNotificationView
+@interface FocalLengthSlider : OBSlider
 {
 
 }

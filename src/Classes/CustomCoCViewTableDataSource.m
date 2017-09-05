@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,14 +17,14 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/10/19.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "CustomCoCViewTableDataSource.h"
 
-#import "Camera.h"
-#import "CoC.h"
 #import "CustomCoCViewController.h"
+#import "FTCamera.h"
+#import "FTCoC.h"
 
 @implementation CustomCoCViewTableDataSource
 
@@ -52,7 +52,7 @@
 	
 	if ([[[camera coc] description] compare:NSLocalizedString(@"CUSTOM_COC_DESCRIPTION", "CUSTOM")] == NSOrderedSame)
 	{
-		[[customCoCViewController cocValueField] setText:[NSString stringWithFormat:@"%.3f", [[camera coc] value]]];
+		[[customCoCViewController cocValueField] setText:[NSString stringWithFormat:@"%.3f", [[camera coc] valueValue]]];
 	}
 	
 	[[customCoCViewController cocValueField] becomeFirstResponder];
@@ -60,11 +60,5 @@
 	return cell;
 }
 
-- (void)dealloc
-{
-	[self setCamera:nil];
-	
-	[super dealloc];
-}
 
 @end

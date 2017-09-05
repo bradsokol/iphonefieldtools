@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,19 +17,19 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/04/14.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import "CameraViewController.h"
 
-#import "Camera.h"
+#import "AnalyticsPolicy.h"
 #import "CameraViewTableDataSource.h"
-#import "CoC.h"
+#import "FTCamera.h"
+#import "FTCameraBag.h"
+#import "FTCoC.h"
 
 #import "Notifications.h"
 #import "UserDefaults.h"
-
-static const int TEXT_FIELD_TAG = 99;
 
 @interface CameraViewController ()
 
@@ -37,20 +37,19 @@ static const int TEXT_FIELD_TAG = 99;
 - (void)cocChanged:(NSNotification*)notification;
 - (void)saveWasSelected;
 
-@property(nonatomic, retain) Camera* camera;
-@property(nonatomic, retain) Camera* cameraWorking;
+@property(nonatomic, strong) FTCamera* camera;
 @property(nonatomic, getter=isNewCamera) bool newCamera;
-@property(nonatomic, retain) UIBarButtonItem* saveButton;
+@property(nonatomic, strong) UIBarButtonItem* saveButton;
 
 @end
 
 @implementation CameraViewController
 
+@synthesize analyticsPolicy;
 @synthesize camera;
 @synthesize cameraNameField;
 @synthesize cameraNameCell;
 @synthesize cameraNameLabel;
-@synthesize cameraWorking;
 @synthesize newCamera;
 @synthesize saveButton;
 @synthesize tableViewDataSource;
@@ -63,7 +62,7 @@ static const int TEXT_FIELD_TAG = 99;
 }
 
 // The designated initializer.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(Camera*)aCamera
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forCamera:(FTCamera*)aCamera
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil == self) 
@@ -73,20 +72,18 @@ static const int TEXT_FIELD_TAG = 99;
 	
 	[self setCamera:aCamera];
 	
-	[self setCameraWorking:[[[self camera] copy] autorelease]];
-	
 	[self setNewCamera:[[[self camera] description] length] == 0];
 	
 	UIBarButtonItem* cancelButton = 
-		[[[UIBarButtonItem alloc] 
+		[[UIBarButtonItem alloc] 
 		  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel									 
 							   target:self
-							   action:@selector(cancelWasSelected)] autorelease];
+							   action:@selector(cancelWasSelected)];
 	[self setSaveButton: 
-		[[[UIBarButtonItem alloc] 
+		[[UIBarButtonItem alloc] 
 		 initWithBarButtonSystemItem:UIBarButtonSystemItemSave	 
 							  target:self
-							  action:@selector(saveWasSelected)] autorelease]];
+							  action:@selector(saveWasSelected)]];
 	
 	[[self navigationItem] setLeftBarButtonItem:cancelButton];
 	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
@@ -107,6 +104,7 @@ static const int TEXT_FIELD_TAG = 99;
 
 - (void)cancelWasSelected
 {
+    [[FTCameraBag sharedCameraBag] rollback];
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -115,20 +113,17 @@ static const int TEXT_FIELD_TAG = 99;
 	[[self cameraNameField] resignFirstResponder];
 	
 	NSString* message = nil;
-	if ([cameraWorking description] == nil || [[cameraWorking description] length] == 0)
+	if ([camera description] == nil || [[camera description] length] == 0)
 	{
 		message = NSLocalizedString(@"CAMERA_ERROR_MISSING_NAME", "CAMERA_ERROR_MISSING_NAME");
 	}
-	else if ([[cameraWorking coc] value] <= 0.0)
+	else if ([[camera coc] valueValue] <= 0.0)
 	{
 		message = NSLocalizedString(@"CAMERA_ERROR_INVALID_COC", "CAMERA_ERROR_INVALID_COC");
 	}
 	
 	if (message == nil)
 	{
-		[[self camera] setDescription:[[self cameraWorking] description]];
-		[[self camera] setCoc:[[self cameraWorking] coc]];
-		
 		NSString* notificationName = [self isNewCamera] ? CAMERA_WAS_ADDED_NOTIFICATION : CAMERA_WAS_EDITED_NOTIFICATION;
 		
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:notificationName
@@ -144,7 +139,6 @@ static const int TEXT_FIELD_TAG = 99;
 											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}
 }
 
@@ -153,17 +147,11 @@ static const int TEXT_FIELD_TAG = 99;
 {
     [super viewDidLoad];
 
-    NSError *error;
-    NSString* pageName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
-    if (![[GANTracker sharedTracker] trackPageview:pageName withError:&error]) 
-    {
-        NSLog(@"Error recording analytics page view: %@", error);
-    }
-	
-	[[self view] setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+    NSString* viewName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
+    [[self analyticsPolicy] trackView:viewName];
 
 	[self setTableViewDataSource: [[self tableView] dataSource]];
-	[[self tableViewDataSource] setCamera:[self cameraWorking]];
+	[[self tableViewDataSource] setCamera:[self camera]];
 	[[self tableViewDataSource] setController:self];
 }
 
@@ -176,7 +164,7 @@ static const int TEXT_FIELD_TAG = 99;
 	 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	[[self cameraWorking] setDescription:[textField text]];
+	[[self camera] setName:[textField text]];
 }
 
 #pragma mark UITableViewDelegate methods
@@ -201,7 +189,7 @@ static const int TEXT_FIELD_TAG = 99;
         [[NSNotificationCenter defaultCenter] 
          postNotification:
          [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
-                                       object:[self cameraWorking]]];
+                                       object:[self camera]]];
     }
 }
 
@@ -220,14 +208,5 @@ static const int TEXT_FIELD_TAG = 99;
 	[tableView reloadData];
 }
 
-- (void)dealloc 
-{
-	[self setSaveButton:nil];
-	[self setCamera:nil];
-	[self setCameraWorking:nil];
-	[self setTableViewDataSource:nil];
-	
-    [super dealloc];
-}
 
 @end

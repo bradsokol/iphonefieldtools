@@ -1,4 +1,4 @@
-// Copyright 2009 Brad Sokol
+// Copyright 2009-2017 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,22 +17,22 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/10/19.
-//  Copyright 2009 Brad Sokol. All rights reserved.
+//  Copyright 2009-2017 Brad Sokol. 
 //
 
 #import <Foundation/Foundation.h>
 
-@class Camera;
+@class FTCamera;
 
 @interface CustomCoCViewTableDataSource : NSObject <UITableViewDataSource>
 {
-	Camera* camera;
-	UIViewController* controller;
+	FTCamera* camera;
+	UIViewController* __unsafe_unretained controller;
 }
 
-@property(nonatomic, retain) Camera* camera;
+@property(nonatomic, strong) FTCamera* camera;
 
 // Weak reference to prevent retain cycles.
-@property(nonatomic, assign) UIViewController* controller;
+@property(nonatomic, unsafe_unretained) UIViewController* controller;
 
 @end
