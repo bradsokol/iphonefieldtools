@@ -13,12 +13,6 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "FieldTools-Small.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
       "filename" : "FieldTools-Small@2x.png",
       "scale" : "2x"
     },
@@ -39,16 +33,6 @@
       "idiom" : "iphone",
       "filename" : "FieldTools-Small-40@3x.png",
       "scale" : "3x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "57x57",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "57x57",
-      "scale" : "2x"
     },
     {
       "size" : "60x60",
