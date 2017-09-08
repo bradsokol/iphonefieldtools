@@ -555,21 +555,26 @@ static BOOL previousLensWasZoom = YES;
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
         [[NSUserDefaults standardUserDefaults] synchronize];
 
-        CGRect coachMark = CGRectInset(focalLengthSlider.frame, -2.0, -2.0);
-        NSMutableArray* coachMarks = [NSMutableArray arrayWithArray:
-        @[@{
-              @"rect": [NSValue valueWithCGRect:coachMark],
-              @"caption": NSLocalizedString(@"FOCAL_LENGTH_SCRUBBING_COACH", "FOCAL_LENGTH_SCRUBBING_COACH"),
-              }
-          ]
-        ];
+        NSMutableArray* coachMarks = [[NSMutableArray alloc] init];
+        if (focalLengthSlider.hidden == NO)
+        {
+            CGRect coachMark = CGRectInset(focalLengthSlider.frame, -2.0, -2.0);
+            [coachMarks addObject:@{
+                  @"rect": [NSValue valueWithCGRect:coachMark],
+                  @"caption": NSLocalizedString(@"FOCAL_LENGTH_SCRUBBING_COACH", "FOCAL_LENGTH_SCRUBBING_COACH"),
+                  }
+            ];
+        }
 
         if (subjectDistanceSlider.hidden == NO)
         {
-            coachMark = CGRectInset(subjectDistanceSlider.frame, -2.0, -2.0);
+            CGRect frame = CGRectOffset(subjectDistanceSlider.frame, 0, focalLengthSlider.hidden ? -controlYDelta : 0);
+            CGRect coachMark = CGRectInset(frame, -2.0, -2.0);
+            NSString* stringKey = focalLengthSlider.hidden ? @"DISTANCE_SCRUBBING_COACH" : @"DISTANCE_SCRUBBING_COACH_SECOND";
+            NSString* caption = NSLocalizedString(stringKey, stringKey);
             [coachMarks addObject:@{
                                     @"rect": [NSValue valueWithCGRect:coachMark],
-                                    @"caption": NSLocalizedString(@"DISTANCE_SCRUBBING_COACH", "DISTANCE_SCRUBBING_COACH"),
+                                    @"caption": caption,
                                     @"position": [NSNumber numberWithInteger:LABEL_POSITION_TOP]
                                     }
              ];
