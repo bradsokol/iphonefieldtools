@@ -782,7 +782,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\ncd \"$PROJECT_DIR\"\nBUILD_VERSION=`/usr/local/git/bin/git rev-parse --short HEAD`\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\nif [ \"$CONFIGURATION\" = \"Debug\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $BUILD_VERSION\" Info.plist\n    /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist\nelse\n    /usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION\" Settings.bundle/Root.plist\nfi";
+			shellScript = "#!/bin/bash\ncd \"$PROJECT_DIR\"\nBUILD_VERSION=`git rev-parse --short HEAD`\nDIRTY_COUNT=`git status --porcelain|egrep \"^(M| M|\\?\\?)\"|wc -l`\ncd \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\nRELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" Info.plist)\nif [ \"$CONFIGURATION\" = \"Debug\" ]; then\nif [ $DIRTY_COUNT -gt 0 ]; then\nBUILD_VERSION=\"$BUILD_VERSION+\"\nfi\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion $BUILD_VERSION\" Info.plist\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION ($BUILD_VERSION)\" Settings.bundle/Root.plist\nelse\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $RELEASE_VERSION\" Settings.bundle/Root.plist\nfi";
 		};
 		A24B1767156FE4E100BFBFF0 /* Run Script - Update Acknowledgements */ = {
 			isa = PBXShellScriptBuildPhase;
