@@ -550,7 +550,7 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)configureCoachMarks
 {
-    BOOL coachMarksShown = NO; //[[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
+    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
     if (coachMarksShown == NO) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -568,7 +568,8 @@ static BOOL previousLensWasZoom = YES;
 
         if (subjectDistanceSlider.hidden == NO)
         {
-            CGRect coachMark = CGRectInset(subjectDistanceSlider.frame, -2.0, -2.0);
+            CGRect frame = CGRectOffset(subjectDistanceSlider.frame, 0, focalLengthSlider.hidden ? -controlYDelta : 0);
+            CGRect coachMark = CGRectInset(frame, -2.0, -2.0);
             NSString* stringKey = focalLengthSlider.hidden ? @"DISTANCE_SCRUBBING_COACH" : @"DISTANCE_SCRUBBING_COACH_SECOND";
             NSString* caption = NSLocalizedString(stringKey, stringKey);
             [coachMarks addObject:@{
