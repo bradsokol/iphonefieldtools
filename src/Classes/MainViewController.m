@@ -550,7 +550,10 @@ static BOOL previousLensWasZoom = YES;
 
 - (void)configureCoachMarks
 {
-    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
+#ifndef DEBUG
+#   error Remove the line below before shipping
+#endif
+    BOOL coachMarksShown = NO; //[[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
     if (coachMarksShown == NO) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
         [[NSUserDefaults standardUserDefaults] synchronize];
