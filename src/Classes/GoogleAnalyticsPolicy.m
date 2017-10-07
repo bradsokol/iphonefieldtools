@@ -53,7 +53,7 @@
 // set to the specific error, or nil).
 - (BOOL)trackView:(NSString *)viewName
 {
-    NSLog(@"Google Anlytics: Tracking view %@", viewName);
+    DLog(@"Google Anlytics: Tracking view %@", viewName);
 
     [self.tracker set:kGAIScreenName value:viewName];
     [self.tracker send:[[GAIDictionaryBuilder createScreenView] build]];
@@ -68,7 +68,7 @@
              label:(NSString *)label
              value:(NSInteger)value
 {
-    NSLog(@"Google Analytics: Tracking event: (%@, %@, %@, %ld)",
+    DLog(@"Google Analytics: Tracking event: (%@, %@, %@, %ld)",
           category, action, label, (long)value);
 
     [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:category

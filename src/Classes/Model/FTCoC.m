@@ -28,7 +28,7 @@ static NSDictionary* cocPresets;
 		cocPresets = [NSDictionary dictionaryWithContentsOfFile:path];
 		for (NSString* key in cocPresets)
 		{
-			NSLog(@"%@ %@", key, [cocPresets objectForKey:key]);
+			DLog(@"%@ %@", key, [cocPresets objectForKey:key]);
 		}
 	}
 	

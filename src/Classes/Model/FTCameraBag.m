@@ -259,7 +259,7 @@ static FTCameraBag* sharedCameraBag = nil;
                                                 inManagedObjectContext:context]
                 insertIntoManagedObjectContext:context];
     
-    NSLog(@"New CoC: %p", coc);
+    DLog(@"New CoC: %p", coc);
     return coc;
 }
 
@@ -282,7 +282,7 @@ static FTCameraBag* sharedCameraBag = nil;
 {
     NSAssert([coc camera] == nil, @"Attempting to delete coc that is attached to a camera");
 
-    NSLog(@"Deleting CoC: %p", coc);
+    DLog(@"Deleting CoC: %p", coc);
     [[self managedObjectContext] deleteObject:coc];
 }
 
@@ -294,18 +294,18 @@ static FTCameraBag* sharedCameraBag = nil;
     {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
-            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+            DLog(@"Failed to save to data store: %@", [error localizedDescription]);
             NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
             if(detailedErrors != nil && [detailedErrors count] > 0)
             {
                 for(NSError* detailedError in detailedErrors)
                 {
-                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+                    DLog(@"  DetailedError: %@", [detailedError userInfo]);
                 }
             }
             else
             {
-                NSLog(@"  %@", [error userInfo]);
+                DLog(@"  %@", [error userInfo]);
             }
             
             return NO;
@@ -341,7 +341,7 @@ static FTCameraBag* sharedCameraBag = nil;
     NSUInteger count = [[self managedObjectContext] countForFetchRequest:request error:&error];
     if (count == NSNotFound)
     {
-        NSLog(@"Error counting entity instances: %@", error);
+        DLog(@"Error counting entity instances: %@", error);
         count = 0;
     }
     

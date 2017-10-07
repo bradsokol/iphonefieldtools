@@ -401,13 +401,13 @@ static const float SectionHeaderHeight = 44.0;
 	NSInteger tag = [cell tag];
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
-	NSLog(@"Text field %08x did end editing for section %d row %d for cell %08x", 
+	DLog(@"Text field %08x did end editing for section %d row %d for cell %08x", 
           (unsigned int) textField, section, row, (unsigned int) cell);
 	
 	if (TITLE_SECTION == section)
 	{
 		[[self lens] setName:[textField text]];
-		NSLog(@"Set description to %@", [[self lens] description]);
+		DLog(@"Set description to %@", [[self lens] description]);
 	}
 	else
 	{
@@ -416,12 +416,12 @@ static const float SectionHeaderHeight = 44.0;
 			if (row == 0)
 			{
 				[[self lens] setMaximumAperture:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set maximum aperture to %@", [[self lens] maximumAperture]);
+				DLog(@"Set maximum aperture to %@", [[self lens] maximumAperture]);
 			}
 			else 
 			{
 				[[self lens] setMinimumAperture:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set minimum aperture to %@", [[self lens] minimumAperture]);
+				DLog(@"Set minimum aperture to %@", [[self lens] minimumAperture]);
 			}
 
 		}
@@ -430,12 +430,12 @@ static const float SectionHeaderHeight = 44.0;
 			if (row == 0)
 			{
 				[[self lens] setMinimumFocalLength:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set minimum focal length to %@", [[self lens] minimumFocalLength]);
+				DLog(@"Set minimum focal length to %@", [[self lens] minimumFocalLength]);
 			}
 			else
 			{
 				[[self lens] setMaximumFocalLength:[numberFormatter numberFromString:[textField text]]];
-				NSLog(@"Set maximum focal length to %@", [[self lens] maximumFocalLength]);
+				DLog(@"Set maximum focal length to %@", [[self lens] maximumFocalLength]);
 			}
 		}
 	}
@@ -450,7 +450,7 @@ static const float SectionHeaderHeight = 44.0;
 		return YES;
 	}
 	
-	NSLog(@"Next cell is section %ld row %ld", (long)[nextCellPath section], (long)[nextCellPath row]);
+	DLog(@"Next cell is section %ld row %ld", (long)[nextCellPath section], (long)[nextCellPath row]);
 	[textField resignFirstResponder];
 	
 	UITableView* tableView = (UITableView*)[self view];

@@ -139,18 +139,18 @@ float DefaultSubjectDistance = 2.5f;
 + (void)setupDefaultValues
 {
 	bool migratedFrom10 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom10Key];
-	NSLog(@"Previously migrated from 1.0: %s", migratedFrom10 ? "YES" : "NO");
+	DLog(@"Previously migrated from 1.0: %s", migratedFrom10 ? "YES" : "NO");
 	bool migratedFrom20 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom20Key];
-	NSLog(@"Previously migrated from 2.0: %s", migratedFrom20 ? "YES" : "NO");
+	DLog(@"Previously migrated from 2.0: %s", migratedFrom20 ? "YES" : "NO");
 	
 	bool migratedFrom21 = [[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath];
-	NSLog(@"Previously migrated from 2.1: %s", migratedFrom21 ? "YES" : "NO");
+	DLog(@"Previously migrated from 2.1: %s", migratedFrom21 ? "YES" : "NO");
 	
 	bool migratedFrom22 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom22Key];
-	NSLog(@"Previously migrated from 2.2: %s", migratedFrom22 ? "YES" : "NO");
+	DLog(@"Previously migrated from 2.2: %s", migratedFrom22 ? "YES" : "NO");
     
     bool migratedFrom23 = [[NSUserDefaults standardUserDefaults] boolForKey:FTMigratedFrom23Key];
-	NSLog(@"Previously migrated from 2.3: %s", migratedFrom23 ? "YES" : "NO");
+	DLog(@"Previously migrated from 2.3: %s", migratedFrom23 ? "YES" : "NO");
 
 	NSMutableDictionary* defaultValues = [NSMutableDictionary dictionary];
 	
@@ -164,7 +164,7 @@ float DefaultSubjectDistance = 2.5f;
                 {
                     if (!migratedFrom10)
                     {
-                        NSLog(@"Migrating defaults from 1.0 to 2.0");
+                        DLog(@"Migrating defaults from 1.0 to 2.0");
                         [FieldToolsAppDelegate migrateDefaultsFrom10:defaultValues];
                     }
                     else if ([Camera count_deprecated] == 0)
@@ -176,19 +176,19 @@ float DefaultSubjectDistance = 2.5f;
                         [camera save_deprecated];
                     }
                     
-                    NSLog(@"Migrating defaults from 2.0 to 2.1");
+                    DLog(@"Migrating defaults from 2.0 to 2.1");
                     [FieldToolsAppDelegate migrateDefaultsFrom20:defaultValues];
                 }
                 
-                NSLog(@"Migrating defaults from 2.1");
+                DLog(@"Migrating defaults from 2.1");
                 [FieldToolsAppDelegate migrateDefaultsFrom21:defaultValues];
             }
             
-            NSLog(@"Migrating defaults from 2.2");
+            DLog(@"Migrating defaults from 2.2");
             [FieldToolsAppDelegate migrateDefaultsFrom22:defaultValues];
         }
         
-        NSLog(@"Migrating defaults from 2.3");
+        DLog(@"Migrating defaults from 2.3");
         [FieldToolsAppDelegate migrateDefaultsFrom23:defaultValues];
     }
 	
@@ -300,7 +300,7 @@ float DefaultSubjectDistance = 2.5f;
 	}
 	else
 	{
-		NSLog(@"Failed to create archive while migrating from 2.0 defaults");
+		DLog(@"Failed to create archive while migrating from 2.0 defaults");
 	}
 }
 
@@ -358,7 +358,7 @@ float DefaultSubjectDistance = 2.5f;
         NSError* error;
         if (![[NSFileManager defaultManager] removeItemAtPath:sharedCameraBagArchivePath error:&error])
         {
-            NSLog(@"Error deleting old camera bag: %@", error);
+            DLog(@"Error deleting old camera bag: %@", error);
         }
     }
 }
@@ -379,7 +379,7 @@ float DefaultSubjectDistance = 2.5f;
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:sharedCameraBagArchivePath])
     {
-        NSLog(@"Camera bag already exists at new location.");
+        DLog(@"Camera bag already exists at new location.");
         
         // File exists at the new location. There is nothing to do. For safety, check
         // that there is not a file at the old location.
@@ -390,18 +390,18 @@ float DefaultSubjectDistance = 2.5f;
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:oldSharedCameraBagArchivePath])
     {
-        NSLog(@"Neither old nor new camera bags not found - assuming conversion to Core Data complete");
+        DLog(@"Neither old nor new camera bags not found - assuming conversion to Core Data complete");
         return;
     }
     
-    NSLog(@"Moving camera bag to new location.");
+    DLog(@"Moving camera bag to new location.");
     
     NSError* error;
     if (![[NSFileManager defaultManager] moveItemAtPath:oldSharedCameraBagArchivePath
                                             toPath:sharedCameraBagArchivePath
                                              error:&error])
     {
-        NSLog(@"%@", [error localizedDescription]);
+        DLog(@"%@", [error localizedDescription]);
     }
 }
 
@@ -487,7 +487,7 @@ float DefaultSubjectDistance = 2.5f;
          
          */
         
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     

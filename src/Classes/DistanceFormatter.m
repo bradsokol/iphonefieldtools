@@ -106,7 +106,7 @@ const float METRES_TO_MILLIMETRES = 1000.0f;
 	
     [self setNumberFormat];
     NSString* localizedDistance = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:distance]];
-    NSLog(@"Localized distance: %@", localizedDistance);
+    DLog(@"Localized distance: %@", localizedDistance);
 	switch (units)
 	{
 		case DistanceUnitsFeet:
