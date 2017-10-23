@@ -123,7 +123,7 @@ static const float SMALL_FONT_SIZE = 20.0;
             [[self distanceFormatter] setDecimalPlaces:0];
         }
 		
-		NSLog(@"drawRect near: %@ far: %@ difference: %@", leftNumber.text, rightNumber.text, difference.text);
+		DLog(@"drawRect near: %@ far: %@ difference: %@", leftNumber.text, rightNumber.text, difference.text);
 		
 		// Hide the difference if infinity (i.e. less than zero)
 		difference.hidden = distanceDifference <= 0;
@@ -140,9 +140,7 @@ static const float SMALL_FONT_SIZE = 20.0;
 // Call this method to display a single value.
 - (void)setResult:(CGFloat)distance
 {
-#ifdef DEBUG
-    NSLog(@"setResult: distance: %f", distance);
-#endif
+    DLog(@"setResult: distance: %f", distance);
 
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
@@ -168,11 +166,9 @@ static const float SMALL_FONT_SIZE = 20.0;
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 
-#ifdef DEBUG
 	float factor = [defaults integerForKey:FTDistanceUnitsKey] == DistanceUnitsMeters ? 1.0f : 3.280839895f;
-	NSLog(@"setResult: near: %f far: %f", near * factor, far * factor);
-#endif
-	
+	DLog(@"setResult: near: %f far: %f", near * factor, far * factor);
+
 	displayRange = YES;
 
 	DistanceUnits distanceUnits = (DistanceUnits)[defaults integerForKey:FTDistanceUnitsKey];
@@ -218,10 +214,8 @@ static const float SMALL_FONT_SIZE = 20.0;
 	
 	distanceDifference = farDistance - nearDistance;
 
-#ifdef DEBUG
-	NSLog(@"setResult nearDistance: %f farDistance: %f difference: %f", 
+	DLog(@"setResult nearDistance: %f farDistance: %f difference: %f",
 		  nearDistance * factor, farDistance * factor, distanceDifference * factor);
-#endif
 	
 	[self setNeedsDisplay];
 }

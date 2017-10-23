@@ -58,7 +58,7 @@ static NSString* KeyCoc = @"CameraCoC";
 	[self setCoc:aCoc];
 	[self setIdentifier:anIdentifier];
 	
-	NSLog(@"Camera init: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
+	DLog(@"Camera init: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
 	
 	return self;
 }
@@ -141,7 +141,7 @@ static NSString* KeyCoc = @"CameraCoC";
 												   forKey:FTCameraCount];
 	}
 	
-	NSLog(@"Camera save: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
+	DLog(@"Camera save: %@ coc:%f (%@)", self.description, self.coc.value, self.coc.description);
 }
 
 + (NSInteger)count_deprecated

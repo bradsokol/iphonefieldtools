@@ -139,7 +139,7 @@ static CameraBag* sharedCameraBag = nil;
 	// Safety check - never delete the last camera
 	if (cameraCount == 1)
 	{
-		NSLog(@"Can't delete the last camera in Camera:delete");
+		DLog(@"Can't delete the last camera in Camera:delete");
 		return;
 	}
 
@@ -231,7 +231,7 @@ static CameraBag* sharedCameraBag = nil;
 {
 	if (nil == lens)
 	{
-		NSLog(@"Attempt to delete nil lens");
+		DLog(@"Attempt to delete nil lens");
 		return;
 	}
 	
@@ -241,7 +241,7 @@ static CameraBag* sharedCameraBag = nil;
 	// Safety check - never delete the last lens
 	if (lensCount == 1)
 	{
-		NSLog(@"Can't delete the last lens in Lens:delete");
+		DLog(@"Can't delete the last lens in Lens:delete");
 		return;
 	}
 

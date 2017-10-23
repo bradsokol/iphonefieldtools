@@ -428,13 +428,26 @@ NSString *const kContinueLabelText = @"Tap to continue";
 }
 
 - (CGFloat)yOriginForContinueLabel {
+    float offset = 30.0f;
+    SEL selector = @selector(safeAreaInsets);
+    if ([self respondsToSelector:selector])  // iOS 11+
+    {
+        NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
+        invocation.selector = selector;
+        invocation.target = self;
+        [invocation invoke];
+        UIEdgeInsets safeInsets;
+        [invocation getReturnValue:&safeInsets];
+        offset += safeInsets.bottom;
+    }
+
     switch (self.continueLocation) {
         case LOCATION_TOP:
             return 20.0f;
         case LOCATION_CENTER:
             return self.bounds.size.height / 2 - 15.0f;
         default:
-            return self.bounds.size.height - 30.0f;
+            return self.bounds.size.height - offset;
     }
 }
 
