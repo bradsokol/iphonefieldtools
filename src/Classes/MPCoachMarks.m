@@ -20,6 +20,12 @@ static const BOOL kEnableSkipButton = YES;
 NSString *const kSkipButtonText = @"Skip";
 NSString *const kContinueLabelText = @"Tap to continue";
 
+@interface MPCoachMarks()
+#ifdef __IPHONE_11_0
+-(UIEdgeInsets)getSafeAreaInsets;
+#endif
+@end
+
 @implementation MPCoachMarks {
     CAShapeLayer *mask;
     NSUInteger markIndex;
@@ -157,8 +163,6 @@ NSString *const kContinueLabelText = @"Tap to continue";
     anim.delegate = self;
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     anim.duration = self.animationDuration;
-    anim.removedOnCompletion = NO;
-    anim.fillMode = kCAFillModeForwards;
     anim.fromValue = (__bridge id)(mask.path);
     anim.toValue = (__bridge id)(maskPath.CGPath);
     [mask addAnimation:anim forKey:@"path"];
@@ -349,6 +353,26 @@ NSString *const kContinueLabelText = @"Tap to continue";
             }
         }
             break;
+        case LABEL_POSITION_LEFT_BOTTOM:
+        {
+            y = markRect.origin.y + markRect.size.height + self.lblSpacing;
+            CGFloat bottomY = y + self.lblCaption.frame.size.height + self.lblSpacing;
+            if (bottomY > self.bounds.size.height) {
+                y = markRect.origin.y - self.lblSpacing - self.lblCaption.frame.size.height;
+            }
+            CGFloat xArrow = markRect.origin.x + markRect.size.width + kLabelMargin; // Arrow to the right
+            x = markRect.origin.x + markRect.size.width + kLabelMargin - self.lblCaption.frame.size.width - 60.0f; // Text to the left (- 60.0f to not override arrow image)
+            if(showArrow) {
+                self.arrowImage = [[UIImageView alloc] initWithImage:[self fetchImage:@"arrow-top-left"]];
+                CGRect imageViewFrame = self.arrowImage.frame;
+                imageViewFrame.origin.x = xArrow - markRect.size.width/2 - imageViewFrame.size.width/2;
+                imageViewFrame.origin.y = y - kLabelMargin; //self.lblCaption.frame.size.height/2
+                y += imageViewFrame.size.height/2;
+                self.arrowImage.frame = imageViewFrame;
+                [self addSubview:self.arrowImage];
+            }
+        }
+            break;
         default: {
             y = markRect.origin.y + markRect.size.height + self.lblSpacing;
             CGFloat bottomY = y + self.lblCaption.frame.size.height + self.lblSpacing;
@@ -413,7 +437,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
         }
     }
     
-    if (self.enableSkipButton) {
+    if (self.enableSkipButton && markIndex == 0) {
         btnSkipCoach = [[UIButton alloc] initWithFrame:(CGRect){{lblContinueWidth, [self yOriginForContinueLabel]}, {btnSkipWidth, 30.0f}}];
         [btnSkipCoach addTarget:self action:@selector(skipCoach) forControlEvents:UIControlEventTouchUpInside];
         [btnSkipCoach setTitle:self.skipButtonText forState:UIControlStateNormal];
@@ -428,28 +452,41 @@ NSString *const kContinueLabelText = @"Tap to continue";
 }
 
 - (CGFloat)yOriginForContinueLabel {
-    float offset = 30.0f;
+    float topOffset = 20.0f;
+    float bottomOffset = 30.f;
+
+#ifdef __IPHONE_11_0
+    UIEdgeInsets safeInsets = [self getSafeAreaInsets];
+    topOffset += safeInsets.top;
+    bottomOffset += safeInsets.bottom;
+#endif
+
+    switch (self.continueLocation) {
+        case LOCATION_TOP:
+            return topOffset;
+        case LOCATION_CENTER:
+            return self.bounds.size.height / 2 - 15.0f;
+        default:
+            return self.bounds.size.height - bottomOffset;
+    }
+}
+
+#ifdef __IPHONE_11_0
+-(UIEdgeInsets)getSafeAreaInsets {
+    UIEdgeInsets safeInsets = { .top = 0, .bottom = 0, .left = 0, .right = 0 };
     SEL selector = @selector(safeAreaInsets);
-    if ([self respondsToSelector:selector])  // iOS 11+
+    if ([self respondsToSelector:selector])
     {
         NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
         invocation.selector = selector;
         invocation.target = self;
         [invocation invoke];
-        UIEdgeInsets safeInsets;
-        [invocation getReturnValue:&safeInsets];
-        offset += safeInsets.bottom;
-    }
 
-    switch (self.continueLocation) {
-        case LOCATION_TOP:
-            return 20.0f;
-        case LOCATION_CENTER:
-            return self.bounds.size.height / 2 - 15.0f;
-        default:
-            return self.bounds.size.height - offset;
+        [invocation getReturnValue:&safeInsets];
     }
+    return safeInsets;
 }
+#endif
 
 #pragma mark - Cleanup
 
@@ -490,3 +527,4 @@ NSString *const kContinueLabelText = @"Tap to continue";
 }
 
 @end
+
