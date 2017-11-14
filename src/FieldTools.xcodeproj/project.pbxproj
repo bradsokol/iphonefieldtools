@@ -34,7 +34,7 @@
 		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C138E1ED2037600A5194B /* MPCoachMarks.m */; };
-		A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MBCoachMarks.license */; };
+		A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MPCoachMarks.license */; };
 		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
 		A21DCD6D10EE748300139D93 /* DepthOfFieldCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */; };
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
@@ -141,7 +141,7 @@
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
 		A21C138D1ED2037600A5194B /* MPCoachMarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCoachMarks.h; sourceTree = "<group>"; };
 		A21C138E1ED2037600A5194B /* MPCoachMarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCoachMarks.m; sourceTree = "<group>"; };
-		A21C13901ED203D100A5194B /* MBCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MBCoachMarks.license; sourceTree = "<group>"; };
+		A21C13901ED203D100A5194B /* MPCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPCoachMarks.license; sourceTree = "<group>"; };
 		A21C13921ED217CF00A5194B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthOfFieldCalculator.h; path = Classes/DepthOfFieldCalculator.h; sourceTree = "<group>"; };
 		A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculator.m; path = Classes/DepthOfFieldCalculator.m; sourceTree = "<group>"; };
@@ -548,7 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				A289FAD11613D8D300211AE0 /* licenses2settings.pl */,
-				A21C13901ED203D100A5194B /* MBCoachMarks.license */,
+				A21C13901ED203D100A5194B /* MPCoachMarks.license */,
 				A289FAD21613D8D300211AE0 /* OBSlider.license */,
 			);
 			path = Licenses;
@@ -755,7 +755,7 @@
 				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
-				A21C13911ED203D100A5194B /* MBCoachMarks.license in Resources */,
+				A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */,
 				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
