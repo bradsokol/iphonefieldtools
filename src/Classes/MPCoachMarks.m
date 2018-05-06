@@ -428,7 +428,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
             lblContinue.backgroundColor = [UIColor whiteColor];
             [self addSubview:lblContinue];
             [UIView animateWithDuration:0.3f delay:1.0f options:0 animations:^{
-                lblContinue.alpha = 1.0f;
+                self->lblContinue.alpha = 1.0f;
             } completion:nil];
         } else if (markIndex > 0 && lblContinue != nil) {
             // Otherwise, remove the lbl
@@ -446,7 +446,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
         btnSkipCoach.tintColor = [UIColor whiteColor];
         [self addSubview:btnSkipCoach];
         [UIView animateWithDuration:0.3f delay:1.0f options:0 animations:^{
-            btnSkipCoach.alpha = 1.0f;
+            self->btnSkipCoach.alpha = 1.0f;
         } completion:nil];
     }
 }
