@@ -21,7 +21,6 @@
 
 #import "FlipsideViewController.h"
 
-#import "AnalyticsPolicy.h"
 #import "CameraViewController.h"
 #import "CoCViewController.h"
 #import "CustomCoCViewController.h"
@@ -50,7 +49,6 @@
 
 @implementation FlipsideViewController
 
-@synthesize analyticsPolicy;
 @synthesize navigationController;
 @synthesize tableViewDataSource;
 @synthesize tableViewDelegate;
@@ -107,8 +105,6 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    [[self analyticsPolicy] trackView:kSettings];
 
 	[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 	UIBarButtonItem* rightBarButtonItem = 
@@ -206,8 +202,7 @@
 		[[CameraViewController alloc] initWithNibName:@"CameraView" 
 											   bundle:nil
 											forCamera:(FTCamera*)[notification object]];
-    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
-    
+
 	[[self navigationController] pushViewController:viewController animated:YES];
 }
 
@@ -217,7 +212,6 @@
 	[[CoCViewController alloc] initWithNibName:@"CoCView" 
 										bundle:nil
 									 forCamera:(FTCamera*)[notification object]];
-    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
 	[[self navigationController] pushViewController:viewController animated:YES];
 }
 
@@ -228,8 +222,7 @@
 		[[CustomCoCViewController alloc] initWithNibName:@"CustomCoCView" 
 												  bundle:nil
 											   forCamera:camera];
-    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
-    
+
 	[[self navigationController] pushViewController:viewController animated:YES];
 }
 
@@ -239,8 +232,7 @@
 	[[LensViewController alloc] initWithNibName:@"LensView" 
 										 bundle:nil
 									    forLens:(FTLens*)[notification object]];
-    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
-    
+
 	[[self navigationController] pushViewController:viewController animated:YES];
 }
 
@@ -249,7 +241,6 @@
     SubjectDistanceRangesViewController* viewController =
         [[SubjectDistanceRangesViewController alloc] initWithNibName:@"SubjectDistanceRangesViewController"
                                                               bundle:nil];
-    [viewController setAnalyticsPolicy:[self analyticsPolicy]];
     
     [[self navigationController] pushViewController:viewController animated:YES];
 }

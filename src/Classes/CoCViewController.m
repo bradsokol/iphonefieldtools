@@ -48,7 +48,6 @@ static const int NUM_SECTIONS = 1;
 
 @implementation CoCViewController
 
-@synthesize analyticsPolicy;
 @synthesize camera;
 @synthesize coc;
 @synthesize saveButton;
@@ -107,12 +106,7 @@ static const int NUM_SECTIONS = 1;
         [[self camera] setCoc:[self coc]];
         [[FTCameraBag sharedCameraBag] deleteCoC:oldCoc];
     }
-    
-    [[self analyticsPolicy] trackEvent:kCategoryCoC
-                                action:kActionChanged
-                                 label:[[[self camera] coc] name] value:-1];
 
-	
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -123,8 +117,6 @@ static const int NUM_SECTIONS = 1;
     [self setCoc:[[FTCameraBag sharedCameraBag] newCoC]];
     [[self coc] setName:[[[self camera] coc] name]];
     [[self coc] setValue:[[[self camera] coc] value]];
-
-    [[self analyticsPolicy] trackView:kSettingsCoC];
 }
 
 - (void)didReceiveMemoryWarning 

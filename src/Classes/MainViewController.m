@@ -21,7 +21,6 @@
 
 #import "MainViewController.h"
 
-#import "AnalyticsPolicy.h"
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
 #import "FieldToolsAppDelegate.h"
@@ -69,7 +68,6 @@ static BOOL previousLensWasZoom = YES;
 - (void)lensDidChangeWithLens:(FTLens*)lens;
 - (void)moveControl:(UIView*)view byYDelta:(CGFloat)delta;
 - (void)readDefaultCircleOfLeastConfusion;
-- (void)recordAnalyticsForDistanceType:(NSInteger)distanceType;
 - (bool)shouldShowTenths;
 - (void)subjectDistanceRangeDidChange:(NSNotification*)notification;
 - (void)unitsDidChange;
@@ -139,8 +137,7 @@ static BOOL previousLensWasZoom = YES;
 
     NSInteger distanceTypeSetting = [[NSUserDefaults standardUserDefaults]
                         integerForKey:FTDistanceTypeKey];
-    [self recordAnalyticsForDistanceType:distanceTypeSetting];
-    
+
     [self updateCameraAndLensDescription];
     
 	[self updateDistanceFormatter];
@@ -221,9 +218,7 @@ static BOOL previousLensWasZoom = YES;
     NSInteger distanceTypeSetting = [distanceType selectedSegmentIndex];
 	[[NSUserDefaults standardUserDefaults] setInteger:distanceTypeSetting
 											   forKey:FTDistanceTypeKey];
-    
-    [self recordAnalyticsForDistanceType:distanceTypeSetting];
-	
+
 	// Show or hide the distance slider depending on the distance
 	// type selected in the segment control.
 	BOOL hide = [distanceType selectedSegmentIndex] == HYPERFOCAL_SEGMENT_INDEX;
@@ -293,10 +288,6 @@ static BOOL previousLensWasZoom = YES;
 // Notification that units changed. Need to re-display results.
 - (void)unitsDidChange
 {
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger distanceTypeSetting = [defaults integerForKey:FTDistanceTypeKey];
-    [self recordAnalyticsForDistanceType:distanceTypeSetting];
-    
 	[self updateResultView];
     
 	[self updateSubjectDistanceSliderPolicy];
@@ -621,58 +612,6 @@ static BOOL previousLensWasZoom = YES;
     subjectDistanceSlider.maximumTrackTintColor = trackColor;
 }
 
-- (void)recordAnalyticsForDistanceType:(NSInteger)distanceTypeSetting
-{
-    NSString* viewName;
-    switch (distanceTypeSetting)
-    {
-        case 0:
-            viewName = kDistanceTypeHyper;
-            break;
-        case 1:
-            viewName = kDistanceTypeNear;
-            break;
-        case 2:
-            viewName = kDistanceTypeFar;
-            break;
-        case 3:
-            viewName = kDistanceTypeNearAndFar;
-            break;
-            
-        default:
-            NSAssert(FALSE, @"Unsupported or unhandled distance type");
-    }
-    
-    NSString* unitsName;
-    DistanceUnits distanceUnits = (DistanceUnits)[[NSUserDefaults standardUserDefaults]
-                                   integerForKey:FTDistanceUnitsKey];
-    switch (distanceUnits)
-    {
-        case DistanceUnitsCentimeters:
-            unitsName = kUnitsCentimetres;
-            break;
-            
-        case DistanceUnitsFeet:
-            unitsName = kUnitsFeet;
-            break;
-            
-        case DistanceUnitsFeetAndInches:
-            unitsName = kUnitsFeetAndInches;
-            break;
-            
-        case DistanceUnitsMeters:
-            unitsName = kUnitsMetres;
-            break;
-        
-        default:
-            NSAssert(FALSE, @"Unsupported or unhandled units");
-        
-    }
-
-    NSString* pageName = [NSString stringWithFormat:@"%@%@", viewName, unitsName];
-    [[self analyticsPolicy] trackView:pageName];
-}
-
 // Initialise a table of f-number values using standard one-third stop increments
 - (void)initApertures
 {
@@ -801,20 +740,13 @@ static BOOL previousLensWasZoom = YES;
         
         [[NSNotificationCenter defaultCenter] 
          postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
-
-        [[self analyticsPolicy] trackEvent:kCategorySubjectDistanceRange
-                                    action:kActionChanged
-                                     label:kLabelMainView
-                                     value:buttonIndex];
     }
 }
 
 - (IBAction)toggleView
 {
     FlipsideViewController* controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-    
-    [controller setAnalyticsPolicy:[self analyticsPolicy]];
-    
+
     controller.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [controller setNavigationController:navController];

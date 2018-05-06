@@ -21,8 +21,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TableViewControllerWithAnalytics.h"
-
 @class FlipsideTableViewDataSource;
 @class FlipsideTableViewDelegate;
 @class FlipsideViewController;
@@ -31,7 +29,7 @@
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
 @end
 
-@interface FlipsideViewController : TableViewControllerWithAnalytics
+@interface FlipsideViewController : UITableViewController
 {
 	FlipsideTableViewDataSource* tableViewDataSource;
 	FlipsideTableViewDelegate* tableViewDelegate;

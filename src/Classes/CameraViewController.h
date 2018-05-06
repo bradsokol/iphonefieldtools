@@ -22,12 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TableViewControllerWithAnalytics.h"
-
 @class CameraViewTableDataSource;
 @class FTCamera;
 
-@interface CameraViewController : TableViewControllerWithAnalytics <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
+@interface CameraViewController : UITableViewController <UIAlertViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITableViewCell* cameraNameCell;
 	IBOutlet UITextField* cameraNameField;

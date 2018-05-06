@@ -40,8 +40,6 @@
 		A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E14E14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m */; };
 		A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */; };
 		A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */; };
-		A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */; };
-		A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A22F4A560FC65326003A5E26 /* FlipsideTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */; };
 		A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A22F4A720FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m */; };
@@ -54,8 +52,6 @@
 		A24E52DE11B5DD3E00516BE3 /* DistanceRange.m in Sources */ = {isa = PBXBuildFile; fileRef = A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
 		A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FF4A30FE0C4DD0073BC03 /* CameraViewTableDataSource.m */; };
-		A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */; };
-		A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A259002A1D7FB8800058D160 /* libz.tbd */; };
 		A25BDF3410479BFE00B22B2B /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BDF3310479BFE00B22B2B /* Lens.m */; };
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
@@ -102,7 +98,6 @@
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2E357971044DBDD003C449D /* CoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E357961044DBDD003C449D /* CoC.m */; };
-		A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,11 +148,6 @@
 		A224E15114152FC5005735C0 /* MidSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		A224E15314153227005735C0 /* FarSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		A224E15414153227005735C0 /* FarSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
-		A22601BD162AF96F00EE9923 /* AnalyticsPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsPolicy.h; sourceTree = "<group>"; };
-		A22601BE162AF9FC00EE9923 /* GoogleAnalyticsPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsPolicy.h; sourceTree = "<group>"; };
-		A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsPolicy.m; sourceTree = "<group>"; };
-		A22601C1162B198600EE9923 /* TableViewControllerWithAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerWithAnalytics.h; sourceTree = "<group>"; };
-		A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerWithAnalytics.m; sourceTree = "<group>"; };
 		A22C244E1043874D005BC94C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/CoC.plist; sourceTree = "<group>"; };
 		A22F4A540FC65326003A5E26 /* FlipsideTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideTableViewDelegate.h; sourceTree = "<group>"; };
 		A22F4A550FC65326003A5E26 /* FlipsideTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideTableViewDelegate.m; sourceTree = "<group>"; };
@@ -257,7 +247,6 @@
 		A2F8627A1545ACB500BF8480 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = GoogleAnalytics/GANTracker.h; sourceTree = "<group>"; };
 		A2F8627E1545AD7700BF8480 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		A2F862841545B41A00BF8480 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = GoogleAnalytics/libGoogleAnalytics.a; sourceTree = "<group>"; };
-		A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoogleAnalytics.h; path = ../GoogleAnalytics.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,10 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */,
-				A259002B1D7FB8800058D160 /* libz.tbd in Frameworks */,
-				A25900291D7FB7B10058D160 /* libGoogleAnalyticsServices.a in Frameworks */,
 				A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */,
-				A2F8627F1545AD7700BF8480 /* libsqlite3.0.dylib in Frameworks */,
 				A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */,
 				A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -292,7 +278,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A22601BC162AF7A900EE9923 /* Analytics */,
 				A2747B9F12E255EC002731EC /* Controls */,
 				A24FF4980FE0C3B00073BC03 /* Camera View */,
 				A2D6241910424A2200B2F055 /* CoC View */,
@@ -426,19 +411,6 @@
 				A21DCF5910EF06ED00139D93 /* CHANGES */,
 			);
 			name = Documentation;
-			sourceTree = "<group>";
-		};
-		A22601BC162AF7A900EE9923 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				A22601BD162AF96F00EE9923 /* AnalyticsPolicy.h */,
-				A2F862861545B4BA00BF8480 /* GoogleAnalytics.h */,
-				A22601BE162AF9FC00EE9923 /* GoogleAnalyticsPolicy.h */,
-				A22601BF162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m */,
-				A22601C1162B198600EE9923 /* TableViewControllerWithAnalytics.h */,
-				A22601C2162B198600EE9923 /* TableViewControllerWithAnalytics.m */,
-			);
-			name = Analytics;
 			sourceTree = "<group>";
 		};
 		A23CFF29108A5FC400A41662 /* Main View */ = {
@@ -856,8 +828,6 @@
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
-				A22601C0162AF9FC00EE9923 /* GoogleAnalyticsPolicy.m in Sources */,
-				A22601C3162B198600EE9923 /* TableViewControllerWithAnalytics.m in Sources */,
 				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
 				A282978316453E8700F6DE5D /* _FTCamera.m in Sources */,
 				A282978416453E8700F6DE5D /* _FTCoC.m in Sources */,
