@@ -762,18 +762,5 @@ static BOOL previousLensWasZoom = YES;
 - (void)dealloc 
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	
-
-    
-    
-}
-
-- (void)viewDidUnload 
-{
-    subjectDistanceRangeText = nil;
-	[self setCameraAndLensDescription:nil];
-	[self setInfoButton:nil];
-
-    [super viewDidUnload];
 }
 @end
