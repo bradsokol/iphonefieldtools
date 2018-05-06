@@ -107,10 +107,9 @@
 	[self setTableViewDataSource:(SubjectDistanceRangesViewTableDataSource*)[[self tableView] dataSource]];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark UITableViewDelegate methods

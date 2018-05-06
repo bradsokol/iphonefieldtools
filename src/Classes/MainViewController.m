@@ -249,11 +249,9 @@ static BOOL previousLensWasZoom = YES;
 	[self updateFocalLength];
 }
 
-// Specify supported orientations - currently only portait.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 // Distance to subject slider was changed
