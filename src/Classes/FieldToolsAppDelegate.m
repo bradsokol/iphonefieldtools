@@ -28,7 +28,6 @@
 #import "FTCameraBag.h"
 #import "FTCoC.h"
 #import "FTLens.h"
-#import "GoogleAnalyticsPolicy.h"
 #import "Lens.h"
 #import "MainViewController.h"
 #import "SubjectDistanceRangePolicyFactory.h"
@@ -48,8 +47,6 @@ float DefaultSubjectDistance = 2.5f;
 
 @interface FieldToolsAppDelegate ()
 
-- (void)startGoogleAnalytics;
-
 - (void)relocateCameraBag;
 - (void)saveDefaults;
 
@@ -62,13 +59,10 @@ float DefaultSubjectDistance = 2.5f;
 
 - (NSURL*)applicationDocumentsDirectory;
 
-@property (strong, nonatomic) GoogleAnalyticsPolicy* analyticsPolicy;
-
 @end
 
 @implementation FieldToolsAppDelegate
 
-@synthesize analyticsPolicy;
 @synthesize window;
 @synthesize mainViewController;
 
@@ -91,8 +85,6 @@ float DefaultSubjectDistance = 2.5f;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
-    
-    [self startGoogleAnalytics];
 
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	sharedCameraBagArchivePath = [NSString stringWithFormat:@"%@/Default.camerabag",
@@ -120,7 +112,6 @@ float DefaultSubjectDistance = 2.5f;
     
     UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [self setMainViewController:[mainStoryboard instantiateViewControllerWithIdentifier:@"main"]];
-    [[self mainViewController] setAnalyticsPolicy:[self analyticsPolicy]];
     
     [[self window] setRootViewController:[self mainViewController]];
 //    [[self window] makeKeyAndVisible];
@@ -403,16 +394,6 @@ float DefaultSubjectDistance = 2.5f;
     {
         DLog(@"%@", [error localizedDescription]);
     }
-}
-
-- (void)startGoogleAnalytics
-{
-    [self setAnalyticsPolicy:[[GoogleAnalyticsPolicy alloc] init]];
-    
-#ifdef DEBUG
-    // Don't send events to Google from debug builds
-    [[self analyticsPolicy] setDebug:YES];
-#endif
 }
 
 #pragma mark - Core Data stack

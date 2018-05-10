@@ -22,12 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TableViewControllerWithAnalytics.h"
-
 @class FTLens;
 @class LensViewTableDataSource;
 
-@interface LensViewController : TableViewControllerWithAnalytics <UITableViewDelegate, UITextFieldDelegate>
+@interface LensViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITableViewCell* lensNameCell;
 	IBOutlet UITextField* lensNameField;

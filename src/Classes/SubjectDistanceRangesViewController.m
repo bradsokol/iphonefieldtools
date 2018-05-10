@@ -83,12 +83,6 @@
         
         [[NSNotificationCenter defaultCenter] 
             postNotification:[NSNotification notificationWithName:SUBJECT_DISTANCE_RANGE_CHANGED_NOTIFICATION object:nil]];
-        
-        [[self analyticsPolicy] trackEvent:kCategorySubjectDistanceRange
-                                    action:kActionChanged
-                                     label:kLabelSettingsView
-                                     value:newSubjectDistanceRangeIndex];
-
     }
     
 	[[self navigationController] popViewControllerAnimated:YES];
@@ -105,8 +99,6 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    [[self analyticsPolicy] trackView:kSettingsSubjectDistanceRanges];
 	
     UITableView* tv = [self tableView];
     SubjectDistanceRangesViewTableDataSource* sdrvtds = 
@@ -115,10 +107,9 @@
 	[self setTableViewDataSource:(SubjectDistanceRangesViewTableDataSource*)[[self tableView] dataSource]];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark UITableViewDelegate methods

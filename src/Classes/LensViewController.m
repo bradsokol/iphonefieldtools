@@ -274,9 +274,6 @@ static const float SectionHeaderHeight = 44.0;
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    NSString* viewName = [self isNewLens] ? kSettingsAddLens : kSettingsEditLens;
-    [[self analyticsPolicy] trackView:viewName];
 	
 	[self setTableViewDataSource: (LensViewTableDataSource*)[[self tableView] dataSource]];
 	[[self tableViewDataSource] setLens:[self lens]];

@@ -95,8 +95,6 @@
 {
     [super viewDidLoad];
     
-	[[self analyticsPolicy] trackView:kSettingsCustomCoC];
-    
 	[[self view] setBackgroundColor:[UIColor blackColor]];
 	
 	[self setTableViewDataSource: [[self tableView] dataSource]];

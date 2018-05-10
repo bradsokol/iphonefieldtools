@@ -22,7 +22,6 @@
 
 #import "CameraViewController.h"
 
-#import "AnalyticsPolicy.h"
 #import "CameraViewTableDataSource.h"
 #import "FTCamera.h"
 #import "FTCameraBag.h"
@@ -45,7 +44,6 @@
 
 @implementation CameraViewController
 
-@synthesize analyticsPolicy;
 @synthesize camera;
 @synthesize cameraNameField;
 @synthesize cameraNameCell;
@@ -146,9 +144,6 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-
-    NSString* viewName = [self isNewCamera] ? kSettingsAddCamera : kSettingsEditCamera;
-    [[self analyticsPolicy] trackView:viewName];
 
 	[self setTableViewDataSource: [[self tableView] dataSource]];
 	[[self tableViewDataSource] setCamera:[self camera]];

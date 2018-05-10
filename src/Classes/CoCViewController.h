@@ -22,14 +22,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TableViewControllerWithAnalytics.h"
-
 @class CoCViewTableDataSource;
 @class FTCamera;
 @class FTCoC;
 @protocol AnalyticsPolicy;
 
-@interface CoCViewController : TableViewControllerWithAnalytics <UITableViewDataSource, UITableViewDelegate>
+@interface CoCViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 {
 	UIBarButtonItem* saveButton;
 	FTCamera* camera;

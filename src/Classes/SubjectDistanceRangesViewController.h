@@ -20,11 +20,9 @@
 //  Copyright 2011 by Brad Sokol. All rights reserved.
 //
 
-#import "TableViewControllerWithAnalytics.h"
-
 @class SubjectDistanceRangesViewTableDataSource;
 
-@interface SubjectDistanceRangesViewController : TableViewControllerWithAnalytics <UITableViewDelegate>
+@interface SubjectDistanceRangesViewController : UITableViewController <UITableViewDelegate>
 {
     SubjectDistanceRangesViewTableDataSource* tableViewDataSource;
     UIBarButtonItem* saveButton;
