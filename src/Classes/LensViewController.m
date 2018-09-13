@@ -25,6 +25,7 @@
 #import "FTLens.h"
 #import "LensViewTableDataSource.h"
 
+#import "FTCameraBag.h"
 #import "LensViewSections.h"
 #import "Notifications.h"
 
@@ -127,6 +128,7 @@ static const float SectionHeaderHeight = 44.0;
 
 - (void)cancelWasSelected
 {
+    [[FTCameraBag sharedCameraBag] rollback];
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
