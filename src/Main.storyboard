@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LCX-FH-ezZ">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LCX-FH-ezZ">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hxc-dA-Lup">
-                                <rect key="frame" x="24" y="91" width="272" height="30"/>
+                                <rect key="frame" x="24" y="71" width="272" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="qcr-3C-s1c"/>
                                 </constraints>
@@ -38,35 +35,35 @@
                                 </connections>
                             </segmentedControl>
                             <slider opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="SSY-jz-Ype" userLabel="Focal Length Slider" customClass="FocalLengthSlider">
-                                <rect key="frame" x="22" y="177.5" width="276" height="31"/>
+                                <rect key="frame" x="22" y="157.5" width="276" height="31"/>
                                 <accessibility key="accessibilityConfiguration" label="focalLengthSlider"/>
                                 <connections>
                                     <action selector="focalLengthDidChange:" destination="LCX-FH-ezZ" eventType="valueChanged" id="B8u-T0-pBx"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18" minValue="3" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="OLX-3h-f71" userLabel="Aperture Slider">
-                                <rect key="frame" x="22" y="271" width="276" height="31"/>
+                                <rect key="frame" x="22" y="251" width="276" height="31"/>
                                 <accessibility key="accessibilityConfiguration" label="apertureSlider"/>
                                 <connections>
                                     <action selector="apertureDidChange:" destination="LCX-FH-ezZ" eventType="valueChanged" id="AuL-9Q-1MA"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Label" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0Zt-uZ-2bT" userLabel="Focal Length Value">
-                                <rect key="frame" x="237" y="141.5" width="59" height="28"/>
+                                <rect key="frame" x="237" y="121.5" width="59" height="28"/>
                                 <accessibility key="accessibilityConfiguration" label="focalLengthLabel"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Label" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="itE-No-Gvf" userLabel="Aperture Value">
-                                <rect key="frame" x="237" y="238.5" width="59" height="28"/>
+                                <rect key="frame" x="237" y="218.5" width="59" height="28"/>
                                 <accessibility key="accessibilityConfiguration" label="apertureLabel"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="6sB-w4-chA" userLabel="Subject Distance Slider" customClass="SubjectDistanceSlider">
-                                <rect key="frame" x="22" y="368" width="276" height="29"/>
+                                <rect key="frame" x="22" y="348" width="276" height="29"/>
                                 <accessibility key="accessibilityConfiguration" label="subjectDistanceSlider"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="chh-Mv-9Ky"/>
@@ -76,88 +73,88 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Label" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="PAz-ZM-p1e" userLabel="Subject Distance Value">
-                                <rect key="frame" x="237" y="332" width="59" height="28"/>
+                                <rect key="frame" x="237" y="312" width="59" height="28"/>
                                 <accessibility key="accessibilityConfiguration" label="subjectDistanceLabel"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Focal length:" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cuq-uP-h5i">
-                                <rect key="frame" x="24" y="145" width="119" height="21"/>
+                                <rect key="frame" x="24" y="125" width="119" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="WV9-vT-MfB"/>
                                     <constraint firstAttribute="width" constant="119" id="oGH-ev-JS4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Aperture:" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YVm-l6-w58">
-                                <rect key="frame" x="24" y="242" width="72.5" height="21"/>
+                                <rect key="frame" x="24" y="222" width="72.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="I1Y-D7-I8s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Distance to subject:" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-Bc-pv1">
-                                <rect key="frame" x="24" y="335.5" width="156" height="21"/>
+                                <rect key="frame" x="24" y="315.5" width="156" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hte-gl-QzE"/>
                                     <constraint firstAttribute="width" constant="156" id="oZx-Be-eiX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="10 mm" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9BI-wn-aeG" userLabel="Minimum Focal Length">
-                                <rect key="frame" x="24" y="206" width="42" height="21"/>
+                                <rect key="frame" x="24" y="186" width="42" height="21"/>
                                 <accessibility key="accessibilityConfiguration" label="minimumFocalLength"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Czi-Hm-wyd"/>
                                     <constraint firstAttribute="width" constant="42" id="ebO-Wq-mb1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="10 mm" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cko-4G-m3v" userLabel="Minimum Subject Distance">
-                                <rect key="frame" x="24" y="394.5" width="37" height="21"/>
+                                <rect key="frame" x="24" y="374.5" width="37" height="21"/>
                                 <accessibility key="accessibilityConfiguration" label="minimumSubjectDistance"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="yVE-mD-CEb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="f/1.4" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dqu-gE-OJd" userLabel="Minimum Aperture">
-                                <rect key="frame" x="24" y="299.5" width="23.5" height="21"/>
+                                <rect key="frame" x="24" y="279.5" width="23.5" height="21"/>
                                 <accessibility key="accessibilityConfiguration" label="minimumAperture"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6O6-EX-C0F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="200 mm" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="U5g-T7-JW6" userLabel="Maximum Focal Length">
-                                <rect key="frame" x="252" y="209.5" width="44" height="14"/>
+                                <rect key="frame" x="252" y="189.5" width="44" height="14"/>
                                 <accessibility key="accessibilityConfiguration" label="maximumFocalLength"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="200 mm" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-Wb-yns" userLabel="Maximum Subject Distance">
-                                <rect key="frame" x="252" y="398" width="44" height="14"/>
+                                <rect key="frame" x="252" y="378" width="44" height="14"/>
                                 <accessibility key="accessibilityConfiguration" label="maximumSubjectDistance"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir4-i9-WUc" customClass="ResultView">
-                                <rect key="frame" x="24" y="26" width="272" height="50"/>
+                                <rect key="frame" x="24" y="6" width="272" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xud-uc-Pk3">
                                         <rect key="frame" x="0.0" y="0.0" width="272" height="50"/>
@@ -243,9 +240,11 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOL-DE-W46">
-                                <rect key="frame" x="115.5" y="404" width="89" height="27"/>
+                                <rect key="frame" x="115.5" y="384" width="89" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Distance Range"/>
+                                <state key="normal" title="Distance Range">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="subjectDistanceRangeTextWasTouched:" destination="LCX-FH-ezZ" eventType="touchUpInside" id="GK7-RB-W46"/>
                                 </connections>
@@ -255,7 +254,9 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="cameraLensButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Camera - lens"/>
+                                <state key="normal" title="Camera - lens">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4T-He-eQi">
                                 <rect key="frame" x="278" y="528" width="22" height="22"/>
@@ -276,15 +277,15 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="f/32" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="UpQ-oz-1f2" userLabel="Maximum Aperture">
-                                <rect key="frame" x="275" y="303" width="21" height="14"/>
+                                <rect key="frame" x="275" y="283" width="21" height="14"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="maximumAperture"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <accessibility key="accessibilityConfiguration" label="mainView">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
