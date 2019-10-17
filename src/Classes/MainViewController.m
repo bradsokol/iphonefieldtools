@@ -164,8 +164,17 @@ static BOOL previousLensWasZoom = YES;
 	
 	[self distanceTypeDidChange:self];
 
-    [self configureCoachMarks];
     [self configureSliderColours];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    static BOOL coachMarksShown = NO;
+    [super viewDidLayoutSubviews];
+    if (coachMarksShown == NO) {
+        [self configureCoachMarks];
+        coachMarksShown = YES;
+    }
 }
 
 #pragma mark Action messages
