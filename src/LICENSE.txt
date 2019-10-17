@@ -1,4 +1,4 @@
-Field Tools is copyright 2009-2018 by Brad Sokol and is licensed under the Apache License, included below. Portions of the software are copyright 2011 by Ole Begemann and licensed under the MIT License, included below.
+Field Tools is copyright 2009-2019 by Brad Sokol and is licensed under the Apache License, included below. Portions of the software are copyright 2011 by Ole Begemann and licensed under the MIT License, included below.
 
 Apache License
 --------------
