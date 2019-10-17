@@ -254,6 +254,9 @@
                                 <state key="normal" title="Camera - lens">
                                     <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="toggleView" destination="LCX-FH-ezZ" eventType="touchUpInside" id="h5K-1I-mfD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4T-He-eQi">
                                 <rect key="frame" x="278" y="528" width="22" height="22"/>
