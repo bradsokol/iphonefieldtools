@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LCX-FH-ezZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LCX-FH-ezZ">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -162,7 +162,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="SGr-MG-WR0"/>
                                         </constraints>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="48"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -172,7 +171,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="qLj-A5-6dG"/>
                                         </constraints>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="48"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -180,31 +178,30 @@
                                         <rect key="frame" x="8" y="2" width="74" height="46"/>
                                         <accessibility key="accessibilityConfiguration" label="minimumDistance"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="999.9 m" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50Z-Fb-IYg">
                                         <rect key="frame" x="104" y="2" width="64" height="21"/>
                                         <accessibility key="accessibilityConfiguration" label="distanceDifference"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="999.9 m" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKG-Ss-E4X">
                                         <rect key="frame" x="190" y="2" width="74" height="46"/>
                                         <accessibility key="accessibilityConfiguration" label="maximumDistance"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="center" image="distanceArrows.png" translatesAutoresizingMaskIntoConstraints="NO" id="8IJ-Nn-q3N">
+                                    <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="center" image="distanceArrows" translatesAutoresizingMaskIntoConstraints="NO" id="8IJ-Nn-q3N">
                                         <rect key="frame" x="84" y="10" width="104" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="104" id="Qz2-KN-EyS"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="resultView">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -366,6 +363,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="distanceArrows.png" width="104" height="22"/>
+        <image name="distanceArrows" width="104" height="22"/>
     </resources>
 </document>

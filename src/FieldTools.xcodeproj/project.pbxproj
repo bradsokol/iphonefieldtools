@@ -30,8 +30,6 @@
 		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
 		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
-		A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A200F9E212541ABA006689F9 /* distanceArrows@2x.png */; };
-		A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = A2027E860F7E8DF7003A1BBD /* distanceArrows.png */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21C138F1ED2037600A5194B /* MPCoachMarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A21C138E1ED2037600A5194B /* MPCoachMarks.m */; };
 		A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MPCoachMarks.license */; };
@@ -129,8 +127,6 @@
 		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinearSubjectDistanceSliderPolicyTests.m; path = TestClasses/LinearSubjectDistanceSliderPolicyTests.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A200F9E212541ABA006689F9 /* distanceArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distanceArrows@2x.png"; sourceTree = "<group>"; };
-		A2027E860F7E8DF7003A1BBD /* distanceArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distanceArrows.png; sourceTree = "<group>"; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
@@ -336,7 +332,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2B372C60F754E8F00774532 /* images */,
 				A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */,
 				A261F8CE0FDCCAAA00C907AD /* CameraView.xib */,
 				A22C2451104387A1005BC94C /* CoC.plist */,
@@ -564,15 +559,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		A2B372C60F754E8F00774532 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				A2027E860F7E8DF7003A1BBD /* distanceArrows.png */,
-				A200F9E212541ABA006689F9 /* distanceArrows@2x.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
 		A2B95FA310715F6A0057A70E /* Lens View */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,14 +687,12 @@
 				A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
 				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
-				A2027E870F7E8DF7003A1BBD /* distanceArrows.png in Resources */,
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
 				A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */,
 				A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */,
 				A28D89FD108D5ED000C77FEA /* CustomCoCView.xib in Resources */,
-				A200F9E412541ABA006689F9 /* distanceArrows@2x.png in Resources */,
 				A294A02E14048DDF0090C9AA /* SubjectDistanceRangesViewController.xib in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
 				A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */,
