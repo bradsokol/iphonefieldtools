@@ -1,0 +1,17 @@
+
+#Privacy Policy
+
+Your privacy is important to us. It is our policy to respect your privacy regarding any information we may collect from you through our app, Field Tools.
+
+We do not ask for or collect any personal information.
+
+We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use or modification.
+
+We don’t share any personally identifying information publicly or with third-parties, except when required to by law.
+
+Our app may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.
+
+
+Your continued use of our app will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us at fieldtoolsios@gmail.com
+
+This policy is effective as of 24 October 2019.
