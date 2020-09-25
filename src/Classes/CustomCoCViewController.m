@@ -119,13 +119,16 @@
 
 	if (coc <= 0.0 || coc >= 1.0)
 	{
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"COC_VALIDATION_ERROR", "COC_VALIDATION_ERROR")
-														message:NSLocalizedString(@"COC_ERROR_OUT_OF_RANGE", "COC_ERROR_OUT_OF_RANGE")
-													   delegate:nil
-											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
-											  otherButtonTitles:nil];
-		[alert show];
-		
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"COC_VALIDATION_ERROR", "COC_VALIDATION_ERROR")
+                                                                       message:NSLocalizedString(@"COC_ERROR_OUT_OF_RANGE", "COC_ERROR_OUT_OF_RANGE")
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction* closeButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+                                                              style:UIAlertActionStyleCancel
+                                                            handler:nil];
+        [alert addAction:closeButton];
+        [self presentViewController:alert animated:YES completion:nil];
+
 		[self makeTextFieldFirstResponder];
 	}
 	else

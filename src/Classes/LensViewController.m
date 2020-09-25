@@ -303,13 +303,8 @@ static const float SectionHeaderHeight = 44.0;
 	NSString* description = [[self lens] description];
 	if (description == nil || [description length] == 0)
 	{
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
-														message:NSLocalizedString(@"LENS_ERROR_MISSING_NAME", "LENS_ERROR_MISSING_NAME")
-													   delegate:nil
-											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
-											  otherButtonTitles:nil];
-		[alert show];
-		
+        [self presentDataValidationAlertWithMessage:NSLocalizedString(@"LENS_ERROR_MISSING_NAME", "LENS_ERROR_MISSING_NAME")];
+
 		return NO;
 	}
 	
@@ -322,13 +317,8 @@ static const float SectionHeaderHeight = 44.0;
 		NSString* message = [NSString stringWithFormat:NSLocalizedString(@"LENS_ERROR_BAD_APERTURE", "LENS_ERROR_BAD_APERTURE"),
 							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:APERTURE_LOWER_LIMIT]],
 							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:APERTURE_UPPER_LIMIT]]];
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
-														message:message
-													   delegate:nil
-											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
-											  otherButtonTitles:nil];
-		[alert show];
-		
+        [self presentDataValidationAlertWithMessage:message];
+
 		return NO;
 	}
 	
@@ -341,12 +331,7 @@ static const float SectionHeaderHeight = 44.0;
 		NSString* message = [NSString stringWithFormat:NSLocalizedString(@"LENS_ERROR_BAD_FOCAL_LENGTH", "LENS_ERROR_BAD_FOCAL_LENGTH"),
 							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:FOCAL_LENGTH_LOWER_LIMIT]],
 							 [numberFormatter stringFromNumber:[NSNumber numberWithFloat:FOCAL_LENGTH_UPPER_LIMIT]]];
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
-														message:message
-													   delegate:nil
-											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
-											  otherButtonTitles:nil];
-		[alert show];
+        [self presentDataValidationAlertWithMessage:message];
 		
 		return NO;
 	}
@@ -465,6 +450,18 @@ static const float SectionHeaderHeight = 44.0;
 	return NO;
 }
 
+#pragma mark Helpers
+
+- (void)presentDataValidationAlertWithMessage:(NSString *)message {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"LENS_DATA_VALIDATION_ERROR", "LENS_DATA_VALIDATION_ERROR")
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* closeButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+                                                          style:UIAlertActionStyleCancel
+                                                        handler:nil];
+    [alert addAction:closeButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 @end
-

@@ -131,12 +131,18 @@
 	}
 	else
 	{
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CAMERA_DATA_VALIDATION_ERROR", "CAMERA_DATA_VALIDATION_ERROR")
-														message:message
-													   delegate:self
-											  cancelButtonTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
-											  otherButtonTitles:nil];
-		[alert show];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"CAMERA_DATA_VALIDATION_ERROR", "CAMERA_DATA_VALIDATION_ERROR")
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction* closeButton = [UIAlertAction actionWithTitle:NSLocalizedString(@"CLOSE_BUTTON_LABEL", "CLOSE_BUTTON_LABEL")
+                                                              style:UIAlertActionStyleCancel
+                                                            handler:^(UIAlertAction* action) {
+            [[self cameraNameField] becomeFirstResponder];
+        }];
+
+        [alert addAction:closeButton];
+        [self presentViewController:alert animated:YES completion:nil];
 	}
 }
 
@@ -186,15 +192,6 @@
          [NSNotification notificationWithName:COC_SELECTED_FOR_EDIT_NOTIFICATION 
                                        object:[self camera]]];
     }
-}
-
-#pragma mark UIAlertViewDelegate methods
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-	// The alert view is displayed only if the camera name was not specified.
-	// Help the user by making the camera name text field the first responder.
-	[[self cameraNameField] becomeFirstResponder];
 }
 
 - (void)cocChanged:(NSNotification*)notification
