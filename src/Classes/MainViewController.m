@@ -185,22 +185,39 @@ static BOOL previousLensWasZoom = YES;
     SubjectDistanceRangePolicy* close = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeClose];
     SubjectDistanceRangePolicy* mid = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeMid];
     SubjectDistanceRangePolicy* far = [[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyForSubjectDistanceRange:SubjectDistanceRangeFar];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SUBJECT_DISTANCE_RANGES_VIEW_TITLE", "SUBJECT_DISTANCE_RANGES_VIEW_TITLE")
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
 
-	UIActionSheet *styleAlert = 
-        [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"SUBJECT_DISTANCE_RANGES_VIEW_TITLE", "SUBJECT_DISTANCE_RANGES_VIEW_TITLE")
-                                    delegate:self
-                           cancelButtonTitle:NSLocalizedString(@"CANCEL", "CANCEL")
-                      destructiveButtonTitle:nil
-                           otherButtonTitles:[macro description], 
-                                             [close description], 
-                                             [mid description], 
-                                             [far description], 
-                                             nil];
-	
-	// use the same style as the nav bar
-	styleAlert.actionSheetStyle = (UIActionSheetStyle) self.navigationController.navigationBar.barStyle;
-	
-	[styleAlert showInView:self.view];
+    UIAlertAction* macroButton = [UIAlertAction actionWithTitle:[macro description]
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction* action){
+        [self handleSubjectDistanceRangeSelection:0];
+    }];
+    [alert addAction:macroButton];
+
+    UIAlertAction* closeButton = [UIAlertAction actionWithTitle:[close description]
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction* action){
+        [self handleSubjectDistanceRangeSelection:1];
+    }];
+    [alert addAction:closeButton];
+
+    UIAlertAction* midButton = [UIAlertAction actionWithTitle:[mid description]
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction* action){
+        [self handleSubjectDistanceRangeSelection:2];
+    }];
+    [alert addAction:midButton];
+
+    UIAlertAction* farButton = [UIAlertAction actionWithTitle:[far description]
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction* action){
+        [self handleSubjectDistanceRangeSelection:3];
+    }];
+    [alert addAction:farButton];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 // Aperture slider changed
@@ -729,9 +746,7 @@ static BOOL previousLensWasZoom = YES;
     [self updateCameraAndLensDescription];
 }
 
-#pragma mark UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)handleSubjectDistanceRangeSelection:(NSInteger)buttonIndex
 {
     // The cancel button counts as one of the buttons.
     if ([[SubjectDistanceRangePolicyFactory sharedPolicyFactory] policyCount] == buttonIndex)
