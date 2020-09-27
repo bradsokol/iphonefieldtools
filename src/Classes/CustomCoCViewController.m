@@ -95,8 +95,6 @@
 {
     [super viewDidLoad];
     
-	[[self view] setBackgroundColor:[UIColor blackColor]];
-	
 	[self setTableViewDataSource: [[self tableView] dataSource]];
 	[[self tableViewDataSource] setCamera:[self camera]];
 	[[self tableViewDataSource] setController:self];
