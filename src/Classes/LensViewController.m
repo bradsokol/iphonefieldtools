@@ -385,8 +385,8 @@ static const float SectionHeaderHeight = 44.0;
 	NSInteger tag = [cell tag];
 	int section = (tag & SECTION_MASK) >> SECTION_SHIFT;
 	int row = tag & ROW_MASK;
-	DLog(@"Text field %08x did end editing for section %d row %d for cell %08x", 
-          (unsigned int) textField, section, row, (unsigned int) cell);
+    DLog(@"Text field %08lx did end editing for section %d row %d for cell %08lx", 
+          (unsigned long) textField, section, row, (unsigned long) cell);
 	
 	if (TITLE_SECTION == section)
 	{
