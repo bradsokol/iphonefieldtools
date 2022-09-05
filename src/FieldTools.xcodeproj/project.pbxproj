@@ -741,7 +741,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./credits.py -s \"$PROJECT_DIR/Licenses\" -o \"$PROJECT_DIR/Settings.bundle/Acknowledgements.plist\"";
+			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./credits.py -s \"$PROJECT_DIR/Licenses\" -o \"$PROJECT_DIR/Settings.bundle/Acknowledgements.plist\"\n";
 		};
 		A282977516453D3200F6DE5D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
