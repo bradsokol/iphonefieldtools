@@ -80,7 +80,6 @@
 		A2B95F9F10715EDF0057A70E /* LensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95F9E10715EDF0057A70E /* LensView.xib */; };
 		A2B95FA610715FB80057A70E /* LensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FA510715FB80057A70E /* LensViewController.m */; };
 		A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */; };
-		A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C03D8E0F4F8C990031385C /* Entitlements.plist */; };
 		A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */; };
 		A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C70FE80F7562AF00484E24 /* ResultView.m */; };
 		A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C7135D148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m */; };
@@ -222,7 +221,6 @@
 		A2B95FA510715FB80057A70E /* LensViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewController.m; sourceTree = "<group>"; };
 		A2B95FAB107161BA0057A70E /* LensViewTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewTableDataSource.h; sourceTree = "<group>"; };
 		A2B95FAC107161BA0057A70E /* LensViewTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LensViewTableDataSource.m; sourceTree = "<group>"; };
-		A2C03D8E0F4F8C990031385C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2C70FE70F7562AF00484E24 /* ResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultView.h; sourceTree = "<group>"; };
 		A2C70FE80F7562AF00484E24 /* ResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultView.m; sourceTree = "<group>"; };
@@ -337,7 +335,6 @@
 				A22C2451104387A1005BC94C /* CoC.plist */,
 				A2D62409104248DA00B2F055 /* CoCView.xib */,
 				A28D89FC108D5ED000C77FEA /* CustomCoCView.xib */,
-				A2C03D8E0F4F8C990031385C /* Entitlements.plist */,
 				A284E6F70EE45DA600C37E21 /* FlipsideView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */,
@@ -645,10 +642,6 @@
 			attributes = {
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
-					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = L5XZS2MG2S;
-						ProvisioningStyle = Automatic;
-					};
 					A282977016453D2D00F6DE5D = {
 						DevelopmentTeam = L5XZS2MG2S;
 					};
@@ -691,7 +684,6 @@
 				A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */,
 				A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */,
 				A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */,
-				A2C03D8F0F4F8C990031385C /* Entitlements.plist in Resources */,
 				A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */,
 				A2D6240A104248DA00B2F055 /* CoCView.xib in Resources */,
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
@@ -869,7 +861,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L5XZS2MG2S;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -962,9 +954,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = L5XZS2MG2S;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -977,6 +969,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 			};
