@@ -49,7 +49,10 @@ static CameraBag* sharedCameraBag = nil;
 	{
 		if (sharedCameraBag == nil)
 		{
-			sharedCameraBag = [NSKeyedUnarchiver unarchiveObjectWithFile:archiveFile];
+            NSData* data = [NSData dataWithContentsOfFile:archiveFile];
+            sharedCameraBag = [NSKeyedUnarchiver unarchivedObjectOfClass:[CameraBag class]
+                                                                fromData:data
+                                                                   error:nil];
 			[sharedCameraBag setArchivePath:archiveFile];
 			
 			int identifier = 0;
@@ -335,9 +338,13 @@ static CameraBag* sharedCameraBag = nil;
 - (void)save
 {
 	NSAssert([self archivePath] != nil && [[self archivePath] length] > 0, @"No archive path set for camera bag");
-	
-	[NSKeyedArchiver archiveRootObject:self
-								toFile:[self archivePath]];
+
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self
+                                         requiringSecureCoding:NO
+                                                         error:nil];
+    [data writeToFile:archivePath
+              options:0
+                error:nil];
 }
 
 @end

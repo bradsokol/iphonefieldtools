@@ -273,7 +273,10 @@ float DefaultSubjectDistance = 2.5f;
 		[cameraBag addLens:lens];
 	}
 	
-	if ([NSKeyedArchiver archiveRootObject:cameraBag toFile:sharedCameraBagArchivePath])
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:cameraBag
+                                         requiringSecureCoding:NO
+                                                         error:nil];
+	if ([data writeToFile:sharedCameraBagArchivePath options:0 error:nil])
 	{
 		[CameraBag initSharedCameraBagFromArchive:sharedCameraBagArchivePath];
 		
