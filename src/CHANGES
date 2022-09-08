@@ -1,27 +1,74 @@
+Version 3.1.1
+September 8, 2022
+
+Fixes:
+  * Dark mode fixes
+  * Fix deprecations in use of NSKeyedArchive, UIActionSheet and UIAlertView
+
+New features, enhancements
+  * Minimum iOS version is now iOS 12
+
+Version 3.1
+October 24, 2019
+
+Fixes:
+  * Fixed crash when cancelling out of adding a lens
+  * Dark mode fixes
+  * Coach mark fixes
+
+New features, enhancements:
+  * Touching camera/lens description now activates settings
+
+Version 3.0.3
+May 10, 2018
+
+Fixes:
+  * Coach mark fixes
+
+New features, enhancements:
+  * Removed Google Analytics
+
+Version 3.0.2
+October 23, 2017
+
+Fixes:
+  * Coach mark fixes for iPhone X
+
+Version 3.0.1
+September 7, 2017
+
+Fixes:
+  * Coach mark fixes
+
 Version 3.0
-xxx nn, 2012
+September 4, 2012
 
 Internal changes:
-* Re-factored analytics in to a polcy class with corresponding protocol.
+* Re-factored analytics in to a policy class with corresponding protocol.
   Goal is to reduce coupling and enable more automated unit testing.
 
 New features, enhancements:
-
-Fixes:
+  * Store lens and camera configs in Core Data
+  * Remove iRate rating prompt
+  * Use coach marks on start up to explain sliders
+  * iOS modernizations
+    * Convert XIBs to Storyboards
+    * iOS "flat" style UI
+    * Convert to ARC
+    * Convert to 64-bit
 
 Version 2.3.3
-xxx nn, 2012
-
-New features, enhancements:
+October 13, 2012
 
 Fixes:
+  * Fix bug where lens/camera description on main screen was not updated.
 
 Version 2.3.2
 October 6, 2012
 
 New features, enhancements:
   * Support for iPhone 5 and iOS 6.
-  
+
 Version 2.3.1
 May 22, 2012
 
@@ -75,19 +122,19 @@ January 1, 2010
 Fixes:
   * Bug 2924786 - The near and far depth of field limits are off for long subject distances.
   * Bug 2924792 - Distance slider thumb set incorrectly when starting app.
-  
+
 Version 2.0
 December 7, 2009
 
 New features, enhancements:
-  * New 'Near+Far' view shows near and far limits as well as the total depth of 
+  * New 'Near+Far' view shows near and far limits as well as the total depth of
     field.
-  * Settings completely re-organized allowing selection from multiple cameras 
+  * Settings completely re-organized allowing selection from multiple cameras
     and lenses with a minimum number of touches.
   * Configure multiple cameras using pre-set or custom CoC values.
-  * Configure multiple zoom or prime lenses including aperture and focal 
+  * Configure multiple zoom or prime lenses including aperture and focal
     length values.
-  * Sliders on calculator screen use settings from selected lens for more 
+  * Sliders on calculator screen use settings from selected lens for more
     accurate adjustments.
   * Increased sensitivity of the 'i' button to make it more responsive.
 
