@@ -1,4 +1,4 @@
-// Copyright 2009-2017 Brad Sokol
+// Copyright 2009-2025 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 //  FieldTools
 //
 //  Created by Brad on 2009/05/21.
-//  Copyright 2009-2017 Brad Sokol. 
+//  Copyright 2009-2025 Brad Sokol. 
 //
 
 #import <UIKit/UIKit.h>
