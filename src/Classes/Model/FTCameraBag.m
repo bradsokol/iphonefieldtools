@@ -251,6 +251,18 @@ static FTCameraBag* sharedCameraBag = nil;
     return camera;
 }
 
+- (void)createDefaultCamera
+{
+    FTCamera* newCamera = [self newCamera];
+    [newCamera setName:@"Sample camera"];
+    [newCamera setIndexValue:0];
+
+    FTCoC* newCoc = [self newCoC];
+    [newCoc setValueValue:0.02];
+    [newCoc setName:@"Sample CoC"];
+    [newCamera setCoc:newCoc];
+}
+
 - (FTCoC*)newCoC
 {
     NSManagedObjectContext* context = [self managedObjectContext];
@@ -276,6 +288,17 @@ static FTCameraBag* sharedCameraBag = nil;
     [lens setIndexValue:count];
     
     return lens;
+}
+
+- (void)createDefaultLens
+{
+    FTLens* newLens = [self newLens];
+    [newLens setMinimumAperture:@3.5];
+    [newLens setMaximumAperture:@22.0];
+    [newLens setMinimumFocalLength:@24.0];
+    [newLens setMaximumFocalLength:@120.0];
+    [newLens setName:@"Sample lens"];
+    [newLens setIndexValue:0];
 }
 
 - (void)deleteCoC:(FTCoC*)coc

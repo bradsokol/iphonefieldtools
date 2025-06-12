@@ -45,8 +45,10 @@
 
 - (void)deleteCoC:(FTCoC*)coc;
 - (FTCamera*)newCamera;
+- (void)createDefaultCamera;
 - (FTCoC*)newCoC;
 - (FTLens*)newLens;
+- (void)createDefaultLens;
 
 - (BOOL)save;
 - (void)rollback;

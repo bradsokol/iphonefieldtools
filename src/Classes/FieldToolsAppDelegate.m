@@ -82,6 +82,20 @@ float DefaultSubjectDistance = 2.5f;
 	[self saveDefaults];
 }
 
+- (void)initializeCameraBag {
+    [FTCameraBag initSharedCameraBag:[self managedObjectContext]];
+    FTCameraBag* cameraBag = [FTCameraBag sharedCameraBag];
+
+    if ([cameraBag cameraCount] == 0) {
+        [cameraBag createDefaultCamera];
+    }
+    if ([cameraBag lensCount] == 0) {
+        [cameraBag createDefaultLens];
+    }
+
+    [cameraBag save];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
@@ -92,8 +106,8 @@ float DefaultSubjectDistance = 2.5f;
     
     [self relocateCameraBag];
     
-    [FTCameraBag initSharedCameraBag:[self managedObjectContext]];
-    
+    [self initializeCameraBag];
+
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], FTMigratedFrom10Key, nil]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
