@@ -1,4 +1,4 @@
-// Copyright 2011 Brad Sokol
+// Copyright 2009-2025 Brad Sokol
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 //  FieldTools
 //
 //  Created by Brad Sokol on 11-08-31.
-//  Copyright 2011 by Brad Sokol. All rights reserved.
+//  Copyright 2011 by Brad Sokol
 //
 
 #import "MacroSubjectDistanceRangePolicy.h"
