@@ -566,7 +566,8 @@ static BOOL previousLensWasZoom = YES;
 - (void)configureCoachMarks
 {
     BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
-    if (coachMarksShown == NO) {
+    bool force = [[[NSProcessInfo processInfo] environment] objectForKey:@"SHOW_COACH_MARKS"];
+    if (coachMarksShown == NO || force) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
         [[NSUserDefaults standardUserDefaults] synchronize];
 
@@ -594,6 +595,13 @@ static BOOL previousLensWasZoom = YES;
                                     }
              ];
         }
+
+        CGRect frame = CGRectInset(cameraAndLensDescription.frame, -2.0, -2.0);
+        [coachMarks addObject:@{
+            @"rect": [NSValue valueWithCGRect:frame],
+            @"caption": NSLocalizedString(@"CAMERA_LENS_DESCRIPTION_COACH", "CAMERA_LENS_DESCRIPTION_COACH"),
+        }
+        ];
 
         MPCoachMarks* coachMarksView = [[MPCoachMarks alloc]
                                         initWithFrame:UIScreen.mainScreen.bounds
