@@ -293,8 +293,8 @@ static FTCameraBag* sharedCameraBag = nil;
 - (void)createDefaultLens
 {
     FTLens* newLens = [self newLens];
-    [newLens setMinimumAperture:@3.5];
-    [newLens setMaximumAperture:@22.0];
+    [newLens setMinimumAperture:@22.0];
+    [newLens setMaximumAperture:@3.5];
     [newLens setMinimumFocalLength:@24.0];
     [newLens setMaximumFocalLength:@120.0];
     [newLens setName:@"Sample lens"];
