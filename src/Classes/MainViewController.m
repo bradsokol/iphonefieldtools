@@ -29,7 +29,6 @@
 #import "FTCoC.h"
 #import "FTLens.h"
 #import "LinearSubjectDistanceSliderPolicy.h"
-#import "MPCoachMarks.h"
 #import "NonLinearSubjectDistanceSliderPolicy.h"
 #import "ResultView.h"
 #import "SubjectDistanceRangePolicy.h"
@@ -57,7 +56,6 @@ static BOOL previousLensWasZoom = YES;
 - (float)calculateHyperfocalDistance;
 - (float)calculateNearLimit;
 - (float)calculateResult;
-- (void)configureCoachMarks;
 - (void)configureObservers;
 - (void)configureSliderColours;
 - (void)cocDidChange;
@@ -164,16 +162,6 @@ static BOOL previousLensWasZoom = YES;
 	[self distanceTypeDidChange:self];
 
     [self configureSliderColours];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    static BOOL coachMarksShown = NO;
-    [super viewDidLayoutSubviews];
-    if (coachMarksShown == NO) {
-        [self configureCoachMarks];
-        coachMarksShown = YES;
-    }
 }
 
 #pragma mark Action messages
@@ -561,55 +549,6 @@ static BOOL previousLensWasZoom = YES;
 }
 
 #pragma mark Helpers
-
-- (void)configureCoachMarks
-{
-    BOOL coachMarksShown = [[NSUserDefaults standardUserDefaults] boolForKey:FTCoachMarksShown];
-    bool force = [[[NSProcessInfo processInfo] environment] objectForKey:@"SHOW_COACH_MARKS"];
-    if (coachMarksShown == NO || force) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
-
-        NSMutableArray* coachMarks = [[NSMutableArray alloc] init];
-        if (focalLengthSlider.hidden == NO)
-        {
-            CGRect coachMark = CGRectInset(focalLengthSlider.frame, -2.0, -2.0);
-            [coachMarks addObject:@{
-                  @"rect": [NSValue valueWithCGRect:coachMark],
-                  @"caption": NSLocalizedString(@"FOCAL_LENGTH_SCRUBBING_COACH", "FOCAL_LENGTH_SCRUBBING_COACH"),
-                  }
-            ];
-        }
-
-        if (subjectDistanceSlider.hidden == NO)
-        {
-            CGRect frame = CGRectOffset(subjectDistanceSlider.frame, 0, focalLengthSlider.hidden ? -controlYDelta : 0);
-            CGRect coachMark = CGRectInset(frame, -2.0, -2.0);
-            NSString* stringKey = focalLengthSlider.hidden ? @"DISTANCE_SCRUBBING_COACH" : @"DISTANCE_SCRUBBING_COACH_SECOND";
-            NSString* caption = NSLocalizedString(stringKey, stringKey);
-            [coachMarks addObject:@{
-                                    @"rect": [NSValue valueWithCGRect:coachMark],
-                                    @"caption": caption,
-                                    @"position": [NSNumber numberWithInteger:LABEL_POSITION_TOP]
-                                    }
-             ];
-        }
-
-        CGRect frame = CGRectInset(cameraAndLensDescription.frame, -2.0, -2.0);
-        [coachMarks addObject:@{
-            @"rect": [NSValue valueWithCGRect:frame],
-            @"caption": NSLocalizedString(@"CAMERA_LENS_DESCRIPTION_COACH", "CAMERA_LENS_DESCRIPTION_COACH"),
-        }
-        ];
-
-        MPCoachMarks* coachMarksView = [[MPCoachMarks alloc]
-                                        initWithFrame:UIScreen.mainScreen.bounds
-                                        coachMarks:coachMarks];
-        coachMarksView.enableSkipButton = NO;
-        coachMarksView.continueLabelText = NSLocalizedString(@"GOT_IT", "GOT_IT");
-        [self.view addSubview:coachMarksView];
-        [coachMarksView start];
-    }
-}
 
 - (void)configureObservers
 {
