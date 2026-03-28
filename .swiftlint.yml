@@ -1,0 +1,13 @@
+disabled_rules:
+  - file_length
+  - opening_brace
+  - trailing_comma
+identifier_name:
+  min_length:
+    error: 1
+  excluded:
+    - i
+    - j
+    - x
+    - y
+    - z
