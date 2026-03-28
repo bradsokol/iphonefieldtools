@@ -966,6 +966,7 @@
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081E431E-3E21-4A94-B99B-F88AD36ADC87";
 				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				USER_HEADER_SEARCH_PATHS = "~/include";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1175,6 +1176,7 @@
 				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
@@ -1216,6 +1218,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				USER_HEADER_SEARCH_PATHS = "~/include";
 				VALIDATE_PRODUCT = YES;
 			};
