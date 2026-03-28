@@ -6,8 +6,10 @@ identifier_name:
   min_length:
     error: 1
   excluded:
+    - h
     - i
     - j
+    - n
     - x
     - y
     - z

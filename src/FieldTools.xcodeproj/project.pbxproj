@@ -92,6 +92,13 @@
 		A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
+		BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002010000000000000001 /* DepthOfFieldCalculator.swift */; };
+		BB0001020000000000000002 /* DistanceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002020000000000000002 /* DistanceFormatter.swift */; };
+		BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002030000000000000003 /* SubjectDistanceRange.swift */; };
+		BB0001040000000000000004 /* Aperture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002040000000000000004 /* Aperture.swift */; };
+		BB0001050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */; };
+		BB0001060000000000000006 /* DistanceFormatterSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */; };
+		BB0001070000000000000007 /* SubjectDistanceRangeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +235,13 @@
 		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Field_Tools_Tests.m; sourceTree = "<group>"; };
 		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB0002010000000000000001 /* DepthOfFieldCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthOfFieldCalculator.swift; sourceTree = "<group>"; };
+		BB0002020000000000000002 /* DistanceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
+		BB0002030000000000000003 /* SubjectDistanceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDistanceRange.swift; sourceTree = "<group>"; };
+		BB0002040000000000000004 /* Aperture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aperture.swift; sourceTree = "<group>"; };
+		BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DepthOfFieldCalculatorSwiftTests.swift; path = TestClasses/DepthOfFieldCalculatorSwiftTests.swift; sourceTree = SOURCE_ROOT; };
+		BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DistanceFormatterSwiftTests.swift; path = TestClasses/DistanceFormatterSwiftTests.swift; sourceTree = SOURCE_ROOT; };
+		BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubjectDistanceRangeSwiftTests.swift; path = TestClasses/SubjectDistanceRangeSwiftTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,8 +283,12 @@
 				A2AAAECD0F2831D400945F6E /* Model */,
 				A21DCDAB10EE7F9E00139D93 /* Model Tests */,
 				A294A02914048D5C0090C9AA /* Subject Distance Ranges View */,
+				BB0002040000000000000004 /* Aperture.swift */,
+				BB0002010000000000000001 /* DepthOfFieldCalculator.swift */,
 				A20D30610F7B333900A744C3 /* DistanceFormatter.h */,
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
+				BB0002020000000000000002 /* DistanceFormatter.swift */,
+				BB0002030000000000000003 /* SubjectDistanceRange.swift */,
 				A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */,
 				A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */,
 				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
@@ -379,9 +397,12 @@
 			isa = PBXGroup;
 			children = (
 				A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */,
+				BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */,
 				A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */,
+				BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */,
 				A28297CC1645716800F6DE5D /* FTCameraBagTests.m */,
 				88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */,
+				BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */,
 			);
 			name = "Model Tests";
 			sourceTree = "<group>";
@@ -780,6 +801,10 @@
 				A282978816453E8700F6DE5D /* FTLens.m in Sources */,
 				A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */,
 				A2F7C1A22E9201000011AA03 /* FTPersistenceController.m in Sources */,
+				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
+				BB0001020000000000000002 /* DistanceFormatter.swift in Sources */,
+				BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */,
+				BB0001040000000000000004 /* Aperture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +818,9 @@
 				A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */,
 				A2D67B351F43B355004CC775 /* DepthOfFieldCalculatorTests.m in Sources */,
 				A2D67B361F43B355004CC775 /* DistanceFormatterTests.m in Sources */,
+				BB0001050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift in Sources */,
+				BB0001060000000000000006 /* DistanceFormatterSwiftTests.swift in Sources */,
+				BB0001070000000000000007 /* SubjectDistanceRangeSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,6 +884,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Field Tools";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldTools-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -887,6 +917,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Field Tools";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldTools-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -964,6 +996,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Field Tools";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldTools-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Distribution;
 		};
@@ -1027,6 +1061,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
 			};
 			name = Debug;
@@ -1061,6 +1096,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
 			};
 			name = Release;
@@ -1095,6 +1131,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.iphonefieldtools-tests.Field-Tools-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Field Tools.app/Field Tools";
 			};
 			name = Distribution;
