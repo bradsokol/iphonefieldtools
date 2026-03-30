@@ -99,6 +99,14 @@
 		BB0001050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */; };
 		BB0001060000000000000006 /* DistanceFormatterSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */; };
 		BB0001070000000000000007 /* SubjectDistanceRangeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */; };
+		BB0001080000000000000008 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002080000000000000008 /* Camera.swift */; };
+		BB0001090000000000000009 /* CoC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002090000000000000009 /* CoC.swift */; };
+		BB00010A000000000000000A /* Lens.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020A000000000000000A /* Lens.swift */; };
+		BB00010B000000000000000B /* ModelContainerSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020B000000000000000B /* ModelContainerSetup.swift */; };
+		BB00010C000000000000000C /* CoCPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020C000000000000000C /* CoCPreset.swift */; };
+		BB00010D000000000000000D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020D000000000000000D /* UserSettings.swift */; };
+		BB00010E000000000000000E /* SwiftDataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020E000000000000000E /* SwiftDataModelTests.swift */; };
+		BB00010F000000000000000F /* UserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020F000000000000000F /* UserSettingsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +250,14 @@
 		BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DepthOfFieldCalculatorSwiftTests.swift; path = TestClasses/DepthOfFieldCalculatorSwiftTests.swift; sourceTree = SOURCE_ROOT; };
 		BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DistanceFormatterSwiftTests.swift; path = TestClasses/DistanceFormatterSwiftTests.swift; sourceTree = SOURCE_ROOT; };
 		BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubjectDistanceRangeSwiftTests.swift; path = TestClasses/SubjectDistanceRangeSwiftTests.swift; sourceTree = SOURCE_ROOT; };
+		BB0002080000000000000008 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Camera.swift; path = Classes/Model/Camera.swift; sourceTree = "<group>"; };
+		BB0002090000000000000009 /* CoC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoC.swift; path = Classes/Model/CoC.swift; sourceTree = "<group>"; };
+		BB00020A000000000000000A /* Lens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Lens.swift; path = Classes/Model/Lens.swift; sourceTree = "<group>"; };
+		BB00020B000000000000000B /* ModelContainerSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelContainerSetup.swift; path = Classes/Model/ModelContainerSetup.swift; sourceTree = "<group>"; };
+		BB00020C000000000000000C /* CoCPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoCPreset.swift; path = Classes/Model/CoCPreset.swift; sourceTree = "<group>"; };
+		BB00020D000000000000000D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		BB00020E000000000000000E /* SwiftDataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftDataModelTests.swift; path = TestClasses/SwiftDataModelTests.swift; sourceTree = SOURCE_ROOT; };
+		BB00020F000000000000000F /* UserSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSettingsTests.swift; path = TestClasses/UserSettingsTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +305,7 @@
 				A20D30620F7B333900A744C3 /* DistanceFormatter.m */,
 				BB0002020000000000000002 /* DistanceFormatter.swift */,
 				BB0002030000000000000003 /* SubjectDistanceRange.swift */,
+				BB00020D000000000000000D /* UserSettings.swift */,
 				A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */,
 				A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */,
 				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
@@ -403,6 +420,8 @@
 				A28297CC1645716800F6DE5D /* FTCameraBagTests.m */,
 				88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */,
 				BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */,
+				BB00020E000000000000000E /* SwiftDataModelTests.swift */,
+				BB00020F000000000000000F /* UserSettingsTests.swift */,
 			);
 			name = "Model Tests";
 			sourceTree = "<group>";
@@ -549,6 +568,11 @@
 				A21DCD6B10EE748300139D93 /* DepthOfFieldCalculator.h */,
 				A21DCD6C10EE748300139D93 /* DepthOfFieldCalculator.m */,
 				A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */,
+				BB0002080000000000000008 /* Camera.swift */,
+				BB00020C000000000000000C /* CoCPreset.swift */,
+				BB0002090000000000000009 /* CoC.swift */,
+				BB00020A000000000000000A /* Lens.swift */,
+				BB00020B000000000000000B /* ModelContainerSetup.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -805,6 +829,12 @@
 				BB0001020000000000000002 /* DistanceFormatter.swift in Sources */,
 				BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */,
 				BB0001040000000000000004 /* Aperture.swift in Sources */,
+				BB0001080000000000000008 /* Camera.swift in Sources */,
+				BB0001090000000000000009 /* CoC.swift in Sources */,
+				BB00010A000000000000000A /* Lens.swift in Sources */,
+				BB00010B000000000000000B /* ModelContainerSetup.swift in Sources */,
+				BB00010C000000000000000C /* CoCPreset.swift in Sources */,
+				BB00010D000000000000000D /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +851,8 @@
 				BB0001050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift in Sources */,
 				BB0001060000000000000006 /* DistanceFormatterSwiftTests.swift in Sources */,
 				BB0001070000000000000007 /* SubjectDistanceRangeSwiftTests.swift in Sources */,
+				BB00010E000000000000000E /* SwiftDataModelTests.swift in Sources */,
+				BB00010F000000000000000F /* UserSettingsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,7 +907,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Field Tools";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 3.2;
 				ONLY_ACTIVE_ARCH = NO;
@@ -908,7 +940,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Field Tools";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 3.2;
 				ONLY_ACTIVE_ARCH = NO;
@@ -955,7 +987,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081E431E-3E21-4A94-B99B-F88AD36ADC87";
@@ -986,7 +1018,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Field Tools";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 3.2;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1052,7 +1084,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1087,7 +1119,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1122,7 +1154,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Field Tools Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1170,7 +1202,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_NAME = "Field Tools";
@@ -1213,7 +1245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
