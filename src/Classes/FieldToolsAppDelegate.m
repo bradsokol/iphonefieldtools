@@ -48,7 +48,6 @@ float DefaultSubjectDistance = 2.5f;
 @interface FieldToolsAppDelegate ()
 
 - (void)relocateCameraBag;
-- (void)saveDefaults;
 
 + (void)migrateDefaultsFrom10:(NSMutableDictionary*)defaultValues;
 + (void)migrateDefaultsFrom20:(NSMutableDictionary*)defaultValues;
@@ -104,11 +103,6 @@ float DefaultSubjectDistance = 2.5f;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
 
     return YES;
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-	[self saveDefaults];
 }
 
 #pragma mark "Helper methods"
@@ -341,11 +335,6 @@ float DefaultSubjectDistance = 2.5f;
             DLog(@"Error deleting old camera bag: %@", error);
         }
     }
-}
-
-- (void)saveDefaults
-{
-	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 // This method is necessary because for some reason I originally put the camera bag

@@ -48,9 +48,4 @@ willConnectToSession:(UISceneSession *)session
     [[self window] makeKeyAndVisible];
 }
 
-- (void)sceneDidEnterBackground:(UIScene *)scene
-{
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 @end

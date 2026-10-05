@@ -568,7 +568,6 @@ static BOOL previousLensWasZoom = YES;
     bool force = [[[NSProcessInfo processInfo] environment] objectForKey:@"SHOW_COACH_MARKS"];
     if (coachMarksShown == NO || force) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTCoachMarksShown];
-        [[NSUserDefaults standardUserDefaults] synchronize];
 
         NSMutableArray* coachMarks = [[NSMutableArray alloc] init];
         if (focalLengthSlider.hidden == NO)
