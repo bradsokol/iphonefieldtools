@@ -169,3 +169,99 @@ struct CoCPresetTests {
         #expect(preset?.value == 0.03)
     }
 }
+
+@Suite("Default Seeding Tests")
+struct DefaultSeedingTests {
+
+    private func makeContext() throws -> ModelContext {
+        let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(
+            for: Camera.self, CoC.self, Lens.self,
+            configurations: configuration
+        )
+        return ModelContext(container)
+    }
+
+    @Test("Empty store is seeded with a sample camera and CoC")
+    func seedsCamera() throws {
+        let context = try makeContext()
+
+        try seedDefaultsIfNeeded(in: context)
+
+        let cameras = try context.fetch(FetchDescriptor<Camera>())
+        let camera = try #require(cameras.first)
+        #expect(camera.name == "Sample camera")
+        #expect(camera.index == 0)
+        #expect(camera.coc?.name == "Sample CoC")
+        #expect(camera.coc?.value == 0.02)
+    }
+
+    @Test("Empty store is seeded with a sample lens")
+    func seedsLens() throws {
+        let context = try makeContext()
+
+        try seedDefaultsIfNeeded(in: context)
+
+        let lenses = try context.fetch(FetchDescriptor<Lens>())
+        let lens = try #require(lenses.first)
+        #expect(lens.name == "Sample lens")
+        #expect(lens.index == 0)
+        #expect(lens.minimumFocalLength == 24)
+        #expect(lens.maximumFocalLength == 120)
+        #expect(lens.minimumAperture == 22)
+        #expect(lens.maximumAperture == 3.5)
+        #expect(lens.isZoom == true)
+    }
+
+    @Test("Seeding twice leaves a single camera and lens")
+    func seedingIsIdempotent() throws {
+        let context = try makeContext()
+
+        try seedDefaultsIfNeeded(in: context)
+        try seedDefaultsIfNeeded(in: context)
+
+        let cameraCount = try context.fetchCount(FetchDescriptor<Camera>())
+        let lensCount = try context.fetchCount(FetchDescriptor<Lens>())
+        #expect(cameraCount == 1)
+        #expect(lensCount == 1)
+    }
+
+    @Test("An existing camera is left untouched")
+    func preservesExistingCamera() throws {
+        let context = try makeContext()
+        context.insert(Camera(name: "Nikon D500", index: 0))
+        try context.save()
+
+        try seedDefaultsIfNeeded(in: context)
+
+        let cameras = try context.fetch(FetchDescriptor<Camera>())
+        #expect(cameras.count == 1)
+        #expect(cameras.first?.name == "Nikon D500")
+    }
+
+    @Test("A lens is seeded even when a camera already exists")
+    func seedsLensIndependentlyOfCamera() throws {
+        let context = try makeContext()
+        context.insert(Camera(name: "Nikon D500", index: 0))
+        try context.save()
+
+        try seedDefaultsIfNeeded(in: context)
+
+        let lenses = try context.fetch(FetchDescriptor<Lens>())
+        #expect(lenses.count == 1)
+        #expect(lenses.first?.name == "Sample lens")
+    }
+
+    @Test("A camera is seeded even when a lens already exists")
+    func seedsCameraIndependentlyOfLens() throws {
+        let context = try makeContext()
+        context.insert(Lens(name: "50mm f/1.4", index: 0))
+        try context.save()
+
+        try seedDefaultsIfNeeded(in: context)
+
+        let cameras = try context.fetch(FetchDescriptor<Camera>())
+        #expect(cameras.count == 1)
+        #expect(cameras.first?.name == "Sample camera")
+    }
+}
