@@ -22,10 +22,10 @@
 
 #import "FTCameraBag.h"
 
-#import "FieldToolsAppDelegate.h"
 #import "FTCamera.h"
 #import "FTCoC.h"
 #import "FTLens.h"
+#import "FTPersistenceController.h"
 
 #import "UserDefaults.h"
 
@@ -347,8 +347,7 @@ static FTCameraBag* sharedCameraBag = nil;
 {
     if (nil == _managedObjectContext)
     {
-        _managedObjectContext =
-            [(FieldToolsAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        _managedObjectContext = [[FTPersistenceController sharedController] managedObjectContext];
     }
     
     return _managedObjectContext;

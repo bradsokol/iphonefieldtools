@@ -32,9 +32,5 @@
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) MainViewController *mainViewController;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
 @end
 
