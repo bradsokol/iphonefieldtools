@@ -30,7 +30,6 @@
 #import "FTLens.h"
 #import "FTPersistenceController.h"
 #import "Lens.h"
-#import "MainViewController.h"
 #import "SubjectDistanceRangePolicyFactory.h"
 
 #import "UserDefaults.h"
@@ -62,16 +61,7 @@ float DefaultSubjectDistance = 2.5f;
 
 @implementation FieldToolsAppDelegate
 
-@synthesize window;
-@synthesize mainViewController;
-
 # pragma mark "UIApplicationDelegate methods"
-
-// Called only on iOS 4.0 and later
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-	[self saveDefaults];
-}
 
 - (void)initializeCameraBag {
     [FTCameraBag initSharedCameraBag:[[FTPersistenceController sharedController] managedObjectContext]];
@@ -89,8 +79,6 @@ float DefaultSubjectDistance = 2.5f;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
-
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	sharedCameraBagArchivePath = [NSString stringWithFormat:@"%@/Default.camerabag",
                                    documentsPath];
@@ -114,13 +102,6 @@ float DefaultSubjectDistance = 2.5f;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom20Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom22Key];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:FTMigratedFrom23Key];
-    
-    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self setMainViewController:[mainStoryboard instantiateViewControllerWithIdentifier:@"main"]];
-    
-    [[self window] setRootViewController:[self mainViewController]];
-//    [[self window] makeKeyAndVisible];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
     return YES;
 }

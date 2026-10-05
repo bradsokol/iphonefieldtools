@@ -21,16 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MainViewController;
-
 @interface FieldToolsAppDelegate : UIResponder <UIApplicationDelegate>
-{
-    IBOutlet UIWindow *window;
-    IBOutlet MainViewController *mainViewController;
-}
-
-@property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) MainViewController *mainViewController;
 
 @end
 
