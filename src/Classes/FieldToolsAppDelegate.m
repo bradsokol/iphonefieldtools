@@ -70,10 +70,6 @@ float DefaultSubjectDistance = 2.5f;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-+ (void)initialize
-{
-}
-
 # pragma mark "UIApplicationDelegate methods"
 
 // Called only on iOS 4.0 and later

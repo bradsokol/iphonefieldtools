@@ -23,7 +23,6 @@
 
 #import "DepthOfFieldCalculator.h"
 #import "DistanceFormatter.h"
-#import "FieldToolsAppDelegate.h"
 #import "FlipsideViewController.h"
 #import "FTCamera.h"
 #import "FTCameraBag.h"

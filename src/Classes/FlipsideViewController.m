@@ -26,7 +26,6 @@
 #import "CustomCoCViewController.h"
 #import "FlipsideTableViewDataSource.h"
 #import "FlipsideTableViewDelegate.h"
-#import "FieldToolsAppDelegate.h"
 #import "FTCamera.h"
 #import "FTCameraBag.h"
 #import "FTLens.h"
