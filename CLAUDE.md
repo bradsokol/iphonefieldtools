@@ -26,7 +26,7 @@ We will be migrating the app to this stack:
 - Use Swift Testing for testing
 - Do not introduce third-party frameworks without asking first.
 - Avoid UIKit unless requested.
-- Do not implement plans or commit code without explicit approval
+- Do not implement plans or commit code without explicit approval (see Source Control)
 
 ## Xcode MCP
 
@@ -97,5 +97,17 @@ Before considering any change complete:
 
 **IMPORTANT**: A change is NOT complete until all verification steps pass. If tests fail after implementing a change, update the tests to reflect the new behavior.
 
-Do not commit changes unless specifically asked. This is a solo project. I review uncommitted changes rather than reviewing pull requests.
+"Done" means verified and left in the working tree. It does **not** mean committed. See Source Control.
+
+## Source Control
+
+**Never run `git commit` unless I explicitly ask in that message.**
+
+This is a solo project. I do not use pull requests — I review uncommitted changes in the working tree, so leaving work uncommitted is how I see it, not an unfinished state.
+
+- Asking for work does not authorise a commit for that work. Finishing a task, passing all checks, and satisfying the Definition of Done are **not** approval.
+- Approval covers only the commit I asked for. It does not carry forward to later work in the same session.
+- When work is complete and verified, stop and report what changed. Offer to commit; do not commit and then report.
+- If you believe a commit is warranted, ask. One sentence is enough.
+- The same applies to anything that rewrites or publishes history: `git rebase`, `git reset`, `git push`, `git stash drop`, branch deletion. Ask first.
 
