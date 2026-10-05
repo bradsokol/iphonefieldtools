@@ -4,6 +4,7 @@ Version 3.2
 Fixes:
   * Fix launch failure on current iOS SDKs by adopting the UIKit scene life cycle
   * Fix status bar not being visible while the app is launching
+  * Fix launch screen flashing white when launching in dark mode
 
 New features, enhancements:
   * Added clear buttons to all text fields
