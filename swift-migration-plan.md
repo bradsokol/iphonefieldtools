@@ -216,7 +216,10 @@ let container = try ModelContainer(for: Camera.self, CoC.self, Lens.self,
 ### Deletable after this phase
 
 - `FTCameraBag.h/.m`, all `FT*.h/.m` and `_FT*.h/.m` model files
-- `UserDefaults.h/.m`
+- `UserDefaults.h/.m` — but carry `FTCoachMarksShown` (stored key
+  `"CoachMarksShown"`) over to `UserSettings` first. Phase 6.3 needs it to
+  suppress tips for users upgrading from MPCoachMarks, and losing it fails
+  silently.
 
 ---
 
@@ -380,11 +383,57 @@ to these UI elements (from `MainViewController.m` `configureCoachMarks`):
 - Configure tip display rules (show once, sequential order)
 - Add a "Reset Tips" option in SettingsView
 
+### 6.3 Suppressing tips for users upgrading from coach marks
+
+TipKit owns its own display state — datastore, display counts, rule
+evaluation, invalidation. Do **not** gate tips on a UserDefaults flag: that
+creates a second source of truth alongside TipKit's, and the two will drift
+(a tip invalidated in TipKit's store but with the flag unset, or the reverse).
+"Show once" is `MaxDisplayCount(1)` or `invalidate(reason:)`, not a bool.
+
+There is exactly one job TipKit cannot do for itself: knowing that a user
+already saw the old MPCoachMarks. On upgrade TipKit's datastore is empty, so
+without an external signal every existing user is shown the tips again.
+
+`FTCoachMarksShown` (stored key `"CoachMarksShown"`) is that signal, and it is
+correctly shaped for it *because* Phase 0 removed every writer:
+
+- existing users who saw the coach marks → `true`
+- everyone else, including all new installs → key absent → `false`
+
+Keep it strictly read-only. Consume it once at startup and let TipKit own
+everything afterwards:
+
+```swift
+if settings.legacyCoachMarksShown {
+    calculatorTip.invalidate(reason: .actionPerformed)
+}
+```
+
+Resurrecting it as a live read/write flag destroys the property that makes it
+useful.
+
+Notes:
+
+- **Move it before deleting `UserDefaults.h/.m`.** It belongs in `UserSettings`
+  as a read-only property alongside the other keys.
+- **Preserve the raw string exactly:** `"CoachMarksShown"`. The constant name
+  (`FTCoachMarksShown`) and the stored key differ. Getting this wrong silently
+  loses the signal for every existing user, with no error to catch it.
+- **Give it an expiry.** Once the install base has moved past the TipKit
+  release, the flag and its read site are dead weight and should be removed.
+- **Verify first:** this design assumes TipKit's datastore survives app
+  updates. If it does not, tips re-show on every update and the approach needs
+  rethinking. Confirm before building on it.
+
 ### Phase-specific validation
 
 - Tips display on first launch
 - Tips dismiss correctly and don't re-appear
 - Reset option works
+- Upgrading from a build where `CoachMarksShown` is `true` shows no tips
+- Fresh install (key absent) shows tips normally
+- The flag is read but never written
 
 ---
 
