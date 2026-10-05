@@ -21,8 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */; };
-		A2F7C1A52E9201000011AA06 /* FieldToolsSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C1A42E9201000011AA05 /* FieldToolsSceneDelegate.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -128,10 +126,6 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldToolsAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldToolsAppDelegate.m; sourceTree = "<group>"; };
-		A2F7C1A32E9201000011AA04 /* FieldToolsSceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldToolsSceneDelegate.h; sourceTree = "<group>"; };
-		A2F7C1A42E9201000011AA05 /* FieldToolsSceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldToolsSceneDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Field Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Field Tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -322,10 +316,6 @@
 				BB00020D000000000000000D /* UserSettings.swift */,
 				A24E52DC11B5DD3E00516BE3 /* DistanceRange.h */,
 				A24E52DD11B5DD3E00516BE3 /* DistanceRange.m */,
-				1D3623240D0F684500981E51 /* FieldToolsAppDelegate.h */,
-				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
-				A2F7C1A32E9201000011AA04 /* FieldToolsSceneDelegate.h */,
-				A2F7C1A42E9201000011AA05 /* FieldToolsSceneDelegate.m */,
 				A26B51EC2F7B168200570542 /* FieldToolsApp.swift */,
 				A26B51EE2F7B16AD00570542 /* CalculatorView.swift */,
 				A26B51F02F7B16B400570542 /* ResultView.swift */,
@@ -803,8 +793,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */,
-				A2F7C1A52E9201000011AA06 /* FieldToolsSceneDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */,
 				A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */,
 				A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */,
