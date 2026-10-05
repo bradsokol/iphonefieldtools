@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */; };
 		A2F7C1A52E9201000011AA06 /* FieldToolsSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C1A42E9201000011AA05 /* FieldToolsSceneDelegate.m */; };
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -51,6 +50,14 @@
 		A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261F8C80FDCCA3600C907AD /* CameraViewController.m */; };
 		A261F8CF0FDCCAAA00C907AD /* CameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261F8CE0FDCCAAA00C907AD /* CameraView.xib */; };
 		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
+		A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EC2F7B168200570542 /* FieldToolsApp.swift */; };
+		A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EE2F7B16AD00570542 /* CalculatorView.swift */; };
+		A26B51F12F7B16B400570542 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F02F7B16B400570542 /* ResultView.swift */; };
+		A26B51F32F7B16C600570542 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F22F7B16C600570542 /* SettingsView.swift */; };
+		A26B51F52F7B16D500570542 /* CameraEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F42F7B16D500570542 /* CameraEditView.swift */; };
+		A26B51F72F7B16E500570542 /* LensEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F62F7B16E500570542 /* LensEditView.swift */; };
+		A26B51F92F7B196800570542 /* DistanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F82F7B196800570542 /* DistanceType.swift */; };
+		A26B51FB2F7B198000570542 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */; };
 		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2747BA512E25617002731EC /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BA412E25617002731EC /* OBSlider.m */; };
 		A2747BBE12E2803B002731EC /* SubjectDistanceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2747BBD12E2803B002731EC /* SubjectDistanceSlider.m */; };
@@ -131,7 +138,6 @@
 		28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTools_Prefix.pch; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		888FB7E1140E7EBD0041BB2B /* SubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		888FB7E2140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroSubjectDistanceRangePolicy.h; sourceTree = "<group>"; };
 		888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroSubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
@@ -177,6 +183,14 @@
 		A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepthOfFieldCalculatorTests.m; path = TestClasses/DepthOfFieldCalculatorTests.m; sourceTree = SOURCE_ROOT; };
 		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
 		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		A26B51EC2F7B168200570542 /* FieldToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldToolsApp.swift; sourceTree = "<group>"; };
+		A26B51EE2F7B16AD00570542 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
+		A26B51F02F7B16B400570542 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		A26B51F22F7B16C600570542 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A26B51F42F7B16D500570542 /* CameraEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEditView.swift; sourceTree = "<group>"; };
+		A26B51F62F7B16E500570542 /* LensEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensEditView.swift; sourceTree = "<group>"; };
+		A26B51F82F7B196800570542 /* DistanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceType.swift; sourceTree = "<group>"; };
+		A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldTools.xcdatamodel; sourceTree = "<group>"; };
 		A2747BA312E25617002731EC /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		A2747BA412E25617002731EC /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
@@ -312,6 +326,14 @@
 				1D3623250D0F684500981E51 /* FieldToolsAppDelegate.m */,
 				A2F7C1A32E9201000011AA04 /* FieldToolsSceneDelegate.h */,
 				A2F7C1A42E9201000011AA05 /* FieldToolsSceneDelegate.m */,
+				A26B51EC2F7B168200570542 /* FieldToolsApp.swift */,
+				A26B51EE2F7B16AD00570542 /* CalculatorView.swift */,
+				A26B51F02F7B16B400570542 /* ResultView.swift */,
+				A26B51F22F7B16C600570542 /* SettingsView.swift */,
+				A26B51F42F7B16D500570542 /* CameraEditView.swift */,
+				A26B51F62F7B16E500570542 /* LensEditView.swift */,
+				A26B51F82F7B196800570542 /* DistanceType.swift */,
+				A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -346,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				28A0AAE50D9B0CCF005BE974 /* FieldTools_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 				A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */,
 				A2811FD30ECE8DB100A7FB7A /* Notifications.h */,
 				A2811F630ECE706300A7FB7A /* UserDefaults.h */,
@@ -782,7 +803,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* FieldToolsAppDelegate.m in Sources */,
 				A2F7C1A52E9201000011AA06 /* FieldToolsSceneDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */,
@@ -793,9 +813,11 @@
 				A22F4A730FC654F0003A5E26 /* FlipsideNonEditingTableViewDelegate.m in Sources */,
 				A22F4A920FC65793003A5E26 /* FlipsideEditingTableViewDelegate.m in Sources */,
 				A2D64AA20FCF855B00E337D9 /* FlipsideTableViewDataSource.m in Sources */,
+				A26B51F32F7B16C600570542 /* SettingsView.swift in Sources */,
 				A261F8C90FDCCA3600C907AD /* CameraViewController.m in Sources */,
 				A24FF4A40FE0C4DD0073BC03 /* CameraViewTableDataSource.m in Sources */,
 				A2D6241C10424A5600B2F055 /* CoCViewController.m in Sources */,
+				A26B51F92F7B196800570542 /* DistanceType.swift in Sources */,
 				A2B95FA610715FB80057A70E /* LensViewController.m in Sources */,
 				A2B95FAD107161BA0057A70E /* LensViewTableDataSource.m in Sources */,
 				A28D8A04108D5F2B00C77FEA /* CustomCoCViewController.m in Sources */,
@@ -808,28 +830,34 @@
 				A2747BC212E2804B002731EC /* FocalLengthSlider.m in Sources */,
 				A294A02D14048DDF0090C9AA /* SubjectDistanceRangesViewController.m in Sources */,
 				A294A031140491AB0090C9AA /* SubjectDistanceRangesViewTableDataSource.m in Sources */,
+				A26B51F72F7B16E500570542 /* LensEditView.swift in Sources */,
 				888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */,
 				888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */,
 				888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */,
 				A224E14F14152D7F005735C0 /* CloseSubjectDistanceRangePolicy.m in Sources */,
+				A26B51F12F7B16B400570542 /* ResultView.swift in Sources */,
 				A224E15214152FC5005735C0 /* MidSubjectDistanceRangePolicy.m in Sources */,
 				A224E15514153227005735C0 /* FarSubjectDistanceRangePolicy.m in Sources */,
 				A2C7135E148C0DAD005E1D05 /* LinearSubjectDistanceSliderPolicy.m in Sources */,
+				A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */,
 				A2C71363148C1358005E1D05 /* SubjectDistanceSliderPolicy.m in Sources */,
 				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
 				A282978316453E8700F6DE5D /* _FTCamera.m in Sources */,
 				A282978416453E8700F6DE5D /* _FTCoC.m in Sources */,
 				A282978516453E8700F6DE5D /* _FTLens.m in Sources */,
 				A282978616453E8700F6DE5D /* FTCamera.m in Sources */,
+				A26B51F52F7B16D500570542 /* CameraEditView.swift in Sources */,
 				A282978716453E8700F6DE5D /* FTCoC.m in Sources */,
 				A282978816453E8700F6DE5D /* FTLens.m in Sources */,
 				A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */,
 				A2F7C1A22E9201000011AA03 /* FTPersistenceController.m in Sources */,
 				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
+				A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */,
 				BB0001020000000000000002 /* DistanceFormatter.swift in Sources */,
 				BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */,
 				BB0001040000000000000004 /* Aperture.swift in Sources */,
 				BB0001080000000000000008 /* Camera.swift in Sources */,
+				A26B51FB2F7B198000570542 /* CalculatorViewModel.swift in Sources */,
 				BB0001090000000000000009 /* CoC.swift in Sources */,
 				BB00010A000000000000000A /* Lens.swift in Sources */,
 				BB00010B000000000000000B /* ModelContainerSetup.swift in Sources */,
