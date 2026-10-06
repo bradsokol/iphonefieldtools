@@ -118,8 +118,14 @@ Core Data SQLite store directly.
 The xcdatamodel entity names are `Camera`, `CoC`, `Lens` (matching the Swift
 `@Model` class names). The `representedClassName` values (`FTCamera` etc.) are
 ObjC class mappings only — they don't affect SQLite entity names. Since entity
-names and attribute names match, and `usedWithSwiftData="YES"` is already set,
-SwiftData can open the existing `FieldTools.sqlite` store directly.
+names and attribute names match, SwiftData can open the existing
+`FieldTools.sqlite` store directly.
+
+**Correction (verified 2026-10-05):** an earlier version of this section claimed
+`usedWithSwiftData="YES"` was already set on the xcdatamodel. It is not — the
+attribute appears nowhere in `FieldTools.xcdatamodel/contents`. The conclusion
+still holds, but for the other reasons above, not that one. This is now
+verified rather than assumed; see the validation below.
 
 ### 2.2 Fix SwiftData model definitions
 
@@ -212,6 +218,27 @@ let container = try ModelContainer(for: Camera.self, CoC.self, Lens.self,
 - App launches and reads existing cameras/lenses from the Core Data store via
   SwiftData
 - Round-trip test: create, save, re-read SwiftData objects
+
+**Verified 2026-10-05.** `LegacyStoreCompatibilityTests` builds a store through
+Core Data using the app's own compiled `FieldTools.momd`, then opens that file
+with the app's SwiftData configuration. It covers camera order, the camera-to-CoC
+relationship, the Float CoC value, and the Int32-to-Int focal length widening.
+The suite was falsified once (an expectation flipped to a wrong camera name) to
+confirm the assertions are load-bearing.
+
+End-to-end: a pristine legacy store (three cameras, two lenses, no SwiftData
+indexes) placed in the simulator's Documents directory. The app launched showing
+`Nikon D300 – 24-70mm f/2.8` with the aperture range f/2.8-f/22 taken from the
+stored lens, no store errors logged. Afterwards the store held exactly the three
+legacy cameras, SwiftData having additively created its own indexes.
+
+The fallback migration service in the Risk Areas table is therefore not needed.
+
+**Seeding can mask this.** `seedDefaultsIfNeeded` inserts a sample camera and
+lens into an empty store, so a store that silently failed to load would still
+present a working app. Any future re-verification must assert on the real camera
+names, never merely that the list is non-empty. One test pins this directly:
+seeding must insert nothing into a populated legacy store.
 
 ### Deletable after this phase
 

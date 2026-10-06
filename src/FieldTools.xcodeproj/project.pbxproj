@@ -28,6 +28,7 @@
 		888FB7E4140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E3140E7FB20041BB2B /* MacroSubjectDistanceRangePolicy.m */; };
 		888FB7E7140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7E6140E813D0041BB2B /* SubjectDistanceRangePolicyFactory.m */; };
 		888FB7F5140E95050041BB2B /* SubjectDistanceRangePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */; };
+		A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */; };
 		A20D30630F7B333900A744C3 /* DistanceFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A20D30620F7B333900A744C3 /* DistanceFormatter.m */; };
 		A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MPCoachMarks.license */; };
 		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
@@ -140,6 +141,7 @@
 		888FB7F4140E95050041BB2B /* SubjectDistanceRangePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDistanceRangePolicy.m; sourceTree = "<group>"; };
 		88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinearSubjectDistanceSliderPolicyTests.m; path = TestClasses/LinearSubjectDistanceSliderPolicyTests.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LegacyStoreCompatibilityTests.swift; path = TestClasses/LegacyStoreCompatibilityTests.swift; sourceTree = SOURCE_ROOT; };
 		A20D30610F7B333900A744C3 /* DistanceFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceFormatter.h; sourceTree = "<group>"; };
 		A20D30620F7B333900A744C3 /* DistanceFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceFormatter.m; sourceTree = "<group>"; };
 		A2116B03107D98E5009EE360 /* LensViewSections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensViewSections.h; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */,
 				BB00020E000000000000000E /* SwiftDataModelTests.swift */,
 				BB00020F000000000000000F /* UserSettingsTests.swift */,
+				A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */,
 			);
 			name = "Model Tests";
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
+				A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */,
 				A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,
 				A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */,
 				A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */,
