@@ -15,24 +15,34 @@
 import Foundation
 import SwiftData
 
-/// Creates the app's `ModelContainer`, reading from the existing Core Data SQLite store
-/// and seeding the first-launch defaults.
+/// Opens the app's store and seeds the first-launch defaults.
+///
+/// Only a failure to open the store is propagated. A store that opens but cannot be
+/// seeded still leaves the app usable, with no sample camera or lens, so that failure
+/// is not treated as fatal.
+///
+/// - Returns: The container backing the app's camera bag.
+/// - Throws: Only when the store itself cannot be opened.
+public func openAppStore() throws -> ModelContainer {
+    let container = try makeModelContainer()
+    try? seedDefaultsIfNeeded(in: ModelContext(container))
+    return container
+}
+
+/// Creates the app's `ModelContainer`, reading from the existing Core Data SQLite store.
 ///
 /// The store is located at `Documents/FieldTools.sqlite`. Entity and attribute names
 /// match between Core Data and SwiftData, so no migration is required.
 ///
-/// - Returns: A configured `ModelContainer` for Camera, CoC, and Lens, holding at least
-///   one camera and one lens.
-/// - Throws: Any error raised while opening the store or seeding defaults.
+/// - Returns: A configured `ModelContainer` for Camera, CoC, and Lens.
+/// - Throws: Any error raised while opening the store.
 public func makeModelContainer() throws -> ModelContainer {
     let url = URL.documentsDirectory.appending(path: "FieldTools.sqlite")
     let configuration = ModelConfiguration(url: url)
-    let container = try ModelContainer(
+    return try ModelContainer(
         for: Camera.self, CoC.self, Lens.self,
         configurations: configuration
     )
-    try seedDefaultsIfNeeded(in: ModelContext(container))
-    return container
 }
 
 /// Inserts the sample camera, circle of confusion, and lens that a first launch requires.
