@@ -6,19 +6,6 @@
 	objectVersion = 54;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		A282977016453D2D00F6DE5D /* Mogenerator */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
-			buildPhases = (
-				A282977516453D3200F6DE5D /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Mogenerator;
-			productName = Mogenerator;
-		};
-/* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
 		BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003020000000000000102 /* ModelOrderingTests.swift */; };
@@ -27,7 +14,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */; };
-		A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */ = {isa = PBXBuildFile; fileRef = A21C13901ED203D100A5194B /* MPCoachMarks.license */; };
 		A21C13931ED217CF00A5194B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A21C13921ED217CF00A5194B /* QuartzCore.framework */; };
 		A22C2452104387A1005BC94C /* CoC.plist in Resources */ = {isa = PBXBuildFile; fileRef = A22C2451104387A1005BC94C /* CoC.plist */; };
 		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
@@ -51,7 +37,6 @@
 		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
 		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
-		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
 		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
 		A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */; };
@@ -96,7 +81,6 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LegacyStoreCompatibilityTests.swift; path = TestClasses/LegacyStoreCompatibilityTests.swift; sourceTree = SOURCE_ROOT; };
-		A21C13901ED203D100A5194B /* MPCoachMarks.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MPCoachMarks.license; sourceTree = "<group>"; };
 		A21C13921ED217CF00A5194B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A21DCD7F10EE7D0300139D93 /* ModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelTests-Info.plist"; sourceTree = "<group>"; };
 		A21DCF5910EF06ED00139D93 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
@@ -135,7 +119,6 @@
 		A28297CC1645716800F6DE5D /* FTCameraBagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBagTests.m; path = TestClasses/FTCameraBagTests.m; sourceTree = SOURCE_ROOT; };
 		A2881BFA231D409800FE5B2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/CoC.plist; sourceTree = "<group>"; };
 		A2881BFB231D409800FE5B2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A289FAD21613D8D300211AE0 /* OBSlider.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OBSlider.license; sourceTree = "<group>"; };
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,7 +207,6 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				A2F862791545AC8400BF8480 /* Third Party Components */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				A24B1764156FE23D00BFBFF0 /* Settings.bundle */,
 				A2D67B2B1F43B33D004CC775 /* Field Tools Tests */,
@@ -318,15 +300,6 @@
 			name = "Base Classes";
 			sourceTree = "<group>";
 		};
-		A289FACE1613D8D300211AE0 /* Licenses */ = {
-			isa = PBXGroup;
-			children = (
-				A21C13901ED203D100A5194B /* MPCoachMarks.license */,
-				A289FAD21613D8D300211AE0 /* OBSlider.license */,
-			);
-			path = Licenses;
-			sourceTree = "<group>";
-		};
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,14 +333,6 @@
 				A2D67B2E1F43B33D004CC775 /* Info.plist */,
 			);
 			path = "Field Tools Tests";
-			sourceTree = "<group>";
-		};
-		A2F862791545AC8400BF8480 /* Third Party Components */ = {
-			isa = PBXGroup;
-			children = (
-				A289FACE1613D8D300211AE0 /* Licenses */,
-			);
-			name = "Third Party Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,9 +384,6 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 2710;
 				TargetAttributes = {
-					A282977016453D2D00F6DE5D = {
-						DevelopmentTeam = L5XZS2MG2S;
-					};
 					A2D67B291F43B33D004CC775 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = L5XZS2MG2S;
@@ -446,7 +408,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* FieldTools */,
-				A282977016453D2D00F6DE5D /* Mogenerator */,
 				A2D67B291F43B33D004CC775 /* Field Tools Tests */,
 			);
 		};
@@ -462,8 +423,6 @@
 				A22C2452104387A1005BC94C /* CoC.plist in Resources */,
 				A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */,
 				A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */,
-				A21C13911ED203D100A5194B /* MPCoachMarks.license in Resources */,
-				A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,19 +467,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd \"$PROJECT_DIR/Licenses\"\n./credits.py -s \"$PROJECT_DIR/Licenses\" -o \"$PROJECT_DIR/Settings.bundle/Acknowledgements.plist\"\n";
-		};
-		A282977516453D3200F6DE5D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mogenerator --model FieldTools.xcdatamodeld/FieldTools.xcdatamodel/ --template-var arc=true --output-dir Classes/Model";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -748,30 +694,6 @@
 			};
 			name = Distribution;
 		};
-		A282977116453D2D00F6DE5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		A282977216453D2D00F6DE5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		A282977316453D2D00F6DE5D /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Distribution;
-		};
 		A2D67B311F43B33D004CC775 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -984,16 +906,6 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				A20C8E7A0F4A913F00B73E79 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A282977416453D2D00F6DE5D /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A282977116453D2D00F6DE5D /* Debug */,
-				A282977216453D2D00F6DE5D /* Release */,
-				A282977316453D2D00F6DE5D /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
