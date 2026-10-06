@@ -33,6 +33,11 @@ public final class UserSettings {
         static let lensIndex = "LensIndex"
         static let subjectDistance = "SubjectDistance"
         static let subjectDistanceRange = "SubjectDistanceRange"
+
+        /// Written only by the removed MPCoachMarks code. The Objective-C constant was
+        /// named `FTCoachMarksShown`; the stored key it held is this string, and the two
+        /// must not be confused.
+        static let legacyCoachMarksShown = "CoachMarksShown"
     }
 
     // MARK: - Storage
@@ -104,5 +109,24 @@ public final class UserSettings {
     public var subjectDistanceRange: SubjectDistanceRange {
         get { SubjectDistanceRange(rawValue: defaults.integer(forKey: Key.subjectDistanceRange)) ?? .mid }
         set { defaults.set(newValue.rawValue, forKey: Key.subjectDistanceRange) }
+    }
+
+    /// Whether this install saw the MPCoachMarks onboarding that TipKit replaces.
+    ///
+    /// Deliberately read-only. TipKit owns tip display state — display counts, rule
+    /// evaluation, invalidation — and a writable flag here would be a second source of
+    /// truth that drifts from TipKit's. The one thing TipKit cannot know for itself is
+    /// that a user already saw the *old* onboarding, because its datastore is empty on
+    /// upgrade. This answers only that question.
+    ///
+    /// Every writer was removed with MPCoachMarks, which is what makes the value
+    /// trustworthy: `true` means an existing user saw the coach marks, and a missing key
+    /// means a fresh install. Writing to it again would destroy that property.
+    ///
+    /// Expires once the install base has moved past the TipKit release. At that point
+    /// this property, its key, and its read site in the tip configuration should all be
+    /// deleted together.
+    public var legacyCoachMarksShown: Bool {
+        defaults.bool(forKey: Key.legacyCoachMarksShown)
     }
 }

@@ -99,3 +99,56 @@ struct UserSettingsTests {
         #expect(settings.focalLength == 85.0)
     }
 }
+
+/// Covers the one preference carried over purely as a signal to TipKit.
+///
+/// Getting this wrong fails silently: a wrong key or an accidental write shows the
+/// replacement tips to every existing user, with no error to catch it.
+@Suite("Legacy Coach Marks Flag")
+struct LegacyCoachMarksFlagTests {
+
+    /// The key the shipped Objective-C build actually wrote, spelled out so that renaming
+    /// the constant cannot quietly change it.
+    private static let storedKey = "CoachMarksShown"
+
+    private func makeDefaults() -> UserDefaults {
+        let name = "LegacyCoachMarksTests-\(UUID().uuidString)"
+        UserDefaults.standard.removePersistentDomain(forName: name)
+        return UserDefaults(suiteName: name)!
+    }
+
+    @Test("A fresh install, with the key absent, reports false")
+    func absentKeyIsFalse() {
+        let defaults = makeDefaults()
+        #expect(defaults.object(forKey: Self.storedKey) == nil)
+        #expect(UserSettings(defaults: defaults).legacyCoachMarksShown == false)
+    }
+
+    @Test("An install that saw the coach marks reports true")
+    func upgradedUserIsTrue() {
+        let defaults = makeDefaults()
+        defaults.set(true, forKey: Self.storedKey)
+        #expect(UserSettings(defaults: defaults).legacyCoachMarksShown)
+    }
+
+    @Test("The flag reads the key the Objective-C build wrote, not the constant's name")
+    func readsTheShippedKey() {
+        let defaults = makeDefaults()
+        defaults.set(true, forKey: "FTCoachMarksShown")
+        #expect(UserSettings(defaults: defaults).legacyCoachMarksShown == false)
+
+        defaults.set(true, forKey: Self.storedKey)
+        #expect(UserSettings(defaults: defaults).legacyCoachMarksShown)
+    }
+
+    @Test("Reading the flag never writes it, and initialising registers no default for it")
+    func readingNeverWrites() {
+        let defaults = makeDefaults()
+        let settings = UserSettings(defaults: defaults)
+
+        _ = settings.legacyCoachMarksShown
+        _ = settings.legacyCoachMarksShown
+
+        #expect(defaults.object(forKey: Self.storedKey) == nil)
+    }
+}

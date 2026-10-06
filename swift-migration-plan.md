@@ -243,10 +243,11 @@ seeding must insert nothing into a populated legacy store.
 ### Deletable after this phase
 
 - `FTCameraBag.h/.m`, all `FT*.h/.m` and `_FT*.h/.m` model files
-- `UserDefaults.h/.m` — but carry `FTCoachMarksShown` (stored key
-  `"CoachMarksShown"`) over to `UserSettings` first. Phase 6.3 needs it to
-  suppress tips for users upgrading from MPCoachMarks, and losing it fails
-  silently.
+- `UserDefaults.h/.m` — **carried 2026-10-05.** `UserSettings` now exposes
+  `legacyCoachMarksShown`, a read-only read of the stored key `"CoachMarksShown"`,
+  covered by `LegacyCoachMarksFlagTests`. The Objective-C constant is still
+  declared in `UserDefaults.h/.m` but has no reader or writer, so it goes with
+  those files in the Phase 3 deletion pass.
 
 ---
 
@@ -442,11 +443,15 @@ useful.
 
 Notes:
 
-- **Move it before deleting `UserDefaults.h/.m`.** It belongs in `UserSettings`
-  as a read-only property alongside the other keys.
+- ~~**Move it before deleting `UserDefaults.h/.m`.**~~ Done 2026-10-05:
+  `UserSettings.legacyCoachMarksShown`, read-only, no registered default, so an
+  absent key reads as `false`.
 - **Preserve the raw string exactly:** `"CoachMarksShown"`. The constant name
   (`FTCoachMarksShown`) and the stored key differ. Getting this wrong silently
   loses the signal for every existing user, with no error to catch it.
+  `LegacyCoachMarksFlagTests` pins the spelling: one test sets
+  `"FTCoachMarksShown"` and asserts the flag stays `false`. Both key tests were
+  confirmed to fail when the key was deliberately mis-spelled.
 - **Give it an expiry.** Once the install base has moved past the TipKit
   release, the flag and its read site are dead weight and should be removed.
 - **Verify first:** this design assumes TipKit's datastore survives app
