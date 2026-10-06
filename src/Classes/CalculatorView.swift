@@ -96,6 +96,7 @@ private enum CalculatorLayout {
     static let betweenSliderRows: CGFloat = 15
     static let titleToSlider: CGFloat = 8
     static let sliderToLimits: CGFloat = 2
+    static let bottomMargin: CGFloat = 18
 }
 
 /// Layout container for the calculator screen.
@@ -158,7 +159,7 @@ private struct CalculatorContentView: View {
         }
         .padding(.horizontal, CalculatorLayout.horizontalMargin)
         .padding(.top, CalculatorLayout.topMargin)
-        .padding(.bottom)
+        .padding(.bottom, CalculatorLayout.bottomMargin)
     }
 }
 
@@ -383,22 +384,25 @@ private struct SubjectDistanceSliderView: View {
 
 // MARK: - Footer
 
-/// Camera/lens description label and settings button at the bottom.
+/// Camera and lens description with an info icon at the bottom right, which opens settings.
 private struct CalculatorFooterView: View {
     var viewModel: CalculatorViewModel
     @Binding var showSettings: Bool
 
     var body: some View {
-        VStack(spacing: 8) {
-            Text(viewModel.cameraAndLensDescription)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-
-            Button("Settings", systemImage: "gearshape") {
-                showSettings = true
+        Button {
+            showSettings = true
+        } label: {
+            HStack(spacing: 8) {
+                Text(viewModel.cameraAndLensDescription)
+                    .font(.caption)
+                    .multilineTextAlignment(.trailing)
+                Image(systemName: "info.circle")
+                    .font(.title3)
+                    .accessibilityHidden(true)
             }
         }
+        .accessibilityHint("Opens settings")
+        .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }
