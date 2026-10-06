@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003020000000000000102 /* ModelOrderingTests.swift */; };
+		BB0003010000000000000101 /* ModelOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003000000000000000100 /* ModelOrdering.swift */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -126,6 +128,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB0003020000000000000102 /* ModelOrderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrderingTests.swift; path = TestClasses/ModelOrderingTests.swift; sourceTree = SOURCE_ROOT; };
+		BB0003000000000000000100 /* ModelOrdering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrdering.swift; path = Classes/Model/ModelOrdering.swift; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Field Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Field Tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -426,6 +430,7 @@
 		A21DCDAB10EE7F9E00139D93 /* Model Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BB0003020000000000000102 /* ModelOrderingTests.swift */,
 				A265A28E10F6EDF700678796 /* DepthOfFieldCalculatorTests.m */,
 				BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */,
 				A265A28C10F6EDDC00678796 /* DistanceFormatterTests.m */,
@@ -568,6 +573,7 @@
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB0003000000000000000100 /* ModelOrdering.swift */,
 				A282978B16453FBE00F6DE5D /* Base Classes */,
 				A282977D16453E8700F6DE5D /* FTCamera.h */,
 				A282977E16453E8700F6DE5D /* FTCamera.m */,
@@ -796,6 +802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0003010000000000000101 /* ModelOrdering.swift in Sources */,
 				28C286E10D94DF7D0034E888 /* MainViewController.m in Sources */,
 				A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */,
 				A2C70FE90F7562AF00484E24 /* ResultView.m in Sources */,
@@ -861,6 +868,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */,
 				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
 				A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */,
 				A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */,

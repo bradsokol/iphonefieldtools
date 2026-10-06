@@ -312,6 +312,17 @@ All 15 NSNotificationCenter notifications are replaced by:
 - Calculations match ObjC version exactly
 - Settings persist across launches
 
+**Ordering defect found and fixed 2026-10-05.** `SettingsView` deleted through
+the `ModelContext` and then reindexed by enumerating its `@Query` array. That
+array is a value snapshot and does not lose the deleted models, so the survivors
+kept their original indices and the list was left with a gap. The next added
+camera took `cameras.count` as its index and collided with an existing one,
+giving two models the same index and an undefined order between them.
+
+The fix extracts the logic into `ModelOrdering`, which computes the survivors
+itself. Reintroducing the old reindex makes five of the new tests fail, with the
+gap visible in the failure output.
+
 ### Deletable after this phase
 
 All remaining ObjC source files:
@@ -339,8 +350,18 @@ All remaining ObjC source files:
 ### 4.1 Port remaining ObjC tests to Swift Testing
 
 - Verify all ObjC test cases have Swift equivalents
-- Port `FTCameraBagTests` as SwiftData integration tests
+- ~~Port `FTCameraBagTests` as SwiftData integration tests~~ **Done
+  2026-10-05**, pulled forward because the deletion pass cannot remove
+  `FTCameraBag` until its ordering rules are covered elsewhere. The logic moved
+  into `SettingsView` during Phase 3 and was untested there; it is now
+  `ModelOrdering`, covered by `ModelOrderingTests`.
 - Check `Field_Tools_Tests.m` for anything not yet covered
+
+**Sequencing note.** Phase 3 deletes the `FT*` models while Phase 4 deletes the
+Objective-C tests, but `FTCameraBagTests`, `DepthOfFieldCalculatorTests`,
+`DistanceFormatterTests` and `LinearSubjectDistanceSliderPolicyTests` all test
+code Phase 3 removes. Each must be deleted in the same commit as its subject,
+not deferred to Phase 4.
 
 ### 4.2 Delete ObjC test files
 

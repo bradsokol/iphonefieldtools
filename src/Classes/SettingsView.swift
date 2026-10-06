@@ -94,7 +94,7 @@ private struct CamerasSectionView: View {
     }
 
     private func addCamera() {
-        let newIndex = cameras.count
+        let newIndex = ModelOrdering.nextIndex(after: cameras)
         let camera = Camera(
             name: NSLocalizedString("DEFAULT_CAMERA_NAME", comment: "Default camera name"),
             index: newIndex
@@ -108,28 +108,21 @@ private struct CamerasSectionView: View {
     }
 
     private func deleteCameras(at offsets: IndexSet) {
-        guard cameras.count - offsets.count >= 1 else { return }
-        for offset in offsets {
-            modelContext.delete(cameras[offset])
-        }
-        reindexCameras()
-        if settings.cameraIndex >= cameras.count - offsets.count {
-            settings.cameraIndex = max(0, cameras.count - offsets.count - 1)
-        }
+        settings.cameraIndex = ModelOrdering.delete(
+            at: offsets,
+            from: cameras,
+            selection: settings.cameraIndex,
+            in: modelContext
+        )
     }
 
     private func moveCameras(from source: IndexSet, to destination: Int) {
-        var items = cameras
-        items.move(fromOffsets: source, toOffset: destination)
-        for (index, camera) in items.enumerated() {
-            camera.index = index
-        }
-    }
-
-    private func reindexCameras() {
-        for (index, camera) in cameras.enumerated() {
-            camera.index = index
-        }
+        settings.cameraIndex = ModelOrdering.move(
+            from: source,
+            to: destination,
+            in: cameras,
+            selection: settings.cameraIndex
+        )
     }
 }
 
@@ -175,7 +168,7 @@ private struct LensesSectionView: View {
     }
 
     private func addLens() {
-        let newIndex = lenses.count
+        let newIndex = ModelOrdering.nextIndex(after: lenses)
         let lens = Lens(
             name: NSLocalizedString("DEFAULT_LENS_NAME", comment: "Default lens name"),
             index: newIndex
@@ -184,28 +177,21 @@ private struct LensesSectionView: View {
     }
 
     private func deleteLenses(at offsets: IndexSet) {
-        guard lenses.count - offsets.count >= 1 else { return }
-        for offset in offsets {
-            modelContext.delete(lenses[offset])
-        }
-        reindexLenses()
-        if settings.lensIndex >= lenses.count - offsets.count {
-            settings.lensIndex = max(0, lenses.count - offsets.count - 1)
-        }
+        settings.lensIndex = ModelOrdering.delete(
+            at: offsets,
+            from: lenses,
+            selection: settings.lensIndex,
+            in: modelContext
+        )
     }
 
     private func moveLenses(from source: IndexSet, to destination: Int) {
-        var items = lenses
-        items.move(fromOffsets: source, toOffset: destination)
-        for (index, lens) in items.enumerated() {
-            lens.index = index
-        }
-    }
-
-    private func reindexLenses() {
-        for (index, lens) in lenses.enumerated() {
-            lens.index = index
-        }
+        settings.lensIndex = ModelOrdering.move(
+            from: source,
+            to: destination,
+            in: lenses,
+            selection: settings.lensIndex
+        )
     }
 }
 
