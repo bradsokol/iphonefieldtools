@@ -87,10 +87,21 @@ final class CalculatorViewModel {
         return Float(lens.minimumFocalLength)...Float(lens.maximumFocalLength)
     }
 
-    /// The selected lens is a prime (non-zoom) lens.
-    var isPrimeLens: Bool {
-        guard let lens else { return false }
-        return !lens.isZoom
+    /// Whether the focal length can be adjusted, which is only true for a zoom lens.
+    var showsFocalLengthSlider: Bool {
+        lens?.isZoom ?? false
+    }
+
+    /// Formatted shortest focal length of the selected lens (e.g. "24 mm").
+    var focalLengthMinLabel: String {
+        guard let lens else { return "" }
+        return "\(lens.minimumFocalLength) mm"
+    }
+
+    /// Formatted longest focal length of the selected lens (e.g. "120 mm").
+    var focalLengthMaxLabel: String {
+        guard let lens else { return "" }
+        return "\(lens.maximumFocalLength) mm"
     }
 
     /// Description of the selected camera and lens.
@@ -193,12 +204,12 @@ final class CalculatorViewModel {
         }
     }
 
-    /// When a new lens is selected, constrain focal length for prime lenses.
+    /// When a new lens is selected, constrain focal length and aperture to its range.
     func onLensChanged() {
-        guard let lens else { return }
-        if !lens.isZoom {
-            settings.focalLength = Float(lens.minimumFocalLength)
-        }
+        guard lens != nil else { return }
+        let focalLengths = focalLengthRange
+        settings.focalLength = min(max(settings.focalLength, focalLengths.lowerBound),
+                                   focalLengths.upperBound)
         let clampedIndex = min(max(settings.apertureIndex, Int(apertureRange.lowerBound)),
                                Int(apertureRange.upperBound))
         settings.apertureIndex = clampedIndex

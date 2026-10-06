@@ -113,6 +113,8 @@ private struct CalculatorContentView: View {
             }
             .pickerStyle(.segmented)
 
+            FocalLengthSliderView(viewModel: viewModel)
+
             ApertureSliderView(viewModel: viewModel)
 
             if needsSubjectDistance {
@@ -132,83 +134,157 @@ private struct CalculatorContentView: View {
 
 // MARK: - Result section
 
-/// Result display with focal length shown below.
+/// Result display for the selected distance type.
 private struct CalculatorResultSection: View {
     var viewModel: CalculatorViewModel
     var distanceType: DistanceType
 
     var body: some View {
-        VStack(spacing: 4) {
-            switch distanceType {
-            case .hyperfocal:
-                ResultView(
-                    formatter: viewModel.resultFormatter,
-                    near: viewModel.hyperfocalDistance
-                )
-            case .near:
-                ResultView(
-                    formatter: viewModel.resultFormatter,
-                    near: viewModel.nearLimit
-                )
-            case .far:
-                ResultView(
-                    formatter: viewModel.resultFormatter,
-                    near: viewModel.farLimit
-                )
-            case .nearFar:
-                ResultView(
-                    formatter: viewModel.resultFormatter,
-                    near: viewModel.nearLimit,
-                    far: viewModel.farLimit
-                )
-            }
-
-            HStack {
-                Text("Focal length:")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(viewModel.focalLengthText)
-                    .font(.subheadline.monospacedDigit())
-                    .foregroundStyle(.secondary)
-            }
+        switch distanceType {
+        case .hyperfocal:
+            ResultView(
+                formatter: viewModel.resultFormatter,
+                near: viewModel.hyperfocalDistance
+            )
+        case .near:
+            ResultView(
+                formatter: viewModel.resultFormatter,
+                near: viewModel.nearLimit
+            )
+        case .far:
+            ResultView(
+                formatter: viewModel.resultFormatter,
+                near: viewModel.farLimit
+            )
+        case .nearFar:
+            ResultView(
+                formatter: viewModel.resultFormatter,
+                near: viewModel.nearLimit,
+                far: viewModel.farLimit
+            )
         }
     }
 }
 
 // MARK: - Slider sections
 
+/// A titled slider with its current value above and range limits below.
+///
+/// When `showsSlider` is false only the title and value are shown, as for the
+/// focal length of a prime lens.
+private struct LabeledSliderRow<Accessory: View>: View {
+    let title: LocalizedStringKey
+    let value: String
+    @Binding var sliderValue: Float
+    let range: ClosedRange<Float>
+    var step: Float?
+    let minimumLabel: String
+    let maximumLabel: String
+    var showsSlider = true
+    @ViewBuilder var accessory: Accessory
+
+    var body: some View {
+        VStack(spacing: 2) {
+            HStack {
+                Text(title)
+                    .font(.body)
+                Spacer()
+                Text(value)
+                    .font(.body.monospacedDigit())
+            }
+            if showsSlider {
+                slider
+                HStack {
+                    Text(minimumLabel)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    accessory
+                    Spacer()
+                    Text(maximumLabel)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder private var slider: some View {
+        Group {
+            if let step {
+                Slider(value: $sliderValue, in: range, step: step)
+            } else {
+                Slider(value: $sliderValue, in: range)
+            }
+        }
+        .accessibilityLabel(Text(title))
+    }
+}
+
+extension LabeledSliderRow where Accessory == EmptyView {
+    init(
+        title: LocalizedStringKey,
+        value: String,
+        sliderValue: Binding<Float>,
+        range: ClosedRange<Float>,
+        step: Float? = nil,
+        minimumLabel: String,
+        maximumLabel: String,
+        showsSlider: Bool = true
+    ) {
+        self.init(
+            title: title,
+            value: value,
+            sliderValue: sliderValue,
+            range: range,
+            step: step,
+            minimumLabel: minimumLabel,
+            maximumLabel: maximumLabel,
+            showsSlider: showsSlider
+        ) {
+            EmptyView()
+        }
+    }
+}
+
+/// Focal length readout, with a slider when the selected lens is a zoom.
+private struct FocalLengthSliderView: View {
+    var viewModel: CalculatorViewModel
+
+    var body: some View {
+        LabeledSliderRow(
+            title: "Focal length:",
+            value: viewModel.focalLengthText,
+            sliderValue: Binding(
+                get: { viewModel.settings.focalLength },
+                set: { viewModel.updateFocalLength(from: $0) }
+            ),
+            range: viewModel.focalLengthRange,
+            step: 1,
+            minimumLabel: viewModel.focalLengthMinLabel,
+            maximumLabel: viewModel.focalLengthMaxLabel,
+            showsSlider: viewModel.showsFocalLengthSlider
+        )
+    }
+}
+
 /// Aperture slider constrained to the selected lens range.
 private struct ApertureSliderView: View {
     var viewModel: CalculatorViewModel
 
     var body: some View {
-        VStack(spacing: 2) {
-            HStack {
-                Text("Aperture:")
-                    .font(.body)
-                Spacer()
-                Text(viewModel.apertureText)
-                    .font(.body.monospacedDigit())
-            }
-            Slider(
-                value: Binding(
-                    get: { Float(viewModel.settings.apertureIndex) },
-                    set: { viewModel.updateApertureIndex(from: $0) }
-                ),
-                in: viewModel.apertureRange,
-                step: 1
-            )
-            HStack {
-                Text(viewModel.apertureMinLabel)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(viewModel.apertureMaxLabel)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-            }
-        }
+        LabeledSliderRow(
+            title: "Aperture:",
+            value: viewModel.apertureText,
+            sliderValue: Binding(
+                get: { Float(viewModel.settings.apertureIndex) },
+                set: { viewModel.updateApertureIndex(from: $0) }
+            ),
+            range: viewModel.apertureRange,
+            step: 1,
+            minimumLabel: viewModel.apertureMinLabel,
+            maximumLabel: viewModel.apertureMaxLabel
+        )
     }
 }
 
@@ -218,37 +294,23 @@ private struct SubjectDistanceSliderView: View {
 
     var body: some View {
         @Bindable var settings = viewModel.settings
-        VStack(spacing: 2) {
-            HStack {
-                Text("Distance to subject:")
-                    .font(.body)
-                Spacer()
-                Text(viewModel.subjectDistanceText)
-                    .font(.body.monospacedDigit())
-            }
-            Slider(
-                value: $settings.subjectDistance,
-                in: viewModel.subjectDistanceMinimum...viewModel.subjectDistanceMaximum
-            )
-            HStack {
-                Text(viewModel.subjectDistanceMinLabel)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Menu(viewModel.subjectDistanceRangeLabel) {
-                    ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
-                        Button(rangeName(range)) {
-                            settings.subjectDistanceRange = range
-                            viewModel.clampSubjectDistance()
-                        }
+        LabeledSliderRow(
+            title: "Distance to subject:",
+            value: viewModel.subjectDistanceText,
+            sliderValue: $settings.subjectDistance,
+            range: viewModel.subjectDistanceMinimum...viewModel.subjectDistanceMaximum,
+            minimumLabel: viewModel.subjectDistanceMinLabel,
+            maximumLabel: viewModel.subjectDistanceMaxLabel
+        ) {
+            Menu(viewModel.subjectDistanceRangeLabel) {
+                ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
+                    Button(rangeName(range)) {
+                        settings.subjectDistanceRange = range
+                        viewModel.clampSubjectDistance()
                     }
                 }
-                .font(.caption)
-                Spacer()
-                Text(viewModel.subjectDistanceMaxLabel)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
             }
+            .font(.caption)
         }
     }
 

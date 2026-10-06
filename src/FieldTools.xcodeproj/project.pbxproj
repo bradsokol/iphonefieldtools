@@ -47,6 +47,7 @@
 		BB00010E000000000000000E /* SwiftDataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020E000000000000000E /* SwiftDataModelTests.swift */; };
 		BB00010F000000000000000F /* UserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020F000000000000000F /* UserSettingsTests.swift */; };
 		BB0003010000000000000101 /* ModelOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003000000000000000100 /* ModelOrdering.swift */; };
+		BB0003050000000000000105 /* CalculatorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003040000000000000104 /* CalculatorViewModelTests.swift */; };
 		BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003020000000000000102 /* ModelOrderingTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		BB00020E000000000000000E /* SwiftDataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftDataModelTests.swift; path = TestClasses/SwiftDataModelTests.swift; sourceTree = SOURCE_ROOT; };
 		BB00020F000000000000000F /* UserSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSettingsTests.swift; path = TestClasses/UserSettingsTests.swift; sourceTree = SOURCE_ROOT; };
 		BB0003000000000000000100 /* ModelOrdering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrdering.swift; path = Classes/Model/ModelOrdering.swift; sourceTree = "<group>"; };
+		BB0003040000000000000104 /* CalculatorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculatorViewModelTests.swift; path = TestClasses/CalculatorViewModelTests.swift; sourceTree = SOURCE_ROOT; };
 		BB0003020000000000000102 /* ModelOrderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrderingTests.swift; path = TestClasses/ModelOrderingTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -215,6 +217,7 @@
 		A21DCDAB10EE7F9E00139D93 /* Model Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BB0003040000000000000104 /* CalculatorViewModelTests.swift */,
 				BB0003020000000000000102 /* ModelOrderingTests.swift */,
 				BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */,
 				BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */,
@@ -432,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0003050000000000000105 /* CalculatorViewModelTests.swift in Sources */,
 				BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */,
 				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
 				A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */,
