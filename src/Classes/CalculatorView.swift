@@ -99,6 +99,9 @@ private enum CalculatorLayout {
 }
 
 /// Layout container for the calculator screen.
+///
+/// The content fills the screen with the footer at the bottom, and scrolls only when
+/// it is taller than the screen, as at accessibility text sizes.
 private struct CalculatorContentView: View {
     var viewModel: CalculatorViewModel
     @Binding var distanceType: DistanceType
@@ -110,6 +113,16 @@ private struct CalculatorContentView: View {
     }
 
     var body: some View {
+        GeometryReader { proxy in
+            ScrollView {
+                content
+                    .frame(minHeight: proxy.size.height)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+        }
+    }
+
+    private var content: some View {
         VStack(spacing: 0) {
             CalculatorResultSection(
                 viewModel: viewModel,
@@ -201,31 +214,50 @@ private struct LabeledSliderRow<Accessory: View>: View {
     var showsSlider = true
     @ViewBuilder var accessory: Accessory
 
+    @ScaledMetric(relativeTo: .title2) private var valueFontSize = 24
+
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text(title)
-                    .font(.body)
-                Spacer()
-                Text(value)
-                    .font(.body.monospacedDigit())
+            ViewThatFits(in: .horizontal) {
+                HStack {
+                    titleText
+                    Spacer()
+                    valueText
+                }
+                VStack(alignment: .leading) {
+                    titleText
+                    valueText
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .foregroundStyle(.secondary)
             if showsSlider {
                 slider
                     .padding(.top, CalculatorLayout.titleToSlider)
                 HStack {
                     Text(minimumLabel)
-                        .font(.caption2)
+                        .font(.caption)
                         .foregroundStyle(.secondary)
                     Spacer()
                     Text(maximumLabel)
-                        .font(.caption2)
+                        .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 .padding(.top, CalculatorLayout.sliderToLimits)
                 accessory
             }
         }
+    }
+
+    private var titleText: some View {
+        Text(title)
+            .font(.body)
+    }
+
+    private var valueText: some View {
+        Text(value)
+            .font(.system(size: valueFontSize))
+            .monospacedDigit()
     }
 
     @ViewBuilder private var slider: some View {
@@ -236,8 +268,14 @@ private struct LabeledSliderRow<Accessory: View>: View {
                 Slider(value: $sliderValue, in: range)
             }
         }
+        .tint(.sliderTrack)
         .accessibilityLabel(Text(title))
     }
+}
+
+private extension Color {
+    /// Grey used on both sides of the thumb on `main`, so a slider shows position without a fill.
+    static let sliderTrack = Color(white: 184 / 255)
 }
 
 extension LabeledSliderRow where Accessory == EmptyView {
