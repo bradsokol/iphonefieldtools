@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import OSLog
 import SwiftData
 import SwiftUI
 
@@ -26,7 +27,8 @@ struct FieldToolsApp: App {
         do {
             store = .ready(try openAppStore())
         } catch {
-            store = .unavailable(error)
+            logStoreFailure(error)
+            store = .unavailable
         }
     }
 
@@ -37,8 +39,8 @@ struct FieldToolsApp: App {
                 CalculatorView()
                     .environment(settings)
                     .modelContainer(container)
-            case .unavailable(let error):
-                StoreUnavailableView(error: error)
+            case .unavailable:
+                StoreUnavailableView()
             }
         }
     }
@@ -47,7 +49,20 @@ struct FieldToolsApp: App {
 /// Outcome of opening the camera bag store at launch.
 private enum StoreState {
     case ready(ModelContainer)
-    case unavailable(any Error)
+    case unavailable
+}
+
+private let storeLogger = Logger(subsystem: "net.sourceforge.iphonefieldtools", category: "store")
+
+/// Records why the camera bag store could not be opened.
+///
+/// The detail is logged rather than shown. `localizedDescription` on a SwiftData error
+/// reports only that the operation could not be completed, while the underlying domain,
+/// code and user info identify the actual failure.
+private func logStoreFailure(_ error: any Error) {
+    let nsError = error as NSError
+    let detail = "\(error) domain=\(nsError.domain) code=\(nsError.code) userInfo=\(nsError.userInfo)"
+    storeLogger.error("Camera bag store could not be opened. \(detail, privacy: .public)")
 }
 
 /// Shown in place of the calculator when the camera bag store cannot be opened.
@@ -56,23 +71,21 @@ private enum StoreState {
 /// would present a working-looking app whose edits vanish on the next launch, which is
 /// worse than reporting the failure.
 struct StoreUnavailableView: View {
-    let error: any Error
-
     var body: some View {
         ContentUnavailableView {
             Label("Camera Bag Unavailable", systemImage: "exclamationmark.triangle")
         } description: {
+            Text("Field Tools could not open your saved cameras and lenses.")
+        } actions: {
             Text(
                 """
-                Field Tools could not open your saved cameras and lenses. \
-                Your data has not been changed.
+                Your data is still on this device and has not been changed. \
+                Updating Field Tools to the latest version may resolve this.
                 """
             )
-        } actions: {
-            Text(error.localizedDescription)
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
         }
     }
 }
