@@ -68,7 +68,6 @@
 		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
 		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
-		A2F7C1A22E9201000011AA03 /* FTPersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */; };
 		A284E6F80EE45DA600C37E21 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A284E6F70EE45DA600C37E21 /* FlipsideView.xib */; };
 		A284E7020EE45DDE00C37E21 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A284E6FE0EE45DDE00C37E21 /* FlipsideViewController.m */; };
 		A289FAD61613D8D300211AE0 /* OBSlider.license in Resources */ = {isa = PBXBuildFile; fileRef = A289FAD21613D8D300211AE0 /* OBSlider.license */; };
@@ -97,6 +96,7 @@
 		A2D67B381F43B355004CC775 /* LinearSubjectDistanceSliderPolicyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C08BDC14BE7D660043D6E1 /* LinearSubjectDistanceSliderPolicyTests.m */; };
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
+		A2F7C1A22E9201000011AA03 /* FTPersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */; };
 		BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002010000000000000001 /* DepthOfFieldCalculator.swift */; };
 		BB0001020000000000000002 /* DistanceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002020000000000000002 /* DistanceFormatter.swift */; };
 		BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002030000000000000003 /* SubjectDistanceRange.swift */; };
@@ -211,8 +211,6 @@
 		A282978916453F2B00F6DE5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A282978C16454D2E00F6DE5D /* FTCameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCameraBag.h; path = Classes/Model/FTCameraBag.h; sourceTree = "<group>"; };
 		A282978D16454D2E00F6DE5D /* FTCameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBag.m; path = Classes/Model/FTCameraBag.m; sourceTree = "<group>"; };
-		A2F7C1A02E9201000011AA01 /* FTPersistenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTPersistenceController.h; path = Classes/Model/FTPersistenceController.h; sourceTree = "<group>"; };
-		A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTPersistenceController.m; path = Classes/Model/FTPersistenceController.m; sourceTree = "<group>"; };
 		A28297CC1645716800F6DE5D /* FTCameraBagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBagTests.m; path = TestClasses/FTCameraBagTests.m; sourceTree = SOURCE_ROOT; };
 		A284E6F70EE45DA600C37E21 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		A284E6FD0EE45DDE00C37E21 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
@@ -251,6 +249,8 @@
 		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Field_Tools_Tests.m; sourceTree = "<group>"; };
 		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2F7C1A02E9201000011AA01 /* FTPersistenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTPersistenceController.h; path = Classes/Model/FTPersistenceController.h; sourceTree = "<group>"; };
+		A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTPersistenceController.m; path = Classes/Model/FTPersistenceController.m; sourceTree = "<group>"; };
 		BB0002010000000000000001 /* DepthOfFieldCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthOfFieldCalculator.swift; sourceTree = "<group>"; };
 		BB0002020000000000000002 /* DistanceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
 		BB0002030000000000000003 /* SubjectDistanceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDistanceRange.swift; sourceTree = "<group>"; };
@@ -674,7 +674,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2710;
 				TargetAttributes = {
 					A282977016453D2D00F6DE5D = {
 						DevelopmentTeam = L5XZS2MG2S;
@@ -1266,6 +1266,7 @@
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				USER_HEADER_SEARCH_PATHS = "~/include";
 				VALIDATE_PRODUCT = YES;
 			};
