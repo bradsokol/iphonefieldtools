@@ -87,6 +87,17 @@ struct CalculatorView: View {
 
 // MARK: - Content
 
+/// Spacing for the calculator screen, taken from the storyboard constraints on `main`.
+private enum CalculatorLayout {
+    static let horizontalMargin: CGFloat = 24
+    static let topMargin: CGFloat = 6
+    static let resultToPicker: CGFloat = 15
+    static let pickerToSliders: CGFloat = 25
+    static let betweenSliderRows: CGFloat = 15
+    static let titleToSlider: CGFloat = 8
+    static let sliderToLimits: CGFloat = 2
+}
+
 /// Layout container for the calculator screen.
 private struct CalculatorContentView: View {
     var viewModel: CalculatorViewModel
@@ -99,7 +110,7 @@ private struct CalculatorContentView: View {
     }
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 0) {
             CalculatorResultSection(
                 viewModel: viewModel,
                 distanceType: distanceType
@@ -112,23 +123,29 @@ private struct CalculatorContentView: View {
                 Text("Near/Far").tag(DistanceType.nearFar)
             }
             .pickerStyle(.segmented)
+            .padding(.top, CalculatorLayout.resultToPicker)
 
-            FocalLengthSliderView(viewModel: viewModel)
+            VStack(spacing: CalculatorLayout.betweenSliderRows) {
+                FocalLengthSliderView(viewModel: viewModel)
 
-            ApertureSliderView(viewModel: viewModel)
+                ApertureSliderView(viewModel: viewModel)
 
-            if needsSubjectDistance {
-                SubjectDistanceSliderView(viewModel: viewModel)
+                if needsSubjectDistance {
+                    SubjectDistanceSliderView(viewModel: viewModel)
+                }
             }
+            .padding(.top, CalculatorLayout.pickerToSliders)
 
-            Spacer()
+            Spacer(minLength: 0)
 
             CalculatorFooterView(
                 viewModel: viewModel,
                 showSettings: $showSettings
             )
         }
-        .padding()
+        .padding(.horizontal, CalculatorLayout.horizontalMargin)
+        .padding(.top, CalculatorLayout.topMargin)
+        .padding(.bottom)
     }
 }
 
@@ -168,7 +185,8 @@ private struct CalculatorResultSection: View {
 
 // MARK: - Slider sections
 
-/// A titled slider with its current value above and range limits below.
+/// A titled slider with its current value above, range limits below, and an
+/// optional accessory centred beneath the limits.
 ///
 /// When `showsSlider` is false only the title and value are shown, as for the
 /// focal length of a prime lens.
@@ -184,7 +202,7 @@ private struct LabeledSliderRow<Accessory: View>: View {
     @ViewBuilder var accessory: Accessory
 
     var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 0) {
             HStack {
                 Text(title)
                     .font(.body)
@@ -194,17 +212,18 @@ private struct LabeledSliderRow<Accessory: View>: View {
             }
             if showsSlider {
                 slider
+                    .padding(.top, CalculatorLayout.titleToSlider)
                 HStack {
                     Text(minimumLabel)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                     Spacer()
-                    accessory
-                    Spacer()
                     Text(maximumLabel)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
+                .padding(.top, CalculatorLayout.sliderToLimits)
+                accessory
             }
         }
     }
