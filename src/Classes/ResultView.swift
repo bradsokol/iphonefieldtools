@@ -23,9 +23,10 @@ struct ResultView: View {
     var near: Float?
     var far: Float?
 
-    @ScaledMetric(relativeTo: .title) private var largeFontSize = 34
-    @ScaledMetric(relativeTo: .title2) private var rangeFontSize = 28
-    @ScaledMetric(relativeTo: .body) private var smallFontSize = 17
+    @ScaledMetric(relativeTo: .largeTitle) private var boxHeight = 50
+    @ScaledMetric(relativeTo: .largeTitle) private var singleFontSize = 48
+    @ScaledMetric(relativeTo: .title2) private var rangeFontSize = 24
+    @ScaledMetric(relativeTo: .body) private var differenceFontSize = 17
 
     var body: some View {
         Group {
@@ -35,29 +36,28 @@ struct ResultView: View {
                     near: near,
                     far: far,
                     rangeFontSize: rangeFontSize,
-                    smallFontSize: smallFontSize
-                )
-            } else if let near {
-                SingleResultView(
-                    formatter: formatter,
-                    distance: near,
-                    fontSize: largeFontSize
+                    differenceFontSize: differenceFontSize
                 )
             } else {
                 SingleResultView(
                     formatter: formatter,
-                    distance: 0,
-                    fontSize: largeFontSize
+                    distance: near ?? 0,
+                    fontSize: singleFontSize
                 )
+                .frame(height: boxHeight)
             }
         }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .padding(.horizontal, 8)
+        .frame(maxWidth: .infinity, minHeight: boxHeight)
+        .background(.background, in: .rect(cornerRadius: 3))
+        .overlay {
+            RoundedRectangle(cornerRadius: 3)
+                .strokeBorder(.quaternary)
+        }
     }
 }
 
-/// Displays a single formatted distance value.
+/// Displays a single formatted distance value, right-aligned.
 private struct SingleResultView: View {
     var formatter: DistanceFormatter
     var distance: Float
@@ -65,42 +65,85 @@ private struct SingleResultView: View {
 
     var body: some View {
         Text(formatter.format(distance))
-            .font(.system(size: fontSize, weight: .medium, design: .rounded))
+            .font(.system(size: fontSize))
             .monospacedDigit()
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }
 
-/// Displays near and far limits with the difference between them.
+/// Displays near and far limits either side of a dimension arrow, with the
+/// difference between them written above the arrow.
 private struct RangeResultView: View {
     var formatter: DistanceFormatter
     var near: Float
     var far: Float
     var rangeFontSize: Double
-    var smallFontSize: Double
+    var differenceFontSize: Double
 
     private var difference: Float { far - near }
 
     var body: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Text(formatter.format(near))
-                    .font(.system(size: rangeFontSize, weight: .medium, design: .rounded))
-                    .monospacedDigit()
-                Spacer()
-                Image(systemName: "arrow.left.and.right")
-                    .foregroundStyle(.secondary)
+        HStack(alignment: .arrowLine, spacing: 2) {
+            limit(near)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            ZStack(alignment: Alignment(horizontal: .center, vertical: .arrowLine)) {
+                Image(.distanceArrows)
+                    .opacity(0.5)
                     .accessibilityHidden(true)
-                Spacer()
-                Text(formatter.format(far))
-                    .font(.system(size: rangeFontSize, weight: .medium, design: .rounded))
-                    .monospacedDigit()
+                    .alignmentGuide(.arrowLine) { $0[VerticalAlignment.center] }
+                differenceLabel
+                    .alignmentGuide(.arrowLine) { $0[.bottom] }
             }
-            if difference > 0 {
-                Text(formatter.format(difference))
-                    .font(.system(size: smallFontSize, design: .rounded))
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-            }
+            limit(far)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
+
+    @ViewBuilder private var differenceLabel: some View {
+        if difference > 0 {
+            Text(formatter.format(difference))
+                .font(.system(size: differenceFontSize))
+                .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+        }
+    }
+
+    private func limit(_ distance: Float) -> some View {
+        Text(formatter.format(distance))
+            .font(.system(size: rangeFontSize))
+            .monospacedDigit()
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .alignmentGuide(.arrowLine) { $0[VerticalAlignment.center] }
+    }
+}
+
+private extension VerticalAlignment {
+    /// The horizontal line of the distance arrow, which the near and far limits centre on
+    /// and the difference sits above.
+    enum ArrowLine: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[VerticalAlignment.center]
+        }
+    }
+
+    static let arrowLine = VerticalAlignment(ArrowLine.self)
+}
+
+#Preview("Single") {
+    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 3.6)
+        .padding(24)
+}
+
+#Preview("Range") {
+    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 1.5, far: 8)
+        .padding(24)
+}
+
+#Preview("Range to infinity") {
+    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 1.5, far: -1)
+        .padding(24)
 }
