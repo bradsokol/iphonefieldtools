@@ -325,6 +325,16 @@ gap visible in the failure output.
 
 ### Deletable after this phase
 
+**Done 2026-10-05.** Zero Objective-C files compile in either target. The list
+below is kept as the record of what went.
+
+**Gotcha for later phases:** editing `project.pbxproj` outside Xcode while the
+project is open leaves Xcode's *test enumeration* stale, even though builds pick
+the changes up. The test list kept reporting deleted Objective-C tests as "not
+run" through a DerivedData clear and several rebuilds; closing and reopening the
+workspace fixed it at once. Build and run results stayed accurate throughout —
+only enumeration was wrong.
+
 All remaining ObjC source files:
 
 - All ViewControllers (`MainViewController`, `FlipsideViewController`,

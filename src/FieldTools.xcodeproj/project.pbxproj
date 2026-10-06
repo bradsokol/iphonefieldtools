@@ -6,10 +6,7 @@
 	objectVersion = 54;
 	objects = {
 
-
 /* Begin PBXBuildFile section */
-		BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003020000000000000102 /* ModelOrderingTests.swift */; };
-		BB0003010000000000000101 /* ModelOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003000000000000000100 /* ModelOrdering.swift */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -19,7 +16,6 @@
 		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
 		A24D56C61ED4FED600AAB986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */; };
 		A24EF5790ECA853C001A7B46 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A24EF5770ECA853C001A7B46 /* Localizable.strings */; };
-		A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A265A29910F6F00B00678796 /* UserDefaults.m */; };
 		A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EC2F7B168200570542 /* FieldToolsApp.swift */; };
 		A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EE2F7B16AD00570542 /* CalculatorView.swift */; };
 		A26B51F12F7B16B400570542 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F02F7B16B400570542 /* ResultView.swift */; };
@@ -29,22 +25,12 @@
 		A26B51F92F7B196800570542 /* DistanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F82F7B196800570542 /* DistanceType.swift */; };
 		A26B51FB2F7B198000570542 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */; };
 		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
-		A282978316453E8700F6DE5D /* _FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977816453E8700F6DE5D /* _FTCamera.m */; };
-		A282978416453E8700F6DE5D /* _FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977A16453E8700F6DE5D /* _FTCoC.m */; };
-		A282978516453E8700F6DE5D /* _FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977C16453E8700F6DE5D /* _FTLens.m */; };
-		A282978616453E8700F6DE5D /* FTCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A282977E16453E8700F6DE5D /* FTCamera.m */; };
-		A282978716453E8700F6DE5D /* FTCoC.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978016453E8700F6DE5D /* FTCoC.m */; };
-		A282978816453E8700F6DE5D /* FTLens.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978216453E8700F6DE5D /* FTLens.m */; };
 		A282978A16453F2B00F6DE5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
-		A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */ = {isa = PBXBuildFile; fileRef = A282978D16454D2E00F6DE5D /* FTCameraBag.m */; };
 		A2ACD85713B64CAD0052557E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85613B64CAD0052557E /* CFNetwork.framework */; };
 		A2ACD85913B64CB30052557E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2ACD85813B64CB30052557E /* SystemConfiguration.framework */; };
 		A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */; };
-		A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */; };
-		A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28297CC1645716800F6DE5D /* FTCameraBagTests.m */; };
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
-		A2F7C1A22E9201000011AA03 /* FTPersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */; };
 		BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002010000000000000001 /* DepthOfFieldCalculator.swift */; };
 		BB0001020000000000000002 /* DistanceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002020000000000000002 /* DistanceFormatter.swift */; };
 		BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002030000000000000003 /* SubjectDistanceRange.swift */; };
@@ -60,6 +46,8 @@
 		BB00010D000000000000000D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020D000000000000000D /* UserSettings.swift */; };
 		BB00010E000000000000000E /* SwiftDataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020E000000000000000E /* SwiftDataModelTests.swift */; };
 		BB00010F000000000000000F /* UserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00020F000000000000000F /* UserSettingsTests.swift */; };
+		BB0003010000000000000101 /* ModelOrdering.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003000000000000000100 /* ModelOrdering.swift */; };
+		BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003020000000000000102 /* ModelOrderingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BB0003020000000000000102 /* ModelOrderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrderingTests.swift; path = TestClasses/ModelOrderingTests.swift; sourceTree = SOURCE_ROOT; };
-		BB0003000000000000000100 /* ModelOrdering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrdering.swift; path = Classes/Model/ModelOrdering.swift; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Field Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Field Tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -88,8 +74,6 @@
 		A24D56C51ED4FED600AAB986 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A25900281D7FB7B10058D160 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GoogleAnalytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		A259002A1D7FB8800058D160 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTests_Prefix.pch; sourceTree = "<group>"; };
-		A265A29910F6F00B00678796 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 		A26B51EC2F7B168200570542 /* FieldToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldToolsApp.swift; sourceTree = "<group>"; };
 		A26B51EE2F7B16AD00570542 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		A26B51F02F7B16B400570542 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -100,33 +84,14 @@
 		A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		A26FC57F16449E23000CF7DC /* FieldTools.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldTools.xcdatamodel; sourceTree = "<group>"; };
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
-		A2811F630ECE706300A7FB7A /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
-		A282977716453E8700F6DE5D /* _FTCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTCamera.h; path = Classes/Model/_FTCamera.h; sourceTree = "<group>"; };
-		A282977816453E8700F6DE5D /* _FTCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTCamera.m; path = Classes/Model/_FTCamera.m; sourceTree = "<group>"; };
-		A282977916453E8700F6DE5D /* _FTCoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTCoC.h; path = Classes/Model/_FTCoC.h; sourceTree = "<group>"; };
-		A282977A16453E8700F6DE5D /* _FTCoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTCoC.m; path = Classes/Model/_FTCoC.m; sourceTree = "<group>"; };
-		A282977B16453E8700F6DE5D /* _FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FTLens.h; path = Classes/Model/_FTLens.h; sourceTree = "<group>"; };
-		A282977C16453E8700F6DE5D /* _FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FTLens.m; path = Classes/Model/_FTLens.m; sourceTree = "<group>"; };
-		A282977D16453E8700F6DE5D /* FTCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCamera.h; path = Classes/Model/FTCamera.h; sourceTree = "<group>"; };
-		A282977E16453E8700F6DE5D /* FTCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCamera.m; path = Classes/Model/FTCamera.m; sourceTree = "<group>"; };
-		A282977F16453E8700F6DE5D /* FTCoC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCoC.h; path = Classes/Model/FTCoC.h; sourceTree = "<group>"; };
-		A282978016453E8700F6DE5D /* FTCoC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCoC.m; path = Classes/Model/FTCoC.m; sourceTree = "<group>"; };
-		A282978116453E8700F6DE5D /* FTLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTLens.h; path = Classes/Model/FTLens.h; sourceTree = "<group>"; };
-		A282978216453E8700F6DE5D /* FTLens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTLens.m; path = Classes/Model/FTLens.m; sourceTree = "<group>"; };
 		A282978916453F2B00F6DE5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A282978C16454D2E00F6DE5D /* FTCameraBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTCameraBag.h; path = Classes/Model/FTCameraBag.h; sourceTree = "<group>"; };
-		A282978D16454D2E00F6DE5D /* FTCameraBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBag.m; path = Classes/Model/FTCameraBag.m; sourceTree = "<group>"; };
-		A28297CC1645716800F6DE5D /* FTCameraBagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTCameraBagTests.m; path = TestClasses/FTCameraBagTests.m; sourceTree = SOURCE_ROOT; };
 		A2881BFA231D409800FE5B2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/CoC.plist; sourceTree = "<group>"; };
 		A2881BFB231D409800FE5B2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A2ACD85613B64CAD0052557E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A2ACD85813B64CB30052557E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Field_Tools_Tests.m; sourceTree = "<group>"; };
 		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2F7C1A02E9201000011AA01 /* FTPersistenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTPersistenceController.h; path = Classes/Model/FTPersistenceController.h; sourceTree = "<group>"; };
-		A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTPersistenceController.m; path = Classes/Model/FTPersistenceController.m; sourceTree = "<group>"; };
 		BB0002010000000000000001 /* DepthOfFieldCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthOfFieldCalculator.swift; sourceTree = "<group>"; };
 		BB0002020000000000000002 /* DistanceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
 		BB0002030000000000000003 /* SubjectDistanceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDistanceRange.swift; sourceTree = "<group>"; };
@@ -142,6 +107,8 @@
 		BB00020D000000000000000D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		BB00020E000000000000000E /* SwiftDataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftDataModelTests.swift; path = TestClasses/SwiftDataModelTests.swift; sourceTree = SOURCE_ROOT; };
 		BB00020F000000000000000F /* UserSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSettingsTests.swift; path = TestClasses/UserSettingsTests.swift; sourceTree = SOURCE_ROOT; };
+		BB0003000000000000000100 /* ModelOrdering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrdering.swift; path = Classes/Model/ModelOrdering.swift; sourceTree = "<group>"; };
+		BB0003020000000000000102 /* ModelOrderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrderingTests.swift; path = TestClasses/ModelOrderingTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +173,6 @@
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
 				A27E41AF1224A07B0060CDB2 /* IntegrationTests */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				A24B1764156FE23D00BFBFF0 /* Settings.bundle */,
 				A2D67B2B1F43B33D004CC775 /* Field Tools Tests */,
@@ -215,16 +181,6 @@
 				A21DCF5810EF06D700139D93 /* Documentation */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				A265A29210F6EE2400678796 /* ModelTests_Prefix.pch */,
-				A2811F630ECE706300A7FB7A /* UserDefaults.h */,
-				A265A29910F6F00B00678796 /* UserDefaults.m */,
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -262,7 +218,6 @@
 				BB0003020000000000000102 /* ModelOrderingTests.swift */,
 				BB0002050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift */,
 				BB0002060000000000000006 /* DistanceFormatterSwiftTests.swift */,
-				A28297CC1645716800F6DE5D /* FTCameraBagTests.m */,
 				BB0002070000000000000007 /* SubjectDistanceRangeSwiftTests.swift */,
 				BB00020E000000000000000E /* SwiftDataModelTests.swift */,
 				BB00020F000000000000000F /* UserSettingsTests.swift */,
@@ -287,34 +242,10 @@
 			path = IntegrationTests;
 			sourceTree = "<group>";
 		};
-		A282978B16453FBE00F6DE5D /* Base Classes */ = {
-			isa = PBXGroup;
-			children = (
-				A282977716453E8700F6DE5D /* _FTCamera.h */,
-				A282977816453E8700F6DE5D /* _FTCamera.m */,
-				A282977916453E8700F6DE5D /* _FTCoC.h */,
-				A282977A16453E8700F6DE5D /* _FTCoC.m */,
-				A282977B16453E8700F6DE5D /* _FTLens.h */,
-				A282977C16453E8700F6DE5D /* _FTLens.m */,
-			);
-			name = "Base Classes";
-			sourceTree = "<group>";
-		};
 		A2AAAECD0F2831D400945F6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				BB0003000000000000000100 /* ModelOrdering.swift */,
-				A282978B16453FBE00F6DE5D /* Base Classes */,
-				A282977D16453E8700F6DE5D /* FTCamera.h */,
-				A282977E16453E8700F6DE5D /* FTCamera.m */,
-				A282978C16454D2E00F6DE5D /* FTCameraBag.h */,
-				A282978D16454D2E00F6DE5D /* FTCameraBag.m */,
-				A282977F16453E8700F6DE5D /* FTCoC.h */,
-				A282978016453E8700F6DE5D /* FTCoC.m */,
-				A282978116453E8700F6DE5D /* FTLens.h */,
-				A282978216453E8700F6DE5D /* FTLens.m */,
-				A2F7C1A02E9201000011AA01 /* FTPersistenceController.h */,
-				A2F7C1A12E9201000011AA02 /* FTPersistenceController.m */,
 				A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */,
 				BB0002080000000000000008 /* Camera.swift */,
 				BB00020C000000000000000C /* CoCPreset.swift */,
@@ -329,7 +260,6 @@
 		A2D67B2B1F43B33D004CC775 /* Field Tools Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A2D67B2C1F43B33D004CC775 /* Field_Tools_Tests.m */,
 				A2D67B2E1F43B33D004CC775 /* Info.plist */,
 			);
 			path = "Field Tools Tests";
@@ -478,20 +408,11 @@
 				BB0003010000000000000101 /* ModelOrdering.swift in Sources */,
 				A26B51F32F7B16C600570542 /* SettingsView.swift in Sources */,
 				A26B51F92F7B196800570542 /* DistanceType.swift in Sources */,
-				A265A29B10F6F00B00678796 /* UserDefaults.m in Sources */,
 				A26B51F72F7B16E500570542 /* LensEditView.swift in Sources */,
 				A26B51F12F7B16B400570542 /* ResultView.swift in Sources */,
 				A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */,
 				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
-				A282978316453E8700F6DE5D /* _FTCamera.m in Sources */,
-				A282978416453E8700F6DE5D /* _FTCoC.m in Sources */,
-				A282978516453E8700F6DE5D /* _FTLens.m in Sources */,
-				A282978616453E8700F6DE5D /* FTCamera.m in Sources */,
 				A26B51F52F7B16D500570542 /* CameraEditView.swift in Sources */,
-				A282978716453E8700F6DE5D /* FTCoC.m in Sources */,
-				A282978816453E8700F6DE5D /* FTLens.m in Sources */,
-				A282978E16454D2E00F6DE5D /* FTCameraBag.m in Sources */,
-				A2F7C1A22E9201000011AA03 /* FTPersistenceController.m in Sources */,
 				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
 				A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */,
 				BB0001020000000000000002 /* DistanceFormatter.swift in Sources */,
@@ -514,8 +435,6 @@
 				BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */,
 				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
 				A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */,
-				A2D67B2D1F43B33D004CC775 /* Field_Tools_Tests.m in Sources */,
-				A2D67B371F43B355004CC775 /* FTCameraBagTests.m in Sources */,
 				BB0001050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift in Sources */,
 				BB0001060000000000000006 /* DistanceFormatterSwiftTests.swift in Sources */,
 				BB0001070000000000000007 /* SubjectDistanceRangeSwiftTests.swift in Sources */,
@@ -644,8 +563,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -834,8 +751,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -879,8 +794,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FieldTools_Prefix.pch;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
