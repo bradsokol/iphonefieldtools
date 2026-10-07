@@ -130,11 +130,10 @@ private struct CalculatorContentView: View {
                 distanceType: distanceType
             )
 
-            Picker("Distance Type", selection: $distanceType) {
-                Text("Hyperfocal").tag(DistanceType.hyperfocal)
-                Text("Near").tag(DistanceType.near)
-                Text("Far").tag(DistanceType.far)
-                Text("Near/Far").tag(DistanceType.nearFar)
+            Picker("DISTANCE_TYPE", selection: $distanceType) {
+                ForEach(DistanceType.allCases, id: \.self) { type in
+                    Text(type.title).tag(type)
+                }
             }
             .pickerStyle(.segmented)
             .padding(.top, CalculatorLayout.resultToPicker)

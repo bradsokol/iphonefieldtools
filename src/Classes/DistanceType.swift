@@ -12,10 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
+
 /// The distance calculation type selected by the segmented control.
 enum DistanceType: Int, CaseIterable {
     case hyperfocal
     case near
     case far
     case nearFar
+
+    /// Short title for the distance type picker.
+    var title: LocalizedStringResource {
+        switch self {
+        case .hyperfocal: LocalizedStringResource("DISTANCE_TYPE_HYPERFOCAL", comment: "Hyperfocal distance segment")
+        case .near: LocalizedStringResource("DISTANCE_TYPE_NEAR", comment: "Near limit segment")
+        case .far: LocalizedStringResource("DISTANCE_TYPE_FAR", comment: "Far limit segment")
+        case .nearFar: LocalizedStringResource("DISTANCE_TYPE_NEAR_FAR", comment: "Near and far limits segment")
+        }
+    }
 }
