@@ -42,7 +42,7 @@ public final class UserSettings {
 
     // MARK: - Storage
 
-    private let defaults: UserDefaults
+    @ObservationIgnored private let defaults: UserDefaults
 
     // MARK: - Init
 
@@ -59,56 +59,59 @@ public final class UserSettings {
             Key.subjectDistance: Float(2.5),
             Key.subjectDistanceRange: SubjectDistanceRange.mid.rawValue,
         ])
+
+        apertureIndex = defaults.integer(forKey: Key.apertureIndex)
+        cameraIndex = defaults.integer(forKey: Key.cameraIndex)
+        distanceType = defaults.integer(forKey: Key.distanceType)
+        distanceUnits = DistanceUnits(rawValue: defaults.integer(forKey: Key.distanceUnits)) ?? .feetAndInches
+        focalLength = defaults.float(forKey: Key.focalLength)
+        lensIndex = defaults.integer(forKey: Key.lensIndex)
+        subjectDistance = defaults.float(forKey: Key.subjectDistance)
+        subjectDistanceRange = SubjectDistanceRange(
+            rawValue: defaults.integer(forKey: Key.subjectDistanceRange)
+        ) ?? .mid
     }
 
     // MARK: - Properties
 
     /// Index into ``Aperture/values`` for the currently selected f-stop.
     public var apertureIndex: Int {
-        get { defaults.integer(forKey: Key.apertureIndex) }
-        set { defaults.set(newValue, forKey: Key.apertureIndex) }
+        didSet { defaults.set(apertureIndex, forKey: Key.apertureIndex) }
     }
 
     /// Index of the currently selected camera in the sorted camera list.
     public var cameraIndex: Int {
-        get { defaults.integer(forKey: Key.cameraIndex) }
-        set { defaults.set(newValue, forKey: Key.cameraIndex) }
+        didSet { defaults.set(cameraIndex, forKey: Key.cameraIndex) }
     }
 
     /// Distance calculation type (0 = hyperfocal, 1 = near/far).
     public var distanceType: Int {
-        get { defaults.integer(forKey: Key.distanceType) }
-        set { defaults.set(newValue, forKey: Key.distanceType) }
+        didSet { defaults.set(distanceType, forKey: Key.distanceType) }
     }
 
     /// Distance display unit preference.
     public var distanceUnits: DistanceUnits {
-        get { DistanceUnits(rawValue: defaults.integer(forKey: Key.distanceUnits)) ?? .feetAndInches }
-        set { defaults.set(newValue.rawValue, forKey: Key.distanceUnits) }
+        didSet { defaults.set(distanceUnits.rawValue, forKey: Key.distanceUnits) }
     }
 
     /// Current focal length in millimetres.
     public var focalLength: Float {
-        get { defaults.float(forKey: Key.focalLength) }
-        set { defaults.set(newValue, forKey: Key.focalLength) }
+        didSet { defaults.set(focalLength, forKey: Key.focalLength) }
     }
 
     /// Index of the currently selected lens in the sorted lens list.
     public var lensIndex: Int {
-        get { defaults.integer(forKey: Key.lensIndex) }
-        set { defaults.set(newValue, forKey: Key.lensIndex) }
+        didSet { defaults.set(lensIndex, forKey: Key.lensIndex) }
     }
 
     /// Current subject distance in metres.
     public var subjectDistance: Float {
-        get { defaults.float(forKey: Key.subjectDistance) }
-        set { defaults.set(newValue, forKey: Key.subjectDistance) }
+        didSet { defaults.set(subjectDistance, forKey: Key.subjectDistance) }
     }
 
     /// Subject distance range controlling slider bounds.
     public var subjectDistanceRange: SubjectDistanceRange {
-        get { SubjectDistanceRange(rawValue: defaults.integer(forKey: Key.subjectDistanceRange)) ?? .mid }
-        set { defaults.set(newValue.rawValue, forKey: Key.subjectDistanceRange) }
+        didSet { defaults.set(subjectDistanceRange.rawValue, forKey: Key.subjectDistanceRange) }
     }
 
     /// Whether this install saw the MPCoachMarks onboarding that TipKit replaces.
