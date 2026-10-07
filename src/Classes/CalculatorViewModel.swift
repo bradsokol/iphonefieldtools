@@ -162,7 +162,7 @@ final class CalculatorViewModel {
             aperture: aperture,
             focalLength: settings.focalLength,
             circleOfConfusion: circleOfConfusion,
-            subjectDistance: settings.subjectDistance
+            subjectDistance: calculationSubjectDistance
         )
     }
 
@@ -172,8 +172,23 @@ final class CalculatorViewModel {
             aperture: aperture,
             focalLength: settings.focalLength,
             circleOfConfusion: circleOfConfusion,
-            subjectDistance: settings.subjectDistance
+            subjectDistance: calculationSubjectDistance
         )
+    }
+
+    /// Near limit in metres, rounded to the precision the Near+Far result displays.
+    ///
+    /// Rounding the limits before display keeps the depth of field shown equal to the
+    /// difference between the limits shown.
+    var rangeNearLimit: Float {
+        roundedForRange(nearLimit)
+    }
+
+    /// Far limit in metres, rounded to the precision the Near+Far result displays.
+    ///
+    /// A negative value, meaning infinity, is returned unchanged.
+    var rangeFarLimit: Float {
+        roundedForRange(farLimit)
     }
 
     // MARK: - Formatting
@@ -211,6 +226,42 @@ final class CalculatorViewModel {
     }
 
     // MARK: - Private
+
+    /// Subject distance rounded to the slider's step: a tenth of a foot, a centimetre,
+    /// or a millimetre, depending on the units.
+    private var calculationSubjectDistance: Float {
+        let distance = settings.subjectDistance
+        let metresToFeet = DistanceFormatter.metresToFeet
+        switch settings.distanceUnits {
+        case .feet, .feetAndInches:
+            return (distance * metresToFeet * 10).rounded() * 0.1 / metresToFeet
+        case .meters:
+            return (distance * 100).rounded() * 0.01
+        case .centimeters:
+            return (distance * 1000).rounded() * 0.001
+        }
+    }
+
+    /// Steps per metre for Near+Far rounding: quarter inches for feet and inches, and
+    /// otherwise finer steps for the macro and close ranges.
+    private var rangeStepsPerMetre: Float {
+        let range = settings.subjectDistanceRange
+        let isClose = range == .macro || range == .close
+        switch settings.distanceUnits {
+        case .feetAndInches:
+            return DistanceFormatter.metresToFeet * 48
+        case .meters:
+            return isClose ? 100 : 10
+        case .feet, .centimeters:
+            return isClose ? 1000 : 100
+        }
+    }
+
+    private func roundedForRange(_ distance: Float) -> Float {
+        guard distance >= 0 else { return distance }
+        let steps = rangeStepsPerMetre
+        return (distance * steps).rounded(.toNearestOrEven) / steps
+    }
 
     private var resultDecimalPlaces: Int {
         let range = settings.subjectDistanceRange

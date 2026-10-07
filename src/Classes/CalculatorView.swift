@@ -205,8 +205,8 @@ private struct CalculatorResultSection: View {
         case .nearFar:
             ResultView(
                 formatter: viewModel.resultFormatter,
-                near: viewModel.nearLimit,
-                far: viewModel.farLimit
+                near: viewModel.rangeNearLimit,
+                far: viewModel.rangeFarLimit
             )
         }
     }
