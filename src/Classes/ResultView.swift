@@ -49,9 +49,9 @@ struct ResultView: View {
         }
         .padding(.horizontal, 8)
         .frame(maxWidth: .infinity, minHeight: boxHeight)
-        .background(.background, in: .rect(cornerRadius: 3))
-        .overlay {
+        .background {
             RoundedRectangle(cornerRadius: 3)
+                .fill(.background)
                 .strokeBorder(.quaternary)
         }
     }

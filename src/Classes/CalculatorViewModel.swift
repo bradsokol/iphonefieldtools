@@ -190,11 +190,6 @@ final class CalculatorViewModel {
         settings.apertureIndex = Int(sliderValue + 0.5)
     }
 
-    /// Updates the focal length from a slider value, rounding to nearest integer.
-    func updateFocalLength(from sliderValue: Float) {
-        settings.focalLength = (sliderValue + 0.5).rounded(.down)
-    }
-
     /// Clamps subject distance to the current range bounds.
     func clampSubjectDistance() {
         if settings.subjectDistance < subjectDistanceMinimum {

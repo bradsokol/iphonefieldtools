@@ -89,21 +89,47 @@ struct CalculatorView: View {
 
 /// Spacing for the calculator screen, taken from the storyboard constraints on `main`.
 private enum CalculatorLayout {
-    static let horizontalMargin: CGFloat = 24
-    static let topMargin: CGFloat = 6
-    static let resultToPicker: CGFloat = 15
-    static let pickerToSliders: CGFloat = 25
-    static let betweenSliderRows: CGFloat = 15
-    static let titleToSlider: CGFloat = 8
-    static let sliderToLimits: CGFloat = 2
-    static let bottomMargin: CGFloat = 18
+    static let horizontalMargin: Double = 24
+    static let topMargin: Double = 6
+    static let resultToPicker: Double = 15
+    static let pickerToSliders: Double = 25
+    static let betweenSliderRows: Double = 15
+    static let titleToSlider: Double = 8
+    static let sliderToLimits: Double = 2
+    /// 18pt on `main`, less the extra height the footer's 44pt tap target adds below its content.
+    static let bottomMargin: Double = 8
+    static let minimumTapTarget: Double = 44
 }
 
 /// Layout container for the calculator screen.
 ///
-/// The content fills the screen with the footer at the bottom, and scrolls only when
-/// it is taller than the screen, as at accessibility text sizes.
+/// The controls fill the screen with the footer at the bottom, and scroll only when
+/// they are taller than the screen, as at accessibility text sizes.
 private struct CalculatorContentView: View {
+    var viewModel: CalculatorViewModel
+    @Binding var distanceType: DistanceType
+    @Binding var showSettings: Bool
+
+    var body: some View {
+        ViewThatFits(in: .vertical) {
+            controls
+            ScrollView {
+                controls
+            }
+        }
+    }
+
+    private var controls: some View {
+        CalculatorControlsView(
+            viewModel: viewModel,
+            distanceType: $distanceType,
+            showSettings: $showSettings
+        )
+    }
+}
+
+/// The result, distance type picker, sliders and footer, stacked top to bottom.
+private struct CalculatorControlsView: View {
     var viewModel: CalculatorViewModel
     @Binding var distanceType: DistanceType
     @Binding var showSettings: Bool
@@ -114,16 +140,6 @@ private struct CalculatorContentView: View {
     }
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                content
-                    .frame(minHeight: proxy.size.height)
-            }
-            .scrollBounceBehavior(.basedOnSize)
-        }
-    }
-
-    private var content: some View {
         VStack(spacing: 0) {
             CalculatorResultSection(
                 viewModel: viewModel,
@@ -309,13 +325,11 @@ private struct FocalLengthSliderView: View {
     var viewModel: CalculatorViewModel
 
     var body: some View {
+        @Bindable var settings = viewModel.settings
         LabeledSliderRow(
             title: "Focal length:",
             value: viewModel.focalLengthText,
-            sliderValue: Binding(
-                get: { viewModel.settings.focalLength },
-                set: { viewModel.updateFocalLength(from: $0) }
-            ),
+            sliderValue: $settings.focalLength,
             range: viewModel.focalLengthRange,
             step: 1,
             minimumLabel: viewModel.focalLengthMinLabel,
@@ -400,6 +414,7 @@ private struct CalculatorFooterView: View {
                     .font(.title3)
                     .accessibilityHidden(true)
             }
+            .frame(minHeight: CalculatorLayout.minimumTapTarget)
         }
         .accessibilityHint("Opens settings")
         .frame(maxWidth: .infinity, alignment: .trailing)
