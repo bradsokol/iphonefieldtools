@@ -82,6 +82,31 @@ public struct DistanceFormatter: Sendable {
         "\(format(near))\t\(format(far - near))\t\(format(far))"
     }
 
+    /// Describes a near/far range for VoiceOver, naming each value.
+    ///
+    /// The depth of field is omitted when the far limit is at infinity, as it is on screen.
+    ///
+    /// - Parameters:
+    ///   - near: Near distance in metres.
+    ///   - far: Far distance in metres, or a negative value for infinity.
+    /// - Returns: A localised description such as "Near limit 4.9 ft, far limit 26.2 ft,
+    ///   depth of field 21.4 ft".
+    public func accessibilityRange(near: Float, far: Float) -> String {
+        let difference = far - near
+        guard difference > 0 else {
+            let template = NSLocalizedString(
+                "RESULT_RANGE_VALUE_TO_INFINITY",
+                comment: "VoiceOver value for a near limit and a far limit at infinity"
+            )
+            return String(format: template, format(near), format(far))
+        }
+        let template = NSLocalizedString(
+            "RESULT_RANGE_VALUE",
+            comment: "VoiceOver value for the near limit, far limit and depth of field"
+        )
+        return String(format: template, format(near), format(far), format(difference))
+    }
+
     // MARK: - Unit conversion
 
     /// Converts a distance in metres to the specified unit.

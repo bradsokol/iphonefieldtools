@@ -22,6 +22,8 @@ struct ResultView: View {
     var formatter: DistanceFormatter
     var near: Float?
     var far: Float?
+    /// VoiceOver label naming what the result is.
+    var accessibilityLabel: LocalizedStringResource
 
     @ScaledMetric(relativeTo: .largeTitle) private var boxHeight = 50
     @ScaledMetric(relativeTo: .largeTitle) private var singleFontSize = 48
@@ -53,6 +55,17 @@ struct ResultView: View {
             RoundedRectangle(cornerRadius: 3)
                 .fill(.background)
                 .strokeBorder(.quaternary)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(accessibilityLabel))
+        .accessibilityValue(accessibilityValue)
+    }
+
+    private var accessibilityValue: String {
+        if let near, let far {
+            formatter.accessibilityRange(near: near, far: far)
+        } else {
+            formatter.format(near ?? 0)
         }
     }
 }
@@ -134,16 +147,19 @@ private extension VerticalAlignment {
 }
 
 #Preview("Single") {
-    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 3.6)
+    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 3.6,
+               accessibilityLabel: DistanceType.hyperfocal.resultAccessibilityLabel)
         .padding(24)
 }
 
 #Preview("Range") {
-    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 1.5, far: 8)
+    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 1.5, far: 8,
+               accessibilityLabel: DistanceType.nearFar.resultAccessibilityLabel)
         .padding(24)
 }
 
 #Preview("Range to infinity") {
-    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 1.5, far: -1)
+    ResultView(formatter: DistanceFormatter(units: .feet, decimalPlaces: 0), near: 1.5, far: -1,
+               accessibilityLabel: DistanceType.nearFar.resultAccessibilityLabel)
         .padding(24)
 }

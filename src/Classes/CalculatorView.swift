@@ -190,23 +190,27 @@ private struct CalculatorResultSection: View {
         case .hyperfocal:
             ResultView(
                 formatter: viewModel.resultFormatter,
-                near: viewModel.hyperfocalDistance
+                near: viewModel.hyperfocalDistance,
+                accessibilityLabel: distanceType.resultAccessibilityLabel
             )
         case .near:
             ResultView(
                 formatter: viewModel.resultFormatter,
-                near: viewModel.nearLimit
+                near: viewModel.nearLimit,
+                accessibilityLabel: distanceType.resultAccessibilityLabel
             )
         case .far:
             ResultView(
                 formatter: viewModel.resultFormatter,
-                near: viewModel.farLimit
+                near: viewModel.farLimit,
+                accessibilityLabel: distanceType.resultAccessibilityLabel
             )
         case .nearFar:
             ResultView(
                 formatter: viewModel.resultFormatter,
                 near: viewModel.rangeNearLimit,
-                far: viewModel.rangeFarLimit
+                far: viewModel.rangeFarLimit,
+                accessibilityLabel: distanceType.resultAccessibilityLabel
             )
         }
     }

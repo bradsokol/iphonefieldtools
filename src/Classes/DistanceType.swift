@@ -30,4 +30,14 @@ enum DistanceType: Int, CaseIterable {
         case .nearFar: LocalizedStringResource("DISTANCE_TYPE_NEAR_FAR", comment: "Near and far limits segment")
         }
     }
+
+    /// VoiceOver label for the result shown for this distance type.
+    var resultAccessibilityLabel: LocalizedStringResource {
+        switch self {
+        case .hyperfocal: LocalizedStringResource("RESULT_HYPERFOCAL", comment: "Hyperfocal result label")
+        case .near: LocalizedStringResource("RESULT_NEAR", comment: "Near limit result label")
+        case .far: LocalizedStringResource("RESULT_FAR", comment: "Far limit result label")
+        case .nearFar: LocalizedStringResource("RESULT_NEAR_FAR", comment: "Near and far result label")
+        }
+    }
 }

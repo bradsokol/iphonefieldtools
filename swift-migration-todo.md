@@ -1,19 +1,23 @@
 # Swift Migration To-Do
 
+## VoiceOver may misread result units
+
+Found 2026-10-07 while labelling the calculator result for VoiceOver. Not yet
+checked on a device or in the Accessibility Inspector.
+
+The result's VoiceOver value reuses the on-screen text from `DistanceFormatter`.
+Feet and inches values such as `4' 6½"` are likely to be read as apostrophes and
+quote marks, and the "ft" and "m" abbreviations may be spelled out rather than
+spoken as units.
+
+**To do:** listen to each unit with VoiceOver. If any are misread, add a spoken
+format to `DistanceFormatter` (for example with `Measurement` and a long unit
+style) and use it in `accessibilityRange(near:far:)` and the single result value.
+
 ## Calculator screen code review follow-ups
 
 Raised by the `swiftui-pro` review on 2026-10-06, after the calculator screen was
 matched to `main`. None of these were introduced by that work.
-
-### VoiceOver does not identify the result values
-
-In Near+Far, `ResultView` exposes three separate, unlabelled distances
-("4.9 ft", "21.4 ft", "26.2 ft") with nothing to say which is the near limit, the
-far limit or the depth of field. `main` labelled them.
-
-**To do:** combine the range into one accessibility element whose label names
-each value, and label the single-value result by distance type (hyperfocal, near
-or far). Needs new localised strings.
 
 ### Subject distance range menu is below the minimum tap target
 

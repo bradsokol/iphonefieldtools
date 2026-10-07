@@ -32,4 +32,17 @@ struct DistanceTypeTests {
     func title(type: DistanceType, expected: String) {
         #expect(String(localized: type.title) == expected)
     }
+
+    @Test(
+        "Result VoiceOver labels name each distance type",
+        arguments: [
+            (DistanceType.hyperfocal, "Hyperfocal distance"),
+            (DistanceType.near, "Near limit"),
+            (DistanceType.far, "Far limit"),
+            (DistanceType.nearFar, "Depth of field")
+        ]
+    )
+    func resultAccessibilityLabel(type: DistanceType, expected: String) {
+        #expect(String(localized: type.resultAccessibilityLabel) == expected)
+    }
 }

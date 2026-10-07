@@ -65,4 +65,17 @@ struct DistanceFormatterTests {
         let formatter = DistanceFormatter(units: .meters)
         #expect(formatter.format(-1.0) == "∞")
     }
+
+    @Test("VoiceOver range names the near limit, far limit and depth of field")
+    func accessibilityRange() {
+        let formatter = DistanceFormatter(units: .meters)
+        #expect(formatter.accessibilityRange(near: 1.5, far: 8)
+            == "Near limit 1.5 m, far limit 8 m, depth of field 6.5 m")
+    }
+
+    @Test("VoiceOver range to infinity omits the depth of field")
+    func accessibilityRangeToInfinity() {
+        let formatter = DistanceFormatter(units: .meters)
+        #expect(formatter.accessibilityRange(near: 1.5, far: -1) == "Near limit 1.5 m, far limit ∞")
+    }
 }
