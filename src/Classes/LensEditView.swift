@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import SwiftData
 import SwiftUI
 
 /// Edit screen for a lens: name, type (prime/zoom), aperture range, and focal length range.
@@ -181,3 +182,14 @@ struct LensEditView: View {
         showValidationError = true
     }
 }
+
+#if DEBUG
+#Preview(traits: .sampleData) {
+    @Previewable @Query var lenses: [Lens]
+    NavigationStack {
+        if let lens = lenses.first {
+            LensEditView(lens: lens)
+        }
+    }
+}
+#endif

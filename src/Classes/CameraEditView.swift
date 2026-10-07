@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import SwiftData
 import SwiftUI
 
 /// Edit screen for a camera, combining name, CoC preset selection, and custom CoC entry.
@@ -143,3 +144,14 @@ struct CameraEditView: View {
         }
     }
 }
+
+#if DEBUG
+#Preview(traits: .sampleData) {
+    @Previewable @Query var cameras: [Camera]
+    NavigationStack {
+        if let camera = cameras.first {
+            CameraEditView(camera: camera)
+        }
+    }
+}
+#endif

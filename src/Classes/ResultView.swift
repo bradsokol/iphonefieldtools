@@ -59,6 +59,7 @@ struct ResultView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(accessibilityLabel))
         .accessibilityValue(accessibilityValue)
+        .accessibilityIdentifier("result")
     }
 
     private var accessibilityValue: String {

@@ -19,13 +19,15 @@ import SwiftUI
 /// App entry point for Field Tools.
 @main
 struct FieldToolsApp: App {
-    @State private var settings = UserSettings()
+    @State private var settings: UserSettings
 
     private let store: StoreState
 
     init() {
+        let location = AppDataLocation.forLaunch()
+        _settings = State(initialValue: UserSettings(defaults: location.defaults))
         do {
-            store = .ready(try openAppStore())
+            store = .ready(try openAppStore(at: location.storeURL))
         } catch {
             logStoreFailure(error)
             store = .unavailable

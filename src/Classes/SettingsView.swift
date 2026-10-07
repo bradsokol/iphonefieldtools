@@ -215,3 +215,9 @@ private struct UnitsSectionView: View {
         }
     }
 }
+
+#if DEBUG
+#Preview(traits: .sampleData) {
+    SettingsView()
+}
+#endif

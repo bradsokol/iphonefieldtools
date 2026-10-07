@@ -21,23 +21,27 @@ import SwiftData
 /// seeded still leaves the app usable, with no sample camera or lens, so that failure
 /// is not treated as fatal.
 ///
+/// - Parameter url: The store file to open.
 /// - Returns: The container backing the app's camera bag.
 /// - Throws: Only when the store itself cannot be opened.
-public func openAppStore() throws -> ModelContainer {
-    let container = try makeModelContainer()
+public func openAppStore(at url: URL = defaultStoreURL) throws -> ModelContainer {
+    let container = try makeModelContainer(at: url)
     try? seedDefaultsIfNeeded(in: ModelContext(container))
     return container
 }
 
+/// The camera bag store shipped by the Core Data app, at `Documents/FieldTools.sqlite`.
+public let defaultStoreURL = URL.documentsDirectory.appending(path: "FieldTools.sqlite")
+
 /// Creates the app's `ModelContainer`, reading from the existing Core Data SQLite store.
 ///
-/// The store is located at `Documents/FieldTools.sqlite`. Entity and attribute names
-/// match between Core Data and SwiftData, so no migration is required.
+/// Entity and attribute names match between Core Data and SwiftData, so no migration
+/// is required.
 ///
+/// - Parameter url: The store file to open.
 /// - Returns: A configured `ModelContainer` for Camera, CoC, and Lens.
 /// - Throws: Any error raised while opening the store.
-public func makeModelContainer() throws -> ModelContainer {
-    let url = URL.documentsDirectory.appending(path: "FieldTools.sqlite")
+public func makeModelContainer(at url: URL = defaultStoreURL) throws -> ModelContainer {
     let configuration = ModelConfiguration(url: url)
     return try ModelContainer(
         for: Camera.self, CoC.self, Lens.self,

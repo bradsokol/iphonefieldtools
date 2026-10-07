@@ -309,18 +309,15 @@ extension LabeledSliderRow where Accessory == EmptyView {
         maximumLabel: String,
         showsSlider: Bool = true
     ) {
-        self.init(
-            title: title,
-            value: value,
-            sliderValue: sliderValue,
-            range: range,
-            step: step,
-            minimumLabel: minimumLabel,
-            maximumLabel: maximumLabel,
-            showsSlider: showsSlider
-        ) {
-            EmptyView()
-        }
+        self.title = title
+        self.value = value
+        self._sliderValue = sliderValue
+        self.range = range
+        self.step = step
+        self.minimumLabel = minimumLabel
+        self.maximumLabel = maximumLabel
+        self.showsSlider = showsSlider
+        self.accessory = EmptyView()
     }
 }
 
@@ -421,6 +418,13 @@ private struct CalculatorFooterView: View {
             .frame(minHeight: CalculatorLayout.minimumTapTarget)
         }
         .accessibilityHint("Opens settings")
+        .accessibilityIdentifier("settingsButton")
         .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }
+
+#if DEBUG
+#Preview(traits: .sampleData) {
+    CalculatorView()
+}
+#endif
