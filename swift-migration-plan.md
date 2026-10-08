@@ -31,6 +31,8 @@ Phase-specific validation is listed in addition to these.
 
 ## Phase 0: Preparatory Cleanup
 
+**Done.**
+
 **Goal:** Remove dead code to shrink the migration surface.
 
 ### 0.1 Delete legacy migration chain
@@ -59,6 +61,8 @@ Remove NSCoding-based classes and all `migrateDefaultsFrom*` methods:
 ---
 
 ## Phase 1: Pure Swift Business Logic
+
+**Done.**
 
 **Goal:** Port all calculation and formatting logic to Swift as pure value
 types. No UI or persistence dependencies. Immediately testable.
@@ -109,6 +113,8 @@ types. No UI or persistence dependencies. Immediately testable.
 ---
 
 ## Phase 2: SwiftData Models
+
+**Done.**
 
 **Goal:** Establish SwiftData as the persistence layer, reading the existing
 Core Data SQLite store directly.
@@ -254,6 +260,9 @@ seeding must insert nothing into a populated legacy store.
 
 ## Phase 3: SwiftUI Views
 
+**Done 2026-10-08.** Accessibility, including VoiceOver, continues separately in
+`accessibility-todo.md`.
+
 **Goal:** Replace all UIKit views with SwiftUI. Built and previewed
 independently, then swapped in as the app entry point.
 
@@ -317,10 +326,16 @@ observers.
 
 ### Phase-specific validation
 
-- SwiftUI previews render for each view
-- Full app runs end-to-end in SwiftUI
-- Calculations match ObjC version exactly
-- Settings persist across launches
+- SwiftUI previews render for each view — **met.** Every view has a preview
+  backed by `PreviewSampleData`; all render.
+- Full app runs end-to-end in SwiftUI — **met.** `CalculatorUITests` drives the
+  sliders, distance types, settings and lens editing against a separate store.
+- Calculations match ObjC version exactly — **met, with one deliberate
+  difference.** Single and Near+Far results are pinned to `main` for every unit.
+  Centimetres in the macro range always show tenths, as `main`'s
+  `shouldShowTenths` intended but never applied to single results.
+- Settings persist across launches — **met.** Covered by `UserSettingsTests` and
+  a UI test that relaunches the app.
 
 **Ordering defect found and fixed 2026-10-05.** `SettingsView` deleted through
 the `ModelContext` and then reindexed by enumerating its `@Query` array. That
