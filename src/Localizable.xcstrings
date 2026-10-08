@@ -1,0 +1,652 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "0.03" : {
+
+    },
+    "ADD_CAMERA" : {
+      "comment" : "Add camera",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add camera..."
+          }
+        }
+      }
+    },
+    "ADD_LENS" : {
+      "comment" : "Add lens",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add lens..."
+          }
+        }
+      }
+    },
+    "Aperture:" : {
+
+    },
+    "CAMERAS_SECTION_TITLE" : {
+      "comment" : "Cameras",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cameras"
+          }
+        }
+      }
+    },
+    "CAMERA_DATA_VALIDATION_ERROR" : {
+      "comment" : "Input Error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input Error"
+          }
+        }
+      }
+    },
+    "CAMERA_ERROR_INVALID_COC" : {
+      "comment" : "Invalid CoC",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circle of confusion must be a number greater than zero and less than one."
+          }
+        }
+      }
+    },
+    "CAMERA_ERROR_MISSING_NAME" : {
+      "comment" : "Name required",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera name is required."
+          }
+        }
+      }
+    },
+    "CAMERA_NAME_TITLE" : {
+      "comment" : "Name",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
+    },
+    "CAMERA_VIEW_TITLE" : {
+      "comment" : "Camera",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera"
+          }
+        }
+      }
+    },
+    "CENTIMETRES_ABBREVIATION" : {
+      "comment" : "Abbreviation for centimetres",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cm"
+          }
+        }
+      }
+    },
+    "COC" : {
+      "comment" : "CoC",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CoC"
+          }
+        }
+      }
+    },
+    "COC_TITLE" : {
+      "comment" : "Circle of Confusion",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circle of Confusion"
+          }
+        }
+      }
+    },
+    "CUSTOM_COC_DESCRIPTION" : {
+      "comment" : "Custom",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom"
+          }
+        }
+      }
+    },
+    "CUSTOM_COC_VIEW_TITLE" : {
+      "comment" : "Custom CoC",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom CoC"
+          }
+        }
+      }
+    },
+    "Camera Bag Unavailable" : {
+
+    },
+    "DEFAULT_CAMERA_NAME" : {
+      "comment" : "Default camera name",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My camera"
+          }
+        }
+      }
+    },
+    "DEFAULT_COC" : {
+      "comment" : "Default CoC",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "35 mm"
+          }
+        }
+      }
+    },
+    "DEFAULT_LENS_NAME" : {
+      "comment" : "Default lens name",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My lens"
+          }
+        }
+      }
+    },
+    "DISTANCE_TYPE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance type"
+          }
+        }
+      }
+    },
+    "DISTANCE_TYPE_FAR" : {
+      "comment" : "Far limit segment",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Far"
+          }
+        }
+      }
+    },
+    "DISTANCE_TYPE_HYPERFOCAL" : {
+      "comment" : "Hyperfocal distance segment",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyper"
+          }
+        }
+      }
+    },
+    "DISTANCE_TYPE_NEAR" : {
+      "comment" : "Near limit segment",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Near"
+          }
+        }
+      }
+    },
+    "DISTANCE_TYPE_NEAR_FAR" : {
+      "comment" : "Near and far limits segment",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Near+Far"
+          }
+        }
+      }
+    },
+    "Distance to subject:" : {
+
+    },
+    "Done" : {
+
+    },
+    "FEET" : {
+      "comment" : "Feet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feet"
+          }
+        }
+      }
+    },
+    "FEET_ABBREVIATION" : {
+      "comment" : "Abbreviation for feet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ft"
+          }
+        }
+      }
+    },
+    "FEET_AND_INCHES" : {
+      "comment" : "Feet and inches",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feet and inches"
+          }
+        }
+      }
+    },
+    "Field Tools could not open your saved cameras and lenses." : {
+
+    },
+    "Focal length:" : {
+
+    },
+    "LENSES_SECTION_TITLE" : {
+      "comment" : "Lenses",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lenses"
+          }
+        }
+      }
+    },
+    "LENS_DATA_VALIDATION_ERROR" : {
+      "comment" : "Input Error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input Error"
+          }
+        }
+      }
+    },
+    "LENS_EDIT_0" : {
+      "comment" : "Minimum",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimum"
+          }
+        }
+      }
+    },
+    "LENS_EDIT_1" : {
+      "comment" : "Maximum",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum"
+          }
+        }
+      }
+    },
+    "LENS_EDIT_2" : {
+      "comment" : "Maximum (widest)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum"
+          }
+        }
+      }
+    },
+    "LENS_EDIT_3" : {
+      "comment" : "Minimum (smallest)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimum"
+          }
+        }
+      }
+    },
+    "LENS_ERROR_BAD_APERTURE" : {
+      "comment" : "Bad aperture",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aperture must be a number greater than %@ and less than %@."
+          }
+        }
+      }
+    },
+    "LENS_ERROR_BAD_FOCAL_LENGTH" : {
+      "comment" : "Bad focal length",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focal length must be a number greater than %@ and less than %@."
+          }
+        }
+      }
+    },
+    "LENS_ERROR_MISSING_NAME" : {
+      "comment" : "Name required",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lens name is required."
+          }
+        }
+      }
+    },
+    "LENS_NAME_TITLE" : {
+      "comment" : "Name",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
+    },
+    "LENS_TYPE_PRIME" : {
+      "comment" : "Prime",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prime"
+          }
+        }
+      }
+    },
+    "LENS_TYPE_ZOOM" : {
+      "comment" : "Zoom",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom"
+          }
+        }
+      }
+    },
+    "LENS_VIEW_APERTURE_SECTION_TITLE" : {
+      "comment" : "Aperture",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aperture"
+          }
+        }
+      }
+    },
+    "LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE" : {
+      "comment" : "Focal Length",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focal Length"
+          }
+        }
+      }
+    },
+    "LENS_VIEW_TITLE" : {
+      "comment" : "Lens",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lens"
+          }
+        }
+      }
+    },
+    "LENS_VIEW_TYPE_SECTION_TITLE" : {
+      "comment" : "Lens Type",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lens Type"
+          }
+        }
+      }
+    },
+    "METRES_ABBREVIATION" : {
+      "comment" : "Abbreviation for metres",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "m"
+          }
+        }
+      }
+    },
+    "METRIC_CM" : {
+      "comment" : "Centimeters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Centimeters"
+          }
+        }
+      }
+    },
+    "METRIC_M" : {
+      "comment" : "Metres",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metres"
+          }
+        }
+      }
+    },
+    "OK" : {
+
+    },
+    "Opens settings" : {
+
+    },
+    "RESULT_FAR" : {
+      "comment" : "Far limit result label",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Far limit"
+          }
+        }
+      }
+    },
+    "RESULT_HYPERFOCAL" : {
+      "comment" : "Hyperfocal result label",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyperfocal distance"
+          }
+        }
+      }
+    },
+    "RESULT_NEAR" : {
+      "comment" : "Near limit result label",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Near limit"
+          }
+        }
+      }
+    },
+    "RESULT_NEAR_FAR" : {
+      "comment" : "Near and far result label",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depth of field"
+          }
+        }
+      }
+    },
+    "RESULT_RANGE_VALUE" : {
+      "comment" : "VoiceOver value for the near limit, far limit and depth of field",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Near limit %1$@, far limit %2$@, depth of field %3$@"
+          }
+        }
+      }
+    },
+    "RESULT_RANGE_VALUE_TO_INFINITY" : {
+      "comment" : "VoiceOver value for a near limit and a far limit at infinity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Near limit %1$@, far limit %2$@"
+          }
+        }
+      }
+    },
+    "SETTINGS_TITLE" : {
+      "comment" : "Settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "SUBJECT_DISTANCE_RANGE_0" : {
+      "comment" : "Macro range",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macro range"
+          }
+        }
+      }
+    },
+    "SUBJECT_DISTANCE_RANGE_1" : {
+      "comment" : "Close range",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close range"
+          }
+        }
+      }
+    },
+    "SUBJECT_DISTANCE_RANGE_2" : {
+      "comment" : "Mid-range",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mid-range"
+          }
+        }
+      }
+    },
+    "SUBJECT_DISTANCE_RANGE_3" : {
+      "comment" : "Full range",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full range"
+          }
+        }
+      }
+    },
+    "Type" : {
+
+    },
+    "UNITS_SECTION_TITLE" : {
+      "comment" : "Units",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Units"
+          }
+        }
+      }
+    },
+    "Units" : {
+
+    },
+    "Your data is still on this device and has not been changed. Updating Field Tools to the latest version may resolve this." : {
+
+    },
+    "f/" : {
+
+    },
+    "mm" : {
+
+    }
+  },
+  "version" : "1.0"
+}

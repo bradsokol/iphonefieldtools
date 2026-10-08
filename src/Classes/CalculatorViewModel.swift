@@ -227,19 +227,9 @@ final class CalculatorViewModel {
 
     // MARK: - Private
 
-    /// Subject distance rounded to the slider's step: a tenth of a foot, a centimetre,
-    /// or a millimetre, depending on the units.
+    /// Subject distance rounded to the slider's step for the current units.
     private var calculationSubjectDistance: Float {
-        let distance = settings.subjectDistance
-        let metresToFeet = DistanceFormatter.metresToFeet
-        switch settings.distanceUnits {
-        case .feet, .feetAndInches:
-            return (distance * metresToFeet * 10).rounded() * 0.1 / metresToFeet
-        case .meters:
-            return (distance * 100).rounded() * 0.01
-        case .centimeters:
-            return (distance * 1000).rounded() * 0.001
-        }
+        settings.distanceUnits.roundedToSliderStep(settings.subjectDistance)
     }
 
     /// Steps per metre for Near+Far rounding: quarter inches for feet and inches, and

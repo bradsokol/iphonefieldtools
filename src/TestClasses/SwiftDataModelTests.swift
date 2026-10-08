@@ -146,7 +146,7 @@ struct SwiftDataModelTests {
 @Suite("CoC Preset Tests")
 struct CoCPresetTests {
 
-    @Test("Preset count matches plist")
+    @Test("All 25 legacy presets are present")
     func presetCount() {
         #expect(CoCPreset.all.count == 25)
     }

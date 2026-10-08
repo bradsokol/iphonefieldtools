@@ -380,6 +380,32 @@ All remaining ObjC source files:
 
 ## Phase 4: Test Migration and Project Cleanup
 
+**In progress 2026-10-08.** Done: 4.1–4.4 below, and the app was tested on
+iOS 18. Outstanding: the skills code review.
+
+- **4.1 audit.** Every Objective-C test case was compared mechanically against
+  the Swift suites. All 288 depth of field cases match by aperture, focal length,
+  subject distance and expected value. `Field_Tools_Tests.m` was template
+  boilerplate. The `LinearSubjectDistanceSliderPolicyTests` port tested a copy of
+  the rounding written inside the test file, so it could not fail; the rounding
+  is now `DistanceUnits.roundedToSliderStep(_:)` and the tests call it. Its
+  metres cases inherited a 0.09 tolerance wider than the 1 cm step, and expected
+  10 cm rounding (2.12 → 2.1) that production never did; they now use 0.0009 and
+  were falsified once against a 10 cm step.
+- **4.3.** Strict concurrency is already complete: every target builds in the
+  Swift 6 language mode. The one warning it raised, in
+  `LegacyStoreCompatibilityTests`, is fixed. Removed: explicit framework links
+  (auto-linking covers them; the test target keeps Core Data), the Google
+  Analytics library reference, Objective-C and C build settings outside the UI
+  test target, `ModelTests-Info.plist`, the unused `en.lproj/CoC.plist`, and the
+  `ja`, `de`, `fr` known regions, which had no localisations.
+  `LaunchScreen.storyboard` is replaced by an empty `UILaunchScreen` dictionary,
+  which gives the same system background.
+- **4.4.** `Localizable.xcstrings` replaces `Localizable.strings`, carrying the
+  55 keys the Swift code uses. The 44 unused keys, including the old coach mark
+  text Phase 6 may want, are in git history. Building added the SwiftUI literal
+  strings the catalog now extracts.
+
 **Goal:** All-Swift test suite, clean Xcode project.
 
 ### 4.1 Port remaining ObjC tests to Swift Testing

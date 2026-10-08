@@ -77,38 +77,30 @@ private struct LegacyStoreFixture {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.persistentStoreCoordinator = coordinator
 
-        var thrown: Error?
-        context.performAndWait {
-            do {
-                for spec in cameras {
-                    let camera = NSEntityDescription.insertNewObject(forEntityName: "Camera", into: context)
-                    camera.setValue(spec.name, forKey: "name")
-                    camera.setValue(spec.index, forKey: "index")
+        try context.performAndWait {
+            for spec in cameras {
+                let camera = NSEntityDescription.insertNewObject(forEntityName: "Camera", into: context)
+                camera.setValue(spec.name, forKey: "name")
+                camera.setValue(spec.index, forKey: "index")
 
-                    let coc = NSEntityDescription.insertNewObject(forEntityName: "CoC", into: context)
-                    coc.setValue(spec.cocName, forKey: "name")
-                    coc.setValue(spec.cocValue, forKey: "value")
+                let coc = NSEntityDescription.insertNewObject(forEntityName: "CoC", into: context)
+                coc.setValue(spec.cocName, forKey: "name")
+                coc.setValue(spec.cocValue, forKey: "value")
 
-                    camera.setValue(coc, forKey: "coc")
-                }
-
-                for spec in lenses {
-                    let lens = NSEntityDescription.insertNewObject(forEntityName: "Lens", into: context)
-                    lens.setValue(spec.name, forKey: "name")
-                    lens.setValue(spec.index, forKey: "index")
-                    lens.setValue(spec.minimumFocalLength, forKey: "minimumFocalLength")
-                    lens.setValue(spec.maximumFocalLength, forKey: "maximumFocalLength")
-                    lens.setValue(spec.minimumAperture, forKey: "minimumAperture")
-                    lens.setValue(spec.maximumAperture, forKey: "maximumAperture")
-                }
-
-                try context.save()
-            } catch {
-                thrown = error
+                camera.setValue(coc, forKey: "coc")
             }
-        }
-        if let thrown {
-            throw thrown
+
+            for spec in lenses {
+                let lens = NSEntityDescription.insertNewObject(forEntityName: "Lens", into: context)
+                lens.setValue(spec.name, forKey: "name")
+                lens.setValue(spec.index, forKey: "index")
+                lens.setValue(spec.minimumFocalLength, forKey: "minimumFocalLength")
+                lens.setValue(spec.maximumFocalLength, forKey: "maximumFocalLength")
+                lens.setValue(spec.minimumAperture, forKey: "minimumAperture")
+                lens.setValue(spec.maximumAperture, forKey: "maximumAperture")
+            }
+
+            try context.save()
         }
 
         try coordinator.remove(store)

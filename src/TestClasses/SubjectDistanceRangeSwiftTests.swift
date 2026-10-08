@@ -12,17 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import Testing
 
 @testable import Field_Tools
 
-/// Port of LinearSubjectDistanceSliderPolicyTests.
-///
-/// The ObjC tests used a LinearSubjectDistanceSliderPolicy wrapping a
-/// FarSubjectDistanceRangePolicy. The `distanceForSliderValue:usingUnits:`
-/// rounding logic is tested here directly since it will be needed in the
-/// slider view (Phase 5). The range bounds are tested via SubjectDistanceRange.
+/// Range bounds for each subject distance range, and the slider step rounding that
+/// replaced `LinearSubjectDistanceSliderPolicy`.
 @Suite("Subject distance range")
 struct SubjectDistanceRangeTests {
 
@@ -60,92 +55,25 @@ struct SubjectDistanceRangeTests {
         #expect(SubjectDistanceRange.mid.maximumDistance(metric: true) == 80.0)
     }
 
-    // MARK: - Linear slider rounding (ported from LinearSubjectDistanceSliderPolicyTests)
+    // MARK: - Slider step rounding (ported from LinearSubjectDistanceSliderPolicyTests)
 
-    @Test("Metres whole value")
-    func metresWhole() {
-        let result = roundForSlider(2.0, units: .meters)
-        #expect(abs(result - 2.0) <= 0.09)
-    }
-
-    @Test("Metres single decimal")
-    func metresSingleDecimal() {
-        let result = roundForSlider(2.1, units: .meters)
-        #expect(abs(result - 2.1) <= 0.09)
-    }
-
-    @Test("Metres two decimals truncated")
-    func metresTwoDecimals() {
-        let result = roundForSlider(2.12, units: .meters)
-        #expect(abs(result - 2.1) <= 0.09)
-    }
-
-    @Test("Metres two decimals rounded")
-    func metresTwoDecimalsRounded() {
-        let result = roundForSlider(2.18, units: .meters)
-        #expect(abs(result - 2.2) <= 0.09)
-    }
-
-    @Test("Centimetres whole")
-    func centimetresWhole() {
-        let result = roundForSlider(1.23, units: .centimeters)
-        #expect(abs(result - 1.23) <= 0.0009)
-    }
-
-    @Test("Centimetres single decimal")
-    func centimetresSingleDecimal() {
-        let result = roundForSlider(1.234, units: .centimeters)
-        #expect(abs(result - 1.234) <= 0.0009)
-    }
-
-    @Test("Centimetres two decimals")
-    func centimetresTwoDecimals() {
-        let result = roundForSlider(1.234, units: .centimeters)
-        #expect(abs(result - 1.234) <= 0.0009)
-    }
-
-    @Test("Centimetres two decimals rounded")
-    func centimetresTwoDecimalsRounded() {
-        let result = roundForSlider(1.2345, units: .centimeters)
-        #expect(abs(result - 1.235) <= 0.0009)
-    }
-
-    @Test("Feet whole")
-    func feetWhole() {
-        let result = roundForSlider(2.0, units: .feet)
-        #expect(abs(result - 2.01) <= 0.009)
-    }
-
-    @Test("Feet single decimal")
-    func feetSingleDecimal() {
-        let result = roundForSlider(1.234, units: .feet)
-        #expect(abs(result - 1.22) <= 0.009)
-    }
-
-    @Test("Feet two decimals")
-    func feetTwoDecimals() {
-        let result = roundForSlider(1.234, units: .feet)
-        #expect(abs(result - 1.22) <= 0.009)
-    }
-
-    @Test("Feet two decimals rounded")
-    func feetTwoDecimalsRounded() {
-        let result = roundForSlider(1.2345, units: .feet)
-        #expect(abs(result - 1.25) <= 0.009)
-    }
-
-    // MARK: - Private
-
-    /// Replicates the rounding logic from LinearSubjectDistanceSliderPolicy.
-    private func roundForSlider(_ value: Float, units: DistanceUnits) -> Float {
-        switch units {
-        case .feet, .feetAndInches:
-            return roundf(value * DistanceFormatter.metresToFeet * 10.0)
-                * 0.1 / DistanceFormatter.metresToFeet
-        case .meters:
-            return roundf(value * 100.0) * 0.01
-        case .centimeters:
-            return roundf(value * 1000.0) * 0.001
-        }
+    @Test(
+        "Subject distance rounds to the slider step for each unit",
+        arguments: [
+            (DistanceUnits.meters, Float(2.0), Float(2.0), Float(0.0009)),
+            (.meters, 2.1, 2.1, 0.0009),
+            (.meters, 2.123, 2.12, 0.0009),
+            (.meters, 2.126, 2.13, 0.0009),
+            (.centimeters, 1.23, 1.23, 0.0009),
+            (.centimeters, 1.234, 1.234, 0.0009),
+            (.centimeters, 1.2345, 1.235, 0.0009),
+            (.feet, 2.0, 2.01, 0.009),
+            (.feet, 1.234, 1.22, 0.009),
+            (.feet, 1.2345, 1.25, 0.009),
+        ]
+    )
+    func sliderStepRounding(units: DistanceUnits, metres: Float, expected: Float, accuracy: Float) {
+        let result = units.roundedToSliderStep(metres)
+        #expect(abs(result - expected) <= accuracy, "Expected \(expected) ± \(accuracy), got \(result)")
     }
 }

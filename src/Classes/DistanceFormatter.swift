@@ -20,6 +20,20 @@ public enum DistanceUnits: Int, CaseIterable, Codable, Sendable {
     case feetAndInches
     case meters
     case centimeters
+
+    /// Rounds a distance in metres to the subject distance slider's step: a tenth of a
+    /// foot, a centimetre, or a millimetre, depending on the units.
+    public func roundedToSliderStep(_ metres: Float) -> Float {
+        let metresToFeet = DistanceFormatter.metresToFeet
+        switch self {
+        case .feet, .feetAndInches:
+            return (metres * metresToFeet * 10).rounded() * 0.1 / metresToFeet
+        case .meters:
+            return (metres * 100).rounded() * 0.01
+        case .centimeters:
+            return (metres * 1000).rounded() * 0.001
+        }
+    }
 }
 
 /// Formats distances (in metres) for display in the selected unit system.
