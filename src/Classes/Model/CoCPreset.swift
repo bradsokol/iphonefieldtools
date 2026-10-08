@@ -36,7 +36,7 @@ public struct CoCPreset: Sendable {
         CoCPreset(name: "Konica Minolta Maxxum", value: 0.02),
         CoCPreset(name: "Leica M8/X1", value: 0.023),
         CoCPreset(name: "Leica M9", value: 0.03),
-        CoCPreset(name: "Mamiya ZD", value: 0.39),
+        CoCPreset(name: "Mamiya ZD", value: 0.039),
         CoCPreset(name: "Nikon DX", value: 0.02),
         CoCPreset(name: "Nikon FX", value: 0.03),
         CoCPreset(name: "Olympus 4:3", value: 0.015),

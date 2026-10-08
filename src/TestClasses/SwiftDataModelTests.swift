@@ -168,6 +168,12 @@ struct CoCPresetTests {
         let preset = CoCPreset.all.first { $0.name == "Nikon FX" }
         #expect(preset?.value == 0.03)
     }
+
+    @Test("Mamiya ZD uses 0.039 mm, not the legacy plist's mistyped 0.39 mm")
+    func mamiyaZDValue() {
+        let preset = CoCPreset.all.first { $0.name == "Mamiya ZD" }
+        #expect(preset?.value == 0.039)
+    }
 }
 
 @Suite("Default Seeding Tests")
