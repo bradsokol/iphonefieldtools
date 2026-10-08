@@ -70,6 +70,7 @@ struct SubjectDistanceRangeTests {
             (.feet, 2.0, 2.01, 0.009),
             (.feet, 1.234, 1.22, 0.009),
             (.feet, 1.2345, 1.25, 0.009),
+            (.feetAndInches, 2.0, 2.01, 0.009),
         ]
     )
     func sliderStepRounding(units: DistanceUnits, metres: Float, expected: Float, accuracy: Float) {

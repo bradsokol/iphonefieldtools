@@ -380,8 +380,9 @@ All remaining ObjC source files:
 
 ## Phase 4: Test Migration and Project Cleanup
 
-**In progress 2026-10-08.** Done: 4.1–4.4 below, and the app was tested on
-iOS 18. Outstanding: the skills code review.
+**Done 2026-10-08.** The app was tested on iOS 18. The swift-testing-pro and
+swift-concurrency-pro review added a `.feetAndInches` slider rounding case and
+left `LegacyStoreFixture` on `performAndWait`, which is correct and synchronous.
 
 - **4.1 audit.** Every Objective-C test case was compared mechanically against
   the Swift suites. All 288 depth of field cases match by aperture, focal length,
