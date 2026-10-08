@@ -209,7 +209,8 @@ let container = try ModelContainer(for: Camera.self, CoC.self, Lens.self,
 ### 2.5 UserSettings
 
 - New file: `src/Classes/UserSettings.swift`
-- `@Observable` class wrapping all UserDefaults keys with `@AppStorage`
+- `@Observable` class wrapping all UserDefaults keys. Each setting is a stored
+  property loaded from `UserDefaults` in `init` and written back in `didSet`
 - Same string keys as existing `UserDefaults.h` for backward compatibility
 - Replaces scattered NSUserDefaults reads throughout codebase
 
@@ -303,7 +304,16 @@ independently, then swapped in as the app entry point.
 All 15 NSNotificationCenter notifications are replaced by:
 
 - `@Observable` + `@Query` reactivity (model edits auto-refresh views)
-- `@AppStorage` in `UserSettings` (preference changes auto-propagate)
+- `@Observable` stored properties in `UserSettings` (preference changes
+  auto-propagate)
+
+**Correction 2026-10-07.** This section originally said `@AppStorage`. That is a
+SwiftUI view property wrapper and does not drive observation inside an
+`@Observable` class. The first implementation instead used computed properties
+reading `UserDefaults` directly, which `@Observable` does not track either: the
+sliders wrote their values but nothing redrew. Settings must be stored properties
+so the macro instruments them; `UserSettingsTests` checks every setting notifies
+observers.
 
 ### Phase-specific validation
 
