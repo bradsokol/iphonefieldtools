@@ -364,6 +364,14 @@ private struct ApertureSliderView: View {
 private struct SubjectDistanceSliderView: View {
     var viewModel: CalculatorViewModel
 
+    /// Height of one line of caption text, used to grow the range menu to a full tap
+    /// target without moving the text or the rows around it.
+    @ScaledMetric(relativeTo: .caption) private var captionLineHeight = 14.33
+
+    private var tapTargetOverhang: Double {
+        max(0, (CalculatorLayout.minimumTapTarget - captionLineHeight) / 2)
+    }
+
     var body: some View {
         @Bindable var settings = viewModel.settings
         LabeledSliderRow(
@@ -374,15 +382,23 @@ private struct SubjectDistanceSliderView: View {
             minimumLabel: viewModel.subjectDistanceMinLabel,
             maximumLabel: viewModel.subjectDistanceMaxLabel
         ) {
-            Menu(viewModel.subjectDistanceRangeLabel) {
+            Menu {
                 ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
                     Button(rangeName(range)) {
                         settings.subjectDistanceRange = range
                         viewModel.clampSubjectDistance()
                     }
                 }
+            } label: {
+                Text(viewModel.subjectDistanceRangeLabel)
+                    .font(.caption)
+                    .frame(
+                        minWidth: CalculatorLayout.minimumTapTarget,
+                        minHeight: CalculatorLayout.minimumTapTarget
+                    )
+                    .contentShape(.rect)
             }
-            .font(.caption)
+            .padding(.vertical, -tapTargetOverhang)
         }
     }
 

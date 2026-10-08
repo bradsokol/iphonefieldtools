@@ -19,12 +19,6 @@ style) and use it in `accessibilityRange(near:far:)` and the single result value
 Raised by the `swiftui-pro` review on 2026-10-06, after the calculator screen was
 matched to `main`. None of these were introduced by that work.
 
-### Subject distance range menu is below the minimum tap target
-
-The range menu ("Mid-range") under the subject distance slider is about 16pt
-tall, well under the 44pt minimum. Raising it to 44pt adds height to the row, so
-the layout spacing needs adjusting at the same time.
-
 ### Aperture slider uses `Binding(get:set:)`
 
 `ApertureSliderView` builds a manual binding because the slider works in `Float`

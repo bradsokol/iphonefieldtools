@@ -98,6 +98,21 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertTrue(app.buttons["settingsButton"].label.contains("Test lens"), app.buttons["settingsButton"].label)
     }
 
+    func testSubjectDistanceRangeMenuIsAFullTapTargetAndChangesTheRange() {
+        let app = launch(.fresh)
+        app.buttons["Near"].tap()
+
+        let menu = app.buttons["Mid-range"]
+        XCTAssertGreaterThanOrEqual(menu.frame.height, 44)
+        XCTAssertGreaterThanOrEqual(menu.frame.width, 44)
+
+        menu.tap()
+        app.buttons["Close range"].tap()
+
+        XCTAssertTrue(app.buttons["Close range"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["Mid-range"].exists)
+    }
+
     // MARK: - Helpers
 
     private enum UITestState: String {
