@@ -111,18 +111,7 @@ final class CalculatorViewModelRangeTests {
         range: SubjectDistanceRange,
         subjectDistance: Float
     ) throws -> CalculatorViewModel {
-        let defaults = try #require(UserDefaults(suiteName: suiteName))
-        let settings = UserSettings(defaults: defaults)
-        settings.focalLength = 24
-        settings.apertureIndex = try #require(Aperture.values.firstIndex(of: 8))
-        settings.distanceUnits = units
-        settings.subjectDistanceRange = range
-        settings.subjectDistance = subjectDistance
-        let camera = Camera(name: "Sample")
-        camera.coc = CoC(name: "Sample CoC", value: 0.02)
-        let viewModel = CalculatorViewModel(settings: settings)
-        viewModel.camera = camera
-        return viewModel
+        try makeSampleViewModel(suiteName: suiteName, units: units, range: range, subjectDistance: subjectDistance)
     }
 
     private func displayedResult(of viewModel: CalculatorViewModel) -> [String] {
@@ -160,4 +149,86 @@ final class CalculatorViewModelRangeTests {
         #expect(viewModel.rangeFarLimit < 0)
         #expect(viewModel.resultFormatter.format(viewModel.rangeFarLimit) == "∞")
     }
+}
+
+/// Pins the single Hyper, Near and Far results to the Objective-C app's output for the
+/// sample camera and lens (24 mm, f/8, CoC 0.02 mm).
+///
+/// One difference is deliberate. In centimetres with the macro range the Swift app always
+/// shows tenths, which is what the Objective-C `shouldShowTenths` intended; the Objective-C
+/// app overwrote that setting for single results, so a whole number showed as "10 cm"
+/// rather than "10.0 cm".
+@MainActor
+@Suite("CalculatorViewModel single results")
+final class CalculatorViewModelSingleResultTests {
+    private let suiteName = "CalculatorViewModelSingleResultTests-\(UUID().uuidString)"
+
+    deinit {
+        UserDefaults.standard.removePersistentDomain(forName: suiteName)
+    }
+
+    private func displayedResults(
+        units: DistanceUnits,
+        range: SubjectDistanceRange,
+        subjectDistance: Float
+    ) throws -> [String] {
+        let viewModel = try makeSampleViewModel(
+            suiteName: suiteName, units: units, range: range, subjectDistance: subjectDistance
+        )
+        let formatter = viewModel.resultFormatter
+        return [
+            formatter.format(viewModel.hyperfocalDistance),
+            formatter.format(viewModel.nearLimit),
+            formatter.format(viewModel.farLimit),
+        ]
+    }
+
+    @Test(
+        "Hyperfocal, near and far match the Objective-C app",
+        arguments: [
+            (DistanceUnits.feet, SubjectDistanceRange.mid, Float(2.5), ["11.9 ft", "4.9 ft", "26.2 ft"]),
+            (.feetAndInches, .mid, 1.0, ["11' 10¾\"", "2' 7\"", "4' 6½\""]),
+            (.meters, .mid, 1.1, ["3.6 m", "0.8 m", "1.6 m"]),
+            (.meters, .close, 0.5, ["3.62 m", "0.44 m", "0.58 m"]),
+            (.meters, .mid, 5.0, ["3.6 m", "2.1 m", "∞"]),
+            (.centimeters, .mid, 1.0, ["362.4 cm", "78.7 cm", "137.2 cm"]),
+            (.centimeters, .macro, 0.103, ["362.4 cm", "10.1 cm", "10.5 cm"]),
+        ]
+    )
+    func matchesObjectiveC(
+        units: DistanceUnits,
+        range: SubjectDistanceRange,
+        subjectDistance: Float,
+        expected: [String]
+    ) throws {
+        #expect(try displayedResults(units: units, range: range, subjectDistance: subjectDistance) == expected)
+    }
+
+    @Test("Centimetres in the macro range always show tenths, unlike the Objective-C app")
+    func macroCentimetresShowTenths() throws {
+        let results = try displayedResults(units: .centimeters, range: .macro, subjectDistance: 0.102)
+        #expect(results[1] == "10.0 cm")
+    }
+}
+
+/// The sample camera and lens at f/8, with the given units, range and subject distance.
+@MainActor
+private func makeSampleViewModel(
+    suiteName: String,
+    units: DistanceUnits,
+    range: SubjectDistanceRange,
+    subjectDistance: Float
+) throws -> CalculatorViewModel {
+    let defaults = try #require(UserDefaults(suiteName: suiteName))
+    let settings = UserSettings(defaults: defaults)
+    settings.focalLength = 24
+    settings.apertureIndex = try #require(Aperture.values.firstIndex(of: 8))
+    settings.distanceUnits = units
+    settings.subjectDistanceRange = range
+    settings.subjectDistance = subjectDistance
+    let camera = Camera(name: "Sample")
+    camera.coc = CoC(name: "Sample CoC", value: 0.02)
+    let viewModel = CalculatorViewModel(settings: settings)
+    viewModel.camera = camera
+    return viewModel
 }
