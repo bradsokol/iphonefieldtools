@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "0.03" : {
-
-    },
     "ADD_CAMERA" : {
       "comment" : "Add camera",
       "localizations" : {
@@ -151,6 +148,9 @@
       }
     },
     "Camera Bag Unavailable" : {
+
+    },
+    "Cancel" : {
 
     },
     "DEFAULT_CAMERA_NAME" : {
@@ -620,6 +620,9 @@
           }
         }
       }
+    },
+    "Save" : {
+
     },
     "Type" : {
 

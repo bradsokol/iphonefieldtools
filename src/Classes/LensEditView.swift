@@ -16,25 +16,72 @@ import SwiftData
 import SwiftUI
 
 /// Edit screen for a lens: name, type (prime/zoom), aperture range, and focal length range.
+///
+/// Edits are made to a draft and written to the lens only when Save succeeds, so the
+/// system back button is replaced by Cancel and Save. Validating when the screen
+/// disappears would be too late to show the error or keep the user's input.
 struct LensEditView: View {
+
+    /// The form's text, before it has been checked.
+    struct Draft: Equatable {
+        var name: String
+        var isZoom: Bool
+        var minFocalLengthText: String
+        var maxFocalLengthText: String
+        var maxApertureText: String
+        var minApertureText: String
+    }
+
+    /// The form's values, checked and converted for storage.
+    struct Values: Equatable {
+        var name: String
+        var minimumFocalLength: Int
+        var maximumFocalLength: Int
+        var maximumAperture: Float
+        var minimumAperture: Float
+    }
+
+    /// Why the form's values cannot be saved.
+    enum ValidationError: Error, Equatable {
+        case missingName
+        case badFocalLength
+        case badAperture
+
+        var message: String {
+            switch self {
+            case .missingName:
+                NSLocalizedString("LENS_ERROR_MISSING_NAME", comment: "Name required")
+            case .badFocalLength:
+                String(
+                    format: NSLocalizedString("LENS_ERROR_BAD_FOCAL_LENGTH", comment: "Bad focal length"),
+                    0.formatted(), 10_000.formatted()
+                )
+            case .badAperture:
+                String(
+                    format: NSLocalizedString("LENS_ERROR_BAD_APERTURE", comment: "Bad aperture"),
+                    0.7.formatted(), 100.formatted()
+                )
+            }
+        }
+    }
+
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
     @Bindable var lens: Lens
-    @State private var lensName: String
-    @State private var isZoom: Bool
-    @State private var minFocalLengthText: String
-    @State private var maxFocalLengthText: String
-    @State private var maxApertureText: String
-    @State private var minApertureText: String
+    @State private var draft: Draft
     @State private var showValidationError = false
     @State private var validationMessage = ""
 
     init(lens: Lens) {
         self.lens = lens
-        _lensName = State(initialValue: lens.name)
-        _isZoom = State(initialValue: lens.isZoom)
-        _minFocalLengthText = State(initialValue: "\(lens.minimumFocalLength)")
-        _maxFocalLengthText = State(initialValue: "\(lens.maximumFocalLength)")
-        _maxApertureText = State(initialValue: String(format: "%.1f", lens.maximumAperture))
-        _minApertureText = State(initialValue: String(format: "%.1f", lens.minimumAperture))
+        _draft = State(initialValue: Draft(
+            name: lens.name,
+            isZoom: lens.isZoom,
+            minFocalLengthText: lens.minimumFocalLength.formatted(.number.grouping(.never)),
+            maxFocalLengthText: lens.maximumFocalLength.formatted(.number.grouping(.never)),
+            maxApertureText: LocalizedNumber.string(lens.maximumAperture, precision: .fractionLength(1)),
+            minApertureText: LocalizedNumber.string(lens.minimumAperture, precision: .fractionLength(1))
+        ))
     }
 
     var body: some View {
@@ -46,6 +93,15 @@ struct LensEditView: View {
         }
         .navigationTitle(NSLocalizedString("LENS_VIEW_TITLE", comment: "Lens"))
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel", role: .cancel) { dismiss() }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save", action: save)
+            }
+        }
         .alert(
             NSLocalizedString("LENS_DATA_VALIDATION_ERROR", comment: "Input Error"),
             isPresented: $showValidationError
@@ -53,9 +109,6 @@ struct LensEditView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(validationMessage)
-        }
-        .onDisappear {
-            save()
         }
     }
 
@@ -66,7 +119,7 @@ struct LensEditView: View {
         Section(NSLocalizedString("LENS_NAME_TITLE", comment: "Name")) {
             TextField(
                 NSLocalizedString("LENS_NAME_TITLE", comment: "Name"),
-                text: $lensName
+                text: $draft.name
             )
             .autocorrectionDisabled()
         }
@@ -75,7 +128,7 @@ struct LensEditView: View {
     @ViewBuilder
     private var typeSection: some View {
         Section(NSLocalizedString("LENS_VIEW_TYPE_SECTION_TITLE", comment: "Lens Type")) {
-            Picker("Type", selection: $isZoom) {
+            Picker("Type", selection: $draft.isZoom) {
                 Text(NSLocalizedString("LENS_TYPE_PRIME", comment: "Prime")).tag(false)
                 Text(NSLocalizedString("LENS_TYPE_ZOOM", comment: "Zoom")).tag(true)
             }
@@ -88,14 +141,14 @@ struct LensEditView: View {
         Section(NSLocalizedString("LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", comment: "Focal Length")) {
             HStack {
                 Text(NSLocalizedString("LENS_EDIT_0", comment: "Minimum"))
-                TextField("mm", text: $minFocalLengthText)
+                TextField("mm", text: $draft.minFocalLengthText)
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.trailing)
             }
-            if isZoom {
+            if draft.isZoom {
                 HStack {
                     Text(NSLocalizedString("LENS_EDIT_1", comment: "Maximum"))
-                    TextField("mm", text: $maxFocalLengthText)
+                    TextField("mm", text: $draft.maxFocalLengthText)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
                 }
@@ -108,78 +161,86 @@ struct LensEditView: View {
         Section(NSLocalizedString("LENS_VIEW_APERTURE_SECTION_TITLE", comment: "Aperture")) {
             HStack {
                 Text(NSLocalizedString("LENS_EDIT_2", comment: "Maximum (widest)"))
-                TextField("f/", text: $maxApertureText)
+                TextField("f/", text: $draft.maxApertureText)
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
             }
             HStack {
                 Text(NSLocalizedString("LENS_EDIT_3", comment: "Minimum (smallest)"))
-                TextField("f/", text: $minApertureText)
+                TextField("f/", text: $draft.minApertureText)
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
             }
         }
     }
 
-    // MARK: - Save
+    // MARK: - Validation
 
-    private func save() {
-        let trimmedName = lensName.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedName.isEmpty else {
-            validationMessage = NSLocalizedString("LENS_ERROR_MISSING_NAME", comment: "Name required")
-            showValidationError = true
-            return
-        }
+    /// Checks the form's text and converts it for storage.
+    ///
+    /// A prime lens takes its maximum focal length from its minimum, ignoring the hidden
+    /// maximum field.
+    ///
+    /// - Parameter locale: The locale the numbers were typed in.
+    nonisolated static func validate(_ draft: Draft, locale: Locale = .current) throws(ValidationError) -> Values {
+        let trimmedName = draft.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedName.isEmpty else { throw .missingName }
 
-        guard let minFL = Int(minFocalLengthText), minFL > 0, minFL < 10000 else {
-            showFocalLengthError()
-            return
+        guard let minFL = LocalizedNumber.integer(from: draft.minFocalLengthText, locale: locale),
+              minFL > 0, minFL < 10_000 else {
+            throw .badFocalLength
         }
 
         let maxFL: Int
-        if isZoom {
-            guard let parsed = Int(maxFocalLengthText), parsed >= minFL, parsed < 10000 else {
-                showFocalLengthError()
-                return
+        if draft.isZoom {
+            guard let parsed = LocalizedNumber.integer(from: draft.maxFocalLengthText, locale: locale),
+                  parsed >= minFL, parsed < 10_000 else {
+                throw .badFocalLength
             }
             maxFL = parsed
         } else {
             maxFL = minFL
         }
 
-        guard let maxAp = Float(maxApertureText),
+        guard let maxAp = LocalizedNumber.decimal(from: draft.maxApertureText, locale: locale),
               maxAp >= 0.7, maxAp <= 100 else {
-            showApertureError()
-            return
+            throw .badAperture
         }
 
-        guard let minAp = Float(minApertureText),
+        guard let minAp = LocalizedNumber.decimal(from: draft.minApertureText, locale: locale),
               minAp >= maxAp, minAp <= 100 else {
-            showApertureError()
+            throw .badAperture
+        }
+
+        return Values(
+            name: trimmedName,
+            minimumFocalLength: minFL,
+            maximumFocalLength: maxFL,
+            maximumAperture: Float(maxAp),
+            minimumAperture: Float(minAp)
+        )
+    }
+
+    // MARK: - Save
+
+    private func save() {
+        let values: Values
+        do {
+            values = try Self.validate(draft)
+        } catch {
+            validationMessage = error.message
+            showValidationError = true
             return
         }
 
-        lens.name = trimmedName
-        lens.minimumFocalLength = minFL
-        lens.maximumFocalLength = maxFL
-        lens.maximumAperture = maxAp
-        lens.minimumAperture = minAp
-    }
+        lens.name = values.name
+        lens.minimumFocalLength = values.minimumFocalLength
+        lens.maximumFocalLength = values.maximumFocalLength
+        lens.maximumAperture = values.maximumAperture
+        lens.minimumAperture = values.minimumAperture
 
-    private func showFocalLengthError() {
-        validationMessage = String(
-            format: NSLocalizedString("LENS_ERROR_BAD_FOCAL_LENGTH", comment: "Bad focal length"),
-            "0", "10000"
-        )
-        showValidationError = true
-    }
-
-    private func showApertureError() {
-        validationMessage = String(
-            format: NSLocalizedString("LENS_ERROR_BAD_APERTURE", comment: "Bad aperture"),
-            "0.7", "100"
-        )
-        showValidationError = true
+        modelContext.saveLoggingFailure()
+        dismiss()
     }
 }
 

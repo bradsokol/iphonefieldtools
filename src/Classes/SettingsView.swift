@@ -105,6 +105,7 @@ private struct CamerasSectionView: View {
         )
         camera.coc = coc
         modelContext.insert(camera)
+        modelContext.saveLoggingFailure()
     }
 
     private func deleteCameras(at offsets: IndexSet) {
@@ -114,6 +115,7 @@ private struct CamerasSectionView: View {
             selection: settings.cameraIndex,
             in: modelContext
         )
+        modelContext.saveLoggingFailure()
     }
 
     private func moveCameras(from source: IndexSet, to destination: Int) {
@@ -123,6 +125,7 @@ private struct CamerasSectionView: View {
             in: cameras,
             selection: settings.cameraIndex
         )
+        modelContext.saveLoggingFailure()
     }
 }
 
@@ -174,6 +177,7 @@ private struct LensesSectionView: View {
             index: newIndex
         )
         modelContext.insert(lens)
+        modelContext.saveLoggingFailure()
     }
 
     private func deleteLenses(at offsets: IndexSet) {
@@ -183,6 +187,7 @@ private struct LensesSectionView: View {
             selection: settings.lensIndex,
             in: modelContext
         )
+        modelContext.saveLoggingFailure()
     }
 
     private func moveLenses(from source: IndexSet, to destination: Int) {
@@ -192,6 +197,7 @@ private struct LensesSectionView: View {
             in: lenses,
             selection: settings.lensIndex
         )
+        modelContext.saveLoggingFailure()
     }
 }
 

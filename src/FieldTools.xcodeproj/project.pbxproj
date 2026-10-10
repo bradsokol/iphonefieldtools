@@ -21,8 +21,12 @@
 		A26B51FB2F7B198000570542 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */; };
 		A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2C1EF861F5E2B2B009D8DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */; };
+		A2C8912C30780A4100B02910 /* LocalizedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8912B30780A4100B02910 /* LocalizedNumber.swift */; };
+		A2C8912E30780A4600B02910 /* ModelContext+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8912D30780A4600B02910 /* ModelContext+Save.swift */; };
+		A2C8913230780A9600B02910 /* EditFormValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8913130780A9600B02910 /* EditFormValidationTests.swift */; };
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
+		A2F0C0022F80000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A2F0C0012F80000000000001 /* Localizable.xcstrings */; };
 		BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002010000000000000001 /* DepthOfFieldCalculator.swift */; };
 		BB0001020000000000000002 /* DistanceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002020000000000000002 /* DistanceFormatter.swift */; };
 		BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0002030000000000000003 /* SubjectDistanceRange.swift */; };
@@ -42,7 +46,6 @@
 		BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003020000000000000102 /* ModelOrderingTests.swift */; };
 		BB0003050000000000000105 /* CalculatorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003040000000000000104 /* CalculatorViewModelTests.swift */; };
 		BB0003070000000000000107 /* DistanceTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0003060000000000000106 /* DistanceTypeTests.swift */; };
-		A2F0C0022F80000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A2F0C0012F80000000000001 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,8 +86,12 @@
 		A27E41B11224A0C50060CDB2 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		A282978916453F2B00F6DE5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A2C1EF851F5E2B2B009D8DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2C8912B30780A4100B02910 /* LocalizedNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedNumber.swift; sourceTree = "<group>"; };
+		A2C8912D30780A4600B02910 /* ModelContext+Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ModelContext+Save.swift"; path = "Classes/Model/ModelContext+Save.swift"; sourceTree = "<group>"; };
+		A2C8913130780A9600B02910 /* EditFormValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditFormValidationTests.swift; path = TestClasses/EditFormValidationTests.swift; sourceTree = SOURCE_ROOT; };
 		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2F0C0012F80000000000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BB0002010000000000000001 /* DepthOfFieldCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthOfFieldCalculator.swift; sourceTree = "<group>"; };
 		BB0002020000000000000002 /* DistanceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
 		BB0002030000000000000003 /* SubjectDistanceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDistanceRange.swift; sourceTree = "<group>"; };
@@ -104,7 +111,6 @@
 		BB0003020000000000000102 /* ModelOrderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelOrderingTests.swift; path = TestClasses/ModelOrderingTests.swift; sourceTree = SOURCE_ROOT; };
 		BB0003040000000000000104 /* CalculatorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculatorViewModelTests.swift; path = TestClasses/CalculatorViewModelTests.swift; sourceTree = SOURCE_ROOT; };
 		BB0003060000000000000106 /* DistanceTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DistanceTypeTests.swift; path = TestClasses/DistanceTypeTests.swift; sourceTree = SOURCE_ROOT; };
-		A2F0C0012F80000000000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -157,6 +163,7 @@
 				A26B51FA2F7B198000570542 /* CalculatorViewModel.swift */,
 				A25A47883076880600BABCC8 /* AppDataLocation.swift */,
 				A25A478A3076882D00BABCC8 /* PreviewSampleData.swift */,
+				A2C8912B30780A4100B02910 /* LocalizedNumber.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -217,6 +224,7 @@
 				BB00020E000000000000000E /* SwiftDataModelTests.swift */,
 				BB00020F000000000000000F /* UserSettingsTests.swift */,
 				A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */,
+				A2C8913130780A9600B02910 /* EditFormValidationTests.swift */,
 			);
 			name = "Model Tests";
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 				BB0002090000000000000009 /* CoC.swift */,
 				BB00020A000000000000000A /* Lens.swift */,
 				BB00020B000000000000000B /* ModelContainerSetup.swift */,
+				A2C8912D30780A4600B02910 /* ModelContext+Save.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -440,6 +449,7 @@
 				A26B51F52F7B16D500570542 /* CameraEditView.swift in Sources */,
 				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
 				A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */,
+				A2C8912E30780A4600B02910 /* ModelContext+Save.swift in Sources */,
 				BB0001020000000000000002 /* DistanceFormatter.swift in Sources */,
 				BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */,
 				BB0001040000000000000004 /* Aperture.swift in Sources */,
@@ -449,6 +459,7 @@
 				BB0001090000000000000009 /* CoC.swift in Sources */,
 				BB00010A000000000000000A /* Lens.swift in Sources */,
 				BB00010B000000000000000B /* ModelContainerSetup.swift in Sources */,
+				A2C8912C30780A4100B02910 /* LocalizedNumber.swift in Sources */,
 				BB00010C000000000000000C /* CoCPreset.swift in Sources */,
 				A25A478B3076882D00BABCC8 /* PreviewSampleData.swift in Sources */,
 				BB00010D000000000000000D /* UserSettings.swift in Sources */,
@@ -470,6 +481,7 @@
 				BB0003050000000000000105 /* CalculatorViewModelTests.swift in Sources */,
 				BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */,
 				A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */,
+				A2C8913230780A9600B02910 /* EditFormValidationTests.swift in Sources */,
 				A20461B030747E53005D0244 /* LegacyStoreCompatibilityTests.swift in Sources */,
 				BB0001050000000000000005 /* DepthOfFieldCalculatorSwiftTests.swift in Sources */,
 				BB0001060000000000000006 /* DistanceFormatterSwiftTests.swift in Sources */,
@@ -493,9 +505,6 @@
 			targetProxy = A2D67B2F1F43B33D004CC775 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -554,8 +563,6 @@
 		A20C8E790F4A913F00B73E79 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -584,11 +591,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081E431E-3E21-4A94-B99B-F88AD36ADC87";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
@@ -874,8 +883,6 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -905,11 +912,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -918,8 +927,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -948,11 +955,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Field Tools";
 				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

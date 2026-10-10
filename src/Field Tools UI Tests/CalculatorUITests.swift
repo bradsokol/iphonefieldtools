@@ -92,10 +92,31 @@ final class CalculatorUITests: XCTestCase {
         name.tap()
         let current = name.value as? String ?? ""
         name.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: current.count) + "Test lens")
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.navigationBars.buttons["Save"].tap()
         app.buttons["Done"].tap()
 
         XCTAssertTrue(app.buttons["settingsButton"].label.contains("Test lens"), app.buttons["settingsButton"].label)
+    }
+
+    func testAnInvalidLensKeepsTheEditScreenAndTheUsersInput() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        app.buttons["Sample lens"].tap()
+
+        let name = app.textFields["Name"]
+        XCTAssertTrue(name.waitForExistence(timeout: 5))
+        name.tap()
+        let current = name.value as? String ?? ""
+        name.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: current.count))
+        app.navigationBars.buttons["Save"].tap()
+
+        let alert = app.alerts.firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 5))
+        alert.buttons["OK"].tap()
+        XCTAssertTrue(name.exists)
+
+        app.navigationBars.buttons["Cancel"].tap()
+        XCTAssertTrue(app.buttons["Sample lens"].waitForExistence(timeout: 5))
     }
 
     func testSubjectDistanceRangeMenuIsAFullTapTargetAndChangesTheRange() {
