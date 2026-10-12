@@ -109,16 +109,6 @@ final class CalculatorViewModel {
         return "\(cameraName) \u{2013} \(lensName)"
     }
 
-    /// Subject distance range label for display.
-    var subjectDistanceRangeLabel: String {
-        switch settings.subjectDistanceRange {
-        case .macro: NSLocalizedString("SUBJECT_DISTANCE_RANGE_0", comment: "Macro range")
-        case .close: NSLocalizedString("SUBJECT_DISTANCE_RANGE_1", comment: "Close range")
-        case .mid: NSLocalizedString("SUBJECT_DISTANCE_RANGE_2", comment: "Mid-range")
-        case .far: NSLocalizedString("SUBJECT_DISTANCE_RANGE_3", comment: "Full range")
-        }
-    }
-
     /// Formatted minimum aperture label (widest, e.g. "f/1.4").
     var apertureMinLabel: String {
         guard let lens else { return "" }

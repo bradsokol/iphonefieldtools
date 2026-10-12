@@ -24,6 +24,16 @@ public enum SubjectDistanceRange: Int, CaseIterable, Codable, Sendable {
     case mid
     case far
 
+    /// Name shown on the range menu and in its list of choices.
+    public var title: LocalizedStringResource {
+        switch self {
+        case .macro: LocalizedStringResource("SUBJECT_DISTANCE_RANGE_0", comment: "Macro range")
+        case .close: LocalizedStringResource("SUBJECT_DISTANCE_RANGE_1", comment: "Close range")
+        case .mid: LocalizedStringResource("SUBJECT_DISTANCE_RANGE_2", comment: "Mid-range")
+        case .far: LocalizedStringResource("SUBJECT_DISTANCE_RANGE_3", comment: "Full range")
+        }
+    }
+
     // MARK: - Distance bounds
 
     /// Minimum subject distance in metres.

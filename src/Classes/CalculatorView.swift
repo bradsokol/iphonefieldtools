@@ -377,13 +377,13 @@ private struct SubjectDistanceSliderView: View {
         ) {
             Menu {
                 ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
-                    Button(rangeName(range)) {
+                    Button(range.title) {
                         settings.subjectDistanceRange = range
                         viewModel.clampSubjectDistance()
                     }
                 }
             } label: {
-                Text(viewModel.subjectDistanceRangeLabel)
+                Text(settings.subjectDistanceRange.title)
                     .font(.caption)
                     .frame(
                         minWidth: CalculatorLayout.minimumTapTarget,
@@ -392,15 +392,6 @@ private struct SubjectDistanceSliderView: View {
                     .contentShape(.rect)
             }
             .padding(.vertical, -tapTargetOverhang)
-        }
-    }
-
-    private func rangeName(_ range: SubjectDistanceRange) -> String {
-        switch range {
-        case .macro: NSLocalizedString("SUBJECT_DISTANCE_RANGE_0", comment: "Macro range")
-        case .close: NSLocalizedString("SUBJECT_DISTANCE_RANGE_1", comment: "Close range")
-        case .mid: NSLocalizedString("SUBJECT_DISTANCE_RANGE_2", comment: "Mid-range")
-        case .far: NSLocalizedString("SUBJECT_DISTANCE_RANGE_3", comment: "Full range")
         }
     }
 }

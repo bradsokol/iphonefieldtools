@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import Testing
 
 @testable import Field_Tools
@@ -20,6 +21,21 @@ import Testing
 /// replaced `LinearSubjectDistanceSliderPolicy`.
 @Suite("Subject distance range")
 struct SubjectDistanceRangeTests {
+
+    // MARK: - Titles
+
+    @Test(
+        "Menu titles match the shipping range names",
+        arguments: [
+            (SubjectDistanceRange.macro, "Macro range"),
+            (SubjectDistanceRange.close, "Close range"),
+            (SubjectDistanceRange.mid, "Mid-range"),
+            (SubjectDistanceRange.far, "Full range"),
+        ]
+    )
+    func title(range: SubjectDistanceRange, expected: String) {
+        #expect(String(localized: range.title) == expected)
+    }
 
     // MARK: - Range bounds
 
