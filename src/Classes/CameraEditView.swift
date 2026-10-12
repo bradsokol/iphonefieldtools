@@ -71,9 +71,12 @@ struct CameraEditView: View {
 
     var body: some View {
         Form {
-            nameSection
-            cocPresetSection
-            customCoCSection
+            EditNameSection(
+                title: NSLocalizedString("CAMERA_NAME_TITLE", comment: "Name"),
+                name: $draft.name
+            )
+            CoCPresetSection(selectedPresetIndex: $selectedPresetIndex, cocText: $draft.cocText)
+            CustomCoCSection(cocText: $draft.cocText, selectedPresetIndex: $selectedPresetIndex)
         }
         .navigationTitle(NSLocalizedString("CAMERA_VIEW_TITLE", comment: "Camera"))
         .navigationBarTitleDisplayMode(.inline)
@@ -96,61 +99,6 @@ struct CameraEditView: View {
         }
     }
 
-    // MARK: - Sections
-
-    @ViewBuilder
-    private var nameSection: some View {
-        Section(NSLocalizedString("CAMERA_NAME_TITLE", comment: "Name")) {
-            TextField(
-                NSLocalizedString("CAMERA_NAME_TITLE", comment: "Name"),
-                text: $draft.name
-            )
-            .autocorrectionDisabled()
-        }
-    }
-
-    @ViewBuilder
-    private var cocPresetSection: some View {
-        Section(NSLocalizedString("COC_TITLE", comment: "Circle of Confusion")) {
-            ForEach(Array(CoCPreset.all.enumerated()), id: \.element.name) { index, preset in
-                Button {
-                    selectedPresetIndex = index
-                    draft.cocText = Self.cocString(preset.value)
-                } label: {
-                    HStack {
-                        Text(preset.name)
-                            .foregroundStyle(.primary)
-                        Spacer()
-                        Text(Self.cocString(preset.value))
-                            .foregroundStyle(.secondary)
-                        if selectedPresetIndex == index {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.tint)
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var customCoCSection: some View {
-        Section(NSLocalizedString("CUSTOM_COC_VIEW_TITLE", comment: "Custom CoC")) {
-            HStack {
-                Text(NSLocalizedString("COC", comment: "CoC"))
-                TextField(Self.cocString(0.03), text: $draft.cocText)
-                    .keyboardType(.decimalPad)
-                    .multilineTextAlignment(.trailing)
-                    .onChange(of: draft.cocText) {
-                        if let index = selectedPresetIndex,
-                           draft.cocText != Self.cocString(CoCPreset.all[index].value) {
-                            selectedPresetIndex = nil
-                        }
-                    }
-            }
-        }
-    }
-
     // MARK: - Validation
 
     /// Checks the form's text and converts it for storage.
@@ -167,7 +115,8 @@ struct CameraEditView: View {
         return Values(name: trimmedName, coc: Float(coc))
     }
 
-    private static func cocString(_ value: Float) -> String {
+    /// Formats a circle of confusion in millimetres for the form, in the user's locale.
+    static func cocString(_ value: Float) -> String {
         LocalizedNumber.string(value, precision: .significantDigits(1...4))
     }
 

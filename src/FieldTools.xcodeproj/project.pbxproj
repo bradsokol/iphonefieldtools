@@ -26,6 +26,12 @@
 		A2C8913230780A9600B02910 /* EditFormValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8913130780A9600B02910 /* EditFormValidationTests.swift */; };
 		A2C89138307A944A00B02910 /* FieldToolsSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89137307A944A00B02910 /* FieldToolsSchemaV1.swift */; };
 		A2C8913A307A944D00B02910 /* FieldToolsMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89139307A944D00B02910 /* FieldToolsMigrationPlan.swift */; };
+		A2C89140307D1ECB00B02910 /* EditNameSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8913F307D1ECB00B02910 /* EditNameSection.swift */; };
+		A2C89142307D1ED000B02910 /* CoCPresetSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89141307D1ED000B02910 /* CoCPresetSection.swift */; };
+		A2C89144307D1ED400B02910 /* CustomCoCSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89143307D1ED400B02910 /* CustomCoCSection.swift */; };
+		A2C89146307D1ED800B02910 /* LensTypeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89145307D1ED800B02910 /* LensTypeSection.swift */; };
+		A2C89148307D1EDD00B02910 /* LensFocalLengthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89147307D1EDD00B02910 /* LensFocalLengthSection.swift */; };
+		A2C8914A307D1EE200B02910 /* LensApertureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89149307D1EE200B02910 /* LensApertureSection.swift */; };
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2F0C0022F80000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A2F0C0012F80000000000001 /* Localizable.xcstrings */; };
@@ -93,6 +99,12 @@
 		A2C8913130780A9600B02910 /* EditFormValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditFormValidationTests.swift; path = TestClasses/EditFormValidationTests.swift; sourceTree = SOURCE_ROOT; };
 		A2C89137307A944A00B02910 /* FieldToolsSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FieldToolsSchemaV1.swift; path = Classes/Model/FieldToolsSchemaV1.swift; sourceTree = "<group>"; };
 		A2C89139307A944D00B02910 /* FieldToolsMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FieldToolsMigrationPlan.swift; path = Classes/Model/FieldToolsMigrationPlan.swift; sourceTree = "<group>"; };
+		A2C8913F307D1ECB00B02910 /* EditNameSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameSection.swift; sourceTree = "<group>"; };
+		A2C89141307D1ED000B02910 /* CoCPresetSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoCPresetSection.swift; sourceTree = "<group>"; };
+		A2C89143307D1ED400B02910 /* CustomCoCSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCoCSection.swift; sourceTree = "<group>"; };
+		A2C89145307D1ED800B02910 /* LensTypeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensTypeSection.swift; sourceTree = "<group>"; };
+		A2C89147307D1EDD00B02910 /* LensFocalLengthSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensFocalLengthSection.swift; sourceTree = "<group>"; };
+		A2C89149307D1EE200B02910 /* LensApertureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensApertureSection.swift; sourceTree = "<group>"; };
 		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2F0C0012F80000000000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -168,6 +180,12 @@
 				A25A47883076880600BABCC8 /* AppDataLocation.swift */,
 				A25A478A3076882D00BABCC8 /* PreviewSampleData.swift */,
 				A2C8912B30780A4100B02910 /* LocalizedNumber.swift */,
+				A2C8913F307D1ECB00B02910 /* EditNameSection.swift */,
+				A2C89141307D1ED000B02910 /* CoCPresetSection.swift */,
+				A2C89143307D1ED400B02910 /* CustomCoCSection.swift */,
+				A2C89145307D1ED800B02910 /* LensTypeSection.swift */,
+				A2C89147307D1EDD00B02910 /* LensFocalLengthSection.swift */,
+				A2C89149307D1EE200B02910 /* LensApertureSection.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -446,7 +464,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2C8913A307A944D00B02910 /* FieldToolsMigrationPlan.swift in Sources */,
+				A2C89146307D1ED800B02910 /* LensTypeSection.swift in Sources */,
 				BB0003010000000000000101 /* ModelOrdering.swift in Sources */,
+				A2C8914A307D1EE200B02910 /* LensApertureSection.swift in Sources */,
+				A2C89142307D1ED000B02910 /* CoCPresetSection.swift in Sources */,
 				A26B51F32F7B16C600570542 /* SettingsView.swift in Sources */,
 				A26B51F92F7B196800570542 /* DistanceType.swift in Sources */,
 				A26B51F72F7B16E500570542 /* LensEditView.swift in Sources */,
@@ -458,8 +479,11 @@
 				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
 				A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */,
 				A2C8912E30780A4600B02910 /* ModelContext+Save.swift in Sources */,
+				A2C89148307D1EDD00B02910 /* LensFocalLengthSection.swift in Sources */,
 				BB0001020000000000000002 /* DistanceFormatter.swift in Sources */,
 				BB0001030000000000000003 /* SubjectDistanceRange.swift in Sources */,
+				A2C89144307D1ED400B02910 /* CustomCoCSection.swift in Sources */,
+				A2C89140307D1ECB00B02910 /* EditNameSection.swift in Sources */,
 				BB0001040000000000000004 /* Aperture.swift in Sources */,
 				A25A47893076880600BABCC8 /* AppDataLocation.swift in Sources */,
 				BB0001080000000000000008 /* Camera.swift in Sources */,

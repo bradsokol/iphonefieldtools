@@ -86,10 +86,17 @@ struct LensEditView: View {
 
     var body: some View {
         Form {
-            nameSection
-            typeSection
-            focalLengthSection
-            apertureSection
+            EditNameSection(
+                title: NSLocalizedString("LENS_NAME_TITLE", comment: "Name"),
+                name: $draft.name
+            )
+            LensTypeSection(isZoom: $draft.isZoom)
+            LensFocalLengthSection(
+                isZoom: draft.isZoom,
+                minimumText: $draft.minFocalLengthText,
+                maximumText: $draft.maxFocalLengthText
+            )
+            LensApertureSection(maximumText: $draft.maxApertureText, minimumText: $draft.minApertureText)
         }
         .navigationTitle(NSLocalizedString("LENS_VIEW_TITLE", comment: "Lens"))
         .navigationBarTitleDisplayMode(.inline)
@@ -109,68 +116,6 @@ struct LensEditView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(validationMessage)
-        }
-    }
-
-    // MARK: - Sections
-
-    @ViewBuilder
-    private var nameSection: some View {
-        Section(NSLocalizedString("LENS_NAME_TITLE", comment: "Name")) {
-            TextField(
-                NSLocalizedString("LENS_NAME_TITLE", comment: "Name"),
-                text: $draft.name
-            )
-            .autocorrectionDisabled()
-        }
-    }
-
-    @ViewBuilder
-    private var typeSection: some View {
-        Section(NSLocalizedString("LENS_VIEW_TYPE_SECTION_TITLE", comment: "Lens Type")) {
-            Picker("Type", selection: $draft.isZoom) {
-                Text(NSLocalizedString("LENS_TYPE_PRIME", comment: "Prime")).tag(false)
-                Text(NSLocalizedString("LENS_TYPE_ZOOM", comment: "Zoom")).tag(true)
-            }
-            .pickerStyle(.segmented)
-        }
-    }
-
-    @ViewBuilder
-    private var focalLengthSection: some View {
-        Section(NSLocalizedString("LENS_VIEW_FOCAL_LENGTH_SECTION_TITLE", comment: "Focal Length")) {
-            HStack {
-                Text(NSLocalizedString("LENS_EDIT_0", comment: "Minimum"))
-                TextField("mm", text: $draft.minFocalLengthText)
-                    .keyboardType(.numberPad)
-                    .multilineTextAlignment(.trailing)
-            }
-            if draft.isZoom {
-                HStack {
-                    Text(NSLocalizedString("LENS_EDIT_1", comment: "Maximum"))
-                    TextField("mm", text: $draft.maxFocalLengthText)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.trailing)
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var apertureSection: some View {
-        Section(NSLocalizedString("LENS_VIEW_APERTURE_SECTION_TITLE", comment: "Aperture")) {
-            HStack {
-                Text(NSLocalizedString("LENS_EDIT_2", comment: "Maximum (widest)"))
-                TextField("f/", text: $draft.maxApertureText)
-                    .keyboardType(.decimalPad)
-                    .multilineTextAlignment(.trailing)
-            }
-            HStack {
-                Text(NSLocalizedString("LENS_EDIT_3", comment: "Minimum (smallest)"))
-                TextField("f/", text: $draft.minApertureText)
-                    .keyboardType(.decimalPad)
-                    .multilineTextAlignment(.trailing)
-            }
         }
     }
 
