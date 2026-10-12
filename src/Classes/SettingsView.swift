@@ -15,28 +15,37 @@
 import SwiftData
 import SwiftUI
 
-/// Settings screen for managing cameras, lenses, and distance units.
+/// Settings screen for managing lenses, cameras, and distance units, in the order the
+/// Objective-C app showed them.
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
     @Environment(UserSettings.self) private var settings
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
 
     var body: some View {
+        @Bindable var settings = settings
         NavigationStack {
             List {
-                CamerasSectionView(
-                    cameras: cameras,
-                    settings: settings,
-                    modelContext: modelContext
-                )
-                LensesSectionView(
-                    lenses: lenses,
-                    settings: settings,
-                    modelContext: modelContext
-                )
-                UnitsSectionView(settings: settings)
+                OrderedModelSection(
+                    title: NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses"),
+                    addTitle: NSLocalizedString("ADD_LENS", comment: "Add lens"),
+                    models: lenses,
+                    selection: $settings.lensIndex,
+                    makeModel: Self.makeLens
+                ) { lens in
+                    LensEditView(lens: lens)
+                }
+                OrderedModelSection(
+                    title: NSLocalizedString("CAMERAS_SECTION_TITLE", comment: "Cameras"),
+                    addTitle: NSLocalizedString("ADD_CAMERA", comment: "Add camera"),
+                    models: cameras,
+                    selection: $settings.cameraIndex,
+                    makeModel: Self.makeCamera
+                ) { camera in
+                    CameraEditView(camera: camera)
+                }
+                UnitsSection(units: $settings.distanceUnits)
             }
             .navigationTitle(NSLocalizedString("SETTINGS_TITLE", comment: "Settings"))
             .navigationBarTitleDisplayMode(.inline)
@@ -50,163 +59,24 @@ struct SettingsView: View {
             }
         }
     }
-}
 
-// MARK: - Cameras section
-
-/// Cameras list with selection, add, delete, and reorder support.
-private struct CamerasSectionView: View {
-    var cameras: [Camera]
-    var settings: UserSettings
-    var modelContext: ModelContext
-
-    var body: some View {
-        Section(NSLocalizedString("CAMERAS_SECTION_TITLE", comment: "Cameras")) {
-            ForEach(Array(cameras.enumerated()), id: \.element.id) { index, camera in
-                let isSelected = index == settings.cameraIndex
-                NavigationLink {
-                    CameraEditView(camera: camera)
-                        .onAppear {
-                            settings.cameraIndex = index
-                        }
-                } label: {
-                    HStack {
-                        Text(camera.name)
-                        Spacer()
-                        if isSelected {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.tint)
-                        }
-                    }
-                }
-            }
-            .onDelete(perform: deleteCameras)
-            .onMove(perform: moveCameras)
-
-            Button(NSLocalizedString("ADD_CAMERA", comment: "Add camera"), action: addCamera)
-        }
-    }
-
-    private func addCamera() {
-        let newIndex = ModelOrdering.nextIndex(after: cameras)
+    private static func makeCamera(index: Int) -> Camera {
         let camera = Camera(
             name: NSLocalizedString("DEFAULT_CAMERA_NAME", comment: "Default camera name"),
-            index: newIndex
+            index: index
         )
-        let coc = CoC(
+        camera.coc = CoC(
             name: NSLocalizedString("DEFAULT_COC", comment: "Default CoC"),
             value: 0.03
         )
-        camera.coc = coc
-        modelContext.insert(camera)
-        modelContext.saveLoggingFailure()
+        return camera
     }
 
-    private func deleteCameras(at offsets: IndexSet) {
-        settings.cameraIndex = ModelOrdering.delete(
-            at: offsets,
-            from: cameras,
-            selection: settings.cameraIndex,
-            in: modelContext
-        )
-        modelContext.saveLoggingFailure()
-    }
-
-    private func moveCameras(from source: IndexSet, to destination: Int) {
-        settings.cameraIndex = ModelOrdering.move(
-            from: source,
-            to: destination,
-            in: cameras,
-            selection: settings.cameraIndex
-        )
-        modelContext.saveLoggingFailure()
-    }
-}
-
-// MARK: - Lenses section
-
-/// Lenses list with selection, add, delete, and reorder support.
-private struct LensesSectionView: View {
-    var lenses: [Lens]
-    var settings: UserSettings
-    var modelContext: ModelContext
-
-    var body: some View {
-        Section(NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses")) {
-            ForEach(Array(lenses.enumerated()), id: \.element.id) { index, lens in
-                let isSelected = index == settings.lensIndex
-                NavigationLink {
-                    LensEditView(lens: lens)
-                        .onAppear {
-                            settings.lensIndex = index
-                        }
-                } label: {
-                    HStack {
-                        Text(lens.name)
-                        Spacer()
-                        if isSelected {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.tint)
-                        }
-                    }
-                }
-            }
-            .onDelete(perform: deleteLenses)
-            .onMove(perform: moveLenses)
-
-            Button(NSLocalizedString("ADD_LENS", comment: "Add lens"), action: addLens)
-        }
-    }
-
-    private func addLens() {
-        let newIndex = ModelOrdering.nextIndex(after: lenses)
-        let lens = Lens(
+    private static func makeLens(index: Int) -> Lens {
+        Lens(
             name: NSLocalizedString("DEFAULT_LENS_NAME", comment: "Default lens name"),
-            index: newIndex
+            index: index
         )
-        modelContext.insert(lens)
-        modelContext.saveLoggingFailure()
-    }
-
-    private func deleteLenses(at offsets: IndexSet) {
-        settings.lensIndex = ModelOrdering.delete(
-            at: offsets,
-            from: lenses,
-            selection: settings.lensIndex,
-            in: modelContext
-        )
-        modelContext.saveLoggingFailure()
-    }
-
-    private func moveLenses(from source: IndexSet, to destination: Int) {
-        settings.lensIndex = ModelOrdering.move(
-            from: source,
-            to: destination,
-            in: lenses,
-            selection: settings.lensIndex
-        )
-        modelContext.saveLoggingFailure()
-    }
-}
-
-// MARK: - Units section
-
-/// Distance units picker.
-private struct UnitsSectionView: View {
-    var settings: UserSettings
-
-    var body: some View {
-        @Bindable var settings = settings
-        Section(NSLocalizedString("UNITS_SECTION_TITLE", comment: "Units")) {
-            Picker("Units", selection: $settings.distanceUnits) {
-                Text(NSLocalizedString("FEET", comment: "Feet")).tag(DistanceUnits.feet)
-                Text(NSLocalizedString("FEET_AND_INCHES", comment: "Feet and inches")).tag(DistanceUnits.feetAndInches)
-                Text(NSLocalizedString("METRIC_M", comment: "Metres")).tag(DistanceUnits.meters)
-                Text(NSLocalizedString("METRIC_CM", comment: "Centimeters")).tag(DistanceUnits.centimeters)
-            }
-            .pickerStyle(.inline)
-            .labelsHidden()
-        }
     }
 }
 

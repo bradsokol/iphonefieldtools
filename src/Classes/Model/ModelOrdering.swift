@@ -15,8 +15,9 @@
 import Foundation
 import SwiftData
 
-/// A model whose position in a user-ordered list is persisted as `index`.
+/// A named model whose position in a user-ordered list is persisted as `index`.
 protocol IndexedModel: PersistentModel {
+    var name: String { get }
     var index: Int { get set }
 }
 

@@ -32,6 +32,8 @@
 		A2C89146307D1ED800B02910 /* LensTypeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89145307D1ED800B02910 /* LensTypeSection.swift */; };
 		A2C89148307D1EDD00B02910 /* LensFocalLengthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89147307D1EDD00B02910 /* LensFocalLengthSection.swift */; };
 		A2C8914A307D1EE200B02910 /* LensApertureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C89149307D1EE200B02910 /* LensApertureSection.swift */; };
+		A2C8914C307D203900B02910 /* OrderedModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8914B307D203900B02910 /* OrderedModelSection.swift */; };
+		A2C8914E307D203E00B02910 /* UnitsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8914D307D203E00B02910 /* UnitsSection.swift */; };
 		A2D67B391F43C37B004CC775 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A282978916453F2B00F6DE5D /* CoreData.framework */; };
 		A2D67B3C1F43C3D7004CC775 /* FieldTools.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A26FC57E16449E23000CF7DC /* FieldTools.xcdatamodeld */; };
 		A2F0C0022F80000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A2F0C0012F80000000000001 /* Localizable.xcstrings */; };
@@ -105,6 +107,8 @@
 		A2C89145307D1ED800B02910 /* LensTypeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensTypeSection.swift; sourceTree = "<group>"; };
 		A2C89147307D1EDD00B02910 /* LensFocalLengthSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensFocalLengthSection.swift; sourceTree = "<group>"; };
 		A2C89149307D1EE200B02910 /* LensApertureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensApertureSection.swift; sourceTree = "<group>"; };
+		A2C8914B307D203900B02910 /* OrderedModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedModelSection.swift; sourceTree = "<group>"; };
+		A2C8914D307D203E00B02910 /* UnitsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsSection.swift; sourceTree = "<group>"; };
 		A2D67B2A1F43B33D004CC775 /* Field Tools Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D67B2E1F43B33D004CC775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2F0C0012F80000000000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				A2C89145307D1ED800B02910 /* LensTypeSection.swift */,
 				A2C89147307D1EDD00B02910 /* LensFocalLengthSection.swift */,
 				A2C89149307D1EE200B02910 /* LensApertureSection.swift */,
+				A2C8914B307D203900B02910 /* OrderedModelSection.swift */,
+				A2C8914D307D203E00B02910 /* UnitsSection.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -489,8 +495,10 @@
 				BB0001080000000000000008 /* Camera.swift in Sources */,
 				A26B51FB2F7B198000570542 /* CalculatorViewModel.swift in Sources */,
 				BB0001090000000000000009 /* CoC.swift in Sources */,
+				A2C8914C307D203900B02910 /* OrderedModelSection.swift in Sources */,
 				BB00010A000000000000000A /* Lens.swift in Sources */,
 				BB00010B000000000000000B /* ModelContainerSetup.swift in Sources */,
+				A2C8914E307D203E00B02910 /* UnitsSection.swift in Sources */,
 				A2C8912C30780A4100B02910 /* LocalizedNumber.swift in Sources */,
 				BB00010C000000000000000C /* CoCPreset.swift in Sources */,
 				A25A478B3076882D00BABCC8 /* PreviewSampleData.swift in Sources */,
