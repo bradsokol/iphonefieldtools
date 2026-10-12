@@ -67,7 +67,7 @@ struct LensEditView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @Bindable var lens: Lens
+    let lens: Lens
     @State private var draft: Draft
     @State private var showValidationError = false
     @State private var validationMessage = ""

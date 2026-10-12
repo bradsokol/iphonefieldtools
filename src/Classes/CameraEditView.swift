@@ -54,7 +54,7 @@ struct CameraEditView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @Bindable var camera: Camera
+    let camera: Camera
     @State private var draft: Draft
     @State private var selectedPresetIndex: Int?
     @State private var showValidationError = false
