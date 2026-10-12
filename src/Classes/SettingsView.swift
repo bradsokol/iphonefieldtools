@@ -62,12 +62,12 @@ private struct CamerasSectionView: View {
 
     var body: some View {
         Section(NSLocalizedString("CAMERAS_SECTION_TITLE", comment: "Cameras")) {
-            ForEach(cameras) { camera in
-                let isSelected = cameras.firstIndex(where: { $0.id == camera.id }) == settings.cameraIndex
+            ForEach(Array(cameras.enumerated()), id: \.element.id) { index, camera in
+                let isSelected = index == settings.cameraIndex
                 NavigationLink {
                     CameraEditView(camera: camera)
                         .onAppear {
-                            selectCamera(camera)
+                            settings.cameraIndex = index
                         }
                 } label: {
                     HStack {
@@ -84,12 +84,6 @@ private struct CamerasSectionView: View {
             .onMove(perform: moveCameras)
 
             Button(NSLocalizedString("ADD_CAMERA", comment: "Add camera"), action: addCamera)
-        }
-    }
-
-    private func selectCamera(_ camera: Camera) {
-        if let index = cameras.firstIndex(where: { $0.id == camera.id }) {
-            settings.cameraIndex = index
         }
     }
 
@@ -139,12 +133,12 @@ private struct LensesSectionView: View {
 
     var body: some View {
         Section(NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses")) {
-            ForEach(lenses) { lens in
-                let isSelected = lenses.firstIndex(where: { $0.id == lens.id }) == settings.lensIndex
+            ForEach(Array(lenses.enumerated()), id: \.element.id) { index, lens in
+                let isSelected = index == settings.lensIndex
                 NavigationLink {
                     LensEditView(lens: lens)
                         .onAppear {
-                            selectLens(lens)
+                            settings.lensIndex = index
                         }
                 } label: {
                     HStack {
@@ -161,12 +155,6 @@ private struct LensesSectionView: View {
             .onMove(perform: moveLenses)
 
             Button(NSLocalizedString("ADD_LENS", comment: "Add lens"), action: addLens)
-        }
-    }
-
-    private func selectLens(_ lens: Lens) {
-        if let index = lenses.firstIndex(where: { $0.id == lens.id }) {
-            settings.lensIndex = index
         }
     }
 
