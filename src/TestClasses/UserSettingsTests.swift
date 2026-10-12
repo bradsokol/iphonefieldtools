@@ -19,6 +19,7 @@ import Testing
 
 @testable import Field_Tools
 
+@MainActor
 @Suite("UserSettings Tests")
 struct UserSettingsTests {
 
@@ -195,6 +196,7 @@ struct UserSettingsTests {
 ///
 /// Getting this wrong fails silently: a wrong key or an accidental write shows the
 /// replacement tips to every existing user, with no error to catch it.
+@MainActor
 @Suite("Legacy Coach Marks Flag")
 struct LegacyCoachMarksFlagTests {
 

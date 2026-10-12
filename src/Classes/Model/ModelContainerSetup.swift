@@ -35,17 +35,19 @@ public let defaultStoreURL = URL.documentsDirectory.appending(path: "FieldTools.
 
 /// Creates the app's `ModelContainer`, reading from the existing Core Data SQLite store.
 ///
-/// Entity and attribute names match between Core Data and SwiftData, so no migration
-/// is required.
+/// Entity and attribute names match between Core Data and SwiftData, so the shipped
+/// store opens as ``FieldToolsSchemaV1`` without a migration stage. Later schema changes
+/// migrate through ``FieldToolsMigrationPlan``.
 ///
 /// - Parameter url: The store file to open.
 /// - Returns: A configured `ModelContainer` for Camera, CoC, and Lens.
 /// - Throws: Any error raised while opening the store.
 public func makeModelContainer(at url: URL = defaultStoreURL) throws -> ModelContainer {
-    let configuration = ModelConfiguration(url: url)
+    let schema = Schema(versionedSchema: FieldToolsSchemaV1.self)
     return try ModelContainer(
-        for: Camera.self, CoC.self, Lens.self,
-        configurations: configuration
+        for: schema,
+        migrationPlan: FieldToolsMigrationPlan.self,
+        configurations: ModelConfiguration(schema: schema, url: url)
     )
 }
 

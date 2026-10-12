@@ -19,7 +19,7 @@ import Observation
 ///
 /// Key strings match the existing Objective-C constants so that preferences
 /// survive the migration. Inject this as an environment object in SwiftUI.
-@Observable
+@MainActor @Observable
 public final class UserSettings {
 
     // MARK: - UserDefaults key strings

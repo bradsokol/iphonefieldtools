@@ -151,12 +151,10 @@ struct LegacyStoreCompatibilityTests {
         ),
     ]
 
-    /// Opens a store written by Core Data using the app's SwiftData configuration.
+    /// Opens a store written by Core Data with the app's own versioned schema and
+    /// migration plan, exactly as a launch would.
     private func openWithSwiftData(at url: URL) throws -> ModelContainer {
-        try ModelContainer(
-            for: Camera.self, CoC.self, Lens.self,
-            configurations: ModelConfiguration(url: url)
-        )
+        try makeModelContainer(at: url)
     }
 
     private func makeLegacyStore(_ directory: borrowing StoreDirectory) throws {
