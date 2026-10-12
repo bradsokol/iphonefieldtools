@@ -36,11 +36,7 @@ final class CalculatorViewModel {
 
     /// Formatted aperture string (e.g., "f/8" or "f/5.6").
     var apertureText: String {
-        let value = aperture
-        if value == value.rounded(.down) {
-            return "f/\(Int(value))"
-        }
-        return "f/\(String(format: "%.1f", value))"
+        Self.formatAperture(aperture)
     }
 
     /// Circle of confusion for the selected camera, in millimetres.
@@ -70,7 +66,7 @@ final class CalculatorViewModel {
 
     /// Formatted focal length string.
     var focalLengthText: String {
-        "\(Int(settings.focalLength)) mm"
+        Self.formatFocalLength(Int(settings.focalLength))
     }
 
     /// Aperture slider range constrained by the selected lens.
@@ -95,19 +91,21 @@ final class CalculatorViewModel {
     /// Formatted shortest focal length of the selected lens (e.g. "24 mm").
     var focalLengthMinLabel: String {
         guard let lens else { return "" }
-        return "\(lens.minimumFocalLength) mm"
+        return Self.formatFocalLength(lens.minimumFocalLength)
     }
 
     /// Formatted longest focal length of the selected lens (e.g. "120 mm").
     var focalLengthMaxLabel: String {
         guard let lens else { return "" }
-        return "\(lens.maximumFocalLength) mm"
+        return Self.formatFocalLength(lens.maximumFocalLength)
     }
 
     /// Description of the selected camera and lens.
     var cameraAndLensDescription: String {
-        let cameraName = camera?.name ?? "No camera"
-        let lensName = lens?.name ?? "No lens"
+        let cameraName = camera?.name
+            ?? NSLocalizedString("NO_CAMERA_SELECTED", comment: "Footer text when no camera is selected")
+        let lensName = lens?.name
+            ?? NSLocalizedString("NO_LENS_SELECTED", comment: "Footer text when no lens is selected")
         return "\(cameraName) \u{2013} \(lensName)"
     }
 
@@ -124,13 +122,13 @@ final class CalculatorViewModel {
     /// Formatted minimum aperture label (widest, e.g. "f/1.4").
     var apertureMinLabel: String {
         guard let lens else { return "" }
-        return formatAperture(lens.maximumAperture)
+        return Self.formatAperture(lens.maximumAperture)
     }
 
     /// Formatted maximum aperture label (narrowest, e.g. "f/32").
     var apertureMaxLabel: String {
         guard let lens else { return "" }
-        return formatAperture(lens.minimumAperture)
+        return Self.formatAperture(lens.minimumAperture)
     }
 
     /// Formatted minimum subject distance label.
@@ -275,10 +273,20 @@ final class CalculatorViewModel {
         return DistanceFormatter(units: units, decimalPlaces: places)
     }
 
-    private func formatAperture(_ value: Float) -> String {
-        if value == value.rounded(.down) {
-            return "f/\(Int(value))"
-        }
-        return "f/\(String(format: "%.1f", value))"
+    // MARK: - Number formatting
+
+    /// Formats an f-number with at most one decimal place in `locale`, such as "f/8",
+    /// "f/5.6", or "f/5,6" where the decimal separator is a comma.
+    ///
+    /// The "f/" prefix is the standard photographic notation in every language.
+    nonisolated static func formatAperture(_ value: Float, locale: Locale = .current) -> String {
+        let number = Double(value).formatted(.number.precision(.fractionLength(0...1)).locale(locale))
+        return "f/\(number)"
+    }
+
+    /// Formats a focal length in millimetres with the unit symbol `locale` uses, such as "24 mm".
+    nonisolated static func formatFocalLength(_ millimetres: Int, locale: Locale = .current) -> String {
+        Measurement(value: Double(millimetres), unit: UnitLength.millimeters)
+            .formatted(.measurement(width: .abbreviated, usage: .asProvided).locale(locale))
     }
 }

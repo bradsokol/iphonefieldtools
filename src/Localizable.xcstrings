@@ -494,6 +494,28 @@
         }
       }
     },
+    "NO_CAMERA_SELECTED" : {
+      "comment" : "Footer text when no camera is selected",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No camera"
+          }
+        }
+      }
+    },
+    "NO_LENS_SELECTED" : {
+      "comment" : "Footer text when no lens is selected",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No lens"
+          }
+        }
+      }
+    },
     "OK" : {
 
     },

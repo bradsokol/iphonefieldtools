@@ -211,6 +211,50 @@ final class CalculatorViewModelSingleResultTests {
     }
 }
 
+@Suite("CalculatorViewModel locale formatting")
+struct CalculatorViewModelLocaleTests {
+
+    @Test(
+        "Apertures use the locale's decimal separator and drop a whole number's decimal",
+        arguments: [
+            (Float(8), "en_US", "f/8"),
+            (5.6, "en_US", "f/5.6"),
+            (5.6, "de_DE", "f/5,6"),
+            (1.4, "fr_FR", "f/1,4"),
+            (22, "de_DE", "f/22"),
+        ]
+    )
+    func formatsAperture(value: Float, localeIdentifier: String, expected: String) {
+        let locale = Locale(identifier: localeIdentifier)
+        #expect(CalculatorViewModel.formatAperture(value, locale: locale) == expected)
+    }
+
+    @Test(
+        "Focal lengths use the locale's number format with the millimetre symbol",
+        arguments: [
+            (24, "en_US", "24 mm"),
+            (24, "de_DE", "24 mm"),
+            (1000, "en_US", "1,000 mm"),
+            (1000, "de_DE", "1.000 mm"),
+        ]
+    )
+    func formatsFocalLength(millimetres: Int, localeIdentifier: String, expected: String) {
+        let locale = Locale(identifier: localeIdentifier)
+        #expect(CalculatorViewModel.formatFocalLength(millimetres, locale: locale) == expected)
+    }
+
+    @MainActor
+    @Test("With nothing selected, the footer shows the catalog placeholders, not their keys")
+    func noSelectionUsesLocalisedPlaceholders() throws {
+        let suiteName = "CalculatorViewModelLocaleTests-\(UUID().uuidString)"
+        defer { UserDefaults.standard.removePersistentDomain(forName: suiteName) }
+        let defaults = try #require(UserDefaults(suiteName: suiteName))
+        let viewModel = CalculatorViewModel(settings: UserSettings(defaults: defaults))
+
+        #expect(viewModel.cameraAndLensDescription == "No camera \u{2013} No lens")
+    }
+}
+
 /// The sample camera and lens at f/8, with the given units, range and subject distance.
 @MainActor
 private func makeSampleViewModel(
