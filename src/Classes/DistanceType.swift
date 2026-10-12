@@ -24,6 +24,12 @@ public enum DistanceType: Int, CaseIterable, Sendable {
     case far
     case nearFar
 
+    /// Whether this distance type is calculated from a subject distance, and so shows
+    /// the subject distance slider.
+    var needsSubjectDistance: Bool {
+        self != .hyperfocal
+    }
+
     /// Short title for the distance type picker.
     var title: LocalizedStringResource {
         switch self {

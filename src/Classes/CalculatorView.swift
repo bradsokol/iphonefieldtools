@@ -14,6 +14,7 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
 
 /// Main calculator screen for depth of field calculations.
 ///
@@ -25,6 +26,7 @@ struct CalculatorView: View {
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
     @State private var showSettings = false
+    @State private var tips = OnboardingTips.makeGroup()
 
     private var settings: UserSettings { viewModel.settings }
 
@@ -33,8 +35,15 @@ struct CalculatorView: View {
         CalculatorContentView(
             viewModel: viewModel,
             distanceType: $settings.distanceType,
-            showSettings: $showSettings
+            showSettings: $showSettings,
+            tips: tips
         )
+        .onChange(of: viewModel.showsFocalLengthSlider, initial: true) {
+            FocalLengthScrubbingTip.isSliderShown = viewModel.showsFocalLengthSlider
+        }
+        .onChange(of: settings.distanceType, initial: true) {
+            DistanceScrubbingTip.isSliderShown = settings.distanceType.needsSubjectDistance
+        }
         .onAppear {
             updateSelectedCamera()
             updateSelectedLens()
@@ -101,6 +110,7 @@ private struct CalculatorContentView: View {
     var viewModel: CalculatorViewModel
     @Binding var distanceType: DistanceType
     @Binding var showSettings: Bool
+    var tips: TipGroup
 
     var body: some View {
         ViewThatFits(in: .vertical) {
@@ -115,7 +125,8 @@ private struct CalculatorContentView: View {
         CalculatorControlsView(
             viewModel: viewModel,
             distanceType: $distanceType,
-            showSettings: $showSettings
+            showSettings: $showSettings,
+            tips: tips
         )
     }
 }
@@ -125,11 +136,7 @@ private struct CalculatorControlsView: View {
     var viewModel: CalculatorViewModel
     @Binding var distanceType: DistanceType
     @Binding var showSettings: Bool
-
-    /// Whether this distance type requires a subject distance.
-    private var needsSubjectDistance: Bool {
-        distanceType != .hyperfocal
-    }
+    var tips: TipGroup
 
     var body: some View {
         VStack(spacing: 0) {
@@ -147,12 +154,18 @@ private struct CalculatorControlsView: View {
             .padding(.top, CalculatorLayout.resultToPicker)
 
             VStack(spacing: CalculatorLayout.betweenSliderRows) {
-                FocalLengthSliderView(viewModel: viewModel)
+                FocalLengthSliderView(
+                    viewModel: viewModel,
+                    tip: tips.currentTip as? FocalLengthScrubbingTip
+                )
 
                 ApertureSliderView(viewModel: viewModel)
 
-                if needsSubjectDistance {
-                    SubjectDistanceSliderView(viewModel: viewModel)
+                if distanceType.needsSubjectDistance {
+                    SubjectDistanceSliderView(
+                        viewModel: viewModel,
+                        tip: tips.currentTip as? DistanceScrubbingTip
+                    )
                 }
             }
             .padding(.top, CalculatorLayout.pickerToSliders)
@@ -161,7 +174,8 @@ private struct CalculatorControlsView: View {
 
             CalculatorFooterView(
                 viewModel: viewModel,
-                showSettings: $showSettings
+                showSettings: $showSettings,
+                tip: tips.currentTip as? CameraBagTip
             )
         }
         .padding(.horizontal, CalculatorLayout.horizontalMargin)
@@ -224,6 +238,7 @@ private struct LabeledSliderRow<Accessory: View>: View {
     let minimumLabel: String
     let maximumLabel: String
     var showsSlider = true
+    var tip: (any Tip)?
     @ViewBuilder var accessory: Accessory
 
     @ScaledMetric(relativeTo: .title2) private var valueFontSize = 24
@@ -245,6 +260,7 @@ private struct LabeledSliderRow<Accessory: View>: View {
             .foregroundStyle(.secondary)
             if showsSlider {
                 slider
+                    .popoverTip(tip)
                     .padding(.top, CalculatorLayout.titleToSlider)
                 HStack {
                     Text(minimumLabel)
@@ -290,7 +306,8 @@ extension LabeledSliderRow where Accessory == EmptyView {
         step: Float? = nil,
         minimumLabel: String,
         maximumLabel: String,
-        showsSlider: Bool = true
+        showsSlider: Bool = true,
+        tip: (any Tip)? = nil
     ) {
         self.title = title
         self.value = value
@@ -300,6 +317,7 @@ extension LabeledSliderRow where Accessory == EmptyView {
         self.minimumLabel = minimumLabel
         self.maximumLabel = maximumLabel
         self.showsSlider = showsSlider
+        self.tip = tip
         self.accessory = EmptyView()
     }
 }
@@ -307,6 +325,7 @@ extension LabeledSliderRow where Accessory == EmptyView {
 /// Focal length readout, with a slider when the selected lens is a zoom.
 private struct FocalLengthSliderView: View {
     var viewModel: CalculatorViewModel
+    var tip: FocalLengthScrubbingTip?
 
     var body: some View {
         @Bindable var settings = viewModel.settings
@@ -318,7 +337,8 @@ private struct FocalLengthSliderView: View {
             step: 1,
             minimumLabel: viewModel.focalLengthMinLabel,
             maximumLabel: viewModel.focalLengthMaxLabel,
-            showsSlider: viewModel.showsFocalLengthSlider
+            showsSlider: viewModel.showsFocalLengthSlider,
+            tip: tip
         )
         .scrubbingSpeeds(.focalLength)
     }
@@ -348,6 +368,7 @@ private struct ApertureSliderView: View {
 /// Subject distance slider with range selection menu.
 private struct SubjectDistanceSliderView: View {
     var viewModel: CalculatorViewModel
+    var tip: DistanceScrubbingTip?
 
     /// Height of one line of caption text, used to grow the range menu to a full tap
     /// target without moving the text or the rows around it.
@@ -365,7 +386,8 @@ private struct SubjectDistanceSliderView: View {
             sliderValue: $settings.subjectDistance,
             range: viewModel.subjectDistanceMinimum...viewModel.subjectDistanceMaximum,
             minimumLabel: viewModel.subjectDistanceMinLabel,
-            maximumLabel: viewModel.subjectDistanceMaxLabel
+            maximumLabel: viewModel.subjectDistanceMaxLabel,
+            tip: tip
         ) {
             Menu {
                 ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
@@ -395,11 +417,10 @@ private struct SubjectDistanceSliderView: View {
 private struct CalculatorFooterView: View {
     var viewModel: CalculatorViewModel
     @Binding var showSettings: Bool
+    var tip: CameraBagTip?
 
     var body: some View {
-        Button {
-            showSettings = true
-        } label: {
+        Button(action: openSettings) {
             HStack(spacing: 8) {
                 Text(viewModel.cameraAndLensDescription)
                     .font(.caption)
@@ -412,7 +433,13 @@ private struct CalculatorFooterView: View {
         }
         .accessibilityHint("Opens settings")
         .accessibilityIdentifier("settingsButton")
+        .popoverTip(tip)
         .frame(maxWidth: .infinity, alignment: .trailing)
+    }
+
+    private func openSettings() {
+        CameraBagTip().invalidate(reason: .actionPerformed)
+        showSettings = true
     }
 }
 

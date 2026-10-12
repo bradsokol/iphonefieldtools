@@ -20,6 +20,8 @@ struct AppDataLocation {
     let storeURL: URL
     /// The preferences read and written by ``UserSettings``.
     let defaults: UserDefaults
+    /// Where TipKit keeps its state, or `nil` for TipKit's default location.
+    var tipsDatastoreURL: URL?
 
     /// The user's own camera bag and preferences.
     static var standard: AppDataLocation {
@@ -34,8 +36,7 @@ struct AppDataLocation {
     /// check what persisted. Every other launch uses ``standard``.
     static func forLaunch() -> AppDataLocation {
         #if DEBUG
-        if let state = UserDefaults.standard.string(forKey: UITestState.argumentKey),
-           let uiTestState = UITestState(rawValue: state),
+        if let uiTestState = UITestState.current,
            let location = uiTest(state: uiTestState) {
             return location
         }
@@ -54,6 +55,17 @@ enum UITestState: String {
 
     /// The launch argument, without its leading hyphen, that selects a state.
     static let argumentKey = "UITestState"
+
+    /// The state this launch asked for, or `nil` when it is not a UI test launch.
+    static var current: UITestState? {
+        UserDefaults.standard.string(forKey: argumentKey).flatMap(UITestState.init(rawValue:))
+    }
+
+    /// Whether this is a UI test launch that hides onboarding tips, as every UI test
+    /// launch does unless it passes `-UITestShowsTips YES`.
+    static var hidesTips: Bool {
+        current != nil && !UserDefaults.standard.bool(forKey: "UITestShowsTips")
+    }
 }
 
 private extension AppDataLocation {
@@ -68,7 +80,9 @@ private extension AppDataLocation {
             try? FileManager.default.removeItem(at: directory)
         }
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        return AppDataLocation(storeURL: storeURL, defaults: defaults)
+        let tipsURL = directory.appending(path: "Tips")
+        try? FileManager.default.createDirectory(at: tipsURL, withIntermediateDirectories: true)
+        return AppDataLocation(storeURL: storeURL, defaults: defaults, tipsDatastoreURL: tipsURL)
     }
 }
 #endif

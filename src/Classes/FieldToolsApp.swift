@@ -15,6 +15,7 @@
 import OSLog
 import SwiftData
 import SwiftUI
+import TipKit
 
 /// App entry point for Field Tools.
 @main
@@ -29,6 +30,15 @@ struct FieldToolsApp: App {
         let settings = UserSettings(defaults: location.defaults)
         _settings = State(initialValue: settings)
         _calculator = State(initialValue: CalculatorViewModel(settings: settings))
+        #if DEBUG
+        if UITestState.hidesTips {
+            Tips.hideAllTipsForTesting()
+        }
+        #endif
+        OnboardingTips.configure(
+            datastoreURL: location.tipsDatastoreURL,
+            legacyCoachMarksShown: settings.legacyCoachMarksShown
+        )
         do {
             store = .ready(try openAppStore(at: location.storeURL))
         } catch {

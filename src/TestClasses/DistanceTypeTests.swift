@@ -45,4 +45,17 @@ struct DistanceTypeTests {
     func resultAccessibilityLabel(type: DistanceType, expected: String) {
         #expect(String(localized: type.resultAccessibilityLabel) == expected)
     }
+
+    @Test(
+        "Only the hyperfocal distance is calculated without a subject distance",
+        arguments: [
+            (DistanceType.hyperfocal, false),
+            (DistanceType.near, true),
+            (DistanceType.far, true),
+            (DistanceType.nearFar, true)
+        ]
+    )
+    func needsSubjectDistance(type: DistanceType, expected: Bool) {
+        #expect(type.needsSubjectDistance == expected)
+    }
 }

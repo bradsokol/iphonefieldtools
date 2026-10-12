@@ -37,6 +37,28 @@
         }
       }
     },
+    "CAMERA_BAG_TIP" : {
+      "comment" : "Camera bag tip message",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap on the camera and lens names to configure the gear that's in your camera bag."
+          }
+        }
+      }
+    },
+    "CAMERA_BAG_TIP_TITLE" : {
+      "comment" : "Camera bag tip title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Camera Bag"
+          }
+        }
+      }
+    },
     "CAMERA_DATA_VALIDATION_ERROR" : {
       "comment" : "Input Error",
       "localizations" : {
@@ -186,6 +208,28 @@
         }
       }
     },
+    "DISTANCE_SCRUBBING_TIP" : {
+      "comment" : "Distance scrubbing tip message",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slide your finger vertically to adjust the scrubbing speed of the distance slider."
+          }
+        }
+      }
+    },
+    "DISTANCE_SCRUBBING_TIP_TITLE" : {
+      "comment" : "Distance scrubbing tip title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine-Tune the Distance"
+          }
+        }
+      }
+    },
     "DISTANCE_TYPE" : {
       "localizations" : {
         "en" : {
@@ -275,6 +319,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Feet and inches"
+          }
+        }
+      }
+    },
+    "FOCAL_LENGTH_SCRUBBING_TIP" : {
+      "comment" : "Focal length scrubbing tip message",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slide your finger vertically to adjust the scrubbing speed of the focal length slider."
+          }
+        }
+      }
+    },
+    "FOCAL_LENGTH_SCRUBBING_TIP_TITLE" : {
+      "comment" : "Focal length scrubbing tip title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine-Tune the Focal Length"
           }
         }
       }
