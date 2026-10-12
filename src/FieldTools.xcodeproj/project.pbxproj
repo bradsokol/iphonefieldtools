@@ -11,6 +11,12 @@
 		A24B1765156FE23D00BFBFF0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24B1764156FE23D00BFBFF0 /* Settings.bundle */; };
 		A25A47893076880600BABCC8 /* AppDataLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47883076880600BABCC8 /* AppDataLocation.swift */; };
 		A25A478B3076882D00BABCC8 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A478A3076882D00BABCC8 /* PreviewSampleData.swift */; };
+		A25A47C5307D60C200BABCC8 /* ScrubbingSpeeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47C4307D60C200BABCC8 /* ScrubbingSpeeds.swift */; };
+		A25A47C7307D60CF00BABCC8 /* ScrubTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47C6307D60CF00BABCC8 /* ScrubTracker.swift */; };
+		A25A47C9307D60EE00BABCC8 /* ScrubTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47C8307D60EE00BABCC8 /* ScrubTrackerTests.swift */; };
+		A25A47CD307D611B00BABCC8 /* ScrubSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47CC307D611B00BABCC8 /* ScrubSlider.swift */; };
+		A25A47CF307D626800BABCC8 /* ScrubSliderMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47CE307D626800BABCC8 /* ScrubSliderMetrics.swift */; };
+		A25A47D1307D626E00BABCC8 /* ScrubSliderThumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47D0307D626E00BABCC8 /* ScrubSliderThumb.swift */; };
 		A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EC2F7B168200570542 /* FieldToolsApp.swift */; };
 		A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EE2F7B16AD00570542 /* CalculatorView.swift */; };
 		A26B51F12F7B16B400570542 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F02F7B16B400570542 /* ResultView.swift */; };
@@ -84,6 +90,12 @@
 		A25A47883076880600BABCC8 /* AppDataLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataLocation.swift; sourceTree = "<group>"; };
 		A25A478A3076882D00BABCC8 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		A25A47903076884800BABCC8 /* Field Tools UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Field Tools UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A25A47C4307D60C200BABCC8 /* ScrubbingSpeeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubbingSpeeds.swift; sourceTree = "<group>"; };
+		A25A47C6307D60CF00BABCC8 /* ScrubTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubTracker.swift; sourceTree = "<group>"; };
+		A25A47C8307D60EE00BABCC8 /* ScrubTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScrubTrackerTests.swift; path = TestClasses/ScrubTrackerTests.swift; sourceTree = SOURCE_ROOT; };
+		A25A47CC307D611B00BABCC8 /* ScrubSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubSlider.swift; sourceTree = "<group>"; };
+		A25A47CE307D626800BABCC8 /* ScrubSliderMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubSliderMetrics.swift; sourceTree = "<group>"; };
+		A25A47D0307D626E00BABCC8 /* ScrubSliderThumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubSliderThumb.swift; sourceTree = "<group>"; };
 		A26B51EC2F7B168200570542 /* FieldToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldToolsApp.swift; sourceTree = "<group>"; };
 		A26B51EE2F7B16AD00570542 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		A26B51F02F7B16B400570542 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -192,6 +204,11 @@
 				A2C89149307D1EE200B02910 /* LensApertureSection.swift */,
 				A2C8914B307D203900B02910 /* OrderedModelSection.swift */,
 				A2C8914D307D203E00B02910 /* UnitsSection.swift */,
+				A25A47C4307D60C200BABCC8 /* ScrubbingSpeeds.swift */,
+				A25A47C6307D60CF00BABCC8 /* ScrubTracker.swift */,
+				A25A47CC307D611B00BABCC8 /* ScrubSlider.swift */,
+				A25A47CE307D626800BABCC8 /* ScrubSliderMetrics.swift */,
+				A25A47D0307D626E00BABCC8 /* ScrubSliderThumb.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -253,6 +270,7 @@
 				BB00020F000000000000000F /* UserSettingsTests.swift */,
 				A20461AF30747E53005D0244 /* LegacyStoreCompatibilityTests.swift */,
 				A2C8913130780A9600B02910 /* EditFormValidationTests.swift */,
+				A25A47C8307D60EE00BABCC8 /* ScrubTrackerTests.swift */,
 			);
 			name = "Model Tests";
 			sourceTree = "<group>";
@@ -472,17 +490,21 @@
 				A2C8913A307A944D00B02910 /* FieldToolsMigrationPlan.swift in Sources */,
 				A2C89146307D1ED800B02910 /* LensTypeSection.swift in Sources */,
 				BB0003010000000000000101 /* ModelOrdering.swift in Sources */,
+				A25A47CD307D611B00BABCC8 /* ScrubSlider.swift in Sources */,
 				A2C8914A307D1EE200B02910 /* LensApertureSection.swift in Sources */,
 				A2C89142307D1ED000B02910 /* CoCPresetSection.swift in Sources */,
 				A26B51F32F7B16C600570542 /* SettingsView.swift in Sources */,
 				A26B51F92F7B196800570542 /* DistanceType.swift in Sources */,
 				A26B51F72F7B16E500570542 /* LensEditView.swift in Sources */,
+				A25A47C7307D60CF00BABCC8 /* ScrubTracker.swift in Sources */,
 				A26B51F12F7B16B400570542 /* ResultView.swift in Sources */,
 				A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */,
 				A26FC58016449E23000CF7DC /* FieldTools.xcdatamodeld in Sources */,
 				A2C89138307A944A00B02910 /* FieldToolsSchemaV1.swift in Sources */,
+				A25A47D1307D626E00BABCC8 /* ScrubSliderThumb.swift in Sources */,
 				A26B51F52F7B16D500570542 /* CameraEditView.swift in Sources */,
 				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
+				A25A47CF307D626800BABCC8 /* ScrubSliderMetrics.swift in Sources */,
 				A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */,
 				A2C8912E30780A4600B02910 /* ModelContext+Save.swift in Sources */,
 				A2C89148307D1EDD00B02910 /* LensFocalLengthSection.swift in Sources */,
@@ -500,6 +522,7 @@
 				BB00010B000000000000000B /* ModelContainerSetup.swift in Sources */,
 				A2C8914E307D203E00B02910 /* UnitsSection.swift in Sources */,
 				A2C8912C30780A4100B02910 /* LocalizedNumber.swift in Sources */,
+				A25A47C5307D60C200BABCC8 /* ScrubbingSpeeds.swift in Sources */,
 				BB00010C000000000000000C /* CoCPreset.swift in Sources */,
 				A25A478B3076882D00BABCC8 /* PreviewSampleData.swift in Sources */,
 				BB00010D000000000000000D /* UserSettings.swift in Sources */,
@@ -517,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A25A47C9307D60EE00BABCC8 /* ScrubTrackerTests.swift in Sources */,
 				BB0003070000000000000107 /* DistanceTypeTests.swift in Sources */,
 				BB0003050000000000000105 /* CalculatorViewModelTests.swift in Sources */,
 				BB0003030000000000000103 /* ModelOrderingTests.swift in Sources */,

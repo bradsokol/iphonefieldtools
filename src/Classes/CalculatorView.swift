@@ -273,21 +273,12 @@ private struct LabeledSliderRow<Accessory: View>: View {
     }
 
     @ViewBuilder private var slider: some View {
-        Group {
-            if let step {
-                Slider(value: $sliderValue, in: range, step: step)
-            } else {
-                Slider(value: $sliderValue, in: range)
-            }
+        if let step {
+            ScrubSlider(value: $sliderValue, in: range, step: step) { Text(title) }
+        } else {
+            ScrubSlider(value: $sliderValue, in: range) { Text(title) }
         }
-        .tint(.sliderTrack)
-        .accessibilityLabel(Text(title))
     }
-}
-
-private extension Color {
-    /// Grey used on both sides of the thumb on `main`, so a slider shows position without a fill.
-    static let sliderTrack = Color(white: 184 / 255)
 }
 
 extension LabeledSliderRow where Accessory == EmptyView {
@@ -329,6 +320,7 @@ private struct FocalLengthSliderView: View {
             maximumLabel: viewModel.focalLengthMaxLabel,
             showsSlider: viewModel.showsFocalLengthSlider
         )
+        .scrubbingSpeeds(.focalLength)
     }
 }
 
@@ -349,6 +341,7 @@ private struct ApertureSliderView: View {
             minimumLabel: viewModel.apertureMinLabel,
             maximumLabel: viewModel.apertureMaxLabel
         )
+        .scrubbingSpeeds(.fixed)
     }
 }
 
@@ -392,6 +385,7 @@ private struct SubjectDistanceSliderView: View {
             }
             .padding(.vertical, -tapTargetOverhang)
         }
+        .scrubbingSpeeds(.subjectDistance)
     }
 }
 

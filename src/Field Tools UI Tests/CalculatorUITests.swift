@@ -29,7 +29,7 @@ final class CalculatorUITests: XCTestCase {
         let before = resultValue(in: app)
         XCTAssertTrue(app.staticTexts["f/8"].exists)
 
-        app.sliders["Aperture:"].adjust(toNormalizedSliderPosition: 1)
+        drag(app.sliders["Aperture:"], from: StartPosition.aperture, to: 1)
 
         XCTAssertFalse(app.staticTexts["f/8"].exists)
         XCTAssertNotEqual(resultValue(in: app), before)
@@ -39,10 +39,21 @@ final class CalculatorUITests: XCTestCase {
         let app = launch(.fresh)
         let before = resultValue(in: app)
 
-        app.sliders["Focal length:"].adjust(toNormalizedSliderPosition: 1)
+        drag(app.sliders["Focal length:"], from: StartPosition.focalLength, to: 1)
 
         XCTAssertTrue(app.staticTexts["120 mm"].exists)
         XCTAssertNotEqual(resultValue(in: app), before)
+    }
+
+    func testDraggingAwayFromTheTrackScrubsMoreSlowly() {
+        let app = launch(.fresh)
+
+        drag(app.sliders["Focal length:"], from: StartPosition.focalLength, to: 1, endingBelowTrack: 200)
+
+        let minimumLabels = app.staticTexts.matching(identifier: "24 mm")
+        let maximumLabels = app.staticTexts.matching(identifier: "120 mm")
+        XCTAssertEqual(minimumLabels.count, 1, "The focal length should have moved off 24 mm")
+        XCTAssertEqual(maximumLabels.count, 1, "The focal length should have stopped short of 120 mm")
     }
 
     func testMovingTheSubjectDistanceSliderUpdatesTheNearLimit() {
@@ -50,7 +61,7 @@ final class CalculatorUITests: XCTestCase {
         app.buttons["Near"].tap()
         let before = resultValue(in: app)
 
-        app.sliders["Distance to subject:"].adjust(toNormalizedSliderPosition: 0.9)
+        drag(app.sliders["Distance to subject:"], from: StartPosition.subjectDistance, to: 0.9)
 
         XCTAssertNotEqual(resultValue(in: app), before)
     }
@@ -135,6 +146,38 @@ final class CalculatorUITests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    /// Where each thumb sits on a fresh launch, as a fraction of its track.
+    private enum StartPosition {
+        /// 24 mm on the 24–120 mm sample lens.
+        static let focalLength = 0.0
+        /// f/8, index 18 of the aperture scale, between f/3.5 (11) and f/22 (27).
+        static let aperture = 7.0 / 16.0
+        /// 2.5 m, about 8.2 ft, in the 1–275 ft mid range.
+        static let subjectDistance = (2.5 * 3.2808 - 1) / 274
+    }
+
+    /// Distance from each end of a slider to the thumb's centre at that end.
+    ///
+    /// Half the thumb's width: 19 points from iOS 26 and 14 before. The 44 point area
+    /// that starts a drag absorbs the difference.
+    private let thumbInset = 16.0
+
+    /// Presses a slider's thumb and drags it from `start` to `end`, each a fraction of
+    /// the track, finishing `endingBelowTrack` points below the track.
+    ///
+    /// `adjust(toNormalizedSliderPosition:)` cannot drive `ScrubSlider`: the slider it
+    /// presents to accessibility is never drawn, so it reports no thumb travel and
+    /// XCUITest refuses to synthesise the drag.
+    private func drag(_ slider: XCUIElement, from start: Double, to end: Double, endingBelowTrack: Double = 0) {
+        let width = slider.frame.width
+        func thumbCentre(at fraction: Double) -> XCUICoordinate {
+            let x = thumbInset + fraction * (width - 2 * thumbInset)
+            return slider.coordinate(withNormalizedOffset: CGVector(dx: x / width, dy: 0.5))
+        }
+        let destination = thumbCentre(at: end).withOffset(CGVector(dx: 0, dy: endingBelowTrack))
+        thumbCentre(at: start).press(forDuration: 0.1, thenDragTo: destination)
+    }
 
     private enum UITestState: String {
         case fresh

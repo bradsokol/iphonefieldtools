@@ -470,6 +470,34 @@ not deferred to Phase 4.
 
 ## Phase 5: Custom Scrubbing Slider
 
+**Built 2026-10-12, awaiting a check of the scrubbing feel on a device.**
+
+- **API.** `ScrubSlider(value:in:step:label:onEditingChanged:)` mirrors `Slider`.
+  Speeds come from the environment through `.scrubbingSpeeds(_:)`: `.standard`
+  (OBSlider's defaults), `.focalLength`, `.subjectDistance` and `.fixed`.
+- **Behaviour.** `ScrubTracker` is a direct port of OBSlider's tracking:
+  vertical distance is measured from the thumb's centre, and the thumb is drawn
+  back to the full speed position as the finger returns to the track. A drag
+  must start on the thumb (44 pt area), as with `UISlider`. One deliberate
+  difference: speed is measured against the thumb's travel rather than the full
+  track width, so at full speed the thumb stays under the finger.
+- **Aperture does not scrub**, unlike this plan's original wording. On `main`
+  it was a plain `UISlider`, so it uses `.fixed`.
+- **Steps.** Stepped sliders keep an unrounded value through a drag and show
+  the rounded one, so slow movements build up to the next step instead of
+  being lost. The thumb always sits on a step.
+- **Rendering.** Matches the system slider of the running OS: a white capsule
+  that turns to glass while dragged on iOS 26 and later, a white disc before.
+  Neither side of the track is filled. `Color.sliderTrack` is gone; the track
+  uses the system fill.
+- **Accessibility.** `.accessibilityRepresentation` presents a standard
+  `Slider`. That slider is never drawn, so it reports no thumb travel and
+  `adjust(toNormalizedSliderPosition:)` cannot drive it. `CalculatorUITests`
+  presses the thumb and drags instead, which exercises the real gesture. One
+  UI test drags below the track and checks the value stops short.
+- **Not verified:** right-to-left layout, which relies on SwiftUI mirroring.
+  The app ships English only.
+
 **Goal:** Restore the variable-speed scrubbing UX from OBSlider as a pure
 SwiftUI component.
 
