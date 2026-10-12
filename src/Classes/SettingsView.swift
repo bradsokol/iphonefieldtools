@@ -22,30 +22,35 @@ struct SettingsView: View {
     @Environment(UserSettings.self) private var settings
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
+    @State private var path: [SettingsDestination] = []
 
     var body: some View {
         @Bindable var settings = settings
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 OrderedModelSection(
                     title: NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses"),
                     addTitle: NSLocalizedString("ADD_LENS", comment: "Add lens"),
                     models: lenses,
                     selection: $settings.lensIndex,
-                    makeModel: Self.makeLens
-                ) { lens in
-                    LensEditView(lens: lens)
-                }
+                    makeModel: Self.makeLens,
+                    destination: SettingsDestination.lens
+                )
                 OrderedModelSection(
                     title: NSLocalizedString("CAMERAS_SECTION_TITLE", comment: "Cameras"),
                     addTitle: NSLocalizedString("ADD_CAMERA", comment: "Add camera"),
                     models: cameras,
                     selection: $settings.cameraIndex,
-                    makeModel: Self.makeCamera
-                ) { camera in
-                    CameraEditView(camera: camera)
-                }
+                    makeModel: Self.makeCamera,
+                    destination: SettingsDestination.camera
+                )
                 UnitsSection(units: $settings.distanceUnits)
+            }
+            .navigationDestination(for: SettingsDestination.self) { destination in
+                switch destination {
+                case .lens(let lens): LensEditView(lens: lens)
+                case .camera(let camera): CameraEditView(camera: camera)
+                }
             }
             .navigationTitle(NSLocalizedString("SETTINGS_TITLE", comment: "Settings"))
             .navigationBarTitleDisplayMode(.inline)
@@ -57,6 +62,25 @@ struct SettingsView: View {
                     EditButton()
                 }
             }
+        }
+        .onChange(of: path) {
+            selectOpenedModel()
+        }
+    }
+
+    /// Selects the camera or lens whose edit screen was just opened.
+    private func selectOpenedModel() {
+        switch path.last {
+        case .lens(let lens):
+            if let index = lenses.firstIndex(of: lens) {
+                settings.lensIndex = index
+            }
+        case .camera(let camera):
+            if let index = cameras.firstIndex(of: camera) {
+                settings.cameraIndex = index
+            }
+        case nil:
+            break
         }
     }
 

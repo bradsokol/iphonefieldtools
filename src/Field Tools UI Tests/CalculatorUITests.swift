@@ -109,6 +109,20 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertTrue(app.buttons["settingsButton"].label.contains("Test lens"), app.buttons["settingsButton"].label)
     }
 
+    func testOpeningALensSelectsItForTheCalculator() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        app.buttons["Add lens..."].tap()
+        app.buttons["My lens"].tap()
+
+        XCTAssertTrue(app.textFields["Name"].waitForExistence(timeout: 5))
+        app.navigationBars.buttons["Cancel"].tap()
+        app.buttons["Done"].tap()
+
+        let footer = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "My lens")).firstMatch
+        XCTAssertTrue(footer.waitForExistence(timeout: 5), app.buttons["settingsButton"].label)
+    }
+
     func testAnInvalidLensKeepsTheEditScreenAndTheUsersInput() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()

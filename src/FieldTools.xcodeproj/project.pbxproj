@@ -19,6 +19,7 @@
 		A25A47D1307D626E00BABCC8 /* ScrubSliderThumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47D0307D626E00BABCC8 /* ScrubSliderThumb.swift */; };
 		A25A47D3307D6CB200BABCC8 /* OnboardingTips.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47D2307D6CB200BABCC8 /* OnboardingTips.swift */; };
 		A25A47D5307D6CC700BABCC8 /* OnboardingTipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47D4307D6CC700BABCC8 /* OnboardingTipsTests.swift */; };
+		A25A47DB307D76A400BABCC8 /* SettingsDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A47DA307D76A400BABCC8 /* SettingsDestination.swift */; };
 		A26B51ED2F7B168200570542 /* FieldToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EC2F7B168200570542 /* FieldToolsApp.swift */; };
 		A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51EE2F7B16AD00570542 /* CalculatorView.swift */; };
 		A26B51F12F7B16B400570542 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B51F02F7B16B400570542 /* ResultView.swift */; };
@@ -100,6 +101,7 @@
 		A25A47D0307D626E00BABCC8 /* ScrubSliderThumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubSliderThumb.swift; sourceTree = "<group>"; };
 		A25A47D2307D6CB200BABCC8 /* OnboardingTips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTips.swift; sourceTree = "<group>"; };
 		A25A47D4307D6CC700BABCC8 /* OnboardingTipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingTipsTests.swift; path = TestClasses/OnboardingTipsTests.swift; sourceTree = SOURCE_ROOT; };
+		A25A47DA307D76A400BABCC8 /* SettingsDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDestination.swift; sourceTree = "<group>"; };
 		A26B51EC2F7B168200570542 /* FieldToolsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldToolsApp.swift; sourceTree = "<group>"; };
 		A26B51EE2F7B16AD00570542 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		A26B51F02F7B16B400570542 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				A25A47CE307D626800BABCC8 /* ScrubSliderMetrics.swift */,
 				A25A47D0307D626E00BABCC8 /* ScrubSliderThumb.swift */,
 				A25A47D2307D6CB200BABCC8 /* OnboardingTips.swift */,
+				A25A47DA307D76A400BABCC8 /* SettingsDestination.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				A26B51F52F7B16D500570542 /* CameraEditView.swift in Sources */,
 				BB0001010000000000000001 /* DepthOfFieldCalculator.swift in Sources */,
 				A25A47CF307D626800BABCC8 /* ScrubSliderMetrics.swift in Sources */,
+				A25A47DB307D76A400BABCC8 /* SettingsDestination.swift in Sources */,
 				A25A47D3307D6CB200BABCC8 /* OnboardingTips.swift in Sources */,
 				A26B51EF2F7B16AD00570542 /* CalculatorView.swift in Sources */,
 				A2C8912E30780A4600B02910 /* ModelContext+Save.swift in Sources */,

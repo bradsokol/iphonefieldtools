@@ -18,9 +18,9 @@ import SwiftUI
 /// A user-ordered list of cameras or lenses on the settings screen, with selection, add,
 /// delete, and reorder.
 ///
-/// The selected model is checked. Opening a row selects it and shows `destination` for it.
-/// Every change is saved immediately.
-struct OrderedModelSection<Model: IndexedModel, Destination: View>: View {
+/// The selected model is checked, and each row pushes the ``SettingsDestination`` that
+/// `destination` gives for its model. Every change is saved immediately.
+struct OrderedModelSection<Model: IndexedModel>: View {
     let title: String
     let addTitle: String
     /// The models in display order, as fetched by the parent's `@Query`.
@@ -29,19 +29,14 @@ struct OrderedModelSection<Model: IndexedModel, Destination: View>: View {
     @Binding var selection: Int
     /// Creates the model appended by the add button, given its index.
     let makeModel: (Int) -> Model
-    @ViewBuilder let destination: (Model) -> Destination
+    let destination: (Model) -> SettingsDestination
 
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         Section(title) {
             ForEach(Array(models.enumerated()), id: \.element.id) { index, model in
-                NavigationLink {
-                    destination(model)
-                        .onAppear {
-                            selection = index
-                        }
-                } label: {
+                NavigationLink(value: destination(model)) {
                     HStack {
                         Text(model.name)
                         Spacer()
