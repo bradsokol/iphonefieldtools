@@ -22,21 +22,15 @@ struct CalculatorView: View {
     @Query(sort: \Lens.index) private var lenses: [Lens]
     @State private var viewModel: CalculatorViewModel?
     @State private var showSettings = false
-    @State private var distanceType: DistanceType = .hyperfocal
 
     var body: some View {
+        @Bindable var settings = settings
         if let viewModel {
             CalculatorContentView(
                 viewModel: viewModel,
-                distanceType: $distanceType,
+                distanceType: $settings.distanceType,
                 showSettings: $showSettings
             )
-            .onChange(of: settings.distanceType) { _, newValue in
-                distanceType = DistanceType(rawValue: newValue) ?? .hyperfocal
-            }
-            .onChange(of: distanceType) { _, newValue in
-                settings.distanceType = newValue.rawValue
-            }
             .onChange(of: cameras) {
                 updateSelectedCamera(viewModel: viewModel)
             }
@@ -53,7 +47,6 @@ struct CalculatorView: View {
         } else {
             Color.clear.onAppear {
                 let model = CalculatorViewModel(settings: settings)
-                distanceType = DistanceType(rawValue: settings.distanceType) ?? .hyperfocal
                 viewModel = model
                 updateSelectedCamera(viewModel: model)
                 updateSelectedLens(viewModel: model)

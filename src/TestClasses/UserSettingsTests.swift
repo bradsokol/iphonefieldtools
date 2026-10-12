@@ -61,9 +61,23 @@ struct UserSettingsTests {
         #expect(makeSettings().cameraIndex == 0)
     }
 
-    @Test("Default distance type is 0 (hyperfocal)")
+    @Test("Default distance type is hyperfocal")
     func defaultDistanceType() {
-        #expect(makeSettings().distanceType == 0)
+        #expect(makeSettings().distanceType == .hyperfocal)
+    }
+
+    @Test("A distance type stored by the Objective-C app is read back", arguments: DistanceType.allCases)
+    func readsStoredDistanceType(type: DistanceType) {
+        let defaults = makeDefaults()
+        defaults.set(type.rawValue, forKey: "DistanceType")
+        #expect(UserSettings(defaults: defaults).distanceType == type)
+    }
+
+    @Test("An unrecognised stored distance type falls back to hyperfocal")
+    func unrecognisedDistanceTypeFallsBack() {
+        let defaults = makeDefaults()
+        defaults.set(99, forKey: "DistanceType")
+        #expect(UserSettings(defaults: defaults).distanceType == .hyperfocal)
     }
 
     @Test("Default distance units is feet and inches")
@@ -110,8 +124,9 @@ struct UserSettingsTests {
     @Test("Distance type persists to defaults")
     func distanceTypePersists() {
         let defaults = makeDefaults()
-        UserSettings(defaults: defaults).distanceType = 3
-        #expect(UserSettings(defaults: defaults).distanceType == 3)
+        UserSettings(defaults: defaults).distanceType = .nearFar
+        #expect(UserSettings(defaults: defaults).distanceType == .nearFar)
+        #expect(defaults.integer(forKey: "DistanceType") == 3)
     }
 
     @Test("Distance units persist to defaults")
@@ -163,7 +178,7 @@ struct UserSettingsTests {
 
     @Test("Changing the distance type notifies observers")
     func distanceTypeIsObservable() {
-        #expect(notifiesObservers({ _ = $0.distanceType }, when: { $0.distanceType = 3 }))
+        #expect(notifiesObservers({ _ = $0.distanceType }, when: { $0.distanceType = .nearFar }))
     }
 
     @Test("Changing the distance units notifies observers")

@@ -52,7 +52,7 @@ public final class UserSettings {
         defaults.register(defaults: [
             Key.apertureIndex: Aperture.defaultIndex,
             Key.cameraIndex: 0,
-            Key.distanceType: 0,
+            Key.distanceType: DistanceType.hyperfocal.rawValue,
             Key.distanceUnits: DistanceUnits.feetAndInches.rawValue,
             Key.focalLength: Float(24.0),
             Key.lensIndex: 0,
@@ -62,7 +62,7 @@ public final class UserSettings {
 
         apertureIndex = defaults.integer(forKey: Key.apertureIndex)
         cameraIndex = defaults.integer(forKey: Key.cameraIndex)
-        distanceType = defaults.integer(forKey: Key.distanceType)
+        distanceType = DistanceType(rawValue: defaults.integer(forKey: Key.distanceType)) ?? .hyperfocal
         distanceUnits = DistanceUnits(rawValue: defaults.integer(forKey: Key.distanceUnits)) ?? .feetAndInches
         focalLength = defaults.float(forKey: Key.focalLength)
         lensIndex = defaults.integer(forKey: Key.lensIndex)
@@ -84,9 +84,9 @@ public final class UserSettings {
         didSet { defaults.set(cameraIndex, forKey: Key.cameraIndex) }
     }
 
-    /// Distance calculation type (0 = hyperfocal, 1 = near/far).
-    public var distanceType: Int {
-        didSet { defaults.set(distanceType, forKey: Key.distanceType) }
+    /// The distance calculation selected on the calculator screen.
+    public var distanceType: DistanceType {
+        didSet { defaults.set(distanceType.rawValue, forKey: Key.distanceType) }
     }
 
     /// Distance display unit preference.

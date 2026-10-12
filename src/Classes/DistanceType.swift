@@ -15,7 +15,10 @@
 import Foundation
 
 /// The distance calculation type selected by the segmented control.
-enum DistanceType: Int, CaseIterable {
+///
+/// The raw values are the integers the Objective-C app stored under the `DistanceType`
+/// preference, so they must not be reordered.
+public enum DistanceType: Int, CaseIterable, Sendable {
     case hyperfocal
     case near
     case far
