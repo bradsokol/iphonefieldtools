@@ -16,47 +16,46 @@ import SwiftData
 import SwiftUI
 
 /// Main calculator screen for depth of field calculations.
+///
+/// The view model is owned by the app, built from the same ``UserSettings`` the
+/// environment carries. The selected camera and lens are resolved from the queried models
+/// on appear and whenever those models or the settings sheet change.
 struct CalculatorView: View {
-    @Environment(UserSettings.self) private var settings
+    let viewModel: CalculatorViewModel
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
-    @State private var viewModel: CalculatorViewModel?
     @State private var showSettings = false
 
+    private var settings: UserSettings { viewModel.settings }
+
     var body: some View {
-        @Bindable var settings = settings
-        if let viewModel {
-            CalculatorContentView(
-                viewModel: viewModel,
-                distanceType: $settings.distanceType,
-                showSettings: $showSettings
-            )
-            .onChange(of: cameras) {
-                updateSelectedCamera(viewModel: viewModel)
-            }
-            .onChange(of: lenses) {
-                updateSelectedLens(viewModel: viewModel)
-            }
-            .sheet(isPresented: $showSettings) {
-                updateSelectedCamera(viewModel: viewModel)
-                updateSelectedLens(viewModel: viewModel)
-                viewModel.onLensChanged()
-            } content: {
-                SettingsView()
-            }
-        } else {
-            Color.clear.onAppear {
-                let model = CalculatorViewModel(settings: settings)
-                viewModel = model
-                updateSelectedCamera(viewModel: model)
-                updateSelectedLens(viewModel: model)
-            }
+        @Bindable var settings = viewModel.settings
+        CalculatorContentView(
+            viewModel: viewModel,
+            distanceType: $settings.distanceType,
+            showSettings: $showSettings
+        )
+        .onAppear {
+            updateSelectedCamera()
+            updateSelectedLens()
+        }
+        .onChange(of: cameras) {
+            updateSelectedCamera()
+        }
+        .onChange(of: lenses) {
+            updateSelectedLens()
+        }
+        .sheet(isPresented: $showSettings) {
+            updateSelectedCamera()
+            updateSelectedLens()
+        } content: {
+            SettingsView()
         }
     }
 
     // MARK: - Helpers
 
-    private func updateSelectedCamera(viewModel: CalculatorViewModel) {
+    private func updateSelectedCamera() {
         let index = settings.cameraIndex
         if index < cameras.count {
             viewModel.camera = cameras[index]
@@ -66,7 +65,7 @@ struct CalculatorView: View {
         }
     }
 
-    private func updateSelectedLens(viewModel: CalculatorViewModel) {
+    private func updateSelectedLens() {
         let index = settings.lensIndex
         if index < lenses.count {
             viewModel.lens = lenses[index]
@@ -425,6 +424,7 @@ private struct CalculatorFooterView: View {
 
 #if DEBUG
 #Preview(traits: .sampleData) {
-    CalculatorView()
+    @Previewable @Environment(UserSettings.self) var settings
+    CalculatorView(viewModel: CalculatorViewModel(settings: settings))
 }
 #endif

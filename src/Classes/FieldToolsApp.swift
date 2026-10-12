@@ -20,12 +20,15 @@ import SwiftUI
 @main
 struct FieldToolsApp: App {
     @State private var settings: UserSettings
+    @State private var calculator: CalculatorViewModel
 
     private let store: StoreState
 
     init() {
         let location = AppDataLocation.forLaunch()
-        _settings = State(initialValue: UserSettings(defaults: location.defaults))
+        let settings = UserSettings(defaults: location.defaults)
+        _settings = State(initialValue: settings)
+        _calculator = State(initialValue: CalculatorViewModel(settings: settings))
         do {
             store = .ready(try openAppStore(at: location.storeURL))
         } catch {
@@ -38,7 +41,7 @@ struct FieldToolsApp: App {
         WindowGroup {
             switch store {
             case .ready(let container):
-                CalculatorView()
+                CalculatorView(viewModel: calculator)
                     .environment(settings)
                     .modelContainer(container)
             case .unavailable:
