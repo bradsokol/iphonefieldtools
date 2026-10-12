@@ -384,6 +384,29 @@ All remaining ObjC source files:
 swift-concurrency-pro review added a `.feetAndInches` slider rounding case and
 left `LegacyStoreFixture` on `performAndWait`, which is correct and synchronous.
 
+The swiftui-pro and swiftdata-pro review of all migrated code was done
+2026-10-12, and every finding is fixed:
+
+- **Edit screens.** Camera and lens edits validated in `onDisappear`, too late
+  to show the error, so invalid edits were silently lost. They now use Cancel
+  and Save and keep the screen open on failure. Numbers are parsed and
+  formatted in the user's locale (`LocalizedNumber`), so "0,03" is accepted
+  where the decimal separator is a comma. Choosing a CoC preset no longer
+  clears itself, which had saved every preset as Custom.
+- **Persistence.** Every insert, delete, move and edit calls
+  `ModelContext.saveLoggingFailure()` instead of relying on autosave. The store
+  opens through `FieldToolsSchemaV1` and `FieldToolsMigrationPlan`, and the
+  legacy Core Data store tests open it through that plan.
+- **Data flow.** `UserSettings` is `@MainActor`. `distanceType` is a typed
+  setting with one source of truth. `FieldToolsApp` creates the
+  `CalculatorViewModel` instead of `CalculatorView` doing so in `onAppear`.
+- **Localisation.** Apertures and focal lengths follow the user's locale, and
+  "No camera" and "No lens" are in the string catalog.
+- **Structure.** `SubjectDistanceRange.title` replaces two copies of the range
+  names. The edit screen sections and the settings sections are separate views,
+  with one generic `OrderedModelSection` for cameras and lenses. Settings lists
+  lenses before cameras, as on `main`.
+
 - **4.1 audit.** Every Objective-C test case was compared mechanically against
   the Swift suites. All 288 depth of field cases match by aperture, focal length,
   subject distance and expected value. `Field_Tools_Tests.m` was template
