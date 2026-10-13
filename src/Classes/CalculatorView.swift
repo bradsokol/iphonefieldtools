@@ -413,10 +413,12 @@ private struct SubjectDistanceSliderView: View {
             tip: tip
         ) {
             Menu {
-                ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
-                    Button(range.title) {
-                        settings.subjectDistanceRange = range
-                        viewModel.clampSubjectDistance()
+                Section(NSLocalizedString("SUBJECT_DISTANCE_RANGES_VIEW_TITLE", comment: "Focus Range")) {
+                    ForEach(SubjectDistanceRange.allCases, id: \.self) { range in
+                        Button(range.title) {
+                            settings.subjectDistanceRange = range
+                            viewModel.clampSubjectDistance()
+                        }
                     }
                 }
             } label: {

@@ -26,16 +26,8 @@
     "Aperture:" : {
 
     },
-    "CAMERAS_SECTION_TITLE" : {
-      "comment" : "Cameras",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cameras"
-          }
-        }
-      }
+    "Camera Bag Unavailable" : {
+
     },
     "CAMERA_BAG_TIP" : {
       "comment" : "Camera bag tip message",
@@ -114,6 +106,20 @@
         }
       }
     },
+    "CAMERAS_SECTION_TITLE" : {
+      "comment" : "Cameras",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cameras"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+
+    },
     "CENTIMETRES_ABBREVIATION" : {
       "comment" : "Abbreviation for centimetres",
       "localizations" : {
@@ -169,12 +175,6 @@
         }
       }
     },
-    "Camera Bag Unavailable" : {
-
-    },
-    "Cancel" : {
-
-    },
     "DEFAULT_CAMERA_NAME" : {
       "comment" : "Default camera name",
       "localizations" : {
@@ -207,6 +207,9 @@
           }
         }
       }
+    },
+    "Distance to subject:" : {
+
     },
     "DISTANCE_SCRUBBING_TIP" : {
       "comment" : "Distance scrubbing tip message",
@@ -284,10 +287,10 @@
         }
       }
     },
-    "Distance to subject:" : {
+    "Done" : {
 
     },
-    "Done" : {
+    "f/" : {
 
     },
     "FEET" : {
@@ -323,6 +326,12 @@
         }
       }
     },
+    "Field Tools could not open your saved cameras and lenses." : {
+
+    },
+    "Focal length:" : {
+
+    },
     "FOCAL_LENGTH_SCRUBBING_TIP" : {
       "comment" : "Focal length scrubbing tip message",
       "localizations" : {
@@ -341,23 +350,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fine-Tune the Focal Length"
-          }
-        }
-      }
-    },
-    "Field Tools could not open your saved cameras and lenses." : {
-
-    },
-    "Focal length:" : {
-
-    },
-    "LENSES_SECTION_TITLE" : {
-      "comment" : "Lenses",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lenses"
           }
         }
       }
@@ -527,6 +519,17 @@
         }
       }
     },
+    "LENSES_SECTION_TITLE" : {
+      "comment" : "Lenses",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lenses"
+          }
+        }
+      }
+    },
     "METRES_ABBREVIATION" : {
       "comment" : "Abbreviation for metres",
       "localizations" : {
@@ -559,6 +562,9 @@
           }
         }
       }
+    },
+    "mm" : {
+
     },
     "NO_CAMERA_SELECTED" : {
       "comment" : "Footer text when no camera is selected",
@@ -654,6 +660,9 @@
         }
       }
     },
+    "Save" : {
+
+    },
     "SETTINGS_TITLE" : {
       "comment" : "Settings",
       "localizations" : {
@@ -709,10 +718,21 @@
         }
       }
     },
-    "Save" : {
-
+    "SUBJECT_DISTANCE_RANGES_VIEW_TITLE" : {
+      "comment" : "Focus Range",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus Range"
+          }
+        }
+      }
     },
     "Type" : {
+
+    },
+    "Units" : {
 
     },
     "UNITS_SECTION_TITLE" : {
@@ -726,16 +746,7 @@
         }
       }
     },
-    "Units" : {
-
-    },
     "Your data is still on this device and has not been changed. Updating Field Tools to the latest version may resolve this." : {
-
-    },
-    "f/" : {
-
-    },
-    "mm" : {
 
     }
   },
