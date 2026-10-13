@@ -191,6 +191,35 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertFalse(hasDeleteControl("Sample camera", in: app))
     }
 
+    func testALensCanBeDeletedInEditMode() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        app.buttons["editSettingsButton"].tap()
+        app.buttons["Add lens..."].tap()
+        let lens = row("My lens", in: app)
+        XCTAssertTrue(lens.waitForExistence(timeout: 5))
+
+        lens.images["minus.circle.fill"].firstMatch.tap()
+        app.buttons["Delete"].tap()
+
+        XCTAssertTrue(lens.waitForNonExistence(timeout: 5))
+        XCTAssertTrue(row("Sample lens", in: app).exists)
+    }
+
+    func testSwipingALensOutsideEditModeDoesNotOfferDelete() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        app.buttons["editSettingsButton"].tap()
+        app.buttons["Add lens..."].tap()
+        XCTAssertTrue(row("My lens", in: app).waitForExistence(timeout: 5))
+        app.buttons["editSettingsButton"].tap()
+        XCTAssertTrue(app.buttons["Add lens..."].waitForNonExistence(timeout: 5))
+
+        row("My lens", in: app).swipeLeft()
+
+        XCTAssertFalse(app.buttons["Delete"].waitForExistence(timeout: 2))
+    }
+
     func testEditModeHidesTheBackButtonSoDoneIsTheOnlyWayOut() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
