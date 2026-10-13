@@ -68,7 +68,7 @@ final class OnboardingTipsUITests: XCTestCase {
         XCTAssertTrue(tip(TipTitle.cameraBag, in: app).waitForExistence(timeout: timeout))
 
         openSettings(in: app)
-        app.buttons["Done"].tap()
+        app.navigationBars.buttons["Back"].tap()
         app.terminate()
 
         let relaunched = launch(.keep)
@@ -108,12 +108,12 @@ final class OnboardingTipsUITests: XCTestCase {
     /// On iPhone a popover tip takes the first tap outside it to dismiss itself, so the
     /// tap meant for the footer beneath the camera bag tip may not reach it.
     private func openSettings(in app: XCUIApplication) {
-        let done = app.buttons["Done"]
+        let edit = app.buttons["editSettingsButton"]
         app.buttons["settingsButton"].tap()
-        if !done.waitForExistence(timeout: 2) {
+        if !edit.waitForExistence(timeout: 2) {
             app.buttons["settingsButton"].tap()
         }
-        XCTAssertTrue(done.waitForExistence(timeout: timeout))
+        XCTAssertTrue(edit.waitForExistence(timeout: timeout))
     }
 
     /// Closes the focal length tip, or the tip with `title`, using its close button.

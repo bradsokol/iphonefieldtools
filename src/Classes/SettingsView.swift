@@ -15,58 +15,56 @@
 import SwiftData
 import SwiftUI
 
-/// Settings screen for managing lenses, cameras, and distance units, in the order the
-/// Objective-C app showed them.
+/// Settings screen for managing lenses, cameras, and distance units, pushed from the
+/// calculator.
+///
+/// The back button is hidden in edit mode, so Done is the only way out of editing.
 struct SettingsView: View {
-    @Environment(\.dismiss) private var dismiss
     @Environment(UserSettings.self) private var settings
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
-    @State private var path: [SettingsDestination] = []
+    @State private var editMode: EditMode = .inactive
     @State private var editSelection: SettingsDestination?
+    @State private var openedModel: SettingsDestination?
 
     var body: some View {
         @Bindable var settings = settings
-        NavigationStack(path: $path) {
-            List(selection: $editSelection) {
-                OrderedModelSection(
-                    title: NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses"),
-                    addTitle: NSLocalizedString("ADD_LENS", comment: "Add lens"),
-                    models: lenses,
-                    selection: $settings.lensIndex,
-                    makeModel: Self.makeLens,
-                    destination: SettingsDestination.lens
-                )
-                OrderedModelSection(
-                    title: NSLocalizedString("CAMERAS_SECTION_TITLE", comment: "Cameras"),
-                    addTitle: NSLocalizedString("ADD_CAMERA", comment: "Add camera"),
-                    models: cameras,
-                    selection: $settings.cameraIndex,
-                    makeModel: Self.makeCamera,
-                    destination: SettingsDestination.camera
-                )
-                UnitsSection(units: $settings.distanceUnits)
-            }
-            .navigationDestination(for: SettingsDestination.self) { destination in
-                switch destination {
-                case .lens(let lens): LensEditView(lens: lens)
-                case .camera(let camera): CameraEditView(camera: camera)
-                }
-            }
-            .navigationTitle(NSLocalizedString("SETTINGS_TITLE", comment: "Settings"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done", systemImage: "checkmark") { dismiss() }
-                        .accessibilityIdentifier("closeSettingsButton")
-                }
-                ToolbarItem(placement: .topBarLeading) {
-                    EditButton()
-                        .accessibilityIdentifier("editSettingsButton")
-                }
+        List(selection: $editSelection) {
+            OrderedModelSection(
+                title: NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses"),
+                addTitle: NSLocalizedString("ADD_LENS", comment: "Add lens"),
+                models: lenses,
+                selection: $settings.lensIndex,
+                makeModel: Self.makeLens,
+                destination: SettingsDestination.lens
+            )
+            OrderedModelSection(
+                title: NSLocalizedString("CAMERAS_SECTION_TITLE", comment: "Cameras"),
+                addTitle: NSLocalizedString("ADD_CAMERA", comment: "Add camera"),
+                models: cameras,
+                selection: $settings.cameraIndex,
+                makeModel: Self.makeCamera,
+                destination: SettingsDestination.camera
+            )
+            UnitsSection(units: $settings.distanceUnits)
+        }
+        .navigationDestination(item: $openedModel) { destination in
+            switch destination {
+            case .lens(let lens): LensEditView(lens: lens)
+            case .camera(let camera): CameraEditView(camera: camera)
             }
         }
-        .onChange(of: path) {
+        .navigationTitle(NSLocalizedString("SETTINGS_TITLE", comment: "Settings"))
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(editMode.isEditing)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                EditButton()
+                    .accessibilityIdentifier("editSettingsButton")
+            }
+        }
+        .environment(\.editMode, $editMode)
+        .onChange(of: openedModel) {
             selectOpenedModel()
         }
         .onChange(of: editSelection) {
@@ -80,13 +78,13 @@ struct SettingsView: View {
     /// they are opened through the list's selection instead.
     private func openEditSelection() {
         guard let editSelection else { return }
-        path.append(editSelection)
+        openedModel = editSelection
         self.editSelection = nil
     }
 
     /// Selects the camera or lens whose edit screen was just opened.
     private func selectOpenedModel() {
-        switch path.last {
+        switch openedModel {
         case .lens(let lens):
             if let index = lenses.firstIndex(of: lens) {
                 settings.lensIndex = index
@@ -122,6 +120,8 @@ struct SettingsView: View {
 
 #if DEBUG
 #Preview(traits: .sampleData) {
-    SettingsView()
+    NavigationStack {
+        SettingsView()
+    }
 }
 #endif

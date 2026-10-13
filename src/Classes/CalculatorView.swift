@@ -20,7 +20,10 @@ import TipKit
 ///
 /// The view model is owned by the app, built from the same ``UserSettings`` the
 /// environment carries. The selected camera and lens are resolved from the queried models
-/// on appear and whenever those models or the settings sheet change.
+/// on appear and whenever those models change or settings closes.
+///
+/// The calculator is the root of a navigation stack with its navigation bar hidden, and
+/// pushes ``SettingsView``.
 struct CalculatorView: View {
     let viewModel: CalculatorViewModel
     @Query(sort: \Camera.index) private var cameras: [Camera]
@@ -33,12 +36,18 @@ struct CalculatorView: View {
 
     var body: some View {
         @Bindable var settings = viewModel.settings
-        CalculatorContentView(
-            viewModel: viewModel,
-            distanceType: $settings.distanceType,
-            showSettings: $showSettings,
-            tips: tips
-        )
+        NavigationStack {
+            CalculatorContentView(
+                viewModel: viewModel,
+                distanceType: $settings.distanceType,
+                showSettings: $showSettings,
+                tips: tips
+            )
+            .toolbar(.hidden, for: .navigationBar)
+            .navigationDestination(isPresented: $showSettings) {
+                SettingsView()
+            }
+        }
         .onChange(of: viewModel.showsFocalLengthSlider) {
             updateTips()
         }
@@ -57,11 +66,10 @@ struct CalculatorView: View {
             updateSelectedLens()
             updateTips()
         }
-        .sheet(isPresented: $showSettings) {
+        .onChange(of: showSettings) {
+            guard !showSettings else { return }
             updateSelectedCamera()
             updateSelectedLens()
-        } content: {
-            SettingsView()
         }
     }
 
