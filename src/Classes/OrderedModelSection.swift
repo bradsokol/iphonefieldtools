@@ -18,10 +18,10 @@ import SwiftUI
 /// A user-ordered list of cameras or lenses on the settings screen, with selection, add,
 /// delete, and reorder.
 ///
-/// The selected model is checked. Tapping a row selects its model. In edit mode each row
-/// is tagged with the ``SettingsDestination`` that `destination` gives for it, so the
-/// parent list's selection can open it, and an add button follows the rows. Every change
-/// is saved immediately.
+/// Outside edit mode the selected model is checked and tapping a row selects its model.
+/// In edit mode each row is tagged with the ``SettingsDestination`` that `destination`
+/// gives for it, so the parent list's selection can open it, and an add button follows
+/// the rows. Every change is saved immediately.
 struct OrderedModelSection<Model: IndexedModel>: View {
     let title: String
     let addTitle: String
@@ -69,7 +69,7 @@ struct OrderedModelSection<Model: IndexedModel>: View {
         HStack {
             Text(model.name)
             Spacer()
-            if isSelected {
+            if isSelected && !isEditing {
                 Image(systemName: "checkmark")
                     .foregroundStyle(.tint)
             }

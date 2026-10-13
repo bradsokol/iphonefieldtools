@@ -158,6 +158,22 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Add camera..."].exists)
     }
 
+    func testEditModeHidesTheLensAndCameraSelectionCheckmarks() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        XCTAssertTrue(app.buttons["editSettingsButton"].waitForExistence(timeout: 5))
+        let lensCheckmarks = row("Sample lens", in: app).images.matching(identifier: "checkmark")
+        let cameraCheckmarks = row("Sample camera", in: app).images.matching(identifier: "checkmark")
+        XCTAssertEqual(lensCheckmarks.count, 1)
+        XCTAssertEqual(cameraCheckmarks.count, 1)
+
+        app.buttons["editSettingsButton"].tap()
+
+        XCTAssertTrue(app.buttons["Add lens..."].waitForExistence(timeout: 5))
+        XCTAssertEqual(lensCheckmarks.count, 0)
+        XCTAssertEqual(cameraCheckmarks.count, 0)
+    }
+
     func testEditModeHidesTheBackButtonSoDoneIsTheOnlyWayOut() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
@@ -192,7 +208,7 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertTrue(name.exists)
 
         app.navigationBars.buttons["Cancel"].tap()
-        XCTAssertTrue(app.staticTexts["Sample lens"].waitForExistence(timeout: 5))
+        XCTAssertTrue(row("Sample lens", in: app).waitForExistence(timeout: 5))
     }
 
     func testSubjectDistanceRangeMenuIsAFullTapTargetAndChangesTheRange() {
@@ -263,14 +279,18 @@ final class CalculatorUITests: XCTestCase {
         app.navigationBars.buttons["Back"].tap()
     }
 
+    /// The settings row naming `name`.
+    ///
+    /// A row in edit mode without a checkmark reports its text as "Remove, <name>", so
+    /// the text cannot be found by its name alone.
+    private func row(_ name: String, in app: XCUIApplication) -> XCUIElement {
+        app.cells.containing(NSPredicate(format: "label CONTAINS %@", name)).firstMatch
+    }
+
     /// Taps the middle of the settings row naming `name`, clear of the edit-mode controls
     /// at either end.
-    ///
-    /// A row added in edit mode reports its text as "Remove, <name>", so the text cannot
-    /// be found by its name alone.
     private func tapRow(_ name: String, in app: XCUIApplication) {
-        let row = app.cells.containing(NSPredicate(format: "label CONTAINS %@", name)).firstMatch
-        row.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        row(name, in: app).coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
 
     private func resultElement(in app: XCUIApplication) -> XCUIElement {
