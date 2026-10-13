@@ -20,7 +20,8 @@ import SwiftUI
 ///
 /// The selected model is checked. Tapping a row selects its model. In edit mode each row
 /// is tagged with the ``SettingsDestination`` that `destination` gives for it, so the
-/// parent list's selection can open it. Every change is saved immediately.
+/// parent list's selection can open it, and an add button follows the rows. Every change
+/// is saved immediately.
 struct OrderedModelSection<Model: IndexedModel>: View {
     let title: String
     let addTitle: String
@@ -58,7 +59,9 @@ struct OrderedModelSection<Model: IndexedModel>: View {
             .onDelete(perform: delete)
             .onMove(perform: move)
 
-            Button(addTitle, action: add)
+            if isEditing {
+                Button(addTitle, action: add)
+            }
         }
     }
 

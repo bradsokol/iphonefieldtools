@@ -143,6 +143,19 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertTrue(footer.waitForExistence(timeout: 5), app.buttons["settingsButton"].label)
     }
 
+    func testAddButtonsAppearOnlyInEditMode() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        XCTAssertTrue(app.buttons["closeSettingsButton"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["Add lens..."].exists)
+        XCTAssertFalse(app.buttons["Add camera..."].exists)
+
+        app.buttons["editSettingsButton"].tap()
+
+        XCTAssertTrue(app.buttons["Add lens..."].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Add camera..."].exists)
+    }
+
     func testAnInvalidLensKeepsTheEditScreenAndTheUsersInput() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
