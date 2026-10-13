@@ -1,19 +1,25 @@
 # Swift Migration To-Do
 
-## Calculator screen code review follow-ups
+## CalculatorView
 
-Raised by the `swiftui-pro` review on 2026-10-06, after the calculator screen was
-matched to `main`. None of these were introduced by that work.
+1. Focus Range menu has no title. Should be "Focus Range"
 
-### Aperture slider uses `Binding(get:set:)`
+## SettingsView
 
-`ApertureSliderView` builds a manual binding because the slider works in `Float`
-while `UserSettings.apertureIndex` is an `Int`. Removing it needs a change in
-`CalculatorViewModel`, for example a `Float`-valued property for the slider to
-bind to.
+1. Chevrons are visible for lenses and cameras when not in edit mode. These should only be visible and active in edit mode. When not in edit mode, tapping a lens or camera selects it. When in edit mode, tapping edits it.
+1. "Add lens" and "Add camera" are visible when not in edit mode. These should only be visible in edit mode.
+1. "Done" button should be a check mark symbol.
+1. In edit mode two buttons appear, a check mark and "Done". There should be one button to exit edit mode. Use the ios-design-agent-skill to propose a UI for this modal behaviour.
+1. In edit mode, lens and camera selection check marks should not appear.
 
-### `CalculatorView.swift` holds many types
+## CameraEditView
 
-The file defines about ten private view types (content, controls, result
-section, slider row, the three slider views, footer, layout constants, colour
-extension). Splitting them into their own files is a separate refactor.
+1. Cannot enter upper case characters in the name field, other than the first character.
+1. Cancel and Save buttons should appear according to HIG. Should they be an "X" and a checkmark? Should the Save button start grey and change to blue when edits are made?
+1. Cancel button should confirm if edits have been made and not saved.
+
+## LensEditView
+
+1. Cannot enter upper case characters in the name field, other than the first character.
+1. Cancel and Save buttons should appear according to HIG. Should they be an "X" and a checkmark? Should the Save button start grey and change to blue when edits are made?
+1. Cancel button should confirm if edits have been made and not saved.
