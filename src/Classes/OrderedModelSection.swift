@@ -18,8 +18,9 @@ import SwiftUI
 /// A user-ordered list of cameras or lenses on the settings screen, with selection, add,
 /// delete, and reorder.
 ///
-/// The selected model is checked, and each row pushes the ``SettingsDestination`` that
-/// `destination` gives for its model. Every change is saved immediately.
+/// The selected model is checked. Tapping a row selects its model. In edit mode each row
+/// is tagged with the ``SettingsDestination`` that `destination` gives for it, so the
+/// parent list's selection can open it. Every change is saved immediately.
 struct OrderedModelSection<Model: IndexedModel>: View {
     let title: String
     let addTitle: String
@@ -32,19 +33,26 @@ struct OrderedModelSection<Model: IndexedModel>: View {
     let destination: (Model) -> SettingsDestination
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.editMode) private var editMode
+
+    private var isEditing: Bool {
+        editMode?.wrappedValue.isEditing == true
+    }
 
     var body: some View {
         Section(title) {
             ForEach(Array(models.enumerated()), id: \.element.id) { index, model in
-                NavigationLink(value: destination(model)) {
-                    HStack {
-                        Text(model.name)
-                        Spacer()
-                        if index == selection {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.tint)
-                        }
+                if isEditing {
+                    row(for: model, isSelected: index == selection)
+                        .tag(destination(model))
+                } else {
+                    Button {
+                        selection = index
+                    } label: {
+                        row(for: model, isSelected: index == selection)
                     }
+                    .foregroundStyle(.primary)
+                    .accessibilityAddTraits(index == selection ? .isSelected : [])
                 }
             }
             .onDelete(perform: delete)
@@ -52,6 +60,24 @@ struct OrderedModelSection<Model: IndexedModel>: View {
 
             Button(addTitle, action: add)
         }
+    }
+
+    private func row(for model: Model, isSelected: Bool) -> some View {
+        HStack {
+            Text(model.name)
+            Spacer()
+            if isSelected {
+                Image(systemName: "checkmark")
+                    .foregroundStyle(.tint)
+            }
+            if isEditing {
+                Image(systemName: "chevron.forward")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.tertiary)
+                    .accessibilityHidden(true)
+            }
+        }
+        .contentShape(.rect)
     }
 
     private func add() {

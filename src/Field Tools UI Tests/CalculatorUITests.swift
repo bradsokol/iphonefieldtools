@@ -96,7 +96,8 @@ final class CalculatorUITests: XCTestCase {
     func testRenamingTheLensUpdatesTheCalculatorFooter() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
-        app.buttons["Sample lens"].tap()
+        app.buttons["editSettingsButton"].tap()
+        tapRow("Sample lens", in: app)
 
         let name = app.textFields["Name"]
         XCTAssertTrue(name.waitForExistence(timeout: 5))
@@ -104,7 +105,7 @@ final class CalculatorUITests: XCTestCase {
         let current = name.value as? String ?? ""
         name.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: current.count) + "Test lens")
         app.navigationBars.buttons["Save"].tap()
-        app.buttons["Done"].tap()
+        app.buttons["closeSettingsButton"].tap()
 
         XCTAssertTrue(app.buttons["settingsButton"].label.contains("Test lens"), app.buttons["settingsButton"].label)
     }
@@ -112,12 +113,31 @@ final class CalculatorUITests: XCTestCase {
     func testOpeningALensSelectsItForTheCalculator() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
+        app.buttons["editSettingsButton"].tap()
         app.buttons["Add lens..."].tap()
-        app.buttons["My lens"].tap()
+        tapRow("My lens", in: app)
 
         XCTAssertTrue(app.textFields["Name"].waitForExistence(timeout: 5))
         app.navigationBars.buttons["Cancel"].tap()
-        app.buttons["Done"].tap()
+        app.buttons["closeSettingsButton"].tap()
+
+        let footer = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "My lens")).firstMatch
+        XCTAssertTrue(footer.waitForExistence(timeout: 5), app.buttons["settingsButton"].label)
+    }
+
+    func testTappingALensOutsideEditModeSelectsItWithoutOpeningIt() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        app.buttons["editSettingsButton"].tap()
+        app.buttons["Add lens..."].tap()
+        app.buttons["editSettingsButton"].tap()
+
+        let lens = app.buttons["My lens"]
+        lens.tap()
+
+        XCTAssertFalse(app.textFields["Name"].waitForExistence(timeout: 2))
+        XCTAssertTrue(lens.isSelected)
+        app.buttons["closeSettingsButton"].tap()
 
         let footer = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "My lens")).firstMatch
         XCTAssertTrue(footer.waitForExistence(timeout: 5), app.buttons["settingsButton"].label)
@@ -126,7 +146,8 @@ final class CalculatorUITests: XCTestCase {
     func testAnInvalidLensKeepsTheEditScreenAndTheUsersInput() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
-        app.buttons["Sample lens"].tap()
+        app.buttons["editSettingsButton"].tap()
+        tapRow("Sample lens", in: app)
 
         let name = app.textFields["Name"]
         XCTAssertTrue(name.waitForExistence(timeout: 5))
@@ -141,7 +162,7 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertTrue(name.exists)
 
         app.navigationBars.buttons["Cancel"].tap()
-        XCTAssertTrue(app.buttons["Sample lens"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Sample lens"].waitForExistence(timeout: 5))
     }
 
     func testSubjectDistanceRangeMenuIsAFullTapTargetAndChangesTheRange() {
@@ -205,6 +226,16 @@ final class CalculatorUITests: XCTestCase {
         app.launch()
         XCTAssertTrue(resultElement(in: app).waitForExistence(timeout: 10))
         return app
+    }
+
+    /// Taps the middle of the settings row naming `name`, clear of the edit-mode controls
+    /// at either end.
+    ///
+    /// A row added in edit mode reports its text as "Remove, <name>", so the text cannot
+    /// be found by its name alone.
+    private func tapRow(_ name: String, in app: XCUIApplication) {
+        let row = app.cells.containing(NSPredicate(format: "label CONTAINS %@", name)).firstMatch
+        row.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
 
     private func resultElement(in app: XCUIApplication) -> XCUIElement {

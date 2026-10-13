@@ -23,11 +23,12 @@ struct SettingsView: View {
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
     @State private var path: [SettingsDestination] = []
+    @State private var editSelection: SettingsDestination?
 
     var body: some View {
         @Bindable var settings = settings
         NavigationStack(path: $path) {
-            List {
+            List(selection: $editSelection) {
                 OrderedModelSection(
                     title: NSLocalizedString("LENSES_SECTION_TITLE", comment: "Lenses"),
                     addTitle: NSLocalizedString("ADD_LENS", comment: "Add lens"),
@@ -57,15 +58,30 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
+                        .accessibilityIdentifier("closeSettingsButton")
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     EditButton()
+                        .accessibilityIdentifier("editSettingsButton")
                 }
             }
         }
         .onChange(of: path) {
             selectOpenedModel()
         }
+        .onChange(of: editSelection) {
+            openEditSelection()
+        }
+    }
+
+    /// Opens the edit screen for the row tapped in edit mode.
+    ///
+    /// Rows that can be deleted or moved ignore taps on their content in edit mode, so
+    /// they are opened through the list's selection instead.
+    private func openEditSelection() {
+        guard let editSelection else { return }
+        path.append(editSelection)
+        self.editSelection = nil
     }
 
     /// Selects the camera or lens whose edit screen was just opened.
