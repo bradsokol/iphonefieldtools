@@ -174,6 +174,23 @@ final class CalculatorUITests: XCTestCase {
         XCTAssertEqual(cameraCheckmarks.count, 0)
     }
 
+    func testTheLastCameraAndLensCannotBeDeleted() {
+        let app = launch(.fresh)
+        app.buttons["settingsButton"].tap()
+        app.buttons["editSettingsButton"].tap()
+
+        XCTAssertTrue(app.buttons["Add lens..."].waitForExistence(timeout: 5))
+        XCTAssertFalse(hasDeleteControl("Sample lens", in: app))
+        XCTAssertFalse(hasDeleteControl("Sample camera", in: app))
+
+        app.buttons["Add lens..."].tap()
+
+        XCTAssertTrue(row("My lens", in: app).waitForExistence(timeout: 5))
+        XCTAssertTrue(hasDeleteControl("Sample lens", in: app))
+        XCTAssertTrue(hasDeleteControl("My lens", in: app))
+        XCTAssertFalse(hasDeleteControl("Sample camera", in: app))
+    }
+
     func testEditModeHidesTheBackButtonSoDoneIsTheOnlyWayOut() {
         let app = launch(.fresh)
         app.buttons["settingsButton"].tap()
@@ -285,6 +302,11 @@ final class CalculatorUITests: XCTestCase {
     /// the text cannot be found by its name alone.
     private func row(_ name: String, in app: XCUIApplication) -> XCUIElement {
         app.cells.containing(NSPredicate(format: "label CONTAINS %@", name)).firstMatch
+    }
+
+    /// Whether the settings row naming `name` shows the edit-mode delete control.
+    private func hasDeleteControl(_ name: String, in app: XCUIApplication) -> Bool {
+        row(name, in: app).images["minus.circle.fill"].exists
     }
 
     /// Taps the middle of the settings row naming `name`, clear of the edit-mode controls
