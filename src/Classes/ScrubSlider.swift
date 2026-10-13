@@ -120,6 +120,11 @@ struct ScrubSlider<Value: BinaryFloatingPoint, Label: View>: View where Value.St
         Double(bounds.lowerBound)...Double(bounds.upperBound)
     }
 
+    private var doubleStep: Double? {
+        guard let step else { return nil }
+        return Double(step)
+    }
+
     /// Distance the thumb's centre travels from one end of the range to the other.
     private func trackLength(metrics: ScrubSliderMetrics) -> Double {
         max(0, width - metrics.thumbSize.width)
@@ -172,7 +177,7 @@ struct ScrubSlider<Value: BinaryFloatingPoint, Label: View>: View where Value.St
     }
 
     private func setValue(_ newValue: Double) {
-        let stepped = Value(ScrubTracker.stepped(newValue, by: step.map(Double.init), in: doubleRange))
+        let stepped = Value(ScrubTracker.stepped(newValue, by: doubleStep, in: doubleRange))
         if stepped != value {
             value = stepped
         }
