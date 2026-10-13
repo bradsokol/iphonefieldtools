@@ -26,7 +26,8 @@ struct CalculatorView: View {
     @Query(sort: \Camera.index) private var cameras: [Camera]
     @Query(sort: \Lens.index) private var lenses: [Lens]
     @State private var showSettings = false
-    @State private var tips = OnboardingTips.makeGroup()
+    @State private var tips: TipGroup?
+    @State private var tipTargets: Set<OnboardingTips.Target> = []
 
     private var settings: UserSettings { viewModel.settings }
 
@@ -38,21 +39,23 @@ struct CalculatorView: View {
             showSettings: $showSettings,
             tips: tips
         )
-        .onChange(of: viewModel.showsFocalLengthSlider, initial: true) {
-            FocalLengthScrubbingTip.isSliderShown = viewModel.showsFocalLengthSlider
+        .onChange(of: viewModel.showsFocalLengthSlider) {
+            updateTips()
         }
-        .onChange(of: settings.distanceType, initial: true) {
-            DistanceScrubbingTip.isSliderShown = settings.distanceType.needsSubjectDistance
+        .onChange(of: settings.distanceType) {
+            updateTips()
         }
         .onAppear {
             updateSelectedCamera()
             updateSelectedLens()
+            updateTips()
         }
         .onChange(of: cameras) {
             updateSelectedCamera()
         }
         .onChange(of: lenses) {
             updateSelectedLens()
+            updateTips()
         }
         .sheet(isPresented: $showSettings) {
             updateSelectedCamera()
@@ -63,6 +66,26 @@ struct CalculatorView: View {
     }
 
     // MARK: - Helpers
+
+    /// Rebuilds the onboarding tip group when the tip targets on screen change.
+    ///
+    /// There are no targets until a lens is selected, since the lens decides whether the
+    /// focal length slider is shown.
+    private func updateTips() {
+        var targets: Set<OnboardingTips.Target> = []
+        if viewModel.lens != nil {
+            targets.insert(.settingsButton)
+            if viewModel.showsFocalLengthSlider {
+                targets.insert(.focalLengthSlider)
+            }
+            if settings.distanceType.needsSubjectDistance {
+                targets.insert(.subjectDistanceSlider)
+            }
+        }
+        guard targets != tipTargets else { return }
+        tipTargets = targets
+        tips = targets.isEmpty ? nil : OnboardingTips.makeGroup(for: targets)
+    }
 
     private func updateSelectedCamera() {
         let index = settings.cameraIndex
@@ -110,7 +133,7 @@ private struct CalculatorContentView: View {
     var viewModel: CalculatorViewModel
     @Binding var distanceType: DistanceType
     @Binding var showSettings: Bool
-    var tips: TipGroup
+    var tips: TipGroup?
 
     var body: some View {
         ViewThatFits(in: .vertical) {
@@ -136,7 +159,7 @@ private struct CalculatorControlsView: View {
     var viewModel: CalculatorViewModel
     @Binding var distanceType: DistanceType
     @Binding var showSettings: Bool
-    var tips: TipGroup
+    var tips: TipGroup?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -156,7 +179,7 @@ private struct CalculatorControlsView: View {
             VStack(spacing: CalculatorLayout.betweenSliderRows) {
                 FocalLengthSliderView(
                     viewModel: viewModel,
-                    tip: tips.currentTip as? FocalLengthScrubbingTip
+                    tip: tips?.currentTip as? FocalLengthScrubbingTip
                 )
 
                 ApertureSliderView(viewModel: viewModel)
@@ -164,7 +187,7 @@ private struct CalculatorControlsView: View {
                 if distanceType.needsSubjectDistance {
                     SubjectDistanceSliderView(
                         viewModel: viewModel,
-                        tip: tips.currentTip as? DistanceScrubbingTip
+                        tip: tips?.currentTip as? DistanceScrubbingTip
                     )
                 }
             }
@@ -175,7 +198,7 @@ private struct CalculatorControlsView: View {
             CalculatorFooterView(
                 viewModel: viewModel,
                 showSettings: $showSettings,
-                tip: tips.currentTip as? CameraBagTip
+                tip: tips?.currentTip as? CameraBagTip
             )
         }
         .padding(.horizontal, CalculatorLayout.horizontalMargin)

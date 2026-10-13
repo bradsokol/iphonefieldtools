@@ -17,12 +17,7 @@ import SwiftUI
 import TipKit
 
 /// Explains that dragging away from the focal length slider scrubs it more slowly.
-///
-/// Eligible only while the slider is on screen, which is only for a zoom lens.
 struct FocalLengthScrubbingTip: Tip {
-    /// Whether the focal length slider is on screen.
-    @Parameter(.transient) static var isSliderShown: Bool = false
-
     var title: Text {
         Text(LocalizedStringResource("FOCAL_LENGTH_SCRUBBING_TIP_TITLE", comment: "Focal length scrubbing tip title"))
     }
@@ -30,29 +25,16 @@ struct FocalLengthScrubbingTip: Tip {
     var message: Text? {
         Text(LocalizedStringResource("FOCAL_LENGTH_SCRUBBING_TIP", comment: "Focal length scrubbing tip message"))
     }
-
-    var rules: [Rule] {
-        #Rule(Self.$isSliderShown) { $0 }
-    }
 }
 
 /// Explains that dragging away from the subject distance slider scrubs it more slowly.
-///
-/// Eligible only while the slider is on screen, which is not for the hyperfocal distance.
 struct DistanceScrubbingTip: Tip {
-    /// Whether the subject distance slider is on screen.
-    @Parameter(.transient) static var isSliderShown: Bool = false
-
     var title: Text {
         Text(LocalizedStringResource("DISTANCE_SCRUBBING_TIP_TITLE", comment: "Distance scrubbing tip title"))
     }
 
     var message: Text? {
         Text(LocalizedStringResource("DISTANCE_SCRUBBING_TIP", comment: "Distance scrubbing tip message"))
-    }
-
-    var rules: [Rule] {
-        #Rule(Self.$isSliderShown) { $0 }
     }
 }
 
@@ -69,17 +51,44 @@ struct CameraBagTip: Tip {
 
 /// The tips that replace the MPCoachMarks onboarding.
 enum OnboardingTips {
-    /// Every onboarding tip, in the order they are shown.
-    static let all: [any Tip] = [
-        FocalLengthScrubbingTip(),
-        DistanceScrubbingTip(),
-        CameraBagTip(),
-    ]
+    /// A control on the calculator screen that a tip points to.
+    enum Target: CaseIterable {
+        /// Shown only for a zoom lens.
+        case focalLengthSlider
+        /// Shown for every distance type except the hyperfocal distance.
+        case subjectDistanceSlider
+        case settingsButton
+    }
 
-    /// A group that shows the first eligible onboarding tip, one at a time.
+    /// Every onboarding tip, in the order they are shown.
+    static let all = tips(for: Set(Target.allCases))
+
+    /// The tips whose targets are in `targets`, in the order they are shown.
+    static func tips(for targets: Set<Target>) -> [any Tip] {
+        var tips: [any Tip] = []
+        if targets.contains(.focalLengthSlider) {
+            tips.append(FocalLengthScrubbingTip())
+        }
+        if targets.contains(.subjectDistanceSlider) {
+            tips.append(DistanceScrubbingTip())
+        }
+        if targets.contains(.settingsButton) {
+            tips.append(CameraBagTip())
+        }
+        return tips
+    }
+
+    /// A group that shows the tips for `targets` one at a time, each once the ones
+    /// before it are closed or retired.
+    ///
+    /// The group is ordered rather than first-available because tips that become
+    /// eligible together are not shown in a guaranteed order, so the camera bag tip
+    /// could appear before the focal length tip. An ordered group waits for each tip in
+    /// turn, so it holds only tips whose targets are on screen; a tip for a hidden
+    /// target would never show and would hold back every tip after it.
     @MainActor
-    static func makeGroup() -> TipGroup {
-        TipGroup(.firstAvailable) { all }
+    static func makeGroup(for targets: Set<Target>) -> TipGroup {
+        TipGroup(.ordered) { tips(for: targets) }
     }
 
     /// Starts TipKit, and retires every tip for a user who already saw the coach marks.

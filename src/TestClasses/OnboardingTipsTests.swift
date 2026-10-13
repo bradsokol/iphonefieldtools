@@ -28,4 +28,24 @@ struct OnboardingTipsTests {
             "CameraBagTip",
         ])
     }
+
+    /// Targets on screen, and the tip ids the group should hold for them.
+    private static let targetCases: [(Set<OnboardingTips.Target>, [String])] = [
+        ([], []),
+        ([.settingsButton], ["CameraBagTip"]),
+        ([.focalLengthSlider, .settingsButton], ["FocalLengthScrubbingTip", "CameraBagTip"]),
+        ([.subjectDistanceSlider, .settingsButton], ["DistanceScrubbingTip", "CameraBagTip"]),
+        (
+            [.settingsButton, .subjectDistanceSlider, .focalLengthSlider],
+            ["FocalLengthScrubbingTip", "DistanceScrubbingTip", "CameraBagTip"]
+        ),
+    ]
+
+    @Test(
+        "Only tips whose targets are on screen join the group, in the original order",
+        arguments: targetCases
+    )
+    func tipsForTargets(targets: Set<OnboardingTips.Target>, expected: [String]) {
+        #expect(OnboardingTips.tips(for: targets).map(\.id) == expected)
+    }
 }
