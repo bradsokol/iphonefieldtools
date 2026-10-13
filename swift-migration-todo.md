@@ -11,6 +11,7 @@
 1. "Done" button should be a check mark symbol.
 1. In edit mode two buttons appear, a check mark and "Done". There should be one button to exit edit mode. Use the ios-design-agent-skill to propose a UI for this modal behaviour.
 1. In edit mode, lens and camera selection check marks should not appear.
+1. If there is a single camera or single lens, it should not be deletable. There must always be at least one of each.
 
 ## CameraEditView
 
