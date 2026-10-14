@@ -608,7 +608,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Field Tools";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iPhone Field Tools";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 			};
@@ -634,7 +634,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.iphonefieldtools;
 				PRODUCT_NAME = "Field Tools";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Field Tools";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iPhone Field Tools";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 			};
@@ -704,7 +704,7 @@
 				PRODUCT_NAME = "Field Tools";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Field Tools";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iPhone Field Tools";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 			};
