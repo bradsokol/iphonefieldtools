@@ -208,6 +208,28 @@
         }
       }
     },
+    "DISCARD_CHANGES" : {
+      "comment" : "Discard changes",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard Changes"
+          }
+        }
+      }
+    },
+    "DISCARD_CHANGES_TITLE" : {
+      "comment" : "Discard changes?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard Changes?"
+          }
+        }
+      }
+    },
     "Distance to subject:" : {
 
     },
@@ -347,6 +369,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fine-Tune the Focal Length"
+          }
+        }
+      }
+    },
+    "KEEP_EDITING" : {
+      "comment" : "Keep editing",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Editing"
           }
         }
       }

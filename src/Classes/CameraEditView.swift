@@ -21,7 +21,8 @@ import SwiftUI
 /// `CoCViewController`, and `CustomCoCViewController`.
 ///
 /// Presented as a sheet. Edits are made to a draft and written to the camera only when
-/// Save succeeds, and Save is enabled only once the draft differs from the camera.
+/// Save succeeds. Until the draft differs from the camera, Save is disabled and the sheet
+/// closes without asking; after that, closing asks before discarding the changes.
 struct CameraEditView: View {
 
     /// The form's text, before it has been checked.
@@ -84,9 +85,10 @@ struct CameraEditView: View {
         }
         .navigationTitle(NSLocalizedString("CAMERA_VIEW_TITLE", comment: "Camera"))
         .navigationBarTitleDisplayMode(.inline)
+        .interactiveDismissDisabled(hasChanges)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", systemImage: "xmark", role: .cancel) { dismiss() }
+                CancelEditButton(hasChanges: hasChanges)
             }
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save", systemImage: "checkmark", action: save)

@@ -211,6 +211,73 @@ final class SettingsUITests: XCTestCase, FieldToolsUITesting {
         XCTAssertTrue(name.exists)
 
         app.navigationBars.buttons["Cancel"].tap()
+        app.buttons["Discard Changes"].tap()
         XCTAssertTrue(row("Sample lens", in: app).waitForExistence(timeout: 5))
+    }
+
+    func testCancellingAnUneditedLensClosesWithoutAsking() {
+        let app = launch(.fresh)
+        let name = openLensEditor(in: app)
+
+        app.navigationBars.buttons["Cancel"].tap()
+
+        XCTAssertFalse(app.buttons["Discard Changes"].waitForExistence(timeout: 2))
+        XCTAssertTrue(name.waitForNonExistence(timeout: 5))
+    }
+
+    func testCancellingAnEditedLensAsksBeforeDiscarding() {
+        let app = launch(.fresh)
+        let name = openLensEditor(in: app)
+        name.tap()
+        name.typeText("!")
+
+        app.navigationBars.buttons["Cancel"].tap()
+        XCTAssertTrue(app.buttons["Discard Changes"].waitForExistence(timeout: 5))
+        name.tap()
+        XCTAssertTrue(app.buttons["Discard Changes"].waitForNonExistence(timeout: 5))
+        XCTAssertEqual(name.value as? String, "Sample lens!")
+
+        app.navigationBars.buttons["Cancel"].tap()
+        app.buttons["Discard Changes"].tap()
+
+        XCTAssertTrue(name.waitForNonExistence(timeout: 5))
+        XCTAssertFalse(row("Sample lens!", in: app).exists)
+    }
+
+    func testAnUneditedLensCanBeSwipedAway() {
+        let app = launch(.fresh)
+        let name = openLensEditor(in: app)
+
+        swipeSheetDown(titled: "Lens", in: app)
+
+        XCTAssertTrue(name.waitForNonExistence(timeout: 5))
+    }
+
+    func testAnEditedLensCannotBeSwipedAway() {
+        let app = launch(.fresh)
+        let name = openLensEditor(in: app)
+        name.tap()
+        name.typeText("!")
+
+        swipeSheetDown(titled: "Lens", in: app)
+
+        XCTAssertTrue(name.waitForExistence(timeout: 2))
+        XCTAssertEqual(name.value as? String, "Sample lens!")
+    }
+
+    /// Drags a sheet down by its navigation bar far enough to dismiss it.
+    private func swipeSheetDown(titled title: String, in app: XCUIApplication) {
+        let start = app.navigationBars[title].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        start.press(forDuration: 0.05, thenDragTo: start.withOffset(CGVector(dx: 0, dy: 600)))
+    }
+
+    /// Opens the sample lens's edit sheet and returns its name field.
+    private func openLensEditor(in app: XCUIApplication) -> XCUIElement {
+        app.buttons["settingsButton"].tap()
+        app.buttons["editSettingsButton"].tap()
+        tapRow("Sample lens", in: app)
+        let name = app.textFields["Name"]
+        XCTAssertTrue(name.waitForExistence(timeout: 5))
+        return name
     }
 }

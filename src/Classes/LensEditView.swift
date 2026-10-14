@@ -18,7 +18,8 @@ import SwiftUI
 /// Edit screen for a lens: name, type (prime/zoom), aperture range, and focal length range.
 ///
 /// Presented as a sheet. Edits are made to a draft and written to the lens only when
-/// Save succeeds, and Save is enabled only once the draft differs from the lens.
+/// Save succeeds. Until the draft differs from the lens, Save is disabled and the sheet
+/// closes without asking; after that, closing asks before discarding the changes.
 struct LensEditView: View {
 
     /// The form's text, before it has been checked.
@@ -102,9 +103,10 @@ struct LensEditView: View {
         }
         .navigationTitle(NSLocalizedString("LENS_VIEW_TITLE", comment: "Lens"))
         .navigationBarTitleDisplayMode(.inline)
+        .interactiveDismissDisabled(hasChanges)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", systemImage: "xmark", role: .cancel) { dismiss() }
+                CancelEditButton(hasChanges: hasChanges)
             }
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save", systemImage: "checkmark", action: save)
