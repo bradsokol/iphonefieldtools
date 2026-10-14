@@ -17,9 +17,8 @@ import SwiftUI
 
 /// Edit screen for a lens: name, type (prime/zoom), aperture range, and focal length range.
 ///
-/// Edits are made to a draft and written to the lens only when Save succeeds, so the
-/// system back button is replaced by Cancel and Save. Validating when the screen
-/// disappears would be too late to show the error or keep the user's input.
+/// Presented as a sheet. Edits are made to a draft and written to the lens only when
+/// Save succeeds, and Save is enabled only once the draft differs from the lens.
 struct LensEditView: View {
 
     /// The form's text, before it has been checked.
@@ -69,19 +68,22 @@ struct LensEditView: View {
     @Environment(\.modelContext) private var modelContext
     let lens: Lens
     @State private var draft: Draft
+    private let savedDraft: Draft
     @State private var showValidationError = false
     @State private var validationMessage = ""
 
     init(lens: Lens) {
         self.lens = lens
-        _draft = State(initialValue: Draft(
+        let draft = Draft(
             name: lens.name,
             isZoom: lens.isZoom,
             minFocalLengthText: lens.minimumFocalLength.formatted(.number.grouping(.never)),
             maxFocalLengthText: lens.maximumFocalLength.formatted(.number.grouping(.never)),
             maxApertureText: LocalizedNumber.string(lens.maximumAperture, precision: .fractionLength(1)),
             minApertureText: LocalizedNumber.string(lens.minimumAperture, precision: .fractionLength(1))
-        ))
+        )
+        savedDraft = draft
+        _draft = State(initialValue: draft)
     }
 
     var body: some View {
@@ -100,13 +102,13 @@ struct LensEditView: View {
         }
         .navigationTitle(NSLocalizedString("LENS_VIEW_TITLE", comment: "Lens"))
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", role: .cancel) { dismiss() }
+                Button("Cancel", systemImage: "xmark", role: .cancel) { dismiss() }
             }
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save", action: save)
+                Button("Save", systemImage: "checkmark", action: save)
+                    .disabled(!hasChanges)
             }
         }
         .alert(
@@ -117,6 +119,10 @@ struct LensEditView: View {
         } message: {
             Text(validationMessage)
         }
+    }
+
+    private var hasChanges: Bool {
+        draft != savedDraft
     }
 
     // MARK: - Validation

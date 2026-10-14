@@ -48,10 +48,12 @@ struct SettingsView: View {
             )
             UnitsSection(units: $settings.distanceUnits)
         }
-        .navigationDestination(item: $openedModel) { destination in
-            switch destination {
-            case .lens(let lens): LensEditView(lens: lens)
-            case .camera(let camera): CameraEditView(camera: camera)
+        .sheet(item: $openedModel) { destination in
+            NavigationStack {
+                switch destination {
+                case .lens(let lens): LensEditView(lens: lens)
+                case .camera(let camera): CameraEditView(camera: camera)
+                }
             }
         }
         .navigationTitle(NSLocalizedString("SETTINGS_TITLE", comment: "Settings"))

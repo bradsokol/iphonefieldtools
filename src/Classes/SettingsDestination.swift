@@ -12,8 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// An edit screen pushed from the settings list.
-enum SettingsDestination: Hashable {
+import SwiftData
+
+/// An edit screen presented from the settings list.
+enum SettingsDestination: Hashable, Identifiable {
     case lens(Lens)
     case camera(Camera)
+
+    var id: PersistentIdentifier {
+        switch self {
+        case .lens(let lens): lens.persistentModelID
+        case .camera(let camera): camera.persistentModelID
+        }
+    }
 }

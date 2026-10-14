@@ -20,9 +20,8 @@ import SwiftUI
 /// Replaces the three ObjC view controllers: `CameraViewController`,
 /// `CoCViewController`, and `CustomCoCViewController`.
 ///
-/// Edits are made to a draft and written to the camera only when Save succeeds, so the
-/// system back button is replaced by Cancel and Save. Validating when the screen
-/// disappears would be too late to show the error or keep the user's input.
+/// Presented as a sheet. Edits are made to a draft and written to the camera only when
+/// Save succeeds, and Save is enabled only once the draft differs from the camera.
 struct CameraEditView: View {
 
     /// The form's text, before it has been checked.
@@ -57,6 +56,8 @@ struct CameraEditView: View {
     let camera: Camera
     @State private var draft: Draft
     @State private var selectedPresetIndex: Int?
+    private let savedDraft: Draft
+    private let savedPresetIndex: Int?
     @State private var showValidationError = false
     @State private var validationMessage = ""
 
@@ -65,8 +66,11 @@ struct CameraEditView: View {
 
         let currentValue = camera.coc?.value ?? 0.03
         let matchIndex = CoCPreset.all.firstIndex { abs($0.value - currentValue) < 0.0001 }
+        let draft = Draft(name: camera.name, cocText: Self.cocString(currentValue))
+        savedDraft = draft
+        savedPresetIndex = matchIndex
         _selectedPresetIndex = State(initialValue: matchIndex)
-        _draft = State(initialValue: Draft(name: camera.name, cocText: Self.cocString(currentValue)))
+        _draft = State(initialValue: draft)
     }
 
     var body: some View {
@@ -80,13 +84,13 @@ struct CameraEditView: View {
         }
         .navigationTitle(NSLocalizedString("CAMERA_VIEW_TITLE", comment: "Camera"))
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", role: .cancel) { dismiss() }
+                Button("Cancel", systemImage: "xmark", role: .cancel) { dismiss() }
             }
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save", action: save)
+                Button("Save", systemImage: "checkmark", action: save)
+                    .disabled(!hasChanges)
             }
         }
         .alert(
@@ -97,6 +101,10 @@ struct CameraEditView: View {
         } message: {
             Text(validationMessage)
         }
+    }
+
+    private var hasChanges: Bool {
+        draft != savedDraft || selectedPresetIndex != savedPresetIndex
     }
 
     // MARK: - Validation
